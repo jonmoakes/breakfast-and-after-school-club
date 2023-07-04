@@ -1,3 +1,18 @@
+//errors
+export const errorSendingMessage =
+  "sorry, there was an error sending your message...";
+export const missingEmailFieldsErrorMessage =
+  "please make sure that all required fields have been entered.";
+export const invalidEmailErrorMessage =
+  "the email that you have entered is an invalid email address. Please try again.";
+
+// success
+export const successMessage = "success!";
+
+// infos
+export const emailResponseTimeMessage =
+  "Your Message Has Been Message Sent! We Aim To Respond Within 24 Hours.";
+
 //routes
 export const bookingsRoute = "/bookings";
 export const bookSessionRoute = "/book-session";

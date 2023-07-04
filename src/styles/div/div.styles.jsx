@@ -1,6 +1,12 @@
 import styled from "styled-components";
 
-import { customBlack, customBlue, customWhite, customYellow } from "../colors";
+import {
+  customBlack,
+  customBlue,
+  customOrange,
+  customWhite,
+  customYellow,
+} from "../colors";
 
 // Navigation
 export const Nav = styled.div`
@@ -142,6 +148,26 @@ export const ImageDiv = styled.div`
 
   @media screen and (max-width: 600px) {
     height: 90%;
+    width: 90%;
+  }
+`;
+
+export const ErrorDiv = styled.div`
+  background-color: ${customOrange};
+  padding: 10px 10px 30px 10px;
+  border: 2px solid ${customBlack};
+  border-radius: 5px;
+  margin-top: 0px;
+  width: 75%;
+  height: auto;
+  box-shadow: 6px 6px 15px ${customBlack};
+  padding: 0px 10px;
+
+  h1 {
+    color: ${customBlack};
+  }
+
+  @media screen and (max-width: 600px) {
     width: 90%;
   }
 `;

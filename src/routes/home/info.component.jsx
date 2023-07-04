@@ -4,7 +4,7 @@ import { Text } from "../../styles/p/p.styles";
 const Info = () => (
   <ParentDiv>
     <Text>
-      the app is a full functioning demonstration app to show you how your
+      the app is a fully functioning demonstration app to show you how your
       school can better manage bookings for your breakfast and after school
       club.
     </Text>

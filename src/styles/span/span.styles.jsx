@@ -19,3 +19,7 @@ export const BorderLink = styled.span`
   padding: 5px;
   border-radius: 10px;
 `;
+
+export const RedSpan = styled.span`
+  color: ${customRed};
+`;

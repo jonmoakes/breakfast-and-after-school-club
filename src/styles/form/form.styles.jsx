@@ -1,0 +1,320 @@
+import styled from "styled-components";
+import {
+  customBlue,
+  customBlack,
+  customRed,
+  customWhite,
+  customYellow,
+} from "../colors";
+
+export const Form = styled.form`
+  width: 95%;
+  padding: 30px 0px;
+  margin: 0px auto 70px auto;
+  background-color: ${customBlue};
+  border: 2px solid ${customBlack};
+  border-radius: 5px;
+
+  @media screen and (max-width: 450px) {
+    padding: 20px 0px;
+  }
+`;
+
+export const StyledInput = styled.input`
+  width: 95%;
+  height: 50px;
+  padding: 12px;
+  border: 2px solid ${customBlack};
+  border-radius: 5px;
+  box-shadow: 6px 6px 6px ${customBlack};
+  box-sizing: border-box;
+  margin-top: 10px;
+  margin-bottom: 30px;
+  font-size: 18px;
+  font-family: inherit;
+  outline: none;
+  background-color: ${customWhite};
+  appearance: none;
+  color: ${customBlack};
+
+  &:focus {
+    border: 5px solid ${customRed};
+  }
+
+  ::-webkit-input-placeholder {
+    text-transform: capitalize;
+  }
+  ::-moz-placeholder {
+    text-transform: capitalize;
+  }
+  :-ms-input-placeholder {
+    text-transform: capitalize;
+  }
+  ::placeholder {
+    text-transform: capitalize;
+  }
+
+  @media screen and (max-width: 1366px) {
+    box-shadow: none;
+  }
+
+  @media screen and (max-width: 450px) {
+    font-size: 16px;
+
+    ::-moz-placeholder {
+      font-size: 16px;
+    }
+    :-ms-input-placeholder {
+      font-size: 16px;
+    }
+    ::placeholder {
+      font-size: 16px;
+    }
+  }
+
+  @media screen and (max-width: 320px) {
+    height: 40px;
+  }
+
+  @media screen and (max-width: 280px) {
+    ::-webkit-input-placeholder {
+      font-size: 10px;
+    }
+    ::-moz-placeholder {
+      font-size: 10px;
+    }
+    :-ms-input-placeholder {
+      font-size: 10px;
+    }
+    ::placeholder {
+      font-size: 10px;
+    }
+  }
+`;
+
+export const CapitalizedInput = styled(StyledInput)`
+  text-transform: capitalize;
+`;
+
+export const LowercasedInput = styled(StyledInput)`
+  text-transform: lowercase;
+`;
+
+export const UppercasedInput = styled(StyledInput)`
+  text-transform: uppercase;
+`;
+
+export const StyledTextArea = styled.textarea`
+  width: 95%;
+  padding: 12px;
+  border: 2px solid ${customBlack};
+  border-radius: 5px;
+  box-shadow: 6px 6px 6px ${customBlack};
+  box-sizing: border-box;
+  margin: 15px auto;
+  font-size: 18px;
+  height: 200px;
+  font-family: inherit;
+  outline: none;
+  text-transform: capitalize;
+  color: ${customBlack};
+
+  &:focus {
+    border: 5px solid ${customRed};
+  }
+
+  @media screen and (max-width: 1366px) {
+    box-shadow: none;
+  }
+
+  @media screen and (max-width: 600px) {
+    font-size: 16px;
+    ::-webkit-input-placeholder {
+      font-size: 16px;
+    }
+    ::-moz-placeholder {
+      font-size: 16px;
+    }
+    :-ms-input-placeholder {
+      font-size: 16px;
+    }
+    ::placeholder {
+      font-size: 16px;
+    }
+  }
+
+  @media screen and (max-width: 400px) {
+    ::-webkit-input-placeholder {
+      font-size: 14px;
+    }
+    ::-moz-placeholder {
+      font-size: 14px;
+    }
+    :-ms-input-placeholder {
+      font-size: 14px;
+    }
+    ::placeholder {
+      font-size: 14px;
+    }
+  }
+`;
+
+export const StyledSelect = styled.select`
+  width: 95%;
+  height: 50px;
+  padding: 12px;
+  border: 2px solid ${customBlack};
+  border-radius: 5px;
+  box-shadow: 6px 6px 6px ${customBlack};
+  box-sizing: border-box;
+  margin-top: 15px;
+  margin-bottom: 20px;
+  font-size: 18px;
+  outline: none;
+  background-color: ${customWhite};
+  color: ${customBlack};
+  text-transform: capitalize;
+
+  &:focus {
+    border-color: ${customRed};
+  }
+
+  @media screen and (max-width: 1000px) {
+    width: 95%;
+  }
+
+  @media screen and (max-width: 600px) {
+    height: 50px;
+  }
+
+  @media screen and (max-width: 450px) {
+    font-size: 16px;
+  }
+
+  @media screen and (max-width: 320px) {
+    height: 40px;
+    font-size: 12px;
+  }
+`;
+
+export const PaginationSelect = styled.select`
+  width: 200px;
+  padding: 10px;
+  border-radius: 5px;
+  border: 2px solid ${customBlack};
+  outline: none;
+  margin-top: -25px;
+
+  &:focus {
+    border-color: ${customRed};
+    box-shadow: 6px 6px 6px ${customBlack};
+  }
+`;
+
+export const Label = styled.label`
+  font-size: 18px;
+  color: ${customYellow};
+  text-shadow: 1px 1px 1px ${customBlack};
+  float: left;
+  padding-left: 20px;
+
+  @media screen and (max-width: 1000px) {
+    padding-left: 15px;
+  }
+
+  @media screen and (max-width: 600px) {
+    padding-left: 10px;
+  }
+
+  @media screen and (max-width: 450px) {
+    font-size: 16px;
+  }
+`;
+
+export const PaginationInput = styled.input`
+  width: 200px;
+  height: 40px;
+  border-radius: 5px;
+  border: 2px solid ${customBlack};
+  text-align: center;
+`;
+
+export const SearchInput = styled.input`
+  margin: 0px auto 50px auto;
+  padding: 0px;
+  width: 100%;
+  outline: none;
+  height: 50px;
+  border-radius: 5px;
+  background-color: ${customWhite};
+  outline: none;
+  border: 2px solid ${customBlack};
+  padding-left: 20px;
+  font-family: inherit;
+  font-size: 20px;
+
+  &:focus {
+    box-shadow: 4px 4px 4px black;
+    border-color: ${customRed};
+  }
+
+  /* clears the ‘X’ from Internet Explorer */
+  ::-ms-clear {
+    display: none;
+    width: 0;
+    height: 0;
+  }
+  ::-ms-reveal {
+    display: none;
+    width: 0;
+    height: 0;
+  }
+  /* clears the ‘X’ from Chrome */
+  ::-webkit-search-decoration,
+  ::-webkit-search-cancel-button,
+  ::-webkit-search-results-button,
+  ::-webkit-search-results-decoration {
+    display: none;
+  }
+
+  :-webkit-input-placeholder {
+    font-size: 16px;
+
+    @media screen and (max-width: 280px) {
+      font-size: 14px;
+    }
+  }
+
+  ::-moz-placeholder {
+    font-size: 16px;
+
+    @media screen and (max-width: 280px) {
+      font-size: 14px;
+    }
+  }
+  :-ms-input-placeholder {
+    font-size: 16px;
+
+    @media screen and (max-width: 280px) {
+      font-size: 14px;
+    }
+  }
+  ::placeholder {
+    font-size: 16px;
+
+    @media screen and (max-width: 280px) {
+      font-size: 14px;
+    }
+  }
+
+  @media screen and (max-width: 850px) {
+    margin: 0px auto 0px auto;
+  }
+  @media screen and (max-width: 450px) {
+    height: 40px;
+  }
+
+  @media screen and (max-width: 320px) {
+    padding-left: 5px;
+  }
+`;

@@ -1,6 +1,12 @@
 import styled from "styled-components";
 
-import { customBlack, customBlue, customWhite, customYellow } from "../colors";
+import {
+  customBlack,
+  customBlue,
+  customLightGreen,
+  customWhite,
+  customYellow,
+} from "../colors";
 
 export const Button = styled.button`
   min-width: 165px;
@@ -42,8 +48,24 @@ export const Button = styled.button`
     transform: translate(0, 0.5rem);
     box-shadow: 0 0.1rem ${customBlack};
   }
+`;
 
-  @media screen and (max-width: 1366px) {
-    /* margin: 10px; */
+export const DisabledButton = styled(Button)`
+  box-shadow: none;
+  cursor: not-allowed;
+  opacity: 0.5;
+  pointer-events: none;
+`;
+
+export const ContactFormButton = styled(Button)`
+  &:hover {
+    background-color: ${customLightGreen};
+    color: ${customBlack};
+    text-shadow: none;
+
+    @media screen and (max-width: 1366px) {
+      background-color: unset;
+      color: unset;
+    }
   }
 `;
