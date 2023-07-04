@@ -13,7 +13,6 @@ const Email = ({ handleSignUpFormChange }) => {
 
   return (
     <>
-      <Label>display name:</Label>
       <Label>email:</Label>
       <LowercasedInput
         type="email"

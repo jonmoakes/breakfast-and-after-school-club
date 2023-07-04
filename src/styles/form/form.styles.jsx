@@ -31,7 +31,7 @@ export const StyledInput = styled.input`
   padding: 12px;
   border: 2px solid ${customBlack};
   border-radius: 5px;
-  box-shadow: 6px 6px 6px ${customBlack};
+
   box-sizing: border-box;
   margin-top: 10px;
   margin-bottom: 30px;
@@ -43,7 +43,8 @@ export const StyledInput = styled.input`
   color: ${customBlack};
 
   &:focus {
-    border: 3px solid ${customRed};
+    border: 2px solid ${customRed};
+    box-shadow: 6px 6px 6px ${customBlack};
   }
 
   &::placeholder {
@@ -67,7 +68,9 @@ export const StyledInput = styled.input`
   }
 
   @media screen and (max-width: 1366px) {
-    box-shadow: none;
+    &:focus {
+      box-shadow: none;
+    }
   }
 
   @media screen and (max-width: 450px) {
@@ -134,9 +137,8 @@ export const StyledTextArea = styled.textarea`
   padding: 12px;
   border: 2px solid ${customBlack};
   border-radius: 5px;
-  box-shadow: 6px 6px 6px ${customBlack};
   box-sizing: border-box;
-  margin: 0px auto 30px auto;
+  margin: 10px auto 30px auto;
   font-size: 18px;
   height: 200px;
   font-family: inherit;
@@ -146,10 +148,13 @@ export const StyledTextArea = styled.textarea`
 
   &:focus {
     border: 3px solid ${customRed};
+    box-shadow: 6px 6px 6px ${customBlack};
   }
 
   @media screen and (max-width: 1366px) {
-    box-shadow: none;
+    &:focus {
+      box-shadow: none;
+    }
   }
 
   @media screen and (max-width: 600px) {
