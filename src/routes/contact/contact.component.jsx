@@ -6,10 +6,10 @@ import { selectIsLoading } from "../../store/loader/loader.selector";
 
 import Loader from "../../components/loader/loader.component";
 import NetworkError from "../../components/errors/network-error.component";
-import ContactForm from "./contact-form.component";
+import ContactTitle from "./sections/contact-title.component";
+import ContactForm from "./sections/contact-form.component";
 
 import { Container } from "../../styles/container/container.styles";
-import { ParentDiv, InnerDiv } from "../../styles/div/div.styles";
 
 const Contact = () => {
   const { isOnline } = useIsOnline();
@@ -21,15 +21,8 @@ const Contact = () => {
       {isLoading && <Loader />}
       {!isOnline && <NetworkError />}
 
-      <ParentDiv>
-        <InnerDiv className="clear-bg">
-          <h1>contact us</h1>
-        </InnerDiv>
-      </ParentDiv>
-
-      <ParentDiv>
-        <ContactForm {...{ isOnline, isLoading }} />
-      </ParentDiv>
+      <ContactTitle />
+      <ContactForm {...{ isOnline, isLoading }} />
     </Container>
   );
 };

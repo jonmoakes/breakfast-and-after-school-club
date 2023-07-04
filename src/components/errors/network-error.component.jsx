@@ -3,6 +3,7 @@ import useFireSwal from "../../hooks/use-fire-swal";
 
 import CustomButton from "../custom-button/custom-button.component";
 
+import { BlackTitle } from "../../styles/h1/h1.styles";
 import { ErrorDiv } from "../../styles/div/div.styles";
 import { Text } from "../../styles/p/p.styles";
 
@@ -21,7 +22,7 @@ const NetworkError = () => {
       {error && fireSwal("error", error, "", 0, true, true)}
       {!isOnline ? (
         <ErrorDiv>
-          <h1>network error</h1>
+          <BlackTitle>network error</BlackTitle>
           <Text>
             we've noticed that your internet connection seems to be offline.
           </Text>

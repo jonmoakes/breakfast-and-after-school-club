@@ -1,8 +1,9 @@
 import { Container } from "../../styles/container/container.styles";
+import { BlackTitle } from "../../styles/h1/h1.styles";
 
 const ErrorFallback = () => (
   <Container>
-    <h1>sorry, there was an error</h1>
+    <BlackTitle>sorry, there was an error</BlackTitle>
   </Container>
 );
 

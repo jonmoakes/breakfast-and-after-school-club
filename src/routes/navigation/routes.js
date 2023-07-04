@@ -3,6 +3,8 @@ import {
   bookSessionRoute,
   contactRoute,
   accountRoute,
+  signInRoute,
+  signUpRoute,
 } from "../../strings/strings";
 
 export const signedInRoutes = [
@@ -18,4 +20,4 @@ export const signedInRoutesWithoutDash = [
   accountRoute,
 ];
 
-export const signedOutRoutes = [bookSessionRoute, contactRoute];
+export const signedOutRoutes = [signInRoute, signUpRoute, contactRoute];

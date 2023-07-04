@@ -1,5 +1,5 @@
 import { createGlobalStyle } from "styled-components";
-import { customBlack, customBlue, customYellow } from "./styles/colors";
+import { customBlue } from "./styles/colors";
 
 import BackgroundImage from "./assets/crayons.svg";
 
@@ -37,15 +37,5 @@ export const GlobalStyle = createGlobalStyle`
               background-size: contain;
               opacity:0.5;
         }
-
-        h1 {
-            color: ${customYellow};
-            text-shadow: 1px 1px 1px ${customBlack} ;
-
-            @media screen and (max-width: 600px) {
-                font-size:24px;
-            }
-
-        } 
     }
 `;

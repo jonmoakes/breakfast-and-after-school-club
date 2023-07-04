@@ -8,14 +8,19 @@ import {
 } from "../colors";
 
 export const Form = styled.form`
-  width: 95%;
+  width: 75%;
   padding: 30px 0px;
-  margin: 0px auto 70px auto;
+  margin: 50px auto 70px auto;
   background-color: ${customBlue};
   border: 2px solid ${customBlack};
   border-radius: 5px;
 
+  @media screen and (max-width: 1366px) {
+    width: 90%;
+  }
+
   @media screen and (max-width: 450px) {
+    width: 95%;
     padding: 20px 0px;
   }
 `;
@@ -38,19 +43,26 @@ export const StyledInput = styled.input`
   color: ${customBlack};
 
   &:focus {
-    border: 5px solid ${customRed};
+    border: 3px solid ${customRed};
   }
 
-  ::-webkit-input-placeholder {
+  &::placeholder {
     text-transform: capitalize;
   }
-  ::-moz-placeholder {
+
+  &::-webkit-input-placeholder {
     text-transform: capitalize;
   }
-  :-ms-input-placeholder {
+
+  &::-moz-placeholder {
     text-transform: capitalize;
   }
-  ::placeholder {
+
+  &:-ms-input-placeholder {
+    text-transform: capitalize;
+  }
+
+  &::-ms-input-placeholder {
     text-transform: capitalize;
   }
 
@@ -61,13 +73,19 @@ export const StyledInput = styled.input`
   @media screen and (max-width: 450px) {
     font-size: 16px;
 
-    ::-moz-placeholder {
+    &::-webkit-input-placeholder {
       font-size: 16px;
     }
-    :-ms-input-placeholder {
+
+    &::-moz-placeholder {
       font-size: 16px;
     }
-    ::placeholder {
+
+    &:-ms-input-placeholder {
+      font-size: 16px;
+    }
+
+    &::-ms-input-placeholder {
       font-size: 16px;
     }
   }
@@ -77,19 +95,26 @@ export const StyledInput = styled.input`
   }
 
   @media screen and (max-width: 280px) {
-    ::-webkit-input-placeholder {
-      font-size: 10px;
+    &::-webkit-input-placeholder {
+      font-size: 14px;
     }
-    ::-moz-placeholder {
-      font-size: 10px;
+
+    &::-moz-placeholder {
+      font-size: 14px;
     }
-    :-ms-input-placeholder {
-      font-size: 10px;
+
+    &:-ms-input-placeholder {
+      font-size: 14px;
     }
-    ::placeholder {
-      font-size: 10px;
+
+    &::-ms-input-placeholder {
+      font-size: 14px;
     }
   }
+`;
+
+export const PasswordInput = styled(StyledInput)`
+  padding-right: 36px;
 `;
 
 export const CapitalizedInput = styled(StyledInput)`
@@ -111,7 +136,7 @@ export const StyledTextArea = styled.textarea`
   border-radius: 5px;
   box-shadow: 6px 6px 6px ${customBlack};
   box-sizing: border-box;
-  margin: 15px auto;
+  margin: 0px auto 30px auto;
   font-size: 18px;
   height: 200px;
   font-family: inherit;
@@ -120,7 +145,7 @@ export const StyledTextArea = styled.textarea`
   color: ${customBlack};
 
   &:focus {
-    border: 5px solid ${customRed};
+    border: 3px solid ${customRed};
   }
 
   @media screen and (max-width: 1366px) {
@@ -128,32 +153,37 @@ export const StyledTextArea = styled.textarea`
   }
 
   @media screen and (max-width: 600px) {
-    font-size: 16px;
-    ::-webkit-input-placeholder {
+    &::-webkit-input-placeholder {
       font-size: 16px;
     }
-    ::-moz-placeholder {
+
+    &::-moz-placeholder {
       font-size: 16px;
     }
-    :-ms-input-placeholder {
+
+    &:-ms-input-placeholder {
       font-size: 16px;
     }
-    ::placeholder {
+
+    &::-ms-input-placeholder {
       font-size: 16px;
     }
   }
 
   @media screen and (max-width: 400px) {
-    ::-webkit-input-placeholder {
+    &::-webkit-input-placeholder {
       font-size: 14px;
     }
-    ::-moz-placeholder {
+
+    &::-moz-placeholder {
       font-size: 14px;
     }
-    :-ms-input-placeholder {
+
+    &:-ms-input-placeholder {
       font-size: 14px;
     }
-    ::placeholder {
+
+    &::-ms-input-placeholder {
       font-size: 14px;
     }
   }

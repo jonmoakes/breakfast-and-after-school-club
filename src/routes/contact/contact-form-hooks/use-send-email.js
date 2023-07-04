@@ -1,14 +1,16 @@
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 
-import useFireSwal from "../../hooks/use-fire-swal";
+import useFireSwal from "../../../hooks/use-fire-swal";
 
-import { startLoader, stopLoader } from "../../store/loader/loader-slice";
+import { startLoader, stopLoader } from "../../../store/loader/loader.slice";
+import { resetContactFormFields } from "../../../store/contact-form/contact-form.slice";
+import { selectContactFormDetails } from "../../../store/contact-form/contact-form.selector";
 
 import { emailToSend } from "./email-to-send";
 
-import { capitalizeString } from "../../functions/capitalize-string";
-import { validateEmail } from "../../functions/validate-email";
+import { capitalizeString } from "../../../functions/capitalize-string";
+import { validateEmail } from "../../../functions/validate-email";
 
 import {
   errorSendingMessage,
@@ -16,16 +18,16 @@ import {
   invalidEmailErrorMessage,
   successMessage,
   emailResponseTimeMessage,
-} from "../../strings/strings";
+} from "../../../strings/strings";
 
 const useSendEmail = () => {
   const { fireSwal } = useFireSwal();
 
+  const contactFormDetails = useSelector(selectContactFormDetails);
   const dispatch = useDispatch();
+  const { name, email, message } = contactFormDetails;
 
-  const sendEmail = async (formFields, resetFormFields) => {
-    const { name, email, message } = formFields;
-
+  const sendEmail = async () => {
     if (!name || !email || !message) {
       fireSwal(
         "error",
@@ -70,11 +72,10 @@ const useSendEmail = () => {
               false
             );
             document.getElementById("contact-form").reset();
-            resetFormFields();
+            dispatch(resetContactFormFields());
           }
         },
         (error) => {
-          console.log(error);
           dispatch(stopLoader());
           fireSwal(
             "error",

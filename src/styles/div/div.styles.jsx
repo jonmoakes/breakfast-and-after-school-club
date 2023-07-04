@@ -3,6 +3,7 @@ import styled from "styled-components";
 import {
   customBlack,
   customBlue,
+  customGrey,
   customOrange,
   customWhite,
   customYellow,
@@ -97,7 +98,11 @@ export const ParentDiv = styled.div`
   border-radius: 5px;
   border: 1px solid black;
   box-shadow: 6px 6px 15px ${customBlack};
-  padding: 0px 10px;
+  padding: 10px;
+
+  @media screen and (max-width: 1366px) {
+    box-shadow: none;
+  }
 
   @media screen and (max-width: 600px) {
     width: 90%;
@@ -117,11 +122,6 @@ export const InnerDiv = styled.div`
     border: none;
     margin: 0px auto;
     border-radius: unset;
-
-    h1 {
-      color: ${customBlack};
-      text-shadow: none;
-    }
   }
 
   @media screen and (max-width: 600px) {
@@ -153,21 +153,25 @@ export const ImageDiv = styled.div`
 `;
 
 export const ErrorDiv = styled.div`
-  background-color: ${customOrange};
+  background-color: ${customGrey};
   padding: 10px 10px 30px 10px;
   border: 2px solid ${customBlack};
   border-radius: 5px;
-  margin-top: 0px;
+  margin: 0px auto;
   width: 75%;
   height: auto;
   box-shadow: 6px 6px 15px ${customBlack};
   padding: 0px 10px;
 
-  h1 {
-    color: ${customBlack};
+  @media screen and (max-width: 1366px) {
+    box-shadow: none;
   }
 
   @media screen and (max-width: 600px) {
     width: 90%;
   }
+`;
+
+export const PasswordWrapper = styled.div`
+  position: relative;
 `;

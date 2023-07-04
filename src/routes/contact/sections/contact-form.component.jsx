@@ -1,5 +1,5 @@
-import useSendEmail from "./use-send-email";
-import useHandleContactFormDetailsChange from "./use-handle-contact-form-details-change";
+import useSendEmail from "../contact-form-hooks/use-send-email";
+import useHandleContactFormDetailsChange from "../contact-form-hooks/use-handle-contact-form-details-change";
 
 import {
   Form,
@@ -7,24 +7,22 @@ import {
   CapitalizedInput,
   StyledTextArea,
   Label,
-} from "../../styles/form/form.styles";
+} from "../../../styles/form/form.styles";
 import {
   DisabledButton,
-  ContactFormButton,
-} from "../../styles/buttons/buttons.styles";
-import { RedSpan } from "../../styles/span/span.styles";
-import { Text } from "../../styles/p/p.styles";
+  GreenButton,
+} from "../../../styles/buttons/buttons.styles";
+import { RedSpan } from "../../../styles/span/span.styles";
+import { ParentDiv } from "../../../styles/div/div.styles";
+import { BlackHr } from "../../../styles/hr/hr.styles";
 
 const ContactForm = ({ isOnline, isLoading }) => {
-  const { formFields, handleContactFormDetailsChange, resetFormFields } =
+  const { handleContactFormDetailsChange } =
     useHandleContactFormDetailsChange();
   const { sendEmail } = useSendEmail();
 
   return (
-    <>
-      <Text>
-        <RedSpan>* </RedSpan> = required
-      </Text>
+    <ParentDiv>
       <Form id="contact-form">
         <Label>
           <RedSpan>* </RedSpan>Your Name:
@@ -52,19 +50,18 @@ const ContactForm = ({ isOnline, isLoading }) => {
           onChange={handleContactFormDetailsChange}
         />
 
+        <BlackHr />
+
         {isOnline && !isLoading ? (
-          <ContactFormButton
-            type="button"
-            onClick={() => sendEmail(formFields, resetFormFields)}
-          >
+          <GreenButton type="button" onClick={sendEmail}>
             Send Message
-          </ContactFormButton>
+          </GreenButton>
         ) : (
           isOnline &&
           isLoading && <DisabledButton>please wait...</DisabledButton>
         )}
       </Form>
-    </>
+    </ParentDiv>
   );
 };
 

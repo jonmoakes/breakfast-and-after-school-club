@@ -9,7 +9,6 @@ import {
 } from "../colors";
 
 export const Button = styled.button`
-  min-width: 165px;
   width: 250px;
   height: 50px;
   font-size: 18px;
@@ -48,6 +47,11 @@ export const Button = styled.button`
     transform: translate(0, 0.5rem);
     box-shadow: 0 0.1rem ${customBlack};
   }
+
+  @media screen and (max-width: 320px) {
+    width: 200px;
+    /* margin: -20px auto 0px auto; */
+  }
 `;
 
 export const DisabledButton = styled(Button)`
@@ -57,7 +61,7 @@ export const DisabledButton = styled(Button)`
   pointer-events: none;
 `;
 
-export const ContactFormButton = styled(Button)`
+export const GreenButton = styled(Button)`
   &:hover {
     background-color: ${customLightGreen};
     color: ${customBlack};

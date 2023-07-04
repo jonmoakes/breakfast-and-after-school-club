@@ -13,6 +13,12 @@ export const successMessage = "success!";
 export const emailResponseTimeMessage =
   "Your Message Has Been Message Sent! We Aim To Respond Within 24 Hours.";
 
+//placeholders
+export const enterEmailAddress = "enter your email address";
+export const minSixCharacters = "min 6 characters";
+export const maxEightCharacters = "max 8 characters";
+export const confirmYourPassword = "confirm your password";
+
 //routes
 export const bookingsRoute = "/bookings";
 export const bookSessionRoute = "/book-session";
