@@ -6,7 +6,7 @@ import { CapitalizedInput, Label } from "../../../styles/form/form.styles";
 
 import { maxEightCharacters } from "../../../strings/strings";
 
-const DisplayName = ({ handleSignUpFormChange }) => {
+const SignUpDisplayName = ({ handleSignUpFormChange }) => {
   const signUpFormDetails = useSelector(selectSignUpFormDetails);
 
   const { displayName } = signUpFormDetails;
@@ -26,4 +26,4 @@ const DisplayName = ({ handleSignUpFormChange }) => {
   );
 };
 
-export default DisplayName;
+export default SignUpDisplayName;

@@ -15,9 +15,10 @@ export const emailResponseTimeMessage =
 
 //placeholders
 export const enterEmailAddress = "enter your email address";
-export const minSixCharacters = "min 6 characters";
+export const minEightCharacters = "min 8 characters";
 export const maxEightCharacters = "max 8 characters";
 export const confirmYourPassword = "confirm your password";
+export const enterYourPassword = "enter your password";
 
 //routes
 export const bookingsRoute = "/bookings";

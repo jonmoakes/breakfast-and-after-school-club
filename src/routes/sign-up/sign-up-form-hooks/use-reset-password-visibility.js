@@ -1,8 +1,6 @@
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
 
-// import useTogglePasswordVisibility from "../../../hooks/use-toggle-password-visibility";
-
 import { selectSignUpFormDetails } from "../../../store/sign-up-form/sign-up-form.selector";
 
 const useResetPasswordVisibility = (setIsVisible, setConfirmIsVisible) => {
@@ -14,8 +12,6 @@ const useResetPasswordVisibility = (setIsVisible, setConfirmIsVisible) => {
       setIsVisible(false);
     } else if (!confirmPassword.trim().length) {
       setConfirmIsVisible(false);
-    } else {
-      return;
     }
   }, [password, setIsVisible, confirmPassword, setConfirmIsVisible]);
 };

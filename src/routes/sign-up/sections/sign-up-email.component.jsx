@@ -6,7 +6,7 @@ import { LowercasedInput, Label } from "../../../styles/form/form.styles";
 
 import { enterEmailAddress } from "../../../strings/strings";
 
-const Email = ({ handleSignUpFormChange }) => {
+const SignUpEmail = ({ handleSignUpFormChange }) => {
   const signUpFormDetails = useSelector(selectSignUpFormDetails);
 
   const { email } = signUpFormDetails;
@@ -26,4 +26,4 @@ const Email = ({ handleSignUpFormChange }) => {
   );
 };
 
-export default Email;
+export default SignUpEmail;

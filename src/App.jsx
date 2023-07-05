@@ -7,7 +7,12 @@ import "./App.css";
 import ErrorFallback from "./components/errors/error-fallback.component";
 import Loader from "./components/loader/loader.component";
 
-import { contactRoute, signUpRoute } from "./strings/strings";
+import {
+  contactRoute,
+  signUpRoute,
+  signInRoute,
+  accountRoute,
+} from "./strings/strings";
 
 const Navigation = lazy(() =>
   import("./routes/navigation/navigation.component")
@@ -15,6 +20,8 @@ const Navigation = lazy(() =>
 const Home = lazy(() => import("./routes/home/home.component"));
 const Contact = lazy(() => import("./routes/contact/contact.component"));
 const SignUp = lazy(() => import("./routes/sign-up/sign-up.component"));
+const SignIn = lazy(() => import("./routes/sign-in/sign-in.component"));
+const Account = lazy(() => import("./routes/account/account.component"));
 
 function App() {
   return (
@@ -28,6 +35,8 @@ function App() {
               <Route index element={<Home />} />
               <Route path={contactRoute} element={<Contact />} />
               <Route path={signUpRoute} element={<SignUp />} />
+              <Route path={signInRoute} element={<SignIn />} />
+              <Route path={accountRoute} element={<Account />} />
             </Route>
           </Routes>
         </Suspense>

@@ -5,7 +5,7 @@ import useResetPasswordVisibility from "../sign-up-form-hooks/use-reset-password
 
 import { selectSignUpFormDetails } from "../../../store/sign-up-form/sign-up-form.selector";
 
-import { PasswordWrapper } from "../../../styles/div/div.styles";
+import { RelativePositionDiv } from "../../../styles/div/div.styles";
 import { Label, PasswordInput } from "../../../styles/form/form.styles";
 import {
   TogglePassword,
@@ -13,11 +13,11 @@ import {
 } from "../../../styles/span/span.styles";
 
 import {
-  minSixCharacters,
+  minEightCharacters,
   confirmYourPassword,
 } from "../../../strings/strings";
 
-const Passwords = ({ handleSignUpFormChange }) => {
+const SignUpPasswords = ({ handleSignUpFormChange }) => {
   const {
     isVisible,
     confirmIsVisible,
@@ -34,12 +34,12 @@ const Passwords = ({ handleSignUpFormChange }) => {
   return (
     <>
       <Label>password:</Label>
-      <PasswordWrapper>
+      <RelativePositionDiv>
         <PasswordInput
           name="password"
           value={password || ""}
           onChange={handleSignUpFormChange}
-          placeholder={minSixCharacters}
+          placeholder={minEightCharacters}
           required
           type={isVisible ? "text" : "password"}
         />
@@ -50,10 +50,10 @@ const Passwords = ({ handleSignUpFormChange }) => {
             onClick={togglePasswordVisibility}
           />
         ) : null}
-      </PasswordWrapper>
+      </RelativePositionDiv>
 
       <Label>confirm password:</Label>
-      <PasswordWrapper>
+      <RelativePositionDiv>
         <PasswordInput
           type={confirmIsVisible ? "text" : "password"}
           name="confirmPassword"
@@ -69,9 +69,9 @@ const Passwords = ({ handleSignUpFormChange }) => {
             onClick={toggleConfirmPasswordVisibility}
           />
         ) : null}
-      </PasswordWrapper>
+      </RelativePositionDiv>
     </>
   );
 };
 
-export default Passwords;
+export default SignUpPasswords;

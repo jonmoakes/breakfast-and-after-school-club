@@ -4,7 +4,6 @@ import {
   customBlack,
   customBlue,
   customGrey,
-  customOrange,
   customWhite,
   customYellow,
 } from "../colors";
@@ -172,6 +171,27 @@ export const ErrorDiv = styled.div`
   }
 `;
 
-export const PasswordWrapper = styled.div`
+export const RelativePositionDiv = styled.div`
   position: relative;
+  width: 100%;
+`;
+
+export const TopMarginDiv = styled.div`
+  width: 100%;
+  height: auto;
+  margin-top: 20px;
+`;
+
+export const SocialLoginsDiv = styled.div`
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+  margin: 30px auto;
+
+  @media screen and (max-width: 280px) {
+    flex-direction: column;
+  }
 `;

@@ -1,12 +1,13 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+const defaultSignUpFormDetails = {
+  displayName: "",
+  email: "",
+  password: "",
+  confirmPassword: "",
+};
 const INITIAL_STATE = {
-  signUpFormDetails: {
-    displayName: "",
-    email: "",
-    password: "",
-    confirmPassword: "",
-  },
+  signUpFormDetails: defaultSignUpFormDetails,
 };
 
 export const signUpFormSlice = createSlice({
@@ -16,9 +17,13 @@ export const signUpFormSlice = createSlice({
     setSignUpFormDetails(state, action) {
       state.signUpFormDetails = action.payload;
     },
+    clearSignUpFormDetails(state) {
+      state.signUpFormDetails = defaultSignUpFormDetails;
+    },
   },
 });
 
-export const { setSignUpFormDetails } = signUpFormSlice.actions;
+export const { setSignUpFormDetails, clearSignUpFormDetails } =
+  signUpFormSlice.actions;
 
 export const signUpFormReducer = signUpFormSlice.reducer;

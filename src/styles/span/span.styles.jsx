@@ -58,3 +58,28 @@ export const ToggleConfirmPassword = styled(TogglePassword).withConfig({
     `url(${props.confirmIsVisible ? eyeIconHide : eyeIcon})`};
   width: ${(props) => `url(${props.confirmIsVisible ? "25px" : "30px"})`};
 `;
+
+export const HorizLine = styled.span`
+  display: flex;
+  width: 80%;
+  margin: 0 auto;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+
+  &:before,
+  &:after {
+    content: "";
+    border-top: 2px solid;
+    margin: 0 20px 0 0;
+    flex: 1 0 20px;
+  }
+
+  &:after {
+    margin: 0 0 0 20px;
+  }
+
+  @media screen and (max-width: 320px) {
+    font-size: 14px;
+  }
+`;

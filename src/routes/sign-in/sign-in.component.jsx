@@ -1,12 +1,11 @@
-import useHandleSignUpFormChange from "./sign-up-form-hooks/use-handle-sign-up-form-change";
+import useHandleSignInFormChange from "./sign-in-form-hooks/use-handle-sign-in-form-change";
 
 // import { selectIsSignInLoading } from "../../../store/user/user.selector";
 // import Loader from "../../../components/loader/loader.component";
 
-import SignUpDisplayName from "./sections/sign-up-display-name.component";
-import SignUpEmail from "./sections/sign-up-email.component";
-import SignUpPasswords from "./sections/sign-up-passwords.component";
-import SignUpButton from "./sections/sign-up-button.component";
+import Email from "./sections/sign-in-email.component";
+import Passwords from "./sections/sign-in-password.component";
+import SignInButton from "./sections/sign-in-button.component";
 import SocialLogins from "../../components/social-logins/social-logins.component";
 
 import { Container } from "../../styles/container/container.styles";
@@ -16,32 +15,31 @@ import { StyledLink } from "../../styles/link/link.styles";
 import { BlackTitle } from "../../styles/h1/h1.styles";
 import { Text } from "../../styles/p/p.styles";
 
-import { signInRoute } from "../../strings/strings";
+import { signUpRoute } from "../../strings/strings";
 
-const SignUp = () => {
-  const { handleSignUpFormChange } = useHandleSignUpFormChange();
+const SignIn = () => {
+  const { handleSignInFormChange } = useHandleSignInFormChange();
 
   return (
     <Container>
       {/* {isLoading && <Loader />} */}
       <ParentDiv>
-        <BlackTitle>sign up</BlackTitle>
+        <BlackTitle>sign in</BlackTitle>
       </ParentDiv>
 
       <ParentDiv>
         <Text>
-          already have an account?
+          don't have an account?
           <br />
-          <br /> <StyledLink to={signInRoute}>sign in</StyledLink>
+          <br /> <StyledLink to={signUpRoute}>sign up!</StyledLink>
         </Text>
       </ParentDiv>
 
       <ParentDiv>
         <Form>
-          <SignUpDisplayName {...{ handleSignUpFormChange }} />
-          <SignUpEmail {...{ handleSignUpFormChange }} />
-          <SignUpPasswords {...{ handleSignUpFormChange }} />
-          <SignUpButton />
+          <Email {...{ handleSignInFormChange }} />
+          <Passwords {...{ handleSignInFormChange }} />
+          <SignInButton />
           <SocialLogins />
         </Form>
       </ParentDiv>
@@ -49,4 +47,4 @@ const SignUp = () => {
   );
 };
 
-export default SignUp;
+export default SignIn;

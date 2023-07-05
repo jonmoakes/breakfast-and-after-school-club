@@ -6,46 +6,33 @@ import { useNavigate } from "react-router-dom";
 // import useHandleSignUpFormError from "./use-handle-sign-up-form-error";
 import useIsOnline from "../../../hooks/use-is-online";
 
-import { selectSignUpFormDetails } from "../../../store/sign-up-form/sign-up-form.selector";
-import { clearSignUpFormDetails } from "../../../store/sign-up-form/sign-up-form.slice";
+import { selectSignInFormDetails } from "../../../store/sign-in-form/sign-in-form.selector";
+import { clearSignInFormDetails } from "../../../store/sign-in-form/sign-in-form.slice";
 
 import NetworkError from "../../../components/errors/network-error.component";
 import { GreenButton } from "../../../styles/buttons/buttons.styles";
 import { BlackHr } from "../../../styles/hr/hr.styles";
-
 import { accountRoute } from "../../../strings/strings";
 
-const SignUpButton = () => {
+const SignInButton = () => {
   // const { handleSignUpFormSubmit } = useHandleSignUpFormSubmit();
   // useHandleSignUpFormError();
   const { isOnline } = useIsOnline();
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  // crypto.randomUUID()
-  const signUpFormDetails = useSelector(selectSignUpFormDetails);
+  const signInFormDetails = useSelector(selectSignInFormDetails);
 
-  const { displayName, email, password } = signUpFormDetails;
+  const { email, password } = signInFormDetails;
 
-  const signupUser = async (e) => {
+  const signinUser = async (e) => {
     e.preventDefault();
-
-    const promise = account.create(
-      crypto.randomUUID(),
-      email,
-      password,
-      displayName
-    );
-
-    promise.then(
-      function (response) {
-        console.log(response);
-        dispatch(clearSignUpFormDetails());
-        navigate(accountRoute);
-      },
-      function (error) {
-        console.log(error);
-      }
-    );
+    try {
+      await account.createEmailSession(email, password);
+      navigate(accountRoute);
+      dispatch(clearSignInFormDetails);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -54,8 +41,8 @@ const SignUpButton = () => {
         <>
           <BlackHr />
 
-          <GreenButton type="button" onClick={signupUser}>
-            Sign Up
+          <GreenButton type="button" onClick={signinUser}>
+            Sign In
           </GreenButton>
         </>
       ) : (
@@ -65,4 +52,4 @@ const SignUpButton = () => {
   );
 };
 
-export default SignUpButton;
+export default SignInButton;
