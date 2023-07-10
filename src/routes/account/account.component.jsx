@@ -1,5 +1,6 @@
-import { useState, useEffect } from "react";
-import { account } from "../../utils/appwrite/appwrite-config";
+import { useSelector } from "react-redux";
+
+import { selectCurrentUser } from "../../store/user/user.selector";
 
 import { Container } from "../../styles/container/container.styles";
 import { ParentDiv } from "../../styles/div/div.styles";
@@ -7,32 +8,16 @@ import { BlackTitle } from "../../styles/h1/h1.styles";
 import { Text } from "../../styles/p/p.styles";
 
 const Account = () => {
-  const [userName, setUserName] = useState("");
+  const currentUser = useSelector(selectCurrentUser);
 
-  useEffect(() => {
-    const getSession = async () => {
-      const promise = account.getSession("current");
-
-      promise.then(
-        function (response) {
-          const { name } = response;
-          setUserName(name);
-        },
-        function (error) {
-          console.log(error); // Failure
-        }
-      );
-    };
-    getSession();
-  }, []);
-
+  console.log(currentUser);
   return (
     <Container>
       <ParentDiv>
         <BlackTitle>your account</BlackTitle>
       </ParentDiv>
       <ParentDiv>
-        <Text> welcome{userName ? ` ${userName}!` : "!"}</Text>
+        <Text> welcome{currentUser ? ` ${currentUser.name}!` : "!"}</Text>
       </ParentDiv>
     </Container>
   );

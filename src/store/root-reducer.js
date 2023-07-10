@@ -5,6 +5,7 @@ import { loaderReducer } from "./loader/loader.slice";
 import { signUpFormReducer } from "./sign-up-form/sign-up-form.slice";
 import { signInFormReducer } from "./sign-in-form/sign-in-form.slice";
 import { contactFormReducer } from "./contact-form/contact-form.slice";
+import { userReducer } from "./user/user.slice";
 
 export const rootReducer = combineReducers({
   hamburgerMenu: hamburgerMenuReducer,
@@ -12,4 +13,5 @@ export const rootReducer = combineReducers({
   signUpForm: signUpFormReducer,
   signInForm: signInFormReducer,
   contactForm: contactFormReducer,
+  user: userReducer,
 });

@@ -1,33 +1,23 @@
-// import { useEffect } from "react";
-// import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
-// import useFireSwal from "../../../hooks/use-fire-swal";
+import useFireSwal from "../../../hooks/use-fire-swal";
 
-// import { resetErrorMessage } from "../../../store/user/user.action";
-// import { selectUserError } from "../../../store/user/user.selector";
+import { resetErrorMessage } from "../../../store/user/user.slice";
+import { selectSignInError } from "../../../store/user/user.selector";
+import { errorSigningInMessage } from "../../../strings/strings";
 
-// import { emailAlreadyInUse, weakPassword } from "../../../strings/strings";
+const useHandleSignInFormError = () => {
+  const { fireSwal } = useFireSwal();
 
-// const useHandleSignUpFormError = () => {
-//   const { fireSwal } = useFireSwal();
+  const error = useSelector(selectSignInError);
+  const dispatch = useDispatch();
 
-//   const error = useSelector(selectUserError);
-//   const dispatch = useDispatch();
+  useEffect(() => {
+    if (!error) return;
+    fireSwal("error", errorSigningInMessage, error, 0, true, false);
+    dispatch(resetErrorMessage());
+  }, [fireSwal, error, dispatch]);
+};
 
-//   useEffect(() => {
-//     if (!error) return;
-//     if (error.code.includes("auth/email-already-in-use")) {
-//       fireSwal("error", emailAlreadyInUse, "", 0, true, false);
-//       dispatch(resetErrorMessage());
-//       return;
-//     } else if (error.code.includes("weak-password")) {
-//       fireSwal("error", weakPassword, "", 0, true, false);
-//       dispatch(resetErrorMessage());
-//     } else {
-//       fireSwal("error", error.code, error.message, 0, true, false);
-//       dispatch(resetErrorMessage());
-//     }
-//   }, [fireSwal, error, dispatch]);
-// };
-
-// export default useHandleSignUpFormError;
+export default useHandleSignInFormError;

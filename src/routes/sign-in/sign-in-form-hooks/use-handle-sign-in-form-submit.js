@@ -1,43 +1,35 @@
-// import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
-// import useFireSwal from "../../../hooks/use-fire-swal";
+import useFireSwal from "../../../hooks/use-fire-swal";
 
-// import { signUpStart } from "../../../store/user/user.action";
+import { selectSignInFormDetails } from "../../../store/sign-in-form/sign-in-form.selector";
+import { signInAsync } from "../../../store/user/user.slice";
 
-// import { validateEmail } from "../../../functions/validate-email";
+import { validateEmail } from "../../../functions/validate-email";
 
-// import {
-//   badlyFormattedEmail,
-//   displayNameTooLongMessage,
-//   passwordsDontMatchMessage,
-//   signUpMissingFieldsMessage,
-// } from "../../../strings/strings";
+import {
+  invalidEmailErrorMessage,
+  missingFieldsMessage,
+} from "../../../strings/strings";
 
-// const useHandleSignUpFormSubmit = () => {
-//   const { fireSwal } = useFireSwal();
+const useHandleSignInFormSubmit = () => {
+  const { fireSwal } = useFireSwal();
 
-//   const dispatch = useDispatch();
+  const signInFormDetails = useSelector(selectSignInFormDetails);
+  const dispatch = useDispatch();
+  const { email, password } = signInFormDetails;
 
-//   const handleSignUpFormSubmit = (
-//     displayName,
-//     email,
-//     password,
-//     confirmPassword
-//   ) => {
-//     if (!displayName || !email || !password || !confirmPassword) {
-//       fireSwal("error", signUpMissingFieldsMessage, "", 0, true, false);
-//     } else if (!validateEmail(email)) {
-//       fireSwal("error", badlyFormattedEmail, "", 0, true, false);
-//     } else if (displayName.length > 8) {
-//       fireSwal("error", displayNameTooLongMessage, "", 0, true, false);
-//     } else if (password !== confirmPassword) {
-//       fireSwal("error", passwordsDontMatchMessage, "", 0, true, false);
-//     } else {
-//       dispatch(signUpStart(email, password, displayName));
-//     }
-//   };
+  const handleSignInFormSubmit = async () => {
+    if (!email || !password) {
+      fireSwal("error", missingFieldsMessage, "", 0, true, false);
+    } else if (!validateEmail(email)) {
+      fireSwal("error", invalidEmailErrorMessage, "", 0, true, false);
+    } else {
+      dispatch(signInAsync({ email, password }));
+    }
+  };
 
-//   return { handleSignUpFormSubmit };
-// };
+  return { handleSignInFormSubmit };
+};
 
-// export default useHandleSignUpFormSubmit;
+export default useHandleSignInFormSubmit;

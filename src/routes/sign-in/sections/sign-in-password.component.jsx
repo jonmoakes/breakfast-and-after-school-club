@@ -25,7 +25,6 @@ const SignInPassword = ({ handleSignInFormChange }) => {
       <RelativePositionDiv>
         <PasswordInput
           name="password"
-          value={password || ""}
           onChange={handleSignInFormChange}
           required
           placeholder={enterYourPassword}

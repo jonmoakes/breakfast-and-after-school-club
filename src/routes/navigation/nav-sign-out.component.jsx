@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 import { account } from "../../utils/appwrite/appwrite-config";
 
 // import useConfirmSwal from "../../hooks/use-confirm-swal";
@@ -20,7 +19,6 @@ import { BorderLink } from "../../styles/span/span.styles";
 // } from "../../strings/strings";
 
 const NavSignOut = () => {
-  const [userSessionExists, setUserSessionExists] = useState();
   //   const { confirmSwal } = useConfirmSwal();
   //   const { fireSwal } = useFireSwal();
   const { hamburgerHandlerNavigate } = useHamburgerHandlerNavigate();
@@ -41,28 +39,6 @@ const NavSignOut = () => {
   //     confirmSwal(signOutConfirmMessage, "", yesSignMeOutMessage, confirmResult);
   //   };
 
-  useEffect(() => {
-    const getSession = async () => {
-      const promise = account.getSession("current");
-
-      promise.then(
-        function (response) {
-          const { current } = response;
-          console.log(current);
-          if (current) {
-            setUserSessionExists(true);
-          } else {
-            setUserSessionExists(false);
-          }
-        },
-        function (error) {
-          console.log(error); // Failure
-        }
-      );
-    };
-    getSession();
-  }, []);
-
   const signOutUser = async () => {
     try {
       const promise = account.deleteSession("current");
@@ -82,11 +58,9 @@ const NavSignOut = () => {
         </NavLink>
       )} */}
 
-      {userSessionExists ? (
-        <NavLink onClick={signOutUser}>
-          <BorderLink>sign out</BorderLink>
-        </NavLink>
-      ) : null}
+      <NavLink onClick={signOutUser}>
+        <BorderLink>sign out</BorderLink>
+      </NavLink>
     </>
   );
 };

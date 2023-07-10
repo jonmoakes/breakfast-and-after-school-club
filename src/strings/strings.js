@@ -5,6 +5,9 @@ export const missingEmailFieldsErrorMessage =
   "please make sure that all required fields have been entered.";
 export const invalidEmailErrorMessage =
   "the email that you have entered is an invalid email address. Please try again.";
+export const missingFieldsMessage =
+  "please make sure that all required fields have been entered before tapping sign in.";
+export const errorSigningInMessage = "error signing in..";
 
 // success
 export const successMessage = "success!";
