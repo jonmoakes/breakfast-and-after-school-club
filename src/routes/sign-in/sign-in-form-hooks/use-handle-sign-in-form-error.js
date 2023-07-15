@@ -4,13 +4,13 @@ import { useDispatch, useSelector } from "react-redux";
 import useFireSwal from "../../../hooks/use-fire-swal";
 
 import { resetErrorMessage } from "../../../store/user/user.slice";
-import { selectSignInError } from "../../../store/user/user.selector";
+import { selectError } from "../../../store/user/user.selector";
 import { errorSigningInMessage } from "../../../strings/strings";
 
 const useHandleSignInFormError = () => {
   const { fireSwal } = useFireSwal();
 
-  const error = useSelector(selectSignInError);
+  const error = useSelector(selectError);
   const dispatch = useDispatch();
 
   useEffect(() => {

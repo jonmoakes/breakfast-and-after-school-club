@@ -4,14 +4,12 @@ import Links from "./links.component";
 
 import { Container } from "../../styles/container/container.styles";
 
-const Home = () => {
-  return (
-    <Container>
-      <Intro />
-      <Info />
-      <Links />
-    </Container>
-  );
-};
+const Home = () => (
+  <Container>
+    <Intro />
+    <Info />
+    <Links />
+  </Container>
+);
 
 export default Home;

@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const defaultSignUpFormDetails = {
-  displayName: "",
+  name: "",
   email: "",
   password: "",
   confirmPassword: "",

@@ -1,9 +1,11 @@
+import { useSelector } from "react-redux";
 import { Navigate } from "react-router-dom";
+
 import useHandleSignInFormChange from "./sign-in-form-hooks/use-handle-sign-in-form-change";
 import useHandleSignInFormError from "./sign-in-form-hooks/use-handle-sign-in-form-error";
 
 import {
-  selectSignInIsLoading,
+  selectIsLoading,
   selectCurrentUser,
 } from "../../store/user/user.selector";
 import Loader from "../../components/loader/loader.component";
@@ -20,21 +22,18 @@ import { StyledLink } from "../../styles/link/link.styles";
 import { BlackTitle } from "../../styles/h1/h1.styles";
 import { Text } from "../../styles/p/p.styles";
 
-import { signUpRoute } from "../../strings/strings";
-import { useSelector } from "react-redux";
+import { accountRoute, signUpRoute } from "../../strings/strings";
 
 const SignIn = () => {
   useHandleSignInFormError();
   const { handleSignInFormChange } = useHandleSignInFormChange();
 
-  const isLoading = useSelector(selectSignInIsLoading);
+  const isLoading = useSelector(selectIsLoading);
   const currentUser = useSelector(selectCurrentUser);
-
-  console.log(currentUser);
 
   return (
     <Container>
-      {currentUser !== null && <Navigate replace to="/" />}
+      {currentUser !== null && <Navigate replace to={accountRoute} />}
       {isLoading && <Loader />}
 
       <ParentDiv>

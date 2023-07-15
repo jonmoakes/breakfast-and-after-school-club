@@ -4,6 +4,9 @@ import { ErrorBoundary } from "react-error-boundary";
 import { GlobalStyle } from "./global-styles";
 import "./App.css";
 
+import useGetUserOnLoad from "./hooks/use-get-user-on-load";
+
+import PrivateRoutes from "./components/private-routes/private-routes.component";
 import ErrorFallback from "./components/errors/error-fallback.component";
 import Loader from "./components/loader/loader.component";
 
@@ -23,19 +26,22 @@ const SignUp = lazy(() => import("./routes/sign-up/sign-up.component"));
 const SignIn = lazy(() => import("./routes/sign-in/sign-in.component"));
 const Account = lazy(() => import("./routes/account/account.component"));
 
-function App() {
+const App = () => {
+  useGetUserOnLoad();
+
   return (
     <>
       <GlobalStyle />
-
+      <Navigation />
       <ErrorBoundary FallbackComponent={ErrorFallback}>
         <Suspense fallback={<Loader />}>
           <Routes>
-            <Route path="/" element={<Navigation />}>
-              <Route index element={<Home />} />
-              <Route path={contactRoute} element={<Contact />} />
-              <Route path={signUpRoute} element={<SignUp />} />
-              <Route path={signInRoute} element={<SignIn />} />
+            <Route path="/" element={<Home />} />
+            <Route path={signInRoute} element={<SignIn />} />
+            <Route path={contactRoute} element={<Contact />} />
+            <Route path={signUpRoute} element={<SignUp />} />
+
+            <Route element={<PrivateRoutes />}>
               <Route path={accountRoute} element={<Account />} />
             </Route>
           </Routes>
@@ -43,6 +49,6 @@ function App() {
       </ErrorBoundary>
     </>
   );
-}
+};
 
 export default App;

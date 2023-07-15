@@ -8,6 +8,11 @@ export const invalidEmailErrorMessage =
 export const missingFieldsMessage =
   "please make sure that all required fields have been entered before tapping sign in.";
 export const errorSigningInMessage = "error signing in..";
+export const errorSigningUpMessage = "error signing up..";
+export const passwordsDontMatchMessage =
+  "the password and confirm password fields don't match. Please try again. Tap the eye icon to view data entered in the fields.";
+export const noNetworkMessage =
+  "there is no internet connection. Please check your connection and try again.";
 
 // success
 export const successMessage = "success!";
@@ -15,6 +20,15 @@ export const successMessage = "success!";
 // infos
 export const emailResponseTimeMessage =
   "Your Message Has Been Message Sent! We Aim To Respond Within 24 Hours.";
+export const loseAllDataMessage =
+  "you will lose any data that you have currently entered into this form.";
+
+//confirms
+export const confirmSignOutMessage = "are you sure you wish to sign out?";
+export const yesSignOutMessage = "yes, sign me out!";
+export const signOutSuccessMessage = "you have been successfully signed out!";
+export const areYouSureMessage = "are you sure?";
+export const imSureMessage = "i'm sure";
 
 //placeholders
 export const enterEmailAddress = "enter your email address";
@@ -22,6 +36,7 @@ export const minEightCharacters = "min 8 characters";
 export const maxEightCharacters = "max 8 characters";
 export const confirmYourPassword = "confirm your password";
 export const enterYourPassword = "enter your password";
+export const enterDisplayName = "for in-app referral";
 
 //routes
 export const bookingsRoute = "/bookings";

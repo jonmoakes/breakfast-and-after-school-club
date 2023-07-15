@@ -1,5 +1,4 @@
 import { useSelector } from "react-redux";
-
 import { selectCurrentUser } from "../../store/user/user.selector";
 
 import { Container } from "../../styles/container/container.styles";
@@ -10,14 +9,24 @@ import { Text } from "../../styles/p/p.styles";
 const Account = () => {
   const currentUser = useSelector(selectCurrentUser);
 
-  console.log(currentUser);
+  const name = currentUser ? currentUser.name : "!";
+  const email = currentUser ? currentUser.email : "";
+
   return (
     <Container>
       <ParentDiv>
         <BlackTitle>your account</BlackTitle>
       </ParentDiv>
+
       <ParentDiv>
-        <Text> welcome{currentUser ? ` ${currentUser.name}!` : "!"}</Text>
+        <Text>welcome {name}!</Text>
+        {email ? (
+          <Text>
+            your email address you signed up with is:
+            <br />
+            {email}
+          </Text>
+        ) : null}
       </ParentDiv>
     </Container>
   );

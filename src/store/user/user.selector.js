@@ -1,3 +1,3 @@
 export const selectCurrentUser = (state) => state.user.currentUser;
-export const selectSignInIsLoading = (state) => state.user.isLoading;
-export const selectSignInError = (state) => state.user.error;
+export const selectIsLoading = (state) => state.user.isLoading;
+export const selectError = (state) => state.user.error;

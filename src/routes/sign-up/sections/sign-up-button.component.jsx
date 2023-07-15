@@ -1,60 +1,20 @@
-import { useSelector, useDispatch } from "react-redux";
-import { account } from "../../../utils/appwrite/appwrite-config";
-import { useNavigate } from "react-router-dom";
-
-// import useHandleSignUpFormSubmit from "./use-handle-sign-up-form-submit";
-// import useHandleSignUpFormError from "./use-handle-sign-up-form-error";
+import useHandleSignUpFormSubmit from "../sign-up-form-hooks/use-handle-sign-up-form-submit";
 import useIsOnline from "../../../hooks/use-is-online";
-
-import { selectSignUpFormDetails } from "../../../store/sign-up-form/sign-up-form.selector";
-import { clearSignUpFormDetails } from "../../../store/sign-up-form/sign-up-form.slice";
 
 import NetworkError from "../../../components/errors/network-error.component";
 import { GreenButton } from "../../../styles/buttons/buttons.styles";
 import { BlackHr } from "../../../styles/hr/hr.styles";
 
-import { accountRoute } from "../../../strings/strings";
-
 const SignUpButton = () => {
-  // const { handleSignUpFormSubmit } = useHandleSignUpFormSubmit();
-  // useHandleSignUpFormError();
+  const { handleSignUpFormSubmit } = useHandleSignUpFormSubmit();
   const { isOnline } = useIsOnline();
-  const navigate = useNavigate();
-  const dispatch = useDispatch();
-  // crypto.randomUUID()
-  const signUpFormDetails = useSelector(selectSignUpFormDetails);
-
-  const { displayName, email, password } = signUpFormDetails;
-
-  const signupUser = async (e) => {
-    e.preventDefault();
-
-    const promise = account.create(
-      crypto.randomUUID(),
-      email,
-      password,
-      displayName
-    );
-
-    promise.then(
-      function (response) {
-        console.log(response);
-        dispatch(clearSignUpFormDetails());
-        navigate(accountRoute);
-      },
-      function (error) {
-        console.log(error);
-      }
-    );
-  };
 
   return (
     <>
       {isOnline ? (
         <>
           <BlackHr />
-
-          <GreenButton type="button" onClick={signupUser}>
+          <GreenButton type="button" onClick={handleSignUpFormSubmit}>
             Sign Up
           </GreenButton>
         </>

@@ -37,7 +37,6 @@ const SignUpPasswords = ({ handleSignUpFormChange }) => {
       <RelativePositionDiv>
         <PasswordInput
           name="password"
-          value={password || ""}
           onChange={handleSignUpFormChange}
           placeholder={minEightCharacters}
           required
@@ -57,7 +56,6 @@ const SignUpPasswords = ({ handleSignUpFormChange }) => {
         <PasswordInput
           type={confirmIsVisible ? "text" : "password"}
           name="confirmPassword"
-          value={confirmPassword || ""}
           onChange={handleSignUpFormChange}
           placeholder={confirmYourPassword}
           required
