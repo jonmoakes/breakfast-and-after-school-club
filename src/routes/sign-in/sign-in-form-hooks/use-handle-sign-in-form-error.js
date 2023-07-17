@@ -14,7 +14,9 @@ const useHandleSignInFormError = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (!error) return;
+    if (!error) {
+      return;
+    }
     fireSwal("error", errorSigningInMessage, error, 0, true, false);
     dispatch(resetErrorMessage());
   }, [fireSwal, error, dispatch]);

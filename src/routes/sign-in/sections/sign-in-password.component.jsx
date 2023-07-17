@@ -26,6 +26,7 @@ const SignInPassword = ({ handleSignInFormChange }) => {
         <PasswordInput
           name="password"
           onChange={handleSignInFormChange}
+          value={password || ""}
           required
           placeholder={enterYourPassword}
           type={isVisible ? "text" : "password"}
