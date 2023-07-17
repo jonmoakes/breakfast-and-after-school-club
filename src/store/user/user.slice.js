@@ -39,18 +39,15 @@ export const signInGoogleAsync = createAsyncThunk(
           "http://localhost:8888/account",
           "http://localhost:8888/sign-in"
         );
-        const user = await account.get();
-        return user;
       } else if (import.meta.env.MODE === "production") {
         account.createOAuth2Session(
           "google",
           "https://breakfast-and-after-school-club.netlify.app/account",
           "https://breakfast-and-after-school-club.netlify.app/sign-in"
         );
-        const user = await account.get();
-
-        return user;
       }
+      const user = await account.get();
+      return user;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }
