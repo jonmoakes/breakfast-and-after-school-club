@@ -72,6 +72,7 @@ const userSlice = createSlice({
         state.isLoading = false;
         state.error = action.payload;
       })
+
       .addCase(signUpAsync.pending, (state) => {
         state.isLoading = true;
       })
