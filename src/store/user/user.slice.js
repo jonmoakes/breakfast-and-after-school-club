@@ -34,7 +34,6 @@ export const signInGoogleAsync = createAsyncThunk(
   async (thunkAPI) => {
     try {
       if (import.meta.env.MODE === "development") {
-        console.log("Running in development mode");
         account.createOAuth2Session(
           "google",
           "http://localhost:8888/account",
@@ -43,7 +42,6 @@ export const signInGoogleAsync = createAsyncThunk(
         const user = await account.get();
         return user;
       } else if (import.meta.env.MODE === "production") {
-        console.log("Running in production mode");
         account.createOAuth2Session(
           "google",
           "https://breakfast-and-after-school-club.netlify.app/account",
@@ -53,14 +51,6 @@ export const signInGoogleAsync = createAsyncThunk(
 
         return user;
       }
-      //switch links in production
-      // account.createOAuth2Session(
-      //   "google",
-      //   "http://localhost:8888/account",
-      //   "http://localhost:8888/sign-in"
-      // );
-      // const user = await account.get();
-      // return user;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }

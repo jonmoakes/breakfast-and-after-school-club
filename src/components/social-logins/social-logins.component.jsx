@@ -11,6 +11,7 @@ import { BlackHr } from "../../styles/hr/hr.styles";
 
 const SocialLogins = () => {
   const dispatch = useDispatch();
+
   const signInWithGoogle = async () => {
     dispatch(signInGoogleAsync());
   };
