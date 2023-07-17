@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import useFireSwal from "../../../hooks/use-fire-swal";
 
 import { selectSignInFormDetails } from "../../../store/sign-in-form/sign-in-form.selector";
+import { clearSignInFormDetails } from "../../../store/sign-in-form/sign-in-form.slice";
 import { signInAsync } from "../../../store/user/user.slice";
 
 import { validateEmail } from "../../../functions/validate-email";
@@ -26,6 +27,7 @@ const useHandleSignInFormSubmit = () => {
       fireSwal("error", invalidEmailErrorMessage, "", 0, true, false);
     } else {
       dispatch(signInAsync({ email, password }));
+      dispatch(clearSignInFormDetails());
     }
   };
 

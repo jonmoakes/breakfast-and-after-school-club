@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import useFireSwal from "../../../hooks/use-fire-swal";
 
 import { selectSignUpFormDetails } from "../../../store/sign-up-form/sign-up-form.selector";
+import { clearSignUpFormDetails } from "../../../store/sign-up-form/sign-up-form.slice";
 import { signUpAsync } from "../../../store/user/user.slice";
 
 import { validateEmail } from "../../../functions/validate-email";
@@ -29,6 +30,7 @@ const useHandleSignUpFormSubmit = () => {
       fireSwal("error", passwordsDontMatchMessage, "", 0, true, false);
     } else {
       dispatch(signUpAsync({ email, password, name }));
+      dispatch(clearSignUpFormDetails());
     }
   };
 

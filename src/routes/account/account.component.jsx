@@ -8,9 +8,7 @@ import { Text } from "../../styles/p/p.styles";
 
 const Account = () => {
   const currentUser = useSelector(selectCurrentUser);
-
-  const name = currentUser ? currentUser.name : "!";
-  const email = currentUser ? currentUser.email : "";
+  const { name } = currentUser;
 
   return (
     <Container>
@@ -20,13 +18,6 @@ const Account = () => {
 
       <ParentDiv>
         <Text>welcome {name}!</Text>
-        {email ? (
-          <Text>
-            your email address you signed up with is:
-            <br />
-            {email}
-          </Text>
-        ) : null}
       </ParentDiv>
     </Container>
   );
