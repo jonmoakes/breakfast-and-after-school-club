@@ -61,7 +61,7 @@ export const DisabledButton = styled(Button)`
   pointer-events: none;
 `;
 
-export const GreenButton = styled(Button)`
+export const YellowGreenButton = styled(Button)`
   &:hover {
     background-color: ${customLightGreen};
     color: ${customBlack};

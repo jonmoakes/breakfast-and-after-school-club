@@ -7,6 +7,7 @@ import {
 import { selectIsLoading } from "../../store/user/user.selector";
 
 import Loader from "../loader/loader.component";
+import SocialLoginsInfo from "./social-logins-info.component";
 
 import { SocialLoginsDiv, TopMarginDiv } from "../../styles/div/div.styles";
 import { SocialImage } from "../../styles/image/image.styles";
@@ -39,6 +40,8 @@ const SocialLogins = () => {
         <SocialImage onClick={signInWithFacebook} src={FBLogo} />
         <SocialImage onClick={signInWithGoogle} src={GoogleLogo} />
       </SocialLoginsDiv>
+
+      <SocialLoginsInfo />
       <BlackHr />
     </>
   );

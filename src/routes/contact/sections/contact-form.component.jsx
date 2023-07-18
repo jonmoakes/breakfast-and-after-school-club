@@ -10,7 +10,7 @@ import {
 } from "../../../styles/form/form.styles";
 import {
   DisabledButton,
-  GreenButton,
+  YellowGreenButton,
 } from "../../../styles/buttons/buttons.styles";
 import { RedSpan } from "../../../styles/span/span.styles";
 import { ParentDiv } from "../../../styles/div/div.styles";
@@ -53,9 +53,9 @@ const ContactForm = ({ isOnline, isLoading }) => {
         <BlackHr />
 
         {isOnline && !isLoading ? (
-          <GreenButton type="button" onClick={sendEmail}>
+          <YellowGreenButton type="button" onClick={sendEmail}>
             Send Message
-          </GreenButton>
+          </YellowGreenButton>
         ) : (
           isOnline &&
           isLoading && <DisabledButton>please wait...</DisabledButton>

@@ -3,7 +3,7 @@ import useIsOnline from "../../../hooks/use-is-online";
 
 import NetworkError from "../../../components/errors/network-error.component";
 
-import { GreenButton } from "../../../styles/buttons/buttons.styles";
+import { YellowGreenButton } from "../../../styles/buttons/buttons.styles";
 import { BlackHr } from "../../../styles/hr/hr.styles";
 
 const SignInButton = () => {
@@ -15,9 +15,9 @@ const SignInButton = () => {
       {isOnline ? (
         <>
           <BlackHr />
-          <GreenButton type="button" onClick={handleSignInFormSubmit}>
+          <YellowGreenButton type="button" onClick={handleSignInFormSubmit}>
             Sign In
-          </GreenButton>
+          </YellowGreenButton>
         </>
       ) : (
         <NetworkError />

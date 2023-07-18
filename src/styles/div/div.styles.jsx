@@ -195,3 +195,40 @@ export const SocialLoginsDiv = styled.div`
     flex-direction: column;
   }
 `;
+
+export const Accordion = styled.div`
+  width: ${({ show }) => (show ? "70%" : "20%")};
+  margin: 2rem auto;
+  border: 2px solid ${customBlack};
+  border-radius: 5px;
+
+  @media screen and (max-width: 1366px) {
+    width: ${({ show }) => (show ? "90%" : "50%")};
+  }
+
+  @media screen and (max-width: 450px) {
+    width: ${({ show }) => (show ? "90%" : "70%")};
+  }
+`;
+
+export const AccordionTitle = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  cursor: pointer;
+  background-color: ${({ show }) => (show ? customYellow : customGrey)};
+  padding: 1rem;
+  border-bottom: ${({ show }) => (show ? `2px solid ${customBlack}` : "none")};
+  border-radius: ${({ show }) =>
+    show ? "5px 5px 0px 0px" : "5px 5px 5px 5px"};
+
+  @media screen and (max-width: 450px) {
+    font-size: 14px;
+  }
+`;
+
+export const AccordionContent = styled.div`
+  padding: 1rem;
+  background-color: ${customGrey};
+  border-radius: 0px 0px 15px 15px;
+`;

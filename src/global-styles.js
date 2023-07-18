@@ -37,5 +37,26 @@ export const GlobalStyle = createGlobalStyle`
               background-size: contain;
               opacity:0.5;
         }
+
+        ul {
+            padding-left: unset;
+            display: table;
+            margin: 10px auto;
+            font-size:18px;
+            list-style-type: none;
+        }
+
+        li {
+            margin-bottom:10px;
+            color:${customBlue};
+
+            &.with-margin {
+                margin: 0px 0px 10px 0px;
+            }
+
+            @media screen and (max-width:450px) {
+                font-size:16px;
+            }
+        }
     }
 `;

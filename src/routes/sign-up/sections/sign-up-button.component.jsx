@@ -2,7 +2,7 @@ import useHandleSignUpFormSubmit from "../sign-up-form-hooks/use-handle-sign-up-
 import useIsOnline from "../../../hooks/use-is-online";
 
 import NetworkError from "../../../components/errors/network-error.component";
-import { GreenButton } from "../../../styles/buttons/buttons.styles";
+import { YellowGreenButton } from "../../../styles/buttons/buttons.styles";
 import { BlackHr } from "../../../styles/hr/hr.styles";
 
 const SignUpButton = () => {
@@ -14,9 +14,9 @@ const SignUpButton = () => {
       {isOnline ? (
         <>
           <BlackHr />
-          <GreenButton type="button" onClick={handleSignUpFormSubmit}>
+          <YellowGreenButton type="button" onClick={handleSignUpFormSubmit}>
             Sign Up
-          </GreenButton>
+          </YellowGreenButton>
         </>
       ) : (
         <NetworkError />
