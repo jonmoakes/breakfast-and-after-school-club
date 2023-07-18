@@ -5,11 +5,12 @@ import useHandleSignUpFormError from "./sign-up-form-hooks/use-handle-sign-up-fo
 import useHandleSignUpFormChange from "./sign-up-form-hooks/use-handle-sign-up-form-change";
 
 import {
-  selectIsLoading,
+  selectIsUserLoading,
   selectCurrentUser,
 } from "../../store/user/user.selector";
-import Loader from "../../components/loader/loader.component";
+import { selectIsLoading } from "../../store/loader/loader.selector";
 
+import Loader from "../../components/loader/loader.component";
 import SignUpDisplayName from "./sections/sign-up-display-name.component";
 import SignUpEmail from "./sections/sign-up-email.component";
 import SignUpPasswords from "./sections/sign-up-passwords.component";
@@ -29,12 +30,14 @@ const SignUp = () => {
   useHandleSignUpFormError();
   const { handleSignUpFormChange } = useHandleSignUpFormChange();
 
+  const isUserLoading = useSelector(selectIsUserLoading);
   const isLoading = useSelector(selectIsLoading);
   const currentUser = useSelector(selectCurrentUser);
+
   return (
     <Container>
       {currentUser !== null && <Navigate replace to={accountRoute} />}
-      {isLoading && <Loader />}
+      {isLoading || isUserLoading ? <Loader /> : null}
 
       <ParentDiv>
         <BlackTitle>sign up</BlackTitle>

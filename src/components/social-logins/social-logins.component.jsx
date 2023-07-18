@@ -1,12 +1,6 @@
-import { useDispatch, useSelector } from "react-redux";
-import {
-  signInGoogleAsync,
-  signInFacebookAsync,
-} from "../../store/user/user.slice";
+import useSocialLogins from "./use-social-logins";
+import useIsOnline from "../../hooks/use-is-online";
 
-import { selectIsLoading } from "../../store/user/user.selector";
-
-import Loader from "../loader/loader.component";
 import SocialLoginsInfo from "./social-logins-info.component";
 
 import { SocialLoginsDiv, TopMarginDiv } from "../../styles/div/div.styles";
@@ -18,31 +12,26 @@ import FBLogo from "../../assets/fb-logo.png";
 import GoogleLogo from "../../assets/google-logo.png";
 
 const SocialLogins = () => {
-  const isLoading = useSelector(selectIsLoading);
-  const dispatch = useDispatch();
-
-  const signInWithGoogle = async () => {
-    dispatch(signInGoogleAsync());
-  };
-
-  const signInWithFacebook = async () => {
-    dispatch(signInFacebookAsync());
-  };
+  const { signInWithGoogle, signInWithFacebook } = useSocialLogins();
+  const { isOnline } = useIsOnline();
 
   return (
     <>
-      {isLoading ? <Loader /> : null}
-      <TopMarginDiv>
-        <HorizLine>or continue with:</HorizLine>
-      </TopMarginDiv>
+      {isOnline ? (
+        <>
+          <TopMarginDiv>
+            <HorizLine>or continue with:</HorizLine>
+          </TopMarginDiv>
 
-      <SocialLoginsDiv>
-        <SocialImage onClick={signInWithFacebook} src={FBLogo} />
-        <SocialImage onClick={signInWithGoogle} src={GoogleLogo} />
-      </SocialLoginsDiv>
+          <SocialLoginsDiv>
+            <SocialImage onClick={signInWithFacebook} src={FBLogo} />
+            <SocialImage onClick={signInWithGoogle} src={GoogleLogo} />
+          </SocialLoginsDiv>
 
-      <SocialLoginsInfo />
-      <BlackHr />
+          <SocialLoginsInfo />
+          <BlackHr />
+        </>
+      ) : null}
     </>
   );
 };

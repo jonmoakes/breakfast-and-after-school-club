@@ -196,8 +196,10 @@ export const SocialLoginsDiv = styled.div`
   }
 `;
 
-export const Accordion = styled.div`
-  width: ${({ show }) => (show ? "70%" : "20%")};
+export const Accordion = styled.div.withConfig({
+  shouldForwardProp: (prop) => prop !== "show",
+})`
+  width: ${({ show }) => (show ? "70%" : "30%")};
   margin: 2rem auto;
   border: 2px solid ${customBlack};
   border-radius: 5px;
@@ -211,7 +213,9 @@ export const Accordion = styled.div`
   }
 `;
 
-export const AccordionTitle = styled.div`
+export const AccordionTitle = styled.div.withConfig({
+  shouldForwardProp: (prop) => prop !== "show",
+})`
   display: flex;
   flex-direction: row;
   justify-content: space-between;

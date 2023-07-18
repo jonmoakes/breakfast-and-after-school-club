@@ -29,56 +29,6 @@ export const signUpAsync = createAsyncThunk(
   }
 );
 
-export const signInGoogleAsync = createAsyncThunk(
-  "user/signInGoogle",
-  async (thunkAPI) => {
-    try {
-      if (import.meta.env.MODE === "development") {
-        account.createOAuth2Session(
-          "google",
-          "http://localhost:8888/account",
-          "http://localhost:8888/sign-in"
-        );
-      } else if (import.meta.env.MODE === "production") {
-        account.createOAuth2Session(
-          "google",
-          "https://breakfast-and-after-school-club.netlify.app/account",
-          "https://breakfast-and-after-school-club.netlify.app/sign-in"
-        );
-      }
-      const user = await account.get();
-      return user;
-    } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
-    }
-  }
-);
-
-export const signInFacebookAsync = createAsyncThunk(
-  "user/signInFacebook",
-  async (thunkAPI) => {
-    try {
-      if (import.meta.env.MODE === "development") {
-        account.createOAuth2Session(
-          "facebook",
-          "http://localhost:8888/account",
-          "http://localhost:8888/sign-in"
-        );
-      } else if (import.meta.env.MODE === "production") {
-        account.createOAuth2Session(
-          "facebook",
-          "https://breakfast-and-after-school-club.netlify.app/account",
-          "https://breakfast-and-after-school-club.netlify.app/sign-in"
-        );
-      }
-      const user = await account.get();
-      return user;
-    } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
-    }
-  }
-);
-
 export const getUserOnLoadAsync = createAsyncThunk(
   "user/getUserOnLoad",
   async (thunkAPI) => {
@@ -119,30 +69,6 @@ const userSlice = createSlice({
         state.error = null;
       })
       .addCase(signInAsync.rejected, (state, action) => {
-        state.isLoading = false;
-        state.error = action.payload;
-      })
-      .addCase(signInGoogleAsync.pending, (state) => {
-        state.isLoading = true;
-      })
-      .addCase(signInGoogleAsync.fulfilled, (state, action) => {
-        state.isLoading = false;
-        state.currentUser = action.payload;
-        state.error = null;
-      })
-      .addCase(signInGoogleAsync.rejected, (state, action) => {
-        state.isLoading = false;
-        state.error = action.payload;
-      })
-      .addCase(signInFacebookAsync.pending, (state) => {
-        state.isLoading = true;
-      })
-      .addCase(signInFacebookAsync.fulfilled, (state, action) => {
-        state.isLoading = false;
-        state.currentUser = action.payload;
-        state.error = null;
-      })
-      .addCase(signInFacebookAsync.rejected, (state, action) => {
         state.isLoading = false;
         state.error = action.payload;
       })

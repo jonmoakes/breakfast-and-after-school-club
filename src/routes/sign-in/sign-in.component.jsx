@@ -5,11 +5,12 @@ import useHandleSignInFormChange from "./sign-in-form-hooks/use-handle-sign-in-f
 import useHandleSignInFormError from "./sign-in-form-hooks/use-handle-sign-in-form-error";
 
 import {
-  selectIsLoading,
+  selectIsUserLoading,
   selectCurrentUser,
 } from "../../store/user/user.selector";
-import Loader from "../../components/loader/loader.component";
+import { selectIsLoading } from "../../store/loader/loader.selector";
 
+import Loader from "../../components/loader/loader.component";
 import Email from "./sections/sign-in-email.component";
 import Passwords from "./sections/sign-in-password.component";
 import SignInButton from "./sections/sign-in-button.component";
@@ -28,13 +29,14 @@ const SignIn = () => {
   useHandleSignInFormError();
   const { handleSignInFormChange } = useHandleSignInFormChange();
 
+  const isUserLoading = useSelector(selectIsUserLoading);
   const isLoading = useSelector(selectIsLoading);
   const currentUser = useSelector(selectCurrentUser);
 
   return (
     <Container>
       {currentUser !== null && <Navigate replace to={accountRoute} />}
-      {isLoading && <Loader />}
+      {isLoading || isUserLoading ? <Loader /> : null}
 
       <ParentDiv>
         <BlackTitle>sign in</BlackTitle>
