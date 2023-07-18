@@ -11,11 +11,12 @@ import {
 import { selectIsLoading } from "../../store/loader/loader.selector";
 
 import Loader from "../../components/loader/loader.component";
-import SignUpDisplayName from "./sections/sign-up-display-name.component";
+import SignUpName from "./sections/sign-up-name.component";
 import SignUpEmail from "./sections/sign-up-email.component";
 import SignUpPasswords from "./sections/sign-up-passwords.component";
 import SignUpButton from "./sections/sign-up-button.component";
 import SocialLogins from "../../components/social-logins/social-logins.component";
+import MagicUrlButton from "../../components/magic-url-button/magic-url-button.component";
 
 import { Container } from "../../styles/container/container.styles";
 import { ParentDiv } from "../../styles/div/div.styles";
@@ -53,10 +54,11 @@ const SignUp = () => {
 
       <ParentDiv>
         <Form>
-          <SignUpDisplayName {...{ handleSignUpFormChange }} />
+          <SignUpName {...{ handleSignUpFormChange }} />
           <SignUpEmail {...{ handleSignUpFormChange }} />
           <SignUpPasswords {...{ handleSignUpFormChange }} />
           <SignUpButton />
+          <MagicUrlButton />
           <SocialLogins />
         </Form>
       </ParentDiv>

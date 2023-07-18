@@ -15,6 +15,9 @@ import {
   signUpRoute,
   signInRoute,
   accountRoute,
+  magicUrlResultRoute,
+  magicUrlSignInRoute,
+  localhostMagicUrlResultRoute,
 } from "./strings/strings";
 
 const Navigation = lazy(() =>
@@ -25,6 +28,12 @@ const Contact = lazy(() => import("./routes/contact/contact.component"));
 const SignUp = lazy(() => import("./routes/sign-up/sign-up.component"));
 const SignIn = lazy(() => import("./routes/sign-in/sign-in.component"));
 const Account = lazy(() => import("./routes/account/account.component"));
+const MagicUrlSignIn = lazy(() =>
+  import("./routes/magic-url-sign-in/magic-url-sign-in.component")
+);
+const MagicUrlResult = lazy(() =>
+  import("./routes/magic-url-result/magic-url-result.component")
+);
 
 const App = () => {
   useGetUserOnLoad();
@@ -40,6 +49,11 @@ const App = () => {
             <Route path={signInRoute} element={<SignIn />} />
             <Route path={contactRoute} element={<Contact />} />
             <Route path={signUpRoute} element={<SignUp />} />
+            <Route path={magicUrlSignInRoute} element={<MagicUrlSignIn />} />
+            <Route
+              path={magicUrlResultRoute || localhostMagicUrlResultRoute}
+              element={<MagicUrlResult />}
+            />
 
             <Route element={<PrivateRoutes />}>
               <Route path={accountRoute} element={<Account />} />

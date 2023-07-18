@@ -16,6 +16,7 @@ export const noNetworkMessage =
 
 // success
 export const successMessage = "success!";
+export const checkEmailMessage = "please check your email!";
 
 // infos
 export const emailResponseTimeMessage =
@@ -35,8 +36,6 @@ export const enterEmailAddress = "enter your email address";
 export const minEightCharacters = "min 8 characters";
 export const maxEightCharacters = "max 8 characters";
 export const confirmYourPassword = "confirm your password";
-export const enterYourPassword = "enter your password";
-export const enterDisplayName = "for in-app referral";
 
 //routes
 export const bookingsRoute = "/bookings";
@@ -45,6 +44,10 @@ export const contactRoute = "/contact";
 export const accountRoute = "/account";
 export const signInRoute = "/sign-in";
 export const signUpRoute = "/sign-up";
+export const magicUrlSignInRoute = "/magic-url-sign-in";
+export const magicUrlResultRoute = "/magic-url-result";
+export const localhostMagicUrlResultRoute =
+  "http://localhost:8888/magic-url-result";
 export const payNowRoute = "/pay-now";
 export const updateEmailRoute = "/update-email";
 export const updatePasswordRoute = "/update-password";

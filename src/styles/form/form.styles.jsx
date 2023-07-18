@@ -15,6 +15,10 @@ export const Form = styled.form`
   border: 2px solid ${customBlack};
   border-radius: 5px;
 
+  &.below-accordion {
+    margin: 20px auto 70px auto;
+  }
+
   @media screen and (max-width: 1366px) {
     width: 90%;
   }

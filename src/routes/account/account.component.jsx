@@ -21,7 +21,7 @@ const Account = () => {
       </ParentDiv>
 
       <ParentDiv>
-        <Text>welcome {name}!</Text>
+        <Text>welcome{name ? ` ${name}!` : "!"}</Text>
       </ParentDiv>
     </Container>
   );

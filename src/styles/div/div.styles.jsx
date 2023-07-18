@@ -187,7 +187,7 @@ export const SocialLoginsDiv = styled.div`
   height: auto;
   display: flex;
   flex-direction: row;
-  justify-content: space-evenly;
+  justify-content: center;
   align-items: center;
   margin: 30px auto;
 

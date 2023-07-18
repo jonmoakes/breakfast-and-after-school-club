@@ -4,8 +4,6 @@ import { selectSignInFormDetails } from "../../../store/sign-in-form/sign-in-for
 
 import { LowercasedInput, Label } from "../../../styles/form/form.styles";
 
-import { enterEmailAddress } from "../../../strings/strings";
-
 const SignInEmail = ({ handleSignInFormChange }) => {
   const signInformDetails = useSelector(selectSignInFormDetails);
 
@@ -19,7 +17,6 @@ const SignInEmail = ({ handleSignInFormChange }) => {
         name="email"
         value={email || ""}
         onChange={handleSignInFormChange}
-        placeholder={enterEmailAddress}
         required
       />
     </>

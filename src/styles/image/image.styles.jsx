@@ -30,6 +30,12 @@ export const SocialImage = styled.img`
   width: 75px;
   height: 75px;
   transition: all 0.5s ease-in-out;
+  margin: 0px 20px;
+
+  &.fb {
+    width: 61px;
+    height: 61px;
+  }
 
   &:hover {
     cursor: pointer;
@@ -44,6 +50,11 @@ export const SocialImage = styled.img`
   @media screen and (max-width: 600px) {
     width: 50px;
     height: 50px;
+
+    &.fb {
+      width: 44px;
+      height: 44px;
+    }
   }
 
   @media screen and (max-width: 280px) {

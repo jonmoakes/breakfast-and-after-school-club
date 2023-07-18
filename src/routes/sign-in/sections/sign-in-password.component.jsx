@@ -9,8 +9,6 @@ import { RelativePositionDiv } from "../../../styles/div/div.styles";
 import { Label, PasswordInput } from "../../../styles/form/form.styles";
 import { TogglePassword } from "../../../styles/span/span.styles";
 
-import { enterYourPassword } from "../../../strings/strings";
-
 const SignInPassword = ({ handleSignInFormChange }) => {
   const { isVisible, togglePasswordVisibility, setIsVisible } =
     useTogglePasswordVisibility();
@@ -28,7 +26,6 @@ const SignInPassword = ({ handleSignInFormChange }) => {
           onChange={handleSignInFormChange}
           value={password || ""}
           required
-          placeholder={enterYourPassword}
           type={isVisible ? "text" : "password"}
         />
 

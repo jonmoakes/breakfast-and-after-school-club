@@ -24,7 +24,11 @@ const SocialLogins = () => {
           </TopMarginDiv>
 
           <SocialLoginsDiv>
-            <SocialImage onClick={signInWithFacebook} src={FBLogo} />
+            <SocialImage
+              className="fb"
+              onClick={signInWithFacebook}
+              src={FBLogo}
+            />
             <SocialImage onClick={signInWithGoogle} src={GoogleLogo} />
           </SocialLoginsDiv>
 
