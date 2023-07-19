@@ -48,6 +48,10 @@ const MagicUrlInfo = () => {
               identify your account.
             </Text>
             <Text>
+              once you have clicked on the link in the email and successfully
+              signed in, the link will become invalid.
+            </Text>
+            <Text>
               from then on, tap on the "use a magic url" button in the{" "}
               <StyledLink to={signInRoute}>sign in</StyledLink> page whenever
               you want to sign in and repeat the same steps.
