@@ -45,8 +45,7 @@ export const accountRoute = "/account";
 export const signInRoute = "/sign-in";
 export const signUpRoute = "/sign-up";
 export const magicUrlSignInRoute = "/magic-url-sign-in";
-export const magicUrlResultRoute =
-  "https://breakfast-and-after-school-club.netlify.app/magic-url-result";
+export const magicUrlResultRoute = "/magic-url-result";
 export const localhostMagicUrlResultRoute =
   "http://localhost:8888/magic-url-result";
 export const payNowRoute = "/pay-now";

@@ -13,7 +13,6 @@ import {
   successMessage,
   checkEmailMessage,
   localhostMagicUrlResultRoute,
-  signInRoute,
 } from "../../strings/strings";
 import { validateEmail } from "../../functions/validate-email";
 
@@ -34,14 +33,18 @@ const useHandleMagicUrlSubmit = () => {
           localhostMagicUrlResultRoute
         );
       } else if (import.meta.env.MODE === "production") {
-        await account.createMagicURLSession(ID.unique(), email, signInRoute);
+        await account.createMagicURLSession(
+          ID.unique(),
+          email,
+          `https://breakfast-and-after-school-club.netlify.app${magicUrlResultRoute}`
+        );
       }
       dispatch(stopLoader());
       fireSwal("success", successMessage, checkEmailMessage, 0, true, true);
       setEmail("");
     } catch (error) {
       dispatch(stopLoader());
-      fireSwal("success", error.message, "", 0, true, true);
+      fireSwal("error", error.message, "", 0, true, true);
     }
   };
 
