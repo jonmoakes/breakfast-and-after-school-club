@@ -13,6 +13,7 @@ import {
   successMessage,
   checkEmailMessage,
   localhostMagicUrlResultRoute,
+  signInRoute,
 } from "../../strings/strings";
 import { validateEmail } from "../../functions/validate-email";
 
@@ -33,11 +34,7 @@ const useHandleMagicUrlSubmit = () => {
           localhostMagicUrlResultRoute
         );
       } else if (import.meta.env.MODE === "production") {
-        await account.createMagicURLSession(
-          ID.unique(),
-          email,
-          magicUrlResultRoute
-        );
+        await account.createMagicURLSession(ID.unique(), email, signInRoute);
       }
       dispatch(stopLoader());
       fireSwal("success", successMessage, checkEmailMessage, 0, true, true);
