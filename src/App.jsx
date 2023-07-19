@@ -51,6 +51,7 @@ const App = () => {
             <Route path={signUpRoute} element={<SignUp />} />
             <Route path={magicUrlSignInRoute} element={<MagicUrlSignIn />} />
             <Route
+              exact
               path={magicUrlResultRoute || localhostMagicUrlResultRoute}
               element={<MagicUrlResult />}
             />

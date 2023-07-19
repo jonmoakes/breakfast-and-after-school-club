@@ -44,7 +44,7 @@ const useHandleMagicUrlSubmit = () => {
       setEmail("");
     } catch (error) {
       dispatch(stopLoader());
-      alert(error.message);
+      fireSwal("success", error.message, "", 0, true, true);
     }
   };
 
