@@ -10,7 +10,7 @@ import {
 export const Form = styled.form`
   width: 75%;
   padding: 30px 0px;
-  margin: 50px auto 70px auto;
+  margin: 20px auto 70px auto;
   background-color: ${customBlue};
   border: 2px solid ${customBlack};
   border-radius: 5px;

@@ -10,6 +10,7 @@ import { Label, PasswordInput } from "../../../styles/form/form.styles";
 import {
   TogglePassword,
   ToggleConfirmPassword,
+  RedSpan,
 } from "../../../styles/span/span.styles";
 
 import {
@@ -33,7 +34,9 @@ const SignUpPasswords = ({ handleSignUpFormChange }) => {
 
   return (
     <>
-      <Label>password:</Label>
+      <Label>
+        <RedSpan>* </RedSpan>password:
+      </Label>
       <RelativePositionDiv>
         <PasswordInput
           name="password"
@@ -51,7 +54,9 @@ const SignUpPasswords = ({ handleSignUpFormChange }) => {
         ) : null}
       </RelativePositionDiv>
 
-      <Label>confirm password:</Label>
+      <Label>
+        <RedSpan>* </RedSpan>confirm password:
+      </Label>
       <RelativePositionDiv>
         <PasswordInput
           type={confirmIsVisible ? "text" : "password"}

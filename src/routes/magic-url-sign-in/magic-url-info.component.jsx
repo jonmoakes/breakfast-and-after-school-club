@@ -3,7 +3,7 @@ import useShowOrHideElement from "../../hooks/use-show-or-hide-element";
 import { Text } from "../../styles/p/p.styles";
 import { StyledLink } from "../../styles/link/link.styles";
 
-import { signInRoute } from "../../strings/strings";
+import { contactRoute, signInRoute } from "../../strings/strings";
 import { YellowGreenButton } from "../../styles/buttons/buttons.styles";
 import {
   Accordion,
@@ -52,6 +52,12 @@ const MagicUrlInfo = () => {
               signed in, the link will become invalid.
             </Text>
             <Text>
+              the link is valid for one hour, so if it is not clicked within the
+              1 hour time period, the link will expire and you will have to
+              regenerate a new login request by reclicking on the "generate
+              magic URL" button again.
+            </Text>
+            <Text>
               from then on, tap on the "use a magic url" button in the{" "}
               <StyledLink to={signInRoute}>sign in</StyledLink> page whenever
               you want to sign in and repeat the same steps.
@@ -59,6 +65,21 @@ const MagicUrlInfo = () => {
             <Text>
               a new session will be created for you each time you sign in with
               your anonymous account.
+            </Text>
+            <Text>
+              please note that if you are using the app installed on your
+              homescreen rather than using it in your web browser, this method
+              will open the app in your browser rather than in the home screen
+              app due to the way the magic url authenticatio works.
+            </Text>
+            <Text>
+              once you are signed in, add the app to your home screen again and
+              then it will recognise your signed in status and you will be able
+              to use the app as before.
+            </Text>
+            <Text>
+              please <StyledLink to={contactRoute}>contact us</StyledLink> with
+              any questions!
             </Text>
             <YellowGreenButton onClick={hideElement}>
               Ok, Close

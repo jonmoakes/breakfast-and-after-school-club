@@ -26,6 +26,7 @@ import { BlackTitle } from "../../styles/h1/h1.styles";
 import { Text } from "../../styles/p/p.styles";
 
 import { signInRoute, accountRoute } from "../../strings/strings";
+import { RedSpan } from "../../styles/span/span.styles";
 
 const SignUp = () => {
   useHandleSignUpFormError();
@@ -53,6 +54,9 @@ const SignUp = () => {
       </ParentDiv>
 
       <ParentDiv>
+        <Text>
+          <RedSpan>* </RedSpan> = required field:
+        </Text>
         <Form>
           <SignUpName {...{ handleSignUpFormChange }} />
           <SignUpEmail {...{ handleSignUpFormChange }} />

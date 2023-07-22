@@ -15,6 +15,7 @@ import {
 import { RedSpan } from "../../../styles/span/span.styles";
 import { ParentDiv } from "../../../styles/div/div.styles";
 import { BlackHr } from "../../../styles/hr/hr.styles";
+import { Text } from "../../../styles/p/p.styles";
 
 const ContactForm = ({ isOnline, isLoading }) => {
   const { handleContactFormDetailsChange } =
@@ -23,6 +24,9 @@ const ContactForm = ({ isOnline, isLoading }) => {
 
   return (
     <ParentDiv>
+      <Text>
+        <RedSpan>* </RedSpan> = required field:
+      </Text>
       <Form id="contact-form">
         <Label>
           <RedSpan>* </RedSpan>Your Name:
