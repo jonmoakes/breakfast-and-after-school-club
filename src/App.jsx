@@ -5,6 +5,7 @@ import { GlobalStyle } from "./global-styles";
 import "./App.css";
 
 import useGetUserOnLoad from "./hooks/use-get-user-on-load";
+import useWalletBalanceListener from "./hooks/use-wallet-balance-listener";
 
 import PrivateRoutes from "./components/private-routes/private-routes.component";
 import ErrorFallback from "./components/errors/error-fallback.component";
@@ -37,6 +38,7 @@ const MagicUrlResult = lazy(() =>
 
 const App = () => {
   useGetUserOnLoad();
+  useWalletBalanceListener();
 
   return (
     <>

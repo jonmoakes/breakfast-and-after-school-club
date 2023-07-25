@@ -19,6 +19,10 @@ export const Form = styled.form`
     margin: 20px auto 70px auto;
   }
 
+  &.add-funds {
+    margin: 20px auto 30px auto;
+  }
+
   @media screen and (max-width: 1366px) {
     width: 90%;
   }
@@ -35,10 +39,8 @@ export const StyledInput = styled.input`
   padding: 12px;
   border: 2px solid ${customBlack};
   border-radius: 5px;
-
   box-sizing: border-box;
-  margin-top: 10px;
-  margin-bottom: 30px;
+  margin: 10px auto;
   font-size: 18px;
   font-family: inherit;
   outline: none;

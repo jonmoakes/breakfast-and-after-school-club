@@ -13,6 +13,11 @@ export const passwordsDontMatchMessage =
   "the password and confirm password fields don't match. Please try again. Tap the eye icon to view data entered in the fields.";
 export const noNetworkMessage =
   "there is no internet connection. Please check your connection and try again.";
+export const pleaseEnterYourCardDetails = "please enter your card details";
+export const formNotCompleteWarning =
+  "the pay button will show when the form is complete";
+export const errorSubmittingPaymentMessage =
+  "Sorry, There Was An Error Submitting Payment.\nYour Card Has Not Been Charged.\nPlease Try Again.";
 
 // success
 export const successMessage = "success!";
@@ -29,6 +34,11 @@ export const confirmSignOutMessage = "are you sure you wish to sign out?";
 export const yesSignOutMessage = "yes, sign me out!";
 export const signOutSuccessMessage = "you have been successfully signed out!";
 export const areYouSureMessage = "are you sure?";
+export const confirmAddFundsMessage = (walletFunds) => {
+  return `are you sure you wish to add £${walletFunds.toFixed(
+    2
+  )} to your wallet?`;
+};
 export const imSureMessage = "i'm sure";
 
 //placeholders

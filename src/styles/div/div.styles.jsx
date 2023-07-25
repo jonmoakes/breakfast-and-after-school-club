@@ -4,8 +4,11 @@ import {
   customBlack,
   customBlue,
   customGrey,
+  customOrange,
+  customRed,
   customWhite,
   customYellow,
+  customLightGrey,
 } from "../colors";
 
 // Navigation
@@ -151,6 +154,11 @@ export const ImageDiv = styled.div`
   }
 `;
 
+export const RelativePositionDiv = styled.div`
+  position: relative;
+  width: 100%;
+`;
+
 export const ErrorDiv = styled.div`
   background-color: ${customGrey};
   padding: 10px 10px 30px 10px;
@@ -171,15 +179,57 @@ export const ErrorDiv = styled.div`
   }
 `;
 
-export const RelativePositionDiv = styled.div`
-  position: relative;
+export const WarningDiv = styled(ErrorDiv)`
+  width: 50%;
+  margin: 30px auto 50px auto;
+  background-color: ${customOrange};
+  box-shadow: 12px 12px 12px ${customBlack};
+  padding: 0px 10px;
+
+  @media screen and (max-width: 1366px) {
+    width: 70%;
+    box-shadow: none;
+  }
+
+  @media screen and (max-width: 450px) {
+    width: 85%;
+  }
+`;
+
+export const PaymentErrorDiv = styled(WarningDiv)`
+  background-color: ${customRed};
+`;
+
+export const CardInputDiv = styled.div`
+  background-color: ${customLightGrey};
+  height: 60px;
+  width: 50%;
+  margin: 30px auto 100px auto;
+  padding: 20px 20px 30px 20px;
+  border-radius: 5px;
+  border: 2px solid ${customBlack};
+
+  @media screen and (max-width: 1366px) {
+    width: 80%;
+  }
+
+  @media screen and (max-width: 600px) {
+    width: 90%;
+  }
+`;
+
+export const StripeLogoDiv = styled.div.withConfig({
+  shouldForwardProp: (prop) => prop !== "showButton",
+})`
+  margin: ${(props) =>
+    props.showButton ? "200px auto 0px auto" : "50px auto 0px auto"};
   width: 100%;
 `;
 
 export const TopMarginDiv = styled.div`
   width: 100%;
   height: auto;
-  margin-top: 20px;
+  margin-top: 30px;
 `;
 
 export const SocialLoginsDiv = styled.div`
@@ -204,6 +254,10 @@ export const Accordion = styled.div.withConfig({
   border: 2px solid ${customBlack};
   border-radius: 5px;
 
+  &.funds-help {
+    margin: 10px auto;
+  }
+
   @media screen and (max-width: 1366px) {
     width: ${({ show }) => (show ? "90%" : "50%")};
   }
@@ -221,7 +275,7 @@ export const AccordionTitle = styled.div.withConfig({
   justify-content: space-between;
   cursor: pointer;
   background-color: ${({ show }) => (show ? customYellow : customGrey)};
-  padding: 1rem;
+  padding: 0.5rem;
   border-bottom: ${({ show }) => (show ? `2px solid ${customBlack}` : "none")};
   border-radius: ${({ show }) =>
     show ? "5px 5px 0px 0px" : "5px 5px 5px 5px"};

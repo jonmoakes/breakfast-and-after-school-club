@@ -31,7 +31,7 @@ export const TogglePassword = styled.span.withConfig({
   shouldForwardProp: (prop) => prop !== "isVisible",
 })`
   position: absolute;
-  top: 50%;
+  top: 62%;
   right: 50px;
   transform: translateY(-50%);
   cursor: pointer;
@@ -82,4 +82,8 @@ export const HorizLine = styled.span`
   @media screen and (max-width: 320px) {
     font-size: 14px;
   }
+`;
+
+export const LowercasedSpan = styled.span`
+  text-transform: lowercase;
 `;

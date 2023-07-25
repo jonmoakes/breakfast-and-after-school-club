@@ -7,13 +7,17 @@ import { StyleSheetManager } from "styled-components";
 import App from "./App";
 import "./index.css";
 import * as serviceWorkerRegistration from "./serviceWorkerRegistration";
+import { Elements } from "@stripe/react-stripe-js";
+import { stripePromise } from "./utils/stripe/stripe.utils";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <Provider store={store}>
       <BrowserRouter>
         <StyleSheetManager shouldForwardProp={(prop) => prop !== "theme"}>
-          <App />
+          <Elements stripe={stripePromise}>
+            <App />
+          </Elements>
         </StyleSheetManager>
       </BrowserRouter>
     </Provider>

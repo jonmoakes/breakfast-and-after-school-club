@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { customBlack } from "../colors";
+import { customBlack, customWhite } from "../colors";
 
 export const Text = styled.p`
   font-size: 18px;
@@ -8,6 +8,15 @@ export const Text = styled.p`
   @media screen and (max-width: 450px) {
     font-size: 16px;
   }
+`;
+
+export const WhiteText = styled(Text)`
+  color: ${customWhite};
+`;
+
+export const ItalicStripeText = styled.p`
+  font-style: italic;
+  color: ${customBlack};
 `;
 
 export const NavLink = styled.p`

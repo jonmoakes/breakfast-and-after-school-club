@@ -1,6 +1,10 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { account } from "../../utils/appwrite/appwrite-config";
-import { ID } from "appwrite";
+import { account, databases } from "../../utils/appwrite/appwrite-config";
+import { ID, Query } from "appwrite";
+
+const currentUser = (id, createdAt, name, email, walletBalance) => {
+  return { id, createdAt, name, email, walletBalance };
+};
 
 export const signInAsync = createAsyncThunk(
   "user/signIn",
@@ -8,7 +12,17 @@ export const signInAsync = createAsyncThunk(
     try {
       await account.createEmailSession(email, password);
       const user = await account.get();
-      return user;
+
+      const findCurrentUser = await databases.listDocuments(
+        import.meta.env.VITE_DEVELOPMENT_DATABASE_ID,
+        import.meta.env.VITE_USER_COLLECTION_ID,
+        [Query.equal("id", user.$id)]
+      );
+
+      const { id, name, createdAt, walletBalance } =
+        findCurrentUser.documents[0];
+
+      return currentUser(id, createdAt, name, email, walletBalance);
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }
@@ -22,7 +36,23 @@ export const signUpAsync = createAsyncThunk(
       await account.create(ID.unique(), email, password, name);
       await account.createEmailSession(email, password);
       const user = await account.get();
-      return user;
+
+      const createdUser = {
+        id: user.$id,
+        createdAt: user.$createdAt,
+        name: user.name,
+        email: user.email,
+        walletBalance: 0,
+      };
+
+      await databases.createDocument(
+        import.meta.env.VITE_DEVELOPMENT_DATABASE_ID,
+        import.meta.env.VITE_USER_COLLECTION_ID,
+        user.$id,
+        createdUser
+      );
+
+      return createdUser;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }
@@ -34,7 +64,16 @@ export const getUserOnLoadAsync = createAsyncThunk(
   async (thunkAPI) => {
     try {
       const user = await account.get();
-      return user;
+      const findCurrentUser = await databases.listDocuments(
+        import.meta.env.VITE_DEVELOPMENT_DATABASE_ID,
+        import.meta.env.VITE_USER_COLLECTION_ID,
+        [Query.equal("id", user.$id)]
+      );
+
+      const { id, name, email, createdAt, walletBalance } =
+        findCurrentUser.documents[0];
+
+      return currentUser(id, createdAt, name, email, walletBalance);
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }
@@ -56,6 +95,9 @@ const userSlice = createSlice({
     },
     resetErrorMessage(state) {
       state.error = null;
+    },
+    setWalletBalance(state, action) {
+      state.currentUser.walletBalance = action.payload;
     },
   },
   extraReducers: (builder) => {
@@ -97,6 +139,7 @@ const userSlice = createSlice({
   },
 });
 
-export const { resetErrorMessage, setCurrentUser } = userSlice.actions;
+export const { resetErrorMessage, setCurrentUser, setWalletBalance } =
+  userSlice.actions;
 
 export const userReducer = userSlice.reducer;

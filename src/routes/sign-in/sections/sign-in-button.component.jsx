@@ -5,6 +5,7 @@ import NetworkError from "../../../components/errors/network-error.component";
 
 import { YellowGreenButton } from "../../../styles/buttons/buttons.styles";
 import { BlackHr } from "../../../styles/hr/hr.styles";
+import { TopMarginDiv } from "../../../styles/div/div.styles";
 
 const SignInButton = () => {
   const { handleSignInFormSubmit } = useHandleSignInFormSubmit();
@@ -13,12 +14,12 @@ const SignInButton = () => {
   return (
     <>
       {isOnline ? (
-        <>
+        <TopMarginDiv>
           <BlackHr />
           <YellowGreenButton type="button" onClick={handleSignInFormSubmit}>
             Sign In
           </YellowGreenButton>
-        </>
+        </TopMarginDiv>
       ) : (
         <NetworkError />
       )}

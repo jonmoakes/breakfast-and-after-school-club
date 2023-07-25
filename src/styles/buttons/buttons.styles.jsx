@@ -50,7 +50,6 @@ export const Button = styled.button`
 
   @media screen and (max-width: 320px) {
     width: 200px;
-    /* margin: -20px auto 0px auto; */
   }
 `;
 
@@ -62,6 +61,19 @@ export const DisabledButton = styled(Button)`
 `;
 
 export const YellowGreenButton = styled(Button)`
+  &.add-funds {
+    margin: 45px auto;
+    width: 180px;
+  }
+
+  &.disabled {
+    margin: 45px auto;
+    box-shadow: none;
+    cursor: not-allowed;
+    opacity: 0.5;
+    pointer-events: none;
+  }
+
   &:hover {
     background-color: ${customLightGreen};
     color: ${customBlack};
