@@ -4,7 +4,8 @@ import { databases } from "../../../../utils/appwrite/appwrite-config";
 
 import useFireSwal from "../../../../hooks/use-fire-swal";
 
-import { selectWalletFunds } from "../../../../store/wallet/wallet.selector";
+import { selectWalletFundsToAdd } from "../../../../store/wallet-funds-to-add/wallet-funds-to-add.selector";
+import { clearWalletFundsToAdd } from "../../../../store/wallet-funds-to-add/wallet-funds-to-add.slice";
 import { selectCurrentUser } from "../../../../store/user/user.selector";
 import {
   startPaymentIsProcessing,
@@ -12,13 +13,15 @@ import {
   clearCardInputResult,
 } from "../../../../store/card-input-result/card-input-result.slice";
 
-import { errorSubmittingPaymentMessage } from "../../../../strings/strings";
-import { clearWalletFunds } from "../../../../store/wallet/wallet.slice";
+import {
+  errorSubmittingPaymentMessage,
+  fundsAddedMessage,
+} from "../../../../strings/strings";
 
 const useHandlePayment = () => {
   const { fireSwal } = useFireSwal();
 
-  const walletFunds = useSelector(selectWalletFunds);
+  const walletFundsToAdd = useSelector(selectWalletFundsToAdd);
   const currentUser = useSelector(selectCurrentUser);
 
   const { name, email } = currentUser;
@@ -41,7 +44,7 @@ const useHandlePayment = () => {
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify({ amount: Math.round(walletFunds * 100) }),
+          body: JSON.stringify({ amount: Math.round(walletFundsToAdd * 100) }),
         }
       ).then((res) => res.json());
 
@@ -61,6 +64,7 @@ const useHandlePayment = () => {
 
       if (paymentResult.error) {
         dispatch(stopPaymentIsProcessing());
+        dispatch(clearWalletFundsToAdd());
         fireSwal(
           "error",
           errorSubmittingPaymentMessage,
@@ -84,16 +88,16 @@ const useHandlePayment = () => {
           import.meta.env.VITE_USER_COLLECTION_ID,
           currentUser.id,
           {
-            walletBalance: walletBalance + Math.round(walletFunds * 100),
+            walletBalance: walletBalance + Math.round(walletFundsToAdd * 100),
           }
         );
         dispatch(stopPaymentIsProcessing());
-        dispatch(clearWalletFunds());
+        dispatch(clearWalletFundsToAdd());
         dispatch(clearCardInputResult());
         fireSwal(
           "success",
           `thank you ${name}`,
-          `The funds have been added to your wallet and A Confirmation Email Has Been Sent To ${email}.`,
+          fundsAddedMessage(email),
           5000,
           true,
           true
@@ -102,6 +106,8 @@ const useHandlePayment = () => {
       }
     } catch (error) {
       dispatch(stopPaymentIsProcessing());
+      dispatch(clearWalletFundsToAdd());
+
       fireSwal("error", error.message, "", 0, true, false);
     }
   };

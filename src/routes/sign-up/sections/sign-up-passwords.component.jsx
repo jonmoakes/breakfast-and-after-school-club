@@ -1,15 +1,23 @@
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 
-import useTogglePasswordVisibility from "../../../hooks/use-toggle-password-visibility";
-import useResetPasswordVisibility from "../sign-up-form-hooks/use-reset-password-visibility";
+import useHideSignUpPasswordOnEmpty from "../sign-up-form-hooks/use-hide-sign-up-password-on-empty.js";
+
+import {
+  selectSignUpPasswordIsVisible,
+  selectSignUpConfirmPasswordIsVisible,
+} from "../../../store/password-is-visible/password-is-visible.selector";
+import {
+  toggleSignUpPasswordIsVisible,
+  toggleSignUpConfirmPasswordIsVisible,
+} from "../../../store/password-is-visible/password-is-visible.slice";
 
 import { selectSignUpFormDetails } from "../../../store/sign-up-form/sign-up-form.selector";
 
 import { RelativePositionDiv } from "../../../styles/div/div.styles";
 import { Label, PasswordInput } from "../../../styles/form/form.styles";
 import {
-  TogglePassword,
-  ToggleConfirmPassword,
+  ToggleSignUpPassword,
+  ToggleSignUpConfirmPassword,
   RedSpan,
 } from "../../../styles/span/span.styles";
 
@@ -19,19 +27,15 @@ import {
 } from "../../../strings/strings";
 
 const SignUpPasswords = ({ handleSignUpFormChange }) => {
-  const {
-    isVisible,
-    confirmIsVisible,
-    togglePasswordVisibility,
-    toggleConfirmPasswordVisibility,
-    setIsVisible,
-    setConfirmIsVisible,
-  } = useTogglePasswordVisibility();
-  useResetPasswordVisibility(setIsVisible, setConfirmIsVisible);
-
+  useHideSignUpPasswordOnEmpty();
+  const signUpPasswordIsVisible = useSelector(selectSignUpPasswordIsVisible);
+  const signUpConfirmPasswordIsVisible = useSelector(
+    selectSignUpConfirmPasswordIsVisible
+  );
   const signUpFormDetails = useSelector(selectSignUpFormDetails);
-  const { password, confirmPassword } = signUpFormDetails;
 
+  const dispatch = useDispatch();
+  const { password, confirmPassword } = signUpFormDetails;
   return (
     <>
       <Label>
@@ -43,13 +47,13 @@ const SignUpPasswords = ({ handleSignUpFormChange }) => {
           onChange={handleSignUpFormChange}
           placeholder={minEightCharacters}
           required
-          type={isVisible ? "text" : "password"}
+          type={signUpPasswordIsVisible ? "text" : "password"}
         />
 
         {password.length ? (
-          <TogglePassword
-            {...{ isVisible }}
-            onClick={togglePasswordVisibility}
+          <ToggleSignUpPassword
+            {...{ signUpPasswordIsVisible }}
+            onClick={() => dispatch(toggleSignUpPasswordIsVisible())}
           />
         ) : null}
       </RelativePositionDiv>
@@ -59,7 +63,7 @@ const SignUpPasswords = ({ handleSignUpFormChange }) => {
       </Label>
       <RelativePositionDiv>
         <PasswordInput
-          type={confirmIsVisible ? "text" : "password"}
+          type={signUpConfirmPasswordIsVisible ? "text" : "password"}
           name="confirmPassword"
           onChange={handleSignUpFormChange}
           placeholder={confirmYourPassword}
@@ -67,9 +71,9 @@ const SignUpPasswords = ({ handleSignUpFormChange }) => {
         />
 
         {confirmPassword.length ? (
-          <ToggleConfirmPassword
-            {...{ confirmIsVisible }}
-            onClick={toggleConfirmPasswordVisibility}
+          <ToggleSignUpConfirmPassword
+            {...{ signUpConfirmPasswordIsVisible }}
+            onClick={() => dispatch(toggleSignUpConfirmPasswordIsVisible())}
           />
         ) : null}
       </RelativePositionDiv>

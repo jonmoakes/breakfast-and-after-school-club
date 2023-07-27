@@ -22,6 +22,9 @@ export const errorSubmittingPaymentMessage =
 // success
 export const successMessage = "success!";
 export const checkEmailMessage = "please check your email!";
+export const fundsAddedMessage = (email) => {
+  return `The funds have been added to your wallet and A Confirmation Email Has Been Sent To ${email}.`;
+};
 
 // infos
 export const emailResponseTimeMessage =
@@ -40,6 +43,7 @@ export const confirmAddFundsMessage = (walletFunds) => {
   )} to your wallet?`;
 };
 export const imSureMessage = "i'm sure";
+export const addFundsMessage = "yes, add funds!";
 
 //placeholders
 export const enterEmailAddress = "enter your email address";
@@ -64,3 +68,4 @@ export const updatePasswordRoute = "/update-password";
 export const deleteAccountRoute = "/delete-account";
 export const cookiesRoute = "/cookie-policy";
 export const privacyRoute = "/privacy-policy";
+export const forgotPasswordRoute = "/forgot-password";

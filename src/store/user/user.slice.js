@@ -64,6 +64,7 @@ export const getUserOnLoadAsync = createAsyncThunk(
   async (thunkAPI) => {
     try {
       const user = await account.get();
+
       const findCurrentUser = await databases.listDocuments(
         import.meta.env.VITE_DEVELOPMENT_DATABASE_ID,
         import.meta.env.VITE_USER_COLLECTION_ID,

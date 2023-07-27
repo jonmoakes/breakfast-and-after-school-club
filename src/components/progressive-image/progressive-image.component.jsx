@@ -1,9 +1,15 @@
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+
+import { setImgSrc } from "../../store/progressive-image/progressive-image.slice";
+import { selectProgressiveImageSrc } from "../../store/progressive-image/progressive-image.selector";
 
 import { StyledImage } from "../../styles/image/image.styles";
 
 const ProgressiveImg = ({ placeholderSrc, src, ...props }) => {
-  const [imgSrc, setImgSrc] = useState(placeholderSrc || src);
+  const imgSrc = useSelector(selectProgressiveImageSrc);
+  const dispatch = useDispatch();
+
   const customClass =
     placeholderSrc && imgSrc === placeholderSrc ? "loading" : "loaded";
 
@@ -11,9 +17,9 @@ const ProgressiveImg = ({ placeholderSrc, src, ...props }) => {
     const img = new Image();
     img.src = src;
     img.onload = () => {
-      setImgSrc(src);
+      dispatch(setImgSrc(src));
     };
-  }, [src]);
+  }, [src, dispatch, placeholderSrc]);
 
   return (
     <StyledImage

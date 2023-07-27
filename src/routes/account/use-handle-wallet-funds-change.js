@@ -1,12 +1,12 @@
 import { useDispatch } from "react-redux";
 
-import { setWalletFunds } from "../../store/wallet/wallet.slice";
+import { setWalletFundsToAdd } from "../../store/wallet-funds-to-add/wallet-funds-to-add.slice";
 
 const useHandleAddWalletFundsChange = () => {
   const dispatch = useDispatch();
 
   const handleAddWalletFundsChange = (event) => {
-    dispatch(setWalletFunds(Number(event.target.value)));
+    dispatch(setWalletFundsToAdd(Number(event.target.value)));
   };
 
   return { handleAddWalletFundsChange };

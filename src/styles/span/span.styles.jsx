@@ -27,8 +27,13 @@ export const RedSpan = styled.span`
   color: ${customRed};
 `;
 
-export const TogglePassword = styled.span.withConfig({
-  shouldForwardProp: (prop) => prop !== "isVisible",
+export const SmallSpan = styled.span`
+  font-size: 16px;
+  color: ${customBlack};
+`;
+
+export const ToggleSignInPassword = styled.span.withConfig({
+  shouldForwardProp: (prop) => prop !== "signInPasswordIsVisible",
 })`
   position: absolute;
   top: 62%;
@@ -38,7 +43,7 @@ export const TogglePassword = styled.span.withConfig({
   width: 40px;
   height: 24px;
   background-image: ${(props) =>
-    `url(${props.isVisible ? eyeIconHide : eyeIcon})`};
+    `url(${props.signInPasswordIsVisible ? eyeIconHide : eyeIcon})`};
   background-repeat: no-repeat;
   background-position: center;
 
@@ -51,12 +56,22 @@ export const TogglePassword = styled.span.withConfig({
   }
 `;
 
-export const ToggleConfirmPassword = styled(TogglePassword).withConfig({
-  shouldForwardProp: (prop) => prop !== "confirmIsVisible",
+export const ToggleSignUpPassword = styled(ToggleSignInPassword).withConfig({
+  shouldForwardProp: (prop) => prop !== "signUpPasswordIsVisible",
 })`
   background-image: ${(props) =>
-    `url(${props.confirmIsVisible ? eyeIconHide : eyeIcon})`};
-  width: ${(props) => `url(${props.confirmIsVisible ? "25px" : "30px"})`};
+    `url(${props.signUpPasswordIsVisible ? eyeIconHide : eyeIcon})`};
+`;
+
+export const ToggleSignUpConfirmPassword = styled(
+  ToggleSignInPassword
+).withConfig({
+  shouldForwardProp: (prop) => prop !== "signUpConfirmPasswordIsVisible",
+})`
+  background-image: ${(props) =>
+    `url(${props.signUpConfirmPasswordIsVisible ? eyeIconHide : eyeIcon})`};
+  width: ${(props) =>
+    `url(${props.signUpConfirmPasswordIsVisible ? "25px" : "30px"})`};
 `;
 
 export const HorizLine = styled.span`

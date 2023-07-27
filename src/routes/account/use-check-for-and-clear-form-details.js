@@ -1,5 +1,6 @@
 import { useCallback, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+// import { account } from "../../utils/appwrite/appwrite-config";
 
 import { selectSignInFormDetails } from "../../store/sign-in-form/sign-in-form.selector";
 import { clearSignInFormDetails } from "../../store/sign-in-form/sign-in-form.slice";
@@ -41,6 +42,11 @@ const useCheckForAndClearFormDetails = () => {
   }, [signInFormDetails, signUpFormDetails, dispatch]);
 
   useEffect(() => {
+    // const test = async () => {
+    //   const user = await account.get();
+    //   console.log(user);
+    // };
+    // test();
     checkForSignInDetails();
     checkForSignUpDetails();
   }, [checkForSignInDetails, checkForSignUpDetails]);

@@ -230,6 +230,10 @@ export const TopMarginDiv = styled.div`
   width: 100%;
   height: auto;
   margin-top: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 `;
 
 export const SocialLoginsDiv = styled.div`
@@ -247,9 +251,9 @@ export const SocialLoginsDiv = styled.div`
 `;
 
 export const Accordion = styled.div.withConfig({
-  shouldForwardProp: (prop) => prop !== "show",
+  shouldForwardProp: (prop) => prop !== "shouldShowElement",
 })`
-  width: ${({ show }) => (show ? "70%" : "30%")};
+  width: ${({ shouldShowElement }) => (shouldShowElement ? "70%" : "30%")};
   margin: 2rem auto;
   border: 2px solid ${customBlack};
   border-radius: 5px;
@@ -259,26 +263,28 @@ export const Accordion = styled.div.withConfig({
   }
 
   @media screen and (max-width: 1366px) {
-    width: ${({ show }) => (show ? "90%" : "50%")};
+    width: ${({ shouldShowElement }) => (shouldShowElement ? "90%" : "50%")};
   }
 
   @media screen and (max-width: 450px) {
-    width: ${({ show }) => (show ? "90%" : "70%")};
+    width: ${({ shouldShowElement }) => (shouldShowElement ? "90%" : "70%")};
   }
 `;
 
 export const AccordionTitle = styled.div.withConfig({
-  shouldForwardProp: (prop) => prop !== "show",
+  shouldForwardProp: (prop) => prop !== "shouldShowElement",
 })`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   cursor: pointer;
-  background-color: ${({ show }) => (show ? customYellow : customGrey)};
+  background-color: ${({ shouldShowElement }) =>
+    shouldShowElement ? customYellow : customGrey};
   padding: 0.5rem;
-  border-bottom: ${({ show }) => (show ? `2px solid ${customBlack}` : "none")};
-  border-radius: ${({ show }) =>
-    show ? "5px 5px 0px 0px" : "5px 5px 5px 5px"};
+  border-bottom: ${({ shouldShowElement }) =>
+    shouldShowElement ? `2px solid ${customBlack}` : "none"};
+  border-radius: ${({ shouldShowElement }) =>
+    shouldShowElement ? "5px 5px 0px 0px" : "5px 5px 5px 5px"};
 
   @media screen and (max-width: 450px) {
     font-size: 14px;

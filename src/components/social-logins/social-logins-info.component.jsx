@@ -1,4 +1,10 @@
-import useShowOrHideElement from "../../hooks/use-show-or-hide-element";
+import { useSelector, useDispatch } from "react-redux";
+
+import { selectShouldShowElement } from "../../store/should-show-element/should-show-element.selector";
+import {
+  hideElement,
+  toggleShowElement,
+} from "../../store/should-show-element/should-show-element.slice";
 
 import Info from "./sections/info.component";
 import TroubleShooting from "./sections/troubleshooting.component";
@@ -15,17 +21,21 @@ import {
 import { YellowGreenButton } from "../../styles/buttons/buttons.styles";
 
 const SocialLoginInfo = () => {
-  const { toggleShowHideElement, show, hideElement } = useShowOrHideElement();
+  const shouldShowElement = useSelector(selectShouldShowElement);
+  const dispatch = useDispatch();
 
   return (
-    <Accordion {...{ show }}>
+    <Accordion {...{ shouldShowElement }}>
       <>
-        <AccordionTitle {...{ show }} onClick={toggleShowHideElement}>
-          <div>{show ? "ok, close" : "social sign in help"}</div>
-          <>{show ? "-" : "+"}</>
+        <AccordionTitle
+          {...{ shouldShowElement }}
+          onClick={() => dispatch(toggleShowElement())}
+        >
+          <div>{shouldShowElement ? "ok, close" : "social sign in help"}</div>
+          <>{shouldShowElement ? "-" : "+"}</>
         </AccordionTitle>
 
-        {show && (
+        {shouldShowElement && (
           <AccordionContent>
             <Info />
             <TroubleShooting />
@@ -33,7 +43,7 @@ const SocialLoginInfo = () => {
             <Brave />
             <Chrome />
             <Firefox />
-            <YellowGreenButton onClick={hideElement}>
+            <YellowGreenButton onClick={() => dispatch(hideElement())}>
               Ok, Close
             </YellowGreenButton>
           </AccordionContent>

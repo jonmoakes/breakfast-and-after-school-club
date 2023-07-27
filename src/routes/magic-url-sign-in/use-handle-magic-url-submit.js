@@ -39,12 +39,20 @@ const useHandleMagicUrlSubmit = () => {
           `https://breakfast-and-after-school-club.netlify.app${magicUrlResultRoute}`
         );
       }
+
       dispatch(stopLoader());
       fireSwal("success", successMessage, checkEmailMessage, 0, true, true);
       setEmail("");
     } catch (error) {
       dispatch(stopLoader());
-      fireSwal("error", error.message, "", 0, true, true);
+      fireSwal(
+        "error",
+        "sorry, there was an error...",
+        `the error received was: ${error.message}`,
+        0,
+        true,
+        true
+      );
     }
   };
 

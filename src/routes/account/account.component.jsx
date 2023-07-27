@@ -1,4 +1,5 @@
 import useCheckForAndClearFormDetails from "./use-check-for-and-clear-form-details";
+
 import AccountInfo from "./account.info.component";
 import AddFunds from "./add-funds.component";
 import AccountStripeLogo from "./account-stripe-logo.component";

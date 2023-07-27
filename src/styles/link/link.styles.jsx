@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 
-import { customBlue, customRed } from "../colors";
+import { customBlue, customRed, customWhite } from "../colors";
 
 export const StyledLink = styled(Link)`
   color: ${customBlue};
@@ -15,4 +15,8 @@ export const StyledLink = styled(Link)`
       color: ${customBlue};
     }
   }
+`;
+
+export const WhiteStyledLink = styled(StyledLink)`
+  color: ${customWhite};
 `;

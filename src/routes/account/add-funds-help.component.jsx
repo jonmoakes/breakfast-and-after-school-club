@@ -1,4 +1,10 @@
-import useShowOrHideElement from "../../hooks/use-show-or-hide-element";
+import { useSelector, useDispatch } from "react-redux";
+
+import { selectShouldShowElement } from "../../store/should-show-element/should-show-element.selector";
+import {
+  hideElement,
+  toggleShowElement,
+} from "../../store/should-show-element/should-show-element.slice";
 
 import { YellowGreenButton } from "../../styles/buttons/buttons.styles";
 import {
@@ -9,16 +15,21 @@ import {
 import { Text } from "../../styles/p/p.styles";
 
 const AddFundsHelp = () => {
-  const { toggleShowHideElement, show, hideElement } = useShowOrHideElement();
+  const shouldShowElement = useSelector(selectShouldShowElement);
+  const dispatch = useDispatch();
+
   return (
-    <Accordion className="funds-help" {...{ show }}>
+    <Accordion className="funds-help" {...{ shouldShowElement }}>
       <>
-        <AccordionTitle {...{ show }} onClick={toggleShowHideElement}>
-          <div>{show ? "ok, close" : "add funds help"}</div>
-          <>{show ? "-" : "+"}</>
+        <AccordionTitle
+          {...{ shouldShowElement }}
+          onClick={() => dispatch(toggleShowElement())}
+        >
+          <div>{shouldShowElement ? "ok, close" : "add funds help"}</div>
+          <>{shouldShowElement ? "-" : "+"}</>
         </AccordionTitle>
 
-        {show && (
+        {shouldShowElement && (
           <AccordionContent>
             <Text>
               to add funds to your wallet, please enter in the amount ( in
@@ -37,7 +48,11 @@ const AddFundsHelp = () => {
               input and then tap the "add funds" button which will appear when
               there are no errors in the form.
             </Text>
-            <YellowGreenButton onClick={hideElement}>
+            <Text>
+              once confirmed, your updated wallet balance will appear at the top
+              of the account page for your reference.
+            </Text>
+            <YellowGreenButton onClick={() => dispatch(hideElement())}>
               Ok, Close
             </YellowGreenButton>
           </AccordionContent>

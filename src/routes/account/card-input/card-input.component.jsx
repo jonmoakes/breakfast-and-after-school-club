@@ -6,7 +6,7 @@ import useIsOnline from "../../../hooks/use-is-online";
 import useHandlePayment from "./card-input-hooks/use-handle-payment";
 import useConfirmSwal from "../../../hooks/use-confirm-swal";
 
-import { selectWalletFunds } from "../../../store/wallet/wallet.selector";
+import { selectWalletFundsToAdd } from "../../../store/wallet-funds-to-add/wallet-funds-to-add.selector";
 
 import Loader from "../../../components/loader/loader.component";
 import CardInputErrors from "./card-input-errors.component";
@@ -18,7 +18,7 @@ import { options } from "./card-input-style-options";
 
 import {
   confirmAddFundsMessage,
-  imSureMessage,
+  addFundsMessage,
 } from "../../../strings/strings";
 
 const CardInput = () => {
@@ -28,7 +28,7 @@ const CardInput = () => {
   const { confirmSwal } = useConfirmSwal();
   const { handlePayment } = useHandlePayment();
 
-  const walletFunds = useSelector(selectWalletFunds);
+  const walletFundsToAdd = useSelector(selectWalletFundsToAdd);
 
   const confirmResult = () => {
     handlePayment();
@@ -36,16 +36,16 @@ const CardInput = () => {
 
   const confirmPayment = () => {
     confirmSwal(
-      confirmAddFundsMessage(walletFunds),
+      confirmAddFundsMessage(walletFundsToAdd),
       "",
-      imSureMessage,
+      addFundsMessage,
       confirmResult
     );
   };
 
   return (
     <>
-      {isOnline && walletFunds ? (
+      {isOnline && walletFundsToAdd ? (
         <>
           <CardInputErrors />
 

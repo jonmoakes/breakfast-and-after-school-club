@@ -19,6 +19,7 @@ import {
   magicUrlResultRoute,
   magicUrlSignInRoute,
   localhostMagicUrlResultRoute,
+  forgotPasswordRoute,
 } from "./strings/strings";
 
 const Navigation = lazy(() =>
@@ -34,6 +35,9 @@ const MagicUrlSignIn = lazy(() =>
 );
 const MagicUrlResult = lazy(() =>
   import("./routes/magic-url-result/magic-url-result.component")
+);
+const ForgotPassword = lazy(() =>
+  import("./routes/forgot-password/forgot-password.component")
 );
 
 const App = () => {
@@ -55,8 +59,8 @@ const App = () => {
             <Route
               path={magicUrlResultRoute || localhostMagicUrlResultRoute}
               element={<MagicUrlResult />}
-            />
-
+            />{" "}
+            <Route path={forgotPasswordRoute} element={<ForgotPassword />} />
             <Route element={<PrivateRoutes />}>
               <Route path={accountRoute} element={<Account />} />
             </Route>

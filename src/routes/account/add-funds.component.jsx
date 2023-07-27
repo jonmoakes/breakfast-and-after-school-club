@@ -2,7 +2,7 @@ import { useSelector } from "react-redux";
 
 import useHandleAddWalletFundsChange from "./use-handle-wallet-funds-change";
 
-import { selectWalletFunds } from "../../store/wallet/wallet.selector";
+import { selectWalletFundsToAdd } from "../../store/wallet-funds-to-add/wallet-funds-to-add.selector";
 
 import CardInput from "./card-input/card-input.component";
 
@@ -14,7 +14,7 @@ import AddFundsHelp from "./add-funds-help.component";
 const AddFunds = () => {
   const { handleAddWalletFundsChange } = useHandleAddWalletFundsChange();
 
-  const walletFunds = useSelector(selectWalletFunds);
+  const walletFundsToAdd = useSelector(selectWalletFundsToAdd);
 
   return (
     <>
@@ -26,7 +26,7 @@ const AddFunds = () => {
           <StyledInput
             type="number"
             name="walletFunds"
-            value={walletFunds || ""}
+            value={walletFundsToAdd || ""}
             min={1}
             placeholder="ie 10.50 for £10.50"
             onChange={handleAddWalletFundsChange}

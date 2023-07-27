@@ -1,4 +1,10 @@
-import useShowOrHideElement from "../../hooks/use-show-or-hide-element";
+import { useSelector, useDispatch } from "react-redux";
+
+import { selectShouldShowElement } from "../../store/should-show-element/should-show-element.selector";
+import {
+  hideElement,
+  toggleShowElement,
+} from "../../store/should-show-element/should-show-element.slice";
 
 import { Text } from "../../styles/p/p.styles";
 import { StyledLink } from "../../styles/link/link.styles";
@@ -12,17 +18,21 @@ import {
 } from "../../styles/div/div.styles";
 
 const MagicUrlInfo = () => {
-  const { toggleShowHideElement, show, hideElement } = useShowOrHideElement();
+  const shouldShowElement = useSelector(selectShouldShowElement);
+  const dispatch = useDispatch();
 
   return (
-    <Accordion {...{ show }}>
+    <Accordion {...{ shouldShowElement }}>
       <>
-        <AccordionTitle {...{ show }} onClick={toggleShowHideElement}>
-          <div>{show ? "ok, close" : "what is a magic url?"}</div>
-          <>{show ? "-" : "+"}</>
+        <AccordionTitle
+          {...{ shouldShowElement }}
+          onClick={() => dispatch(toggleShowElement())}
+        >
+          <div>{shouldShowElement ? "ok, close" : "what is a magic url?"}</div>
+          <>{shouldShowElement ? "-" : "+"}</>
         </AccordionTitle>
 
-        {show && (
+        {shouldShowElement && (
           <AccordionContent>
             <Text>
               a Magic URL is a new style of authentication method, which allows
@@ -81,7 +91,7 @@ const MagicUrlInfo = () => {
               please <StyledLink to={contactRoute}>contact us</StyledLink> with
               any questions!
             </Text>
-            <YellowGreenButton onClick={hideElement}>
+            <YellowGreenButton onClick={() => dispatch(hideElement())}>
               Ok, Close
             </YellowGreenButton>
           </AccordionContent>

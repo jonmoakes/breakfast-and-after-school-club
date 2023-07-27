@@ -1,4 +1,7 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { selectIsOnline } from "../store/is-online/is-online.selector";
+import { setOnlineStatus } from "../store/is-online/is-online.slice";
 
 const notBrowserError =
   "checking online status only works in a browser environment.";
@@ -6,10 +9,12 @@ const notABrowserEnv = typeof window === "undefined";
 const navigatorNotPresent = typeof navigator === "undefined";
 
 const useIsOnline = () => {
-  const [isOnline, setOnlineStatus] = useState(window.navigator.onLine);
+  const isOnline = useSelector(selectIsOnline);
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    const toggleOnlineStatus = () => setOnlineStatus(window.navigator.onLine);
+    const toggleOnlineStatus = () =>
+      dispatch(setOnlineStatus(window.navigator.onLine));
 
     window.addEventListener("online", toggleOnlineStatus);
     window.addEventListener("offline", toggleOnlineStatus);
@@ -19,7 +24,7 @@ const useIsOnline = () => {
       window.removeEventListener("online", toggleOnlineStatus);
       window.removeEventListener("offline", toggleOnlineStatus);
     };
-  }, []);
+  }, [dispatch]);
 
   if (notABrowserEnv || navigatorNotPresent) {
     return {
