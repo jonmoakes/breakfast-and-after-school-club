@@ -12,6 +12,7 @@ import { progressiveImageReducer } from "./progressive-image/progressive-image.s
 import { isOnlineReducer } from "./is-online/is-online.slice";
 import { shouldShowElementReducer } from "./should-show-element/should-show-element.slice";
 import { passwordIsVisibleReducer } from "./password-is-visible/password-is-visible.slice";
+import { magicUrlReducer } from "./magic-url/magic-url.slice";
 
 export const rootReducer = combineReducers({
   hamburgerMenu: hamburgerMenuReducer,
@@ -26,4 +27,5 @@ export const rootReducer = combineReducers({
   isOnline: isOnlineReducer,
   shouldShowElement: shouldShowElementReducer,
   passwordIsVisible: passwordIsVisibleReducer,
+  magicUrl: magicUrlReducer,
 });

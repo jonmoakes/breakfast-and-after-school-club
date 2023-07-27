@@ -4,6 +4,7 @@ import Balancer from "react-wrap-balancer";
 import useHandleMagicUrlSubmit from "./use-handle-magic-url-submit";
 
 import { selectIsLoading } from "../../store/loader/loader.selector";
+import { selectMagicUrlEmail } from "../../store/magic-url/magic-url.selector";
 
 import Loader from "../../components/loader/loader.component";
 import MagicUrlInfo from "./magic-url-info.component";
@@ -16,8 +17,10 @@ import { BlackTitle } from "../../styles/h1/h1.styles";
 import { enterEmailAddress } from "../../strings/strings";
 
 const MagicUrlSignIn = () => {
-  const { handleMagicEmailSubmit, email, setEmail } = useHandleMagicUrlSubmit();
+  const { handleMagicEmailSubmit, handleMagicUrlEmailChange } =
+    useHandleMagicUrlSubmit();
 
+  const magicUrlEmail = useSelector(selectMagicUrlEmail);
   const isLoading = useSelector(selectIsLoading);
 
   return (
@@ -40,11 +43,11 @@ const MagicUrlSignIn = () => {
           <LowercasedInput
             type="email"
             placeholder={enterEmailAddress}
-            value={email || ""}
-            onChange={(e) => setEmail(e.target.value)}
+            value={magicUrlEmail || ""}
+            onChange={handleMagicUrlEmailChange}
           />
 
-          {email ? (
+          {magicUrlEmail ? (
             <YellowGreenButton type="button" onClick={handleMagicEmailSubmit}>
               generate magic url
             </YellowGreenButton>

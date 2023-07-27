@@ -1,13 +1,15 @@
 import { useCallback, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-// import { account } from "../../utils/appwrite/appwrite-config";
 
 import { selectSignInFormDetails } from "../../store/sign-in-form/sign-in-form.selector";
 import { clearSignInFormDetails } from "../../store/sign-in-form/sign-in-form.slice";
 import { selectSignUpFormDetails } from "../../store/sign-up-form/sign-up-form.selector";
 import { clearSignUpFormDetails } from "../../store/sign-up-form/sign-up-form.slice";
+import { clearMagicUrlResultError } from "../../store/magic-url/magic-url.slice";
+import { selectMagicUrlResultError } from "../../store/magic-url/magic-url.selector";
 
 const useCheckForAndClearFormDetails = () => {
+  const magicUrlResultError = useSelector(selectMagicUrlResultError);
   const signInFormDetails = useSelector(selectSignInFormDetails);
   const signUpFormDetails = useSelector(selectSignUpFormDetails);
 
@@ -42,14 +44,17 @@ const useCheckForAndClearFormDetails = () => {
   }, [signInFormDetails, signUpFormDetails, dispatch]);
 
   useEffect(() => {
-    // const test = async () => {
-    //   const user = await account.get();
-    //   console.log(user);
-    // };
-    // test();
+    if (magicUrlResultError) {
+      dispatch(clearMagicUrlResultError());
+    }
     checkForSignInDetails();
     checkForSignUpDetails();
-  }, [checkForSignInDetails, checkForSignUpDetails]);
+  }, [
+    checkForSignInDetails,
+    checkForSignUpDetails,
+    magicUrlResultError,
+    dispatch,
+  ]);
 };
 
 export default useCheckForAndClearFormDetails;

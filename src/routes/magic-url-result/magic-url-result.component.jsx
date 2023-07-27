@@ -1,10 +1,9 @@
-import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { account } from "../../utils/appwrite/appwrite-config";
 
-import { setCurrentUser } from "../../store/user/user.slice";
-import { startLoader, stopLoader } from "../../store/loader/loader.slice";
+import useGetMagicUrlResult from "./use-get-magic-url-result";
+import { selectMagicUrlResultError } from "../../store/magic-url/magic-url.selector";
+
 import { selectIsLoading } from "../../store/loader/loader.selector";
 
 import Loader from "../../components/loader/loader.component";
@@ -16,42 +15,28 @@ import { YellowGreenButton } from "../../styles/buttons/buttons.styles";
 import { BlackTitle } from "../../styles/h1/h1.styles";
 import { BlueH2 } from "../../styles/h2/h2.styles";
 
-import { accountRoute, signInRoute } from "../../strings/strings";
+import { signInRoute } from "../../strings/strings";
+import { clearMagicUrlResultError } from "../../store/magic-url/magic-url.slice";
 
 const MagicUrlResult = () => {
-  const [error, setError] = useState(null);
+  useGetMagicUrlResult();
+
+  const magicUrlResultError = useSelector(selectMagicUrlResultError);
   const isLoading = useSelector(selectIsLoading);
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  useEffect(() => {
-    const getMagicData = async () => {
-      dispatch(startLoader());
-      try {
-        const urlParams = new URLSearchParams(window.location.search);
-        const userId = urlParams.get("userId");
-        const secret = urlParams.get("secret");
-
-        await account.updateMagicURLSession(userId, secret);
-        const user = await account.get();
-
-        dispatch(stopLoader());
-        dispatch(setCurrentUser(user));
-        navigate(accountRoute);
-      } catch (error) {
-        dispatch(stopLoader());
-        setError(error.message);
-      }
-    };
-    getMagicData();
-  }, [dispatch, navigate]);
+  const returnToSignInAndResetError = () => {
+    navigate(signInRoute);
+    dispatch(clearMagicUrlResultError());
+  };
 
   return (
     <Container>
       {isLoading ? <Loader /> : null}
       <ParentDiv>
-        {!error ? (
+        {!magicUrlResultError ? (
           <>
             <BlackTitle>please wait...</BlackTitle>
             <BlueH2>signing you in...</BlueH2>
@@ -64,9 +49,9 @@ const MagicUrlResult = () => {
             <Text>
               the error received was:
               <br />
-              {error}
+              {magicUrlResultError}
             </Text>
-            <YellowGreenButton onClick={() => navigate(signInRoute)}>
+            <YellowGreenButton onClick={returnToSignInAndResetError}>
               back to sign in
             </YellowGreenButton>
           </>
