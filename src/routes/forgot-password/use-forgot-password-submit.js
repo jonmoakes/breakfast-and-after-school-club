@@ -11,7 +11,7 @@ import {
 import { selectForgotPasswordEmail } from "../../store/forgot-password/forgot-password.selector";
 
 import {
-  forgotPasswordRoute,
+  forgotPasswordResultRoute,
   invalidEmailErrorMessage,
   successMessage,
   checkEmailMessage,
@@ -39,7 +39,7 @@ const useForgotPasswordSubmit = () => {
       } else if (import.meta.env.MODE === "production") {
         await account.createRecovery(
           forgotPasswordEmail,
-          `https://breakfast-and-after-school-club.netlify.app${forgotPasswordRoute}`
+          `https://breakfast-and-after-school-club.netlify.app${forgotPasswordResultRoute}`
         );
       }
       dispatch(stopLoader());
