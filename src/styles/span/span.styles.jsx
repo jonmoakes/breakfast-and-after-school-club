@@ -74,6 +74,26 @@ export const ToggleSignUpConfirmPassword = styled(
     `url(${props.signUpConfirmPasswordIsVisible ? "25px" : "30px"})`};
 `;
 
+export const ToggleResetPassword = styled(ToggleSignInPassword).withConfig({
+  shouldForwardProp: (prop) => prop !== "resetPasswordIsVisible",
+})`
+  background-image: ${(props) =>
+    `url(${props.resetPasswordIsVisible ? eyeIconHide : eyeIcon})`};
+`;
+
+export const ToggleResetPasswordConfirmPassword = styled(
+  ToggleSignInPassword
+).withConfig({
+  shouldForwardProp: (prop) => prop !== "resetPasswordConfirmPasswordIsVisible",
+})`
+  background-image: ${(props) =>
+    `url(${
+      props.resetPasswordConfirmPasswordIsVisible ? eyeIconHide : eyeIcon
+    })`};
+  width: ${(props) =>
+    `url(${props.resetPasswordConfirmPasswordIsVisible ? "25px" : "30px"})`};
+`;
+
 export const HorizLine = styled.span`
   display: flex;
   width: 80%;

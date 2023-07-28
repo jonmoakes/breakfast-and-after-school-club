@@ -17,3 +17,14 @@ export const selectSignUpConfirmPasswordIsVisible = createSelector(
   (passwordIsVisibleSlice) =>
     passwordIsVisibleSlice.signUpConfirmPasswordIsVisible
 );
+
+export const selectResetPasswordIsVisible = createSelector(
+  [selectPasswordIsVisibleReducer],
+  (passwordIsVisibleSlice) => passwordIsVisibleSlice.resetPasswordIsVisible
+);
+
+export const selectResetPasswordConfirmPasswordIsVisible = createSelector(
+  [selectPasswordIsVisibleReducer],
+  (passwordIsVisibleSlice) =>
+    passwordIsVisibleSlice.resetPasswordConfirmPasswordIsVisible
+);

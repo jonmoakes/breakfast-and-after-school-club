@@ -42,6 +42,7 @@ const MagicUrlSignIn = () => {
           <Label>email:</Label>
           <LowercasedInput
             type="email"
+            required
             placeholder={enterEmailAddress}
             value={magicUrlEmail || ""}
             onChange={handleMagicUrlEmailChange}

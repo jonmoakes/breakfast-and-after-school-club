@@ -36,6 +36,7 @@ const SignUpPasswords = ({ handleSignUpFormChange }) => {
 
   const dispatch = useDispatch();
   const { password, confirmPassword } = signUpFormDetails;
+
   return (
     <>
       <Label>

@@ -25,12 +25,16 @@ export const checkEmailMessage = "please check your email!";
 export const fundsAddedMessage = (email) => {
   return `The funds have been added to your wallet and A Confirmation Email Has Been Sent To ${email}.`;
 };
+export const passwordResetSuccessMessage =
+  "your password has been successfuly reset!";
 
 // infos
 export const emailResponseTimeMessage =
   "Your Message Has Been Message Sent! We Aim To Respond Within 24 Hours.";
 export const loseAllDataMessage =
   "you will lose any data that you have currently entered into this form.";
+export const signInWithNewPasswordMessage =
+  "you can now sign in with your new password.";
 
 //confirms
 export const confirmSignOutMessage = "are you sure you wish to sign out?";
@@ -69,3 +73,6 @@ export const deleteAccountRoute = "/delete-account";
 export const cookiesRoute = "/cookie-policy";
 export const privacyRoute = "/privacy-policy";
 export const forgotPasswordRoute = "/forgot-password";
+export const forgotPasswordResultRoute = "/forgot-password-result";
+export const localhostForgotPasswordResultRoute =
+  "http://localhost:8888/forgot-password-result";
