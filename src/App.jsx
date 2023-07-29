@@ -22,6 +22,7 @@ import {
   forgotPasswordRoute,
   forgotPasswordResultRoute,
   localhostForgotPasswordResultRoute,
+  addFundsRoute,
 } from "./strings/strings";
 
 const Navigation = lazy(() =>
@@ -32,6 +33,7 @@ const Contact = lazy(() => import("./routes/contact/contact.component"));
 const SignUp = lazy(() => import("./routes/sign-up/sign-up.component"));
 const SignIn = lazy(() => import("./routes/sign-in/sign-in.component"));
 const Account = lazy(() => import("./routes/account/account.component"));
+const AddFunds = lazy(() => import("./routes/add-funds/add-funds.component"));
 const MagicUrlSignIn = lazy(() =>
   import("./routes/magic-url-sign-in/magic-url-sign-in.component")
 );
@@ -74,6 +76,7 @@ const App = () => {
             />
             <Route element={<PrivateRoutes />}>
               <Route path={accountRoute} element={<Account />} />
+              <Route path={addFundsRoute} element={<AddFunds />} />
             </Route>
           </Routes>
         </Suspense>

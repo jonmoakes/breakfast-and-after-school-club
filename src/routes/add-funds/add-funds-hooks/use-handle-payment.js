@@ -1,22 +1,24 @@
 import { CardElement, useStripe, useElements } from "@stripe/react-stripe-js";
 import { useSelector, useDispatch } from "react-redux";
-import { databases } from "../../../../utils/appwrite/appwrite-config";
+import { useNavigate } from "react-router-dom";
+import { databases } from "../../../utils/appwrite/appwrite-config";
 
-import useFireSwal from "../../../../hooks/use-fire-swal";
+import useFireSwal from "../../../hooks/use-fire-swal";
 
-import { selectWalletFundsToAdd } from "../../../../store/wallet-funds-to-add/wallet-funds-to-add.selector";
-import { clearWalletFundsToAdd } from "../../../../store/wallet-funds-to-add/wallet-funds-to-add.slice";
-import { selectCurrentUser } from "../../../../store/user/user.selector";
+import { selectWalletFundsToAdd } from "../../../store/wallet-funds-to-add/wallet-funds-to-add.selector";
+import { clearWalletFundsToAdd } from "../../../store/wallet-funds-to-add/wallet-funds-to-add.slice";
+import { selectCurrentUser } from "../../../store/user/user.selector";
 import {
   startPaymentIsProcessing,
   stopPaymentIsProcessing,
   clearCardInputResult,
-} from "../../../../store/card-input-result/card-input-result.slice";
+} from "../../../store/card-input-result/card-input-result.slice";
 
 import {
+  accountRoute,
   errorSubmittingPaymentMessage,
   fundsAddedMessage,
-} from "../../../../strings/strings";
+} from "../../../strings/strings";
 
 const useHandlePayment = () => {
   const { fireSwal } = useFireSwal();
@@ -29,6 +31,7 @@ const useHandlePayment = () => {
   const stripe = useStripe();
   const elements = useElements();
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const handlePayment = async () => {
     if (!stripe || !elements) return;
@@ -103,6 +106,7 @@ const useHandlePayment = () => {
           true
         );
         cardElement.clear();
+        navigate(accountRoute);
       }
     } catch (error) {
       dispatch(stopPaymentIsProcessing());

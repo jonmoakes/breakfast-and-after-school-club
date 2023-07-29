@@ -1,12 +1,12 @@
-import useCheckForAndClearFormDetails from "./use-check-for-and-clear-form-details";
+import useCheckForAndClearFormDetails from "./account-hooks/use-check-for-and-clear-form-details";
 
-import AccountInfo from "./account.info.component";
-import AddFunds from "./add-funds.component";
 import AccountStripeLogo from "./account-stripe-logo.component";
 
 import { Container } from "../../styles/container/container.styles";
 import { ParentDiv } from "../../styles/div/div.styles";
 import { BlackTitle } from "../../styles/h1/h1.styles";
+import AccountButtonLinks from "./account-button-links.component";
+import Intro from "./intro.component";
 
 const Account = () => {
   useCheckForAndClearFormDetails();
@@ -17,8 +17,8 @@ const Account = () => {
         <BlackTitle>your account</BlackTitle>
       </ParentDiv>
 
-      <AccountInfo />
-      <AddFunds />
+      <Intro />
+      <AccountButtonLinks />
       <AccountStripeLogo />
     </Container>
   );

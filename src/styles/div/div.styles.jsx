@@ -259,7 +259,7 @@ export const Accordion = styled.div.withConfig({
   border-radius: 5px;
 
   &.funds-help {
-    margin: 10px auto;
+    margin: 20px auto 10px auto;
   }
 
   @media screen and (max-width: 1366px) {

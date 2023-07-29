@@ -10,14 +10,14 @@ import {
 export const signedInRoutes = [
   bookingsRoute,
   bookSessionRoute,
-  contactRoute,
   accountRoute,
+  contactRoute,
 ];
 
 export const signedInRoutesWithoutDash = [
   bookSessionRoute,
-  contactRoute,
   accountRoute,
+  contactRoute,
 ];
 
 export const signedOutRoutes = [signInRoute, signUpRoute, contactRoute];

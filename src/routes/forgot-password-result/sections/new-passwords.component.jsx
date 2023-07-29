@@ -19,7 +19,10 @@ import {
 } from "../../../styles/span/span.styles";
 import { RelativePositionDiv } from "../../../styles/div/div.styles";
 
-import { minEightCharacters } from "../../../strings/strings";
+import {
+  confirmYourPassword,
+  minEightCharacters,
+} from "../../../strings/strings";
 
 const NewPasswords = ({ handleResetPasswordFormChange }) => {
   useHideResetPasswordFieldsOnEmpty();
@@ -59,7 +62,7 @@ const NewPasswords = ({ handleResetPasswordFormChange }) => {
         <PasswordInput
           name="confirmNewPassword"
           onChange={handleResetPasswordFormChange}
-          placeholder="confirm your new password"
+          placeholder={confirmYourPassword}
           value={confirmNewPassword || ""}
           required
           type={resetPasswordConfirmPasswordIsVisible ? "text" : "password"}

@@ -1,12 +1,12 @@
 import { useDispatch, useSelector } from "react-redux";
 
-import { setCardInputResult } from "../../../../store/card-input-result/card-input-result.slice";
+import { setCardInputResult } from "../../../store/card-input-result/card-input-result.slice";
 import {
   selectCardInputResult,
   selectPaymentIsProcessing,
-} from "../../../../store/card-input-result/card-input-result.selector";
+} from "../../../store/card-input-result/card-input-result.selector";
 
-import { formNotCompleteWarning } from "../../../../strings/strings";
+import { formNotCompleteWarning } from "../../../strings/strings";
 
 const useHandleCardInputChange = () => {
   const paymentIsProcessing = useSelector(selectPaymentIsProcessing);

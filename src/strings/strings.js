@@ -54,6 +54,7 @@ export const enterEmailAddress = "enter your email address";
 export const minEightCharacters = "min 8 characters";
 export const maxEightCharacters = "max 8 characters";
 export const confirmYourPassword = "confirm your password";
+export const addFundsPlaceholder = "ie 10.50 for £10.50";
 
 //routes
 export const bookingsRoute = "/bookings";
@@ -69,10 +70,11 @@ export const localhostMagicUrlResultRoute =
 export const payNowRoute = "/pay-now";
 export const updateEmailRoute = "/update-email";
 export const updatePasswordRoute = "/update-password";
-export const deleteAccountRoute = "/delete-account";
+export const closeAccountRoute = "/close-account";
 export const cookiesRoute = "/cookie-policy";
 export const privacyRoute = "/privacy-policy";
 export const forgotPasswordRoute = "/forgot-password";
 export const forgotPasswordResultRoute = "/forgot-password-result";
 export const localhostForgotPasswordResultRoute =
   "http://localhost:8888/forgot-password-result";
+export const addFundsRoute = "/add-funds";

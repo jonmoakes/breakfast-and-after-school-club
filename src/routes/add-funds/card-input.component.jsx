@@ -1,25 +1,23 @@
 import { useSelector } from "react-redux";
 import { CardElement } from "@stripe/react-stripe-js";
 
-import useHandleCardInputChange from "./card-input-hooks/use-handle-card-input-change";
-import useIsOnline from "../../../hooks/use-is-online";
-import useHandlePayment from "./card-input-hooks/use-handle-payment";
-import useConfirmSwal from "../../../hooks/use-confirm-swal";
+import useHandleCardInputChange from "./add-funds-hooks/use-handle-card-input-change";
+import useHandlePayment from "./add-funds-hooks/use-handle-payment";
+import useIsOnline from "../../hooks/use-is-online";
+import useConfirmSwal from "../../hooks/use-confirm-swal";
 
-import { selectWalletFundsToAdd } from "../../../store/wallet-funds-to-add/wallet-funds-to-add.selector";
+import { selectWalletFundsToAdd } from "../../store/wallet-funds-to-add/wallet-funds-to-add.selector";
 
-import Loader from "../../../components/loader/loader.component";
+import Loader from "../../components/loader/loader.component";
 import CardInputErrors from "./card-input-errors.component";
-import NetworkError from "../../../components/errors/network-error.component";
+import NetworkError from "../../components/errors/network-error.component";
 
-import { CardInputDiv, ParentDiv } from "../../../styles/div/div.styles";
-import { YellowGreenButton } from "../../../styles/buttons/buttons.styles";
+import { CardInputDiv, ParentDiv } from "../../styles/div/div.styles";
+import { YellowGreenButton } from "../../styles/buttons/buttons.styles";
+
 import { options } from "./card-input-style-options";
 
-import {
-  confirmAddFundsMessage,
-  addFundsMessage,
-} from "../../../strings/strings";
+import { confirmAddFundsMessage, addFundsMessage } from "../../strings/strings";
 
 const CardInput = () => {
   const { isOnline } = useIsOnline();
