@@ -94,6 +94,15 @@ export const ToggleResetPasswordConfirmPassword = styled(
     `url(${props.resetPasswordConfirmPasswordIsVisible ? "25px" : "30px"})`};
 `;
 
+export const ToggleUpdateEmailPassword = styled(
+  ToggleSignInPassword
+).withConfig({
+  shouldForwardProp: (prop) => prop !== "updateEmailPasswordIsVisible",
+})`
+  background-image: ${(props) =>
+    `url(${props.updateEmailPasswordIsVisible ? eyeIconHide : eyeIcon})`};
+`;
+
 export const HorizLine = styled.span`
   display: flex;
   width: 80%;

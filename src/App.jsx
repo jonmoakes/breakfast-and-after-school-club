@@ -16,6 +16,7 @@ import {
   signUpRoute,
   signInRoute,
   accountRoute,
+  updateEmailRoute,
   magicUrlResultRoute,
   magicUrlSignInRoute,
   localhostMagicUrlResultRoute,
@@ -34,6 +35,9 @@ const SignUp = lazy(() => import("./routes/sign-up/sign-up.component"));
 const SignIn = lazy(() => import("./routes/sign-in/sign-in.component"));
 const Account = lazy(() => import("./routes/account/account.component"));
 const AddFunds = lazy(() => import("./routes/add-funds/add-funds.component"));
+const UpdateEmail = lazy(() =>
+  import("./routes/update-email/update-email.component")
+);
 const MagicUrlSignIn = lazy(() =>
   import("./routes/magic-url-sign-in/magic-url-sign-in.component")
 );
@@ -77,6 +81,7 @@ const App = () => {
             <Route element={<PrivateRoutes />}>
               <Route path={accountRoute} element={<Account />} />
               <Route path={addFundsRoute} element={<AddFunds />} />
+              <Route path={updateEmailRoute} element={<UpdateEmail />} />
             </Route>
           </Routes>
         </Suspense>

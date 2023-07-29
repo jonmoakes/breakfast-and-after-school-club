@@ -18,6 +18,8 @@ export const formNotCompleteWarning =
   "the pay button will show when the form is complete";
 export const errorSubmittingPaymentMessage =
   "Sorry, There Was An Error Submitting Payment.\nYour Card Has Not Been Charged.\nPlease Try Again.";
+export const appwritePasswordError =
+  "Invalid credentials. Please check the email and password.";
 
 // success
 export const successMessage = "success!";
@@ -35,6 +37,12 @@ export const loseAllDataMessage =
   "you will lose any data that you have currently entered into this form.";
 export const signInWithNewPasswordMessage =
   "you can now sign in with your new password.";
+export const emailChangedMessage = "email changed!";
+export const signInWithNewEmailMessage =
+  "for security reasons, we will now sign you out of all sessions. please wait until you are redirected to the sign in page, where you can then sign in with your new email address.";
+export const passwordErrorMessage = "password error";
+export const passwordErrorInstructions =
+  "please check your password and try again";
 
 //confirms
 export const confirmSignOutMessage = "are you sure you wish to sign out?";
@@ -55,6 +63,7 @@ export const minEightCharacters = "min 8 characters";
 export const maxEightCharacters = "max 8 characters";
 export const confirmYourPassword = "confirm your password";
 export const addFundsPlaceholder = "ie 10.50 for £10.50";
+export const enterYourPasswordPlaceholder = "enter your password";
 
 //routes
 export const bookingsRoute = "/bookings";

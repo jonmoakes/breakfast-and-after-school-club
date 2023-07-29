@@ -14,6 +14,7 @@ import { shouldShowElementReducer } from "./should-show-element/should-show-elem
 import { passwordIsVisibleReducer } from "./password-is-visible/password-is-visible.slice";
 import { magicUrlReducer } from "./magic-url/magic-url.slice";
 import { forgotPasswordReducer } from "./forgot-password/forgot-password.slice";
+import { updateEmailReducer } from "./update-email/update-email.slice";
 
 export const rootReducer = combineReducers({
   hamburgerMenu: hamburgerMenuReducer,
@@ -30,4 +31,5 @@ export const rootReducer = combineReducers({
   passwordIsVisible: passwordIsVisibleReducer,
   magicUrl: magicUrlReducer,
   forgotPassword: forgotPasswordReducer,
+  updateEmail: updateEmailReducer,
 });

@@ -28,3 +28,9 @@ export const selectResetPasswordConfirmPasswordIsVisible = createSelector(
   (passwordIsVisibleSlice) =>
     passwordIsVisibleSlice.resetPasswordConfirmPasswordIsVisible
 );
+
+export const selectUpdateEmailPasswordIsVisible = createSelector(
+  [selectPasswordIsVisibleReducer],
+  (passwordIsVisibleSlice) =>
+    passwordIsVisibleSlice.updateEmailPasswordIsVisible
+);

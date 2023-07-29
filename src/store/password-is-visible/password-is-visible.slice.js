@@ -6,6 +6,7 @@ const INITIAL_STATE = {
   signUpConfirmPasswordIsVisible: false,
   resetPasswordIsVisible: false,
   resetPasswordConfirmPasswordIsVisible: false,
+  updateEmailPasswordIsVisible: false,
 };
 
 export const passwordIsVisibleSlice = createSlice({
@@ -44,6 +45,12 @@ export const passwordIsVisibleSlice = createSlice({
     hideResetPasswordConfirmPasswordIsVisible(state) {
       state.resetPasswordConfirmPasswordIsVisible = false;
     },
+    toggleUpdateEmailPasswordIsVisible(state) {
+      state.updateEmailPasswordIsVisible = !state.updateEmailPasswordIsVisible;
+    },
+    hideUpdateEmailPasswordIsVisible(state) {
+      state.updateEmailPasswordIsVisible = false;
+    },
   },
 });
 
@@ -58,6 +65,8 @@ export const {
   hideResetPasswordIsVisible,
   toggleResetPasswordConfirmPasswordIsVisible,
   hideResetPasswordConfirmPasswordIsVisible,
+  toggleUpdateEmailPasswordIsVisible,
+  hideUpdateEmailPasswordIsVisible,
 } = passwordIsVisibleSlice.actions;
 
 export const passwordIsVisibleReducer = passwordIsVisibleSlice.reducer;
