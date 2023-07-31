@@ -27,6 +27,7 @@ import {
   updatePasswordRequestRoute,
   updatePasswordResultRoute,
   localhostUpdatePasswordResultRoute,
+  closeAccountRoute,
 } from "./strings/strings";
 
 const Navigation = lazy(() =>
@@ -46,6 +47,9 @@ const UpdatePasswordRequest = lazy(() =>
 );
 const UpdatePasswordResult = lazy(() =>
   import("./routes/update-password-result/update-password-result.component")
+);
+const CloseAccount = lazy(() =>
+  import("./routes/close-account/close-account.component")
 );
 const MagicUrlSignIn = lazy(() =>
   import("./routes/magic-url-sign-in/magic-url-sign-in.component")
@@ -103,6 +107,7 @@ const App = () => {
                 path={updatePasswordRequestRoute}
                 element={<UpdatePasswordRequest />}
               />
+              <Route path={closeAccountRoute} element={<CloseAccount />} />
             </Route>
           </Routes>
         </Suspense>

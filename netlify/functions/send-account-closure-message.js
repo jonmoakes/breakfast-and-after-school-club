@@ -1,0 +1,28 @@
+import sgMail from "@sendgrid/mail";
+
+sgMail.setApiKey(process.env.VITE_SENDGRID_API_KEY);
+
+export async function handler(event) {
+  const { message } = JSON.parse(event.body);
+
+  const data = {
+    to: message.email,
+    from: process.env.VITE_APP_OWNER_EMAIL,
+    subject:
+      "Account Closure Info For Your BREAKFAST & AFTER SCHOOL CLUB Account",
+    text: message.accountClosureEmail,
+  };
+
+  try {
+    await sgMail.send(data);
+    return {
+      statusCode: 202,
+      body: "Email sent successfully",
+    };
+  } catch (error) {
+    return {
+      statusCode: 500,
+      body: JSON.stringify({ error: error.message }),
+    };
+  }
+}
