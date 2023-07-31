@@ -24,6 +24,9 @@ import {
   forgotPasswordResultRoute,
   localhostForgotPasswordResultRoute,
   addFundsRoute,
+  updatePasswordRequestRoute,
+  updatePasswordResultRoute,
+  localhostUpdatePasswordResultRoute,
 } from "./strings/strings";
 
 const Navigation = lazy(() =>
@@ -37,6 +40,12 @@ const Account = lazy(() => import("./routes/account/account.component"));
 const AddFunds = lazy(() => import("./routes/add-funds/add-funds.component"));
 const UpdateEmail = lazy(() =>
   import("./routes/update-email/update-email.component")
+);
+const UpdatePasswordRequest = lazy(() =>
+  import("./routes/update-password-request/update-password-request.component")
+);
+const UpdatePasswordResult = lazy(() =>
+  import("./routes/update-password-result/update-password-result.component")
 );
 const MagicUrlSignIn = lazy(() =>
   import("./routes/magic-url-sign-in/magic-url-sign-in.component")
@@ -78,10 +87,22 @@ const App = () => {
               }
               element={<ForgotPasswordResult />}
             />
+            <Route
+              path={
+                updatePasswordResultRoute || localhostUpdatePasswordResultRoute
+              }
+              element={<UpdatePasswordResult />}
+            />
+
+            {/*private routes - if no user, redirect to sign in route */}
             <Route element={<PrivateRoutes />}>
               <Route path={accountRoute} element={<Account />} />
               <Route path={addFundsRoute} element={<AddFunds />} />
               <Route path={updateEmailRoute} element={<UpdateEmail />} />
+              <Route
+                path={updatePasswordRequestRoute}
+                element={<UpdatePasswordRequest />}
+              />
             </Route>
           </Routes>
         </Suspense>

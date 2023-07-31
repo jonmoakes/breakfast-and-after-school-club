@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { customBlack, customRed } from "../colors";
+import { customBlack, customRed, customBlue } from "../colors";
 
 import eyeIcon from "../../assets/eye.png";
 import eyeIconHide from "../../assets/hide-eye.png";
@@ -103,6 +103,25 @@ export const ToggleUpdateEmailPassword = styled(
     `url(${props.updateEmailPasswordIsVisible ? eyeIconHide : eyeIcon})`};
 `;
 
+export const ToggleUpdatePassword = styled(ToggleSignInPassword).withConfig({
+  shouldForwardProp: (prop) => prop !== "updatePasswordIsVisible",
+})`
+  background-image: ${(props) =>
+    `url(${props.updatePasswordIsVisible ? eyeIconHide : eyeIcon})`};
+`;
+
+export const ToggleConfirmUpdatePassword = styled(
+  ToggleSignInPassword
+).withConfig({
+  shouldForwardProp: (prop) =>
+    prop !== "updatePasswordConfirmPasswordIsVisible",
+})`
+  background-image: ${(props) =>
+    `url(${
+      props.updatePasswordConfirmPasswordIsVisible ? eyeIconHide : eyeIcon
+    })`};
+`;
+
 export const HorizLine = styled.span`
   display: flex;
   width: 80%;
@@ -130,4 +149,8 @@ export const HorizLine = styled.span`
 
 export const LowercasedSpan = styled.span`
   text-transform: lowercase;
+`;
+
+export const BlueLowercasedSpan = styled(LowercasedSpan)`
+  color: ${customBlue};
 `;

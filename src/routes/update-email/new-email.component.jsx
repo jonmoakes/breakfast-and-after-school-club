@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 import useHandleUpdateEmailDetails from "./update-email-hooks/use-handle-update-email-details";
 import useHideUpdateEmailPasswordOnEmpty from "./update-email-hooks/use-hide-update-email-password-on-empty";
-import useUpdateEmailSubmit from "./update-email-hooks/use-update-email-submit";
+import useConfirmUpdateEmail from "./update-email-hooks/use-confirm-update-email";
 import useIsOnline from "../../hooks/use-is-online";
 
 import { selectUpdateEmailDetails } from "../../store/update-email/update-email.selector";
@@ -27,7 +27,7 @@ import {
 
 const NewEmail = () => {
   useHideUpdateEmailPasswordOnEmpty();
-  const { updateEmailSubmit } = useUpdateEmailSubmit();
+  const { confirmUpdateEmail } = useConfirmUpdateEmail();
   const { handleUpdateEmailDetailsChange } = useHandleUpdateEmailDetails();
   const { isOnline } = useIsOnline();
 
@@ -74,7 +74,7 @@ const NewEmail = () => {
         {!isOnline ? (
           <NetworkError />
         ) : newEmail && password ? (
-          <YellowGreenButton type="button" onClick={updateEmailSubmit}>
+          <YellowGreenButton type="button" onClick={confirmUpdateEmail}>
             update email
           </YellowGreenButton>
         ) : null}

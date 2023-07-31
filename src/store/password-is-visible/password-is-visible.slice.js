@@ -7,6 +7,8 @@ const INITIAL_STATE = {
   resetPasswordIsVisible: false,
   resetPasswordConfirmPasswordIsVisible: false,
   updateEmailPasswordIsVisible: false,
+  updatePasswordIsVisible: false,
+  updatePasswordConfirmPasswordIsVisible: false,
 };
 
 export const passwordIsVisibleSlice = createSlice({
@@ -22,12 +24,12 @@ export const passwordIsVisibleSlice = createSlice({
     toggleSignUpPasswordIsVisible(state) {
       state.signUpPasswordIsVisible = !state.signUpPasswordIsVisible;
     },
-    hideSignUpPasswordIsVisible(state) {
-      state.signUpPasswordIsVisible = false;
-    },
     toggleSignUpConfirmPasswordIsVisible(state) {
       state.signUpConfirmPasswordIsVisible =
         !state.signUpConfirmPasswordIsVisible;
+    },
+    hideSignUpPasswordIsVisible(state) {
+      state.signUpPasswordIsVisible = false;
     },
     hideSignUpConfirmPasswordIsVisible(state) {
       state.signUpConfirmPasswordIsVisible = false;
@@ -35,12 +37,12 @@ export const passwordIsVisibleSlice = createSlice({
     toggleResetPasswordIsVisible(state) {
       state.resetPasswordIsVisible = !state.resetPasswordIsVisible;
     },
-    hideResetPasswordIsVisible(state) {
-      state.resetPasswordIsVisible = false;
-    },
     toggleResetPasswordConfirmPasswordIsVisible(state) {
       state.resetPasswordConfirmPasswordIsVisible =
         !state.resetPasswordConfirmPasswordIsVisible;
+    },
+    hideResetPasswordIsVisible(state) {
+      state.resetPasswordIsVisible = false;
     },
     hideResetPasswordConfirmPasswordIsVisible(state) {
       state.resetPasswordConfirmPasswordIsVisible = false;
@@ -48,8 +50,19 @@ export const passwordIsVisibleSlice = createSlice({
     toggleUpdateEmailPasswordIsVisible(state) {
       state.updateEmailPasswordIsVisible = !state.updateEmailPasswordIsVisible;
     },
-    hideUpdateEmailPasswordIsVisible(state) {
-      state.updateEmailPasswordIsVisible = false;
+
+    toggleUpdatePasswordIsVisible(state) {
+      state.updatePasswordIsVisible = !state.updatePasswordIsVisible;
+    },
+    toggleUpdatePasswordConfirmPasswordIsVisible(state) {
+      state.updatePasswordConfirmPasswordIsVisible =
+        !state.updatePasswordConfirmPasswordIsVisible;
+    },
+    hideUpdatePasswordIsVisible(state) {
+      state.updatePasswordIsVisible = false;
+    },
+    hideUpdatePasswordConfirmPasswordIsVisible(state) {
+      state.updatePasswordConfirmPasswordIsVisible = false;
     },
   },
 });
@@ -58,15 +71,19 @@ export const {
   toggleSignInPasswordIsVisible,
   hideSignInPasswordIsVisible,
   toggleSignUpPasswordIsVisible,
-  hideSignUpPasswordIsVisible,
   toggleSignUpConfirmPasswordIsVisible,
+  hideSignUpPasswordIsVisible,
   hideSignUpConfirmPasswordIsVisible,
   toggleResetPasswordIsVisible,
-  hideResetPasswordIsVisible,
   toggleResetPasswordConfirmPasswordIsVisible,
+  hideResetPasswordIsVisible,
   hideResetPasswordConfirmPasswordIsVisible,
   toggleUpdateEmailPasswordIsVisible,
   hideUpdateEmailPasswordIsVisible,
+  toggleUpdatePasswordIsVisible,
+  toggleUpdatePasswordConfirmPasswordIsVisible,
+  hideUpdatePasswordIsVisible,
+  hideUpdatePasswordConfirmPasswordIsVisible,
 } = passwordIsVisibleSlice.actions;
 
 export const passwordIsVisibleReducer = passwordIsVisibleSlice.reducer;

@@ -15,6 +15,7 @@ import { passwordIsVisibleReducer } from "./password-is-visible/password-is-visi
 import { magicUrlReducer } from "./magic-url/magic-url.slice";
 import { forgotPasswordReducer } from "./forgot-password/forgot-password.slice";
 import { updateEmailReducer } from "./update-email/update-email.slice";
+import { updatePasswordReducer } from "./update-password/update-password.slice";
 
 export const rootReducer = combineReducers({
   hamburgerMenu: hamburgerMenuReducer,
@@ -32,4 +33,5 @@ export const rootReducer = combineReducers({
   magicUrl: magicUrlReducer,
   forgotPassword: forgotPasswordReducer,
   updateEmail: updateEmailReducer,
+  updatePassword: updatePasswordReducer,
 });

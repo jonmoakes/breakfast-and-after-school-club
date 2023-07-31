@@ -20,6 +20,8 @@ export const errorSubmittingPaymentMessage =
   "Sorry, There Was An Error Submitting Payment.\nYour Card Has Not Been Charged.\nPlease Try Again.";
 export const appwritePasswordError =
   "Invalid credentials. Please check the email and password.";
+export const errorRequestUpdatePasswordLinkMessage =
+  "error requesting update password link";
 
 // success
 export const successMessage = "success!";
@@ -40,9 +42,15 @@ export const signInWithNewPasswordMessage =
 export const emailChangedMessage = "email changed!";
 export const signInWithNewEmailMessage =
   "for security reasons, we will now sign you out of all sessions. please wait until you are redirected to the sign in page, where you can then sign in with your new email address.";
+export const signOutThenSignInWithNewPasswordMessage =
+  "for security reasons, we have now signed you out of all sessions. you can now sign in with your new password.";
 export const passwordErrorMessage = "password error";
 export const passwordErrorInstructions =
   "please check your password and try again";
+export const errorUpdatingEmailMessage =
+  "sorry, there was an error updating your email address.";
+export const passwordUpdateMustBeSignedInMessage =
+  "you must be signed in in order update your password";
 
 //confirms
 export const confirmSignOutMessage = "are you sure you wish to sign out?";
@@ -78,7 +86,11 @@ export const localhostMagicUrlResultRoute =
   "http://localhost:8888/magic-url-result";
 export const payNowRoute = "/pay-now";
 export const updateEmailRoute = "/update-email";
-export const updatePasswordRoute = "/update-password";
+
+export const updatePasswordRequestRoute = "/update-password-request";
+export const updatePasswordResultRoute = "/update-password-result";
+export const localhostUpdatePasswordResultRoute =
+  "http://localhost:8888/update-password-result";
 export const closeAccountRoute = "/close-account";
 export const cookiesRoute = "/cookie-policy";
 export const privacyRoute = "/privacy-policy";

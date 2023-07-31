@@ -34,3 +34,14 @@ export const selectUpdateEmailPasswordIsVisible = createSelector(
   (passwordIsVisibleSlice) =>
     passwordIsVisibleSlice.updateEmailPasswordIsVisible
 );
+
+export const selectUpdatePasswordIsVisible = createSelector(
+  [selectPasswordIsVisibleReducer],
+  (passwordIsVisibleSlice) => passwordIsVisibleSlice.updatePasswordIsVisible
+);
+
+export const selectUpdatePasswordConfirmPasswordIsVisible = createSelector(
+  [selectPasswordIsVisibleReducer],
+  (passwordIsVisibleSlice) =>
+    passwordIsVisibleSlice.updatePasswordConfirmPasswordIsVisible
+);

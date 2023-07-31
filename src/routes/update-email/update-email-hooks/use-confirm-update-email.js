@@ -2,6 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { account, databases } from "../../../utils/appwrite/appwrite-config";
 
 import useFireSwal from "../../../hooks/use-fire-swal";
+import useConfirmSwal from "../../../hooks/use-confirm-swal";
 
 import { selectUpdateEmailDetails } from "../../../store/update-email/update-email.selector";
 import { selectCurrentUser } from "../../../store/user/user.selector";
@@ -17,10 +18,14 @@ import {
   passwordErrorMessage,
   passwordErrorInstructions,
   appwritePasswordError,
+  areYouSureMessage,
+  imSureMessage,
+  errorUpdatingEmailMessage,
 } from "../../../strings/strings";
 
-const useUpdateEmailSubmit = () => {
+const useConfirmUpdateEmail = () => {
   const { fireSwal } = useFireSwal();
+  const { confirmSwal } = useConfirmSwal();
 
   const updateEmailDetails = useSelector(selectUpdateEmailDetails);
   const currentUser = useSelector(selectCurrentUser);
@@ -28,6 +33,18 @@ const useUpdateEmailSubmit = () => {
   const dispatch = useDispatch();
   const { id } = currentUser;
   const { newEmail, password } = updateEmailDetails;
+
+  const confirmResult = () => {
+    updateEmailAddress();
+  };
+
+  const confirmUpdateEmail = () => {
+    if (!validateEmail(newEmail)) {
+      fireSwal("error", invalidEmailErrorMessage, "", 0, true, false);
+    } else {
+      confirmSwal(areYouSureMessage, "", imSureMessage, confirmResult);
+    }
+  };
 
   const updateEmailAddress = async () => {
     dispatch(startLoader());
@@ -67,7 +84,7 @@ const useUpdateEmailSubmit = () => {
       } else {
         fireSwal(
           "error",
-          "sorry, there was an error updating your email address.",
+          errorUpdatingEmailMessage,
           error.message,
           0,
           true,
@@ -77,15 +94,7 @@ const useUpdateEmailSubmit = () => {
     }
   };
 
-  const updateEmailSubmit = () => {
-    if (!validateEmail(newEmail)) {
-      fireSwal("error", invalidEmailErrorMessage, "", 0, true, false);
-    } else {
-      updateEmailAddress();
-    }
-  };
-
-  return { updateEmailSubmit };
+  return { confirmUpdateEmail };
 };
 
-export default useUpdateEmailSubmit;
+export default useConfirmUpdateEmail;

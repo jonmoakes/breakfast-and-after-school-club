@@ -5,7 +5,7 @@ import {
   bookSessionRoute,
   closeAccountRoute,
   updateEmailRoute,
-  updatePasswordRoute,
+  updatePasswordRequestRoute,
 } from "../../../strings/strings";
 
 const useNavigateToRoute = () => {
@@ -24,7 +24,7 @@ const useNavigateToRoute = () => {
   };
 
   const navigateToUpdatePassword = () => {
-    navigate(updatePasswordRoute);
+    navigate(updatePasswordRequestRoute);
   };
 
   const navigateToCloseAccount = () => {
