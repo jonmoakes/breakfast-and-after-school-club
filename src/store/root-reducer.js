@@ -16,6 +16,7 @@ import { magicUrlReducer } from "./magic-url/magic-url.slice";
 import { forgotPasswordReducer } from "./forgot-password/forgot-password.slice";
 import { updateEmailReducer } from "./update-email/update-email.slice";
 import { updatePasswordReducer } from "./update-password/update-password.slice";
+import { closeAccountReducer } from "./close-account/close-account.slice";
 
 export const rootReducer = combineReducers({
   hamburgerMenu: hamburgerMenuReducer,
@@ -34,4 +35,5 @@ export const rootReducer = combineReducers({
   forgotPassword: forgotPasswordReducer,
   updateEmail: updateEmailReducer,
   updatePassword: updatePasswordReducer,
+  closeAccount: closeAccountReducer,
 });

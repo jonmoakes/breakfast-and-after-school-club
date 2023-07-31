@@ -1,0 +1,58 @@
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import axios from "axios";
+
+import { closeAccountSuccess } from "../../strings/strings";
+
+export const closeAccountAsync = createAsyncThunk(
+  "user/closeAccount",
+  async ({ email, accountClosureEmail }, thunkAPI) => {
+    try {
+      const dataToSend = { email, accountClosureEmail };
+      await axios.post("/.netlify/functions/send-account-closure-message", {
+        message: dataToSend,
+      });
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
+const initialState = {
+  isLoading: false,
+  successMessage: "",
+  error: "",
+};
+
+const closeAccountSlice = createSlice({
+  name: "closeAccount",
+  initialState,
+  reducers: {
+    resetSuccessMessage(state) {
+      state.successMessage = "";
+    },
+    resetErrorMessage(state) {
+      state.error = "";
+    },
+  },
+  extraReducers: (builder) => {
+    builder
+      .addCase(closeAccountAsync.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(closeAccountAsync.fulfilled, (state) => {
+        state.isLoading = false;
+        state.successMessage = closeAccountSuccess;
+        state.error = "";
+      })
+      .addCase(closeAccountAsync.rejected, (state, action) => {
+        state.isLoading = false;
+        state.successMessage = "";
+        state.error = action.payload;
+      });
+  },
+});
+
+export const { resetSuccessMessage, resetErrorMessage } =
+  closeAccountSlice.actions;
+
+export const closeAccountReducer = closeAccountSlice.reducer;

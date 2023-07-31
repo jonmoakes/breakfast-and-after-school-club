@@ -1,6 +1,11 @@
-import useConfirmCloseAccount from "./use-confirm-close-account";
+import { useSelector } from "react-redux";
 
-import { contactRoute } from "../../strings/strings";
+import useConfirmCloseAccount from "./close-account-hooks/use-confirm-close-account";
+import useCloseAccountSwal from "./close-account-hooks/use-close-account-swal";
+import { selectCloseAccountIsLoading } from "../../store/close-account/close-account.selector";
+
+import Loader from "../../components/loader/loader.component";
+
 import { Container } from "../../styles/container/container.styles";
 import { ParentDiv } from "../../styles/div/div.styles";
 import { BlackTitle } from "../../styles/h1/h1.styles";
@@ -8,11 +13,17 @@ import { Text } from "../../styles/p/p.styles";
 import { StyledLink } from "../../styles/link/link.styles";
 import { YellowGreenButton } from "../../styles/buttons/buttons.styles";
 
+import { contactRoute } from "../../strings/strings";
+
 const CloseAccount = () => {
+  useCloseAccountSwal();
   const { confirmCloseAccount } = useConfirmCloseAccount();
+
+  const closeAccountIsLoading = useSelector(selectCloseAccountIsLoading);
 
   return (
     <Container>
+      {closeAccountIsLoading ? <Loader /> : null}
       <ParentDiv>
         <BlackTitle>close your account</BlackTitle>
       </ParentDiv>

@@ -22,6 +22,8 @@ export const appwritePasswordError =
   "Invalid credentials. Please check the email and password.";
 export const errorRequestUpdatePasswordLinkMessage =
   "error requesting update password link";
+export const errorSendingAccountClosureRequest =
+  "sorry, there was an error sending your request.";
 
 // success
 export const successMessage = "success!";
@@ -31,6 +33,8 @@ export const fundsAddedMessage = (email) => {
 };
 export const passwordResetSuccessMessage =
   "your password has been successfuly reset!";
+export const closeAccountSuccess =
+  "the closure of your account is now being processed!";
 
 // infos
 export const emailResponseTimeMessage =
@@ -51,6 +55,11 @@ export const errorUpdatingEmailMessage =
   "sorry, there was an error updating your email address.";
 export const passwordUpdateMustBeSignedInMessage =
   "you must be signed in in order update your password";
+export const receiveEmailWhenCompleteMessage =
+  "you will receive an email when the process is complete.";
+export const walletHasPositiveBalanceMessage =
+  "please either spend or request a refund for this amount before proceeding";
+export const loseAllAccountDataMessage = "you will permanently lose all data";
 
 //confirms
 export const confirmSignOutMessage = "are you sure you wish to sign out?";
@@ -62,6 +71,8 @@ export const confirmAddFundsMessage = (walletFunds) => {
     2
   )} to your wallet?`;
 };
+export const sureCloseAccountQuestion =
+  "are you sure you wish to close your account with us?";
 export const imSureMessage = "i'm sure";
 export const addFundsMessage = "yes, add funds!";
 
