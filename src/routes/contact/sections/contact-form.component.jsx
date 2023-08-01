@@ -1,4 +1,4 @@
-import useSendEmail from "../contact-form-hooks/use-send-email";
+import useConfirmSendContactFormMessage from "../contact-form-hooks/use-confirm-send-contact-form-message";
 import useHandleContactFormDetailsChange from "../contact-form-hooks/use-handle-contact-form-details-change";
 
 import {
@@ -20,7 +20,7 @@ import { Text } from "../../../styles/p/p.styles";
 const ContactForm = ({ isOnline, isLoading }) => {
   const { handleContactFormDetailsChange } =
     useHandleContactFormDetailsChange();
-  const { sendEmail } = useSendEmail();
+  const { confirmSendContactFormMessage } = useConfirmSendContactFormMessage();
 
   return (
     <ParentDiv>
@@ -57,7 +57,10 @@ const ContactForm = ({ isOnline, isLoading }) => {
         <BlackHr />
 
         {isOnline && !isLoading ? (
-          <YellowGreenButton type="button" onClick={sendEmail}>
+          <YellowGreenButton
+            type="button"
+            onClick={confirmSendContactFormMessage}
+          >
             Send Message
           </YellowGreenButton>
         ) : (

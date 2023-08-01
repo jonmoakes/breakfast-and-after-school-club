@@ -61,9 +61,9 @@ const useHandleUpdatePasswordSubmit = () => {
         "success",
         passwordResetSuccessMessage,
         signOutThenSignInWithNewPasswordMessage,
-        5000,
+        0,
         true,
-        true
+        false
       );
       navigate(signInRoute);
     } catch (error) {
@@ -78,7 +78,14 @@ const useHandleUpdatePasswordSubmit = () => {
           false
         );
       } else {
-        fireSwal("error", error.message, "", 0, true, false);
+        fireSwal(
+          "error",
+          "sorry, there was an error updating your password.",
+          `the error received was: ${error.message}`,
+          0,
+          true,
+          false
+        );
       }
     }
   };

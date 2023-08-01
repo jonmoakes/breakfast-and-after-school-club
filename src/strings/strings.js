@@ -24,6 +24,8 @@ export const errorRequestUpdatePasswordLinkMessage =
   "error requesting update password link";
 export const errorSendingAccountClosureRequest =
   "sorry, there was an error sending your request.";
+export const errorResettingPassword =
+  "sorry, there was an error resetting your password";
 
 // success
 export const successMessage = "success!";
@@ -73,8 +75,13 @@ export const confirmAddFundsMessage = (walletFunds) => {
 };
 export const sureCloseAccountQuestion =
   "are you sure you wish to close your account with us?";
+export const sureSendContactFormMessage =
+  "are you sure you want to send this message?";
+export const sureResetPasswordMessage =
+  "are you sure you wish to reset your password?";
 export const imSureMessage = "i'm sure";
 export const addFundsMessage = "yes, add funds!";
+export const yesSendIt = "yes, send it!";
 
 //placeholders
 export const enterEmailAddress = "enter your email address";

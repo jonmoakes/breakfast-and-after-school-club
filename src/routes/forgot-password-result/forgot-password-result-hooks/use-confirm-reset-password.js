@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { account } from "../../../utils/appwrite/appwrite-config";
 
 import useFireSwal from "../../../hooks/use-fire-swal";
+import useConfirmSwal from "../../../hooks/use-confirm-swal";
 
 import { startLoader, stopLoader } from "../../../store/loader/loader.slice";
 import { selectNewPasswordDetails } from "../../../store/forgot-password/forgot-password.selector";
@@ -12,10 +13,14 @@ import {
   signInRoute,
   passwordResetSuccessMessage,
   signInWithNewPasswordMessage,
+  imSureMessage,
+  sureResetPasswordMessage,
+  errorResettingPassword,
 } from "../../../strings/strings";
 
-const useHandleResetPasswordSubmit = () => {
+const useConfirmResetPassword = () => {
   const { fireSwal } = useFireSwal();
+  const { confirmSwal } = useConfirmSwal();
 
   const newPasswordDetails = useSelector(selectNewPasswordDetails);
   const dispatch = useDispatch();
@@ -23,7 +28,7 @@ const useHandleResetPasswordSubmit = () => {
 
   const { newPassword, confirmNewPassword } = newPasswordDetails;
 
-  const handleResetPasswordSubmit = async () => {
+  const confirmResult = async () => {
     dispatch(startLoader());
     try {
       const urlParams = new URLSearchParams(window.location.search);
@@ -49,11 +54,21 @@ const useHandleResetPasswordSubmit = () => {
       navigate(signInRoute);
     } catch (error) {
       dispatch(stopLoader());
-      fireSwal("error", error.message, "", 0, true, false);
+      fireSwal(
+        "error",
+        errorResettingPassword,
+        `the error received was: ${error.message}`,
+        0,
+        true,
+        false
+      );
     }
   };
 
-  return { handleResetPasswordSubmit };
+  const confirmResetPassword = () => {
+    confirmSwal(sureResetPasswordMessage, "", imSureMessage, confirmResult);
+  };
+  return { confirmResetPassword };
 };
 
-export default useHandleResetPasswordSubmit;
+export default useConfirmResetPassword;

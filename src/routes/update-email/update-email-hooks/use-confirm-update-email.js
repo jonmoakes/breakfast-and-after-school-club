@@ -85,7 +85,7 @@ const useConfirmUpdateEmail = () => {
         fireSwal(
           "error",
           errorUpdatingEmailMessage,
-          error.message,
+          `The error received was: ${error.message}`,
           0,
           true,
           true
