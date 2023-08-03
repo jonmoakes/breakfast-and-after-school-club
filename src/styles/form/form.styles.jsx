@@ -23,6 +23,10 @@ export const Form = styled.form`
     margin: 20px auto 30px auto;
   }
 
+  &.book-session {
+    margin: 20px auto 20px auto;
+  }
+
   @media screen and (max-width: 1366px) {
     width: 90%;
   }

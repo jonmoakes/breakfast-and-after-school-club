@@ -53,10 +53,10 @@ const useCloseAccountSwal = () => {
     }
 
     return () => {
-      if (closeAccountSuccessMessage && closeAccountErrorMessage) return;
-      if (!closeAccountSuccessMessage) {
+      if (!closeAccountSuccessMessage && !closeAccountErrorMessage) return;
+      if (closeAccountSuccessMessage) {
         dispatch(resetSuccessMessage());
-      } else if (!closeAccountErrorMessage) {
+      } else if (closeAccountErrorMessage) {
         dispatch(resetErrorMessage());
       }
     };

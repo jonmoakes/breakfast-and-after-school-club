@@ -17,6 +17,8 @@ import { forgotPasswordReducer } from "./forgot-password/forgot-password.slice";
 import { updateEmailReducer } from "./update-email/update-email.slice";
 import { updatePasswordReducer } from "./update-password/update-password.slice";
 import { closeAccountReducer } from "./close-account/close-account.slice";
+import { uploadDatesToDatabaseReducer } from "./upload-dates-to-database/upload-dates-to-database.slice";
+import { requestDateDataReducer } from "./request-date-data/request-date-data.slice";
 
 export const rootReducer = combineReducers({
   hamburgerMenu: hamburgerMenuReducer,
@@ -36,4 +38,6 @@ export const rootReducer = combineReducers({
   updateEmail: updateEmailReducer,
   updatePassword: updatePasswordReducer,
   closeAccount: closeAccountReducer,
+  uploadDatesToDatabase: uploadDatesToDatabaseReducer,
+  requestDateData: requestDateDataReducer,
 });

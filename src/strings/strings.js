@@ -26,6 +26,8 @@ export const errorSendingAccountClosureRequest =
   "sorry, there was an error sending your request.";
 export const errorResettingPassword =
   "sorry, there was an error resetting your password";
+export const errorUploadingDatesToDatabaseMessage =
+  "sorry, there was an error uploading the dates to the database..";
 
 // success
 export const successMessage = "success!";
@@ -37,6 +39,8 @@ export const passwordResetSuccessMessage =
   "your password has been successfuly reset!";
 export const closeAccountSuccess =
   "the closure of your account is now being processed!";
+export const datesUploadedToDatabaseSuccessMessage =
+  "the dates have been successfully uploaded to the database!";
 
 // infos
 export const emailResponseTimeMessage =
@@ -95,6 +99,7 @@ export const enterYourPasswordPlaceholder = "enter your password";
 export const bookingsRoute = "/bookings";
 export const bookSessionRoute = "/book-session";
 export const contactRoute = "/contact";
+export const dashboardRoute = "/dashboard";
 export const accountRoute = "/account";
 export const signInRoute = "/sign-in";
 export const signUpRoute = "/sign-up";

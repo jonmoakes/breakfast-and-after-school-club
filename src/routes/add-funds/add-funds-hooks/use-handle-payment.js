@@ -71,7 +71,7 @@ const useHandlePayment = () => {
         fireSwal(
           "error",
           errorSubmittingPaymentMessage,
-          paymentResult.error.message,
+          `${paymentResult.error.message}`,
           0,
           true,
           false
@@ -111,8 +111,14 @@ const useHandlePayment = () => {
     } catch (error) {
       dispatch(stopPaymentIsProcessing());
       dispatch(clearWalletFundsToAdd());
-
-      fireSwal("error", error.message, "", 0, true, false);
+      fireSwal(
+        "error",
+        errorSubmittingPaymentMessage,
+        `the error received was: ${error.message}`,
+        0,
+        true,
+        false
+      );
     }
   };
 

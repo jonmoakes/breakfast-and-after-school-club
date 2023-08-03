@@ -1,4 +1,5 @@
 import { lazy, Suspense } from "react";
+import { useSelector } from "react-redux";
 import { Routes, Route } from "react-router-dom";
 import { ErrorBoundary } from "react-error-boundary";
 import { GlobalStyle } from "./global-styles";
@@ -6,6 +7,8 @@ import "./App.css";
 
 import useGetUserOnLoad from "./hooks/use-get-user-on-load";
 import useWalletBalanceListener from "./hooks/use-wallet-balance-listener";
+
+import { selectCurrentUser } from "./store/user/user.selector";
 
 import PrivateRoutes from "./components/private-routes/private-routes.component";
 import ErrorFallback from "./components/errors/error-fallback.component";
@@ -24,10 +27,12 @@ import {
   forgotPasswordResultRoute,
   localhostForgotPasswordResultRoute,
   addFundsRoute,
+  bookSessionRoute,
   updatePasswordRequestRoute,
   updatePasswordResultRoute,
   localhostUpdatePasswordResultRoute,
   closeAccountRoute,
+  dashboardRoute,
 } from "./strings/strings";
 
 const Navigation = lazy(() =>
@@ -37,7 +42,11 @@ const Home = lazy(() => import("./routes/home/home.component"));
 const Contact = lazy(() => import("./routes/contact/contact.component"));
 const SignUp = lazy(() => import("./routes/sign-up/sign-up.component"));
 const SignIn = lazy(() => import("./routes/sign-in/sign-in.component"));
+const Dashboard = lazy(() => import("./routes/dashboard/dashboard.component"));
 const Account = lazy(() => import("./routes/account/account.component"));
+const BookASession = lazy(() =>
+  import("./routes/book-a-session/book-a-session.component")
+);
 const AddFunds = lazy(() => import("./routes/add-funds/add-funds.component"));
 const UpdateEmail = lazy(() =>
   import("./routes/update-email/update-email.component")
@@ -67,6 +76,8 @@ const ForgotPasswordResult = lazy(() =>
 const App = () => {
   useGetUserOnLoad();
   useWalletBalanceListener();
+
+  const currentUser = useSelector(selectCurrentUser);
 
   return (
     <>
@@ -100,7 +111,23 @@ const App = () => {
 
             {/*private routes - if no user, redirect to sign in route */}
             <Route element={<PrivateRoutes />}>
-              <Route path={accountRoute} element={<Account />} />
+              <Route
+                path={dashboardRoute}
+                element={
+                  currentUser &&
+                  currentUser.id === import.meta.env.VITE_APP_OWNER_ID ? (
+                    <Dashboard />
+                  ) : currentUser &&
+                    currentUser.id !== import.meta.env.VITE_APP_OWNER_ID ? (
+                    <Account />
+                  ) : null
+                }
+              />
+              <Route
+                path={accountRoute}
+                element={currentUser ? <Account /> : null}
+              />
+              <Route path={bookSessionRoute} element={<BookASession />} />
               <Route path={addFundsRoute} element={<AddFunds />} />
               <Route path={updateEmailRoute} element={<UpdateEmail />} />
               <Route

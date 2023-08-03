@@ -14,19 +14,22 @@ const useFireSwal = () => {
     showConfirmButton,
     allowOutsideClick
   ) => {
-    swal.fire({
-      icon,
-      title,
-      text,
-      timer,
-      showConfirmButton,
-      allowOutsideClick,
-      confirmButtonColor: "#3085d6",
-      background: "black",
-      backdrop: `
-            rgba(37,94,168, 0.8)`,
-      customClass: "confirm",
-    });
+    return swal
+      .fire({
+        icon,
+        title,
+        text,
+        timer,
+        showConfirmButton,
+        allowOutsideClick,
+        confirmButtonColor: "#3085d6",
+        background: "black",
+        backdrop: `rgba(37,94,168, 0.8)`,
+        customClass: "confirm",
+      })
+      .then((result) => {
+        return result.isConfirmed;
+      });
   };
 
   return { fireSwal };
