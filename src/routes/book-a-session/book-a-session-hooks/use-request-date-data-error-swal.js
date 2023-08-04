@@ -23,7 +23,7 @@ const useRequestDateDataErrorSwal = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (requestDateDataErrorMessage !== "") {
+    if (requestDateDataErrorMessage) {
       fireSwal(
         "error",
         `sorry, ${format(

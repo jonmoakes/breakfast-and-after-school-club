@@ -26,6 +26,9 @@ const cardInputResultSlice = createSlice({
     clearCardInputResult(state) {
       state.cardInputResult = defaultCardPaymentResult;
     },
+    resetCardInputState: () => {
+      return initialState;
+    },
   },
 });
 
@@ -34,6 +37,7 @@ export const {
   startPaymentIsProcessing,
   stopPaymentIsProcessing,
   clearCardInputResult,
+  resetCardInputState,
 } = cardInputResultSlice.actions;
 
 export const cardInputResultReducer = cardInputResultSlice.reducer;

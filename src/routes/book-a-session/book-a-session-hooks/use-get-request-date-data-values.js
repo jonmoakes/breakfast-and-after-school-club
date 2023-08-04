@@ -2,7 +2,7 @@ import { useSelector } from "react-redux";
 
 import { selectRequestDateData } from "../../../store/request-date-data/request-date-data.selector";
 
-const useDateDataValues = () => {
+const useGetRequestDateDataValues = () => {
   const requestDateData = useSelector(selectRequestDateData);
 
   const date = requestDateData ? requestDateData.date : "";
@@ -13,11 +13,7 @@ const useDateDataValues = () => {
     ? requestDateData.afternoonSessionSpaces
     : "";
 
-  return {
-    date,
-    morningSessionSpaces,
-    afternoonSessionSpaces,
-    requestDateData,
-  };
+  return { date, morningSessionSpaces, afternoonSessionSpaces };
 };
-export default useDateDataValues;
+
+export default useGetRequestDateDataValues;

@@ -1,21 +1,21 @@
 import { useSelector, useDispatch } from "react-redux";
 
-import { selectShouldShowElement } from "../../store/should-show-element/should-show-element.selector";
+import { selectShouldShowElement } from "../../../store/should-show-element/should-show-element.selector";
 import {
   hideElement,
   toggleShowElement,
-} from "../../store/should-show-element/should-show-element.slice";
+} from "../../../store/should-show-element/should-show-element.slice";
 
-import WalletBalance from "../../components/wallet-balance/wallet-balance.component";
+import WalletBalance from "../../../components/wallet-balance/wallet-balance.component";
 
 import {
   Accordion,
   AccordionContent,
   AccordionTitle,
   ParentDiv,
-} from "../../styles/div/div.styles";
-import { Text } from "../../styles/p/p.styles";
-import { YellowGreenButton } from "../../styles/buttons/buttons.styles";
+} from "../../../styles/div/div.styles";
+import { Text } from "../../../styles/p/p.styles";
+import { YellowGreenButton } from "../../../styles/buttons/buttons.styles";
 
 const Info = () => {
   const shouldShowElement = useSelector(selectShouldShowElement);

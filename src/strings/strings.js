@@ -109,7 +109,6 @@ export const localhostMagicUrlResultRoute =
   "http://localhost:8888/magic-url-result";
 export const payNowRoute = "/pay-now";
 export const updateEmailRoute = "/update-email";
-
 export const updatePasswordRequestRoute = "/update-password-request";
 export const updatePasswordResultRoute = "/update-password-result";
 export const localhostUpdatePasswordResultRoute =

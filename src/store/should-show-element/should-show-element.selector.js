@@ -6,3 +6,8 @@ export const selectShouldShowElement = createSelector(
   [selectShouldShowElementReducer],
   (shouldShowElementSlice) => shouldShowElementSlice.shouldShowElement
 );
+
+export const selectShouldShowSecondElement = createSelector(
+  [selectShouldShowElementReducer],
+  (shouldShowElementSlice) => shouldShowElementSlice.shouldShowSecondElement
+);

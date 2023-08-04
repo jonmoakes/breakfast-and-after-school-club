@@ -1,24 +1,29 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useLocation } from "react-router-dom";
 
+import useIsRouteWithNavWarning from "./use-is-route-with-nav-warning";
+
 import { selectShowHamburgerMenu } from "../store/hamburger-menu/hamburger-menu.selector";
 import { hideHamburgerMenu } from "../store/hamburger-menu/hamburger-menu.slice";
-import useIsRouteWithNavWarning from "./use-is-route-with-nav-warning";
+import useResetStore from "./use-reset-store";
 
 const useHamburgerHandlerNavigate = () => {
   const { isRouteWithNavWarning } = useIsRouteWithNavWarning();
+  const { resetStore } = useResetStore();
 
   const showHamburgerMenu = useSelector(selectShowHamburgerMenu);
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const location = useLocation();
+  const path = location.pathname;
 
   const hamburgerHandlerNavigate = (url) => {
     if (showHamburgerMenu && isRouteWithNavWarning()) {
       dispatch(hideHamburgerMenu());
+
       navigate(url, {
-        state: location.pathname,
+        state: path,
       });
     } else if (showHamburgerMenu && !isRouteWithNavWarning()) {
       dispatch(hideHamburgerMenu());
@@ -26,6 +31,7 @@ const useHamburgerHandlerNavigate = () => {
     } else if (!showHamburgerMenu) {
       navigate(url);
     }
+    resetStore();
   };
 
   return { hamburgerHandlerNavigate };

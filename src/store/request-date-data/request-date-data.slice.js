@@ -15,10 +15,11 @@ export const requestDateDataAsync = createAsyncThunk(
       if (!documents.length) {
         throw new Error("is not available");
       } else {
-        const { date, morningSessionSpaces, afternoonSessionSpaces } =
+        const { $id, date, morningSessionSpaces, afternoonSessionSpaces } =
           documents[0];
 
         const requestedDateData = {
+          $id,
           date,
           morningSessionSpaces,
           afternoonSessionSpaces,
@@ -52,8 +53,17 @@ const requestDateDataSlice = createSlice({
     resetChosenDate(state) {
       state.requestDateData.chosenDate = "";
     },
+    setDateData(state, action) {
+      state.requestDateData.dateData = action.payload;
+    },
+    resetDateData(state) {
+      state.requestDateData.dateData = state.requestDateData.dateData = null;
+    },
     resetErrorMessage(state) {
       state.requestDateData.error = "";
+    },
+    resetRequestDateDataState: () => {
+      return initialState;
     },
   },
   extraReducers: (builder) => {
@@ -75,7 +85,12 @@ const requestDateDataSlice = createSlice({
   },
 });
 
-export const { setChosenDate, resetChosenDate, resetErrorMessage } =
-  requestDateDataSlice.actions;
+export const {
+  setChosenDate,
+  setDateData,
+  resetChosenDate,
+  resetErrorMessage,
+  resetRequestDateDataState,
+} = requestDateDataSlice.actions;
 
 export const requestDateDataReducer = requestDateDataSlice.reducer;

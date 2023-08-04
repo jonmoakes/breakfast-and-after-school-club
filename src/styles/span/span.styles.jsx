@@ -27,6 +27,10 @@ export const RedSpan = styled.span`
   color: ${customRed};
 `;
 
+export const BlueSpan = styled.span`
+  color: ${customBlue};
+`;
+
 export const SmallSpan = styled.span`
   font-size: 16px;
   color: ${customBlack};

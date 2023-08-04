@@ -21,6 +21,9 @@ export const magicUrlSlice = createSlice({
     clearMagicUrlResultError(state) {
       state.magicUrlResultError = "";
     },
+    resetMagicUrlState: () => {
+      return INITIAL_STATE;
+    },
   },
 });
 
@@ -29,6 +32,7 @@ export const {
   clearMagicUrlEmail,
   setMagicUrlResultError,
   clearMagicUrlResultError,
+  resetMagicUrlState,
 } = magicUrlSlice.actions;
 
 export const magicUrlReducer = magicUrlSlice.reducer;

@@ -10,7 +10,7 @@ import { selectCurrentUser } from "../../store/user/user.selector";
 import { NavLink } from "../../styles/p/p.styles";
 import { BorderLink } from "../../styles/span/span.styles";
 
-import { signedInRoutesWithoutDash } from "./routes";
+import { signedInRoutes } from "./routes";
 
 import {
   areYouSureMessage,
@@ -25,13 +25,14 @@ const NavNotAppOwner = () => {
 
   const currentUser = useSelector(selectCurrentUser);
   const location = useLocation();
+  const ownerId = import.meta.env.VITE_APP_OWNER_ID;
 
   return (
     <>
-      {/*if NOT on  pay-now route */}
-      {currentUser && !isRouteWithNavWarning() ? (
+      {/*if  NOT on addFundsRoute or BookSessionRoute */}
+      {currentUser && currentUser.id !== ownerId && !isRouteWithNavWarning() ? (
         <>
-          {signedInRoutesWithoutDash.map((route) => {
+          {signedInRoutes.map((route) => {
             return route !== location.pathname ? (
               <NavLink
                 key={route}
@@ -46,10 +47,10 @@ const NavNotAppOwner = () => {
         </>
       ) : null}
 
-      {/*if ON pay-now route */}
-      {currentUser && isRouteWithNavWarning() ? (
+      {/*if NOT  addFundsRoute or BookSessionRoute */}
+      {currentUser && currentUser.id !== ownerId && isRouteWithNavWarning() ? (
         <>
-          {signedInRoutesWithoutDash.map((route) => {
+          {signedInRoutes.map((route) => {
             return route !== location.pathname ? (
               <NavLink
                 key={route}

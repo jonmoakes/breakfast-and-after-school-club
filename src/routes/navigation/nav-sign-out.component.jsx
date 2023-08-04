@@ -4,6 +4,7 @@ import { account } from "../../utils/appwrite/appwrite-config";
 import useConfirmSwal from "../../hooks/use-confirm-swal";
 import useFireSwal from "../../hooks/use-fire-swal";
 import useIsOnline from "../../hooks/use-is-online";
+import useResetStore from "../../hooks/use-reset-store";
 
 import { selectCurrentUser } from "../../store/user/user.selector";
 import { setCurrentUser } from "../../store/user/user.slice";
@@ -24,6 +25,7 @@ const NavSignOut = () => {
   const { confirmSwal } = useConfirmSwal();
   const { fireSwal } = useFireSwal();
   const { isOnline } = useIsOnline();
+  const { signOutResetStore } = useResetStore();
 
   const dispatch = useDispatch();
 
@@ -34,6 +36,7 @@ const NavSignOut = () => {
     try {
       await account.deleteSession("current");
       dispatch(setCurrentUser(null));
+      signOutResetStore();
       fireSwal("success", signOutSuccessMessage, "", 2000, false, true);
       if (showHamburgerMenu) {
         dispatch(hideHamburgerMenu());
@@ -61,7 +64,9 @@ const NavSignOut = () => {
         <NavLink onClick={confirmSignOut}>
           <BorderLink>sign out</BorderLink>
         </NavLink>
-      ) : isOnline && !currentUser ? null : null}
+      ) : (
+        isOnline && !currentUser && null
+      )}
     </>
   );
 };

@@ -9,14 +9,13 @@ import {
 } from "../../strings/strings";
 
 export const signedInRoutes = [
-  dashboardRoute,
   bookingsRoute,
   bookSessionRoute,
   accountRoute,
   contactRoute,
 ];
 
-export const signedInRoutesWithoutDash = [
+export const ownerSignedInRoutes = [
   dashboardRoute,
   bookingsRoute,
   bookSessionRoute,

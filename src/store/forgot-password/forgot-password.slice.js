@@ -25,6 +25,9 @@ export const forgotPasswordSlice = createSlice({
     clearNewPasswordDetails(state) {
       state.newPasswordDetails = defaultNewPasswordDetails;
     },
+    resetForgotPasswordState: () => {
+      return INITIAL_STATE;
+    },
   },
 });
 
@@ -35,6 +38,7 @@ export const {
   clearNewPasswordDetails,
   setForgotPasswordResultError,
   clearForgotPasswordResultError,
+  resetForgotPasswordState,
 } = forgotPasswordSlice.actions;
 
 export const forgotPasswordReducer = forgotPasswordSlice.reducer;

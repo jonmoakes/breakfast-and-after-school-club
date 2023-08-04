@@ -291,8 +291,54 @@ export const AccordionTitle = styled.div.withConfig({
   }
 `;
 
+// SecondAccordion is for if there are 2 accordions on a page as they have separate states.
+export const SecondAccordion = styled(Accordion).withConfig({
+  shouldForwardProp: (prop) => prop !== "shouldShowSecondElement",
+})`
+  width: ${({ shouldShowSecondElement }) =>
+    shouldShowSecondElement ? "70%" : "30%"};
+
+  @media screen and (max-width: 1366px) {
+    width: ${({ shouldShowSecondElement }) =>
+      shouldShowSecondElement ? "90%" : "50%"};
+  }
+
+  @media screen and (max-width: 450px) {
+    width: ${({ shouldShowSecondElement }) =>
+      shouldShowSecondElement ? "90%" : "70%"};
+  }
+`;
+
+// SecondAccordion is for if there are 2 accordions on a page as they have separate states.
+export const SecondAccordionTitle = styled(AccordionTitle).withConfig({
+  shouldForwardProp: (prop) => prop !== "shouldShowSecondElement",
+})`
+  background-color: ${({ shouldShowSecondElement }) =>
+    shouldShowSecondElement ? customYellow : customGrey};
+  border-bottom: ${({ shouldShowSecondElement }) =>
+    shouldShowSecondElement ? `2px solid ${customBlack}` : "none"};
+  border-radius: ${({ shouldShowSecondElement }) =>
+    shouldShowSecondElement ? "5px 5px 0px 0px" : "5px 5px 5px 5px"};
+`;
+
 export const AccordionContent = styled.div`
   padding: 1rem;
   background-color: ${customGrey};
   border-radius: 0px 0px 15px 15px;
+`;
+
+export const ColumnDiv = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 50%;
+
+  &.button {
+    margin: 20px auto;
+  }
+
+  @media screen and (max-width: 800px) {
+    width: 100%;
+  }
 `;
