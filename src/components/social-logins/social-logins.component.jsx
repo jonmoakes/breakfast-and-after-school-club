@@ -12,7 +12,7 @@ import FBLogo from "../../assets/fb-logo.png";
 import GoogleLogo from "../../assets/google-logo.png";
 
 const SocialLogins = () => {
-  const { signInWithGoogle, signInWithFacebook } = useSocialLogins();
+  const { signInWithFacebook, signInWithGoogle } = useSocialLogins();
   const { isOnline } = useIsOnline();
 
   return (

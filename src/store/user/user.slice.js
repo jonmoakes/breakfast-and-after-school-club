@@ -59,6 +59,47 @@ export const signUpAsync = createAsyncThunk(
   }
 );
 
+export const signInWithSocialAsync = createAsyncThunk(
+  "user/signInWithSocial",
+  async (thunkAPI) => {
+    try {
+      const user = await account.get();
+
+      // if (!user) return
+
+      const getUserDocumentsList = await databases.listDocuments(
+        import.meta.env.VITE_DEVELOPMENT_DATABASE_ID,
+        import.meta.env.VITE_USER_COLLECTION_ID,
+        [Query.equal("id", user.$id)]
+      );
+      const { total } = getUserDocumentsList;
+
+      const createdUser = {
+        id: user.$id,
+        createdAt: user.$createdAt,
+        name: user.name,
+        email: user.email,
+        walletBalance: 0,
+      };
+
+      if (total === 1) {
+        return;
+      } else {
+        await databases.createDocument(
+          import.meta.env.VITE_DEVELOPMENT_DATABASE_ID,
+          import.meta.env.VITE_USER_COLLECTION_ID,
+          user.$id,
+          createdUser
+        );
+      }
+
+      return createdUser;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
 export const getUserOnLoadAsync = createAsyncThunk(
   "user/getUserOnLoad",
   async (thunkAPI) => {
@@ -123,6 +164,17 @@ const userSlice = createSlice({
         state.currentUser = action.payload;
       })
       .addCase(signUpAsync.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = action.payload;
+      })
+      .addCase(signInWithSocialAsync.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(signInWithSocialAsync.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.currentUser = action.payload;
+      })
+      .addCase(signInWithSocialAsync.rejected, (state, action) => {
         state.isLoading = false;
         state.error = action.payload;
       })
