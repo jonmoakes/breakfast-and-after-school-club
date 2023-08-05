@@ -1,27 +1,19 @@
 import { CardElement, useStripe, useElements } from "@stripe/react-stripe-js";
 import { useSelector, useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
-import { databases } from "../../../utils/appwrite/appwrite-config";
-
-import useFireSwal from "../../../hooks/use-fire-swal";
 
 import { selectWalletFundsToAdd } from "../../../store/wallet-funds-to-add/wallet-funds-to-add.selector";
-import { clearWalletFundsToAdd } from "../../../store/wallet-funds-to-add/wallet-funds-to-add.slice";
-import { selectCurrentUser } from "../../../store/user/user.selector";
-import {
-  startPaymentIsProcessing,
-  stopPaymentIsProcessing,
-  clearCardInputResult,
-} from "../../../store/card-input-result/card-input-result.slice";
 
-import {
-  accountRoute,
-  errorSubmittingPaymentMessage,
-  fundsAddedMessage,
-} from "../../../strings/strings";
+import { selectCurrentUser } from "../../../store/user/user.selector";
+import { startPaymentIsProcessing } from "../../../store/card-input-result/card-input-result.slice";
+
+import useHandlePaymentSucceeded from "./use-handle-payment-succeeded";
+import useHandlePaymentErrors from "./use-handle-payment-errors.component";
 
 const useHandlePayment = () => {
-  const { fireSwal } = useFireSwal();
+  const { handlePaymentSucceeded } = useHandlePaymentSucceeded();
+
+  const { handlePaymentResultError, handleCatchError } =
+    useHandlePaymentErrors();
 
   const walletFundsToAdd = useSelector(selectWalletFundsToAdd);
   const currentUser = useSelector(selectCurrentUser);
@@ -31,11 +23,9 @@ const useHandlePayment = () => {
   const stripe = useStripe();
   const elements = useElements();
   const dispatch = useDispatch();
-  const navigate = useNavigate();
 
   const handlePayment = async () => {
     if (!stripe || !elements) return;
-
     dispatch(startPaymentIsProcessing());
 
     try {
@@ -64,61 +54,13 @@ const useHandlePayment = () => {
           },
         },
       });
-
       if (paymentResult.error) {
-        dispatch(stopPaymentIsProcessing());
-        dispatch(clearWalletFundsToAdd());
-        fireSwal(
-          "error",
-          errorSubmittingPaymentMessage,
-          `${paymentResult.error.message}`,
-          0,
-          true,
-          false
-        );
-        cardElement.clear();
+        handlePaymentResultError(paymentResult, cardElement);
       } else if (paymentResult.paymentIntent.status === "succeeded") {
-        const walletBalanceFromDatabase = await databases.getDocument(
-          import.meta.env.VITE_DEVELOPMENT_DATABASE_ID,
-          import.meta.env.VITE_USER_COLLECTION_ID,
-          currentUser.id
-        );
-
-        const { walletBalance } = walletBalanceFromDatabase;
-
-        await databases.updateDocument(
-          import.meta.env.VITE_DEVELOPMENT_DATABASE_ID,
-          import.meta.env.VITE_USER_COLLECTION_ID,
-          currentUser.id,
-          {
-            walletBalance: walletBalance + Math.round(walletFundsToAdd * 100),
-          }
-        );
-        dispatch(stopPaymentIsProcessing());
-        dispatch(clearWalletFundsToAdd());
-        dispatch(clearCardInputResult());
-        fireSwal(
-          "success",
-          `thank you ${name}`,
-          fundsAddedMessage(email),
-          5000,
-          true,
-          true
-        );
-        cardElement.clear();
-        navigate(accountRoute);
+        handlePaymentSucceeded(cardElement);
       }
     } catch (error) {
-      dispatch(stopPaymentIsProcessing());
-      dispatch(clearWalletFundsToAdd());
-      fireSwal(
-        "error",
-        errorSubmittingPaymentMessage,
-        `the error received was: ${error.message}`,
-        0,
-        true,
-        false
-      );
+      handleCatchError(error);
     }
   };
 

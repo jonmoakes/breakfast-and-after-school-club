@@ -28,6 +28,14 @@ export const errorResettingPassword =
   "sorry, there was an error resetting your password";
 export const errorUploadingDatesToDatabaseMessage =
   "sorry, there was an error uploading the dates to the database..";
+export const paymentSucceededButDatabaseUpdateErrorMessage =
+  "your payment succeeded but the database had an error updating your wallet.";
+export const uploadFundsDatabaseErrorInstructions = (
+  error,
+  walletFundsToAdd
+) => {
+  return `the error received was: '${error.message}'. please contact the app owner quoting the error message and the amount you tried to add to your wallet ( £${walletFundsToAdd} ). We apologise for the error!`;
+};
 
 // success
 export const successMessage = "success!";
