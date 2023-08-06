@@ -20,7 +20,7 @@ const ChooseDate = () => {
         name="chosenDate"
         min={tomorrowsDate}
         onChange={chooseDateHandleChange}
-        value={date || ""}
+        value={date || null}
       />
     </Form>
   );
