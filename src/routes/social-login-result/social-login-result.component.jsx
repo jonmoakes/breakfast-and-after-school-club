@@ -42,8 +42,20 @@ const SocialLoginResult = () => {
       <ParentDiv>
         {!errorMessage ? (
           <>
-            <BlackTitle>please wait...</BlackTitle>
-            <BlueH2>signing you in...</BlueH2>
+            <ParentDiv>
+              <BlackTitle>please wait...</BlackTitle>
+              <BlueH2>signing you in...</BlueH2>
+            </ParentDiv>
+
+            <ParentDiv>
+              <Text>
+                if you haven't been redirected within 30 seconds, please try
+                reloading the page by tapping the button below.
+              </Text>
+              <YellowGreenButton onClick={() => window.location.reload()}>
+                reload page
+              </YellowGreenButton>
+            </ParentDiv>
           </>
         ) : (
           <>
@@ -55,6 +67,7 @@ const SocialLoginResult = () => {
               <br />
               {errorMessage}
             </Text>
+
             <YellowGreenButton onClick={returnToSignInAndResetError}>
               back to sign in
             </YellowGreenButton>
