@@ -13,7 +13,7 @@ const Brave = () => (
     <Text>tap it again to re-enable it after you have signed in.</Text>
     <BlackHr />
     <Text>
-      in chrome and safari, the prevent cross site tracking setting is not
+      in chrome and firefox, the prevent cross site tracking setting is not
       enabled by default. However, if you find that the social sign in isn't
       working, please follow the instructions below depending on your browser.
     </Text>

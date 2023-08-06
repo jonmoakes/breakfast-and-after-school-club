@@ -13,8 +13,8 @@ const Safari = () => (
       to use the social sign methods.
     </Text>
     <Text>
-      after you have sign in, go back to the prevent cross site tracking option
-      and re-enable it.
+      after you have signed in, go back to the prevent cross site tracking
+      option and re-enable it.
     </Text>
     <Text>
       on a macbook / iMac, when in safari, tap on "safari" in the top left of
