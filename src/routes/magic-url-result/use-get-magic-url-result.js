@@ -49,8 +49,6 @@ const useGetMagicUrlResult = () => {
             user.$id,
             createdUser
           );
-        } else {
-          return;
         }
 
         dispatch(setCurrentUser(createdUser));

@@ -88,8 +88,6 @@ export const signInWithSocialAsync = createAsyncThunk(
           user.$id,
           createdUser
         );
-      } else {
-        return;
       }
 
       setCurrentUser(createdUser);
