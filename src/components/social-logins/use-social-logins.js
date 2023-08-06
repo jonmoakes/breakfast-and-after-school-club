@@ -39,8 +39,8 @@ const useSocialLogins = () => {
       } else if (import.meta.env.MODE === "production") {
         account.createOAuth2Session(
           "facebook",
-          socialLoginResultRoute,
-          socialLoginResultRoute
+          `https://breakfast-and-after-school-club.netlify.app${socialLoginResultRoute}`,
+          `https://breakfast-and-after-school-club.netlify.app${socialLoginResultRoute}`
         );
         dispatch(stopLoader());
       }
@@ -62,8 +62,8 @@ const useSocialLogins = () => {
       } else if (import.meta.env.MODE === "production") {
         account.createOAuth2Session(
           "google",
-          socialLoginResultRoute,
-          socialLoginResultRoute
+          `https://breakfast-and-after-school-club.netlify.app${socialLoginResultRoute}`,
+          `https://breakfast-and-after-school-club.netlify.app${socialLoginResultRoute}`
         );
       }
     } catch (error) {

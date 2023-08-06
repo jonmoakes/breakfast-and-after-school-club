@@ -83,7 +83,6 @@ const App = () => {
   useWalletBalanceListener();
 
   const currentUser = useSelector(selectCurrentUser);
-  console.log(import.meta.env.MODE);
 
   return (
     <>
