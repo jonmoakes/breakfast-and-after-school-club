@@ -43,7 +43,7 @@ export const errorRquestingOAuth2Session =
 export const successMessage = "success!";
 export const checkEmailMessage = "please check your email!";
 export const fundsAddedMessage = (email) => {
-  return `The funds have been added to your wallet and A Confirmation Email Has Been Sent To ${email}.`;
+  return `The funds have been added to your wallet and a Confirmation Email Has Been Sent To ${email}.`;
 };
 export const passwordResetSuccessMessage =
   "your password has been successfuly reset!";
