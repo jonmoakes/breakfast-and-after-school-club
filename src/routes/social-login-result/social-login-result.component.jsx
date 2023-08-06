@@ -19,6 +19,7 @@ import { BlueH2 } from "../../styles/h2/h2.styles";
 
 import { signInRoute, accountRoute } from "../../strings/strings";
 import useGetSocialLoginResult from "./use-get-social-login-result";
+import SocialLoginInfo from "../../components/social-logins/social-logins-info.component";
 
 const SocialLoginResult = () => {
   useGetSocialLoginResult();
@@ -55,6 +56,8 @@ const SocialLoginResult = () => {
               <YellowGreenButton onClick={() => window.location.reload()}>
                 reload page
               </YellowGreenButton>
+              <Text>or follow these troubleshooting options:</Text>
+              <SocialLoginInfo />
             </ParentDiv>
           </>
         ) : (
