@@ -1,6 +1,8 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, Navigate } from "react-router-dom";
 
+import useGetSocialLoginResult from "./use-get-social-login-result";
+
 import {
   selectCurrentUser,
   selectIsUserLoading,
@@ -10,6 +12,10 @@ import { resetErrorMessage } from "../../store/user/user.slice";
 
 import Loader from "../../components/loader/loader.component";
 
+import TroubleShooting from "../../components/social-logins/sections/troubleshooting.component";
+import Safari from "../../components/social-logins/sections/safari.component";
+import Brave from "../../components/social-logins/sections/brave.component";
+
 import { Container } from "../../styles/container/container.styles";
 import { ParentDiv } from "../../styles/div/div.styles";
 import { Text } from "../../styles/p/p.styles";
@@ -18,8 +24,6 @@ import { BlackTitle } from "../../styles/h1/h1.styles";
 import { BlueH2 } from "../../styles/h2/h2.styles";
 
 import { signInRoute, accountRoute } from "../../strings/strings";
-import useGetSocialLoginResult from "./use-get-social-login-result";
-import SocialLoginInfo from "../../components/social-logins/social-logins-info.component";
 
 const SocialLoginResult = () => {
   useGetSocialLoginResult();
@@ -43,22 +47,20 @@ const SocialLoginResult = () => {
       <ParentDiv>
         {!errorMessage ? (
           <>
-            <ParentDiv>
-              <BlackTitle>please wait...</BlackTitle>
-              <BlueH2>signing you in...</BlueH2>
-            </ParentDiv>
+            <BlackTitle>please wait...</BlackTitle>
+            <BlueH2>signing you in...</BlueH2>
 
-            <ParentDiv>
-              <Text>
-                if you haven't been redirected within 30 seconds, please try
-                reloading the page by tapping the button below.
-              </Text>
-              <YellowGreenButton onClick={() => window.location.reload()}>
-                reload page
-              </YellowGreenButton>
-              <Text>or follow these troubleshooting options:</Text>
-              <SocialLoginInfo />
-            </ParentDiv>
+            <Text>
+              if you haven't been redirected within 30 seconds, please try
+              reloading the page by tapping the button below.
+            </Text>
+            <YellowGreenButton onClick={() => window.location.reload()}>
+              reload page
+            </YellowGreenButton>
+            <Text>or follow these troubleshooting options:</Text>
+            <TroubleShooting />
+            <Safari />
+            <Brave />
           </>
         ) : (
           <>
