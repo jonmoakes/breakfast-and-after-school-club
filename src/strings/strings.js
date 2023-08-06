@@ -119,7 +119,8 @@ export const localhostMagicUrlResultRoute =
   "http://localhost:8888/magic-url-result";
 export const localhostSocialLoginResultRoute =
   "http://localhost:8888/social-login-result";
-export const socialLoginResultRoute = "/social-login-result";
+export const socialLoginResultRoute =
+  "https://breakfast-and-after-school-club.netlify.app/social-login-result";
 export const payNowRoute = "/pay-now";
 export const updateEmailRoute = "/update-email";
 export const updatePasswordRequestRoute = "/update-password-request";
