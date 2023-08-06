@@ -1,28 +1,30 @@
 import { useSelector } from "react-redux";
 
-import useIsOnline from "../../hooks/use-is-online";
+import useSendContactFormMessageResultSwal from "./contact-form-hooks/use-send-contact-form-message-result-swal";
 
-import { selectIsLoading } from "../../store/loader/loader.selector";
+import { selectSendMessageIsLoading } from "../../store/contact-form/contact-form.selector";
 
 import Loader from "../../components/loader/loader.component";
-import NetworkError from "../../components/errors/network-error.component";
-import ContactTitle from "./sections/contact-title.component";
 import ContactForm from "./sections/contact-form.component";
 
 import { Container } from "../../styles/container/container.styles";
+import { ParentDiv } from "../../styles/div/div.styles";
+import { BlackTitle } from "../../styles/h1/h1.styles";
 
 const Contact = () => {
-  const { isOnline } = useIsOnline();
+  useSendContactFormMessageResultSwal();
 
-  const isLoading = useSelector(selectIsLoading);
+  const isLoading = useSelector(selectSendMessageIsLoading);
 
   return (
     <Container>
-      {isLoading && <Loader />}
-      {!isOnline && <NetworkError />}
+      {isLoading ? <Loader /> : null}
 
-      <ContactTitle />
-      <ContactForm {...{ isOnline, isLoading }} />
+      <ParentDiv>
+        <BlackTitle>contact us</BlackTitle>
+      </ParentDiv>
+
+      <ContactForm />
     </Container>
   );
 };

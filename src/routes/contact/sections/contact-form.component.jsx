@@ -1,5 +1,10 @@
-import useConfirmSendContactFormMessage from "../contact-form-hooks/use-confirm-send-contact-form-message";
+import { useSelector } from "react-redux";
+
 import useHandleContactFormDetailsChange from "../contact-form-hooks/use-handle-contact-form-details-change";
+
+import { selectContactFormDetails } from "../../../store/contact-form/contact-form.selector";
+
+import SendMessageButton from "./send-message-button.component";
 
 import {
   Form,
@@ -8,25 +13,24 @@ import {
   StyledTextArea,
   Label,
 } from "../../../styles/form/form.styles";
-import {
-  DisabledButton,
-  YellowGreenButton,
-} from "../../../styles/buttons/buttons.styles";
+
 import { RedSpan } from "../../../styles/span/span.styles";
 import { ParentDiv } from "../../../styles/div/div.styles";
-import { BlackHr } from "../../../styles/hr/hr.styles";
 import { Text } from "../../../styles/p/p.styles";
 
-const ContactForm = ({ isOnline, isLoading }) => {
+const ContactForm = () => {
   const { handleContactFormDetailsChange } =
     useHandleContactFormDetailsChange();
-  const { confirmSendContactFormMessage } = useConfirmSendContactFormMessage();
+
+  const contactFormDetails = useSelector(selectContactFormDetails);
+  const { name, email, message } = contactFormDetails;
 
   return (
     <ParentDiv>
       <Text>
         <RedSpan>* </RedSpan> = required field:
       </Text>
+
       <Form id="contact-form">
         <Label>
           <RedSpan>* </RedSpan>Your Name:
@@ -35,7 +39,9 @@ const ContactForm = ({ isOnline, isLoading }) => {
           type="text"
           name="name"
           onChange={handleContactFormDetailsChange}
+          value={name || ""}
         />
+
         <Label>
           <RedSpan>* </RedSpan>Your Email:
         </Label>
@@ -43,6 +49,7 @@ const ContactForm = ({ isOnline, isLoading }) => {
           type="email"
           name="email"
           onChange={handleContactFormDetailsChange}
+          value={email || ""}
         />
 
         <Label>
@@ -52,21 +59,10 @@ const ContactForm = ({ isOnline, isLoading }) => {
           type="text"
           name="message"
           onChange={handleContactFormDetailsChange}
+          value={message || ""}
         />
 
-        <BlackHr />
-
-        {isOnline && !isLoading ? (
-          <YellowGreenButton
-            type="button"
-            onClick={confirmSendContactFormMessage}
-          >
-            Send Message
-          </YellowGreenButton>
-        ) : (
-          isOnline &&
-          isLoading && <DisabledButton>please wait...</DisabledButton>
-        )}
+        <SendMessageButton />
       </Form>
     </ParentDiv>
   );

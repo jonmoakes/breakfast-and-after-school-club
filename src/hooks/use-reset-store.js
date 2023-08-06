@@ -2,7 +2,7 @@ import { useDispatch } from "react-redux";
 import { useLocation } from "react-router-dom";
 
 import { resetCardInputState } from "../store/card-input-result/card-input-result.slice";
-import { resetContactFormFields } from "../store/contact-form/contact-form.slice";
+import { resetContactFormState } from "../store/contact-form/contact-form.slice";
 import { resetForgotPasswordState } from "../store/forgot-password/forgot-password.slice";
 import { resetMagicUrlState } from "../store/magic-url/magic-url.slice";
 import { clearNewPasswordDetails } from "../store/update-password/update-password.slice";
@@ -39,7 +39,7 @@ const useResetStore = () => {
     dispatch(clearSignUpFormDetails());
     dispatch(resetForgotPasswordState());
     dispatch(resetMagicUrlState());
-    dispatch(resetContactFormFields());
+    dispatch(resetContactFormState());
     dispatch(resetCardInputState());
     dispatch(clearWalletFundsToAdd());
     dispatch(resetRequestDateDataState());
@@ -70,7 +70,7 @@ const useResetStore = () => {
         dispatch(resetMagicUrlState());
         break;
       case contactRoute:
-        dispatch(resetContactFormFields());
+        dispatch(resetContactFormState());
         break;
       case addFundsRoute:
         dispatch(resetCardInputState());
