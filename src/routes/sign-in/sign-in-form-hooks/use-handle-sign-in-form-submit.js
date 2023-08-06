@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import useFireSwal from "../../../hooks/use-fire-swal";
 
 import { selectSignInFormDetails } from "../../../store/sign-in-form/sign-in-form.selector";
-import { signInAsync } from "../../../store/user/user.slice";
+import { signInAsync } from "../../../store/user/user.actions";
 
 import { validateEmail } from "../../../functions/validate-email";
 

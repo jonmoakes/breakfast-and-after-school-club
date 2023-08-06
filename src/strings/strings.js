@@ -36,6 +36,8 @@ export const uploadFundsDatabaseErrorInstructions = (
 ) => {
   return `the error received was: '${error.message}'. please contact the app owner quoting the error message and the amount you tried to add to your wallet ( £${walletFundsToAdd} ). We apologise for the error!`;
 };
+export const errorRquestingOAuth2Session =
+  "error requesting OAuth2Session. please try again";
 
 // success
 export const successMessage = "success!";

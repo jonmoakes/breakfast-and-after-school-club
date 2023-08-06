@@ -1,15 +1,30 @@
 import { account } from "../../utils/appwrite/appwrite-config";
 import { useDispatch } from "react-redux";
 
+import useFireSwal from "../../hooks/use-fire-swal";
+
 import { startLoader, stopLoader } from "../../store/loader/loader.slice";
 
 import {
+  errorRquestingOAuth2Session,
   localhostSocialLoginResultRoute,
   socialLoginResultRoute,
 } from "../../strings/strings";
 
 const useSocialLogins = () => {
+  const { fireSwal } = useFireSwal();
   const dispatch = useDispatch();
+
+  const errorRequestingAuthSession = (error) => {
+    fireSwal(
+      "error",
+      errorRquestingOAuth2Session,
+      `the error received was: ${error.message}`,
+      0,
+      true,
+      false
+    );
+  };
 
   const signInWithFacebook = async () => {
     dispatch(startLoader());
@@ -31,7 +46,7 @@ const useSocialLogins = () => {
       }
     } catch (error) {
       dispatch(stopLoader());
-      console.log(error.message);
+      errorRequestingAuthSession(error);
     }
   };
 
@@ -52,7 +67,8 @@ const useSocialLogins = () => {
         );
       }
     } catch (error) {
-      console.log(error.message);
+      dispatch(stopLoader());
+      errorRequestingAuthSession(error);
     }
   };
 

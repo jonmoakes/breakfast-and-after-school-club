@@ -22,6 +22,8 @@ const useGetMagicUrlResult = () => {
         const userId = urlParams.get("userId");
         const secret = urlParams.get("secret");
 
+        if (!userId || !secret) return;
+
         await account.updateMagicURLSession(userId, secret);
         const user = await account.get();
 
@@ -40,20 +42,21 @@ const useGetMagicUrlResult = () => {
         );
         const { total } = getUserDocumentsList;
 
-        if (total !== 1) {
+        if (total === 0) {
           await databases.createDocument(
             import.meta.env.VITE_DEVELOPMENT_DATABASE_ID,
             import.meta.env.VITE_USER_COLLECTION_ID,
             user.$id,
             createdUser
           );
+        } else {
+          return;
         }
 
         dispatch(setCurrentUser(createdUser));
         dispatch(stopLoader());
         navigate(accountRoute);
       } catch (error) {
-        console.log(error);
         dispatch(stopLoader());
         dispatch(setMagicUrlResultError(error.message));
       }
