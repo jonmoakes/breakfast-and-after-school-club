@@ -1,6 +1,7 @@
 import useChooseDateHandleChange from "../book-a-session-hooks/use-choose-date-handle-change";
-
 import useGetRequestDateDataValues from "../book-a-session-hooks/use-get-request-date-data-values";
+
+import DateErrors from "./date-errors.component";
 
 import { Form, StyledInput, Label } from "../../../styles/form/form.styles";
 
@@ -13,16 +14,19 @@ const ChooseDate = () => {
   const tomorrowsDate = tomorrow.toISOString().split("T")[0];
 
   return (
-    <Form className="book-session">
-      <Label>choose date:</Label>
-      <StyledInput
-        type="date"
-        name="chosenDate"
-        min={tomorrowsDate}
-        onChange={chooseDateHandleChange}
-        value={date || null}
-      />
-    </Form>
+    <>
+      <Form className="book-session">
+        <Label>choose date:</Label>
+        <StyledInput
+          type="date"
+          name="chosenDate"
+          min={tomorrowsDate}
+          onChange={chooseDateHandleChange}
+          value={date || ""}
+        />
+      </Form>
+      <DateErrors />
+    </>
   );
 };
 

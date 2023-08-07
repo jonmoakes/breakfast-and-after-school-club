@@ -1,5 +1,11 @@
-import useSocialLogins from "./use-social-logins";
+import { useDispatch } from "react-redux";
+
 import useIsOnline from "../../hooks/use-is-online";
+
+import {
+  requestFacebookSignInAsync,
+  requestGoogleSignInAsync,
+} from "../../store/user/user.actions";
 
 import SocialLoginsInfo from "./social-logins-info.component";
 
@@ -12,8 +18,9 @@ import FBLogo from "../../assets/fb-logo.png";
 import GoogleLogo from "../../assets/google-logo.png";
 
 const SocialLogins = () => {
-  const { signInWithFacebook, signInWithGoogle } = useSocialLogins();
   const { isOnline } = useIsOnline();
+
+  const dispatch = useDispatch();
 
   return (
     <>
@@ -26,10 +33,13 @@ const SocialLogins = () => {
           <SocialLoginsDiv>
             <SocialImage
               className="fb"
-              onClick={signInWithFacebook}
+              onClick={() => dispatch(requestFacebookSignInAsync())}
               src={FBLogo}
             />
-            <SocialImage onClick={signInWithGoogle} src={GoogleLogo} />
+            <SocialImage
+              onClick={() => dispatch(requestGoogleSignInAsync())}
+              src={GoogleLogo}
+            />
           </SocialLoginsDiv>
 
           <SocialLoginsInfo />

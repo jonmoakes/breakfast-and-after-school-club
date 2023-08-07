@@ -15,7 +15,7 @@ const useConfirmUploadDatesToDatabase = () => {
   const collectionId = import.meta.env.VITE_2023_2024_TERM_DATES_COLLECTION_ID;
   const datesList = termDates2023And2024;
 
-  const confirmResult = async () => {
+  const confirmResult = () => {
     dispatch(uploadDatesToDatabaseAsync({ datesList, collectionId }));
   };
 

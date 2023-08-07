@@ -8,7 +8,6 @@ import {
   selectIsUserLoading,
   selectCurrentUser,
 } from "../../store/user/user.selector";
-import { selectIsLoading } from "../../store/loader/loader.selector";
 
 import Loader from "../../components/loader/loader.component";
 import SignUpName from "./sections/sign-up-name.component";
@@ -33,13 +32,12 @@ const SignUp = () => {
   const { handleSignUpFormChange } = useHandleSignUpFormChange();
 
   const isUserLoading = useSelector(selectIsUserLoading);
-  const isLoading = useSelector(selectIsLoading);
   const currentUser = useSelector(selectCurrentUser);
 
   return (
     <Container>
       {currentUser !== null && <Navigate replace to={accountRoute} />}
-      {isLoading || isUserLoading ? <Loader /> : null}
+      {isUserLoading ? <Loader /> : null}
 
       <ParentDiv>
         <BlackTitle>sign up</BlackTitle>

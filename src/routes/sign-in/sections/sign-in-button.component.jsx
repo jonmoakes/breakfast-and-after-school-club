@@ -7,7 +7,7 @@ import { YellowGreenButton } from "../../../styles/buttons/buttons.styles";
 import { BlackHr } from "../../../styles/hr/hr.styles";
 import { TopMarginDiv } from "../../../styles/div/div.styles";
 
-import { forgotPasswordRoute } from "../../../strings/strings";
+import { forgotPasswordRequestRoute } from "../../../strings/strings";
 import { WhiteStyledLink } from "../../../styles/link/link.styles";
 
 const SignInButton = () => {
@@ -23,7 +23,7 @@ const SignInButton = () => {
             Sign In
           </YellowGreenButton>
 
-          <WhiteStyledLink to={forgotPasswordRoute}>
+          <WhiteStyledLink to={forgotPasswordRequestRoute}>
             forgot password?
           </WhiteStyledLink>
         </TopMarginDiv>

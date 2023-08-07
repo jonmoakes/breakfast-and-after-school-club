@@ -2,7 +2,6 @@ import { useSelector } from "react-redux";
 
 import useSessionSpacesListener from "../../hooks/use-session-spaces-listener";
 import useRequestDateData from "./book-a-session-hooks/use-request-date-data";
-import useRequestDateDataErrorSwal from "./book-a-session-hooks/use-request-date-data-error-swal";
 
 import {
   selectRequestDateDataIsLoading,
@@ -24,7 +23,6 @@ import { BlueH2 } from "../../styles/h2/h2.styles";
 const BookASession = () => {
   useSessionSpacesListener();
   useRequestDateData();
-  useRequestDateDataErrorSwal();
 
   const requestDateData = useSelector(selectRequestDateData);
   const requestDateDataIsLoading = useSelector(selectRequestDateDataIsLoading);

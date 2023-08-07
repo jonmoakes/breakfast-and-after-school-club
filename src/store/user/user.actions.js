@@ -3,6 +3,11 @@ import { account, databases } from "../../utils/appwrite/appwrite-config";
 import { ID, Query } from "appwrite";
 import { setCurrentUser } from "./user.slice";
 
+import {
+  localhostSocialLoginResultRoute,
+  socialLoginResultRoute,
+} from "../../strings/strings";
+
 const currentUser = (id, createdAt, name, email, walletBalance) => {
   return { id, createdAt, name, email, walletBalance };
 };
@@ -54,6 +59,52 @@ export const signUpAsync = createAsyncThunk(
       );
 
       return createdUser;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
+export const requestFacebookSignInAsync = createAsyncThunk(
+  "user/facebookSignIn",
+  async (thunkAPI) => {
+    try {
+      if (import.meta.env.MODE === "development") {
+        await account.createOAuth2Session(
+          "facebook",
+          localhostSocialLoginResultRoute,
+          localhostSocialLoginResultRoute
+        );
+      } else if (import.meta.env.MODE === "production") {
+        await account.createOAuth2Session(
+          "facebook",
+          `https://breakfast-and-after-school-club.netlify.app${socialLoginResultRoute}`,
+          `https://breakfast-and-after-school-club.netlify.app${socialLoginResultRoute}`
+        );
+      }
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
+export const requestGoogleSignInAsync = createAsyncThunk(
+  "user/googleSignIn",
+  async (thunkAPI) => {
+    try {
+      if (import.meta.env.MODE === "development") {
+        await account.createOAuth2Session(
+          "google",
+          localhostSocialLoginResultRoute,
+          localhostSocialLoginResultRoute
+        );
+      } else if (import.meta.env.MODE === "production") {
+        await account.createOAuth2Session(
+          "google",
+          `https://breakfast-and-after-school-club.netlify.app${socialLoginResultRoute}`,
+          `https://breakfast-and-after-school-club.netlify.app${socialLoginResultRoute}`
+        );
+      }
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }

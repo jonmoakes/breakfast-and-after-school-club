@@ -12,7 +12,17 @@ export const selectNewPasswordDetails = createSelector(
   (forgotPasswordSlice) => forgotPasswordSlice.newPasswordDetails
 );
 
-export const selectForgotPasswordResultError = createSelector(
+export const selectForgotPasswordRequestError = createSelector(
   [selectForgotPasswordReducer],
-  (forgotPasswordSlice) => forgotPasswordSlice.forgotPasswordResultError
+  (forgotPasswordSlice) => forgotPasswordSlice.error
+);
+
+export const selectForgotPasswordIsLoading = createSelector(
+  [selectForgotPasswordReducer],
+  (forgotPasswordSlice) => forgotPasswordSlice.isLoading
+);
+
+export const selectForgotPasswordRequestResult = createSelector(
+  [selectForgotPasswordReducer],
+  (forgotPasswordSlice) => forgotPasswordSlice.requestResult
 );

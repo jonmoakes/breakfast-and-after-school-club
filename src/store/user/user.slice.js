@@ -3,9 +3,15 @@ import { createSlice } from "@reduxjs/toolkit";
 import {
   signInAsync,
   signUpAsync,
+  requestFacebookSignInAsync,
+  requestGoogleSignInAsync,
   signInWithSocialAsync,
   getUserOnLoadAsync,
 } from "./user.actions";
+import {
+  errorRequestingFacebookSignIn,
+  errorRequestingGoogleSignIn,
+} from "../../strings/strings";
 
 const initialState = {
   currentUser: null,
@@ -51,6 +57,28 @@ const userSlice = createSlice({
       .addCase(signUpAsync.rejected, (state, action) => {
         state.isLoading = false;
         state.error = action.payload;
+      })
+      .addCase(requestFacebookSignInAsync.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(requestFacebookSignInAsync.fulfilled, (state) => {
+        state.isLoading = false;
+        state.error = null;
+      })
+      .addCase(requestFacebookSignInAsync.rejected, (state) => {
+        state.isLoading = false;
+        state.error = errorRequestingFacebookSignIn;
+      })
+      .addCase(requestGoogleSignInAsync.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(requestGoogleSignInAsync.fulfilled, (state) => {
+        state.isLoading = false;
+        state.error = null;
+      })
+      .addCase(requestGoogleSignInAsync.rejected, (state) => {
+        state.isLoading = false;
+        state.error = errorRequestingGoogleSignIn;
       })
       .addCase(signInWithSocialAsync.pending, (state) => {
         state.isLoading = true;

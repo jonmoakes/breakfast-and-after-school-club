@@ -8,7 +8,6 @@ import {
   selectIsUserLoading,
   selectCurrentUser,
 } from "../../store/user/user.selector";
-import { selectIsLoading } from "../../store/loader/loader.selector";
 
 import Loader from "../../components/loader/loader.component";
 import Email from "./sections/sign-in-email.component";
@@ -31,13 +30,12 @@ const SignIn = () => {
   const { handleSignInFormChange } = useHandleSignInFormChange();
 
   const isUserLoading = useSelector(selectIsUserLoading);
-  const isLoading = useSelector(selectIsLoading);
   const currentUser = useSelector(selectCurrentUser);
 
   return (
     <Container>
       {currentUser !== null && <Navigate replace to={dashboardRoute} />}
-      {isLoading || isUserLoading ? <Loader /> : null}
+      {isUserLoading ? <Loader /> : null}
 
       <ParentDiv>
         <BlackTitle>sign in</BlackTitle>

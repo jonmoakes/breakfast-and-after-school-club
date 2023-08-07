@@ -20,6 +20,8 @@ export const errorSubmittingPaymentMessage =
   "Sorry, There Was An Error Submitting Payment.\nYour Card Has Not Been Charged.\nPlease Try Again.";
 export const appwritePasswordError =
   "Invalid credentials. Please check the email and password.";
+export const errorRequestForgotPasswordLinkMessage =
+  "error requesting your forgot password link";
 export const errorRequestUpdatePasswordLinkMessage =
   "error requesting update password link";
 export const errorSendingAccountClosureRequest =
@@ -38,6 +40,12 @@ export const uploadFundsDatabaseErrorInstructions = (
 };
 export const errorRquestingOAuth2Session =
   "error requesting OAuth2Session. please try again";
+export const errorRequestingFacebookSignIn =
+  "error requesting facebook sign in. please try again.";
+export const errorRequestingGoogleSignIn =
+  "error requesting google sign in. please try again.";
+export const emailAddressNotInDatabase =
+  "the email address you entered does not match any email in our database.";
 
 // success
 export const successMessage = "success!";
@@ -129,7 +137,7 @@ export const localhostUpdatePasswordResultRoute =
 export const closeAccountRoute = "/close-account";
 export const cookiesRoute = "/cookie-policy";
 export const privacyRoute = "/privacy-policy";
-export const forgotPasswordRoute = "/forgot-password";
+export const forgotPasswordRequestRoute = "/forgot-password-request";
 export const forgotPasswordResultRoute = "/forgot-password-result";
 export const localhostForgotPasswordResultRoute =
   "http://localhost:8888/forgot-password-result";

@@ -23,7 +23,7 @@ import {
   magicUrlResultRoute,
   magicUrlSignInRoute,
   localhostMagicUrlResultRoute,
-  forgotPasswordRoute,
+  forgotPasswordRequestRoute,
   forgotPasswordResultRoute,
   localhostForgotPasswordResultRoute,
   addFundsRoute,
@@ -71,8 +71,8 @@ const MagicUrlResult = lazy(() =>
 const SocialLoginResult = lazy(() =>
   import("./routes/social-login-result/social-login-result.component")
 );
-const ForgotPassword = lazy(() =>
-  import("./routes/forgot-password/forgot-password.component")
+const ForgotPasswordRequest = lazy(() =>
+  import("./routes/forgot-password-request/forgot-password-request.component")
 );
 const ForgotPasswordResult = lazy(() =>
   import("./routes/forgot-password-result/forgot-password-result.component")
@@ -104,7 +104,10 @@ const App = () => {
               path={socialLoginResultRoute || localhostSocialLoginResultRoute}
               element={<SocialLoginResult />}
             />
-            <Route path={forgotPasswordRoute} element={<ForgotPassword />} />
+            <Route
+              path={forgotPasswordRequestRoute}
+              element={<ForgotPasswordRequest />}
+            />
             <Route
               path={
                 forgotPasswordResultRoute || localhostForgotPasswordResultRoute

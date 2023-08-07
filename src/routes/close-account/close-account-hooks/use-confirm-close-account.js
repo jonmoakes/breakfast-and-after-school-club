@@ -24,7 +24,7 @@ const useConfirmCloseAccount = () => {
   const dispatch = useDispatch();
   const { walletBalance, email } = currentUser;
 
-  const confirmResult = async () => {
+  const confirmResult = () => {
     dispatch(closeAccountAsync({ email, accountClosureEmail }));
   };
 
