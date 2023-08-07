@@ -67,7 +67,7 @@ export const signUpAsync = createAsyncThunk(
 
 export const requestFacebookSignInAsync = createAsyncThunk(
   "user/facebookSignIn",
-  async (thunkAPI) => {
+  async (_, thunkAPI) => {
     try {
       if (import.meta.env.MODE === "development") {
         await account.createOAuth2Session(
@@ -90,7 +90,7 @@ export const requestFacebookSignInAsync = createAsyncThunk(
 
 export const requestGoogleSignInAsync = createAsyncThunk(
   "user/googleSignIn",
-  async (thunkAPI) => {
+  async (_, thunkAPI) => {
     try {
       if (import.meta.env.MODE === "development") {
         await account.createOAuth2Session(
@@ -113,7 +113,7 @@ export const requestGoogleSignInAsync = createAsyncThunk(
 
 export const signInWithSocialAsync = createAsyncThunk(
   "user/signInWithSocial",
-  async (thunkAPI) => {
+  async (_, thunkAPI) => {
     try {
       const user = await account.get();
 
@@ -148,9 +148,53 @@ export const signInWithSocialAsync = createAsyncThunk(
   }
 );
 
+export const signInMagicUrlAsync = createAsyncThunk(
+  "user/signInWithMagicUrl",
+  async (_, thunkAPI) => {
+    try {
+      const urlParams = new URLSearchParams(window.location.search);
+      const userId = urlParams.get("userId");
+      const secret = urlParams.get("secret");
+
+      if (!userId || !secret) return;
+
+      await account.updateMagicURLSession(userId, secret);
+      const user = await account.get();
+
+      const createdUser = {
+        id: user.$id,
+        createdAt: user.$createdAt,
+        name: user.name,
+        email: user.email,
+        walletBalance: 0,
+      };
+
+      const getUserDocumentsList = await databases.listDocuments(
+        import.meta.env.VITE_DEVELOPMENT_DATABASE_ID,
+        import.meta.env.VITE_USER_COLLECTION_ID,
+        [Query.equal("id", user.$id)]
+      );
+      const { total } = getUserDocumentsList;
+
+      if (total === 0) {
+        await databases.createDocument(
+          import.meta.env.VITE_DEVELOPMENT_DATABASE_ID,
+          import.meta.env.VITE_USER_COLLECTION_ID,
+          user.$id,
+          createdUser
+        );
+      }
+
+      return createdUser;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
 export const getUserOnLoadAsync = createAsyncThunk(
   "user/getUserOnLoad",
-  async (thunkAPI) => {
+  async (_, thunkAPI) => {
     try {
       const user = await account.get();
 

@@ -1,13 +1,17 @@
 import { useSelector } from "react-redux";
 import Balancer from "react-wrap-balancer";
 
-import useHandleMagicUrlSubmit from "./use-handle-magic-url-submit";
+import useMagicUrlRequestSwal from "./magic-url-request-hooks/use-magic-url-request-swal";
+import useHandleMagicUrlEmailChange from "./magic-url-request-hooks/use-handle-magic-url-email-change";
+import useConfirmRequestMagicUrl from "./magic-url-request-hooks/use-confirm-request-magic-url";
 
-import { selectIsLoading } from "../../store/loader/loader.selector";
-import { selectMagicUrlEmail } from "../../store/magic-url/magic-url.selector";
+import {
+  selectMagicUrlRequestIsLoading,
+  selectMagicUrlRequestEmail,
+} from "../../store/magic-url-request/magic-url-request.selector";
 
 import Loader from "../../components/loader/loader.component";
-import MagicUrlInfo from "./magic-url-info.component";
+import MagicUrlInfo from "./magic-url-request-info.component";
 
 import { Container } from "../../styles/container/container.styles";
 import { InnerDiv, ParentDiv } from "../../styles/div/div.styles";
@@ -16,12 +20,13 @@ import { YellowGreenButton } from "../../styles/buttons/buttons.styles";
 import { BlackTitle } from "../../styles/h1/h1.styles";
 import { enterEmailAddress } from "../../strings/strings";
 
-const MagicUrlSignIn = () => {
-  const { handleMagicEmailSubmit, handleMagicUrlEmailChange } =
-    useHandleMagicUrlSubmit();
+const MagicUrlRequest = () => {
+  useMagicUrlRequestSwal();
+  const { handleMagicUrlEmailChange } = useHandleMagicUrlEmailChange();
+  const { confirmRequestMagicUrl } = useConfirmRequestMagicUrl();
 
-  const magicUrlEmail = useSelector(selectMagicUrlEmail);
-  const isLoading = useSelector(selectIsLoading);
+  const magicUrlRequestEmail = useSelector(selectMagicUrlRequestEmail);
+  const isLoading = useSelector(selectMagicUrlRequestIsLoading);
 
   return (
     <Container>
@@ -44,12 +49,12 @@ const MagicUrlSignIn = () => {
             type="email"
             required
             placeholder={enterEmailAddress}
-            value={magicUrlEmail || ""}
+            value={magicUrlRequestEmail || ""}
             onChange={handleMagicUrlEmailChange}
           />
 
-          {magicUrlEmail ? (
-            <YellowGreenButton type="button" onClick={handleMagicEmailSubmit}>
+          {magicUrlRequestEmail ? (
+            <YellowGreenButton type="button" onClick={confirmRequestMagicUrl}>
               generate magic url
             </YellowGreenButton>
           ) : null}
@@ -59,4 +64,4 @@ const MagicUrlSignIn = () => {
   );
 };
 
-export default MagicUrlSignIn;
+export default MagicUrlRequest;

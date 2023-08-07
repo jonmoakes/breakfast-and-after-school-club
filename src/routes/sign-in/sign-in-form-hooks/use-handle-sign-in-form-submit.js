@@ -19,7 +19,7 @@ const useHandleSignInFormSubmit = () => {
   const dispatch = useDispatch();
   const { email, password } = signInFormDetails;
 
-  const handleSignInFormSubmit = async () => {
+  const handleSignInFormSubmit = () => {
     if (!email || !password) {
       fireSwal("error", missingFieldsMessage, "", 0, true, false);
     } else if (!validateEmail(email)) {

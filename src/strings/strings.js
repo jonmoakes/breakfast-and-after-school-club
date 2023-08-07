@@ -46,6 +46,10 @@ export const errorRequestingGoogleSignIn =
   "error requesting google sign in. please try again.";
 export const emailAddressNotInDatabase =
   "the email address you entered does not match any email in our database.";
+export const errorRequestingMagicUrl =
+  "there was an error requesting your magicUrl link";
+export const magicUrlNoUserDocCreatedMessage =
+  "your user session was created but we couldn't finish the process of creating your account. please contact us using our contact form quoting this error message.";
 
 // success
 export const successMessage = "success!";
@@ -104,6 +108,8 @@ export const sureResetPasswordMessage =
 export const imSureMessage = "i'm sure";
 export const addFundsMessage = "yes, add funds!";
 export const yesSendIt = "yes, send it!";
+export const confirmSendMagicUrlRequest =
+  "are you sure you'd like to request a magicUrl link in your email?";
 
 //placeholders
 export const enterEmailAddress = "enter your email address";
@@ -121,7 +127,7 @@ export const dashboardRoute = "/dashboard";
 export const accountRoute = "/account";
 export const signInRoute = "/sign-in";
 export const signUpRoute = "/sign-up";
-export const magicUrlSignInRoute = "/magic-url-sign-in";
+export const magicUrlRequestRoute = "/magic-url-request";
 export const magicUrlResultRoute = "/magic-url-result";
 export const localhostMagicUrlResultRoute =
   "http://localhost:8888/magic-url-result";

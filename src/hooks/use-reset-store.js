@@ -1,11 +1,11 @@
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
 
 import { resetCardInputState } from "../store/card-input-result/card-input-result.slice";
 import { resetContactFormState } from "../store/contact-form/contact-form.slice";
 import { resetForgotPasswordRequestState } from "../store/forgot-password-request/forgot-password-request.slice";
 import { resetForgotPasswordResultState } from "../store/forgot-password-result/forgot-password-result.slice";
-import { resetMagicUrlState } from "../store/magic-url/magic-url.slice";
+import { resetMagicUrlRequestState } from "../store/magic-url-request/magic-url-request.slice";
 import { clearNewPasswordDetails } from "../store/update-password/update-password.slice";
 import { resetRequestDateDataState } from "../store/request-date-data/request-date-data.slice";
 import { clearShouldShowElementsState } from "../store/should-show-element/should-show-element.slice";
@@ -14,22 +14,26 @@ import { clearSignUpFormDetails } from "../store/sign-up-form/sign-up-form.slice
 import { resetUpdateEmailFields } from "../store/update-email/update-email.slice";
 import { clearWalletFundsToAdd } from "../store/wallet-funds-to-add/wallet-funds-to-add.slice";
 
+import { selectError } from "../store/user/user.selector";
+
 import {
   addFundsRoute,
   bookSessionRoute,
   contactRoute,
   forgotPasswordResultRoute,
   forgotPasswordRequestRoute,
+  magicUrlRequestRoute,
   magicUrlResultRoute,
-  magicUrlSignInRoute,
   signInRoute,
   signUpRoute,
   updateEmailRoute,
   updatePasswordRequestRoute,
   updatePasswordResultRoute,
 } from "../strings/strings";
+import { resetErrorMessage } from "../store/user/user.slice";
 
 const useResetStore = () => {
+  const error = useSelector(selectError);
   const dispatch = useDispatch();
   const location = useLocation();
   const path = location.pathname;
@@ -40,7 +44,6 @@ const useResetStore = () => {
     dispatch(clearSignUpFormDetails());
     dispatch(resetForgotPasswordRequestState());
     dispatch(resetForgotPasswordResultState());
-    dispatch(resetMagicUrlState());
     dispatch(resetContactFormState());
     dispatch(resetCardInputState());
     dispatch(clearWalletFundsToAdd());
@@ -64,12 +67,14 @@ const useResetStore = () => {
       case forgotPasswordResultRoute:
         dispatch(resetForgotPasswordResultState());
         break;
-      case magicUrlSignInRoute:
-        dispatch(resetMagicUrlState());
+      case magicUrlRequestRoute:
+        dispatch(resetMagicUrlRequestState());
         dispatch(clearShouldShowElementsState());
         break;
       case magicUrlResultRoute:
-        dispatch(resetMagicUrlState());
+        if (error) {
+          dispatch(resetErrorMessage());
+        }
         break;
       case contactRoute:
         dispatch(resetContactFormState());

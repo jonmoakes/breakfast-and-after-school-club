@@ -5,11 +5,11 @@ import { selectSignInFormDetails } from "../../../store/sign-in-form/sign-in-for
 import { clearSignInFormDetails } from "../../../store/sign-in-form/sign-in-form.slice";
 import { selectSignUpFormDetails } from "../../../store/sign-up-form/sign-up-form.selector";
 import { clearSignUpFormDetails } from "../../../store/sign-up-form/sign-up-form.slice";
-import { clearMagicUrlResultError } from "../../../store/magic-url/magic-url.slice";
-import { selectMagicUrlResultError } from "../../../store/magic-url/magic-url.selector";
+import { selectError } from "../../../store/user/user.selector";
+import { resetErrorMessage } from "../../../store/user/user.slice";
 
 const useCheckForAndClearFormDetails = () => {
-  const magicUrlResultError = useSelector(selectMagicUrlResultError);
+  const error = useSelector(selectError);
   const signInFormDetails = useSelector(selectSignInFormDetails);
   const signUpFormDetails = useSelector(selectSignUpFormDetails);
 
@@ -44,17 +44,12 @@ const useCheckForAndClearFormDetails = () => {
   }, [signInFormDetails, signUpFormDetails, dispatch]);
 
   useEffect(() => {
-    if (magicUrlResultError) {
-      dispatch(clearMagicUrlResultError());
+    if (error) {
+      dispatch(resetErrorMessage());
     }
     checkForSignInDetails();
     checkForSignUpDetails();
-  }, [
-    checkForSignInDetails,
-    checkForSignUpDetails,
-    magicUrlResultError,
-    dispatch,
-  ]);
+  }, [checkForSignInDetails, checkForSignUpDetails, error, dispatch]);
 };
 
 export default useCheckForAndClearFormDetails;

@@ -20,7 +20,7 @@ const useHandleSignUpFormSubmit = () => {
   const dispatch = useDispatch();
   const { name, email, password, confirmPassword } = signUpFormDetails;
 
-  const handleSignUpFormSubmit = async () => {
+  const handleSignUpFormSubmit = () => {
     if (!name || !email || !password || !confirmPassword) {
       fireSwal("error", missingFieldsMessage, "", 0, true, false);
     } else if (!validateEmail(email)) {

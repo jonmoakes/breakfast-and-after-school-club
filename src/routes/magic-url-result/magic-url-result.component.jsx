@@ -1,10 +1,13 @@
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 
 import useGetMagicUrlResult from "./use-get-magic-url-result";
-import { selectMagicUrlResultError } from "../../store/magic-url/magic-url.selector";
 
-import { selectIsLoading } from "../../store/loader/loader.selector";
+import {
+  selectIsUserLoading,
+  selectCurrentUser,
+  selectError,
+} from "../../store/user/user.selector";
 
 import Loader from "../../components/loader/loader.component";
 
@@ -15,28 +18,35 @@ import { YellowGreenButton } from "../../styles/buttons/buttons.styles";
 import { BlackTitle } from "../../styles/h1/h1.styles";
 import { BlueH2 } from "../../styles/h2/h2.styles";
 
-import { signInRoute } from "../../strings/strings";
-import { clearMagicUrlResultError } from "../../store/magic-url/magic-url.slice";
+import {
+  accountRoute,
+  magicUrlNoUserDocCreatedMessage,
+  signInRoute,
+} from "../../strings/strings";
+import { resetErrorMessage } from "../../store/user/user.slice";
 
 const MagicUrlResult = () => {
   useGetMagicUrlResult();
 
-  const magicUrlResultError = useSelector(selectMagicUrlResultError);
-  const isLoading = useSelector(selectIsLoading);
+  const error = useSelector(selectError);
+  const isLoading = useSelector(selectIsUserLoading);
+  const currentUser = useSelector(selectCurrentUser);
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const returnToSignInAndResetError = () => {
     navigate(signInRoute);
-    dispatch(clearMagicUrlResultError());
+    dispatch(resetErrorMessage());
   };
 
   return (
     <Container>
       {isLoading ? <Loader /> : null}
+      {currentUser !== null && <Navigate replace to={accountRoute} />}
+
       <ParentDiv>
-        {!magicUrlResultError ? (
+        {!error ? (
           <>
             <BlackTitle>please wait...</BlackTitle>
             <BlueH2>signing you in...</BlueH2>
@@ -49,7 +59,9 @@ const MagicUrlResult = () => {
             <Text>
               the error received was:
               <br />
-              {magicUrlResultError}
+              {error === "User (role: guests) missing scope (account)"
+                ? magicUrlNoUserDocCreatedMessage
+                : error}
             </Text>
             <YellowGreenButton onClick={returnToSignInAndResetError}>
               back to sign in

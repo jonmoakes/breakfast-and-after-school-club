@@ -17,7 +17,7 @@ import {
   AccordionTitle,
 } from "../../styles/div/div.styles";
 
-const MagicUrlInfo = () => {
+const MagicUrlRequestInfo = () => {
   const shouldShowElement = useSelector(selectShouldShowElement);
   const dispatch = useDispatch();
 
@@ -100,4 +100,4 @@ const MagicUrlInfo = () => {
     </Accordion>
   );
 };
-export default MagicUrlInfo;
+export default MagicUrlRequestInfo;

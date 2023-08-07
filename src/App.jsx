@@ -21,7 +21,7 @@ import {
   accountRoute,
   updateEmailRoute,
   magicUrlResultRoute,
-  magicUrlSignInRoute,
+  magicUrlRequestRoute,
   localhostMagicUrlResultRoute,
   forgotPasswordRequestRoute,
   forgotPasswordResultRoute,
@@ -62,8 +62,8 @@ const UpdatePasswordResult = lazy(() =>
 const CloseAccount = lazy(() =>
   import("./routes/close-account/close-account.component")
 );
-const MagicUrlSignIn = lazy(() =>
-  import("./routes/magic-url-sign-in/magic-url-sign-in.component")
+const MagicUrlRequest = lazy(() =>
+  import("./routes/magic-url-request/magic-url-request.component")
 );
 const MagicUrlResult = lazy(() =>
   import("./routes/magic-url-result/magic-url-result.component")
@@ -95,7 +95,7 @@ const App = () => {
             <Route path={signInRoute} element={<SignIn />} />
             <Route path={contactRoute} element={<Contact />} />
             <Route path={signUpRoute} element={<SignUp />} />
-            <Route path={magicUrlSignInRoute} element={<MagicUrlSignIn />} />
+            <Route path={magicUrlRequestRoute} element={<MagicUrlRequest />} />
             <Route
               path={magicUrlResultRoute || localhostMagicUrlResultRoute}
               element={<MagicUrlResult />}

@@ -14,7 +14,7 @@ import { progressiveImageReducer } from "./progressive-image/progressive-image.s
 import { isOnlineReducer } from "./is-online/is-online.slice";
 import { shouldShowElementReducer } from "./should-show-element/should-show-element.slice";
 import { passwordIsVisibleReducer } from "./password-is-visible/password-is-visible.slice";
-import { magicUrlReducer } from "./magic-url/magic-url.slice";
+import { magicUrlRequestReducer } from "./magic-url-request/magic-url-request.slice";
 import { updateEmailReducer } from "./update-email/update-email.slice";
 import { updatePasswordReducer } from "./update-password/update-password.slice";
 import { closeAccountReducer } from "./close-account/close-account.slice";
@@ -36,7 +36,7 @@ export const rootReducer = combineReducers({
   isOnline: isOnlineReducer,
   shouldShowElement: shouldShowElementReducer,
   passwordIsVisible: passwordIsVisibleReducer,
-  magicUrl: magicUrlReducer,
+  magicUrlRequest: magicUrlRequestReducer,
   updateEmail: updateEmailReducer,
   updatePassword: updatePasswordReducer,
   closeAccount: closeAccountReducer,
