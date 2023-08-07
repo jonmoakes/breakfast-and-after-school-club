@@ -28,7 +28,7 @@ const useForgotPasswordRequestSwal = () => {
     if (!error && !requestResult) return;
 
     if (requestResult) {
-      fireSwal("success", "Check yourr email", "", 0, true, false).then(
+      fireSwal("success", "Check your email", "", 0, true, false).then(
         (isConfirmed) => {
           if (isConfirmed) {
             dispatch(resetPasswordRequestResult());

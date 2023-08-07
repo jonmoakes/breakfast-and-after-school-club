@@ -1,8 +1,8 @@
 import { useSelector } from "react-redux";
 
-import useHandleResetPasswordFormChange from "./forgot-password-result-hooks/use-handle-reset-password-form-change";
+import useForgotPasswordResultSwal from "./forgot-password-result-hooks/use-forgot-password-result-swal";
 
-import { selectIsLoading } from "../../store/loader/loader.selector";
+import { selectForgotPasswordResultIsLoading } from "../../store/forgot-password-result/forgot-password-result.selector";
 
 import Loader from "../../components/loader/loader.component";
 import Intro from "./sections/intro.component";
@@ -14,8 +14,9 @@ import { ParentDiv } from "../../styles/div/div.styles";
 import { Form } from "../../styles/form/form.styles";
 
 const ForgotPasswordResult = () => {
-  const { handleResetPasswordFormChange } = useHandleResetPasswordFormChange();
-  const isLoading = useSelector(selectIsLoading);
+  useForgotPasswordResultSwal();
+
+  const isLoading = useSelector(selectForgotPasswordResultIsLoading);
 
   return (
     <Container>
@@ -25,7 +26,7 @@ const ForgotPasswordResult = () => {
 
       <ParentDiv>
         <Form>
-          <NewPasswords {...{ handleResetPasswordFormChange }} />
+          <NewPasswords />
           <ResetPasswordButton />
         </Form>
       </ParentDiv>

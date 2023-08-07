@@ -1,7 +1,7 @@
 import { useSelector, useDispatch } from "react-redux";
 
-import { setNewPasswordDetails } from "../../../store/forgot-password/forgot-password.slice";
-import { selectNewPasswordDetails } from "../../../store/forgot-password/forgot-password.selector";
+import { setNewPasswordDetails } from "../../../store/forgot-password-result/forgot-password-result.slice";
+import { selectNewPasswordDetails } from "../../../store/forgot-password-result/forgot-password-result.selector";
 
 const useHandleResetPasswordFormChange = () => {
   const newPasswordDetails = useSelector(selectNewPasswordDetails);

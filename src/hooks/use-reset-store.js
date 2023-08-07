@@ -4,7 +4,7 @@ import { useLocation } from "react-router-dom";
 import { resetCardInputState } from "../store/card-input-result/card-input-result.slice";
 import { resetContactFormState } from "../store/contact-form/contact-form.slice";
 import { resetForgotPasswordRequestState } from "../store/forgot-password-request/forgot-password-request.slice";
-import { resetForgotPasswordState } from "../store/forgot-password/forgot-password.slice";
+import { resetForgotPasswordResultState } from "../store/forgot-password-result/forgot-password-result.slice";
 import { resetMagicUrlState } from "../store/magic-url/magic-url.slice";
 import { clearNewPasswordDetails } from "../store/update-password/update-password.slice";
 import { resetRequestDateDataState } from "../store/request-date-data/request-date-data.slice";
@@ -39,7 +39,7 @@ const useResetStore = () => {
     dispatch(clearSignInFormDetails());
     dispatch(clearSignUpFormDetails());
     dispatch(resetForgotPasswordRequestState());
-    dispatch(resetForgotPasswordState());
+    dispatch(resetForgotPasswordResultState());
     dispatch(resetMagicUrlState());
     dispatch(resetContactFormState());
     dispatch(resetCardInputState());
@@ -62,7 +62,7 @@ const useResetStore = () => {
         dispatch(resetForgotPasswordRequestState());
         break;
       case forgotPasswordResultRoute:
-        dispatch(resetForgotPasswordState());
+        dispatch(resetForgotPasswordResultState());
         break;
       case magicUrlSignInRoute:
         dispatch(resetMagicUrlState());

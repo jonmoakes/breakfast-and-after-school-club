@@ -9,8 +9,7 @@ import {
   hideResetPasswordIsVisible,
   hideResetPasswordConfirmPasswordIsVisible,
 } from "../../../store/password-is-visible/password-is-visible.slice";
-
-import { selectNewPasswordDetails } from "../../../store/forgot-password/forgot-password.selector";
+import { selectNewPasswordDetails } from "../../../store/forgot-password-result/forgot-password-result.selector";
 
 const useHideResetPasswordFieldsOnEmpty = () => {
   const resetPasswordIsVisible = useSelector(selectResetPasswordIsVisible);

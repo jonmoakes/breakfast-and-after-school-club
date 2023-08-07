@@ -1,8 +1,9 @@
 import { useSelector, useDispatch } from "react-redux";
 
 import useHideResetPasswordFieldsOnEmpty from "../forgot-password-result-hooks/use-hide-reset-password-fields-on-empty";
+import useHandleResetPasswordFormChange from "../forgot-password-result-hooks/use-handle-reset-password-form-change";
 
-import { selectNewPasswordDetails } from "../../../store/forgot-password/forgot-password.selector";
+import { selectNewPasswordDetails } from "../../../store/forgot-password-result/forgot-password-result.selector";
 import {
   selectResetPasswordIsVisible,
   selectResetPasswordConfirmPasswordIsVisible,
@@ -24,7 +25,8 @@ import {
   minEightCharacters,
 } from "../../../strings/strings";
 
-const NewPasswords = ({ handleResetPasswordFormChange }) => {
+const NewPasswords = () => {
+  const { handleResetPasswordFormChange } = useHandleResetPasswordFormChange();
   useHideResetPasswordFieldsOnEmpty();
 
   const newPasswordDetails = useSelector(selectNewPasswordDetails);

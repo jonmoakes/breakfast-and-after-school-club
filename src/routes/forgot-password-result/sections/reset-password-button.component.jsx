@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import useIsOnline from "../../../hooks/use-is-online";
 import useConfirmResetPassword from "../forgot-password-result-hooks/use-confirm-reset-password";
 
-import { selectNewPasswordDetails } from "../../../store/forgot-password/forgot-password.selector";
+import { selectNewPasswordDetails } from "../../../store/forgot-password-result/forgot-password-result.selector";
 
 import NetworkError from "../../../components/errors/network-error.component";
 
