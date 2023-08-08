@@ -20,6 +20,7 @@ import { BlueH2 } from "../../styles/h2/h2.styles";
 
 import {
   accountRoute,
+  appwriteNoUserError,
   magicUrlNoUserDocCreatedMessage,
   signInRoute,
 } from "../../strings/strings";
@@ -59,7 +60,7 @@ const MagicUrlResult = () => {
             <Text>
               the error received was:
               <br />
-              {error === "User (role: guests) missing scope (account)"
+              {error === appwriteNoUserError
                 ? magicUrlNoUserDocCreatedMessage
                 : error}
             </Text>

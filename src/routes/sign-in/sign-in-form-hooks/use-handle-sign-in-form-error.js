@@ -5,7 +5,10 @@ import useFireSwal from "../../../hooks/use-fire-swal";
 
 import { resetErrorMessage } from "../../../store/user/user.slice";
 import { selectError } from "../../../store/user/user.selector";
-import { errorSigningInMessage } from "../../../strings/strings";
+import {
+  appwriteNoUserError,
+  errorSigningInMessage,
+} from "../../../strings/strings";
 
 const useHandleSignInFormError = () => {
   const { fireSwal } = useFireSwal();
@@ -14,9 +17,8 @@ const useHandleSignInFormError = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (!error) {
-      return;
-    }
+    if (!error || (error && error === appwriteNoUserError)) return;
+
     fireSwal("error", errorSigningInMessage, error, 0, true, false);
     dispatch(resetErrorMessage());
   }, [fireSwal, error, dispatch]);

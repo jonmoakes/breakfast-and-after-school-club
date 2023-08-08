@@ -213,3 +213,14 @@ export const getUserOnLoadAsync = createAsyncThunk(
     }
   }
 );
+
+export const signOutAsync = createAsyncThunk(
+  "user/signOut",
+  async (_, thunkAPI) => {
+    try {
+      await account.deleteSession("current");
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);

@@ -8,6 +8,7 @@ import {
   signInWithSocialAsync,
   signInMagicUrlAsync,
   getUserOnLoadAsync,
+  signOutAsync,
 } from "./user.actions";
 import {
   errorRequestingFacebookSignIn,
@@ -54,6 +55,7 @@ const userSlice = createSlice({
       .addCase(signUpAsync.fulfilled, (state, action) => {
         state.isLoading = false;
         state.currentUser = action.payload;
+        state.error = null;
       })
       .addCase(signUpAsync.rejected, (state, action) => {
         state.isLoading = false;
@@ -113,6 +115,18 @@ const userSlice = createSlice({
         state.error = null;
       })
       .addCase(getUserOnLoadAsync.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = action.payload;
+      })
+      .addCase(signOutAsync.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(signOutAsync.fulfilled, (state) => {
+        state.isLoading = false;
+        state.currentUser = null;
+        state.error = null;
+      })
+      .addCase(signOutAsync.rejected, (state, action) => {
         state.isLoading = false;
         state.error = action.payload;
       });

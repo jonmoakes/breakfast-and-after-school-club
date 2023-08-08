@@ -50,7 +50,8 @@ export const errorRequestingMagicUrl =
   "there was an error requesting your magicUrl link";
 export const magicUrlNoUserDocCreatedMessage =
   "your user session was created but we couldn't finish the process of creating your account. please contact us using our contact form quoting this error message.";
-
+export const appwriteNoUserError =
+  "User (role: guests) missing scope (account)";
 // success
 export const successMessage = "success!";
 export const checkEmailMessage = "please check your email!";
@@ -91,8 +92,8 @@ export const loseAllAccountDataMessage = "you will permanently lose all data";
 
 //confirms
 export const confirmSignOutMessage = "are you sure you wish to sign out?";
+export const redirectMessage = "this will redirect you to the sign in page.";
 export const yesSignOutMessage = "yes, sign me out!";
-export const signOutSuccessMessage = "you have been successfully signed out!";
 export const areYouSureMessage = "are you sure?";
 export const confirmAddFundsMessage = (walletFunds) => {
   return `are you sure you wish to add £${walletFunds.toFixed(

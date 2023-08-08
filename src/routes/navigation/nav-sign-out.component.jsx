@@ -1,13 +1,12 @@
 import { useSelector, useDispatch } from "react-redux";
-import { account } from "../../utils/appwrite/appwrite-config";
 
+import useGetSignOutError from "./navigation-hooks/use-get-sign-out-error";
 import useConfirmSwal from "../../hooks/use-confirm-swal";
 import useFireSwal from "../../hooks/use-fire-swal";
 import useIsOnline from "../../hooks/use-is-online";
-import useResetStore from "../../hooks/use-reset-store";
 
+import { signOutAsync } from "../../store/user/user.actions";
 import { selectCurrentUser } from "../../store/user/user.selector";
-import { setCurrentUser } from "../../store/user/user.slice";
 import { selectShowHamburgerMenu } from "../../store/hamburger-menu/hamburger-menu.selector";
 import { hideHamburgerMenu } from "../../store/hamburger-menu/hamburger-menu.slice";
 
@@ -17,37 +16,35 @@ import { BorderLink } from "../../styles/span/span.styles";
 import {
   confirmSignOutMessage,
   yesSignOutMessage,
-  signOutSuccessMessage,
   noNetworkMessage,
+  redirectMessage,
 } from "../../strings/strings";
 
 const NavSignOut = () => {
+  useGetSignOutError();
   const { confirmSwal } = useConfirmSwal();
   const { fireSwal } = useFireSwal();
   const { isOnline } = useIsOnline();
-  const { signOutResetStore } = useResetStore();
-
-  const dispatch = useDispatch();
 
   const currentUser = useSelector(selectCurrentUser);
   const showHamburgerMenu = useSelector(selectShowHamburgerMenu);
 
-  const confirmResult = async () => {
-    try {
-      await account.deleteSession("current");
-      dispatch(setCurrentUser(null));
-      signOutResetStore();
-      fireSwal("success", signOutSuccessMessage, "", 2000, false, true);
-      if (showHamburgerMenu) {
-        dispatch(hideHamburgerMenu());
-      }
-    } catch (error) {
-      fireSwal("error", error, error.message, 2000, true, false);
+  const dispatch = useDispatch();
+
+  const confirmResult = () => {
+    dispatch(signOutAsync());
+    if (showHamburgerMenu) {
+      dispatch(hideHamburgerMenu());
     }
   };
 
   const confirmSignOut = () => {
-    confirmSwal(confirmSignOutMessage, "", yesSignOutMessage, confirmResult);
+    confirmSwal(
+      confirmSignOutMessage,
+      redirectMessage,
+      yesSignOutMessage,
+      confirmResult
+    );
   };
 
   const showNetworkErrorSwal = () => {
