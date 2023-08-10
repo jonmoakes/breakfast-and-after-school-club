@@ -204,7 +204,7 @@ export const CardInputDiv = styled.div`
   background-color: ${customLightGrey};
   height: 60px;
   width: 50%;
-  margin: 30px auto 100px auto;
+  margin: 30px auto 40px auto;
   padding: 20px 20px 30px 20px;
   border-radius: 5px;
   border: 2px solid ${customBlack};
@@ -219,10 +219,10 @@ export const CardInputDiv = styled.div`
 `;
 
 export const StripeLogoDiv = styled.div.withConfig({
-  shouldForwardProp: (prop) => prop !== "showButton",
+  shouldForwardProp: (prop) => prop !== "showPrePayButton",
 })`
   margin: ${(props) =>
-    props.showButton ? "200px auto 0px auto" : "50px auto 0px auto"};
+    props.showPrePayButton ? "200px auto 0px auto" : "50px auto 0px auto"};
   width: 100%;
 `;
 

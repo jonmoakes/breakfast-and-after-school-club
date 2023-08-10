@@ -1,7 +1,6 @@
 import { useDispatch } from "react-redux";
 
 import { setCardInputResult } from "../../../store/card-input-result/card-input-result.slice";
-
 import { formNotCompleteWarning } from "../../../strings/strings";
 
 const useHandleCardInputChange = () => {
@@ -13,7 +12,7 @@ const useHandleCardInputChange = () => {
         setCardInputResult({
           error: "",
           warning: formNotCompleteWarning,
-          showButton: false,
+          showPrePayButton: false,
         })
       );
     } else if (e.error !== undefined && e.complete === false) {
@@ -21,7 +20,7 @@ const useHandleCardInputChange = () => {
         setCardInputResult({
           error: e.error.message,
           warning: "",
-          showButton: false,
+          showPrePayButton: false,
         })
       );
     } else if (!e.empty && e.error === undefined && e.complete === true) {
@@ -29,7 +28,7 @@ const useHandleCardInputChange = () => {
         setCardInputResult({
           error: "",
           warning: "",
-          showButton: true,
+          showPrePayButton: true,
         })
       );
     }

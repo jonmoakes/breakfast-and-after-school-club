@@ -62,12 +62,12 @@ export const DisabledButton = styled(Button)`
 
 export const YellowGreenButton = styled(Button)`
   &.add-funds {
-    margin: 45px auto;
+    margin: 0px auto 40px auto;
     width: 180px;
   }
 
   &.disabled {
-    margin: 45px auto;
+    margin: 0px auto 40px auto;
     box-shadow: none;
     cursor: not-allowed;
     opacity: 0.5;

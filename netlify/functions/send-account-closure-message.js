@@ -2,7 +2,7 @@ import sgMail from "@sendgrid/mail";
 
 sgMail.setApiKey(process.env.VITE_SENDGRID_API_KEY);
 
-export async function handler(event) {
+export const handler = async (event) => {
   const { message } = JSON.parse(event.body);
 
   const data = {
@@ -25,4 +25,4 @@ export async function handler(event) {
       body: JSON.stringify({ error: error.message }),
     };
   }
-}
+};

@@ -1,10 +1,10 @@
 import { useSelector } from "react-redux";
 
-import { selectCardInputResult } from "../../store/card-input-result/card-input-result.selector";
+import { selectCardInputResult } from "../../../store/card-input-result/card-input-result.selector";
 
-import { PaymentErrorDiv, WarningDiv } from "../../styles/div/div.styles";
+import { PaymentErrorDiv, WarningDiv } from "../../../styles/div/div.styles";
 
-import { Text, WhiteText } from "../../styles/p/p.styles";
+import { Text, WhiteText } from "../../../styles/p/p.styles";
 
 const CardInputErrors = () => {
   const cardInputResult = useSelector(selectCardInputResult);

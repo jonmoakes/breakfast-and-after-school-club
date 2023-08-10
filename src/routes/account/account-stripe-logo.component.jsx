@@ -11,12 +11,12 @@ const AccountStripeLogo = () => {
   const cardInputResult = useSelector(selectCardInputResult);
   const walletFundsToAdd = useSelector(selectWalletFundsToAdd);
 
-  const { showButton } = cardInputResult;
+  const { showPrePayButton } = cardInputResult;
 
   return (
     <>
       {walletFundsToAdd ? (
-        <StripeLogoDiv {...{ showButton }}>
+        <StripeLogoDiv {...{ showPrePayButton }}>
           <ItalicStripeText>Checkout Powered By:</ItalicStripeText>
           <StripeLogo />
         </StripeLogoDiv>

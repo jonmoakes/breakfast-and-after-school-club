@@ -6,8 +6,3 @@ export const selectCardInputResult = createSelector(
   [selectCardInputResultReducer],
   (cardInputResultSlice) => cardInputResultSlice.cardInputResult
 );
-
-export const selectPaymentIsProcessing = createSelector(
-  [selectCardInputResultReducer],
-  (cardInputResultSlice) => cardInputResultSlice.paymentIsProcessing
-);

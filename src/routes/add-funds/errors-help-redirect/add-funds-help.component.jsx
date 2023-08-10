@@ -1,18 +1,18 @@
 import { useSelector, useDispatch } from "react-redux";
 
-import { selectShouldShowElement } from "../../store/should-show-element/should-show-element.selector";
+import { selectShouldShowElement } from "../../../store/should-show-element/should-show-element.selector";
 import {
   hideElement,
   toggleShowElement,
-} from "../../store/should-show-element/should-show-element.slice";
+} from "../../../store/should-show-element/should-show-element.slice";
 
-import { YellowGreenButton } from "../../styles/buttons/buttons.styles";
+import { YellowGreenButton } from "../../../styles/buttons/buttons.styles";
 import {
   Accordion,
   AccordionContent,
   AccordionTitle,
-} from "../../styles/div/div.styles";
-import { Text } from "../../styles/p/p.styles";
+} from "../../../styles/div/div.styles";
+import { Text } from "../../../styles/p/p.styles";
 
 const AddFundsHelp = () => {
   const shouldShowElement = useSelector(selectShouldShowElement);
@@ -43,6 +43,7 @@ const AddFundsHelp = () => {
               5.50 for £5.50
             </Text>
             <Text>the minimum that you can add is £1.</Text>
+            <Text>the maximum value you can add is £100</Text>
             <Text>
               then enter in your card details in the box that appears below the
               input and then tap the "add funds" button which will appear when

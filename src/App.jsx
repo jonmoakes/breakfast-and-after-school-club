@@ -35,6 +35,7 @@ import {
   dashboardRoute,
   socialLoginResultRoute,
   localhostSocialLoginResultRoute,
+  paymentResultRoute,
 } from "./strings/strings";
 
 const Navigation = lazy(() =>
@@ -50,6 +51,9 @@ const BookASession = lazy(() =>
   import("./routes/book-a-session/book-a-session.component")
 );
 const AddFunds = lazy(() => import("./routes/add-funds/add-funds.component"));
+const PaymentResult = lazy(() =>
+  import("./routes/payment-result/payment-result.component")
+);
 const UpdateEmail = lazy(() =>
   import("./routes/update-email/update-email.component")
 );
@@ -83,6 +87,7 @@ const App = () => {
   useWalletBalanceListener();
 
   const currentUser = useSelector(selectCurrentUser);
+  const ownerId = import.meta.env.VITE_APP_OWNER_ID;
 
   return (
     <>
@@ -126,13 +131,9 @@ const App = () => {
               <Route
                 path={dashboardRoute}
                 element={
-                  currentUser &&
-                  currentUser.id === import.meta.env.VITE_APP_OWNER_ID ? (
+                  currentUser && currentUser.id === ownerId ? (
                     <Dashboard />
-                  ) : currentUser &&
-                    currentUser.id !== import.meta.env.VITE_APP_OWNER_ID ? (
-                    <Account />
-                  ) : null
+                  ) : currentUser && currentUser.id !== ownerId ? null : null
                 }
               />
               <Route
@@ -141,6 +142,7 @@ const App = () => {
               />
               <Route path={bookSessionRoute} element={<BookASession />} />
               <Route path={addFundsRoute} element={<AddFunds />} />
+              <Route path={paymentResultRoute} element={<PaymentResult />} />
               <Route path={updateEmailRoute} element={<UpdateEmail />} />
               <Route
                 path={updatePasswordRequestRoute}

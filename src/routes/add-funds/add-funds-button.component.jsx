@@ -1,55 +1,20 @@
-import { useSelector } from "react-redux";
-
-import { selectPaymentIsProcessing } from "../../store/card-input-result/card-input-result.selector";
-import { selectWalletFundsToAdd } from "../../store/wallet-funds-to-add/wallet-funds-to-add.selector";
-import { selectCardInputResult } from "../../store/card-input-result/card-input-result.selector";
+import useGetPaymentResult from "./add-funds-hooks/use-get-payment-result";
+import useShouldShowAddFundsButton from "./add-funds-hooks/use-should-show-add-funds-button.component.js";
 
 import { YellowGreenButton } from "../../styles/buttons/buttons.styles";
-import useHandlePayment from "./add-funds-hooks/use-handle-payment";
-import useConfirmSwal from "../../hooks/use-confirm-swal";
-
-import { addFundsMessage, confirmAddFundsMessage } from "../../strings/strings";
 
 const AddFundsButton = () => {
-  const { handlePayment } = useHandlePayment();
-  const { confirmSwal } = useConfirmSwal();
+  const { getClientSecret } = useGetPaymentResult();
+  useGetPaymentResult();
+  const { shouldShowAddFundsButton } = useShouldShowAddFundsButton();
 
-  const paymentIsProcessing = useSelector(selectPaymentIsProcessing);
-  const walletFundsToAdd = useSelector(selectWalletFundsToAdd);
-  const cardInputResult = useSelector(selectCardInputResult);
-
-  const { showButton } = cardInputResult;
-
-  const confirmResult = () => {
-    handlePayment();
-  };
-
-  const confirmPayment = () => {
-    confirmSwal(
-      confirmAddFundsMessage(walletFundsToAdd),
-      "",
-      addFundsMessage,
-      confirmResult
-    );
-  };
   return (
     <>
-      {showButton && !paymentIsProcessing ? (
-        <YellowGreenButton
-          className="add-funds"
-          type="button"
-          onClick={confirmPayment}
-        >
-          add funds!
+      {shouldShowAddFundsButton() ? (
+        <YellowGreenButton className="add-funds" onClick={getClientSecret}>
+          add funds
         </YellowGreenButton>
-      ) : (
-        showButton &&
-        paymentIsProcessing && (
-          <YellowGreenButton className="disabled">
-            please wait....
-          </YellowGreenButton>
-        )
-      )}
+      ) : null}
     </>
   );
 };

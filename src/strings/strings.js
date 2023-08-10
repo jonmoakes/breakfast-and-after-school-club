@@ -17,7 +17,7 @@ export const pleaseEnterYourCardDetails = "please enter your card details";
 export const formNotCompleteWarning =
   "the pay button will show when the form is complete";
 export const errorSubmittingPaymentMessage =
-  "Sorry, There Was An Error Submitting Payment.\nYour Card Has Not Been Charged.\nPlease Try Again.";
+  "Sorry, There Was An Error Submitting Payment. Your Card Has Not Been Charged. Please Try Again or contact us if the problem persists.";
 export const appwritePasswordError =
   "Invalid credentials. Please check the email and password.";
 export const errorRequestForgotPasswordLinkMessage =
@@ -52,6 +52,7 @@ export const magicUrlNoUserDocCreatedMessage =
   "your user session was created but we couldn't finish the process of creating your account. please contact us using our contact form quoting this error message.";
 export const appwriteNoUserError =
   "User (role: guests) missing scope (account)";
+
 // success
 export const successMessage = "success!";
 export const checkEmailMessage = "please check your email!";
@@ -89,6 +90,8 @@ export const receiveEmailWhenCompleteMessage =
 export const walletHasPositiveBalanceMessage =
   "please either spend or request a refund for this amount before proceeding";
 export const loseAllAccountDataMessage = "you will permanently lose all data";
+export const contactOwnerQuotingError =
+  "your wallet balance will not be showing correctly. please contact the owner quoting the following error: ";
 
 //confirms
 export const confirmSignOutMessage = "are you sure you wish to sign out?";
@@ -149,3 +152,4 @@ export const forgotPasswordResultRoute = "/forgot-password-result";
 export const localhostForgotPasswordResultRoute =
   "http://localhost:8888/forgot-password-result";
 export const addFundsRoute = "/add-funds";
+export const paymentResultRoute = "/payment-result";

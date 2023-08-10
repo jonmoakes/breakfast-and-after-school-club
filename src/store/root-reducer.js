@@ -20,6 +20,7 @@ import { updatePasswordReducer } from "./update-password/update-password.slice";
 import { closeAccountReducer } from "./close-account/close-account.slice";
 import { uploadDatesToDatabaseReducer } from "./upload-dates-to-database/upload-dates-to-database.slice";
 import { requestDateDataReducer } from "./request-date-data/request-date-data.slice";
+import { handlePaymentReducer } from "./handle-payment/handle-payment.slice";
 
 export const rootReducer = combineReducers({
   hamburgerMenu: hamburgerMenuReducer,
@@ -42,4 +43,5 @@ export const rootReducer = combineReducers({
   closeAccount: closeAccountReducer,
   uploadDatesToDatabase: uploadDatesToDatabaseReducer,
   requestDateData: requestDateDataReducer,
+  handlePayment: handlePaymentReducer,
 });

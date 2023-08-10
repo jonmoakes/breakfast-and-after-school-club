@@ -15,7 +15,13 @@ const useConfirmSwal = () => {
   const swal = withReactContent(Swal);
   const { hamburgerHandlerNavigate } = useHamburgerHandlerNavigate();
 
-  const confirmSwal = (title, text, buttonText, confirmResult) => {
+  const confirmSwal = (
+    title,
+    text,
+    buttonText,
+    confirmResult,
+    cancelResult
+  ) => {
     swal
       .fire({
         title,
@@ -35,6 +41,8 @@ const useConfirmSwal = () => {
       .then((result) => {
         if (result.isConfirmed) {
           confirmResult();
+        } else if (result.isDismissed && cancelResult) {
+          cancelResult();
         }
       });
   };

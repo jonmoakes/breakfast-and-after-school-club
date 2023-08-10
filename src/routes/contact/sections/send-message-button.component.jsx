@@ -33,7 +33,10 @@ const SendMessageButton = () => {
           Send Message
         </YellowGreenButton>
       ) : (
-        isOnline && isLoading && <DisabledButton>please wait...</DisabledButton>
+        isOnline &&
+        isLoading && (
+          <DisabledButton className="disabled">please wait...</DisabledButton>
+        )
       )}
     </>
   );
