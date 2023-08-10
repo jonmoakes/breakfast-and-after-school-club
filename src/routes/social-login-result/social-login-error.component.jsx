@@ -1,38 +1,24 @@
-import { useSelector, useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 
+import useGetSocialLoginResult from "./social-login-hooks/use-get-social-login-result";
 import { selectError } from "../../store/user/user.selector";
-import { resetErrorMessage } from "../../store/user/user.slice";
 
 import TroubleShooting from "../../components/social-logins/sections/troubleshooting.component";
 
 import { Text } from "../../styles/p/p.styles";
 import { YellowGreenButton } from "../../styles/buttons/buttons.styles";
 
-import { contactRoute, signInRoute } from "../../strings/strings";
 import Safari from "../../components/social-logins/sections/safari.component";
 import Brave from "../../components/social-logins/sections/brave.component";
 
 const SocialLoginError = () => {
+  const {
+    reloadAndResetError,
+    returnToSignInAndResetError,
+    goToContactUsAndResetError,
+  } = useGetSocialLoginResult();
+
   const error = useSelector(selectError);
-
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
-
-  const reloadAndResetError = () => {
-    dispatch(resetErrorMessage());
-    window.location.reload();
-  };
-
-  const returnToSignInAndResetError = () => {
-    navigate(signInRoute);
-    dispatch(resetErrorMessage());
-  };
-
-  const goToContactUsAndResetError = () => {
-    navigate(contactRoute);
-    dispatch(resetErrorMessage());
-  };
 
   return (
     <>
@@ -55,6 +41,12 @@ const SocialLoginError = () => {
           <Text>
             once you have followed these steps, tap the page reload button
             below.
+          </Text>
+
+          <Text>
+            note, if you are using the app as a full screen app installed on
+            your device's home screen, you may need to force restart the app in
+            order for the changes to tak effect.
           </Text>
 
           <YellowGreenButton onClick={reloadAndResetError}>
