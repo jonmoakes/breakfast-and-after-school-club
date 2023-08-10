@@ -19,6 +19,11 @@ const SocialLoginError = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
+  const reloadAndResetError = () => {
+    dispatch(resetErrorMessage());
+    window.location.reload();
+  };
+
   const returnToSignInAndResetError = () => {
     navigate(signInRoute);
     dispatch(resetErrorMessage());
@@ -43,8 +48,20 @@ const SocialLoginError = () => {
           </Text>
 
           <TroubleShooting />
+
           <Safari />
           <Brave />
+
+          <Text>
+            once you have followed these steps, tap the page reload button
+            below.
+          </Text>
+
+          <YellowGreenButton onClick={reloadAndResetError}>
+            reload page
+          </YellowGreenButton>
+
+          <Text>or:</Text>
 
           <YellowGreenButton onClick={returnToSignInAndResetError}>
             back to sign in
