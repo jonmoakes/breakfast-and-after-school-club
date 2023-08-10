@@ -46,7 +46,7 @@ const SocialLoginError = () => {
           <Text>
             note, if you are using the app as a full screen app installed on
             your device's home screen, you may need to force restart the app in
-            order for the changes to tak effect.
+            order for the changes to take effect.
           </Text>
 
           <YellowGreenButton onClick={reloadAndResetError}>
