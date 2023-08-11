@@ -1,4 +1,7 @@
+import { useSelector } from "react-redux";
 import useNavigateToRoute from "./account-hooks/use-navigate-to-route";
+
+import { selectCurrentUser } from "../../store/user/user.selector";
 
 import { YellowGreenButton } from "../../styles/buttons/buttons.styles";
 import { ParentDiv } from "../../styles/div/div.styles";
@@ -14,6 +17,9 @@ const AccountButtonLinks = () => {
     navigateToCloseAccount,
   } = useNavigateToRoute();
 
+  const currentUser = useSelector(selectCurrentUser);
+  const { provider } = currentUser;
+
   return (
     <ParentDiv>
       <BlueH2>what would you like to do?</BlueH2>
@@ -28,15 +34,19 @@ const AccountButtonLinks = () => {
         add funds
       </YellowGreenButton>
 
-      <BlackHr />
-      <YellowGreenButton onClick={navigateToUpdateEmail}>
-        update email
-      </YellowGreenButton>
+      {provider === "email" ? (
+        <>
+          <BlackHr />
+          <YellowGreenButton onClick={navigateToUpdateEmail}>
+            update email
+          </YellowGreenButton>
 
-      <BlackHr />
-      <YellowGreenButton onClick={navigateToUpdatePassword}>
-        update password
-      </YellowGreenButton>
+          <BlackHr />
+          <YellowGreenButton onClick={navigateToUpdatePassword}>
+            update password
+          </YellowGreenButton>
+        </>
+      ) : null}
 
       <BlackHr />
       <YellowGreenButton onClick={navigateToCloseAccount}>

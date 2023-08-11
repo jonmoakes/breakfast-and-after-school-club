@@ -128,12 +128,16 @@ const App = () => {
 
             {/*private routes - if no user, redirect to sign in route */}
             <Route element={<PrivateRoutes />}>
+              <Route path={accountRoute} element={<Account />} />
+
               <Route
                 path={dashboardRoute}
                 element={
                   currentUser && currentUser.id === ownerId ? (
                     <Dashboard />
-                  ) : currentUser && currentUser.id !== ownerId ? null : null
+                  ) : (
+                    <Account />
+                  )
                 }
               />
               <Route

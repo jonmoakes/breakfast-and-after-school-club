@@ -8,8 +8,8 @@ import {
   socialLoginResultRoute,
 } from "../../strings/strings";
 
-const currentUser = (id, createdAt, name, email, walletBalance) => {
-  return { id, createdAt, name, email, walletBalance };
+const currentUser = (id, createdAt, name, email, walletBalance, provider) => {
+  return { id, createdAt, name, email, walletBalance, provider };
 };
 
 export const signInAsync = createAsyncThunk(
@@ -25,10 +25,10 @@ export const signInAsync = createAsyncThunk(
         [Query.equal("id", user.$id)]
       );
 
-      const { id, name, createdAt, walletBalance } =
+      const { id, name, createdAt, walletBalance, provider } =
         findCurrentUser.documents[0];
 
-      return currentUser(id, createdAt, name, email, walletBalance);
+      return currentUser(id, createdAt, name, email, walletBalance, provider);
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }
@@ -40,7 +40,7 @@ export const signUpAsync = createAsyncThunk(
   async ({ email, password, name }, thunkAPI) => {
     try {
       await account.create(ID.unique(), email, password, name);
-      await account.createEmailSession(email, password);
+      const session = await account.createEmailSession(email, password);
       const user = await account.get();
 
       const createdUser = {
@@ -49,6 +49,7 @@ export const signUpAsync = createAsyncThunk(
         name: user.name,
         email: user.email,
         walletBalance: 0,
+        provider: session.provider,
       };
 
       await databases.createDocument(
@@ -116,6 +117,7 @@ export const signInWithSocialAsync = createAsyncThunk(
   async (_, thunkAPI) => {
     try {
       const user = await account.get();
+      const session = await account.getSession("current");
 
       const getUserDocumentsList = await databases.listDocuments(
         import.meta.env.VITE_DEVELOPMENT_DATABASE_ID,
@@ -130,16 +132,17 @@ export const signInWithSocialAsync = createAsyncThunk(
         name: user.name,
         email: user.email,
         walletBalance: 0,
+        provider: session.provider,
       };
 
-      if (total === 0) {
-        await databases.createDocument(
-          import.meta.env.VITE_DEVELOPMENT_DATABASE_ID,
-          import.meta.env.VITE_USER_COLLECTION_ID,
-          user.$id,
-          createdUser
-        );
-      }
+      if (total) return;
+
+      await databases.createDocument(
+        import.meta.env.VITE_DEVELOPMENT_DATABASE_ID,
+        import.meta.env.VITE_USER_COLLECTION_ID,
+        user.$id,
+        createdUser
+      );
 
       setCurrentUser(createdUser);
     } catch (error) {
@@ -156,9 +159,7 @@ export const signInMagicUrlAsync = createAsyncThunk(
       const userId = urlParams.get("userId");
       const secret = urlParams.get("secret");
 
-      if (!userId || !secret) return;
-
-      await account.updateMagicURLSession(userId, secret);
+      const session = await account.updateMagicURLSession(userId, secret);
       const user = await account.get();
 
       const createdUser = {
@@ -167,6 +168,7 @@ export const signInMagicUrlAsync = createAsyncThunk(
         name: user.name,
         email: user.email,
         walletBalance: 0,
+        provider: session.provider,
       };
 
       const getUserDocumentsList = await databases.listDocuments(
@@ -176,14 +178,14 @@ export const signInMagicUrlAsync = createAsyncThunk(
       );
       const { total } = getUserDocumentsList;
 
-      if (total === 0) {
-        await databases.createDocument(
-          import.meta.env.VITE_DEVELOPMENT_DATABASE_ID,
-          import.meta.env.VITE_USER_COLLECTION_ID,
-          user.$id,
-          createdUser
-        );
-      }
+      if (total) return;
+
+      await databases.createDocument(
+        import.meta.env.VITE_DEVELOPMENT_DATABASE_ID,
+        import.meta.env.VITE_USER_COLLECTION_ID,
+        user.$id,
+        createdUser
+      );
 
       return createdUser;
     } catch (error) {
@@ -191,6 +193,8 @@ export const signInMagicUrlAsync = createAsyncThunk(
     }
   }
 );
+
+// Cannot destructure property 'id' of 'findCurrentUser.documents[0]' as it is undefined.
 
 export const getUserOnLoadAsync = createAsyncThunk(
   "user/getUserOnLoad",
@@ -204,10 +208,12 @@ export const getUserOnLoadAsync = createAsyncThunk(
         [Query.equal("id", user.$id)]
       );
 
-      const { id, name, email, createdAt, walletBalance } =
+      if (!findCurrentUser.total) return;
+
+      const { id, name, email, createdAt, walletBalance, provider } =
         findCurrentUser.documents[0];
 
-      return currentUser(id, createdAt, name, email, walletBalance);
+      return currentUser(id, createdAt, name, email, walletBalance, provider);
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }

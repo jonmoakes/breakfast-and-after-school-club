@@ -23,7 +23,7 @@ import { StyledLink } from "../../styles/link/link.styles";
 import { BlackTitle } from "../../styles/h1/h1.styles";
 import { Text } from "../../styles/p/p.styles";
 
-import { dashboardRoute, signUpRoute } from "../../strings/strings";
+import { accountRoute, signUpRoute } from "../../strings/strings";
 
 const SignIn = () => {
   useHandleSignInFormError();
@@ -34,7 +34,7 @@ const SignIn = () => {
 
   return (
     <Container>
-      {currentUser !== null && <Navigate replace to={dashboardRoute} />}
+      {currentUser !== null && <Navigate replace to={accountRoute} />}
       {isUserLoading ? <Loader /> : null}
 
       <ParentDiv>
