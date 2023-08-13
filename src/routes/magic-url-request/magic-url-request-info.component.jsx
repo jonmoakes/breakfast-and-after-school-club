@@ -80,7 +80,7 @@ const MagicUrlRequestInfo = () => {
               please note that if you are using the app installed on your
               homescreen rather than using it in your web browser, this method
               will open the app in your browser rather than in the home screen
-              app due to the way the magic url authenticatio works.
+              app due to the way the magic url authentication works.
             </Text>
             <Text>
               once you are signed in, add the app to your home screen again and

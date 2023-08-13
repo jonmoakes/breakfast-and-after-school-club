@@ -2,15 +2,17 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import { signInMagicUrlAsync } from "../../store/user/user.actions";
-import { selectMagicUrlRequestResult } from "../../store/magic-url-request/magic-url-request.selector";
+import { selectCurrentUser } from "../../store/user/user.selector";
 
 const useGetMagicUrlResult = () => {
-  const magicUrlRequestResult = useSelector(selectMagicUrlRequestResult);
+  const currentUser = useSelector(selectCurrentUser);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(signInMagicUrlAsync());
-  }, [dispatch, magicUrlRequestResult]);
+    if (!currentUser) {
+      dispatch(signInMagicUrlAsync());
+    }
+  }, [dispatch, currentUser]);
 };
 
 export default useGetMagicUrlResult;

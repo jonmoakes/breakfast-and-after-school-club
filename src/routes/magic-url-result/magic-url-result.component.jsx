@@ -1,4 +1,4 @@
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { Navigate, useNavigate } from "react-router-dom";
 
 import useGetMagicUrlResult from "./use-get-magic-url-result";
@@ -21,6 +21,8 @@ import { BlueH2 } from "../../styles/h2/h2.styles";
 import {
   accountRoute,
   appwriteNoUserError,
+  clickedOnInvalidLinkMessage,
+  invalidTokenPassedInRequest,
   magicUrlNoUserDocCreatedMessage,
   signInRoute,
 } from "../../strings/strings";
@@ -49,7 +51,7 @@ const MagicUrlResult = () => {
       <ParentDiv>
         {!error ? (
           <>
-            <BlackTitle>please wait...</BlackTitle>
+            <BlackTitle>please wahhit...</BlackTitle>
             <BlueH2>signing you in...</BlueH2>
           </>
         ) : (
@@ -62,6 +64,8 @@ const MagicUrlResult = () => {
               <br />
               {error === appwriteNoUserError
                 ? magicUrlNoUserDocCreatedMessage
+                : error === invalidTokenPassedInRequest
+                ? clickedOnInvalidLinkMessage
                 : error}
             </Text>
             <YellowGreenButton onClick={returnToSignInAndResetError}>

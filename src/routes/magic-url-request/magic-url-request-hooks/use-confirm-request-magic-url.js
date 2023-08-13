@@ -7,7 +7,7 @@ import { selectMagicUrlRequestEmail } from "../../../store/magic-url-request/mag
 
 import {
   confirmSendMagicUrlRequest,
-  imSureMessage,
+  yesSendIt,
 } from "../../../strings/strings";
 
 const useConfirmRequestMagicUrl = () => {
@@ -21,7 +21,12 @@ const useConfirmRequestMagicUrl = () => {
   };
 
   const confirmRequestMagicUrl = () => {
-    confirmSwal(confirmSendMagicUrlRequest, "", imSureMessage, confirmResult);
+    confirmSwal(
+      confirmSendMagicUrlRequest(magicUrlRequestEmail),
+      "",
+      yesSendIt,
+      confirmResult
+    );
   };
   return { confirmRequestMagicUrl };
 };

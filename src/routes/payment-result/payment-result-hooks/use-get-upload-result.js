@@ -12,6 +12,7 @@ import { selectCurrentUser } from "../../../store/user/user.selector";
 import { selectWalletFundsToAdd } from "../../../store/wallet-funds-to-add/wallet-funds-to-add.selector";
 import { resetAllHandlePaymentState } from "../../../store/handle-payment/handle-payment.slice";
 import { clearWalletFundsToAdd } from "../../../store/wallet-funds-to-add/wallet-funds-to-add.slice";
+import { resetCardInputState } from "../../../store/card-input-result/card-input-result.slice";
 
 import {
   accountRoute,
@@ -19,7 +20,6 @@ import {
   fundsAddedMessage,
   paymentSucceededButDatabaseUpdateErrorMessage,
 } from "../../../strings/strings";
-import { resetCardInputState } from "../../../store/card-input-result/card-input-result.slice";
 
 const useGetUploadResult = () => {
   const { fireSwal } = useFireSwal();
@@ -42,20 +42,15 @@ const useGetUploadResult = () => {
         dispatch(clearWalletFundsToAdd());
       }
 
-      fireSwal(
-        "success",
-        `thank you ${name}`,
-        fundsAddedMessage(email),
-        0,
-        true,
-        false
-      ).then((isConfirmed) => {
-        if (isConfirmed) {
-          dispatch(resetCardInputState());
-          dispatch(resetAllHandlePaymentState());
-          navigate(accountRoute);
+      fireSwal("success", fundsAddedMessage(email), "", 0, true, false).then(
+        (isConfirmed) => {
+          if (isConfirmed) {
+            dispatch(resetCardInputState());
+            dispatch(resetAllHandlePaymentState());
+            navigate(accountRoute);
+          }
         }
-      });
+      );
     } else if (uploadResult === "failed") {
       if (walletFundsToAdd) {
         dispatch(clearWalletFundsToAdd());

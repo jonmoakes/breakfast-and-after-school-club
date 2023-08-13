@@ -1,5 +1,3 @@
-import useGetSocialLoginResult from "./social-login-hooks/use-get-social-login-result";
-
 import { Container } from "../../styles/container/container.styles";
 import { ParentDiv } from "../../styles/div/div.styles";
 
@@ -8,8 +6,6 @@ import NavigateAndLoader from "./navigate-and-loader.component";
 import SocialLoginSuccess from "./social-login-success.component";
 
 const SocialLoginResult = () => {
-  useGetSocialLoginResult();
-
   return (
     <Container>
       <NavigateAndLoader />

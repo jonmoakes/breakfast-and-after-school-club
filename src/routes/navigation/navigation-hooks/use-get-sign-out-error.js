@@ -9,7 +9,10 @@ import {
 } from "../../../store/user/user.selector";
 import { resetErrorMessage } from "../../../store/user/user.slice";
 
-import { appwriteNoUserError } from "../../../strings/strings";
+import {
+  appwriteNoUserError,
+  appwriteIdAlreadyExistsError,
+} from "../../../strings/strings";
 
 const useGetSignOutError = () => {
   const { fireSwal } = useFireSwal();
@@ -20,7 +23,11 @@ const useGetSignOutError = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (signOutError === appwriteNoUserError) return;
+    if (
+      signOutError === appwriteNoUserError ||
+      signOutError === appwriteIdAlreadyExistsError
+    )
+      return;
 
     if (signOutError && signOutError !== appwriteNoUserError) {
       fireSwal("error", signOutError, "", 0, true, false).then(

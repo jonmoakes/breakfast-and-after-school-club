@@ -1,15 +1,15 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 import {
+  getUserOnLoadAsync,
   signInAsync,
   signUpAsync,
   requestFacebookSignInAsync,
   requestGoogleSignInAsync,
-  signInWithSocialAsync,
   signInMagicUrlAsync,
-  getUserOnLoadAsync,
   signOutAsync,
 } from "./user.actions";
+
 import {
   errorRequestingFacebookSignIn,
   errorRequestingGoogleSignIn,
@@ -37,6 +37,18 @@ const userSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
+      .addCase(getUserOnLoadAsync.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(getUserOnLoadAsync.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.currentUser = action.payload;
+        state.error = null;
+      })
+      .addCase(getUserOnLoadAsync.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = action.payload;
+      })
       .addCase(signInAsync.pending, (state) => {
         state.isLoading = true;
       })
@@ -83,17 +95,6 @@ const userSlice = createSlice({
         state.isLoading = false;
         state.error = errorRequestingGoogleSignIn;
       })
-      .addCase(signInWithSocialAsync.pending, (state) => {
-        state.isLoading = true;
-      })
-      .addCase(signInWithSocialAsync.fulfilled, (state) => {
-        state.isLoading = false;
-        state.error = null;
-      })
-      .addCase(signInWithSocialAsync.rejected, (state, action) => {
-        state.isLoading = false;
-        state.error = action.payload;
-      })
       .addCase(signInMagicUrlAsync.pending, (state) => {
         state.isLoading = true;
       })
@@ -103,18 +104,6 @@ const userSlice = createSlice({
         state.error = null;
       })
       .addCase(signInMagicUrlAsync.rejected, (state, action) => {
-        state.isLoading = false;
-        state.error = action.payload;
-      })
-      .addCase(getUserOnLoadAsync.pending, (state) => {
-        state.isLoading = true;
-      })
-      .addCase(getUserOnLoadAsync.fulfilled, (state, action) => {
-        state.isLoading = false;
-        state.currentUser = action.payload;
-        state.error = null;
-      })
-      .addCase(getUserOnLoadAsync.rejected, (state, action) => {
         state.isLoading = false;
         state.error = action.payload;
       })

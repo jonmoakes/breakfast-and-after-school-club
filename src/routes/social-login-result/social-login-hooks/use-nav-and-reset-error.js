@@ -1,14 +1,10 @@
-import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
-import { signInWithSocialAsync } from "../../../store/user/user.actions";
-import { selectCurrentUser } from "../../../store/user/user.selector";
 import { resetErrorMessage } from "../../../store/user/user.slice";
 import { contactRoute, signInRoute } from "../../../strings/strings";
 
-const useGetSocialLoginResult = () => {
-  const currentUser = useSelector(selectCurrentUser);
+const useNavAndResetError = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -27,11 +23,6 @@ const useGetSocialLoginResult = () => {
     dispatch(resetErrorMessage());
   };
 
-  useEffect(() => {
-    if (currentUser) return;
-    dispatch(signInWithSocialAsync());
-  }, [dispatch, currentUser]);
-
   return {
     reloadAndResetError,
     returnToSignInAndResetError,
@@ -39,4 +30,4 @@ const useGetSocialLoginResult = () => {
   };
 };
 
-export default useGetSocialLoginResult;
+export default useNavAndResetError;

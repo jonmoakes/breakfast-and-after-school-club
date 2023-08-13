@@ -52,13 +52,18 @@ export const magicUrlNoUserDocCreatedMessage =
   "your user session was created but we couldn't finish the process of creating your account. please contact us using our contact form quoting this error message.";
 export const appwriteNoUserError =
   "User (role: guests) missing scope (account)";
+export const appwriteIdAlreadyExistsError =
+  "Document with the requested ID already exists.";
+export const invalidTokenPassedInRequest =
+  "Invalid token passed in the request.";
 
 // success
 export const successMessage = "success!";
 export const checkEmailMessage = "please check your email!";
 export const fundsAddedMessage = (email) => {
-  return `The funds have been added to your wallet and a confirmation Email Has Been Sent To ${email}.`;
+  return `The funds have been added to your wallet and a confirmation Email Has Been Sent To<br/><span style="text-transform: lowercase; font-size: 20px; color: hsl(60, 100%, 50%);">${email}</span>`;
 };
+
 export const passwordResetSuccessMessage =
   "your password has been successfuly reset!";
 export const closeAccountSuccess =
@@ -92,6 +97,7 @@ export const walletHasPositiveBalanceMessage =
 export const loseAllAccountDataMessage = "you will permanently lose all data";
 export const contactOwnerQuotingError =
   "your wallet balance will not be showing correctly. please contact the owner quoting the following error: ";
+export const clickedOnInvalidLinkMessage = `you may have clicked on a sign in link in your email that has already been used. please request another link from the sign in page.`;
 
 //confirms
 export const confirmSignOutMessage = "are you sure you wish to sign out?";
@@ -112,8 +118,9 @@ export const sureResetPasswordMessage =
 export const imSureMessage = "i'm sure";
 export const addFundsMessage = "yes, add funds!";
 export const yesSendIt = "yes, send it!";
-export const confirmSendMagicUrlRequest =
-  "are you sure you'd like to request a magicUrl link in your email?";
+export const confirmSendMagicUrlRequest = (email) => {
+  return `would you like to send a magic URL request to <span style="text-transform: lowercase;  color: hsl(60, 100%, 50%);">${email}</span>?`;
+};
 
 //placeholders
 export const enterEmailAddress = "enter your email address";

@@ -1,6 +1,7 @@
 import { useSelector } from "react-redux";
 
-import useGetSocialLoginResult from "./social-login-hooks/use-get-social-login-result";
+import useNavAndResetError from "./social-login-hooks/use-nav-and-reset-error";
+
 import { selectError } from "../../store/user/user.selector";
 
 import TroubleShooting from "../../components/social-logins/sections/troubleshooting.component";
@@ -16,7 +17,7 @@ const SocialLoginError = () => {
     reloadAndResetError,
     returnToSignInAndResetError,
     goToContactUsAndResetError,
-  } = useGetSocialLoginResult();
+  } = useNavAndResetError();
 
   const error = useSelector(selectError);
 

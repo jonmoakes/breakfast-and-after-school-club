@@ -1,34 +1,48 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { account, databases } from "../../utils/appwrite/appwrite-config";
-import { ID, Query } from "appwrite";
-import { setCurrentUser } from "./user.slice";
+import { account } from "../../utils/appwrite/appwrite-config";
+import { ID } from "appwrite";
 
+import {
+  getUserDocument,
+  getRetrievedUserFromDocument,
+  createDocumentAndSetUser,
+} from "./functions";
 import {
   localhostSocialLoginResultRoute,
   socialLoginResultRoute,
 } from "../../strings/strings";
 
-const currentUser = (id, createdAt, name, email, walletBalance, provider) => {
-  return { id, createdAt, name, email, walletBalance, provider };
-};
+export const getUserOnLoadAsync = createAsyncThunk(
+  "user/getUserOnLoad",
+  async (_, thunkAPI) => {
+    try {
+      const userDocument = await getUserDocument();
+      const { user, session } = userDocument;
+
+      if (!user || !session) return;
+
+      const retrievedUser = await getRetrievedUserFromDocument();
+      const createdUser = await createDocumentAndSetUser();
+
+      if (retrievedUser) {
+        return retrievedUser;
+      } else if (createdUser) {
+        return createdUser;
+      } else if (!retrievedUser && !createdUser) {
+        return null;
+      }
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
 
 export const signInAsync = createAsyncThunk(
   "user/signIn",
   async ({ email, password }, thunkAPI) => {
     try {
       await account.createEmailSession(email, password);
-      const user = await account.get();
-
-      const findCurrentUser = await databases.listDocuments(
-        import.meta.env.VITE_DEVELOPMENT_DATABASE_ID,
-        import.meta.env.VITE_USER_COLLECTION_ID,
-        [Query.equal("id", user.$id)]
-      );
-
-      const { id, name, createdAt, walletBalance, provider } =
-        findCurrentUser.documents[0];
-
-      return currentUser(id, createdAt, name, email, walletBalance, provider);
+      return await getRetrievedUserFromDocument();
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }
@@ -40,26 +54,9 @@ export const signUpAsync = createAsyncThunk(
   async ({ email, password, name }, thunkAPI) => {
     try {
       await account.create(ID.unique(), email, password, name);
-      const session = await account.createEmailSession(email, password);
-      const user = await account.get();
+      await account.createEmailSession(email, password);
 
-      const createdUser = {
-        id: user.$id,
-        createdAt: user.$createdAt,
-        name: user.name,
-        email: user.email,
-        walletBalance: 0,
-        provider: session.provider,
-      };
-
-      await databases.createDocument(
-        import.meta.env.VITE_DEVELOPMENT_DATABASE_ID,
-        import.meta.env.VITE_USER_COLLECTION_ID,
-        user.$id,
-        createdUser
-      );
-
-      return createdUser;
+      return await createDocumentAndSetUser();
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }
@@ -112,45 +109,6 @@ export const requestGoogleSignInAsync = createAsyncThunk(
   }
 );
 
-export const signInWithSocialAsync = createAsyncThunk(
-  "user/signInWithSocial",
-  async (_, thunkAPI) => {
-    try {
-      const user = await account.get();
-      const session = await account.getSession("current");
-
-      const getUserDocumentsList = await databases.listDocuments(
-        import.meta.env.VITE_DEVELOPMENT_DATABASE_ID,
-        import.meta.env.VITE_USER_COLLECTION_ID,
-        [Query.equal("id", user.$id)]
-      );
-      const { total } = getUserDocumentsList;
-
-      const createdUser = {
-        id: user.$id,
-        createdAt: user.$createdAt,
-        name: user.name,
-        email: user.email,
-        walletBalance: 0,
-        provider: session.provider,
-      };
-
-      if (total) return;
-
-      await databases.createDocument(
-        import.meta.env.VITE_DEVELOPMENT_DATABASE_ID,
-        import.meta.env.VITE_USER_COLLECTION_ID,
-        user.$id,
-        createdUser
-      );
-
-      setCurrentUser(createdUser);
-    } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
-    }
-  }
-);
-
 export const signInMagicUrlAsync = createAsyncThunk(
   "user/signInWithMagicUrl",
   async (_, thunkAPI) => {
@@ -159,61 +117,18 @@ export const signInMagicUrlAsync = createAsyncThunk(
       const userId = urlParams.get("userId");
       const secret = urlParams.get("secret");
 
-      const session = await account.updateMagicURLSession(userId, secret);
-      const user = await account.get();
+      await account.updateMagicURLSession(userId, secret);
 
-      const createdUser = {
-        id: user.$id,
-        createdAt: user.$createdAt,
-        name: user.name,
-        email: user.email,
-        walletBalance: 0,
-        provider: session.provider,
-      };
+      const retrievedUser = await getRetrievedUserFromDocument();
+      const createdUser = await createDocumentAndSetUser();
 
-      const getUserDocumentsList = await databases.listDocuments(
-        import.meta.env.VITE_DEVELOPMENT_DATABASE_ID,
-        import.meta.env.VITE_USER_COLLECTION_ID,
-        [Query.equal("id", user.$id)]
-      );
-      const { total } = getUserDocumentsList;
-
-      if (total) return;
-
-      await databases.createDocument(
-        import.meta.env.VITE_DEVELOPMENT_DATABASE_ID,
-        import.meta.env.VITE_USER_COLLECTION_ID,
-        user.$id,
-        createdUser
-      );
-
-      return createdUser;
-    } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
-    }
-  }
-);
-
-// Cannot destructure property 'id' of 'findCurrentUser.documents[0]' as it is undefined.
-
-export const getUserOnLoadAsync = createAsyncThunk(
-  "user/getUserOnLoad",
-  async (_, thunkAPI) => {
-    try {
-      const user = await account.get();
-
-      const findCurrentUser = await databases.listDocuments(
-        import.meta.env.VITE_DEVELOPMENT_DATABASE_ID,
-        import.meta.env.VITE_USER_COLLECTION_ID,
-        [Query.equal("id", user.$id)]
-      );
-
-      if (!findCurrentUser.total) return;
-
-      const { id, name, email, createdAt, walletBalance, provider } =
-        findCurrentUser.documents[0];
-
-      return currentUser(id, createdAt, name, email, walletBalance, provider);
+      if (retrievedUser) {
+        return retrievedUser;
+      } else if (createdUser) {
+        return createdUser;
+      } else if (!retrievedUser && !createdUser) {
+        return null;
+      }
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }

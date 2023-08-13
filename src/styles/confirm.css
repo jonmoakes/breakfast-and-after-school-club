@@ -1,7 +1,7 @@
 .confirm {
   border-radius: 15px;
   width: 600px;
-  padding: "20px";
+  padding: 20px;
 }
 
 .confirm .swal2-title {
@@ -11,7 +11,6 @@
   text-transform: capitalize;
 }
 
-
 .confirm .swal2-question {
   border-color: lightskyblue;
   color: lightskyblue;
@@ -20,8 +19,8 @@
 
 .confirm .swal2-html-container {
   color: yellow;
-  font-size:25px;
-  font-weight:bold;
+  font-size: 25px;
+  font-weight: bold;
 }
 
 .confirm .swal2-confirm {
