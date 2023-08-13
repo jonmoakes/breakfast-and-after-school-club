@@ -1,25 +1,19 @@
-import { useSelector } from "react-redux";
+import useUpdatePasswordResultSwal from "./update-password-result-hooks/use-update-password-result-swal";
 
-import { selectIsLoading } from "../../store/loader/loader.selector";
-
-import Loader from "../../components/loader/loader.component";
-import Intro from "./sections/intro.component";
-import NewPasswords from "./sections/new-passwords.component";
-import UpdatePasswordButton from "./sections/update-password-button.component";
+import Intro from "./title-loader-info.component";
+import NewPasswords from "./new-passwords.component";
+import UpdatePasswordButton from "./update-password-button.component";
 
 import { Container } from "../../styles/container/container.styles";
 import { ParentDiv } from "../../styles/div/div.styles";
 import { Form } from "../../styles/form/form.styles";
 
 const UpdatePasswordResult = () => {
-  const isLoading = useSelector(selectIsLoading);
+  useUpdatePasswordResultSwal();
 
   return (
     <Container>
-      {isLoading ? <Loader /> : null}
-
       <Intro />
-
       <ParentDiv>
         <Form>
           <NewPasswords />

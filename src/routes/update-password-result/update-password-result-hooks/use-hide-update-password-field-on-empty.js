@@ -9,7 +9,7 @@ import {
   hideUpdatePasswordIsVisible,
   hideUpdatePasswordConfirmPasswordIsVisible,
 } from "../../../store/password-is-visible/password-is-visible.slice";
-import { selectUpdatePasswordDetails } from "../../../store/update-password/update-password.selector";
+import { selectUpdatePasswordDetails } from "../../../store/update-password-result/update-password-result.selector";
 
 const useHideUpdatePasswordFieldsOnEmpty = () => {
   const updatePasswordIsVisible = useSelector(selectUpdatePasswordIsVisible);

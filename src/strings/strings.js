@@ -23,7 +23,7 @@ export const appwritePasswordError =
 export const errorRequestForgotPasswordLinkMessage =
   "error requesting your forgot password link";
 export const errorRequestUpdatePasswordLinkMessage =
-  "error requesting update password link";
+  "error requesting update password link. please try again.";
 export const errorSendingAccountClosureRequest =
   "sorry, there was an error sending your request.";
 export const errorResettingPassword =
@@ -56,6 +56,8 @@ export const appwriteIdAlreadyExistsError =
   "Document with the requested ID already exists.";
 export const invalidTokenPassedInRequest =
   "Invalid token passed in the request.";
+export const errorUpdatingPasswordMessage =
+  "sorry, there was an error updating your password.";
 
 // success
 export const successMessage = "success!";
@@ -82,7 +84,7 @@ export const emailChangedMessage = "email changed!";
 export const signInWithNewEmailMessage =
   "for security reasons, we will now sign you out of all sessions. please wait until you are redirected to the sign in page, where you can then sign in with your new email address.";
 export const signOutThenSignInWithNewPasswordMessage =
-  "for security reasons, we have now signed you out of all sessions. you can now sign in with your new password.";
+  "for security reasons, we will now sign you out of all sessions. please wait until you are redirected to the sign in page, where you can then sign in with your new password.";
 export const passwordErrorMessage = "password error";
 export const passwordErrorInstructions =
   "please check your password and try again";
@@ -101,6 +103,9 @@ export const clickedOnInvalidLinkMessage = `you may have clicked on a sign in li
 export const chooseAnotherEmailMessage =
   "please choose a different email address.";
 export const sameEmailMessage = "that's the email you currently use.";
+export const alreadyClickedOnUpdatePasswordLink =
+  "you may have clicked on a sign in link in your email that has already been used. please sign in and request another link from the 'update password' page which you can find in your account page.";
+
 //confirms
 export const confirmSignOutMessage = "are you sure you wish to sign out?";
 export const redirectMessage = "this will redirect you to the sign in page.";
@@ -115,15 +120,18 @@ export const sureCloseAccountQuestion =
   "are you sure you wish to close your account with us?";
 export const sureSendContactFormMessage =
   "are you sure you want to send this message?";
+export const sureSendUpdatePasswordLinkMessage =
+  "are you sure you wish to send a link to your email to update your password?";
 export const sureResetPasswordMessage =
   "are you sure you wish to reset your password?";
+export const sureUpdatePasswordMessage =
+  "are you sure you wish to update your password?";
 export const imSureMessage = "i'm sure";
 export const addFundsMessage = "yes, add funds!";
 export const yesSendIt = "yes, send it!";
 export const confirmSendMagicUrlRequest = (email) => {
   return `would you like to send a magic URL request to <span style="text-transform: lowercase;  color: hsl(60, 100%, 50%);">${email}</span>?`;
 };
-
 export const confirmUpdateEmailMessage = (newEmail) => {
   return `are you sure you wish to update your email to be <span style="text-transform: lowercase;  color: hsl(60, 100%, 50%);">${newEmail}</span>?`;
 };

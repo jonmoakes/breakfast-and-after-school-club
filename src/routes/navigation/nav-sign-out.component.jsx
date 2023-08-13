@@ -1,6 +1,6 @@
 import { useSelector, useDispatch } from "react-redux";
 
-// import useGetSignOutError from "./navigation-hooks/use-get-sign-out-error";
+import useGetSignOutError from "./navigation-hooks/use-get-sign-out-error";
 import useConfirmSwal from "../../hooks/use-confirm-swal";
 import useFireSwal from "../../hooks/use-fire-swal";
 import useIsOnline from "../../hooks/use-is-online";
@@ -21,7 +21,7 @@ import {
 } from "../../strings/strings";
 
 const NavSignOut = () => {
-  // useGetSignOutError();
+  useGetSignOutError();
   const { confirmSwal } = useConfirmSwal();
   const { fireSwal } = useFireSwal();
   const { isOnline } = useIsOnline();

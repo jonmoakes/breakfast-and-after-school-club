@@ -1,7 +1,7 @@
 import { useSelector, useDispatch } from "react-redux";
 
-import { setNewPasswordDetails } from "../../../store/update-password/update-password.slice";
-import { selectUpdatePasswordDetails } from "../../../store/update-password/update-password.selector";
+import { setNewPasswordDetails } from "../../../store/update-password-result/update-password-result.slice";
+import { selectUpdatePasswordDetails } from "../../../store/update-password-result/update-password-result.selector";
 
 const useHandleUpdatePasswordFormChange = () => {
   const updatePasswordDetails = useSelector(selectUpdatePasswordDetails);

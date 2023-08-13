@@ -1,29 +1,26 @@
 import { useSelector, useDispatch } from "react-redux";
 
-import useHideUpdatePasswordFieldsOnEmpty from "../update-password-result-hooks/use-hide-update-password-field-on-empty";
-import useHandleUpdatePasswordFormChange from "../update-password-result-hooks/use-handle-update-password-form-change";
+import useHideUpdatePasswordFieldsOnEmpty from "./update-password-result-hooks/use-hide-update-password-field-on-empty";
+import useHandleUpdatePasswordFormChange from "./update-password-result-hooks/use-handle-update-password-form-change";
 
-import { selectUpdatePasswordDetails } from "../../../store/update-password/update-password.selector";
+import { selectUpdatePasswordDetails } from "../../store/update-password-result/update-password-result.selector";
 import {
   selectUpdatePasswordIsVisible,
   selectUpdatePasswordConfirmPasswordIsVisible,
-} from "../../../store/password-is-visible/password-is-visible.selector";
+} from "../../store/password-is-visible/password-is-visible.selector";
 import {
   toggleUpdatePasswordIsVisible,
   toggleUpdatePasswordConfirmPasswordIsVisible,
-} from "../../../store/password-is-visible/password-is-visible.slice";
+} from "../../store/password-is-visible/password-is-visible.slice";
 
-import { Label, PasswordInput } from "../../../styles/form/form.styles";
+import { Label, PasswordInput } from "../../styles/form/form.styles";
 import {
   ToggleUpdatePassword,
   ToggleConfirmUpdatePassword,
-} from "../../../styles/span/span.styles";
-import { RelativePositionDiv } from "../../../styles/div/div.styles";
+} from "../../styles/span/span.styles";
+import { RelativePositionDiv } from "../../styles/div/div.styles";
 
-import {
-  minEightCharacters,
-  confirmYourPassword,
-} from "../../../strings/strings";
+import { minEightCharacters, confirmYourPassword } from "../../strings/strings";
 
 const NewPasswords = () => {
   useHideUpdatePasswordFieldsOnEmpty();

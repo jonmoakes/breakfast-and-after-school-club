@@ -2,7 +2,7 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { account, databases } from "../../utils/appwrite/appwrite-config";
 
 export const updateEmailAsync = createAsyncThunk(
-  "user/updateEmail",
+  "updateEmail",
   async ({ newEmail, password, id }, thunkAPI) => {
     try {
       await account.updateEmail(newEmail, password);

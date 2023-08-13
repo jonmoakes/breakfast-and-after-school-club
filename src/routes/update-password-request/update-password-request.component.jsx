@@ -1,28 +1,18 @@
-import { useSelector } from "react-redux";
-import Balancer from "react-wrap-balancer";
+import useUpdatePasswordRequestResultSwal from "./update-password-request-hooks/use-update-password-request-result-swal";
 
-import { selectIsLoading } from "../../store/loader/loader.selector";
-
-import Loader from "../../components/loader/loader.component";
+import TitleAndLoader from "./title-and-loader.component";
 import Info from "./info.component";
 import UpdatePasswordRequestButton from "./update-password-request-button.component";
 
 import { Container } from "../../styles/container/container.styles";
 import { ParentDiv } from "../../styles/div/div.styles";
-import { BlackTitle } from "../../styles/h1/h1.styles";
 
 const UpdatePasswordRequest = () => {
-  const isLoading = useSelector(selectIsLoading);
+  useUpdatePasswordRequestResultSwal();
 
   return (
     <Container>
-      {isLoading ? <Loader /> : null}
-      <ParentDiv>
-        <BlackTitle>
-          <Balancer>update password request</Balancer>
-        </BlackTitle>
-      </ParentDiv>
-
+      <TitleAndLoader />
       <ParentDiv>
         <Info />
         <UpdatePasswordRequestButton />
