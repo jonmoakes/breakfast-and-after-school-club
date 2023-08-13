@@ -11,7 +11,7 @@ import { resetRequestDateDataState } from "../store/request-date-data/request-da
 import { clearShouldShowElementsState } from "../store/should-show-element/should-show-element.slice";
 import { clearSignInFormDetails } from "../store/sign-in-form/sign-in-form.slice";
 import { clearSignUpFormDetails } from "../store/sign-up-form/sign-up-form.slice";
-import { resetUpdateEmailFields } from "../store/update-email/update-email.slice";
+import { resetUpdateEmailState } from "../store/update-email/update-email.slice";
 import { clearWalletFundsToAdd } from "../store/wallet-funds-to-add/wallet-funds-to-add.slice";
 import { resetPreResultHandlePaymentState } from "../store/handle-payment/handle-payment.slice";
 
@@ -69,7 +69,7 @@ const useResetStore = () => {
         break;
       case updateEmailRoute:
         dispatch(clearShouldShowElementsState());
-        dispatch(resetUpdateEmailFields());
+        dispatch(resetUpdateEmailState());
         break;
       case updatePasswordRequestRoute:
         dispatch(clearShouldShowElementsState());

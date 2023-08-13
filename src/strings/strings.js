@@ -98,7 +98,9 @@ export const loseAllAccountDataMessage = "you will permanently lose all data";
 export const contactOwnerQuotingError =
   "your wallet balance will not be showing correctly. please contact the owner quoting the following error: ";
 export const clickedOnInvalidLinkMessage = `you may have clicked on a sign in link in your email that has already been used. please request another link from the sign in page.`;
-
+export const chooseAnotherEmailMessage =
+  "please choose a different email address.";
+export const sameEmailMessage = "that's the email you currently use.";
 //confirms
 export const confirmSignOutMessage = "are you sure you wish to sign out?";
 export const redirectMessage = "this will redirect you to the sign in page.";
@@ -120,6 +122,10 @@ export const addFundsMessage = "yes, add funds!";
 export const yesSendIt = "yes, send it!";
 export const confirmSendMagicUrlRequest = (email) => {
   return `would you like to send a magic URL request to <span style="text-transform: lowercase;  color: hsl(60, 100%, 50%);">${email}</span>?`;
+};
+
+export const confirmUpdateEmailMessage = (newEmail) => {
+  return `are you sure you wish to update your email to be <span style="text-transform: lowercase;  color: hsl(60, 100%, 50%);">${newEmail}</span>?`;
 };
 
 //placeholders
