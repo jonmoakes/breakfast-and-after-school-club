@@ -54,6 +54,8 @@ export const appwriteNoUserError =
   "User (role: guests) missing scope (account)";
 export const appwriteIdAlreadyExistsError =
   "Document with the requested ID already exists.";
+export const appwriteUserNotFoundMessage =
+  "User with the requested ID could not be found.";
 export const invalidTokenPassedInRequest =
   "Invalid token passed in the request.";
 export const errorUpdatingPasswordMessage =

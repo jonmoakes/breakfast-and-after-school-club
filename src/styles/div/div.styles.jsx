@@ -2,7 +2,6 @@ import styled from "styled-components";
 
 import {
   customBlack,
-  customBlue,
   customGrey,
   customOrange,
   customRed,
@@ -112,22 +111,12 @@ export const ParentDiv = styled.div`
 `;
 
 export const InnerDiv = styled.div`
-  width: 80%;
+  width: 90%;
   height: auto;
-  background-color: ${customBlue};
-  margin: 50px auto;
-  border-radius: 5px;
-  border: 1px solid black;
-
-  &.clear-bg {
-    background-color: ${customWhite};
-    border: none;
-    margin: 0px auto;
-    border-radius: unset;
-  }
+  margin: 0px auto;
 
   @media screen and (max-width: 600px) {
-    margin: 25px;
+    /* margin: 25px; */
   }
 
   @media screen and (max-width: 375px) {

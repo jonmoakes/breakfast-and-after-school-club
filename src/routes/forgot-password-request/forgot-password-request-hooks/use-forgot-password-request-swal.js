@@ -13,8 +13,11 @@ import {
 } from "../../../store/forgot-password-request/forgot-password-request.slice";
 
 import {
+  appwriteUserNotFoundMessage,
+  checkEmailMessage,
   emailAddressNotInDatabase,
   errorRequestForgotPasswordLinkMessage,
+  successMessage,
 } from "../../../strings/strings";
 
 const useForgotPasswordRequestSwal = () => {
@@ -28,16 +31,22 @@ const useForgotPasswordRequestSwal = () => {
     if (!error && !requestResult) return;
 
     if (requestResult) {
-      fireSwal("success", "Check your email", "", 0, true, false).then(
-        (isConfirmed) => {
-          if (isConfirmed) {
-            dispatch(resetPasswordRequestResult());
-          }
+      fireSwal(
+        "success",
+        successMessage,
+        checkEmailMessage,
+        "",
+        0,
+        true,
+        false
+      ).then((isConfirmed) => {
+        if (isConfirmed) {
+          dispatch(resetPasswordRequestResult());
         }
-      );
+      });
     } else if (error) {
       const errorMessageResult =
-        error === "User with the requested ID could not be found."
+        error === appwriteUserNotFoundMessage
           ? emailAddressNotInDatabase
           : `${error}`;
       fireSwal(

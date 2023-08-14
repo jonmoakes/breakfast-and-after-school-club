@@ -5,7 +5,7 @@ import { selectUpdatePasswordResultIsLoading } from "../../store/update-password
 
 import Loader from "../../components/loader/loader.component";
 
-import { InnerDiv, ParentDiv } from "../../styles/div/div.styles";
+import { ParentDiv } from "../../styles/div/div.styles";
 import { BlackTitle } from "../../styles/h1/h1.styles";
 import { Text } from "../../styles/p/p.styles";
 
@@ -16,11 +16,9 @@ const TitleLoaderInfo = () => {
     <>
       {isLoading ? <Loader /> : null}
       <ParentDiv>
-        <InnerDiv className="clear-bg">
-          <BlackTitle>
-            <Balancer>update your password</Balancer>
-          </BlackTitle>
-        </InnerDiv>
+        <BlackTitle>
+          <Balancer>update your password</Balancer>
+        </BlackTitle>
       </ParentDiv>
 
       <ParentDiv>

@@ -15,7 +15,7 @@ import { Text } from "../../../styles/p/p.styles";
 import { YellowGreenButton } from "../../../styles/buttons/buttons.styles";
 import { BlueSpan } from "../../../styles/span/span.styles";
 
-const SessionTimesAndPrices = () => {
+const TimesAndPricesAccordion = () => {
   const shouldShowSecondElement = useSelector(selectShouldShowSecondElement);
   const dispatch = useDispatch();
 
@@ -39,31 +39,36 @@ const SessionTimesAndPrices = () => {
               morning session:
               <br />
               7.30am &ndash; 9.00am
-              <br /> cost: <BlueSpan>£4.50</BlueSpan>
+              <br /> cost: <BlueSpan>£4</BlueSpan>
             </Text>
 
             <Text>
               afternoon session ( short ):
               <br />
               3.20pm &ndash; 4.30pm
-              <br /> cost: <BlueSpan>£4.50</BlueSpan>
+              <br /> cost: <BlueSpan>£4</BlueSpan>
             </Text>
 
             <Text>
               afternoon session ( long ):
               <br />
               3.20pm &ndash; 6pm
-              <br /> cost: <BlueSpan>£8</BlueSpan>
+              <br /> cost: <BlueSpan>£7</BlueSpan>
             </Text>
 
             <Text>
               morning and afternoon sessions ( short ):
-              <br /> cost: <BlueSpan>£9</BlueSpan>
+              <br /> cost: <BlueSpan>£8</BlueSpan>
             </Text>
 
             <Text>
               morning and afternoon sessions ( long ):
-              <br /> cost: <BlueSpan>£12.50</BlueSpan>
+              <br /> cost: <BlueSpan>£11</BlueSpan>
+            </Text>
+
+            <Text>
+              note: the only options that will show are the options that are
+              covered by the current funds in your wallet.
             </Text>
 
             <YellowGreenButton onClick={() => dispatch(hideSecondElement())}>
@@ -76,4 +81,4 @@ const SessionTimesAndPrices = () => {
   );
 };
 
-export default SessionTimesAndPrices;
+export default TimesAndPricesAccordion;

@@ -14,7 +14,7 @@ import Loader from "../../components/loader/loader.component";
 import MagicUrlInfo from "./magic-url-request-info.component";
 
 import { Container } from "../../styles/container/container.styles";
-import { InnerDiv, ParentDiv } from "../../styles/div/div.styles";
+import { ParentDiv } from "../../styles/div/div.styles";
 import { Form, Label, LowercasedInput } from "../../styles/form/form.styles";
 import { YellowGreenButton } from "../../styles/buttons/buttons.styles";
 import { BlackTitle } from "../../styles/h1/h1.styles";
@@ -33,11 +33,9 @@ const MagicUrlRequest = () => {
       {isLoading ? <Loader /> : null}
 
       <ParentDiv>
-        <InnerDiv className="clear-bg">
-          <BlackTitle>
-            <Balancer>sign in with a magic url</Balancer>
-          </BlackTitle>
-        </InnerDiv>
+        <BlackTitle>
+          <Balancer>sign in with a magic url</Balancer>
+        </BlackTitle>
       </ParentDiv>
 
       <ParentDiv>

@@ -7,7 +7,7 @@ import { Text } from "../../../styles/p/p.styles";
 const Intro = () => (
   <>
     <ParentDiv>
-      <InnerDiv className="clear-bg">
+      <InnerDiv>
         <BlackTitle>
           <Balancer>create your new password</Balancer>
         </BlackTitle>

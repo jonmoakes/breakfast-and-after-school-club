@@ -16,6 +16,7 @@ import { resetCardInputState } from "../../../store/card-input-result/card-input
 
 import {
   accountRoute,
+  bookSessionRoute,
   contactOwnerQuotingError,
   fundsAddedMessage,
   paymentSucceededButDatabaseUpdateErrorMessage,
@@ -47,7 +48,7 @@ const useGetUploadResult = () => {
           if (isConfirmed) {
             dispatch(resetCardInputState());
             dispatch(resetAllHandlePaymentState());
-            navigate(accountRoute);
+            navigate(bookSessionRoute);
           }
         }
       );
