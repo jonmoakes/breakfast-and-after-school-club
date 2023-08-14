@@ -7,17 +7,13 @@ const useHandleWalletFundsChange = () => {
   const handleWalletFundsChange = (event) => {
     const enteredValue = event.target.value;
 
-    const pattern = /^(\d*\.?\d*)$/;
+    const pattern = /^\d*$/;
     if (!pattern.test(enteredValue)) {
-      return; // Invalid pattern (non-digit characters or incorrect decimal format)
+      return; // Invalid pattern (non-digit characters)
     }
 
-    // const value = Number(enteredValue, 10);
-    //     if (value > 100) {
-    //       return;
-    //     }
-    const value = Number(enteredValue); // Use parseFloat for decimal values
-    if (isNaN(value) || value > 100) {
+    const value = Number(enteredValue, 10);
+    if (value > 100) {
       return;
     }
 
@@ -28,30 +24,3 @@ const useHandleWalletFundsChange = () => {
 };
 
 export default useHandleWalletFundsChange;
-
-// import { useDispatch } from "react-redux";
-// import { setWalletFundsToAdd } from "../../../store/wallet-funds-to-add/wallet-funds-to-add.slice";
-
-// const useHandleWalletFundsChange = () => {
-//   const dispatch = useDispatch();
-
-//   const handleWalletFundsChange = (event) => {
-//     const enteredValue = event.target.value;
-
-//     const pattern = /^\d*$/;
-//     if (!pattern.test(enteredValue)) {
-//       return; // Invalid pattern (non-digit characters)
-//     }
-
-//     const value = Number(enteredValue, 10);
-//     if (value > 100) {
-//       return;
-//     }
-
-//     dispatch(setWalletFundsToAdd(value));
-//   };
-
-//   return { handleWalletFundsChange };
-// };
-
-// export default useHandleWalletFundsChange;
