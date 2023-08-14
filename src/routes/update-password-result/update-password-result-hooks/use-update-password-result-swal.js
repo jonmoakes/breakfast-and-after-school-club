@@ -8,7 +8,6 @@ import {
   selectUpdatePasswordResult,
   selectUpdatePasswordResultError,
 } from "../../../store/update-password-result/update-password-result.selector";
-import { selectCurrentUser } from "../../../store/user/user.selector";
 
 import { resetError } from "../../../store/update-password-result/update-password-result.slice";
 
@@ -17,7 +16,6 @@ import {
   errorUpdatingPasswordMessage,
   invalidTokenPassedInRequest,
   passwordResetSuccessMessage,
-  passwordUpdateMustBeSignedInMessage,
   signInRoute,
   signOutThenSignInWithNewPasswordMessage,
   updatePasswordRequestRoute,
@@ -26,7 +24,6 @@ import {
 const useUpdatePasswordResultSwal = () => {
   const { fireSwal } = useFireSwal();
 
-  const currentUser = useSelector(selectCurrentUser);
   const result = useSelector(selectUpdatePasswordResult);
   const error = useSelector(selectUpdatePasswordResultError);
 
@@ -36,20 +33,7 @@ const useUpdatePasswordResultSwal = () => {
   useEffect(() => {
     if (!result && !error) return;
 
-    if (!currentUser && !result && !error) {
-      fireSwal(
-        "error",
-        passwordUpdateMustBeSignedInMessage,
-        "",
-        0,
-        true,
-        false
-      ).then((isConfirmed) => {
-        if (isConfirmed) {
-          navigate(signInRoute);
-        }
-      });
-    } else if (currentUser && result === "succeeded") {
+    if (result === "succeeded") {
       fireSwal(
         "success",
         passwordResetSuccessMessage,
@@ -63,7 +47,6 @@ const useUpdatePasswordResultSwal = () => {
         window.location.reload();
       }, 5000);
     } else if (
-      currentUser &&
       result === "failure" &&
       error &&
       error === invalidTokenPassedInRequest
@@ -82,7 +65,6 @@ const useUpdatePasswordResultSwal = () => {
         }
       });
     } else if (
-      currentUser &&
       result === "failure" &&
       error &&
       error !== invalidTokenPassedInRequest
@@ -97,10 +79,11 @@ const useUpdatePasswordResultSwal = () => {
       ).then((isConfirmed) => {
         if (isConfirmed) {
           dispatch(resetError());
+          navigate(updatePasswordRequestRoute);
         }
       });
     }
-  }, [result, error, fireSwal, dispatch, currentUser, navigate]);
+  }, [result, error, fireSwal, dispatch, navigate]);
 };
 
 export default useUpdatePasswordResultSwal;

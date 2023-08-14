@@ -16,6 +16,7 @@ export const getUserOnLoadAsync = createAsyncThunk(
   "user/getUserOnLoad",
   async (_, thunkAPI) => {
     try {
+      // throw new Error("whoops")
       const userDocument = await getUserDocument();
       const { user, session } = userDocument;
 

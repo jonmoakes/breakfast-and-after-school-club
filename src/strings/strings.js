@@ -58,6 +58,8 @@ export const invalidTokenPassedInRequest =
   "Invalid token passed in the request.";
 export const errorUpdatingPasswordMessage =
   "sorry, there was an error updating your password.";
+export const mustBeSignedInMessage =
+  "you must be signed in to perform this request.";
 
 // success
 export const successMessage = "success!";

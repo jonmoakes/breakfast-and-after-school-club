@@ -36,11 +36,7 @@ const AddFundsHelp = () => {
               pounds ) that would like to add.
             </Text>
             <Text>
-              ie 10 for £10
-              <br />
-              or
-              <br />
-              5.50 for £5.50
+              please enter a whole number - no decimals are permitted.
             </Text>
             <Text>the minimum that you can add is £1.</Text>
             <Text>the maximum value you can add is £100</Text>
