@@ -23,17 +23,18 @@ const useHandleWalletFundsChange = () => {
   const handleWalletFundsChange = (event) => {
     const enteredValue = event.target.value;
 
-    const pattern = /^(\d*\.?\d*)$/;
+    // Allow digits, a single optional decimal point, and up to 2 decimal places
+    const pattern = /^(\d*\.?\d{0,2})$/;
     if (!pattern.test(enteredValue)) {
-      return; // Invalid pattern (non-digit characters or incorrect decimal format)
+      return; // Invalid pattern (non-digit characters or incorrect format)
     }
 
     const value = parseFloat(enteredValue); // Parse decimal values
 
-    // Enforce a maximum value of 100
-    const clampedValue = Math.min(value, 100);
+    // Enforce maximum values
+    const clampedValue = Math.min(value, 100.0, 99.99);
 
-    dispatch(setWalletFundsToAdd(clampedValue));
+    dispatch(setWalletFundsToAdd(Number(clampedValue)));
   };
 
   return { handleWalletFundsChange };

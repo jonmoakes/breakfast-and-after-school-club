@@ -18,7 +18,7 @@ const ChooseWalletFundsToAdd = () => {
   return (
     <Form className="add-funds">
       <StyledInput
-        type="number"
+        type="text"
         name="walletFunds"
         value={walletFundsToAdd || ""}
         min={1}
