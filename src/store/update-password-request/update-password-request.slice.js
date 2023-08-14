@@ -13,7 +13,10 @@ export const updatePasswordRequestAsync = createAsyncThunk(
       if (import.meta.env.MODE === "development") {
         await account.createRecovery(email, localhostUpdatePasswordResultRoute);
       } else if (import.meta.env.MODE === "production") {
-        await account.createRecovery(email, updatePasswordRequestRoute);
+        await account.createRecovery(
+          email,
+          `https://breakfast-and-after-school-club.netlify.app${updatePasswordRequestRoute}`
+        );
       }
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);

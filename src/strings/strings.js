@@ -63,7 +63,7 @@ export const errorUpdatingPasswordMessage =
 export const successMessage = "success!";
 export const checkEmailMessage = "please check your email!";
 export const fundsAddedMessage = (email) => {
-  return `The funds have been added to your wallet and a confirmation Email Has Been Sent To<br/><span style="text-transform: lowercase; font-size: 20px; color: hsl(60, 100%, 50%);">${email}</span>`;
+  return `Success! The funds have been added to your wallet and a confirmation Email Has Been Sent To<br/><span style="text-transform: lowercase; font-size: 20px; color: hsl(60, 100%, 50%);">${email}</span>`;
 };
 
 export const passwordResetSuccessMessage =
