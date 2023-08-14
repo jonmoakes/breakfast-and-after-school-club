@@ -19,8 +19,6 @@ const ChooseWalletFundsToAdd = () => {
     <Form className="add-funds">
       <StyledInput
         type="number"
-        pattern="[0-9]*\.?[0-9]*"
-        inputMode="decimal"
         name="walletFunds"
         value={walletFundsToAdd || ""}
         min={1}
