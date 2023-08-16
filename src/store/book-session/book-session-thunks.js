@@ -27,7 +27,10 @@ export const updateSessionDocAsync = createAsyncThunk(
           updatedSessionSpaces = {
             morningSessionSpaces: morningSessionSpaces - 1,
           };
-        } else if (sessionType === "afternoon") {
+        } else if (
+          sessionType === "afternoonShort" ||
+          sessionType === "afternoonLong"
+        ) {
           updatedSessionSpaces = {
             afternoonSessionSpaces: afternoonSessionSpaces - 1,
           };
@@ -100,7 +103,10 @@ export const resetSessionDocAsync = createAsyncThunk(
           updatedSessionSpaces = {
             morningSessionSpaces: morningSessionSpaces + 1,
           };
-        } else if (sessionType === "afternoon") {
+        } else if (
+          sessionType === "afternoonShort" ||
+          sessionType === "afternoonLong"
+        ) {
           updatedSessionSpaces = {
             afternoonSessionSpaces: afternoonSessionSpaces + 1,
           };
