@@ -21,6 +21,8 @@ import { closeAccountReducer } from "./close-account/close-account.slice";
 import { uploadDatesToDatabaseReducer } from "./upload-dates-to-database/upload-dates-to-database.slice";
 import { requestDateDataReducer } from "./request-date-data/request-date-data.slice";
 import { handlePaymentReducer } from "./handle-payment/handle-payment.slice";
+import { bookSessionReducer } from "./book-session/book-session.slice";
+import { sessionTypesAndPricesReducer } from "./session-types-and-prices/session-types-and-prices.slice";
 
 export const rootReducer = combineReducers({
   hamburgerMenu: hamburgerMenuReducer,
@@ -44,4 +46,6 @@ export const rootReducer = combineReducers({
   uploadDatesToDatabase: uploadDatesToDatabaseReducer,
   requestDateData: requestDateDataReducer,
   handlePayment: handlePaymentReducer,
+  bookSession: bookSessionReducer,
+  sessionTypesAndPrices: sessionTypesAndPricesReducer,
 });

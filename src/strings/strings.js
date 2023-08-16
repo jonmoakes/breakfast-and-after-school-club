@@ -1,3 +1,4 @@
+import { format } from "date-fns";
 //errors
 export const errorSendingMessage =
   "sorry, there was an error sending your message...";
@@ -62,6 +63,12 @@ export const errorUpdatingPasswordMessage =
   "sorry, there was an error updating your password.";
 export const mustBeSignedInMessage =
   "you must be signed in to perform this request.";
+export const sessionDocFailureMessage = "session doc failure";
+export const balanceDocFailureMessage = "balance doc failure";
+export const resetSessionDocFailureMessage = "reset session doc failure";
+export const updateSessionDocErrorMessage = `<span style="font-size: 20px;">there was an error booking your session. your wallet balance has not changed. if the issue persists, please contact us using the contact form and quote the following error:</span>`;
+export const errorBookingSessionMessage = `<span style="font-size: 20px;">sorry, there was an error making your booking. your wallet balance has not been deducted. please tap the "ok" button to continue. if the issue continues, please contact us using the contact form and quote the following error:</span>`;
+export const resetSessionErrorMessage = `<span style="font-size: 20px;">well this is embarassing.. We've had another error on our end, please contact us and quote the following error:</span>`;
 
 // success
 export const successMessage = "success!";
@@ -69,13 +76,15 @@ export const checkEmailMessage = "please check your email!";
 export const fundsAddedMessage = (email) => {
   return `Success! The funds have been added to your wallet and a confirmation Email Has Been Sent To<br/><span style="text-transform: lowercase; font-size: 20px; color: hsl(60, 100%, 50%);">${email}</span>`;
 };
-
 export const passwordResetSuccessMessage =
   "your password has been successfuly reset!";
 export const closeAccountSuccess =
   "the closure of your account is now being processed!";
 export const datesUploadedToDatabaseSuccessMessage =
   "the dates have been successfully uploaded to the database!";
+export const viewBookingsMessage =
+  "you can view your sessions in the 'bookings' page.";
+export const sessionBookedMessage = "session booked!";
 
 // infos
 export const emailResponseTimeMessage =
@@ -119,6 +128,16 @@ export const confirmAddFundsMessage = (walletFunds) => {
   return `are you sure you wish to add £${walletFunds.toFixed(
     2
   )} to your wallet?`;
+};
+
+export const confirmSureBookSession = (date) => {
+  return `are you sure you want to book the morning session for ${format(
+    new Date(date),
+    "dd MMMM yyyy"
+  )}?`;
+};
+export const fundsDeductedFromBalance = (price) => {
+  return `£${price / 100} will be deducted from your wallet balance.`;
 };
 export const sureCloseAccountQuestion =
   "are you sure you wish to close your account with us?";

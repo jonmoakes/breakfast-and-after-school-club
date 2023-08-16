@@ -17,7 +17,6 @@ export const getClientSecretAsync = createAsyncThunk(
       ).then((res) => res.json());
 
       const client_secret = response.paymentIntent.client_secret;
-      console.log("payment intent ", response.paymentIntent);
 
       return client_secret;
     } catch (error) {

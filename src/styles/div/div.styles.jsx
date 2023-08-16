@@ -284,6 +284,10 @@ export const AccordionTitle = styled.div.withConfig({
 export const SecondAccordion = styled(Accordion).withConfig({
   shouldForwardProp: (prop) => prop !== "shouldShowSecondElement",
 })`
+  &.book-session {
+    margin: 20px auto;
+  }
+
   width: ${({ shouldShowSecondElement }) =>
     shouldShowSecondElement ? "70%" : "30%"};
 

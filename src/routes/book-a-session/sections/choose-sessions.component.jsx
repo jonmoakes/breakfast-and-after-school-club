@@ -14,6 +14,7 @@ import { Text } from "../../../styles/p/p.styles";
 import { StyledLink } from "../../../styles/link/link.styles";
 
 import { addFundsRoute } from "../../../strings/strings";
+import WalletBalance from "../../../components/wallet-balance/wallet-balance.component";
 
 const ChooseSessions = () => {
   const { noSessionsAvailable, dateNotChosenOrDateChosenAndBalanceTooLow } =
@@ -26,16 +27,20 @@ const ChooseSessions = () => {
         <>
           <ParentDiv>
             <BlueH2>choose sessions:</BlueH2>
+            <TimesAndPricesAccordion />
             <InnerDiv>
+              <BlackHr />
+              <WalletBalance />
+              <BlackHr />
               <Text>
                 based on your balance and the spaces available, you can choose
-                the following options. tap the "view times & prices" button
-                below for more details and to see if you need to{" "}
-                <StyledLink to={addFundsRoute}>add more funds</StyledLink> to
-                your wallet.
+                the following options.
+              </Text>
+              <Text>
+                if you need to add more funds,{" "}
+                <StyledLink to={addFundsRoute}>tap here</StyledLink>.
               </Text>
             </InnerDiv>
-            <TimesAndPricesAccordion />
 
             <ColumnDiv>
               <BlackHr />
