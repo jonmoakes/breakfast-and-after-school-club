@@ -1,6 +1,8 @@
 import useCheckSpacesAvailableAndBalance from "../book-a-session-hooks/use-check-spaces-available-and-balance";
 
 import TimesAndPricesAccordion from "./times-and-prices-accordion.component";
+import WalletBalance from "../../../components/wallet-balance/wallet-balance.component";
+import OptionsAvailableInfo from "./options-available-info.component";
 import MorningSessionButton from "./buttons/morning-session-button.component";
 import AfternoonSessionShortButton from "./buttons/afternoon-session-short-button.component";
 import AfternoonSessionLongButton from "./buttons/afternoon-session-long-button.component";
@@ -10,11 +12,6 @@ import MorningAndAfternoonLongSessionButton from "./buttons/morning-and-afternoo
 import { ColumnDiv, InnerDiv, ParentDiv } from "../../../styles/div/div.styles";
 import { BlackHr } from "../../../styles/hr/hr.styles";
 import { BlueH2 } from "../../../styles/h2/h2.styles";
-import { Text } from "../../../styles/p/p.styles";
-import { StyledLink } from "../../../styles/link/link.styles";
-
-import { addFundsRoute } from "../../../strings/strings";
-import WalletBalance from "../../../components/wallet-balance/wallet-balance.component";
 
 const ChooseSessions = () => {
   const { noSessionsAvailable, dateNotChosenOrDateChosenAndBalanceTooLow } =
@@ -32,14 +29,7 @@ const ChooseSessions = () => {
               <BlackHr />
               <WalletBalance />
               <BlackHr />
-              <Text>
-                based on your balance and the spaces available, you can choose
-                the following options.
-              </Text>
-              <Text>
-                if you need to add more funds,{" "}
-                <StyledLink to={addFundsRoute}>tap here</StyledLink>.
-              </Text>
+              <OptionsAvailableInfo />
             </InnerDiv>
 
             <ColumnDiv>
