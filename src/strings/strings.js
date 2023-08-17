@@ -130,8 +130,23 @@ export const confirmAddFundsMessage = (walletFunds) => {
   )} to your wallet?`;
 };
 
-export const confirmSureBookSession = (date) => {
-  return `are you sure you want to book the morning session for ${format(
+export const confirmSureBookSession = (sessionType, date) => {
+  const getSessionTypeString = () => {
+    switch (sessionType) {
+      case "afternoonShort":
+        return "afternoon short";
+      case "afternoonLong":
+        return "afternoon long";
+      case "morningAndAfternoonShort":
+        return "morning and afternoon short";
+      case "morningAndAfternoonLong":
+        return "morning and afternoon Long";
+      default:
+        return "morning";
+    }
+  };
+
+  return `are you sure you want to book the ${getSessionTypeString()} session for ${format(
     new Date(date),
     "dd MMMM yyyy"
   )}?`;

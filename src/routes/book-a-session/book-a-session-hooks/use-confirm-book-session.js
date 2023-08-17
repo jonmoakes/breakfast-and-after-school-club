@@ -35,8 +35,9 @@ const useConfirmBookSession = () => {
   };
 
   const confirmBookSession = (sessionType, price) => {
+    console.log(sessionType);
     confirmSwal(
-      confirmSureBookSession(date),
+      confirmSureBookSession(sessionType, date),
       fundsDeductedFromBalance(price),
       imSureMessage,
       () => confirmResult(sessionType, price)
