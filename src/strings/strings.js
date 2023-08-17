@@ -69,7 +69,12 @@ export const resetSessionDocFailureMessage = "reset session doc failure";
 export const updateSessionDocErrorMessage = `<span style="font-size: 20px;">there was an error booking your session. your wallet balance has not changed. if the issue persists, please contact us using the contact form and quote the following error:</span>`;
 export const errorBookingSessionMessage = `<span style="font-size: 20px;">sorry, there was an error making your booking. your wallet balance has not been deducted. please tap the "ok" button to continue. if the issue continues, please contact us using the contact form and quote the following error:</span>`;
 export const resetSessionErrorMessage = `<span style="font-size: 20px;">well this is embarassing.. We've had another error on our end, please contact us and quote the following error:</span>`;
-
+export const lastMinuteNoSessionsMessage =
+  "sorry, just before you pressed the confirm button, another user booked the last session..";
+export const morningSessionSpacesInvalidDocError =
+  'Invalid document structure: Attribute "morningSessionSpaces" has invalid format. Value must be a valid range between 0 and 30';
+export const afternoonSessionSpacesInvalidDocError =
+  'Invalid document structure: Attribute "afternoonSessionSpaces" has invalid format. Value must be a valid range between 0 and 30';
 // success
 export const successMessage = "success!";
 export const checkEmailMessage = "please check your email!";
@@ -118,7 +123,8 @@ export const chooseAnotherEmailMessage =
 export const sameEmailMessage = "that's the email you currently use.";
 export const alreadyClickedOnUpdatePasswordLink =
   "you may have clicked on a sign in link in your email that has already been used. please sign in and request another link from the 'update password' page which you can find in your account page.";
-
+export const checkBackRegularlyMessage =
+  "if a session becomes available again, it will appear here in realtime so please check back often!";
 //confirms
 export const confirmSignOutMessage = "are you sure you wish to sign out?";
 export const redirectMessage = "this will redirect you to the sign in page.";

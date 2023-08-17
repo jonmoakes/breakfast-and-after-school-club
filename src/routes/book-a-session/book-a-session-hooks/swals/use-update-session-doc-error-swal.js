@@ -6,7 +6,11 @@ import useResetStateAndNavigate from "../return-logic-and-reset-state/use-reset-
 import { selectUpdateSessionDoc } from "../../../../store/book-session/book-session.selector";
 
 import {
+  afternoonSessionSpacesInvalidDocError,
   bookSessionRoute,
+  checkBackRegularlyMessage,
+  lastMinuteNoSessionsMessage,
+  morningSessionSpacesInvalidDocError,
   updateSessionDocErrorMessage,
 } from "../../../../strings/strings";
 
@@ -18,18 +22,37 @@ const useUpdateSessionDocErrorSwal = () => {
   const updateSessionError = updateSessionDoc.error;
 
   const updateSessionDocErrorSwal = () => {
-    fireSwal(
-      "error",
-      updateSessionDocErrorMessage,
-      `"${updateSessionError}"`,
-      0,
-      true,
-      false
-    ).then((isConfirmed) => {
-      if (isConfirmed) {
-        resetStateAndNavigate(bookSessionRoute);
-      }
-    });
+    if (
+      updateSessionError === lastMinuteNoSessionsMessage ||
+      updateSessionError === morningSessionSpacesInvalidDocError ||
+      updateSessionError === afternoonSessionSpacesInvalidDocError
+    ) {
+      fireSwal(
+        "error",
+        lastMinuteNoSessionsMessage,
+        checkBackRegularlyMessage,
+        0,
+        true,
+        false
+      ).then((isConfirmed) => {
+        if (isConfirmed) {
+          resetStateAndNavigate(bookSessionRoute);
+        }
+      });
+    } else {
+      fireSwal(
+        "error",
+        updateSessionDocErrorMessage,
+        `"${updateSessionError}"`,
+        0,
+        true,
+        false
+      ).then((isConfirmed) => {
+        if (isConfirmed) {
+          resetStateAndNavigate(bookSessionRoute);
+        }
+      });
+    }
   };
 
   return { updateSessionDocErrorSwal };
