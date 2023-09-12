@@ -34,6 +34,7 @@ const ChooseSessions = () => {
 
             <ColumnDiv>
               <BlackHr />
+
               <MorningSessionButton />
               <AfternoonSessionShortButton />
               <AfternoonSessionLongButton />

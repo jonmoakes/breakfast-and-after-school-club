@@ -1,11 +1,13 @@
 import { useSelector, useDispatch } from "react-redux";
 
 import { selectShouldShowElement } from "../../../store/should-show-element/should-show-element.selector";
+import { selectMorningSessionPrice } from "../../../store/session-types-and-prices/session-types-and-prices.selector";
 import {
   hideElement,
   toggleShowElement,
 } from "../../../store/should-show-element/should-show-element.slice";
 import { selectCurrentUser } from "../../../store/user/user.selector";
+
 import WalletBalance from "../../../components/wallet-balance/wallet-balance.component";
 
 import {
@@ -19,19 +21,28 @@ import { YellowGreenButton } from "../../../styles/buttons/buttons.styles";
 import { StyledLink } from "../../../styles/link/link.styles";
 
 import { addFundsRoute } from "../../../strings/strings";
-import { morningsessionPrice } from "../../../session-prices/session-prices";
+
+import { priceMultipliedBy100 } from "../../../functions/price-multiplied-by-100";
 
 const BalanceCheckAndBookSessionHelp = () => {
   const currentUser = useSelector(selectCurrentUser);
+  const sessionPrice = useSelector(selectMorningSessionPrice);
+  const shouldShowElement = useSelector(selectShouldShowElement);
+
+  const dispatch = useDispatch();
+
   const { walletBalance } = currentUser;
 
-  const shouldShowElement = useSelector(selectShouldShowElement);
-  const dispatch = useDispatch();
+  const hasInsufficientFunds = () => {
+    return !walletBalance || walletBalance < priceMultipliedBy100(sessionPrice)
+      ? true
+      : false;
+  };
 
   return (
     <ParentDiv>
       <WalletBalance />
-      {!walletBalance || walletBalance < morningsessionPrice ? (
+      {hasInsufficientFunds() ? (
         <Text>
           you need at least £4 in your wallet to book a session. please{" "}
           <StyledLink to={addFundsRoute}>Add funds</StyledLink> to your account

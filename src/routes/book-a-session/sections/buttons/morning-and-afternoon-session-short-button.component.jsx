@@ -4,22 +4,26 @@ import useCheckSpacesAvailable from "../../book-a-session-hooks/use-check-spaces
 import useConfirmSession from "../../book-a-session-hooks/use-confirm-session";
 
 import { selectCurrentUser } from "../../../../store/user/user.selector";
-import { selectMorningAndAfternoonShortSession } from "../../../../store/session-types-and-prices/session-types-and-prices.selector";
+import {
+  selectMorningAndAfternoonShortSessionType,
+  selectMorningAndAfternoonShortSessionPrice,
+} from "../../../../store/session-types-and-prices/session-types-and-prices.selector";
 
 import { YellowGreenButton } from "../../../../styles/buttons/buttons.styles";
 import { BlackHr } from "../../../../styles/hr/hr.styles";
+import { priceMultipliedBy100 } from "../../../../functions/price-multiplied-by-100";
 
 const MorningAndAfternoonShortSessionButton = () => {
   const { allSessionsAvailable } = useCheckSpacesAvailable();
   const { confirmSession } = useConfirmSession();
 
   const currentUser = useSelector(selectCurrentUser);
-  const morningAndAfternoonShortSessionData = useSelector(
-    selectMorningAndAfternoonShortSession
-  );
+  const sessionType = useSelector(selectMorningAndAfternoonShortSessionType);
+  const sessionPrice = useSelector(selectMorningAndAfternoonShortSessionPrice);
 
   const { walletBalance } = currentUser;
-  const { sessionType, price } = morningAndAfternoonShortSessionData;
+
+  const price = priceMultipliedBy100(sessionPrice);
 
   return (
     <>

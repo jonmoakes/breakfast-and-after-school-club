@@ -3,18 +3,24 @@ import { useSelector } from "react-redux";
 import useCheckSpacesAvailable from "../../book-a-session-hooks/use-check-spaces-available-and-balance";
 import useConfirmSession from "../../book-a-session-hooks/use-confirm-session";
 
-import { selectMorningSession } from "../../../../store/session-types-and-prices/session-types-and-prices.selector";
+import {
+  selectMorningSessionType,
+  selectMorningSessionPrice,
+} from "../../../../store/session-types-and-prices/session-types-and-prices.selector";
 
 import { YellowGreenButton } from "../../../../styles/buttons/buttons.styles";
 import { BlackHr } from "../../../../styles/hr/hr.styles";
+import { priceMultipliedBy100 } from "../../../../functions/price-multiplied-by-100";
 
 const MorningSessionButton = () => {
   const { onlyMorningSessionsAvailable, allSessionsAvailable } =
     useCheckSpacesAvailable();
   const { confirmSession } = useConfirmSession();
 
-  const morningSessionData = useSelector(selectMorningSession);
-  const { sessionType, price } = morningSessionData;
+  const sessionType = useSelector(selectMorningSessionType);
+  const sessionPrice = useSelector(selectMorningSessionPrice);
+
+  const price = priceMultipliedBy100(sessionPrice);
 
   return (
     <>

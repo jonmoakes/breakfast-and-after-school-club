@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 import useSessionSpacesListener from "../../hooks/use-session-spaces-listener";
 import useRequestDateData from "./book-a-session-hooks/use-request-date-data";
 import useGetBookSessionResultSwal from "./book-a-session-hooks/swals/use-get-book-session-result-swal";
+import useGetSessionPrices from "./book-a-session-hooks/use-get-session-prices";
 
 import { selectRequestDateDataIsLoading } from "../../store/request-date-data/request-date-data.selector";
 import { selectBookSessionIsLoading } from "../../store/book-session/book-session.selector";
@@ -21,6 +22,7 @@ const BookASession = () => {
   useSessionSpacesListener();
   useRequestDateData();
   useGetBookSessionResultSwal();
+  useGetSessionPrices();
 
   const requestDateDataIsLoading = useSelector(selectRequestDateDataIsLoading);
   const bookSessionIsLoading = useSelector(selectBookSessionIsLoading);

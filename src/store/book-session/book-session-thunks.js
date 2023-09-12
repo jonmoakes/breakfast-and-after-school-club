@@ -2,6 +2,7 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import { databases } from "../../utils/appwrite/appwrite-config";
 import { Query } from "appwrite";
 import { getUserDocument } from "../user/functions";
+
 import { lastMinuteNoSessionsMessage } from "../../strings/strings";
 
 export const updateSessionDocAsync = createAsyncThunk(
@@ -22,8 +23,6 @@ export const updateSessionDocAsync = createAsyncThunk(
         const { $id, morningSessionSpaces, afternoonSessionSpaces } =
           dateDocument[0];
 
-        let updatedSessionSpaces = {};
-
         if (
           (sessionType === "morning" && !morningSessionSpaces) ||
           (sessionType === "afternoonShort" && !afternoonSessionSpaces) ||
@@ -38,6 +37,8 @@ export const updateSessionDocAsync = createAsyncThunk(
         ) {
           throw new Error(lastMinuteNoSessionsMessage);
         }
+
+        let updatedSessionSpaces = {};
 
         if (sessionType === "morning") {
           updatedSessionSpaces = {

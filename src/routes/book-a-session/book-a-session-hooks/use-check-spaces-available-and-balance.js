@@ -4,15 +4,17 @@ import useGetRequestDateDataValues from "./use-get-request-date-data-values";
 
 import { selectRequestDateData } from "../../../store/request-date-data/request-date-data.selector";
 import { selectCurrentUser } from "../../../store/user/user.selector";
-
-import { morningsessionPrice } from "../../../session-prices/session-prices";
+import { selectMorningSessionPrice } from "../../../store/session-types-and-prices/session-types-and-prices.selector";
+import { priceMultipliedBy100 } from "../../../functions/price-multiplied-by-100";
 
 const useCheckSpacesAvailableAndBalance = () => {
   const { date, morningSessionSpaces, afternoonSessionSpaces } =
     useGetRequestDateDataValues();
 
   const requestDateData = useSelector(selectRequestDateData);
+  const sessionPrice = useSelector(selectMorningSessionPrice);
   const currentUser = useSelector(selectCurrentUser);
+
   const { walletBalance } = currentUser;
 
   const noSessionsAvailable = () => {
@@ -63,7 +65,7 @@ const useCheckSpacesAvailableAndBalance = () => {
   const dateNotChosenOrDateChosenAndBalanceTooLow = () => {
     return !requestDateData
       ? true
-      : requestDateData && walletBalance < morningsessionPrice
+      : requestDateData && walletBalance < priceMultipliedBy100(sessionPrice)
       ? true
       : false;
   };

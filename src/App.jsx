@@ -7,6 +7,7 @@ import "./App.css";
 
 import useGetUserOnLoad from "./hooks/use-get-user-on-load";
 import useWalletBalanceListener from "./hooks/use-wallet-balance-listener";
+import useSessionPricesListener from "./hooks/use-session-prices-listener";
 
 import { selectCurrentUser } from "./store/user/user.selector";
 
@@ -85,6 +86,7 @@ const ForgotPasswordResult = lazy(() =>
 const App = () => {
   useGetUserOnLoad();
   useWalletBalanceListener();
+  useSessionPricesListener();
 
   const currentUser = useSelector(selectCurrentUser);
   const ownerId = import.meta.env.VITE_APP_OWNER_ID;

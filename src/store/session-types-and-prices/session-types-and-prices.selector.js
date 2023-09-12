@@ -3,31 +3,72 @@ import { createSelector } from "reselect";
 const selectSessionTypesAndPricesReducer = (state) =>
   state.sessionTypesAndPrices;
 
-export const selectMorningSession = createSelector(
-  [selectSessionTypesAndPricesReducer],
-  (sessionTypesAndPricesSlice) => sessionTypesAndPricesSlice.morningSession
-);
-
-export const selectAfternoonShortSession = createSelector(
+export const selectMorningSessionType = createSelector(
   [selectSessionTypesAndPricesReducer],
   (sessionTypesAndPricesSlice) =>
-    sessionTypesAndPricesSlice.afternoonShortSession
+    sessionTypesAndPricesSlice?.sessionTypesAndPrices?.morningSession
+      ?.sessionType ?? ""
 );
 
-export const selectAfternoonLongSession = createSelector(
+export const selectMorningSessionPrice = createSelector(
   [selectSessionTypesAndPricesReducer],
   (sessionTypesAndPricesSlice) =>
-    sessionTypesAndPricesSlice.afternoonLongSession
+    sessionTypesAndPricesSlice?.sessionTypesAndPrices?.morningSession?.price ??
+    null
 );
 
-export const selectMorningAndAfternoonShortSession = createSelector(
+export const selectAfternoonShortSessionType = createSelector(
   [selectSessionTypesAndPricesReducer],
   (sessionTypesAndPricesSlice) =>
-    sessionTypesAndPricesSlice.morningAndAfternoonShortSession
+    sessionTypesAndPricesSlice?.sessionTypesAndPrices?.afternoonShortSession
+      ?.sessionType ?? ""
 );
 
-export const selectMorningAndAfternoonLongSession = createSelector(
+export const selectAfternoonShortSessionPrice = createSelector(
   [selectSessionTypesAndPricesReducer],
   (sessionTypesAndPricesSlice) =>
-    sessionTypesAndPricesSlice.morningAndAfternoonLongSession
+    sessionTypesAndPricesSlice?.sessionTypesAndPrices?.afternoonShortSession
+      ?.price ?? null
+);
+
+export const selectAfternoonLongSessionType = createSelector(
+  [selectSessionTypesAndPricesReducer],
+  (sessionTypesAndPricesSlice) =>
+    sessionTypesAndPricesSlice?.sessionTypesAndPrices?.afternoonLongSession
+      ?.sessionType ?? ""
+);
+
+export const selectAfternoonLongSessionPrice = createSelector(
+  [selectSessionTypesAndPricesReducer],
+  (sessionTypesAndPricesSlice) =>
+    sessionTypesAndPricesSlice?.sessionTypesAndPrices?.afternoonLongSession
+      ?.price ?? null
+);
+
+export const selectMorningAndAfternoonShortSessionType = createSelector(
+  [selectSessionTypesAndPricesReducer],
+  (sessionTypesAndPricesSlice) =>
+    sessionTypesAndPricesSlice?.sessionTypesAndPrices
+      ?.morningAndAfternoonShortSession?.sessionType ?? ""
+);
+
+export const selectMorningAndAfternoonShortSessionPrice = createSelector(
+  [selectSessionTypesAndPricesReducer],
+  (sessionTypesAndPricesSlice) =>
+    sessionTypesAndPricesSlice?.sessionTypesAndPrices
+      ?.morningAndAfternoonShortSession?.price ?? null
+);
+
+export const selectMorningAndAfternoonLongSessionType = createSelector(
+  [selectSessionTypesAndPricesReducer],
+  (sessionTypesAndPricesSlice) =>
+    sessionTypesAndPricesSlice?.sessionTypesAndPrices
+      ?.morningAndAfternoonLongSession?.sessionType ?? ""
+);
+
+export const selectMorningAndAfternoonLongSessionPrice = createSelector(
+  [selectSessionTypesAndPricesReducer],
+  (sessionTypesAndPricesSlice) =>
+    sessionTypesAndPricesSlice?.sessionTypesAndPrices
+      ?.morningAndAfternoonLongSession?.price ?? null
 );
