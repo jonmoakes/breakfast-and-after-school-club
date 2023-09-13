@@ -3,6 +3,16 @@ import { createSelector } from "reselect";
 const selectSessionTypesAndPricesReducer = (state) =>
   state.sessionTypesAndPrices;
 
+export const selectGetPricesIsLoading = createSelector(
+  [selectSessionTypesAndPricesReducer],
+  (sessionTypesAndPricesSlice) => sessionTypesAndPricesSlice.isLoading
+);
+
+export const selectGetPricesError = createSelector(
+  [selectSessionTypesAndPricesReducer],
+  (sessionTypesAndPricesSlice) => sessionTypesAndPricesSlice.error
+);
+
 export const selectMorningSessionType = createSelector(
   [selectSessionTypesAndPricesReducer],
   (sessionTypesAndPricesSlice) =>

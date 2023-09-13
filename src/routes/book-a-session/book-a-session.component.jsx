@@ -1,17 +1,13 @@
-import { useSelector } from "react-redux";
-
 import useSessionSpacesListener from "../../hooks/use-session-spaces-listener";
 import useRequestDateData from "./book-a-session-hooks/use-request-date-data";
 import useGetBookSessionResultSwal from "./book-a-session-hooks/swals/use-get-book-session-result-swal";
 import useGetSessionPrices from "./book-a-session-hooks/use-get-session-prices";
+import useIsOnline from "../../hooks/use-is-online";
 
-import { selectRequestDateDataIsLoading } from "../../store/request-date-data/request-date-data.selector";
-import { selectBookSessionIsLoading } from "../../store/book-session/book-session.selector";
-
-import Loader from "../../components/loader/loader.component";
+import Loaders from "./sections/loaders.component";
+import NetworkError from "../../components/errors/network-error.component";
 import BalanceCheckAndBookSessionHelp from "./sections/balance-check-and-book-session-help.component";
 import ChooseDate from "./sections/choose-date.component";
-
 import ChooseSessions from "./sections/choose-sessions.component";
 
 import { Container } from "../../styles/container/container.styles";
@@ -23,21 +19,25 @@ const BookASession = () => {
   useRequestDateData();
   useGetBookSessionResultSwal();
   useGetSessionPrices();
-
-  const requestDateDataIsLoading = useSelector(selectRequestDateDataIsLoading);
-  const bookSessionIsLoading = useSelector(selectBookSessionIsLoading);
+  const { isOnline } = useIsOnline();
 
   return (
     <Container>
-      {requestDateDataIsLoading || bookSessionIsLoading ? <Loader /> : null}
+      <Loaders />
 
       <ParentDiv>
         <BlackTitle>book a session</BlackTitle>
       </ParentDiv>
 
-      <BalanceCheckAndBookSessionHelp />
-      <ChooseDate />
-      <ChooseSessions />
+      {isOnline ? (
+        <>
+          <BalanceCheckAndBookSessionHelp />
+          <ChooseDate />
+          <ChooseSessions />
+        </>
+      ) : (
+        <NetworkError />
+      )}
     </Container>
   );
 };
