@@ -5,6 +5,7 @@ import { selectGetPricesError } from "../../../store/session-types-and-prices/se
 import { ParentDiv } from "../../../styles/div/div.styles";
 import { StyledLink } from "../../../styles/link/link.styles";
 import { Text } from "../../../styles/p/p.styles";
+import { contactRoute } from "../../../strings/strings";
 
 const ErrorFetchingPrices = () => {
   const error = useSelector(selectGetPricesError);
@@ -19,8 +20,8 @@ const ErrorFetchingPrices = () => {
       </Text>
       <Text>
         if you continue to see this error message, please{" "}
-        <StyledLink>contact us</StyledLink> and quote the error message. Thank
-        you!
+        <StyledLink to={contactRoute}>contact us</StyledLink> and quote the
+        error message. Thank you!
       </Text>
     </ParentDiv>
   );

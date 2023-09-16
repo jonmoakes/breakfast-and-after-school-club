@@ -1,6 +1,6 @@
 import { useSelector } from "react-redux";
 
-import useCheckSpacesAvailable from "../../book-a-session-hooks/use-check-spaces-available-and-balance";
+import useConditionalLogic from "../../book-a-session-hooks/use-conditional-logic";
 import useConfirmSession from "../../book-a-session-hooks/use-confirm-session";
 
 import { selectCurrentUser } from "../../../../store/user/user.selector";
@@ -14,7 +14,7 @@ import { BlackHr } from "../../../../styles/hr/hr.styles";
 import { priceMultipliedBy100 } from "../../../../functions/price-multiplied-by-100";
 
 const MorningAndAfternoonShortSessionButton = () => {
-  const { allSessionsAvailable } = useCheckSpacesAvailable();
+  const { allSessionsAvailable } = useConditionalLogic();
   const { confirmSession } = useConfirmSession();
 
   const currentUser = useSelector(selectCurrentUser);

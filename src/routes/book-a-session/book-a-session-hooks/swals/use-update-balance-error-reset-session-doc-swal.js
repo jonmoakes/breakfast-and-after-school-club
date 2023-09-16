@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 
 import useFireSwal from "../../../../hooks/use-fire-swal";
 import useResetStateAndNavigate from "../return-logic-and-reset-state/use-reset-state-and-navigate";
-import useGetRequestDateDataValues from "../use-get-request-date-data-values";
+import useConditionalLogic from "../use-conditional-logic";
 
 import {
   selectSessionType,
@@ -21,7 +21,7 @@ import {
 const useUpdateBalanceErrorResetSessionDocSwal = () => {
   const { fireSwal } = useFireSwal();
   const { resetStateAndNavigate } = useResetStateAndNavigate();
-  const { date } = useGetRequestDateDataValues();
+  const { date } = useConditionalLogic();
 
   const sessionType = useSelector(selectSessionType);
   const updateUserDocBalance = useSelector(selectUpdateUserDocBalance);

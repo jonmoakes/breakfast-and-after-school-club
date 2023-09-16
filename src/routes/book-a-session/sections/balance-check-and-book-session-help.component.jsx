@@ -1,12 +1,12 @@
 import { useSelector, useDispatch } from "react-redux";
 
+import useConditionalLogic from "../book-a-session-hooks/use-conditional-logic";
+
 import { selectShouldShowElement } from "../../../store/should-show-element/should-show-element.selector";
-import { selectMorningSessionPrice } from "../../../store/session-types-and-prices/session-types-and-prices.selector";
 import {
   hideElement,
   toggleShowElement,
 } from "../../../store/should-show-element/should-show-element.slice";
-import { selectCurrentUser } from "../../../store/user/user.selector";
 
 import WalletBalance from "../../../components/wallet-balance/wallet-balance.component";
 
@@ -22,22 +22,11 @@ import { StyledLink } from "../../../styles/link/link.styles";
 
 import { addFundsRoute } from "../../../strings/strings";
 
-import { priceMultipliedBy100 } from "../../../functions/price-multiplied-by-100";
-
 const BalanceCheckAndBookSessionHelp = () => {
-  const currentUser = useSelector(selectCurrentUser);
-  const sessionPrice = useSelector(selectMorningSessionPrice);
+  const { hasInsufficientFunds } = useConditionalLogic();
+
   const shouldShowElement = useSelector(selectShouldShowElement);
-
   const dispatch = useDispatch();
-
-  const { walletBalance } = currentUser;
-
-  const hasInsufficientFunds = () => {
-    return !walletBalance || walletBalance < priceMultipliedBy100(sessionPrice)
-      ? true
-      : false;
-  };
 
   return (
     <ParentDiv>

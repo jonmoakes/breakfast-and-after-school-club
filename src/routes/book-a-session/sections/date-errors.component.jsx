@@ -1,37 +1,27 @@
-import { useSelector } from "react-redux";
-import { format } from "date-fns";
-
-import useGetRequestDateDataValues from "../book-a-session-hooks/use-get-request-date-data-values";
-
-import {
-  selectRequestDateDataErrorMessage,
-  selectChosenDate,
-} from "../../../store/request-date-data/request-date-data.selector";
+import useConditionalLogic from "../book-a-session-hooks/use-conditional-logic";
 
 import { WarningDiv } from "../../../styles/div/div.styles";
 import { Text } from "../../../styles/p/p.styles";
 
 const DateErrors = () => {
-  const { date } = useGetRequestDateDataValues();
-
-  const dateErrorMessage = useSelector(selectRequestDateDataErrorMessage);
-  const chosenDate = useSelector(selectChosenDate);
-
-  const todaysDate = format(new Date(), "yyyy-MM-dd");
+  const { dateUnavailable, dateChosenInThePast, earlyFinishDates, isToday } =
+    useConditionalLogic();
 
   return (
     <>
-      {chosenDate && chosenDate < todaysDate ? (
+      {dateUnavailable() ? (
+        <WarningDiv>
+          <Text>
+            sorry, there are no sessions available{" "}
+            {isToday() ? "today" : "for this day"}.
+          </Text>
+          <Text>please try another day.</Text>
+        </WarningDiv>
+      ) : dateChosenInThePast() ? (
         <WarningDiv>
           <Text>you chose a date in the past. please try again.</Text>
         </WarningDiv>
-      ) : dateErrorMessage ? (
-        <WarningDiv>
-          <Text>sorry, we aren't in school on that day!</Text>
-        </WarningDiv>
-      ) : date === "2023-12-22" ||
-        date === "2024-03-28" ||
-        date === "2024-07-23" ? (
+      ) : earlyFinishDates() ? (
         <WarningDiv>
           <Text>
             please note, we close at 1:30pm on this date which is why no

@@ -1,6 +1,6 @@
 import { useSelector } from "react-redux";
 
-import useCheckSpacesAvailable from "../../book-a-session-hooks/use-check-spaces-available-and-balance";
+import useConditionalLogic from "../../book-a-session-hooks/use-conditional-logic";
 import useConfirmSession from "../../book-a-session-hooks/use-confirm-session";
 
 import {
@@ -14,7 +14,7 @@ import { priceMultipliedBy100 } from "../../../../functions/price-multiplied-by-
 
 const AfternoonSessionShortButton = () => {
   const { onlyAfternoonSessionsAvailable, allSessionsAvailable } =
-    useCheckSpacesAvailable();
+    useConditionalLogic();
   const { confirmSession } = useConfirmSession();
 
   const sessionType = useSelector(selectAfternoonShortSessionType);
