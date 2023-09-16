@@ -34,16 +34,13 @@ const CloseAccount = () => {
           "close account" button below.
         </Text>
         <Text>
-          once we have received your request, you account and all of it's data
+          once we have received your request, your account and all of it's data
           will be deleted.
         </Text>
         <Text>
           please allow up to 14 days for all of this data to be deleted.
         </Text>
-        <Text>
-          you will receive an email confirming that all of your data has been
-          deleted once the data deletion has occured.
-        </Text>
+        <Text>you will receive an email once the process is complete.</Text>
         <Text>
           please make sure that if you have funds in your account, that you
           either spend or request a refund for the amount in your wallet before

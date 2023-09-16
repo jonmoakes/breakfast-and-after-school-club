@@ -14,6 +14,7 @@ import { clearSignUpFormDetails } from "../store/sign-up-form/sign-up-form.slice
 import { resetUpdateEmailState } from "../store/update-email/update-email.slice";
 import { clearWalletFundsToAdd } from "../store/wallet-funds-to-add/wallet-funds-to-add.slice";
 import { resetPreResultHandlePaymentState } from "../store/handle-payment/handle-payment.slice";
+import { resetUpdatePasswordRequestState } from "../store/update-password-request/update-password-request.slice";
 
 import {
   addFundsRoute,
@@ -28,7 +29,6 @@ import {
   updatePasswordRequestRoute,
   updatePasswordResultRoute,
 } from "../strings/strings";
-import { resetUpdatePasswordRequestState } from "../store/update-password-request/update-password-request.slice";
 
 const useResetStore = () => {
   const dispatch = useDispatch();
@@ -66,7 +66,7 @@ const useResetStore = () => {
         break;
       case bookSessionRoute:
         dispatch(resetRequestDateDataState());
-        dispatch(dispatch(clearShouldShowElementsState()));
+        dispatch(clearShouldShowElementsState());
         break;
       case updateEmailRoute:
         dispatch(clearShouldShowElementsState());

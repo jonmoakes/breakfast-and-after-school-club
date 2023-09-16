@@ -15,11 +15,12 @@ const DateErrors = () => {
             sorry, there are no sessions available{" "}
             {isToday() ? "today" : "for this day"}.
           </Text>
-          <Text>please try another day.</Text>
         </WarningDiv>
       ) : dateChosenInThePast() ? (
         <WarningDiv>
-          <Text>you chose a date in the past. please try again.</Text>
+          <Text>
+            you have chosen a date that is in the past. please try again.
+          </Text>
         </WarningDiv>
       ) : earlyFinishDates() ? (
         <WarningDiv>
