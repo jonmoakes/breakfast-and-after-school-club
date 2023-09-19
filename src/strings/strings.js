@@ -195,6 +195,7 @@ export const contactRoute = "/contact";
 export const dashboardRoute = "/dashboard";
 export const accountRoute = "/account";
 export const childInfoRoute = "/child-info";
+export const childInfoAddRoute = "/child-info-add";
 export const signInRoute = "/sign-in";
 export const signUpRoute = "/sign-up";
 export const magicUrlRequestRoute = "/magic-url-request";

@@ -61,3 +61,17 @@ export const SocialImage = styled.img`
     margin: 10px auto;
   }
 `;
+
+export const AddIcon = styled.img`
+  width: 70px;
+  height: 70px;
+  background-color: transparent;
+  position: relative;
+  right: 6px;
+  top: -1px;
+
+  @media screen and (max-width: 600px) {
+    width: 60px;
+    height: 60px;
+  }
+`;

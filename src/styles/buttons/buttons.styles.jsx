@@ -1,4 +1,5 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
+import { pulse } from "react-animations";
 
 import {
   customBlack,
@@ -7,6 +8,8 @@ import {
   customWhite,
   customYellow,
 } from "../colors";
+
+const PulseAnimation = keyframes`${pulse}`;
 
 export const Button = styled.button`
   width: 250px;
@@ -83,5 +86,32 @@ export const YellowGreenButton = styled(Button)`
       background-color: unset;
       color: unset;
     }
+  }
+`;
+
+export const AddButton = styled.button`
+  width: 70px;
+  height: 70px;
+  position: fixed;
+  right: 30px;
+  top: 110px;
+  background-color: transparent;
+  border: none;
+  z-index: 10;
+  outline: none;
+  cursor: pointer;
+  animation: infinite 1s ${PulseAnimation};
+
+  @media screen and (max-width: 850px) {
+    right: 20px;
+  }
+
+  @media screen and (max-width: 600px) {
+    right: -10px;
+  }
+
+  @media screen and (max-width: 450px) {
+    right: 5px;
+    top: 100px;
   }
 `;

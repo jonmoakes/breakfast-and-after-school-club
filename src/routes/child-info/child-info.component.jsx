@@ -1,10 +1,13 @@
 import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 
 import { selectShouldShowElement } from "../../store/should-show-element/should-show-element.selector";
 import {
   hideElement,
   toggleShowElement,
 } from "../../store/should-show-element/should-show-element.slice";
+
+import FloatingAddButton from "../../components/floating-add-button/floating-add-button.component";
 
 import { YellowGreenButton } from "../../styles/buttons/buttons.styles";
 import { Container } from "../../styles/container/container.styles";
@@ -18,11 +21,16 @@ import { BlackTitle } from "../../styles/h1/h1.styles";
 import { Text } from "../../styles/p/p.styles";
 import { LowercasedSpan } from "../../styles/span/span.styles";
 
+import { childInfoAddRoute } from "../../strings/strings";
+
 const ChildInfo = () => {
   const shouldShowElement = useSelector(selectShouldShowElement);
   const dispatch = useDispatch();
   return (
     <Container>
+      <Link to={childInfoAddRoute}>
+        <FloatingAddButton />
+      </Link>
       <ParentDiv>
         <BlackTitle>child info</BlackTitle>
       </ParentDiv>
