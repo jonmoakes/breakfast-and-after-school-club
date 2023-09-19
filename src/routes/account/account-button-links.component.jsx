@@ -9,51 +9,34 @@ import { BlueH2 } from "../../styles/h2/h2.styles";
 import { BlackHr } from "../../styles/hr/hr.styles";
 
 const AccountButtonLinks = () => {
-  const {
-    navigateToBookSession,
-    navigateToAddFunds,
-    navigateToUpdateEmail,
-    navigateToUpdatePassword,
-    navigateToCloseAccount,
-  } = useNavigateToRoute();
-
   const currentUser = useSelector(selectCurrentUser);
   const { provider } = currentUser;
+
+  const { emailProviderButtons, authProviderButtons } = useNavigateToRoute();
 
   return (
     <ParentDiv>
       <BlueH2>what would you like to do?</BlueH2>
 
-      <BlackHr />
-      <YellowGreenButton onClick={navigateToBookSession}>
-        book a session
-      </YellowGreenButton>
-
-      <BlackHr />
-      <YellowGreenButton onClick={navigateToAddFunds}>
-        add funds
-      </YellowGreenButton>
-
-      {provider === "email" ? (
-        <>
-          <BlackHr />
-          <YellowGreenButton onClick={navigateToUpdateEmail}>
-            update email
-          </YellowGreenButton>
-
-          <BlackHr />
-          <YellowGreenButton onClick={navigateToUpdatePassword}>
-            update password
-          </YellowGreenButton>
-        </>
-      ) : null}
-
-      <BlackHr />
-      <YellowGreenButton onClick={navigateToCloseAccount}>
-        close account
-      </YellowGreenButton>
-
-      <BlackHr />
+      {provider === "email"
+        ? emailProviderButtons.map((button) => {
+            const { id, text, onClick } = button;
+            return (
+              <div key={id}>
+                <BlackHr />
+                <YellowGreenButton onClick={onClick}>{text}</YellowGreenButton>
+              </div>
+            );
+          })
+        : authProviderButtons.map((button) => {
+            const { id, text, onClick } = button;
+            return (
+              <div key={id}>
+                <BlackHr />
+                <YellowGreenButton onClick={onClick}>{text}</YellowGreenButton>
+              </div>
+            );
+          })}
     </ParentDiv>
   );
 };

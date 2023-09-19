@@ -3,14 +3,11 @@ import useConditionalLogic from "../book-a-session-hooks/use-conditional-logic";
 import { Text } from "../../../styles/p/p.styles";
 
 const SpacesAvailableInfo = () => {
-  const { noSessionsAvailable, noDateSelected, isTodayAndAfterCloseTime } =
-    useConditionalLogic();
+  const { noSessionsAvailable, noDateSelected } = useConditionalLogic();
 
   return (
     <>
-      {noDateSelected() ? null : isTodayAndAfterCloseTime() ? (
-        <Text>sorry, we're closed for today</Text>
-      ) : noSessionsAvailable() ? (
+      {noDateSelected() ? null : noSessionsAvailable() ? (
         <>
           <Text>sorry, we have no sessions available today.</Text>
           <Text>

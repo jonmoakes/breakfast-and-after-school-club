@@ -15,6 +15,7 @@ import { resetUpdateEmailState } from "../store/update-email/update-email.slice"
 import { clearWalletFundsToAdd } from "../store/wallet-funds-to-add/wallet-funds-to-add.slice";
 import { resetPreResultHandlePaymentState } from "../store/handle-payment/handle-payment.slice";
 import { resetUpdatePasswordRequestState } from "../store/update-password-request/update-password-request.slice";
+import { setCurrentDateAndTime } from "../store/date-and-time/date-and-time.slice";
 
 import {
   addFundsRoute,
@@ -67,6 +68,7 @@ const useResetStore = () => {
       case bookSessionRoute:
         dispatch(resetRequestDateDataState());
         dispatch(clearShouldShowElementsState());
+        dispatch(setCurrentDateAndTime(new Date()));
         break;
       case updateEmailRoute:
         dispatch(clearShouldShowElementsState());

@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import {
   addFundsRoute,
   bookSessionRoute,
+  childInfoRoute,
   closeAccountRoute,
   updateEmailRoute,
   updatePasswordRequestRoute,
@@ -11,32 +12,65 @@ import {
 const useNavigateToRoute = () => {
   const navigate = useNavigate();
 
-  const navigateToBookSession = () => {
-    navigate(bookSessionRoute);
-  };
+  const emailProviderButtons = [
+    {
+      id: 1,
+      text: "book a session",
+      onClick: () => navigate(bookSessionRoute),
+    },
+    {
+      id: 2,
+      text: "add funds",
+      onClick: () => navigate(addFundsRoute),
+    },
+    {
+      id: 3,
+      text: "view child info",
+      onClick: () => navigate(childInfoRoute),
+    },
+    {
+      id: 4,
+      text: " update email",
+      onClick: () => navigate(updateEmailRoute),
+    },
+    {
+      id: 5,
+      text: " update password",
+      onClick: () => navigate(updatePasswordRequestRoute),
+    },
+    {
+      id: 6,
+      text: " close account",
+      onClick: () => navigate(closeAccountRoute),
+    },
+  ];
 
-  const navigateToAddFunds = () => {
-    navigate(addFundsRoute);
-  };
-
-  const navigateToUpdateEmail = () => {
-    navigate(updateEmailRoute);
-  };
-
-  const navigateToUpdatePassword = () => {
-    navigate(updatePasswordRequestRoute);
-  };
-
-  const navigateToCloseAccount = () => {
-    navigate(closeAccountRoute);
-  };
+  const authProviderButtons = [
+    {
+      id: 1,
+      text: "book a session",
+      onClick: () => navigate(bookSessionRoute),
+    },
+    {
+      id: 2,
+      text: "add funds",
+      onClick: () => navigate(addFundsRoute),
+    },
+    {
+      id: 3,
+      text: "view child info",
+      onClick: () => navigate(childInfoRoute),
+    },
+    {
+      id: 4,
+      text: " close account",
+      onClick: () => navigate(closeAccountRoute),
+    },
+  ];
 
   return {
-    navigateToBookSession,
-    navigateToAddFunds,
-    navigateToUpdateEmail,
-    navigateToUpdatePassword,
-    navigateToCloseAccount,
+    emailProviderButtons,
+    authProviderButtons,
   };
 };
 

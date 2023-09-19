@@ -8,6 +8,7 @@ import { addFundsRoute } from "../../../strings/strings";
 
 const OptionsAvailableInfo = () => {
   const { date } = useConditionalLogic();
+
   const { formattedTodaysDate } = useGetDateAndTime();
 
   return (

@@ -10,8 +10,10 @@ import MorningAndAfternoonLongSessionButton from "./buttons/morning-and-afternoo
 import { ColumnDiv, ParentDiv } from "../../../styles/div/div.styles";
 import { BlackHr } from "../../../styles/hr/hr.styles";
 import { Text } from "../../../styles/p/p.styles";
+import useGetDateAndTime from "../book-a-session-hooks/use-get-date-and-time";
 
 const ChooseSessions = () => {
+  useGetDateAndTime();
   const {
     noSessionsAvailable,
     onlyMorningSessionsAvailable,

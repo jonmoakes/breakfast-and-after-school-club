@@ -10,7 +10,7 @@ const useGetDateAndTime = () => {
   const dispatch = useDispatch();
 
   const morningCloseTime = new Date();
-  morningCloseTime.setHours(12, 25, 0);
+  morningCloseTime.setHours(7, 25, 0);
 
   const afternoonCloseTime = new Date();
   afternoonCloseTime.setHours(15, 25, 0);
@@ -20,14 +20,16 @@ const useGetDateAndTime = () => {
     "yyyy-MM-dd"
   );
 
-  console.log(formattedTodaysDate);
   useEffect(() => {
+    const timeNow = new Date();
+    if (timeNow === currentDateAndTime) return;
+
     const interval = setInterval(() => {
       dispatch(setCurrentDateAndTime(new Date()));
     }, 60000);
 
     return () => clearInterval(interval);
-  }, [dispatch]);
+  }, [dispatch, currentDateAndTime]);
 
   return {
     currentDateAndTime,
