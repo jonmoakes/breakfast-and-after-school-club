@@ -21,14 +21,14 @@ import { BlackTitle } from "../../styles/h1/h1.styles";
 import { Text } from "../../styles/p/p.styles";
 import { LowercasedSpan } from "../../styles/span/span.styles";
 
-import { childInfoAddRoute } from "../../strings/strings";
+import { addChildInfoRoute } from "../../strings/strings";
 
 const ChildInfo = () => {
   const shouldShowElement = useSelector(selectShouldShowElement);
   const dispatch = useDispatch();
   return (
     <Container>
-      <Link to={childInfoAddRoute}>
+      <Link to={addChildInfoRoute}>
         <FloatingAddButton />
       </Link>
       <ParentDiv>

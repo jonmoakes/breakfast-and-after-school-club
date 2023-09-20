@@ -1,20 +1,19 @@
-// import { useDispatch, useSelector } from "react-redux";
+import AddChildInfoForm from "./add-child-info-form.component";
 
-// import { YellowGreenButton } from "../../styles/buttons/buttons.styles";
 import { Container } from "../../styles/container/container.styles";
 import { ParentDiv } from "../../styles/div/div.styles";
 import { BlackTitle } from "../../styles/h1/h1.styles";
 
-const ChildInfoAdd = () => {
+const AddChildInfo = () => {
   return (
     <Container>
       <ParentDiv>
         <BlackTitle>add your child</BlackTitle>
       </ParentDiv>
 
-      <ParentDiv></ParentDiv>
+      <AddChildInfoForm />
     </Container>
   );
 };
 
-export default ChildInfoAdd;
+export default AddChildInfo;

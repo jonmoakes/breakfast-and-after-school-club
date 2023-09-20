@@ -38,7 +38,7 @@ import {
   localhostSocialLoginResultRoute,
   paymentResultRoute,
   childInfoRoute,
-  childInfoAddRoute,
+  addChildInfoRoute,
 } from "./strings/strings";
 
 const Navigation = lazy(() =>
@@ -53,8 +53,8 @@ const Account = lazy(() => import("./routes/account/account.component"));
 const ChildInfo = lazy(() =>
   import("./routes/child-info/child-info.component")
 );
-const ChildInfoAdd = lazy(() =>
-  import("./routes/child-info-add/child-info-add.component")
+const AddChildInfo = lazy(() =>
+  import("./routes/add-child-info/add-child-info.component")
 );
 const BookASession = lazy(() =>
   import("./routes/book-a-session/book-a-session.component")
@@ -140,7 +140,7 @@ const App = () => {
             <Route element={<PrivateRoutes />}>
               <Route path={accountRoute} element={<Account />} />
               <Route path={childInfoRoute} element={<ChildInfo />} />
-              <Route path={childInfoAddRoute} element={<ChildInfoAdd />} />
+              <Route path={addChildInfoRoute} element={<AddChildInfo />} />
               <Route
                 path={dashboardRoute}
                 element={

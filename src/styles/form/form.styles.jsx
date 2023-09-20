@@ -156,6 +156,10 @@ export const StyledTextArea = styled.textarea`
   text-transform: capitalize;
   color: ${customBlack};
 
+  &.small-bottom-margin {
+    margin: 10px auto;
+  }
+
   &:focus {
     border: 3px solid ${customRed};
     box-shadow: 6px 6px 6px ${customBlack};

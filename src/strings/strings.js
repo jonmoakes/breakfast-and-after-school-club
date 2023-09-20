@@ -187,6 +187,8 @@ export const maxEightCharacters = "max 8 characters";
 export const confirmYourPassword = "confirm your password";
 export const addFundsPlaceholder = "ie 10.50 for £10.50";
 export const enterYourPasswordPlaceholder = "enter your password";
+export const leaveBlankIfNothingToAdd = "leave blank if nothing to add";
+export const anyOtherInfo = "anything else you need to tell us? Enter it here!";
 
 //routes
 export const bookingsRoute = "/bookings";
@@ -195,7 +197,7 @@ export const contactRoute = "/contact";
 export const dashboardRoute = "/dashboard";
 export const accountRoute = "/account";
 export const childInfoRoute = "/child-info";
-export const childInfoAddRoute = "/child-info-add";
+export const addChildInfoRoute = "/add-child-info";
 export const signInRoute = "/sign-in";
 export const signUpRoute = "/sign-up";
 export const magicUrlRequestRoute = "/magic-url-request";
