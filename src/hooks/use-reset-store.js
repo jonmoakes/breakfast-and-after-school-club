@@ -29,7 +29,9 @@ import {
   updateEmailRoute,
   updatePasswordRequestRoute,
   updatePasswordResultRoute,
+  addChildInfoRoute,
 } from "../strings/strings";
+import { resetChildInfo } from "../store/add-child-info/add-child-info.slice";
 
 const useResetStore = () => {
   const dispatch = useDispatch();
@@ -80,6 +82,9 @@ const useResetStore = () => {
         break;
       case updatePasswordResultRoute:
         dispatch(clearNewPasswordDetails());
+        break;
+      case addChildInfoRoute:
+        dispatch(resetChildInfo());
         break;
       default:
         return;

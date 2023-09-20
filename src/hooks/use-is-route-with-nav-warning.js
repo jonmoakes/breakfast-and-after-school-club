@@ -1,13 +1,21 @@
 import { useLocation } from "react-router-dom";
 
-import { addFundsRoute, bookSessionRoute } from "../strings/strings";
+import {
+  addChildInfoRoute,
+  addFundsRoute,
+  bookSessionRoute,
+} from "../strings/strings";
 
 const useIsRouteWithNavWarning = () => {
   const location = useLocation();
   const path = location.pathname;
 
   const isRouteWithNavWarning = () => {
-    return path === bookSessionRoute || path === addFundsRoute ? true : false;
+    return path === bookSessionRoute ||
+      path === addFundsRoute ||
+      path === addChildInfoRoute
+      ? true
+      : false;
   };
 
   return { isRouteWithNavWarning };

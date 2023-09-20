@@ -21,7 +21,6 @@ const useHamburgerHandlerNavigate = () => {
   const hamburgerHandlerNavigate = (url) => {
     if (showHamburgerMenu && isRouteWithNavWarning()) {
       dispatch(hideHamburgerMenu());
-
       navigate(url, {
         state: path,
       });

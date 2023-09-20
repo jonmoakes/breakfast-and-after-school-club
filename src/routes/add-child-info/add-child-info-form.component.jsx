@@ -4,6 +4,8 @@ import useHandleAddChildInfoChange from "./add-child-info-hooks/use-handle-add-c
 
 import { selectAddChildInfo } from "../../store/add-child-info/add-child-info.selector";
 
+import AddChildInfoButton from "./add-child-info-button.component";
+
 import {
   Form,
   StyledInput,
@@ -21,7 +23,7 @@ const AddChildInfoForm = () => {
   const { handleAddChildInfoChange } = useHandleAddChildInfoChange();
 
   const addChildInfo = useSelector(selectAddChildInfo);
-  const { name, age, medicalInfo, dietryRequirements, additionalInfo } =
+  const { childName, age, medicalInfo, dietryRequirements, additionalInfo } =
     addChildInfo;
 
   return (
@@ -36,9 +38,9 @@ const AddChildInfoForm = () => {
         </Label>
         <CapitalizedInput
           type="text"
-          name="name"
+          name="childName"
           onChange={handleAddChildInfoChange}
-          value={name || ""}
+          value={childName || ""}
           placeholder="full name please"
         />
 
@@ -81,6 +83,8 @@ const AddChildInfoForm = () => {
           value={additionalInfo || ""}
           placeholder={anyOtherInfo}
         />
+
+        <AddChildInfoButton />
       </Form>
     </ParentDiv>
   );

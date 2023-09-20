@@ -3,7 +3,6 @@ import { useNavigate } from "react-router-dom";
 import {
   addFundsRoute,
   bookSessionRoute,
-  childInfoRoute,
   closeAccountRoute,
   updateEmailRoute,
   updatePasswordRequestRoute,
@@ -25,21 +24,16 @@ const useNavigateToRoute = () => {
     },
     {
       id: 3,
-      text: "view child info",
-      onClick: () => navigate(childInfoRoute),
-    },
-    {
-      id: 4,
       text: " update email",
       onClick: () => navigate(updateEmailRoute),
     },
     {
-      id: 5,
+      id: 4,
       text: " update password",
       onClick: () => navigate(updatePasswordRequestRoute),
     },
     {
-      id: 6,
+      id: 5,
       text: " close account",
       onClick: () => navigate(closeAccountRoute),
     },
@@ -58,11 +52,6 @@ const useNavigateToRoute = () => {
     },
     {
       id: 3,
-      text: "view child info",
-      onClick: () => navigate(childInfoRoute),
-    },
-    {
-      id: 4,
       text: " close account",
       onClick: () => navigate(closeAccountRoute),
     },

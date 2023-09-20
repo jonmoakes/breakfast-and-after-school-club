@@ -7,6 +7,7 @@ import {
   signUpRoute,
   dashboardRoute,
   addFundsRoute,
+  childInfoRoute,
 } from "../../strings/strings";
 
 export const signedInRoutes = [
@@ -14,6 +15,7 @@ export const signedInRoutes = [
   bookSessionRoute,
   addFundsRoute,
   accountRoute,
+  childInfoRoute,
   contactRoute,
 ];
 

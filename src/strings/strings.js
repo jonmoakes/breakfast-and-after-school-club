@@ -75,6 +75,13 @@ export const morningSessionSpacesInvalidDocError =
   'Invalid document structure: Attribute "morningSessionSpaces" has invalid format. Value must be a valid range between 0 and 30';
 export const afternoonSessionSpacesInvalidDocError =
   'Invalid document structure: Attribute "afternoonSessionSpaces" has invalid format. Value must be a valid range between 0 and 30';
+export const errorAddingChild = "there was an error adding your child";
+export const enterChildsName = "please enter your childs full name";
+export const enterChildsAge = "please enter your childs age";
+
+export const errorAddingChildDetail = (error) => {
+  return `the error received was: '${error}'. please contact us if the error persists.`;
+};
 // success
 export const successMessage = "success!";
 export const checkEmailMessage = "please check your email!";
@@ -90,6 +97,7 @@ export const datesUploadedToDatabaseSuccessMessage =
 export const viewBookingsMessage =
   "you can view your sessions in the 'bookings' page.";
 export const sessionBookedMessage = "session booked!";
+export const childAddedMessage = "child added!";
 
 // infos
 export const emailResponseTimeMessage =
@@ -135,7 +143,6 @@ export const confirmAddFundsMessage = (walletFunds) => {
     2
   )} to your wallet?`;
 };
-
 export const confirmSureBookSession = (sessionType, date) => {
   const getSessionTypeString = () => {
     switch (sessionType) {
@@ -173,12 +180,16 @@ export const sureUpdatePasswordMessage =
 export const imSureMessage = "i'm sure";
 export const addFundsMessage = "yes, add funds!";
 export const yesSendIt = "yes, send it!";
+export const yesAddChild = "yes, add child";
 export const confirmSendMagicUrlRequest = (email) => {
   return `would you like to send a magic URL request to <span style="text-transform: lowercase;  color: hsl(60, 100%, 50%);">${email}</span>?`;
 };
 export const confirmUpdateEmailMessage = (newEmail) => {
   return `are you sure you wish to update your email to be <span style="text-transform: lowercase;  color: hsl(60, 100%, 50%);">${newEmail}</span>?`;
 };
+
+export const confirmAddChildMessage =
+  "are you sure you want to add this child?";
 
 //placeholders
 export const enterEmailAddress = "enter your email address";
