@@ -78,8 +78,10 @@ export const afternoonSessionSpacesInvalidDocError =
 export const errorAddingChild = "there was an error adding your child";
 export const enterChildsName = "please enter your childs full name";
 export const enterChildsAge = "please enter your childs age";
+export const errorFetchingChildren =
+  "there was an error fetching your child / children";
 
-export const errorAddingChildDetail = (error) => {
+export const errorReceivedMessage = (error) => {
   return `the error received was: '${error}'. please contact us if the error persists.`;
 };
 // success

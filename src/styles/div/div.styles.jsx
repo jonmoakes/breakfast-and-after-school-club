@@ -1,4 +1,12 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
+import { slideInLeft, bounceInDown } from "react-animations";
+
+// import {
+//   customBlack,
+//   customOrange,
+//   customWhite,
+//   customYellow,
+// } from "../colors";
 
 import {
   customBlack,
@@ -9,6 +17,9 @@ import {
   customYellow,
   customLightGrey,
 } from "../colors";
+
+const slideInLeftAnimation = keyframes`${slideInLeft}`;
+const bounceInDownAnimation = keyframes`${bounceInDown}`;
 
 // Navigation
 export const Nav = styled.div`
@@ -333,5 +344,87 @@ export const ColumnDiv = styled.div`
 
   @media screen and (max-width: 800px) {
     width: 100%;
+  }
+`;
+
+export const Div = styled.div`
+  margin: 50px auto;
+  width: 50%;
+  height: auto;
+  background-color: ${customWhite};
+  box-shadow: 25px 50px 50px ${customBlack};
+  border-radius: 15px;
+  padding: 20px;
+  border: 2px solid ${customBlack};
+
+  @media screen and (max-width: 1366px) {
+    width: 70%;
+    box-shadow: none;
+  }
+
+  @media screen and (max-width: 450px) {
+    width: 85%;
+    padding: 20px 10px;
+  }
+`;
+
+// tables
+export const TableContainer = styled.div`
+  width: 90%;
+  animation: 1.5s ${bounceInDownAnimation};
+  margin: 0px auto;
+  height: auto;
+  border-radius: 15px;
+  padding: 0px 20px 0px 20px;
+
+  @media screen and (max-width: 450px) {
+    width: 90%;
+    padding: 0px 10px 0px 10px;
+  }
+`;
+
+export const TableDiv = styled.div`
+  margin: 0px auto 100px auto;
+  width: 75%;
+  height: auto;
+
+  @media screen and (max-width: 1366px) {
+    width: 95%;
+    overflow: auto;
+    border: 2px solid ${customBlack};
+    box-shadow: none;
+    margin: 20px auto 100px auto;
+  }
+`;
+
+export const PaginationDiv = styled(Div)`
+  margin: -150px auto 0px auto;
+  border: none;
+  box-shadow: none;
+  background-color: ${customBlack};
+  padding-bottom: 50px;
+
+  @media screen and (max-width: 1366px) {
+    margin: -50px auto 0px auto;
+  }
+`;
+
+export const PaginationTextDiv = styled.div`
+  margin-bottom: 20px;
+`;
+
+export const TableSearchDiv = styled.div`
+  width: 50%;
+  position: relative;
+  margin: 40px auto 0px auto;
+  animation: 1s ${slideInLeftAnimation};
+
+  @media screen and (max-width: 1366px) {
+    width: 70%;
+  }
+
+  @media screen and (max-width: 450px) {
+    width: 80%;
+    margin: 0px auto 0px auto;
   }
 `;

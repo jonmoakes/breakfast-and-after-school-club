@@ -1,4 +1,3 @@
-import useSessionSpacesListener from "../../hooks/use-session-spaces-listener";
 import useRequestDateData from "./book-a-session-hooks/use-request-date-data";
 import useGetBookSessionResultSwal from "./book-a-session-hooks/swals/use-get-book-session-result-swal";
 import useGetSessionPrices from "./book-a-session-hooks/use-get-session-prices";
@@ -15,7 +14,6 @@ import { ParentDiv } from "../../styles/div/div.styles";
 import { BlackTitle } from "../../styles/h1/h1.styles";
 
 const BookASession = () => {
-  useSessionSpacesListener();
   useRequestDateData();
   useGetBookSessionResultSwal();
   useGetSessionPrices();

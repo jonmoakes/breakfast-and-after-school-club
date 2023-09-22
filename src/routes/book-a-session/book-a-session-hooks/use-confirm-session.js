@@ -38,7 +38,6 @@ const useConfirmSession = () => {
 
   const confirmSession = (sessionType, price) => {
     dispatch(setSessionType(sessionType));
-    console.log(currentUser, date, sessionType, price);
     confirmSwal(
       confirmSureBookSession(sessionType, date),
       fundsDeductedFromBalance(price),

@@ -9,6 +9,7 @@ import {
   selectError,
 } from "../../../store/add-child-info/add-child-info.selector";
 import {
+  resetChildInfo,
   resetError,
   resetResult,
 } from "../../../store/add-child-info/add-child-info.slice";
@@ -17,7 +18,7 @@ import {
   childAddedMessage,
   childInfoRoute,
   errorAddingChild,
-  errorAddingChildDetail,
+  errorReceivedMessage,
 } from "../../../strings/strings";
 
 const useAddChildInfoResultSwal = () => {
@@ -37,6 +38,7 @@ const useAddChildInfoResultSwal = () => {
         (isConfirmed) => {
           if (isConfirmed) {
             dispatch(resetResult());
+            dispatch(resetChildInfo());
             navigate(childInfoRoute);
           }
         }
@@ -45,7 +47,7 @@ const useAddChildInfoResultSwal = () => {
       fireSwal(
         "error",
         errorAddingChild,
-        errorAddingChildDetail(error),
+        errorReceivedMessage(error),
         0,
         true,
         false

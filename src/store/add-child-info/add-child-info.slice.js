@@ -36,15 +36,17 @@ export const addChildInfoAsync = createAsyncThunk(
   }
 );
 
+const defaultChildInfo = {
+  childName: "",
+  age: "",
+  medicalInfo: "",
+  dietryRequirements: "",
+  additionalInfo: "",
+};
+
 const INITIAL_STATE = {
   isLoading: false,
-  childInfo: {
-    childName: "",
-    age: "",
-    medicalInfo: "",
-    dietryRequirements: "",
-    additionalInfo: "",
-  },
+  childInfo: defaultChildInfo,
   result: "",
   error: null,
 };
@@ -63,7 +65,7 @@ export const addChildInfoSlice = createSlice({
       state.error = null;
     },
     resetChildInfo(state) {
-      state.childInfo = INITIAL_STATE;
+      state.childInfo = defaultChildInfo;
     },
   },
   extraReducers: (builder) => {

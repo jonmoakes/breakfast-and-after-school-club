@@ -8010,10 +8010,10 @@ nested-error-stacks@^2.0.0, nested-error-stacks@^2.1.0, nested-error-stacks@^2.1
   resolved "https://registry.yarnpkg.com/nested-error-stacks/-/nested-error-stacks-2.1.1.tgz#26c8a3cee6cc05fbcf1e333cd2fc3e003326c0b5"
   integrity sha512-9iN1ka/9zmX1ZvLV9ewJYEk9h7RyRRtqdK0woXcqohu8EWIerfPUjYJPg0ULy0UqP7cslmdGc8xKDJcojlKiaw==
 
-netlify-cli@^16.4.0:
-  version "16.4.0"
-  resolved "https://registry.yarnpkg.com/netlify-cli/-/netlify-cli-16.4.0.tgz#ae22e70593eaf64f3d3a2f884be1dfd613a2b6cf"
-  integrity sha512-/WdRKDF8fh1FS+gE9k6Ne20XVm/i8P3t4HC+De9ckOHmVwlHufgAR/LL+Xo1ArNabrgt49dc2bp1ZSFgvrNSrA==
+netlify-cli@^16.4.2:
+  version "16.4.2"
+  resolved "https://registry.yarnpkg.com/netlify-cli/-/netlify-cli-16.4.2.tgz#9c3071f3ae8a1d8b6d5827862636117afbbd6ee1"
+  integrity sha512-17ygfQJ7HhE+E9zn6aVUYctj+j8Js/ozNqlLbNF4/AGviCmS7phX5FdECKMbFSwC8jdHB12L9mNVfiqYGLPquw==
   dependencies:
     "@bugsnag/js" "7.20.2"
     "@fastify/static" "6.10.2"
@@ -9143,6 +9143,11 @@ react-router@6.14.2:
   integrity sha512-09Zss2dE2z+T1D03IheqAFtK4UzQyX8nFPWx6jkwdYzGLXd5ie06A6ezS2fO6zJfEb/SpG6UocN2O1hfD+2urQ==
   dependencies:
     "@remix-run/router" "1.7.2"
+
+react-table@^7.8.0:
+  version "7.8.0"
+  resolved "https://registry.yarnpkg.com/react-table/-/react-table-7.8.0.tgz#07858c01c1718c09f7f1aed7034fcfd7bda907d2"
+  integrity sha512-hNaz4ygkZO4bESeFfnfOft73iBUj8K5oKi1EcSHPAibEydfsX2MyU6Z8KCr3mv3C9Kqqh71U+DhZkFvibbnPbA==
 
 react-wrap-balancer@^1.0.0:
   version "1.0.0"
