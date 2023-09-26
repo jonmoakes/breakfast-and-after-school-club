@@ -13,7 +13,7 @@ import { childInfoRoute } from "../../strings/strings";
 const FloatingBackButton = () => {
   const { confirmGoBack } = useBackButton();
   const { isRouteWithNavWarning } = useIsRouteWithNavWarning();
-  const { isMobileDevice } = useIsMobileMobileDevice();
+  const { isMobileDevice, isPwa, isDesktop } = useIsMobileMobileDevice();
 
   const navigate = useNavigate();
   const location = useLocation();
@@ -33,13 +33,14 @@ const FloatingBackButton = () => {
 
   return (
     <>
-      {!isMobileDevice() || dontShowButton() ? null : noConfirmNeeded() ? (
+      {isPwa() || isDesktop() || dontShowButton() ? null : isMobileDevice() &&
+        noConfirmNeeded() ? (
         <RelativePositionDiv>
           <BackButton onClick={() => navigate(-1)}>
             <BackArrowSVG />
           </BackButton>
         </RelativePositionDiv>
-      ) : confirmNeeded() ? (
+      ) : isMobileDevice() && confirmNeeded() ? (
         <RelativePositionDiv>
           <BackButton onClick={confirmGoBack}>
             <BackArrowSVG />
