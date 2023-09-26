@@ -12,7 +12,7 @@ export const TABLE_COLUMNS = [
     accessor: "medicalInfo",
   },
   {
-    Header: "dietry info",
+    Header: "dietry requirements",
     accessor: "dietryRequirements",
   },
   {
