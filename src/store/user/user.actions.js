@@ -68,13 +68,13 @@ export const requestFacebookSignInAsync = createAsyncThunk(
   async (_, thunkAPI) => {
     try {
       if (import.meta.env.MODE === "development") {
-        await account.createOAuth2Session(
+        account.createOAuth2Session(
           "facebook",
           localhostSocialLoginResultRoute,
           localhostSocialLoginResultRoute
         );
       } else if (import.meta.env.MODE === "production") {
-        await account.createOAuth2Session(
+        account.createOAuth2Session(
           "facebook",
           `https://breakfast-and-after-school-club.netlify.app${socialLoginResultRoute}`,
           `https://breakfast-and-after-school-club.netlify.app${socialLoginResultRoute}`
@@ -91,16 +91,16 @@ export const requestGoogleSignInAsync = createAsyncThunk(
   async (_, thunkAPI) => {
     try {
       if (import.meta.env.MODE === "development") {
-        await account.createOAuth2Session(
+        account.createOAuth2Session(
           "google",
           localhostSocialLoginResultRoute,
           localhostSocialLoginResultRoute
         );
       } else if (import.meta.env.MODE === "production") {
-        await account.createOAuth2Session(
+        account.createOAuth2Session(
           "google",
-          `https://breakfast-and-after-school-club.netlify.app${socialLoginResultRoute}`,
-          `https://breakfast-and-after-school-club.netlify.app${socialLoginResultRoute}`
+          `https://cloud.appwrite.io/v1/account/sessions/oauth2/callback/google/64b546509de88a319930`,
+          `https://cloud.appwrite.io/v1/account/sessions/oauth2/callback/google/64b546509de88a319930`
         );
       }
     } catch (error) {
