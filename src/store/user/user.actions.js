@@ -99,8 +99,8 @@ export const requestGoogleSignInAsync = createAsyncThunk(
       } else if (import.meta.env.MODE === "production") {
         account.createOAuth2Session(
           "google",
-          `https://cloud.appwrite.io/v1/account/sessions/oauth2/callback/google/64b546509de88a319930`,
-          `https://cloud.appwrite.io/v1/account/sessions/oauth2/callback/google/64b546509de88a319930`
+          `https://breakfast-and-after-school-club.netlify.app${socialLoginResultRoute}`,
+          `https://breakfast-and-after-school-club.netlify.app${socialLoginResultRoute}`
         );
       }
     } catch (error) {
