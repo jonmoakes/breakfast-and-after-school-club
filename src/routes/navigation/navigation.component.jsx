@@ -13,6 +13,7 @@ import NavSignOut from "./nav-sign-out.component";
 import { Nav, Menu } from "../../styles/div/div.styles";
 
 import {
+  editChildInfoRoute,
   forgotPasswordResultRoute,
   magicUrlResultRoute,
   updatePasswordResultRoute,
@@ -23,25 +24,31 @@ const Navigation = () => {
   const location = useLocation();
   const path = location.pathname;
 
+  const isRouteWithHeader = () => {
+    return path !== editChildInfoRoute ? true : false;
+  };
+
   return (
     <>
-      <Nav>
-        <NavLogo />
-        {path !== magicUrlResultRoute &&
-        path !== forgotPasswordResultRoute &&
-        path !== updatePasswordResultRoute ? (
-          <>
-            <NavHamburger />
+      {isRouteWithHeader() ? (
+        <Nav>
+          <NavLogo />
+          {path !== magicUrlResultRoute &&
+          path !== forgotPasswordResultRoute &&
+          path !== updatePasswordResultRoute ? (
+            <>
+              <NavHamburger />
 
-            <Menu {...{ showHamburgerMenu }}>
-              <NavNoUser />
-              <NavAppOwner />
-              <NavNotAppOwner />
-              <NavSignOut />
-            </Menu>
-          </>
-        ) : null}
-      </Nav>
+              <Menu {...{ showHamburgerMenu }}>
+                <NavNoUser />
+                <NavAppOwner />
+                <NavNotAppOwner />
+                <NavSignOut />
+              </Menu>
+            </>
+          ) : null}
+        </Nav>
+      ) : null}
     </>
   );
 };

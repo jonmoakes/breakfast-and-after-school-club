@@ -16,6 +16,8 @@ import { clearWalletFundsToAdd } from "../store/wallet-funds-to-add/wallet-funds
 import { resetPreResultHandlePaymentState } from "../store/handle-payment/handle-payment.slice";
 import { resetUpdatePasswordRequestState } from "../store/update-password-request/update-password-request.slice";
 import { setCurrentDateAndTime } from "../store/date-and-time/date-and-time.slice";
+import { resetChildInfo } from "../store/add-child-info/add-child-info.slice";
+import { resetEditChildInfoState } from "../store/edit-child-info/edit-child-info.slice";
 
 import {
   addFundsRoute,
@@ -30,8 +32,8 @@ import {
   updatePasswordRequestRoute,
   updatePasswordResultRoute,
   addChildInfoRoute,
+  editChildInfoRoute,
 } from "../strings/strings";
-import { resetChildInfo } from "../store/add-child-info/add-child-info.slice";
 
 const useResetStore = () => {
   const dispatch = useDispatch();
@@ -85,6 +87,9 @@ const useResetStore = () => {
         break;
       case addChildInfoRoute:
         dispatch(resetChildInfo());
+        break;
+      case editChildInfoRoute:
+        dispatch(resetEditChildInfoState());
         break;
       default:
         return;

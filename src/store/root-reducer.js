@@ -26,6 +26,7 @@ import { sessionTypesAndPricesReducer } from "./session-types-and-prices/session
 import { dateAndTimeReducer } from "./date-and-time/date-and-time.slice";
 import { addChildInfoReducer } from "./add-child-info/add-child-info.slice";
 import { getUsersChildrenReducer } from "./get-users-children/get-users-children-slice";
+import { editChildInfoReducer } from "./edit-child-info/edit-child-info.slice";
 
 export const rootReducer = combineReducers({
   hamburgerMenu: hamburgerMenuReducer,
@@ -54,4 +55,5 @@ export const rootReducer = combineReducers({
   dateAndTime: dateAndTimeReducer,
   addChildInfo: addChildInfoReducer,
   getUsersChildren: getUsersChildrenReducer,
+  editChildInfo: editChildInfoReducer,
 });

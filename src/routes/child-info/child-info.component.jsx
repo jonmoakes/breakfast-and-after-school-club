@@ -2,6 +2,7 @@ import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
 import useGetUsersChildren from "./child-info-hooks/use-get-users-children";
+import useGetUsersChildrenErrorSwal from "./child-info-hooks/use-get-users-children-error-swal";
 
 import { selectIsLoading } from "../../store/get-users-children/get-users-children.selector";
 
@@ -15,7 +16,6 @@ import { ParentDiv } from "../../styles/div/div.styles";
 import { BlackTitle } from "../../styles/h1/h1.styles";
 
 import { addChildInfoRoute } from "../../strings/strings";
-import useGetUsersChildrenErrorSwal from "./child-info-hooks/use-get-users-children-error-swal";
 
 const ChildInfo = () => {
   useGetUsersChildren();

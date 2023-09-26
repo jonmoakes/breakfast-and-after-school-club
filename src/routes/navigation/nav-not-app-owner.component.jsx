@@ -29,7 +29,6 @@ const NavNotAppOwner = () => {
 
   return (
     <>
-      {/*if  NOT on addFundsRoute or BookSessionRoute or addChildInfoRoute */}
       {currentUser && currentUser.id !== ownerId && !isRouteWithNavWarning() ? (
         <>
           {signedInRoutes.map((route) => {
@@ -47,7 +46,6 @@ const NavNotAppOwner = () => {
         </>
       ) : null}
 
-      {/*if ARE on addFundsRoute or BookSessionRoute or addChildInfo route*/}
       {currentUser && currentUser.id !== ownerId && isRouteWithNavWarning() ? (
         <>
           {signedInRoutes.map((route) => {

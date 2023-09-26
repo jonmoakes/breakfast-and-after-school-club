@@ -84,6 +84,8 @@ export const errorFetchingChildren =
 export const errorReceivedMessage = (error) => {
   return `the error received was: '${error}'. please contact us if the error persists.`;
 };
+export const errorUpdatingChild =
+  "sorry, there was an error updating your childs information.";
 // success
 export const successMessage = "success!";
 export const checkEmailMessage = "please check your email!";
@@ -100,6 +102,7 @@ export const viewBookingsMessage =
   "you can view your sessions in the 'bookings' page.";
 export const sessionBookedMessage = "session booked!";
 export const childAddedMessage = "child added!";
+export const childUpdatedMessage = "childUpdated!";
 
 // infos
 export const emailResponseTimeMessage =
@@ -235,3 +238,5 @@ export const localhostForgotPasswordResultRoute =
   "http://localhost:8888/forgot-password-result";
 export const addFundsRoute = "/add-funds";
 export const paymentResultRoute = "/payment-result";
+export const editChildInfoRoute = "/edit-child";
+export const deleteChildInfoRoute = "/delete-child";

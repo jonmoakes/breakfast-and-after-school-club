@@ -347,6 +347,42 @@ export const ColumnDiv = styled.div`
   }
 `;
 
+export const TableEditsButtonDiv = styled.div`
+  width: 100%;
+  margin: 50px auto;
+
+  @media screen and (max-width: 450px) {
+    margin: 0px auto 40px auto;
+  }
+`;
+
+// export const ColumnDiv = styled.div`
+//   display: flex;
+//   flex-direction: column;
+//   justify-content: center;
+//   align-items: center;
+
+//   &.error {
+//     background-color: ${logoRed};
+//     margin: 50px auto;
+//     border: 2px solid black;
+//     border-radius: 10px;
+
+//     p {
+//       text-shadow: 1px 1px 1px ${customBlack};
+//     }
+
+//     @media screen and (max-width: 1366px) {
+//       width: 90%;
+//       padding: 0px 10px;
+
+//       p {
+//         font-size: 16px;
+//       }
+//     }
+//   }
+// `;
+
 export const Div = styled.div`
   margin: 50px auto;
   width: 50%;

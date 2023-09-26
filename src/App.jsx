@@ -39,7 +39,9 @@ import {
   paymentResultRoute,
   childInfoRoute,
   addChildInfoRoute,
+  editChildInfoRoute,
 } from "./strings/strings";
+import FloatingBackButton from "./components/floating-back-button/floating-back-button.component";
 
 const Navigation = lazy(() =>
   import("./routes/navigation/navigation.component")
@@ -55,6 +57,9 @@ const ChildInfo = lazy(() =>
 );
 const AddChildInfo = lazy(() =>
   import("./routes/add-child-info/add-child-info.component")
+);
+const EditChildInfo = lazy(() =>
+  import("./routes/edit-child-info/edit-child-info.component")
 );
 const BookASession = lazy(() =>
   import("./routes/book-a-session/book-a-session.component")
@@ -102,6 +107,7 @@ const App = () => {
   return (
     <>
       <GlobalStyle />
+      <FloatingBackButton />
       <Navigation />
       <ErrorBoundary FallbackComponent={ErrorFallback}>
         <Suspense fallback={<Loader />}>
@@ -141,6 +147,7 @@ const App = () => {
               <Route path={accountRoute} element={<Account />} />
               <Route path={childInfoRoute} element={<ChildInfo />} />
               <Route path={addChildInfoRoute} element={<AddChildInfo />} />
+              <Route path={editChildInfoRoute} element={<EditChildInfo />} />
               <Route
                 path={dashboardRoute}
                 element={

@@ -19,7 +19,7 @@ import TableNoEntriesInfo from "../../components/tables/table-no-entries-info.co
 import DefaultTable from "../../components/tables/default-table.component";
 import NetworkError from "../../components/errors/network-error.component";
 import TableCheckBox from "../../components/tables/table-checkbox";
-// import EditRemoveButtons from "./edit-remove-buttons.component";
+import EditRemoveButtons from "./edit-remove-buttons.component";
 
 const ChildTable = () => {
   useGetUsersChildrenListener();
@@ -89,7 +89,8 @@ const ChildTable = () => {
 
       {<TableNoEntriesInfo {...{ data }} />}
 
-      {/* <EditRemoveButtons {...{ chosenEntry }} /> */}
+      <EditRemoveButtons {...{ chosenEntry }} />
+
       {data.length ? (
         <DefaultTable
           {...{

@@ -1,15 +1,19 @@
 import styled, { keyframes } from "styled-components";
-import { pulse } from "react-animations";
+import { pulse, zoomInLeft, zoomInRight } from "react-animations";
 
 import {
   customBlack,
   customBlue,
+  customGrey,
   customLightGreen,
+  customRed,
   customWhite,
   customYellow,
 } from "../colors";
 
 const PulseAnimation = keyframes`${pulse}`;
+const zoomInLeftAnimation = keyframes`${zoomInLeft}`;
+const zoomInRightAnimation = keyframes`${zoomInRight}`;
 
 export const Button = styled.button`
   width: 250px;
@@ -113,5 +117,65 @@ export const AddButton = styled.button`
   @media screen and (max-width: 450px) {
     right: 5px;
     top: 100px;
+  }
+`;
+
+export const EditEntryButton = styled(Button)`
+  background-color: ${customYellow};
+  animation: 1s ${zoomInLeftAnimation};
+  width: 200px;
+  height: 50px;
+  font-size: 18px;
+  line-height: 10px;
+  margin: 10px;
+  color: ${customBlack};
+  text-shadow: none;
+
+  &:hover {
+    background-color: ${customYellow};
+    color: ${customBlack};
+  }
+
+  @media screen and (max-width: 850px) {
+    font-size: 16px;
+  }
+
+  @media screen and (max-width: 320px) {
+    width: 90%;
+  }
+`;
+
+export const RemoveEntryButton = styled(EditEntryButton)`
+  background-color: ${customRed};
+  animation: 1s ${zoomInRightAnimation};
+
+  &:hover {
+    background-color: ${customRed};
+  }
+`;
+
+export const BackButton = styled.button`
+  width: 80px;
+  height: 80px;
+  border-radius: 50px;
+  position: fixed;
+  left: 10px;
+  bottom: 22px;
+  background-color: ${customGrey};
+  color: ${customBlack};
+  border: 2px solid ${customBlack};
+  z-index: 10;
+  outline: none;
+  cursor: pointer;
+
+  @media screen and (max-width: 850px) {
+    height: 60px;
+    width: 60px;
+  }
+
+  @media screen and (max-width: 450px) {
+    height: 55px;
+    width: 55px;
+    bottom: 25px;
   }
 `;
