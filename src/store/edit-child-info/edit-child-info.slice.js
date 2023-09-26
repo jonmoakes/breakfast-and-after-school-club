@@ -6,7 +6,6 @@ export const updateChildInfoAsync = createAsyncThunk(
   "updateChild",
   async ({ updatedChildInfo }, thunkAPI) => {
     try {
-      throw new Error("wehoops");
       const { $id } = updatedChildInfo;
 
       const getChildrenDocuments = await databases.listDocuments(
