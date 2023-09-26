@@ -7,7 +7,7 @@ const useIsMobileMobileDevice = () => {
   const isMobileDevice = () => {
     if (
       width <= 1366 &&
-      !window.matchMedia("(display-mode: standalone)").matches
+      window.matchMedia("(display-mode: standalone)").matches
     ) {
       return true;
     } else {
@@ -18,7 +18,7 @@ const useIsMobileMobileDevice = () => {
   const isPwa = () => {
     if (
       width <= 1366 &&
-      window.matchMedia("(display-mode: standalone)").matches
+      !window.matchMedia("(display-mode: standalone)").matches
     ) {
       return true;
     } else {
