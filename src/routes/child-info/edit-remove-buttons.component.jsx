@@ -2,6 +2,7 @@ import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 
 import { addChildToEdit } from "../../store/edit-child-info/edit-child-info.slice";
+import { addChildToDelete } from "../../store/delete-child-info/delete-child-info.slice";
 
 import { ParentDiv, TableEditsButtonDiv } from "../../styles/div/div.styles";
 import {
@@ -32,7 +33,7 @@ const EditRemoveButtons = ({ chosenEntry }) => {
 
             <Link
               to={deleteChildInfoRoute}
-              onClick={() => dispatch(addChildToEdit(chosenEntry))}
+              onClick={() => dispatch(addChildToDelete(chosenEntry))}
             >
               <RemoveEntryButton>delete child</RemoveEntryButton>
             </Link>

@@ -4,7 +4,6 @@ import {
   addChildInfoRoute,
   addFundsRoute,
   bookSessionRoute,
-  editChildInfoRoute,
 } from "../strings/strings";
 
 const useIsRouteWithNavWarning = () => {
@@ -14,8 +13,7 @@ const useIsRouteWithNavWarning = () => {
   const isRouteWithNavWarning = () => {
     return path === bookSessionRoute ||
       path === addFundsRoute ||
-      path === addChildInfoRoute ||
-      path === editChildInfoRoute
+      path === addChildInfoRoute
       ? true
       : false;
   };

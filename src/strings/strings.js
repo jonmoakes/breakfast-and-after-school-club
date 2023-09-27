@@ -85,7 +85,9 @@ export const errorReceivedMessage = (error) => {
   return `the error received was: '${error}'. please contact us if the error persists.`;
 };
 export const errorUpdatingChild =
-  "sorry, there was an error updating your childs information.";
+  "sorry, there was an error updating your childs information. please try again.";
+export const errorDeletingChildMessage =
+  "sorry, there was an error deleting your child. please try again.";
 // success
 export const successMessage = "success!";
 export const checkEmailMessage = "please check your email!";
@@ -102,7 +104,9 @@ export const viewBookingsMessage =
   "you can view your sessions in the 'bookings' page.";
 export const sessionBookedMessage = "session booked!";
 export const childAddedMessage = "child added!";
-export const childUpdatedMessage = "childUpdated!";
+export const childUpdatedMessage = "child details updated!";
+export const childDeletedMessage =
+  "the child has been deleted from the database!";
 
 // infos
 export const emailResponseTimeMessage =
@@ -138,6 +142,7 @@ export const alreadyClickedOnUpdatePasswordLink =
   "you may have clicked on a sign in link in your email that has already been used. please sign in and request another link from the 'update password' page which you can find in your account page.";
 export const checkBackRegularlyMessage =
   "if a session becomes available again, it will appear here in realtime so please check back often!";
+export const entriesAreTheSameMessage = "you haven't changed any data yet.";
 //confirms
 export const confirmSignOutMessage = "are you sure you wish to sign out?";
 export const redirectMessage = "this will redirect you to the sign in page.";
@@ -195,6 +200,10 @@ export const confirmUpdateEmailMessage = (newEmail) => {
 
 export const confirmAddChildMessage =
   "are you sure you want to add this child?";
+export const confirmUpdateChildMessage =
+  "are you sure you want to update your childs details?";
+export const confirmDeleteChildMessage =
+  "are you sure you want to delete your child?";
 
 //placeholders
 export const enterEmailAddress = "enter your email address";

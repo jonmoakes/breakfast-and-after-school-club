@@ -27,6 +27,7 @@ import { dateAndTimeReducer } from "./date-and-time/date-and-time.slice";
 import { addChildInfoReducer } from "./add-child-info/add-child-info.slice";
 import { getUsersChildrenReducer } from "./get-users-children/get-users-children-slice";
 import { editChildInfoReducer } from "./edit-child-info/edit-child-info.slice";
+import { deleteChildInfoReducer } from "./delete-child-info/delete-child-info.slice";
 
 export const rootReducer = combineReducers({
   hamburgerMenu: hamburgerMenuReducer,
@@ -56,4 +57,5 @@ export const rootReducer = combineReducers({
   addChildInfo: addChildInfoReducer,
   getUsersChildren: getUsersChildrenReducer,
   editChildInfo: editChildInfoReducer,
+  deleteChildInfo: deleteChildInfoReducer,
 });

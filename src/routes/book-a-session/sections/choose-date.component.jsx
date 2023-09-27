@@ -1,5 +1,4 @@
 import { useSelector } from "react-redux";
-import { add } from "date-fns";
 
 import useChooseDateHandleChange from "../book-a-session-hooks/use-choose-date-handle-change";
 import useConditionalLogic from "../book-a-session-hooks/use-conditional-logic";
@@ -19,11 +18,6 @@ const ChooseDate = () => {
 
   const error = useSelector(selectGetPricesError);
 
-  const tomorrow = add(new Date(), {
-    days: 1,
-  });
-  const tomorrowsDate = tomorrow.toISOString().split("T")[0];
-
   return (
     <>
       {error ? (
@@ -35,7 +29,6 @@ const ChooseDate = () => {
             <StyledInput
               type="date"
               name="chosenDate"
-              min={tomorrowsDate}
               onChange={chooseDateHandleChange}
               value={date || ""}
             />

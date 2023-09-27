@@ -8,7 +8,11 @@ import { ReactComponent as BackArrowSVG } from "../../assets/arrow-left-1.svg";
 import { RelativePositionDiv } from "../../styles/div/div.styles";
 import { BackButton } from "../../styles/buttons/buttons.styles";
 
-import { childInfoRoute } from "../../strings/strings";
+import {
+  childInfoRoute,
+  deleteChildInfoRoute,
+  editChildInfoRoute,
+} from "../../strings/strings";
 
 const FloatingBackButton = () => {
   const { confirmGoBack } = useBackButton();
@@ -28,7 +32,12 @@ const FloatingBackButton = () => {
   };
 
   const dontShowButton = () => {
-    return path === "/" || path === childInfoRoute ? true : false;
+    return path === "/" ||
+      path === childInfoRoute ||
+      path === editChildInfoRoute ||
+      path === deleteChildInfoRoute
+      ? true
+      : false;
   };
 
   return (

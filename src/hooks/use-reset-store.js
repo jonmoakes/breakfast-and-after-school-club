@@ -33,7 +33,9 @@ import {
   updatePasswordResultRoute,
   addChildInfoRoute,
   editChildInfoRoute,
+  deleteChildInfoRoute,
 } from "../strings/strings";
+import { resetDeleteChildInfoState } from "../store/delete-child-info/delete-child-info.slice";
 
 const useResetStore = () => {
   const dispatch = useDispatch();
@@ -91,6 +93,10 @@ const useResetStore = () => {
       case editChildInfoRoute:
         dispatch(resetEditChildInfoState());
         break;
+      case deleteChildInfoRoute:
+        dispatch(resetDeleteChildInfoState());
+        break;
+
       default:
         return;
     }

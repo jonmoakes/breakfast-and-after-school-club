@@ -1,5 +1,6 @@
 import useHandleUpdatedChildInfoChange from "./hooks/use-handle-updated-child-info-change";
-import useConfirmUpdateChildInfo from "./hooks/use-confirm-update-child-info";
+
+import EditAndReturnButtons from "./edit-and-return-buttons.component";
 
 import {
   Form,
@@ -11,12 +12,10 @@ import {
 import { RedSpan } from "../../styles/span/span.styles";
 import { ParentDiv } from "../../styles/div/div.styles";
 import { Text } from "../../styles/p/p.styles";
-import { YellowGreenButton } from "../../styles/buttons/buttons.styles";
 
 const EditChildInfoForm = () => {
   const { updatedChildInfo, handleUpdatedChildInfoChange } =
     useHandleUpdatedChildInfoChange();
-  const { confirmUpdateChildInfo } = useConfirmUpdateChildInfo();
 
   const { childName, age, medicalInfo, dietryRequirements, additionalInfo } =
     updatedChildInfo;
@@ -75,12 +74,7 @@ const EditChildInfoForm = () => {
           defaultValue={additionalInfo}
         />
 
-        <YellowGreenButton
-          type="button"
-          onClick={() => confirmUpdateChildInfo(updatedChildInfo)}
-        >
-          update child info
-        </YellowGreenButton>
+        <EditAndReturnButtons {...{ updatedChildInfo }} />
       </Form>
     </ParentDiv>
   );

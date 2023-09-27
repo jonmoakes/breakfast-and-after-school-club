@@ -35,13 +35,9 @@ export const Button = styled.button`
     transform: scale(1.05);
     color: ${customWhite};
     background-color: ${customBlue};
-    text-shadow: 0.5px 0.5px 0.5px ${customBlack};
 
     @media screen and (max-width: 1366px) {
-      transform: none;
       transition: none;
-      box-shadow: none;
-      text-shadow: none;
 
       &:hover {
         color: ${customBlack};

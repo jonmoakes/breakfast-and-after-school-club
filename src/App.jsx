@@ -40,6 +40,7 @@ import {
   childInfoRoute,
   addChildInfoRoute,
   editChildInfoRoute,
+  deleteChildInfoRoute,
 } from "./strings/strings";
 import FloatingBackButton from "./components/floating-back-button/floating-back-button.component";
 
@@ -60,6 +61,9 @@ const AddChildInfo = lazy(() =>
 );
 const EditChildInfo = lazy(() =>
   import("./routes/edit-child-info/edit-child-info.component")
+);
+const DeleteChildInfo = lazy(() =>
+  import("./routes/delete-child-info/delete-child-info.component")
 );
 const BookASession = lazy(() =>
   import("./routes/book-a-session/book-a-session.component")
@@ -148,6 +152,10 @@ const App = () => {
               <Route path={childInfoRoute} element={<ChildInfo />} />
               <Route path={addChildInfoRoute} element={<AddChildInfo />} />
               <Route path={editChildInfoRoute} element={<EditChildInfo />} />
+              <Route
+                path={deleteChildInfoRoute}
+                element={<DeleteChildInfo />}
+              />
               <Route
                 path={dashboardRoute}
                 element={

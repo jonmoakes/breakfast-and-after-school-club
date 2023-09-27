@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { customBlack, customWhite } from "../colors";
+import { customBlack, customRed, customWhite } from "../colors";
 
 export const Text = styled.p`
   font-size: 18px;
@@ -12,6 +12,10 @@ export const Text = styled.p`
 
 export const WhiteText = styled(Text)`
   color: ${customWhite};
+`;
+
+export const RedText = styled(Text)`
+  color: ${customRed};
 `;
 
 export const ItalicStripeText = styled.p`

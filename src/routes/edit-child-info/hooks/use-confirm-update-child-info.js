@@ -3,9 +3,17 @@ import { useSelector, useDispatch } from "react-redux";
 import useConfirmSwal from "../../../hooks/use-confirm-swal";
 import useFireSwal from "../../../hooks/use-fire-swal";
 
-import { selectEditChildInfo } from "../../../store/edit-child-info/edit-child-info.selector";
-import { enterChildsAge, enterChildsName } from "../../../strings/strings";
 import { updateChildInfoAsync } from "../../../store/edit-child-info/edit-child-info.slice";
+
+import { selectEditChildInfo } from "../../../store/edit-child-info/edit-child-info.selector";
+
+import {
+  confirmUpdateChildMessage,
+  enterChildsAge,
+  enterChildsName,
+  entriesAreTheSameMessage,
+  imSureMessage,
+} from "../../../strings/strings";
 
 const useConfirmUpdateChildInfo = () => {
   const { confirmSwal } = useConfirmSwal();
@@ -39,13 +47,13 @@ const useConfirmUpdateChildInfo = () => {
 
   const confirmUpdateChildInfo = (updatedChildInfo) => {
     if (entriesAreTheSame(updatedChildInfo)) {
-      fireSwal("error", "entries are the same", "", 0, true, false);
+      fireSwal("error", entriesAreTheSameMessage, "", 0, true, false);
     } else if (!updatedChildInfo.childName) {
       fireSwal("error", enterChildsName, "", 0, true, false);
     } else if (!updatedChildInfo.age) {
       fireSwal("error", enterChildsAge, "", 0, true, false);
     } else {
-      confirmSwal("update child details?", "", "yes, update", () =>
+      confirmSwal(confirmUpdateChildMessage, "", imSureMessage, () =>
         confirmResult(updatedChildInfo)
       );
     }

@@ -13,6 +13,7 @@ import NavSignOut from "./nav-sign-out.component";
 import { Nav, Menu } from "../../styles/div/div.styles";
 
 import {
+  deleteChildInfoRoute,
   editChildInfoRoute,
   forgotPasswordResultRoute,
   magicUrlResultRoute,
@@ -25,7 +26,9 @@ const Navigation = () => {
   const path = location.pathname;
 
   const isRouteWithHeader = () => {
-    return path !== editChildInfoRoute ? true : false;
+    return path !== editChildInfoRoute && path !== deleteChildInfoRoute
+      ? true
+      : false;
   };
 
   return (
