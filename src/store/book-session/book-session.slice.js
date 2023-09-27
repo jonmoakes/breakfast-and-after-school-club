@@ -10,6 +10,7 @@ import { resetSessionErrorMessage } from "../../strings/strings";
 const INITIAL_STATE = {
   sessionType: "",
   isLoading: false,
+  childrenToBook: [],
   updateSessionDoc: {
     result: "",
     error: null,
@@ -33,6 +34,12 @@ export const bookSessionSlice = createSlice({
     },
     resetSessionType(state) {
       state.sessionType = "";
+    },
+    setChildrenToBook(state, action) {
+      state.childrenToBook = action.payload;
+    },
+    resetChildrenToBook(state) {
+      state.childrenToBook = [];
     },
     resetBookSessionState: () => {
       return INITIAL_STATE;
@@ -89,6 +96,8 @@ export const {
   setSessionPrice,
   resetUserDocBalanceError,
   resetBookSessionState,
+  setChildrenToBook,
+  resetChildrenToBook,
 } = bookSessionSlice.actions;
 
 export const bookSessionReducer = bookSessionSlice.reducer;

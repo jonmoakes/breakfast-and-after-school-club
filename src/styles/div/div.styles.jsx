@@ -356,33 +356,6 @@ export const TableEditsButtonDiv = styled.div`
   }
 `;
 
-// export const ColumnDiv = styled.div`
-//   display: flex;
-//   flex-direction: column;
-//   justify-content: center;
-//   align-items: center;
-
-//   &.error {
-//     background-color: ${logoRed};
-//     margin: 50px auto;
-//     border: 2px solid black;
-//     border-radius: 10px;
-
-//     p {
-//       text-shadow: 1px 1px 1px ${customBlack};
-//     }
-
-//     @media screen and (max-width: 1366px) {
-//       width: 90%;
-//       padding: 0px 10px;
-
-//       p {
-//         font-size: 16px;
-//       }
-//     }
-//   }
-// `;
-
 export const Div = styled.div`
   margin: 50px auto;
   width: 50%;
@@ -402,6 +375,13 @@ export const Div = styled.div`
     width: 85%;
     padding: 20px 10px;
   }
+`;
+
+export const RadioDiv = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 10px 0px;
 `;
 
 // tables

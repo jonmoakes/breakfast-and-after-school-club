@@ -12,11 +12,13 @@ import ChooseSessions from "./sections/choose-sessions.component";
 import { Container } from "../../styles/container/container.styles";
 import { ParentDiv } from "../../styles/div/div.styles";
 import { BlackTitle } from "../../styles/h1/h1.styles";
+import useGetUsersChildren from "../child-info/child-info-hooks/use-get-users-children";
 
 const BookASession = () => {
   useRequestDateData();
   useGetBookSessionResultSwal();
   useGetSessionPrices();
+  useGetUsersChildren();
   const { isOnline } = useIsOnline();
 
   return (

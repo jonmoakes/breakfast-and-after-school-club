@@ -12,6 +12,8 @@ import {
   selectGetPricesError,
   selectMorningSessionPrice,
 } from "../../../store/session-types-and-prices/session-types-and-prices.selector";
+import { selectUsersChildren } from "../../../store/get-users-children/get-users-children.selector";
+import { selectChildrenToBook } from "../../../store/book-session/book-session.selector";
 
 import { priceMultipliedBy100 } from "../../../functions/price-multiplied-by-100";
 
@@ -29,6 +31,8 @@ const useConditionalLogic = () => {
   const chosenDate = useSelector(selectChosenDate);
   const currentUser = useSelector(selectCurrentUser);
   const error = useSelector(selectGetPricesError);
+  const usersChildren = useSelector(selectUsersChildren);
+  const childrenToBook = useSelector(selectChildrenToBook);
 
   const date = requestDateData ? requestDateData.date : "";
   const morningSessionSpaces = requestDateData
@@ -39,18 +43,6 @@ const useConditionalLogic = () => {
     : "";
 
   const { walletBalance } = currentUser;
-
-  const dateUnavailable = () => {
-    return !date && !dateError
-      ? null
-      : !date && chosenDate && dateError
-      ? true
-      : false;
-  };
-
-  const dateChosenInThePast = () => {
-    return date && date < formattedTodaysDate ? true : false;
-  };
 
   const earlyFinishDates = () => {
     return date === "2023-12-22" ||
@@ -68,11 +60,92 @@ const useConditionalLogic = () => {
       : false;
   };
 
+  const hasInsufficientFunds = () => {
+    return !walletBalance || walletBalance < priceMultipliedBy100(sessionPrice)
+      ? true
+      : false;
+  };
+
+  const noDateSelected = () => {
+    return !noSessionsAvailable() &&
+      !onlyMorningSessionsAvailable() &&
+      !onlyAfternoonSessionsAvailable() &&
+      !allSessionsAvailable()
+      ? true
+      : false;
+  };
+
+  const dateUnavailable = () => {
+    return !date && !dateError
+      ? null
+      : !date && chosenDate && dateError
+      ? true
+      : false;
+  };
+
+  const dateChosenInThePast = () => {
+    return date && date < formattedTodaysDate ? true : false;
+  };
+
+  const dateNotChosenOrDateChosenAndBalanceTooLow = () => {
+    return !requestDateData
+      ? true
+      : requestDateData && walletBalance < priceMultipliedBy100(sessionPrice)
+      ? true
+      : false;
+  };
+
   const noSessionsAvailable = () => {
     return requestDateData &&
       !morningSessionSpaces &&
       !afternoonSessionSpaces &&
       date
+      ? true
+      : false;
+  };
+
+  const isTodayAndAfterCloseTime = () => {
+    return date === formattedTodaysDate &&
+      currentDateAndTime > afternoonCloseTime
+      ? true
+      : false;
+  };
+
+  const hasOneChild = () => {
+    return usersChildren.length === 1 ? true : false;
+  };
+
+  const hasMoreThanOneChild = () => {
+    return usersChildren.length > 1 ? true : false;
+  };
+
+  const childrenHaveBeenSelected = () => {
+    const childrenChosen = () => {
+      return (
+        usersChildren.length > 1 &&
+        Object.values(childrenToBook).filter((child) => child === true).length
+      );
+    };
+
+    return childrenChosen() >= 1;
+  };
+
+  const isToday = () => {
+    return formattedTodaysDate === chosenDate ? true : false;
+  };
+
+  const isTodayAndIsBetweenOpenAndCloseTime = () => {
+    return date === formattedTodaysDate &&
+      currentDateAndTime > morningCloseTime &&
+      date === formattedTodaysDate &&
+      currentDateAndTime < afternoonCloseTime
+      ? true
+      : false;
+  };
+
+  const notTodaysOrIsTodayAndBeforeMorningCloseTime = () => {
+    return date !== formattedTodaysDate ||
+      (date === formattedTodaysDate && currentDateAndTime < morningCloseTime)
       ? true
       : false;
   };
@@ -104,52 +177,12 @@ const useConditionalLogic = () => {
       : false;
   };
 
-  const noDateSelected = () => {
-    return !noSessionsAvailable() &&
-      !onlyMorningSessionsAvailable() &&
-      !onlyAfternoonSessionsAvailable() &&
-      !allSessionsAvailable()
-      ? true
-      : false;
-  };
-
-  const dateNotChosenOrDateChosenAndBalanceTooLow = () => {
-    return !requestDateData
-      ? true
-      : requestDateData && walletBalance < priceMultipliedBy100(sessionPrice)
-      ? true
-      : false;
-  };
-
-  const hasInsufficientFunds = () => {
-    return !walletBalance || walletBalance < priceMultipliedBy100(sessionPrice)
-      ? true
-      : false;
-  };
-
-  const notTodaysOrIsTodayAndBeforeMorningCloseTime = () => {
-    return date !== formattedTodaysDate ||
-      (date === formattedTodaysDate && currentDateAndTime < morningCloseTime)
-      ? true
-      : false;
-  };
-
-  const isTodayAndAfterCloseTime = () => {
-    return date === formattedTodaysDate &&
-      currentDateAndTime > afternoonCloseTime
-      ? true
-      : false;
-  };
-
-  const isToday = () => {
-    return formattedTodaysDate === chosenDate ? true : false;
-  };
-
-  const isTodayAndIsBetweenOpenAndCloseTime = () => {
-    return date === formattedTodaysDate &&
-      currentDateAndTime > morningCloseTime &&
-      date === formattedTodaysDate &&
-      currentDateAndTime < afternoonCloseTime
+  const showNothing = () => {
+    return noDateSelected() ||
+      dateUnavailable() ||
+      dateChosenInThePast() ||
+      dateNotChosenOrDateChosenAndBalanceTooLow() ||
+      noSessionsAvailable()
       ? true
       : false;
   };
@@ -171,6 +204,10 @@ const useConditionalLogic = () => {
     isTodayAndAfterCloseTime,
     isTodayAndIsBetweenOpenAndCloseTime,
     isToday,
+    childrenHaveBeenSelected,
+    showNothing,
+    hasOneChild,
+    hasMoreThanOneChild,
   };
 };
 

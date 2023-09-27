@@ -1,4 +1,7 @@
 import useConditionalLogic from "../book-a-session-hooks/use-conditional-logic";
+import useGetDateAndTime from "../book-a-session-hooks/use-get-date-and-time";
+
+import SelectChildrenToBookSessionFor from "./select-children-to-book-session-for.component";
 
 import HeadingTimesAndPricesWalletBalanceOptionsInfo from "./heading-times-and-prices-wallet-balance-options-info.component";
 import MorningSessionButton from "./buttons/morning-session-button.component";
@@ -10,26 +13,37 @@ import MorningAndAfternoonLongSessionButton from "./buttons/morning-and-afternoo
 import { ColumnDiv, ParentDiv } from "../../../styles/div/div.styles";
 import { BlackHr } from "../../../styles/hr/hr.styles";
 import { Text } from "../../../styles/p/p.styles";
-import useGetDateAndTime from "../book-a-session-hooks/use-get-date-and-time";
 
 const ChooseSessions = () => {
   useGetDateAndTime();
   const {
-    noSessionsAvailable,
+    showNothing,
     onlyMorningSessionsAvailable,
-    dateNotChosenOrDateChosenAndBalanceTooLow,
     notTodaysOrIsTodayAndBeforeMorningCloseTime,
     isTodayAndAfterCloseTime,
     isTodayAndIsBetweenOpenAndCloseTime,
+    childrenHaveBeenSelected,
+    hasOneChild,
+    hasMoreThanOneChild,
   } = useConditionalLogic();
 
   return (
     <>
-      {dateNotChosenOrDateChosenAndBalanceTooLow() ||
-      noSessionsAvailable() ? null : notTodaysOrIsTodayAndBeforeMorningCloseTime() ? (
+      <SelectChildrenToBookSessionFor />
+
+      {showNothing() ? null : isTodayAndAfterCloseTime() ? (
+        <ParentDiv>
+          <Text>
+            sorry, the latest time for booking the afternoon session on the
+            current day is 3:25pm.
+          </Text>
+        </ParentDiv>
+      ) : (hasOneChild() && notTodaysOrIsTodayAndBeforeMorningCloseTime()) ||
+        (hasMoreThanOneChild() &&
+          childrenHaveBeenSelected() &&
+          notTodaysOrIsTodayAndBeforeMorningCloseTime()) ? (
         <ParentDiv>
           <HeadingTimesAndPricesWalletBalanceOptionsInfo />
-
           <ColumnDiv>
             <BlackHr />
             <MorningSessionButton />
@@ -39,14 +53,10 @@ const ChooseSessions = () => {
             <MorningAndAfternoonLongSessionButton />
           </ColumnDiv>
         </ParentDiv>
-      ) : isTodayAndAfterCloseTime() ? (
-        <ParentDiv>
-          <Text>
-            sorry, the latest time for booking the afternoon session on the
-            current day is 3:25pm.
-          </Text>
-        </ParentDiv>
-      ) : isTodayAndIsBetweenOpenAndCloseTime() ? (
+      ) : (hasOneChild() && isTodayAndIsBetweenOpenAndCloseTime()) ||
+        (hasMoreThanOneChild() &&
+          childrenHaveBeenSelected() &&
+          isTodayAndIsBetweenOpenAndCloseTime()) ? (
         <ParentDiv>
           {onlyMorningSessionsAvailable() ? (
             <Text>sorry, there are no afternoon sessions available today.</Text>

@@ -1,4 +1,6 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
+import { bounceInDown } from "react-animations";
+
 import {
   customBlue,
   customBlack,
@@ -6,6 +8,8 @@ import {
   customWhite,
   customYellow,
 } from "../colors";
+
+const bounceInDownAnimation = keyframes`${bounceInDown}`;
 
 export const Form = styled.form`
   width: 75%;
@@ -365,5 +369,84 @@ export const SearchInput = styled.input`
 
   @media screen and (max-width: 320px) {
     padding-left: 5px;
+  }
+`;
+
+export const OptionsForm = styled.form`
+  width: 50%;
+  height: auto;
+  background-color: ${customBlue};
+  margin: 20px auto;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px 0px 20px 0px;
+  animation: 1s ${bounceInDownAnimation};
+  border: 2px solid ${customBlack};
+
+  input {
+    accent-color: red;
+  }
+
+  label {
+    text-align: center;
+    text-shadow: 1px 1px 1px ${customBlack};
+    color: ${customYellow};
+  }
+
+  input[type="checkbox"] {
+    /* Add if not using autoprefixer */
+    -webkit-appearance: none;
+    /* Remove most all native input styles */
+    appearance: none;
+    /* For iOS < 15 */
+    background-color: transparent;
+    /* Not removed via appearance */
+    margin: 10px auto 0px auto;
+    font-family: inherit;
+    background-color: lightgrey;
+    width: 1.5em;
+    height: 1.5em;
+    border: 2px solid black;
+    border-radius: 0.15em;
+    transform: translateY(-0.075em);
+    display: grid;
+    place-content: center;
+  }
+
+  input[type="checkbox"]::before {
+    content: "";
+    width: 0.9em;
+    height: 0.9em;
+    clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
+    transform: scale(0);
+    transform-origin: bottom left;
+    transition: 120ms transform ease-in-out;
+    box-shadow: inset 1em 1em var(black);
+    /* Windows High Contrast Mode */
+    background-color: black;
+  }
+
+  input[type="checkbox"]:checked::before {
+    transform: scale(1);
+  }
+
+  input[type="checkbox"]:focus {
+    outline: max(2px, 0.15em) solid black;
+  }
+
+  @media screen and (max-width: 1366px) {
+    width: 70%;
+    padding: 10px 0px 20px 0px;
+  }
+
+  @media screen and (max-width: 850px) {
+    padding: 5px 0px 10px 0px;
+  }
+
+  @media screen and (max-width: 600px) {
+    width: 90%;
+    padding: 5px 10px 10px 10px;
   }
 `;

@@ -22,6 +22,7 @@ const useGetDateAndTime = () => {
 
   useEffect(() => {
     const timeNow = new Date();
+
     if (timeNow === currentDateAndTime) return;
 
     const interval = setInterval(() => {

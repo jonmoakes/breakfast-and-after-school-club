@@ -36,6 +36,7 @@ import {
   deleteChildInfoRoute,
 } from "../strings/strings";
 import { resetDeleteChildInfoState } from "../store/delete-child-info/delete-child-info.slice";
+import { resetBookSessionState } from "../store/book-session/book-session.slice";
 
 const useResetStore = () => {
   const dispatch = useDispatch();
@@ -75,6 +76,7 @@ const useResetStore = () => {
         dispatch(resetRequestDateDataState());
         dispatch(clearShouldShowElementsState());
         dispatch(setCurrentDateAndTime(new Date()));
+        dispatch(resetBookSessionState());
         break;
       case updateEmailRoute:
         dispatch(clearShouldShowElementsState());
@@ -96,7 +98,6 @@ const useResetStore = () => {
       case deleteChildInfoRoute:
         dispatch(resetDeleteChildInfoState());
         break;
-
       default:
         return;
     }

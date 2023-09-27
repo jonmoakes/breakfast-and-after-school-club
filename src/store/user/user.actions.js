@@ -145,26 +145,3 @@ export const signOutAsync = createAsyncThunk(
     }
   }
 );
-
-// export const deductBalanceAsync = createAsyncThunk(
-//   "user/deductBalance",
-//   async ({ id, price }, thunkAPI) => {
-//     try {
-//       const userDocument = await getUserDocument();
-//       const { total, documents } = userDocument;
-
-//       if (total && documents.length) {
-//         const { walletBalance } = documents[0];
-
-//         await databases.updateDocument(
-//           import.meta.env.VITE_DEVELOPMENT_DATABASE_ID,
-//           import.meta.env.VITE_USER_COLLECTION_ID,
-//           id,
-//           { walletBalance: walletBalance - price }
-//         );
-//       }
-//     } catch (error) {
-//       return thunkAPI.rejectWithValue(error.message);
-//     }
-//   }
-// );

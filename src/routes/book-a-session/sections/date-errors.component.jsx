@@ -19,7 +19,8 @@ const DateErrors = () => {
       ) : dateChosenInThePast() ? (
         <WarningDiv>
           <Text>
-            you have chosen a date that is in the past. please try again.
+            you have chosen a date that is in the past. please select another
+            date.
           </Text>
         </WarningDiv>
       ) : earlyFinishDates() ? (
