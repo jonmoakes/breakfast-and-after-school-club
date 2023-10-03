@@ -15,6 +15,8 @@ import {
 } from "../../../store/add-child-info/add-child-info.slice";
 
 import {
+  ageError,
+  appwriteAgeAttributeError,
   childAddedMessage,
   childInfoRoute,
   errorAddingChild,
@@ -44,19 +46,30 @@ const useAddChildInfoResultSwal = () => {
         }
       );
     } else if (result === "rejected") {
-      fireSwal(
-        "error",
-        errorAddingChild,
-        errorReceivedMessage(error),
-        0,
-        true,
-        false
-      ).then((isConfirmed) => {
-        if (isConfirmed) {
-          dispatch(resetResult());
-          dispatch(resetError());
-        }
-      });
+      if (error.includes(appwriteAgeAttributeError)) {
+        fireSwal("error", errorAddingChild, ageError, 0, true, false).then(
+          (isConfirmed) => {
+            if (isConfirmed) {
+              dispatch(resetResult());
+              dispatch(resetError());
+            }
+          }
+        );
+      } else {
+        fireSwal(
+          "error",
+          errorAddingChild,
+          errorReceivedMessage(error),
+          0,
+          true,
+          false
+        ).then((isConfirmed) => {
+          if (isConfirmed) {
+            dispatch(resetResult());
+            dispatch(resetError());
+          }
+        });
+      }
     }
   }, [result, error, fireSwal, navigate, dispatch]);
 };

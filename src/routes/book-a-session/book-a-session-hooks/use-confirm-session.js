@@ -1,13 +1,14 @@
 import { useDispatch, useSelector } from "react-redux";
 
-import { selectUsersChildren } from "../../../store/get-users-children/get-users-children.selector";
-import { selectChildrenToBook } from "../../../store/book-session/book-session.selector";
-import { setSessionType } from "../../../store/book-session/book-session.slice";
-
 import useConditionalLogic from "./use-conditional-logic";
 import useConfirmSwal from "../../../hooks/use-confirm-swal";
 
+import { selectChildrenSelectedForBooking } from "../../../store/book-session/book-session.selector";
 import { selectCurrentUser } from "../../../store/user/user.selector";
+import { selectUsersChildren } from "../../../store/get-users-children/get-users-children.selector";
+import { setSessionType } from "../../../store/book-session/book-session.slice";
+import { addSessionBookingInfoAsync } from "../../../store/book-session/book-session-thunks";
+
 import {
   updateSessionDocAsync,
   updateUserDocBalanceAsync,
@@ -24,10 +25,11 @@ const useConfirmSession = () => {
   const { date } = useConditionalLogic();
 
   const currentUser = useSelector(selectCurrentUser);
+  const childrenSelectedForBooking = useSelector(
+    selectChildrenSelectedForBooking
+  );
   const usersChildren = useSelector(selectUsersChildren);
-  const childrenToBook = useSelector(selectChildrenToBook);
 
-  console.log(childrenToBook);
   const { id } = currentUser;
 
   const dispatch = useDispatch();
@@ -36,7 +38,20 @@ const useConfirmSession = () => {
     dispatch(updateSessionDocAsync({ date, sessionType })).then(
       (resultAction) => {
         if (updateSessionDocAsync.fulfilled.match(resultAction)) {
-          dispatch(updateUserDocBalanceAsync({ id, price }));
+          dispatch(updateUserDocBalanceAsync({ id, price })).then(
+            (resultAction) => {
+              if (updateUserDocBalanceAsync.fulfilled.match(resultAction)) {
+                dispatch(
+                  addSessionBookingInfoAsync({
+                    date,
+                    sessionType,
+                    usersChildren,
+                    childrenSelectedForBooking,
+                  })
+                );
+              }
+            }
+          );
         }
       }
     );
@@ -44,7 +59,6 @@ const useConfirmSession = () => {
 
   const confirmSession = (sessionType, price) => {
     dispatch(setSessionType(sessionType));
-
     if (usersChildren.length === 1) {
       confirmSwal(
         confirmSureBookSession(sessionType, date),
@@ -55,9 +69,9 @@ const useConfirmSession = () => {
     } else if (usersChildren.length > 1) {
       confirmSwal(
         confirmSureBookSession(sessionType, date),
-        fundsDeductedFromBalance(price * usersChildren.length),
+        fundsDeductedFromBalance(price * childrenSelectedForBooking.length),
         imSureMessage,
-        () => confirmResult(sessionType, price * usersChildren.length)
+        () => confirmResult(sessionType, price)
       );
     }
   };

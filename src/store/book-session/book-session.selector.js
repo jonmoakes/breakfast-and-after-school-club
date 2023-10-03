@@ -27,7 +27,12 @@ export const selectResetSessionDoc = createSelector(
   (bookSessionSlice) => bookSessionSlice.resetSessionDoc
 );
 
-export const selectChildrenToBook = createSelector(
+export const selectAddSessionBookingInfo = createSelector(
   [selectBookSessionReducer],
-  (bookSessionSlice) => bookSessionSlice.childrenToBook
+  (bookSessionSlice) => bookSessionSlice.addSessionBookingInfo
+);
+
+export const selectChildrenSelectedForBooking = createSelector(
+  [selectBookSessionReducer],
+  (bookSessionSlice) => bookSessionSlice.childrenSelectedForBooking
 );

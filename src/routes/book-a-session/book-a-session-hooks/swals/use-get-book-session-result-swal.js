@@ -5,10 +5,12 @@ import useReturnLogic from "../return-logic-and-reset-state/use-return-logic";
 import useSuccessSwal from "./use-success-swal";
 import useUpdateSessionDocErrorSwal from "./use-update-session-doc-error-swal";
 import useUpdateBalanceErrorResetSessionDocSwal from "./use-update-balance-error-reset-session-doc-swal";
+import useAddSessionBookingInfoErrorSwal from "./use-add-session-booking-info-error-swal";
 
 import {
   selectUpdateSessionDoc,
   selectUpdateUserDocBalance,
+  selectAddSessionBookingInfo,
 } from "../../../../store/book-session/book-session.selector";
 
 const useGetBookSessionResultSwal = () => {
@@ -17,19 +19,24 @@ const useGetBookSessionResultSwal = () => {
   const { updateSessionDocErrorSwal } = useUpdateSessionDocErrorSwal();
   const { swalConfirmed, updateBalanceErrorResetSessionDocSwal } =
     useUpdateBalanceErrorResetSessionDocSwal();
+  const { addSessionBookingInfoErrorSwal } =
+    useAddSessionBookingInfoErrorSwal();
 
   const updateSessionDoc = useSelector(selectUpdateSessionDoc);
   const updateUserDocBalance = useSelector(selectUpdateUserDocBalance);
+  const addSessionBookingInfo = useSelector(selectAddSessionBookingInfo);
 
   const updateSessionResult = updateSessionDoc.result;
   const updateBalanceResult = updateUserDocBalance.result;
+  const addSessionBookingInfoResult = addSessionBookingInfo.result;
 
   useEffect(() => {
     if (noActionsFiredYet() || swalConfirmed) return;
 
     if (
       updateSessionResult === "fulfilled" &&
-      updateBalanceResult === "fulfilled"
+      updateBalanceResult === "fulfilled" &&
+      addSessionBookingInfoResult === "fulfilled"
     ) {
       successSwal();
     } else if (updateSessionResult === "rejected") {
@@ -39,6 +46,12 @@ const useGetBookSessionResultSwal = () => {
       updateBalanceResult === "rejected"
     ) {
       updateBalanceErrorResetSessionDocSwal();
+    } else if (
+      updateSessionResult === "fulfilled" &&
+      updateBalanceResult === "fulfilled" &&
+      addSessionBookingInfoResult === "rejected"
+    ) {
+      addSessionBookingInfoErrorSwal();
     }
   }, [
     noActionsFiredYet,
@@ -48,6 +61,8 @@ const useGetBookSessionResultSwal = () => {
     updateBalanceResult,
     updateSessionDocErrorSwal,
     updateSessionResult,
+    addSessionBookingInfoResult,
+    addSessionBookingInfoErrorSwal,
   ]);
 };
 

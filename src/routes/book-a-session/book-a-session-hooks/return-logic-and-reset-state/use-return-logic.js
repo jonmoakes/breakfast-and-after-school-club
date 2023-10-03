@@ -5,12 +5,14 @@ import {
   selectResetSessionDoc,
   selectUpdateSessionDoc,
   selectUpdateUserDocBalance,
+  selectAddSessionBookingInfo,
 } from "../../../../store/book-session/book-session.selector";
 
 const useReturnLogic = () => {
   const updateSessionDoc = useSelector(selectUpdateSessionDoc);
   const updateUserDocBalance = useSelector(selectUpdateUserDocBalance);
   const resetSessionDoc = useSelector(selectResetSessionDoc);
+  const addSessionBookingInfo = useSelector(selectAddSessionBookingInfo);
 
   const updateSessionResult = updateSessionDoc.result;
   const updateSessionError = updateSessionDoc.error;
@@ -21,13 +23,18 @@ const useReturnLogic = () => {
   const resetSessionResult = resetSessionDoc.result;
   const resetSessionError = resetSessionDoc.error;
 
+  const addSessionBookingInfoResult = addSessionBookingInfo.result;
+  const addSessionBookingInfoError = addSessionBookingInfo.error;
+
   const noActionsFiredYet = useCallback(() => {
     return !updateSessionResult &&
       !updateSessionError &&
-      updateBalanceResult &&
+      !updateBalanceResult &&
       !updateBalanceError &&
       !resetSessionResult &&
-      !resetSessionError
+      !resetSessionError &&
+      !addSessionBookingInfoResult &&
+      !addSessionBookingInfoError
       ? true
       : false;
   }, [
@@ -37,6 +44,8 @@ const useReturnLogic = () => {
     updateBalanceResult,
     updateSessionError,
     updateSessionResult,
+    addSessionBookingInfoResult,
+    addSessionBookingInfoError,
   ]);
 
   return { noActionsFiredYet };

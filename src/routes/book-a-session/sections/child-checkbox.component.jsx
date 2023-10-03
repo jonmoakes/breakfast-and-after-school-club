@@ -1,36 +1,25 @@
-import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import useConditionalLogic from "../book-a-session-hooks/use-conditional-logic";
 
+import { setChildrenSelectedForBooking } from "../../../store/book-session/book-session.slice";
 import { selectUsersChildren } from "../../../store/get-users-children/get-users-children.selector";
 
 import { Text } from "../../../styles/p/p.styles";
 import { ParentDiv, RadioDiv } from "../../../styles/div/div.styles";
 import { OptionsForm } from "../../../styles/form/form.styles";
-import { setChildrenToBook } from "../../../store/book-session/book-session.slice";
 
-const SelectChildrenToBookSessionFor = () => {
+const ChildCheckbox = () => {
   const { isTodayAndAfterCloseTime, showNothing, hasOneChild } =
     useConditionalLogic();
 
-  const [chosenChildren, setChosenChildren] = useState({});
-
-  const usersChildren = useSelector(selectUsersChildren);
+  const usersChildrenList = useSelector(selectUsersChildren);
   const dispatch = useDispatch();
 
   const handleChange = (event) => {
-    const { name } = event.target;
-    const childChecked = event.target.checked;
-    setChosenChildren({
-      ...chosenChildren,
-      [name]: childChecked,
-    });
+    const { name, checked } = event.target;
+    dispatch(setChildrenSelectedForBooking({ [name]: checked }));
   };
-
-  useEffect(() => {
-    dispatch(setChildrenToBook(chosenChildren));
-  }, [dispatch, chosenChildren]);
 
   return (
     <>
@@ -40,7 +29,7 @@ const SelectChildrenToBookSessionFor = () => {
             <Text>which children would you like to book the session for?</Text>
 
             <OptionsForm onChange={handleChange}>
-              {usersChildren.map((child) => (
+              {usersChildrenList.map((child) => (
                 <RadioDiv key={child.$id}>
                   <label>{child.childName}</label>
                   <input
@@ -59,4 +48,4 @@ const SelectChildrenToBookSessionFor = () => {
   );
 };
 
-export default SelectChildrenToBookSessionFor;
+export default ChildCheckbox;

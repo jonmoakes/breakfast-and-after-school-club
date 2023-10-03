@@ -1,7 +1,7 @@
 import useConditionalLogic from "../book-a-session-hooks/use-conditional-logic";
 import useGetDateAndTime from "../book-a-session-hooks/use-get-date-and-time";
 
-import SelectChildrenToBookSessionFor from "./select-children-to-book-session-for.component";
+import ChildCheckbox from "./child-checkbox.component";
 
 import HeadingTimesAndPricesWalletBalanceOptionsInfo from "./heading-times-and-prices-wallet-balance-options-info.component";
 import MorningSessionButton from "./buttons/morning-session-button.component";
@@ -22,14 +22,14 @@ const ChooseSessions = () => {
     notTodaysOrIsTodayAndBeforeMorningCloseTime,
     isTodayAndAfterCloseTime,
     isTodayAndIsBetweenOpenAndCloseTime,
-    childrenHaveBeenSelected,
+    atLeastOneChildHasBeenSelected,
     hasOneChild,
     hasMoreThanOneChild,
   } = useConditionalLogic();
 
   return (
     <>
-      <SelectChildrenToBookSessionFor />
+      <ChildCheckbox />
 
       {showNothing() ? null : isTodayAndAfterCloseTime() ? (
         <ParentDiv>
@@ -40,7 +40,7 @@ const ChooseSessions = () => {
         </ParentDiv>
       ) : (hasOneChild() && notTodaysOrIsTodayAndBeforeMorningCloseTime()) ||
         (hasMoreThanOneChild() &&
-          childrenHaveBeenSelected() &&
+          atLeastOneChildHasBeenSelected() &&
           notTodaysOrIsTodayAndBeforeMorningCloseTime()) ? (
         <ParentDiv>
           <HeadingTimesAndPricesWalletBalanceOptionsInfo />
@@ -55,7 +55,7 @@ const ChooseSessions = () => {
         </ParentDiv>
       ) : (hasOneChild() && isTodayAndIsBetweenOpenAndCloseTime()) ||
         (hasMoreThanOneChild() &&
-          childrenHaveBeenSelected() &&
+          atLeastOneChildHasBeenSelected() &&
           isTodayAndIsBetweenOpenAndCloseTime()) ? (
         <ParentDiv>
           {onlyMorningSessionsAvailable() ? (

@@ -1,6 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { databases } from "../../utils/appwrite/appwrite-config";
-import { Query } from "appwrite";
+import { Query, ID } from "appwrite";
 import { getUserDocument } from "../user/functions";
 
 import { lastMinuteNoSessionsMessage } from "../../strings/strings";
@@ -147,6 +147,37 @@ export const resetSessionDocAsync = createAsyncThunk(
     } catch (error) {
       const errorMessage = `error updating sessions - ${error.message}`;
       return thunkAPI.rejectWithValue(errorMessage);
+    }
+  }
+);
+
+export const addSessionBookingInfoAsync = createAsyncThunk(
+  "addSessionBookingInfo",
+  async (
+    { date, sessionType, usersChildren, childrenSelectedForBooking },
+    thunkAPI
+  ) => {
+    // gets the child name if user has only one child;
+    const singleChildName = usersChildren[0].childName;
+    const namesToAddToBooking = childrenSelectedForBooking.join(" ");
+
+    try {
+      const sessionBooking = {
+        date,
+        sessionType,
+        childrensName: !childrenSelectedForBooking.length
+          ? singleChildName
+          : namesToAddToBooking,
+      };
+
+      await databases.createDocument(
+        import.meta.env.VITE_DEVELOPMENT_DATABASE_ID,
+        import.meta.env.VITE_BOOKED_SESSIONS_COLLECTION_ID,
+        ID.unique(),
+        sessionBooking
+      );
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
     }
   }
 );

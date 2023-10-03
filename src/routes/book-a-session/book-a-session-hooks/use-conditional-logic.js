@@ -13,7 +13,7 @@ import {
   selectMorningSessionPrice,
 } from "../../../store/session-types-and-prices/session-types-and-prices.selector";
 import { selectUsersChildren } from "../../../store/get-users-children/get-users-children.selector";
-import { selectChildrenToBook } from "../../../store/book-session/book-session.selector";
+import { selectChildrenSelectedForBooking } from "../../../store/book-session/book-session.selector";
 
 import { priceMultipliedBy100 } from "../../../functions/price-multiplied-by-100";
 
@@ -32,7 +32,9 @@ const useConditionalLogic = () => {
   const currentUser = useSelector(selectCurrentUser);
   const error = useSelector(selectGetPricesError);
   const usersChildren = useSelector(selectUsersChildren);
-  const childrenToBook = useSelector(selectChildrenToBook);
+  const childrenSelectedForBooking = useSelector(
+    selectChildrenSelectedForBooking
+  );
 
   const date = requestDateData ? requestDateData.date : "";
   const morningSessionSpaces = requestDateData
@@ -119,15 +121,8 @@ const useConditionalLogic = () => {
     return usersChildren.length > 1 ? true : false;
   };
 
-  const childrenHaveBeenSelected = () => {
-    const childrenChosen = () => {
-      return (
-        usersChildren.length > 1 &&
-        Object.values(childrenToBook).filter((child) => child === true).length
-      );
-    };
-
-    return childrenChosen() >= 1;
+  const atLeastOneChildHasBeenSelected = () => {
+    return childrenSelectedForBooking.length >= 1 ? true : false;
   };
 
   const isToday = () => {
@@ -204,7 +199,7 @@ const useConditionalLogic = () => {
     isTodayAndAfterCloseTime,
     isTodayAndIsBetweenOpenAndCloseTime,
     isToday,
-    childrenHaveBeenSelected,
+    atLeastOneChildHasBeenSelected,
     showNothing,
     hasOneChild,
     hasMoreThanOneChild,

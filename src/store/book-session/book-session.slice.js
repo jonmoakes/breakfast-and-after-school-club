@@ -4,13 +4,14 @@ import {
   updateSessionDocAsync,
   updateUserDocBalanceAsync,
   resetSessionDocAsync,
+  addSessionBookingInfoAsync,
 } from "./book-session-thunks";
 import { resetSessionErrorMessage } from "../../strings/strings";
 
 const INITIAL_STATE = {
   sessionType: "",
   isLoading: false,
-  childrenToBook: [],
+  childrenSelectedForBooking: [],
   updateSessionDoc: {
     result: "",
     error: null,
@@ -23,6 +24,10 @@ const INITIAL_STATE = {
     result: "",
     error: null,
   },
+  addSessionBookingInfo: {
+    result: "",
+    error: "",
+  },
 };
 
 export const bookSessionSlice = createSlice({
@@ -32,14 +37,21 @@ export const bookSessionSlice = createSlice({
     setSessionType(state, action) {
       state.sessionType = action.payload;
     },
-    resetSessionType(state) {
-      state.sessionType = "";
-    },
-    setChildrenToBook(state, action) {
-      state.childrenToBook = action.payload;
-    },
-    resetChildrenToBook(state) {
-      state.childrenToBook = [];
+    setChildrenSelectedForBooking: (state, action) => {
+      const checkboxName = Object.keys(action.payload)[0];
+      const isChecked = action.payload[checkboxName];
+
+      if (isChecked) {
+        if (!state.childrenSelectedForBooking.includes(checkboxName)) {
+          state.childrenSelectedForBooking.push(checkboxName);
+        }
+      } else {
+        // Remove the checkboxName from the array if it's present
+        state.childrenSelectedForBooking =
+          state.childrenSelectedForBooking.filter(
+            (name) => name !== checkboxName
+          );
+      }
     },
     resetBookSessionState: () => {
       return INITIAL_STATE;
@@ -60,7 +72,6 @@ export const bookSessionSlice = createSlice({
         state.updateSessionDoc.result = "rejected";
         state.updateSessionDoc.error = action.payload;
       })
-
       .addCase(updateUserDocBalanceAsync.pending, (state) => {
         state.isLoading = true;
       })
@@ -74,7 +85,6 @@ export const bookSessionSlice = createSlice({
         state.updateUserDocBalance.result = "rejected";
         state.updateUserDocBalance.error = action.payload;
       })
-
       .addCase(resetSessionDocAsync.pending, (state) => {
         state.isLoading = true;
       })
@@ -87,6 +97,19 @@ export const bookSessionSlice = createSlice({
         state.isLoading = false;
         state.resetSessionDoc.result = "rejected";
         state.resetSessionDoc.error = resetSessionErrorMessage;
+      })
+      .addCase(addSessionBookingInfoAsync.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(addSessionBookingInfoAsync.fulfilled, (state) => {
+        state.isLoading = false;
+        state.addSessionBookingInfo.result = "fulfilled";
+        state.addSessionBookingInfo.error = null;
+      })
+      .addCase(addSessionBookingInfoAsync.rejected, (state) => {
+        state.isLoading = false;
+        state.addSessionBookingInfo.result = "rejected";
+        state.addSessionBookingInfo.error = "error";
       });
   },
 });
@@ -96,8 +119,8 @@ export const {
   setSessionPrice,
   resetUserDocBalanceError,
   resetBookSessionState,
-  setChildrenToBook,
-  resetChildrenToBook,
+  setChildrenSelectedForBooking,
+  resetChildrenSelectedForBooking,
 } = bookSessionSlice.actions;
 
 export const bookSessionReducer = bookSessionSlice.reducer;

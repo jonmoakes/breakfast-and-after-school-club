@@ -69,6 +69,7 @@ export const resetSessionDocFailureMessage = "reset session doc failure";
 export const updateSessionDocErrorMessage = `<span style="font-size: 20px;">there was an error booking your session. your wallet balance has not changed. if the issue persists, please contact us using the contact form and quote the following error:</span>`;
 export const errorBookingSessionMessage = `<span style="font-size: 20px;">sorry, there was an error making your booking. your wallet balance has not been deducted. please tap the "ok" button to continue. if the issue continues, please contact us using the contact form and quote the following error:</span>`;
 export const resetSessionErrorMessage = `<span style="font-size: 20px;">well this is embarassing.. We've had another error on our end, please contact us and quote the following error:</span>`;
+export const addSessionBookingInfoErrorMessage = `<span style="font-size: 16px;">sorry, there was an error completing your session booking. the funds were deducted from your wallet but our database didn't receive your booking info. please tap 'ok' below and then fill out our contact form,  giving the name of your child(ren) on your booking and the date and session you wanted to book for so we can manually add your details! Rest assured, you can still send your child(ren) in for the session you have just booked!</span>`;
 export const lastMinuteNoSessionsMessage =
   "sorry, just before you pressed the confirm button, another user booked the last session..";
 export const morningSessionSpacesInvalidDocError =
@@ -88,6 +89,9 @@ export const errorUpdatingChild =
   "sorry, there was an error updating your childs information. please try again.";
 export const errorDeletingChildMessage =
   "sorry, there was an error deleting your child. please try again.";
+export const appwriteAgeAttributeError =
+  "Value must be a valid range between 4 and 11";
+export const ageError = "the age value should be between 4 and 11";
 // success
 export const successMessage = "success!";
 export const checkEmailMessage = "please check your email!";
