@@ -6,6 +6,7 @@ import {
   customBlue,
   customGrey,
   customLightGreen,
+  customOrange,
   customRed,
   customWhite,
   customYellow,
@@ -173,5 +174,20 @@ export const BackButton = styled.button`
     height: 55px;
     width: 55px;
     bottom: 25px;
+  }
+`;
+
+export const OrangeButton = styled(Button)`
+  background-color: ${customOrange};
+
+  &:hover {
+    background-color: ${customLightGreen};
+    color: ${customBlack};
+    text-shadow: none;
+
+    @media screen and (max-width: 1366px) {
+      background-color: unset;
+      color: unset;
+    }
   }
 `;

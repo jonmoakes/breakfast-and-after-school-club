@@ -1,5 +1,5 @@
-import { useMemo } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useMemo, useState } from "react";
+import { useSelector } from "react-redux";
 import {
   useTable,
   useSortBy,
@@ -8,37 +8,48 @@ import {
   useRowSelect,
   useColumnOrder,
 } from "react-table";
+import { format } from "date-fns";
 
 import useIsOnline from "../../hooks/use-is-online";
-// import useGetUsersChildrenListener from "./child-info-hooks/use-get-users-children-listener";
+import useGetBookedSessionsListener from "./dashboard-hooks/use-get-booked-sessions-listener";
 
 import { selectBookedSessions } from "../../store/booked-sessions/booked-sessions.selector";
-import { selectAllChildren } from "../../store/get-users-children/get-users-children.selector";
 
 import { TABLE_COLUMNS } from "./table-columns";
-import TableNoEntriesInfo from "../../components/tables/table-no-entries-info.component";
-import DefaultTable from "../../components/tables/default-table.component";
 import NetworkError from "../../components/errors/network-error.component";
 import TableCheckBox from "../../components/tables/table-checkbox";
-import EditRemoveButtons from "../child-info/edit-remove-buttons.component";
-import { getAllChildrenAsync } from "../../store/get-users-children/get-users-children-slice";
-import { StyledTextArea } from "../../styles/form/form.styles";
+import GetChildDetailsButton from "./get-child-details-button.component";
+import NoBookingDataFound from "./no-booking-data.found.component";
+import FilterButton from "./filter-button.component";
+import BookingsTableRenderTable from "./bookings-table-render-table.component";
 
 const BookingsTable = () => {
-  // useGetUsersChildrenListener();
+  useGetBookedSessionsListener();
   const { isOnline } = useIsOnline();
+  const [showAllDates, setShowAllDates] = useState(false);
 
   let bookedSessions = useSelector(selectBookedSessions);
-  const searchResult = useSelector(selectAllChildren);
-  const dispatch = useDispatch();
 
   const columns = useMemo(() => TABLE_COLUMNS, []);
+
   const data = useMemo(
-    () => (bookedSessions !== undefined ? bookedSessions : []),
-    [bookedSessions]
+    () =>
+      !showAllDates
+        ? bookedSessions.filter((row) => {
+            const rowDate = row.date;
+            const formattedTodaysDate = format(new Date(), "yyyy-MM-dd");
+            return rowDate === formattedTodaysDate;
+          })
+        : bookedSessions,
+    [bookedSessions, showAllDates]
   );
+
+  // const data = useMemo(
+  //   () => (bookedSessions !== undefined ? bookedSessions : []),
+  //   [bookedSessions]
+  // );
   const initialState = useMemo(
-    () => ({ sortBy: [{ id: "date", desc: false }], pageSize: 30 }),
+    () => ({ sortBy: [{ id: "date", desc: true }], pageSize: 30 }),
     []
   );
 
@@ -88,41 +99,15 @@ const BookingsTable = () => {
   const chosenEntry = selectedFlatRows.map((row) => row.original);
   bookedSessions = chosenEntry;
 
-  // console.log(chosenEntry);
-
-  const childrensName = chosenEntry.length
-    ? chosenEntry[0].childrensName
-    : null;
-
-  const testFunction = () => {
-    dispatch(getAllChildrenAsync({ childrensName }));
-  };
-
   return (
     <>
       {!isOnline ? <NetworkError /> : null}
-
-      {<TableNoEntriesInfo {...{ data }} />}
-
-      {chosenEntry.length === 1 ? (
-        <button onClick={testFunction}>test</button>
-      ) : null}
-
-      {searchResult.length
-        ? searchResult.map((result) => (
-            <>
-              <p>{result.childName}</p>
-              <p>{result.age}</p>
-              <p>{result.dietryRequirements}</p>
-              <p>{result.medicalInfo}</p>
-              <StyledTextArea readOnly>{result.additionalInfo}</StyledTextArea>
-            </>
-          ))
-        : null}
-      {/* <EditRemoveButtons {...{ chosenEntry }} /> */}
+      <FilterButton {...{ showAllDates, setShowAllDates }} />
+      <NoBookingDataFound {...{ data }} />
+      <GetChildDetailsButton {...{ chosenEntry }} />
 
       {data.length ? (
-        <DefaultTable
+        <BookingsTableRenderTable
           {...{
             initialState,
             headerGroups,

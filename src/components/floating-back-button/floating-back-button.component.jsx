@@ -10,6 +10,7 @@ import { BackButton } from "../../styles/buttons/buttons.styles";
 
 import {
   childInfoRoute,
+  chosenEntryChildDetailsRoute,
   deleteChildInfoRoute,
   editChildInfoRoute,
 } from "../../strings/strings";
@@ -35,7 +36,8 @@ const FloatingBackButton = () => {
     return path === "/" ||
       path === childInfoRoute ||
       path === editChildInfoRoute ||
-      path === deleteChildInfoRoute
+      path === deleteChildInfoRoute ||
+      path === chosenEntryChildDetailsRoute
       ? true
       : false;
   };

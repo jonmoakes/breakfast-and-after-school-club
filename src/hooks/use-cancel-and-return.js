@@ -2,9 +2,14 @@ import { useDispatch } from "react-redux";
 import { useNavigate, useLocation } from "react-router-dom";
 
 import { resetChildToDeleteInfo } from "../store/delete-child-info/delete-child-info.slice";
-
-import { deleteChildInfoRoute, editChildInfoRoute } from "../strings/strings";
 import { resetChildToEditInfo } from "../store/edit-child-info/edit-child-info.slice";
+import { resetChosenEntryChildDetailsState } from "../store/chosen-entry-child-details/chosen-entry-child-details.slice";
+
+import {
+  chosenEntryChildDetailsRoute,
+  deleteChildInfoRoute,
+  editChildInfoRoute,
+} from "../strings/strings";
 
 const useCancelAndReturn = () => {
   const navigate = useNavigate();
@@ -21,6 +26,10 @@ const useCancelAndReturn = () => {
         break;
       case editChildInfoRoute:
         dispatch(resetChildToEditInfo());
+        navigate(-1);
+        break;
+      case chosenEntryChildDetailsRoute:
+        dispatch(resetChosenEntryChildDetailsState());
         navigate(-1);
         break;
       default:

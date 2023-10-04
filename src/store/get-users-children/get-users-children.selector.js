@@ -12,11 +12,6 @@ export const selectUsersChildren = createSelector(
   (getUsersChildrenSlice) => getUsersChildrenSlice.usersChildren
 );
 
-export const selectAllChildren = createSelector(
-  [selectGetUsersChildrenReducer],
-  (getUsersChildrenSlice) => getUsersChildrenSlice.allChildren
-);
-
 export const selectResult = createSelector(
   [selectGetUsersChildrenReducer],
   (getUsersChildrenSlice) => getUsersChildrenSlice.result

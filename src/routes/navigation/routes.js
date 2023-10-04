@@ -19,12 +19,6 @@ export const signedInRoutes = [
   contactRoute,
 ];
 
-export const ownerSignedInRoutes = [
-  dashboardRoute,
-  bookingsRoute,
-  bookSessionRoute,
-  accountRoute,
-  contactRoute,
-];
+export const ownerSignedInRoutes = [dashboardRoute, accountRoute];
 
 export const signedOutRoutes = [signInRoute, signUpRoute, contactRoute];

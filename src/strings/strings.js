@@ -81,7 +81,8 @@ export const enterChildsName = "please enter your childs full name";
 export const enterChildsAge = "please enter your childs age";
 export const errorFetchingChildren =
   "there was an error fetching your child / children";
-
+export const errorFetchingChildDetails =
+  "sorry, there was an error fetching the children details...";
 export const errorReceivedMessage = (error) => {
   return `the error received was: '${error}'. please contact us if the error persists.`;
 };
@@ -253,3 +254,4 @@ export const addFundsRoute = "/add-funds";
 export const paymentResultRoute = "/payment-result";
 export const editChildInfoRoute = "/edit-child";
 export const deleteChildInfoRoute = "/delete-child";
+export const chosenEntryChildDetailsRoute = "/child-details";

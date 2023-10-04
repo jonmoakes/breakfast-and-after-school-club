@@ -13,6 +13,7 @@ import NavSignOut from "./nav-sign-out.component";
 import { Nav, Menu } from "../../styles/div/div.styles";
 
 import {
+  chosenEntryChildDetailsRoute,
   deleteChildInfoRoute,
   editChildInfoRoute,
   forgotPasswordResultRoute,
@@ -26,7 +27,9 @@ const Navigation = () => {
   const path = location.pathname;
 
   const isRouteWithHeader = () => {
-    return path !== editChildInfoRoute && path !== deleteChildInfoRoute
+    return path !== editChildInfoRoute &&
+      path !== deleteChildInfoRoute &&
+      path !== chosenEntryChildDetailsRoute
       ? true
       : false;
   };

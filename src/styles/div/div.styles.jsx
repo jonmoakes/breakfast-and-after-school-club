@@ -444,3 +444,8 @@ export const TableSearchDiv = styled.div`
     margin: 0px auto 0px auto;
   }
 `;
+
+export const FilterEntriesButtonDiv = styled.div`
+  width: 90%;
+  margin: 0px auto 30px auto;
+`;

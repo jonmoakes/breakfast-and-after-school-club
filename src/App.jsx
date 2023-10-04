@@ -41,7 +41,9 @@ import {
   addChildInfoRoute,
   editChildInfoRoute,
   deleteChildInfoRoute,
+  chosenEntryChildDetailsRoute,
 } from "./strings/strings";
+
 import FloatingBackButton from "./components/floating-back-button/floating-back-button.component";
 
 const Navigation = lazy(() =>
@@ -52,6 +54,11 @@ const Contact = lazy(() => import("./routes/contact/contact.component"));
 const SignUp = lazy(() => import("./routes/sign-up/sign-up.component"));
 const SignIn = lazy(() => import("./routes/sign-in/sign-in.component"));
 const Dashboard = lazy(() => import("./routes/dashboard/dashboard.component"));
+const ChosenEntryChildDetails = lazy(() =>
+  import(
+    "./routes/chosen-entry-child-details/chosen-entry-child-details.component"
+  )
+);
 const Account = lazy(() => import("./routes/account/account.component"));
 const ChildInfo = lazy(() =>
   import("./routes/child-info/child-info.component")
@@ -166,6 +173,12 @@ const App = () => {
                   )
                 }
               />
+
+              <Route
+                path={chosenEntryChildDetailsRoute}
+                element={<ChosenEntryChildDetails />}
+              />
+
               <Route
                 path={accountRoute}
                 element={currentUser ? <Account /> : null}

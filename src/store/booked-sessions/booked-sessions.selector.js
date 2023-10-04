@@ -9,7 +9,7 @@ export const selectIsLoading = createSelector(
 
 export const selectBookedSessions = createSelector(
   [selectBookedSessionsReducer],
-  (getBookedSessionsSlice) => getBookedSessionsSlice.bookedSessions
+  (getBookedSessionsSlice) => getBookedSessionsSlice.bookedSessions || []
 );
 
 export const selectError = createSelector(

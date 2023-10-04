@@ -2,8 +2,11 @@ import styled from "styled-components";
 
 import {
   customBlack,
+  customCyan,
   customGrey,
   customLightGreen,
+  customOrange,
+  customViolet,
   customWhite,
   customYellow,
 } from "../colors";
@@ -14,7 +17,6 @@ export const TableWithStyle = styled.table`
   text-shadow: none;
   white-space: pre-line;
   width: 100%;
-  /* background-color: ${customWhite}; */
 
   th {
     font-size: 16px;
@@ -54,4 +56,24 @@ export const TableWithStyle = styled.table`
     width: 200%;
     margin: 0px auto 0px auto;
   }
+`;
+
+export const MondayCell = styled.td`
+  background-color: ${customLightGreen};
+`;
+
+export const TuesdayCell = styled.td`
+  background-color: ${customWhite};
+`;
+
+export const WednesdayCell = styled.td`
+  background-color: ${customViolet};
+`;
+
+export const ThursdayCell = styled.td`
+  background-color: ${customCyan};
+`;
+
+export const FridayCell = styled.td`
+  background-color: ${customOrange};
 `;
