@@ -22,9 +22,31 @@ export const getUsersChildrenAsync = createAsyncThunk(
   }
 );
 
+export const getAllChildrenAsync = createAsyncThunk(
+  "getAllChildren",
+  async ({ childrensName }, thunkAPI) => {
+    try {
+      const getAllChildrenDocuments = await databases.listDocuments(
+        import.meta.env.VITE_DEVELOPMENT_DATABASE_ID,
+        import.meta.env.VITE_CHILDREN_COLLECTION_ID,
+        // [Query.equal("parentEmail", email)]
+        [Query.search("childName", childrensName)]
+      );
+
+      const { documents, total } = getAllChildrenDocuments;
+      if (!total) return;
+
+      return documents;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
 const INITIAL_STATE = {
   isLoading: false,
   usersChildren: [],
+  allChildren: [],
   error: null,
 };
 
@@ -55,6 +77,19 @@ export const getUsersChildrenSlice = createSlice({
       .addCase(getUsersChildrenAsync.rejected, (state, action) => {
         state.isLoading = false;
         state.usersChildren = [];
+        state.error = action.payload;
+      })
+      .addCase(getAllChildrenAsync.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(getAllChildrenAsync.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.allChildren = action.payload;
+        state.error = null;
+      })
+      .addCase(getAllChildrenAsync.rejected, (state, action) => {
+        state.isLoading = false;
+        state.allChildren = [];
         state.error = action.payload;
       });
   },

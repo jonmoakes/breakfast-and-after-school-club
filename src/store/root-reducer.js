@@ -28,6 +28,7 @@ import { addChildInfoReducer } from "./add-child-info/add-child-info.slice";
 import { getUsersChildrenReducer } from "./get-users-children/get-users-children-slice";
 import { editChildInfoReducer } from "./edit-child-info/edit-child-info.slice";
 import { deleteChildInfoReducer } from "./delete-child-info/delete-child-info.slice";
+import { getBookedSessionsReducer } from "./booked-sessions/booked-sessions.slice";
 
 export const rootReducer = combineReducers({
   hamburgerMenu: hamburgerMenuReducer,
@@ -58,4 +59,5 @@ export const rootReducer = combineReducers({
   getUsersChildren: getUsersChildrenReducer,
   editChildInfo: editChildInfoReducer,
   deleteChildInfo: deleteChildInfoReducer,
+  bookedSessions: getBookedSessionsReducer,
 });
