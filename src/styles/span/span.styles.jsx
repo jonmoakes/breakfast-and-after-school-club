@@ -27,6 +27,10 @@ export const RedSpan = styled.span`
   color: ${customRed};
 `;
 
+export const BlackSpan = styled.span`
+  color: ${customBlack};
+`;
+
 export const BlueSpan = styled.span`
   color: ${customBlue};
 `;

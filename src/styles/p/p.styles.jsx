@@ -40,3 +40,10 @@ export const NavLink = styled.p`
     }
   }
 `;
+
+export const ErrorImageText = styled.p`
+  font-size: 18px;
+  color: ${customBlack};
+  text-align: center;
+  padding: 5px 5px 5px 5px;
+`;

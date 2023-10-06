@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useMemo } from "react";
 import { useSelector } from "react-redux";
 import {
   useTable,
@@ -14,21 +14,24 @@ import useIsOnline from "../../hooks/use-is-online";
 import useGetBookedSessionsListener from "./dashboard-hooks/use-get-booked-sessions-listener";
 
 import { selectBookedSessions } from "../../store/booked-sessions/booked-sessions.selector";
+import { selectShowAllDates } from "../../store/booked-sessions/booked-sessions.selector";
 
 import { TABLE_COLUMNS } from "./table-columns";
 import NetworkError from "../../components/errors/network-error.component";
 import TableCheckBox from "../../components/tables/table-checkbox";
 import GetChildDetailsButton from "./get-child-details-button.component";
 import NoBookingDataFound from "./no-booking-data.found.component";
-import FilterButton from "./filter-button.component";
+
 import BookingsTableRenderTable from "./bookings-table-render-table.component";
+import TableSearchBox from "../../components/tables/table-search-box.component";
+import ToggleBookingsShownButton from "./toggle-bookings-show-button.component";
 
 const BookingsTable = () => {
   useGetBookedSessionsListener();
   const { isOnline } = useIsOnline();
-  const [showAllDates, setShowAllDates] = useState(false);
 
   let bookedSessions = useSelector(selectBookedSessions);
+  const showAllDates = useSelector(selectShowAllDates);
 
   const columns = useMemo(() => TABLE_COLUMNS, []);
 
@@ -44,10 +47,6 @@ const BookingsTable = () => {
     [bookedSessions, showAllDates]
   );
 
-  // const data = useMemo(
-  //   () => (bookedSessions !== undefined ? bookedSessions : []),
-  //   [bookedSessions]
-  // );
   const initialState = useMemo(
     () => ({ sortBy: [{ id: "date", desc: true }], pageSize: 30 }),
     []
@@ -63,7 +62,18 @@ const BookingsTable = () => {
     getTableBodyProps,
     headerGroups,
     page,
+    rows,
+    // nextPage,
+    // previousPage,
+    // canNextPage,
+    // canPreviousPage,
+    // pageOptions,
+    // gotoPage,
+    // pageCount,
+    // setPageSize,
     prepareRow,
+    state,
+    setGlobalFilter,
     selectedFlatRows,
   } = useTable(
     {
@@ -96,14 +106,28 @@ const BookingsTable = () => {
     }
   );
 
+  const { globalFilter } = state;
   const chosenEntry = selectedFlatRows.map((row) => row.original);
   bookedSessions = chosenEntry;
 
   return (
     <>
       {!isOnline ? <NetworkError /> : null}
-      <FilterButton {...{ showAllDates, setShowAllDates }} />
+
       <NoBookingDataFound {...{ data }} />
+
+      <TableSearchBox
+        {...{
+          chosenEntry,
+          rows,
+          data,
+          globalFilter,
+          setGlobalFilter,
+        }}
+      />
+
+      <ToggleBookingsShownButton {...{ bookedSessions, data }} />
+
       <GetChildDetailsButton {...{ chosenEntry }} />
 
       {data.length ? (

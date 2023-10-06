@@ -24,6 +24,7 @@ const INITIAL_STATE = {
   isLoading: false,
   bookedSessions: [],
   error: null,
+  showAllDates: false,
 };
 
 export const getBookedSessionsSlice = createSlice({
@@ -38,6 +39,12 @@ export const getBookedSessionsSlice = createSlice({
     },
     resetBookedSessions(state) {
       state.bookedSessions = [];
+    },
+    setShowAllDates(state, action) {
+      state.showAllDates = action.payload;
+    },
+    toggleShowAllDates(state) {
+      state.showAllDates = !state.showAllDates;
     },
   },
   extraReducers: (builder) => {
@@ -58,7 +65,12 @@ export const getBookedSessionsSlice = createSlice({
   },
 });
 
-export const { setBookedSessions, resetBookedSessions, resetError } =
-  getBookedSessionsSlice.actions;
+export const {
+  setBookedSessions,
+  resetBookedSessions,
+  setShowAllDates,
+  resetError,
+  toggleShowAllDates,
+} = getBookedSessionsSlice.actions;
 
 export const getBookedSessionsReducer = getBookedSessionsSlice.reducer;

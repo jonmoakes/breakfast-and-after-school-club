@@ -1,12 +1,11 @@
 import styled, { keyframes } from "styled-components";
-import { pulse, zoomInLeft, zoomInRight } from "react-animations";
+import { pulse, zoomInLeft, zoomInRight, bounceInDown } from "react-animations";
 
 import {
   customBlack,
   customBlue,
   customGrey,
   customLightGreen,
-  customOrange,
   customRed,
   customWhite,
   customYellow,
@@ -15,6 +14,7 @@ import {
 const PulseAnimation = keyframes`${pulse}`;
 const zoomInLeftAnimation = keyframes`${zoomInLeft}`;
 const zoomInRightAnimation = keyframes`${zoomInRight}`;
+const bounceInDownAnimation = keyframes`${bounceInDown}`;
 
 export const Button = styled.button`
   width: 250px;
@@ -177,17 +177,93 @@ export const BackButton = styled.button`
   }
 `;
 
-export const OrangeButton = styled(Button)`
-  background-color: ${customOrange};
+export const GreyButton = styled(Button)`
+  background-color: ${customGrey};
 
   &:hover {
+    color: ${customBlack};
+    background-color: ${customGrey};
+
+    @media screen and (max-width: 1366px) {
+      &:hover {
+        color: ${customBlack};
+        background-color: ${customGrey};
+      }
+    }
+  }
+
+  @media screen and (max-width: 320px) {
+    width: 90%;
+    font-size: 16px;
+  }
+`;
+
+export const ClearSearchButton = styled.button`
+  position: absolute;
+  top: 0;
+  border-radius: 5px;
+  right: 0px;
+  z-index: 2;
+  border: none;
+  height: 50px;
+  width: 5%;
+  cursor: pointer;
+  color: ${customWhite};
+  border-top-left-radius: 0px;
+  border-bottom-left-radius: 0px;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  border-left: 1px solid ${customBlack};
+  background-color: ${customRed};
+  transform: translateX(2px);
+  text-transform: capitalize;
+  font-family: inherit;
+  color: ${customBlack};
+  font-weight: 700;
+  animation: 1s ${bounceInDownAnimation};
+
+  @media screen and (max-width: 1366px) {
+    width: 10%;
+  }
+
+  @media screen and (max-width: 450px) {
+    height: 40px;
+  }
+`;
+
+export const ErrorFallbackButton = styled(Button)`
+  background-color: ${customLightGreen};
+  color: ${customBlack};
+  text-shadow: none;
+
+  &:hover {
+    transform: scale(1.05);
     background-color: ${customLightGreen};
     color: ${customBlack};
     text-shadow: none;
 
     @media screen and (max-width: 1366px) {
-      background-color: unset;
-      color: unset;
+      background-color: ${customLightGreen};
+      color: ${customBlack};
     }
+  }
+`;
+export const DateSearchHelpButton = styled.button`
+  font-family: inherit;
+  color: ${customWhite};
+  cursor: pointer;
+  text-transform: capitalize;
+  margin: 20px auto 50px auto;
+  background-color: ${customBlack};
+  padding: 7px;
+  border: none;
+  border-radius: 5px;
+
+  @media screen and (max-width: 850px) {
+    margin: 20px auto 20px auto;
+  }
+
+  @media screen and (max-width: 1366px) {
+    margin: 20px auto 0px auto;
   }
 `;

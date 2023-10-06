@@ -9,6 +9,7 @@ import "./index.css";
 import * as serviceWorkerRegistration from "./serviceWorkerRegistration";
 import { Elements } from "@stripe/react-stripe-js";
 import { stripePromise } from "./utils/stripe/stripe.utils";
+import "regenerator-runtime";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>

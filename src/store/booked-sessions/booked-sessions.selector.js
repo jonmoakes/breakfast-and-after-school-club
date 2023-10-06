@@ -16,3 +16,8 @@ export const selectError = createSelector(
   [selectBookedSessionsReducer],
   (getBookedSessionsSlice) => getBookedSessionsSlice.error
 );
+
+export const selectShowAllDates = createSelector(
+  [selectBookedSessionsReducer],
+  (getBookedSessionsSlice) => getBookedSessionsSlice.showAllDates
+);

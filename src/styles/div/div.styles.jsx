@@ -1,13 +1,6 @@
 import styled, { keyframes } from "styled-components";
 import { slideInLeft, bounceInDown } from "react-animations";
 
-// import {
-//   customBlack,
-//   customOrange,
-//   customWhite,
-//   customYellow,
-// } from "../colors";
-
 import {
   customBlack,
   customGrey,
@@ -135,6 +128,24 @@ export const InnerDiv = styled.div`
   }
 `;
 
+export const ErrorFallbackImageDiv = styled.div`
+  width: 30%;
+  height: 30%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 50px 0px;
+  margin: 100px auto 0px auto;
+  background-color: ${customGrey};
+  border: 1px solid ${customBlack};
+  border-radius: 5px;
+
+  @media screen and (max-width: 600px) {
+    height: 90%;
+    width: 90%;
+  }
+`;
+
 export const ImageDiv = styled.div`
   width: 30%;
   height: 30%;
@@ -146,11 +157,6 @@ export const ImageDiv = styled.div`
 
   &.no-padding {
     padding: 0px;
-  }
-
-  @media screen and (max-width: 600px) {
-    height: 90%;
-    width: 90%;
   }
 `;
 
@@ -260,6 +266,15 @@ export const Accordion = styled.div.withConfig({
 
   &.funds-help {
     margin: 20px auto 10px auto;
+  }
+
+  &.table {
+    margin: 10px auto 20px auto;
+    width: 50%;
+
+    @media screen and (max-width: 1366px) {
+      width: 90%;
+    }
   }
 
   @media screen and (max-width: 1366px) {
@@ -432,7 +447,7 @@ export const PaginationTextDiv = styled.div`
 export const TableSearchDiv = styled.div`
   width: 50%;
   position: relative;
-  margin: 40px auto 0px auto;
+  margin: 0px auto -30px auto;
   animation: 1s ${slideInLeftAnimation};
 
   @media screen and (max-width: 1366px) {
@@ -447,5 +462,40 @@ export const TableSearchDiv = styled.div`
 
 export const FilterEntriesButtonDiv = styled.div`
   width: 90%;
-  margin: 0px auto 30px auto;
+  margin: 0px auto 20px auto;
+
+  @media screen and (max-width: 850px) {
+    margin: 50px auto 20px auto;
+  }
+
+  @media screen and (max-width: 450px) {
+    margin: 20px auto 20px auto;
+  }
+`;
+
+export const NoSearchResultDiv = styled.div`
+  width: 50%;
+  height: auto;
+  margin: 30px auto;
+  background-color: ${customWhite};
+  padding: 20px;
+  border-radius: 15px;
+  animation: 1s ${bounceInDownAnimation};
+  border: 2px solid ${customBlack};
+
+  @media screen and (max-width: 1366px) {
+    width: 80%;
+  }
+
+  @media screen and (max-width: 850px) {
+    margin: 50px auto -50px auto;
+  }
+
+  @media screen and (max-width: 600px) {
+    width: 90%;
+  }
+
+  @media screen and (max-width: 450px) {
+    margin: 30px auto -10px auto;
+  }
 `;

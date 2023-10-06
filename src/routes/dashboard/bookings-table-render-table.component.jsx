@@ -20,7 +20,7 @@ const BookingsTableRenderTable = ({
 }) => {
   return (
     <TableDiv>
-      <TableWithStyle initialState={initialState} {...getTableProps()}>
+      <TableWithStyle {...getTableProps()}>
         <thead>
           {headerGroups.map((headerGroup) => (
             <tr {...headerGroup.getHeaderGroupProps()}>
