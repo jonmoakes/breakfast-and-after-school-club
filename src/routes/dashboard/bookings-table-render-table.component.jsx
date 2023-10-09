@@ -11,7 +11,6 @@ import {
 } from "../../styles/tables/tables.styles";
 
 const BookingsTableRenderTable = ({
-  initialState,
   headerGroups,
   getTableProps,
   getTableBodyProps,

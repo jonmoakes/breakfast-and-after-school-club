@@ -133,7 +133,6 @@ const BookingsTable = () => {
       {data.length ? (
         <BookingsTableRenderTable
           {...{
-            initialState,
             headerGroups,
             getTableProps,
             getTableBodyProps,

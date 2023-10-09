@@ -3,6 +3,8 @@ import { useSelector, useDispatch } from "react-redux";
 import useConditionalLogic from "../book-a-session-hooks/use-conditional-logic";
 
 import { selectShouldShowElement } from "../../../store/should-show-element/should-show-element.selector";
+import { selectUsersChildren } from "../../../store/get-users-children/get-users-children.selector";
+
 import {
   hideElement,
   toggleShowElement,
@@ -26,6 +28,8 @@ const BalanceCheckAndBookSessionHelp = () => {
   const { hasInsufficientFunds } = useConditionalLogic();
 
   const shouldShowElement = useSelector(selectShouldShowElement);
+  const usersChildren = useSelector(selectUsersChildren);
+
   const dispatch = useDispatch();
 
   return (
@@ -37,7 +41,7 @@ const BalanceCheckAndBookSessionHelp = () => {
           <StyledLink to={addFundsRoute}>Add funds</StyledLink> to your account
           in order to continue.
         </Text>
-      ) : (
+      ) : usersChildren === undefined ? null : (
         <Accordion {...{ shouldShowElement }}>
           <>
             <AccordionTitle

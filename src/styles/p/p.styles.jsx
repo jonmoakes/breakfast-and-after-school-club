@@ -47,3 +47,27 @@ export const ErrorImageText = styled.p`
   text-align: center;
   padding: 5px 5px 5px 5px;
 `;
+
+export const EmailLink = styled.p`
+  text-transform: lowercase;
+  color: ${customBlack};
+  cursor: pointer;
+  font-size: 16px;
+
+  &:hover {
+    color: ${customRed};
+
+    @media screen and (max-width: 1366px) {
+      text-decoration: none;
+      color: ${customBlack};
+    }
+  }
+
+  @media screen and (max-width: 600px) {
+    font-size: 14px;
+  }
+
+  @media screen and (max-width: 320px) {
+    font-size: 12px;
+  }
+`;

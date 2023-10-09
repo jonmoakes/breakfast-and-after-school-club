@@ -26,10 +26,6 @@ export const TableWithStyle = styled.table`
     width: auto;
     color: ${customBlack};
     background-color: ${customYellow};
-
-    @media screen and (max-width: 320px) {
-      font-size: 16px;
-    }
   }
 
   tr {

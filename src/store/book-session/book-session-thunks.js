@@ -157,23 +157,25 @@ export const addSessionBookingInfoAsync = createAsyncThunk(
     { date, sessionType, usersChildren, childrenSelectedForBooking },
     thunkAPI
   ) => {
-    console.log(childrenSelectedForBooking);
     // gets the child name if user has only one child;
-    const singleChildName = usersChildren[0].childName;
     const oneChildChosen = childrenSelectedForBooking.join(" ");
     const namesToAddToBooking = childrenSelectedForBooking.join(", ");
+
+    const { childName, parentEmail, parentName } = usersChildren[0];
 
     try {
       const sessionBooking = {
         date,
         sessionType,
         childrensName: !childrenSelectedForBooking.length
-          ? singleChildName
+          ? childName
           : childrenSelectedForBooking.length === 1
           ? oneChildChosen
           : childrenSelectedForBooking.length > 1
           ? namesToAddToBooking
           : childrenSelectedForBooking,
+        parentEmail,
+        parentName,
       };
 
       await databases.createDocument(
