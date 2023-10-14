@@ -54,6 +54,10 @@ const useConditionalLogic = () => {
       : false;
   };
 
+  const noChildrenAddedYet = () => {
+    return usersChildren === undefined ? true : false;
+  };
+
   const shouldShowDatePicker = () => {
     return walletBalance &&
       walletBalance >= priceMultipliedBy100(sessionPrice) &&
@@ -195,6 +199,7 @@ const useConditionalLogic = () => {
     allSessionsAvailable,
     noDateSelected,
     dateNotChosenOrDateChosenAndBalanceTooLow,
+    noChildrenAddedYet,
     hasInsufficientFunds,
     notTodaysOrIsTodayAndBeforeMorningCloseTime,
     isTodayAndAfterCloseTime,

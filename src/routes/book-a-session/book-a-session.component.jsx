@@ -13,12 +13,14 @@ import { Container } from "../../styles/container/container.styles";
 import { ParentDiv } from "../../styles/div/div.styles";
 import { BlackTitle } from "../../styles/h1/h1.styles";
 import useGetUsersChildren from "../child-info/child-info-hooks/use-get-users-children";
+import useSessionSpacesListener from "./book-a-session-hooks/use-session-spaces-listener";
 
 const BookASession = () => {
   useRequestDateData();
   useGetBookSessionResultSwal();
   useGetSessionPrices();
   useGetUsersChildren();
+  useSessionSpacesListener();
   const { isOnline } = useIsOnline();
 
   return (
