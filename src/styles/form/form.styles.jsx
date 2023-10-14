@@ -252,16 +252,13 @@ export const StyledSelect = styled.select`
 
 export const PaginationSelect = styled.select`
   width: 200px;
+  height: 40px;
+  color: ${customBlack};
   padding: 10px;
   border-radius: 5px;
   border: 2px solid ${customBlack};
   outline: none;
-  margin-top: -25px;
-
-  &:focus {
-    border-color: ${customRed};
-    box-shadow: 6px 6px 6px ${customBlack};
-  }
+  font-size: 16px;
 `;
 
 export const Label = styled.label`

@@ -25,6 +25,7 @@ import NoBookingDataFound from "./no-booking-data.found.component";
 import BookingsTableRenderTable from "./bookings-table-render-table.component";
 import TableSearchBox from "../../components/tables/table-search-box.component";
 import ToggleBookingsShownButton from "./toggle-bookings-show-button.component";
+import BookingsTablePagination from "./bookings-table-pagination.component";
 
 const BookingsTable = () => {
   useGetBookedSessionsListener();
@@ -48,7 +49,7 @@ const BookingsTable = () => {
   );
 
   const initialState = useMemo(
-    () => ({ sortBy: [{ id: "date", desc: true }], pageSize: 30 }),
+    () => ({ sortBy: [{ id: "date", desc: true }], pageSize: 3 }),
     []
   );
 
@@ -63,14 +64,14 @@ const BookingsTable = () => {
     headerGroups,
     page,
     rows,
-    // nextPage,
-    // previousPage,
-    // canNextPage,
-    // canPreviousPage,
-    // pageOptions,
-    // gotoPage,
-    // pageCount,
-    // setPageSize,
+    nextPage,
+    previousPage,
+    canNextPage,
+    canPreviousPage,
+    pageOptions,
+    gotoPage,
+    pageCount,
+    setPageSize,
     prepareRow,
     state,
     setGlobalFilter,
@@ -106,7 +107,8 @@ const BookingsTable = () => {
     }
   );
 
-  const { globalFilter } = state;
+  const { globalFilter, pageIndex, pageSize } = state;
+
   const chosenEntry = selectedFlatRows.map((row) => row.original);
   bookedSessions = chosenEntry;
 
@@ -131,15 +133,34 @@ const BookingsTable = () => {
       <GetChildDetailsButton {...{ chosenEntry }} />
 
       {data.length ? (
-        <BookingsTableRenderTable
-          {...{
-            headerGroups,
-            getTableProps,
-            getTableBodyProps,
-            page,
-            prepareRow,
-          }}
-        />
+        <>
+          <BookingsTableRenderTable
+            {...{
+              headerGroups,
+              getTableProps,
+              getTableBodyProps,
+              page,
+              prepareRow,
+            }}
+          />
+
+          <BookingsTablePagination
+            {...{
+              data,
+              rows,
+              pageIndex,
+              pageOptions,
+              gotoPage,
+              canPreviousPage,
+              previousPage,
+              nextPage,
+              canNextPage,
+              pageCount,
+              pageSize,
+              setPageSize,
+            }}
+          />
+        </>
       ) : null}
     </>
   );

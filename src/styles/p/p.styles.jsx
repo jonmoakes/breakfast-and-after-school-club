@@ -71,3 +71,8 @@ export const EmailLink = styled.p`
     font-size: 12px;
   }
 `;
+
+export const PaginationText = styled.p`
+  font-size: 16px;
+  color: ${customBlack};
+`;

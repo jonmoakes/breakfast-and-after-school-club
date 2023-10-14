@@ -371,26 +371,26 @@ export const TableEditsButtonDiv = styled.div`
   }
 `;
 
-export const Div = styled.div`
-  margin: 50px auto;
-  width: 50%;
-  height: auto;
-  background-color: ${customWhite};
-  box-shadow: 25px 50px 50px ${customBlack};
-  border-radius: 15px;
-  padding: 20px;
-  border: 2px solid ${customBlack};
+// export const Div = styled.div`
+//   margin: 50px auto;
+//   width: 50%;
+//   height: auto;
+//   background-color: ${customWhite};
+//   box-shadow: 25px 50px 50px ${customBlack};
+//   border-radius: 15px;
+//   padding: 20px;
+//   border: 2px solid ${customBlack};
 
-  @media screen and (max-width: 1366px) {
-    width: 70%;
-    box-shadow: none;
-  }
+//   @media screen and (max-width: 1366px) {
+//     width: 70%;
+//     box-shadow: none;
+//   }
 
-  @media screen and (max-width: 450px) {
-    width: 85%;
-    padding: 20px 10px;
-  }
-`;
+//   @media screen and (max-width: 450px) {
+//     width: 85%;
+//     padding: 20px 10px;
+//   }
+// `;
 
 export const RadioDiv = styled.div`
   width: 100%;
@@ -428,15 +428,19 @@ export const TableDiv = styled.div`
   }
 `;
 
-export const PaginationDiv = styled(Div)`
+export const PaginationDiv = styled(ParentDiv)`
   margin: -150px auto 0px auto;
-  border: none;
+  width: 50%;
+  border: 2px solid ${customBlack};
   box-shadow: none;
-  background-color: ${customBlack};
-  padding-bottom: 50px;
+  background-color: ${customGrey};
+  padding-bottom: 20px;
 
   @media screen and (max-width: 1366px) {
     margin: -50px auto 0px auto;
+  }
+  @media screen and (max-width: 600px) {
+    width: 90%;
   }
 `;
 

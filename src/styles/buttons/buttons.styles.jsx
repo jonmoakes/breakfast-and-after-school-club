@@ -267,3 +267,24 @@ export const DateSearchHelpButton = styled.button`
     margin: 20px auto 0px auto;
   }
 `;
+
+export const PaginationPageButton = styled(Button)`
+  min-width: unset;
+  width: 50px;
+  height: 10px;
+  margin: 0px 10px 20px 0px;
+  line-height: 0px;
+  font-size: 16px;
+  text-shadow: none;
+  padding: 10px 5px;
+  background-color: ${customLightGreen};
+  color: ${customBlack};
+
+  @media screen and (max-width: 1024px) {
+    margin: 0px 5px 20px 5px;
+  }
+
+  @media screen and (max-width: 1024px) {
+    width: 40px;
+  }
+`;
