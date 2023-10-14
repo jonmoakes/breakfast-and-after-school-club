@@ -22,7 +22,7 @@ const BookingsTablePagination = ({
 }) => {
   return (
     <>
-      {data.length > 3 && rows.length ? (
+      {data.length > 30 && rows.length ? (
         <PaginationDiv>
           <div>
             <PaginationText>

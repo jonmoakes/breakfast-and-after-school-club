@@ -49,7 +49,7 @@ const BookingsTable = () => {
   );
 
   const initialState = useMemo(
-    () => ({ sortBy: [{ id: "date", desc: true }], pageSize: 3 }),
+    () => ({ sortBy: [{ id: "date", desc: true }], pageSize: 30 }),
     []
   );
 
