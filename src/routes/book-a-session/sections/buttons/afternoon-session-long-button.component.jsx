@@ -2,22 +2,25 @@ import { useSelector } from "react-redux";
 
 import useConditionalLogic from "../../book-a-session-hooks/use-conditional-logic";
 import useConfirmSession from "../../book-a-session-hooks/use-confirm-session";
+import useGetPriceOfBooking from "../../../../hooks/use-get-price-of-booking";
 
 import { selectCurrentUser } from "../../../../store/user/user.selector";
 import {
   selectAfternoonLongSessionType,
   selectAfternoonLongSessionPrice,
 } from "../../../../store/session-types-and-prices/session-types-and-prices.selector";
+// import { selectChildrenSelectedForBooking } from "../../../../store/book-session/book-session.selector";
 
 import { YellowGreenButton } from "../../../../styles/buttons/buttons.styles";
 import { BlackHr } from "../../../../styles/hr/hr.styles";
 
-import { priceMultipliedBy100 } from "../../../../functions/price-multiplied-by-100";
+// import { priceMultipliedBy100 } from "../../../../functions/price-multiplied-by-100";
 
 const AfternoonSessionLongButton = () => {
   const { onlyAfternoonSessionsAvailable, allSessionsAvailable } =
     useConditionalLogic();
   const { confirmSession } = useConfirmSession();
+  const { getPriceOfBooking } = useGetPriceOfBooking();
 
   const currentUser = useSelector(selectCurrentUser);
   const sessionType = useSelector(selectAfternoonLongSessionType);
@@ -25,7 +28,9 @@ const AfternoonSessionLongButton = () => {
 
   const { walletBalance } = currentUser;
 
-  const price = priceMultipliedBy100(sessionPrice);
+  //needs to be called price as that is what confirmSession is expecting.
+  // will get the price whether one or multiple children have been selected.
+  const price = getPriceOfBooking(sessionPrice);
 
   return (
     <>

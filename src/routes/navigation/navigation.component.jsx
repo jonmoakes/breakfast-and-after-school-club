@@ -13,6 +13,7 @@ import NavSignOut from "./nav-sign-out.component";
 import { Nav, Menu } from "../../styles/div/div.styles";
 
 import {
+  cancelBookingRoute,
   chosenEntryChildDetailsRoute,
   deleteChildInfoRoute,
   editChildInfoRoute,
@@ -29,7 +30,8 @@ const Navigation = () => {
   const isRouteWithHeader = () => {
     return path !== editChildInfoRoute &&
       path !== deleteChildInfoRoute &&
-      path !== chosenEntryChildDetailsRoute
+      path !== chosenEntryChildDetailsRoute &&
+      path !== cancelBookingRoute
       ? true
       : false;
   };

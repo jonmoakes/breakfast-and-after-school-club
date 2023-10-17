@@ -9,18 +9,19 @@ import {
 
 import { YellowGreenButton } from "../../../../styles/buttons/buttons.styles";
 import { BlackHr } from "../../../../styles/hr/hr.styles";
-import { priceMultipliedBy100 } from "../../../../functions/price-multiplied-by-100";
 import useConditionalLogic from "../../book-a-session-hooks/use-conditional-logic";
+import useGetPriceOfBooking from "../../../../hooks/use-get-price-of-booking";
 
 const MorningSessionButton = () => {
   const { onlyMorningSessionsAvailable, allSessionsAvailable } =
     useConditionalLogic();
   const { confirmSession } = useConfirmSession();
+  const { getPriceOfBooking } = useGetPriceOfBooking();
 
   const sessionType = useSelector(selectMorningSessionType);
   const sessionPrice = useSelector(selectMorningSessionPrice);
 
-  const price = priceMultipliedBy100(sessionPrice);
+  const price = getPriceOfBooking(sessionPrice);
 
   return (
     <>

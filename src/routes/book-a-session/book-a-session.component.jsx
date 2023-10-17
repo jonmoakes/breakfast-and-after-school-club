@@ -1,7 +1,9 @@
 import useRequestDateData from "./book-a-session-hooks/use-request-date-data";
 import useGetBookSessionResultSwal from "./book-a-session-hooks/swals/use-get-book-session-result-swal";
-import useGetSessionPrices from "./book-a-session-hooks/use-get-session-prices";
+import useGetSessionPrices from "../../hooks/use-get-session-prices";
 import useIsOnline from "../../hooks/use-is-online";
+import useGetUsersChildren from "../child-info/child-info-hooks/use-get-users-children";
+import useSessionSpacesListener from "./book-a-session-hooks/use-session-spaces-listener";
 
 import Loaders from "./sections/loaders.component";
 import NetworkError from "../../components/errors/network-error.component";
@@ -12,8 +14,6 @@ import ChooseSessions from "./sections/choose-sessions.component";
 import { Container } from "../../styles/container/container.styles";
 import { ParentDiv } from "../../styles/div/div.styles";
 import { BlackTitle } from "../../styles/h1/h1.styles";
-import useGetUsersChildren from "../child-info/child-info-hooks/use-get-users-children";
-import useSessionSpacesListener from "./book-a-session-hooks/use-session-spaces-listener";
 
 const BookASession = () => {
   useRequestDateData();

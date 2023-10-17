@@ -2,6 +2,7 @@ import { useSelector } from "react-redux";
 
 import useConditionalLogic from "../../book-a-session-hooks/use-conditional-logic";
 import useConfirmSession from "../../book-a-session-hooks/use-confirm-session";
+import useGetPriceOfBooking from "../../../../hooks/use-get-price-of-booking";
 
 import { selectCurrentUser } from "../../../../store/user/user.selector";
 import {
@@ -11,19 +12,18 @@ import {
 
 import { YellowGreenButton } from "../../../../styles/buttons/buttons.styles";
 import { BlackHr } from "../../../../styles/hr/hr.styles";
-import { priceMultipliedBy100 } from "../../../../functions/price-multiplied-by-100";
 
 const MorningAndAfternoonShortSessionButton = () => {
   const { allSessionsAvailable } = useConditionalLogic();
   const { confirmSession } = useConfirmSession();
+  const { getPriceOfBooking } = useGetPriceOfBooking();
 
   const currentUser = useSelector(selectCurrentUser);
   const sessionType = useSelector(selectMorningAndAfternoonShortSessionType);
   const sessionPrice = useSelector(selectMorningAndAfternoonShortSessionPrice);
 
   const { walletBalance } = currentUser;
-
-  const price = priceMultipliedBy100(sessionPrice);
+  const price = getPriceOfBooking(sessionPrice);
 
   return (
     <>

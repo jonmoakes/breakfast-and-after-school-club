@@ -19,10 +19,23 @@ import {
   fundsDeductedFromBalance,
   imSureMessage,
 } from "../../../strings/strings";
+import useSessionSpacesErrorSwals from "./swals/use-session-spaces-error-swals";
 
 const useConfirmSession = () => {
   const { confirmSwal } = useConfirmSwal();
-  const { date } = useConditionalLogic();
+  const {
+    date,
+    notEnoughMorningSpacesForMultipleChildren,
+    notEnoughAfternoonSpacesForMultipleChildren,
+    notEnoughMorningSpacesForMultipleChildrenInMorningAndAfternoonSession,
+    notEnoughAfternoonSpacesForMultipleChildrenInMorningAndAfternoonSession,
+  } = useConditionalLogic();
+  const {
+    morningSessionErrorSwal,
+    afternoonSessionErrorSwal,
+    morningAndAfternoonSessionMorningErrorSwal,
+    morningAndAfternoonSessionAfternoonErrorSwal,
+  } = useSessionSpacesErrorSwals();
 
   const currentUser = useSelector(selectCurrentUser);
   const childrenSelectedForBooking = useSelector(
@@ -59,17 +72,27 @@ const useConfirmSession = () => {
 
   const confirmSession = (sessionType, price) => {
     dispatch(setSessionType(sessionType));
-    if (usersChildren.length === 1) {
+
+    if (notEnoughMorningSpacesForMultipleChildren(sessionType)) {
+      morningSessionErrorSwal();
+    } else if (notEnoughAfternoonSpacesForMultipleChildren(sessionType)) {
+      afternoonSessionErrorSwal();
+    } else if (
+      notEnoughMorningSpacesForMultipleChildrenInMorningAndAfternoonSession(
+        sessionType
+      )
+    ) {
+      morningAndAfternoonSessionMorningErrorSwal();
+    } else if (
+      notEnoughAfternoonSpacesForMultipleChildrenInMorningAndAfternoonSession(
+        sessionType
+      )
+    ) {
+      morningAndAfternoonSessionAfternoonErrorSwal();
+    } else {
       confirmSwal(
         confirmSureBookSession(sessionType, date),
         fundsDeductedFromBalance(price),
-        imSureMessage,
-        () => confirmResult(sessionType, price)
-      );
-    } else if (usersChildren.length > 1) {
-      confirmSwal(
-        confirmSureBookSession(sessionType, date),
-        fundsDeductedFromBalance(price * childrenSelectedForBooking.length),
         imSureMessage,
         () => confirmResult(sessionType, price)
       );

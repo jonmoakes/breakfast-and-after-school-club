@@ -30,6 +30,8 @@ import { editChildInfoReducer } from "./edit-child-info/edit-child-info.slice";
 import { deleteChildInfoReducer } from "./delete-child-info/delete-child-info.slice";
 import { getBookedSessionsReducer } from "./booked-sessions/booked-sessions.slice";
 import { chosenEntryChildDetailsReducer } from "./chosen-entry-child-details/chosen-entry-child-details.slice";
+import { userBookingsReducer } from "./user-bookings/user-bookings.slice";
+import { userBookingToDeleteReducer } from "./user-booking-to-delete/user-booking-to-delete.slice";
 
 export const rootReducer = combineReducers({
   hamburgerMenu: hamburgerMenuReducer,
@@ -62,4 +64,6 @@ export const rootReducer = combineReducers({
   deleteChildInfo: deleteChildInfoReducer,
   bookedSessions: getBookedSessionsReducer,
   chosenEntryChildDetails: chosenEntryChildDetailsReducer,
+  userBookings: userBookingsReducer,
+  userBookingToDelete: userBookingToDeleteReducer,
 });

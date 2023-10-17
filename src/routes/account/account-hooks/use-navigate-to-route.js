@@ -7,6 +7,7 @@ import {
   closeAccountRoute,
   updateEmailRoute,
   updatePasswordRequestRoute,
+  userBookingsRoute,
 } from "../../../strings/strings";
 
 const useNavigateToRoute = () => {
@@ -15,31 +16,36 @@ const useNavigateToRoute = () => {
   const emailProviderButtons = [
     {
       id: 1,
+      text: "view your bookings",
+      onClick: () => navigate(userBookingsRoute),
+    },
+    {
+      id: 2,
       text: "book a session",
       onClick: () => navigate(bookSessionRoute),
     },
     {
-      id: 2,
+      id: 3,
       text: "add funds",
       onClick: () => navigate(addFundsRoute),
     },
     {
-      id: 3,
+      id: 4,
       text: "child info",
       onClick: () => navigate(childInfoRoute),
     },
     {
-      id: 4,
+      id: 5,
       text: " update email",
       onClick: () => navigate(updateEmailRoute),
     },
     {
-      id: 5,
+      id: 6,
       text: " update password",
       onClick: () => navigate(updatePasswordRequestRoute),
     },
     {
-      id: 6,
+      id: 7,
       text: " close account",
       onClick: () => navigate(closeAccountRoute),
     },
@@ -48,21 +54,26 @@ const useNavigateToRoute = () => {
   const authProviderButtons = [
     {
       id: 1,
+      text: "view your bookings",
+      onClick: () => navigate(userBookingsRoute),
+    },
+    {
+      id: 2,
       text: "book a session",
       onClick: () => navigate(bookSessionRoute),
     },
     {
-      id: 2,
+      id: 3,
       text: "add funds",
       onClick: () => navigate(addFundsRoute),
     },
     {
-      id: 3,
+      id: 4,
       text: "child info",
       onClick: () => navigate(childInfoRoute),
     },
     {
-      id: 4,
+      id: 5,
       text: " close account",
       onClick: () => navigate(closeAccountRoute),
     },

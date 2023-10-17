@@ -18,6 +18,8 @@ import { resetUpdatePasswordRequestState } from "../store/update-password-reques
 import { setCurrentDateAndTime } from "../store/date-and-time/date-and-time.slice";
 import { resetChildInfo } from "../store/add-child-info/add-child-info.slice";
 import { resetEditChildInfoState } from "../store/edit-child-info/edit-child-info.slice";
+import { resetDeleteChildInfoState } from "../store/delete-child-info/delete-child-info.slice";
+import { resetBookSessionState } from "../store/book-session/book-session.slice";
 
 import {
   addFundsRoute,
@@ -35,8 +37,6 @@ import {
   editChildInfoRoute,
   deleteChildInfoRoute,
 } from "../strings/strings";
-import { resetDeleteChildInfoState } from "../store/delete-child-info/delete-child-info.slice";
-import { resetBookSessionState } from "../store/book-session/book-session.slice";
 
 const useResetStore = () => {
   const dispatch = useDispatch();

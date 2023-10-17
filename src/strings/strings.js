@@ -1,4 +1,6 @@
 import { format } from "date-fns";
+import { getSessionTypeString } from "../functions/get-session-type-string";
+
 //errors
 export const errorSendingMessage =
   "sorry, there was an error sending your message...";
@@ -86,6 +88,19 @@ export const errorFetchingChildDetails =
 export const errorReceivedMessage = (error) => {
   return `the error received was: '${error}'. please contact us if the error persists.`;
 };
+
+export const morningSessionSpacesErrorMessage = (childrenSelectedLength) => {
+  return `sorry, we don't have enough morning session spaces remaining to cover ${childrenSelectedLength} children.`;
+};
+export const morningSpacesRemainingMessage = (morningSessionSpaces) => {
+  return `for this session, we have ${morningSessionSpaces} space(s) remaining today.`;
+};
+export const afternoonSessionSpacesErrorMessage = (childrenSelectedLength) => {
+  return `sorry, we don't have enough afternoon session spaces remaining to cover ${childrenSelectedLength} children.`;
+};
+export const afternoonSpacesRemainingMessage = (afternoonSessionSpaces) => {
+  return `for this session, we have ${afternoonSessionSpaces} space(s) remaining today.`;
+};
 export const errorUpdatingChild =
   "sorry, there was an error updating your childs information. please try again.";
 export const errorDeletingChildMessage =
@@ -93,6 +108,9 @@ export const errorDeletingChildMessage =
 export const appwriteAgeAttributeError =
   "Value must be a valid range between 4 and 11";
 export const ageError = "the age value should be between 4 and 11";
+export const cantIncludeCommaMessage = "names can't include a comma";
+export const alreadyHaveChildNameMessage =
+  "you can't add a child with the same name.";
 // success
 export const successMessage = "success!";
 export const checkEmailMessage = "please check your email!";
@@ -149,6 +167,8 @@ export const checkBackRegularlyMessage =
   "if a session becomes available again, it will appear here in realtime so please check back often!";
 export const entriesAreTheSameMessage = "you haven't changed any data yet.";
 //confirms
+export const confirmCancelBookingMessage =
+  "do you want to cancel this booking?";
 export const confirmSignOutMessage = "are you sure you wish to sign out?";
 export const redirectMessage = "this will redirect you to the sign in page.";
 export const yesSignOutMessage = "yes, sign me out!";
@@ -158,26 +178,14 @@ export const confirmAddFundsMessage = (walletFunds) => {
     2
   )} to your wallet?`;
 };
-export const confirmSureBookSession = (sessionType, date) => {
-  const getSessionTypeString = () => {
-    switch (sessionType) {
-      case "afternoonShort":
-        return "afternoon short";
-      case "afternoonLong":
-        return "afternoon long";
-      case "morningAndAfternoonShort":
-        return "morning and afternoon short";
-      case "morningAndAfternoonLong":
-        return "morning and afternoon Long";
-      default:
-        return "morning";
-    }
-  };
 
-  return `are you sure you want to book the ${getSessionTypeString()} session for ${format(
-    new Date(date),
-    "dd MMMM yyyy"
-  )}?`;
+export const fundsReaddedToAccountMessage = (refundPrice) => {
+  return `£${refundPrice}  will be added to your wallet.`;
+};
+export const confirmSureBookSession = (sessionType, date) => {
+  return `are you sure you want to book the ${getSessionTypeString(
+    sessionType
+  )} session for ${format(new Date(date), "dd MMMM yyyy")}?`;
 };
 export const fundsDeductedFromBalance = (price) => {
   return `£${price / 100} will be deducted from your wallet balance.`;
@@ -221,7 +229,7 @@ export const leaveBlankIfNothingToAdd = "leave blank if nothing to add";
 export const anyOtherInfo = "anything else you need to tell us? Enter it here!";
 
 //routes
-export const bookingsRoute = "/bookings";
+export const userBookingsRoute = "/bookings";
 export const bookSessionRoute = "/book-session";
 export const contactRoute = "/contact";
 export const dashboardRoute = "/dashboard";
@@ -255,3 +263,4 @@ export const paymentResultRoute = "/payment-result";
 export const editChildInfoRoute = "/edit-child";
 export const deleteChildInfoRoute = "/delete-child";
 export const chosenEntryChildDetailsRoute = "/child-details";
+export const cancelBookingRoute = "/cancel-booking";

@@ -4,8 +4,10 @@ import { useNavigate, useLocation } from "react-router-dom";
 import { resetChildToDeleteInfo } from "../store/delete-child-info/delete-child-info.slice";
 import { resetChildToEditInfo } from "../store/edit-child-info/edit-child-info.slice";
 import { resetChosenEntryChildDetailsState } from "../store/chosen-entry-child-details/chosen-entry-child-details.slice";
+import { resetBookingToDeleteState } from "../store/user-booking-to-delete/user-booking-to-delete.slice";
 
 import {
+  cancelBookingRoute,
   chosenEntryChildDetailsRoute,
   deleteChildInfoRoute,
   editChildInfoRoute,
@@ -30,6 +32,10 @@ const useCancelAndReturn = () => {
         break;
       case chosenEntryChildDetailsRoute:
         dispatch(resetChosenEntryChildDetailsState());
+        navigate(-1);
+        break;
+      case cancelBookingRoute:
+        dispatch(resetBookingToDeleteState());
         navigate(-1);
         break;
       default:

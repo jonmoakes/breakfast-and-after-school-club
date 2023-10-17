@@ -419,6 +419,22 @@ export const TableDiv = styled.div`
   width: 75%;
   height: auto;
 
+  &.user-bookings {
+    margin: 20px auto 100px auto;
+
+    @media screen and (max-width: 1366px) {
+      margin: 25px auto 100px auto;
+    }
+
+    @media screen and (max-width: 850px) {
+      margin: 70px auto 100px auto;
+    }
+
+    @media screen and (max-width: 450px) {
+      margin: 40px auto 100px auto;
+    }
+  }
+
   @media screen and (max-width: 1366px) {
     width: 95%;
     overflow: auto;

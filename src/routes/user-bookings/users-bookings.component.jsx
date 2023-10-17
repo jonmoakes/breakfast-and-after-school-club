@@ -1,25 +1,25 @@
-import useGetBookedSessions from "./dashboard-hooks/use-get-booked-sessions";
+import useGetUserBookings from "./user-bookings-hooks/use-get-user-bookings";
 
 import TableHelp from "../../components/tables/table-help.component";
-import BookingsTable from "./bookings-table.component";
+import UserBookingsTable from "./user-bookings-table.component";
 
 import { Container } from "../../styles/container/container.styles";
 import { ParentDiv } from "../../styles/div/div.styles";
 import { BlackTitle } from "../../styles/h1/h1.styles";
 
-const Dashboard = () => {
-  useGetBookedSessions();
+const UserBookings = () => {
+  useGetUserBookings();
 
   return (
     <Container>
       <ParentDiv>
-        <BlackTitle>session bookings</BlackTitle>
+        <BlackTitle>booked sessions</BlackTitle>
         <TableHelp />
       </ParentDiv>
 
-      <BookingsTable />
+      <UserBookingsTable />
     </Container>
   );
 };
 
-export default Dashboard;
+export default UserBookings;

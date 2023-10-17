@@ -17,7 +17,7 @@ import { Text } from "../../../styles/p/p.styles";
 import { YellowGreenButton } from "../../../styles/buttons/buttons.styles";
 import { StyledLink } from "../../../styles/link/link.styles";
 
-import { bookingsRoute } from "../../../strings/strings";
+import { userBookingsRoute } from "../../../strings/strings";
 
 const SessionHelpAccordion = () => {
   const shouldShowElement = useSelector(selectShouldShowElement);
@@ -43,9 +43,12 @@ const SessionHelpAccordion = () => {
               below.
             </Text>
             <Text>
-              then, choose whether you want the morning session, afternoon short
-              session or afternoon full session ( or a combination of these ).
+              if you have more than one child added into our database, you will
+              then be prompted to select which children you are booking the
+              session for.
             </Text>
+            <Text>tap on the corresponding checkbox to add your children.</Text>
+            <Text>then, choose which session you want to book.</Text>
             <Text>
               the options that will show will depend on your wallet balance and
               what spaces we have available on your chosen day.
@@ -77,18 +80,18 @@ const SessionHelpAccordion = () => {
             </Text>
             <Text>
               tap on the button of the session you wish to book. you will
-              receive a confirmation on the session you wish to book and the
+              receive a confirmation of the session you wish to book and the
               cost that will be deducted from your balance.
             </Text>
             <Text>
-              if you're happy tap "i'm sure" and the funds will be decucted from
-              your wallet and the session will be booked.
+              if you're happy, tap the "i'm sure" button and the funds will be
+              decucted from your wallet and the session will be booked.
             </Text>
             <Text>
               you can then see all of your bookings on your{" "}
-              <StyledLink to={bookingsRoute}>bookings page</StyledLink>, where
-              you will be able to view the details of your booking, or cancel
-              it.
+              <StyledLink to={userBookingsRoute}>bookings page</StyledLink>,
+              where you will be able to view the details of your booking, or
+              cancel it.
             </Text>
             <Text>
               you will also be emailed a confirmation of what you have booked.

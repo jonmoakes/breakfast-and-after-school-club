@@ -187,6 +187,43 @@ const useConditionalLogic = () => {
       : false;
   };
 
+  const notEnoughMorningSpacesForMultipleChildren = (sessionType) => {
+    return sessionType === "morning" &&
+      childrenSelectedForBooking.length > 1 &&
+      morningSessionSpaces < childrenSelectedForBooking.length
+      ? true
+      : false;
+  };
+
+  const notEnoughAfternoonSpacesForMultipleChildren = (sessionType) => {
+    return (sessionType === "afternoonShort" ||
+      sessionType === "afternoonLong") &&
+      childrenSelectedForBooking.length > 1 &&
+      afternoonSessionSpaces < childrenSelectedForBooking.length
+      ? true
+      : false;
+  };
+
+  const notEnoughMorningSpacesForMultipleChildrenInMorningAndAfternoonSession =
+    (sessionType) => {
+      return (sessionType === "morningAndAfternoonShort" ||
+        sessionType === "morningAndAfternoonLong") &&
+        childrenSelectedForBooking.length > 1 &&
+        morningSessionSpaces < childrenSelectedForBooking.length
+        ? true
+        : false;
+    };
+
+  const notEnoughAfternoonSpacesForMultipleChildrenInMorningAndAfternoonSession =
+    (sessionType) => {
+      return (sessionType === "morningAndAfternoonShort" ||
+        sessionType === "morningAndAfternoonLong") &&
+        childrenSelectedForBooking.length > 1 &&
+        afternoonSessionSpaces < childrenSelectedForBooking.length
+        ? true
+        : false;
+    };
+
   return {
     date,
     dateUnavailable,
@@ -209,6 +246,12 @@ const useConditionalLogic = () => {
     showNothing,
     hasOneChild,
     hasMoreThanOneChild,
+    morningSessionSpaces,
+    afternoonSessionSpaces,
+    notEnoughMorningSpacesForMultipleChildren,
+    notEnoughAfternoonSpacesForMultipleChildren,
+    notEnoughMorningSpacesForMultipleChildrenInMorningAndAfternoonSession,
+    notEnoughAfternoonSpacesForMultipleChildrenInMorningAndAfternoonSession,
   };
 };
 

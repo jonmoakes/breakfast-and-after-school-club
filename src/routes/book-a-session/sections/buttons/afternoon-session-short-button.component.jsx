@@ -10,17 +10,19 @@ import {
 
 import { YellowGreenButton } from "../../../../styles/buttons/buttons.styles";
 import { BlackHr } from "../../../../styles/hr/hr.styles";
-import { priceMultipliedBy100 } from "../../../../functions/price-multiplied-by-100";
+
+import useGetPriceOfBooking from "../../../../hooks/use-get-price-of-booking";
 
 const AfternoonSessionShortButton = () => {
   const { onlyAfternoonSessionsAvailable, allSessionsAvailable } =
     useConditionalLogic();
   const { confirmSession } = useConfirmSession();
+  const { getPriceOfBooking } = useGetPriceOfBooking();
 
   const sessionType = useSelector(selectAfternoonShortSessionType);
   const sessionPrice = useSelector(selectAfternoonShortSessionPrice);
 
-  const price = priceMultipliedBy100(sessionPrice);
+  const price = getPriceOfBooking(sessionPrice);
 
   return (
     <>

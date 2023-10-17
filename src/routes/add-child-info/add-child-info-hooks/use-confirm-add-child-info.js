@@ -5,9 +5,12 @@ import useConfirmSwal from "../../../hooks/use-confirm-swal";
 
 import { selectAddChildInfo } from "../../../store/add-child-info/add-child-info.selector";
 import { selectCurrentUser } from "../../../store/user/user.selector";
+import { selectUsersChildren } from "../../../store/get-users-children/get-users-children.selector";
 import { addChildInfoAsync } from "../../../store/add-child-info/add-child-info.slice";
 
 import {
+  alreadyHaveChildNameMessage,
+  cantIncludeCommaMessage,
   confirmAddChildMessage,
   enterChildsAge,
   enterChildsName,
@@ -20,6 +23,7 @@ const useConfirmAddChildInfo = () => {
 
   const childInfo = useSelector(selectAddChildInfo);
   const currentUser = useSelector(selectCurrentUser);
+  const usersChildren = useSelector(selectUsersChildren);
 
   const dispatch = useDispatch();
   const { childName, age } = childInfo;
@@ -29,6 +33,13 @@ const useConfirmAddChildInfo = () => {
     dispatch(addChildInfoAsync({ childInfo, name, email }));
   };
 
+  const usersChildrensNames = usersChildren.map((child) => child.childName);
+
+  const isCaseSensitiveMatch = (array, searchString) => {
+    const lowerSearchString = searchString.toLowerCase();
+    return array.includes(lowerSearchString);
+  };
+
   const confirmAddChildInfo = () => {
     if (!childName) {
       fireSwal("error", enterChildsName, "", 0, true, false);
@@ -36,6 +47,11 @@ const useConfirmAddChildInfo = () => {
     } else if (!age) {
       fireSwal("error", enterChildsAge, "", 0, true, false);
       return;
+    } else if (childName && childName.includes(",")) {
+      fireSwal("error", cantIncludeCommaMessage, "", 0, true, false);
+      return;
+    } else if (isCaseSensitiveMatch(usersChildrensNames, childName)) {
+      fireSwal("error", alreadyHaveChildNameMessage, "", 0, true, false);
     } else {
       confirmSwal(confirmAddChildMessage, "", yesAddChild, confirmResult);
     }
