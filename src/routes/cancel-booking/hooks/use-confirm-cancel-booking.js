@@ -18,7 +18,7 @@ import {
 
 const useConfirmDeleteChildInfo = () => {
   const { confirmSwal } = useConfirmSwal();
-  let { refundPrice, refundForMoreThanOneChild } = useGetRefundPrice();
+  let { refundPrice, totalRefundPrice } = useGetRefundPrice();
 
   const currentUser = useSelector(selectCurrentUser);
   const userBookingToDelete = useSelector(selectUserBookingToDelete);
@@ -26,6 +26,8 @@ const useConfirmDeleteChildInfo = () => {
 
   const dispatch = useDispatch();
   const { id } = currentUser;
+
+  refundPrice = usersChildren.length === 1 ? refundPrice : totalRefundPrice;
 
   const confirmResult = () => {
     if (usersChildren.length === 1) {
@@ -37,7 +39,6 @@ const useConfirmDeleteChildInfo = () => {
         }
       );
     } else if (usersChildren.length > 1) {
-      refundPrice = refundForMoreThanOneChild;
       dispatch(deleteUserBookingAsync({ userBookingToDelete })).then(
         (resultAction) => {
           if (deleteUserBookingAsync.fulfilled.match(resultAction)) {
@@ -59,8 +60,7 @@ const useConfirmDeleteChildInfo = () => {
     } else if (usersChildren.length > 1) {
       confirmSwal(
         confirmCancelBookingMessage,
-        fundsReaddedToAccountMessage(refundForMoreThanOneChild / 100),
-
+        fundsReaddedToAccountMessage(totalRefundPrice / 100),
         imSureMessage,
         confirmResult
       );

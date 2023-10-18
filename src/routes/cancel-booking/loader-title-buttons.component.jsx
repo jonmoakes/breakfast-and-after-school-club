@@ -23,7 +23,7 @@ import { getSessionTypeString } from "../../functions/get-session-type-string";
 const LoaderTitleButtons = () => {
   const { confirmCancelBooking } = useConfirmCancelBooking();
   const { cancelAndReturn } = useCancelAndReturn();
-  const { refundPrice, refundForMoreThanOneChild, numberOfChildrenInBooking } =
+  const { refundPrice, totalRefundPrice, numberOfChildrenInBooking } =
     useGetRefundPrice();
 
   const isLoading = useSelector(selectIsLoading);
@@ -32,7 +32,7 @@ const LoaderTitleButtons = () => {
   const { date, sessionType, childrensName } = userBookingToDelete || {};
 
   const refundAmount =
-    numberOfChildrenInBooking > 1 ? refundForMoreThanOneChild : refundPrice;
+    numberOfChildrenInBooking > 1 ? totalRefundPrice : refundPrice;
 
   return (
     <>

@@ -53,13 +53,18 @@ const useGetRefundPrice = () => {
   };
 
   const charToCount = ",";
-  const result = countOccurrences(childrensName, charToCount);
-  const numberOfChildrenInBooking = result + 1;
+  // if there is 1 comma, there must be 2 names
+  const numberOfCommasInNamesString = countOccurrences(
+    childrensName,
+    charToCount
+  );
+
+  const numberOfChildrenInBooking = numberOfCommasInNamesString + 1;
 
   const refundPrice = getRefundPrice();
-  const refundForMoreThanOneChild = refundPrice * numberOfChildrenInBooking;
+  const totalRefundPrice = refundPrice * numberOfChildrenInBooking;
 
-  return { refundPrice, refundForMoreThanOneChild, numberOfChildrenInBooking };
+  return { refundPrice, totalRefundPrice, numberOfChildrenInBooking };
 };
 
 export default useGetRefundPrice;

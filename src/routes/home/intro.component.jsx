@@ -8,7 +8,7 @@ import PlaceholderImage from "../../assets/placeholder-image.jpeg";
 const Intro = () => (
   <ParentDiv>
     <BlackTitle>welcome to the</BlackTitle>
-    <ImageDiv className="no-padding">
+    <ImageDiv>
       <ProgressiveImg
         src={Image}
         placeholderSrc={PlaceholderImage}

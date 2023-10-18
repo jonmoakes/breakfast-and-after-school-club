@@ -6,6 +6,7 @@ import {
   selectMorningSessionType,
   selectMorningSessionPrice,
 } from "../../../../store/session-types-and-prices/session-types-and-prices.selector";
+import { selectCurrentUser } from "../../../../store/user/user.selector";
 
 import { YellowGreenButton } from "../../../../styles/buttons/buttons.styles";
 import { BlackHr } from "../../../../styles/hr/hr.styles";
@@ -18,14 +19,17 @@ const MorningSessionButton = () => {
   const { confirmSession } = useConfirmSession();
   const { getPriceOfBooking } = useGetPriceOfBooking();
 
+  const currentUser = useSelector(selectCurrentUser);
   const sessionType = useSelector(selectMorningSessionType);
   const sessionPrice = useSelector(selectMorningSessionPrice);
 
+  const { walletBalance } = currentUser;
   const price = getPriceOfBooking(sessionPrice);
 
   return (
     <>
-      {onlyMorningSessionsAvailable() || allSessionsAvailable() ? (
+      {(onlyMorningSessionsAvailable() || allSessionsAvailable()) &&
+      walletBalance >= price ? (
         <>
           <YellowGreenButton onClick={() => confirmSession(sessionType, price)}>
             morning

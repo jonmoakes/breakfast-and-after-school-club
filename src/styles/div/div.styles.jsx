@@ -153,10 +153,15 @@ export const ImageDiv = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 50px 0px;
 
-  &.no-padding {
-    padding: 0px;
+  @media screen and (max-width: 850px) {
+    width: 50%;
+    height: 50%;
+  }
+
+  @media screen and (max-width: 450px) {
+    width: 70%;
+    height: 70%;
   }
 `;
 

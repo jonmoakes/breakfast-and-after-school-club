@@ -9,12 +9,9 @@ import {
   selectAfternoonLongSessionType,
   selectAfternoonLongSessionPrice,
 } from "../../../../store/session-types-and-prices/session-types-and-prices.selector";
-// import { selectChildrenSelectedForBooking } from "../../../../store/book-session/book-session.selector";
 
 import { YellowGreenButton } from "../../../../styles/buttons/buttons.styles";
 import { BlackHr } from "../../../../styles/hr/hr.styles";
-
-// import { priceMultipliedBy100 } from "../../../../functions/price-multiplied-by-100";
 
 const AfternoonSessionLongButton = () => {
   const { onlyAfternoonSessionsAvailable, allSessionsAvailable } =

@@ -58,31 +58,38 @@ const TimesAndPricesAccordion = () => {
               morning session:
               <br />
               7.30am &ndash; 9.00am
-              <br /> cost: <BlueSpan>£{morningPrice}</BlueSpan>
+              <br /> cost: <BlueSpan>£{morningPrice}</BlueSpan> per child.
             </Text>
             <BlackHr />
             <Text>
               afternoon session ( short ):
               <br />
               3.20pm &ndash; 4.30pm
-              <br /> cost: <BlueSpan>£{afternoonShortPrice}</BlueSpan>
+              <br /> cost: <BlueSpan>£{afternoonShortPrice}</BlueSpan> per
+              child.
             </Text>
             <BlackHr />
             <Text>
               afternoon session ( long ):
               <br />
               3.20pm &ndash; 6pm
-              <br /> cost: <BlueSpan>£{afternoonLongPrice}</BlueSpan>
+              <br /> cost: <BlueSpan>£{afternoonLongPrice}</BlueSpan> per child.
             </Text>
             <BlackHr />
             <Text>
               morning and afternoon sessions ( short ):
-              <br /> cost: <BlueSpan>£{morningAndAfternoonShortPrice}</BlueSpan>
+              <br /> cost: <BlueSpan>
+                £{morningAndAfternoonShortPrice}
+              </BlueSpan>{" "}
+              per child.
             </Text>
             <BlackHr />
             <Text>
               morning and afternoon sessions ( long ):
-              <br /> cost: <BlueSpan>£{morningAndAfternoonLongPrice}</BlueSpan>
+              <br /> cost: <BlueSpan>
+                £{morningAndAfternoonLongPrice}
+              </BlueSpan>{" "}
+              per child.
             </Text>
             <BlackHr />
             <Text>
