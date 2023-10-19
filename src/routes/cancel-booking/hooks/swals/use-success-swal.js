@@ -1,7 +1,11 @@
 import useFireSwal from "../../../../hooks/use-fire-swal";
 import useResetStateAndNavigate from "../return-logic-and-reset-state/use-reset-state-and-navigate";
 
-import { userBookingsRoute } from "../../../../strings/strings";
+import {
+  bookingCancelledMessage,
+  userBookingsRoute,
+  walletBeenUpdatedMessage,
+} from "../../../../strings/strings";
 
 const useSuccessSwal = () => {
   const { fireSwal } = useFireSwal();
@@ -10,8 +14,8 @@ const useSuccessSwal = () => {
   const successSwal = () => {
     fireSwal(
       "success",
-      "booking cancelled",
-      "and your wallet has been updated",
+      bookingCancelledMessage,
+      walletBeenUpdatedMessage,
       0,
       true,
       false

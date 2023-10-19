@@ -9,7 +9,7 @@ const useGetPriceOfBooking = () => {
   );
 
   // if only 1 child is selected or if users only has one child, price = sessionPrice * 100.
-  // If more thanone child is selected, price = the session price * however many children have been selected.
+  // If more than one child is selected, price = the session price * however many children have been selected.
   const getPriceOfBooking = (sessionPrice) => {
     const price = !childrenSelectedForBooking.length
       ? priceMultipliedBy100(sessionPrice)

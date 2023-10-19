@@ -30,6 +30,64 @@ export const deleteUserBookingAsync = createAsyncThunk(
   }
 );
 
+export const updateSessionSpacesDocAsync = createAsyncThunk(
+  "updateSessionSpacesDoc",
+  async ({ date, sessionType, numberOfChildrenInBooking }, thunkAPI) => {
+    try {
+      const getDateDocumentToUpdate = await databases.listDocuments(
+        import.meta.env.VITE_DEVELOPMENT_DATABASE_ID,
+        import.meta.env.VITE_2023_2024_TERM_DATES_COLLECTION_ID,
+        [Query.equal("date", date)]
+      );
+
+      const dateDocument = getDateDocumentToUpdate.documents;
+
+      if (!dateDocument.length) {
+        return;
+      } else {
+        const { $id, morningSessionSpaces, afternoonSessionSpaces } =
+          dateDocument[0];
+
+        let updatedSessionSpaces = {};
+
+        if (sessionType === "morning") {
+          updatedSessionSpaces = {
+            morningSessionSpaces:
+              morningSessionSpaces + numberOfChildrenInBooking,
+          };
+        } else if (
+          sessionType === "afternoonShort" ||
+          sessionType === "afternoonLong"
+        ) {
+          updatedSessionSpaces = {
+            afternoonSessionSpaces:
+              afternoonSessionSpaces + numberOfChildrenInBooking,
+          };
+        } else if (
+          sessionType === "morningAndAfternoonShort" ||
+          sessionType === "morningAndAfternoonLong"
+        ) {
+          updatedSessionSpaces = {
+            morningSessionSpaces:
+              morningSessionSpaces + numberOfChildrenInBooking,
+            afternoonSessionSpaces:
+              afternoonSessionSpaces + numberOfChildrenInBooking,
+          };
+        }
+
+        await databases.updateDocument(
+          import.meta.env.VITE_DEVELOPMENT_DATABASE_ID,
+          import.meta.env.VITE_2023_2024_TERM_DATES_COLLECTION_ID,
+          $id,
+          updatedSessionSpaces
+        );
+      }
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
 export const refundUserAsync = createAsyncThunk(
   "refundUser",
   async ({ id, refundPrice }, thunkAPI) => {
@@ -65,6 +123,10 @@ const INITIAL_STATE = {
     error: null,
   },
   updateUserDocBalance: {
+    result: "",
+    error: null,
+  },
+  updateSessionSpacesDoc: {
     result: "",
     error: null,
   },
@@ -117,6 +179,19 @@ export const userBookingToDeleteSlice = createSlice({
         state.isLoading = false;
         state.updateUserDocBalance.result = "rejected";
         state.updateUserDocBalance.error = action.payload;
+      })
+      .addCase(updateSessionSpacesDocAsync.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(updateSessionSpacesDocAsync.fulfilled, (state) => {
+        state.isLoading = false;
+        state.updateSessionSpacesDoc.result = "fulfilled";
+        state.updateSessionSpacesDoc.error = null;
+      })
+      .addCase(updateSessionSpacesDocAsync.rejected, (state, action) => {
+        state.isLoading = false;
+        state.updateSessionSpacesDoc.result = "rejected";
+        state.updateSessionSpacesDoc.error = action.payload;
       });
   },
 });

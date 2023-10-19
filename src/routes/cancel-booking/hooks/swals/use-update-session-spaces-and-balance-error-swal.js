@@ -14,7 +14,7 @@ import {
   contactRoute,
 } from "../../../../strings/strings";
 
-const useUpdateBalanceErrorSwal = () => {
+const useUpdateSessionSpacesAndBalanceErrorSwal = () => {
   const { fireSwal } = useFireSwal();
   const { resetStateAndNavigate } = useResetStateAndNavigate();
   const { numberOfChildrenInBooking } = useGetRefundPrice();
@@ -23,17 +23,16 @@ const useUpdateBalanceErrorSwal = () => {
   const currentUser = useSelector(selectCurrentUser);
 
   const dispatch = useDispatch();
-
-  const { sessionType } = userBookingToDelete || {};
+  const { date, sessionType } = userBookingToDelete || {};
   const { name, email } = currentUser;
 
   const errorToSend = {
     name,
     email,
-    message: `Booking cancellation result - Success.\n\nSession Spaces Update result: Success.\n\nBalance amount to update:\n\n${sessionType} price * ${numberOfChildrenInBooking} `,
+    message: `Booking cancellation result - Success.\n\nSession Spaces Update result: Fail.\n\nBooking Details:\n\nDate: ${date}\n\nSession Type: ${sessionType}\n\nspaces to update: ${numberOfChildrenInBooking}\n\nbalance to update: session type price * ${numberOfChildrenInBooking} `,
   };
 
-  const updateBalanceErrorSwal = () => {
+  const updateSessionSpacesAndBalanceErrorSwal = () => {
     fireSwal(
       "error",
       bookingCancelledButBalanceUpdateError,
@@ -49,7 +48,7 @@ const useUpdateBalanceErrorSwal = () => {
     });
   };
 
-  return { updateBalanceErrorSwal };
+  return { updateSessionSpacesAndBalanceErrorSwal };
 };
 
-export default useUpdateBalanceErrorSwal;
+export default useUpdateSessionSpacesAndBalanceErrorSwal;

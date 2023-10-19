@@ -9,6 +9,7 @@ import { selectCurrentUser } from "../../../store/user/user.selector";
 import {
   deleteUserBookingAsync,
   refundUserAsync,
+  updateSessionSpacesDocAsync,
 } from "../../../store/user-booking-to-delete/user-booking-to-delete.slice";
 import {
   confirmCancelBookingMessage,
@@ -18,7 +19,8 @@ import {
 
 const useConfirmDeleteChildInfo = () => {
   const { confirmSwal } = useConfirmSwal();
-  let { refundPrice, totalRefundPrice } = useGetRefundPrice();
+  let { refundPrice, totalRefundPrice, numberOfChildrenInBooking } =
+    useGetRefundPrice();
 
   const currentUser = useSelector(selectCurrentUser);
   const userBookingToDelete = useSelector(selectUserBookingToDelete);
@@ -26,45 +28,37 @@ const useConfirmDeleteChildInfo = () => {
 
   const dispatch = useDispatch();
   const { id } = currentUser;
+  const { date, sessionType } = userBookingToDelete || {};
 
   refundPrice = usersChildren.length === 1 ? refundPrice : totalRefundPrice;
 
   const confirmResult = () => {
-    if (usersChildren.length === 1) {
-      dispatch(deleteUserBookingAsync({ userBookingToDelete })).then(
-        (resultAction) => {
-          if (deleteUserBookingAsync.fulfilled.match(resultAction)) {
-            dispatch(refundUserAsync({ id, refundPrice }));
-          }
+    dispatch(deleteUserBookingAsync({ userBookingToDelete })).then(
+      (resultAction) => {
+        if (deleteUserBookingAsync.fulfilled.match(resultAction)) {
+          dispatch(
+            updateSessionSpacesDocAsync({
+              date,
+              sessionType,
+              numberOfChildrenInBooking,
+            })
+          ).then((resultAction) => {
+            if (updateSessionSpacesDocAsync.fulfilled.match(resultAction)) {
+              dispatch(refundUserAsync({ id, refundPrice }));
+            }
+          });
         }
-      );
-    } else if (usersChildren.length > 1) {
-      dispatch(deleteUserBookingAsync({ userBookingToDelete })).then(
-        (resultAction) => {
-          if (deleteUserBookingAsync.fulfilled.match(resultAction)) {
-            dispatch(refundUserAsync({ id, refundPrice }));
-          }
-        }
-      );
-    }
+      }
+    );
   };
 
   const confirmCancelBooking = () => {
-    if (usersChildren.length === 1) {
-      confirmSwal(
-        confirmCancelBookingMessage,
-        fundsReaddedToAccountMessage(refundPrice / 100),
-        imSureMessage,
-        confirmResult
-      );
-    } else if (usersChildren.length > 1) {
-      confirmSwal(
-        confirmCancelBookingMessage,
-        fundsReaddedToAccountMessage(totalRefundPrice / 100),
-        imSureMessage,
-        confirmResult
-      );
-    }
+    confirmSwal(
+      confirmCancelBookingMessage,
+      fundsReaddedToAccountMessage(refundPrice / 100),
+      imSureMessage,
+      confirmResult
+    );
   };
 
   return { confirmCancelBooking };

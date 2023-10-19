@@ -111,6 +111,14 @@ export const ageError = "the age value should be between 4 and 11";
 export const cantIncludeCommaMessage = "names can't include a comma";
 export const alreadyHaveChildNameMessage =
   "you can't add a child with the same name.";
+export const bookingCancelledButBalanceUpdateError =
+  "sorry, your booking was cancelled, but your balance was not updated correctly.";
+export const contactFormDetailsPrePopulatedMessage =
+  "please contact us urgently by tapping the ok button. We will populate the contact form with the details we need to fix our error, so you simply need to press the 'send message' button when on the contact form. We apologise for the inconvenience.";
+export const errorCancellingBookingMessage =
+  "sorry, there was an error cancelling your booking.";
+export const errorCancellingBookingInstructions =
+  "please contact us by tapping the ok button. We will populate the form with the error message, so you simply need to press the 'send message' button when on the contact form. We apologise for the inconvenience.";
 // success
 export const successMessage = "success!";
 export const checkEmailMessage = "please check your email!";
@@ -166,6 +174,8 @@ export const alreadyClickedOnUpdatePasswordLink =
 export const checkBackRegularlyMessage =
   "if a session becomes available again, it will appear here in realtime so please check back often!";
 export const entriesAreTheSameMessage = "you haven't changed any data yet.";
+export const bookingCancelledMessage = "booking cancelled";
+export const walletBeenUpdatedMessage = "you wallet balance has been updated.";
 //confirms
 export const confirmCancelBookingMessage =
   "do you want to cancel this booking?";

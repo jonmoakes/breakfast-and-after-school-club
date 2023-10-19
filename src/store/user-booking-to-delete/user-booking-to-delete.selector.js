@@ -14,10 +14,15 @@ export const selectUserBookingToDelete = createSelector(
 
 export const selectUpdateBookingsDoc = createSelector(
   [selectUserBookingToDeleteReducer],
-  (bookSessionSlice) => bookSessionSlice.updateBookingsDoc
+  (userBookingToDeleteSlice) => userBookingToDeleteSlice.updateBookingsDoc
 );
 
 export const selectUpdateUserDocBalance = createSelector(
   [selectUserBookingToDeleteReducer],
-  (bookSessionSlice) => bookSessionSlice.updateUserDocBalance
+  (userBookingToDeleteSlice) => userBookingToDeleteSlice.updateUserDocBalance
+);
+
+export const selectUpdateSessionSpacesDoc = createSelector(
+  [selectUserBookingToDeleteReducer],
+  (userBookingToDeleteSlice) => userBookingToDeleteSlice.updateSessionSpacesDoc
 );

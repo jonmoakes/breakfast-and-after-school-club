@@ -45,6 +45,9 @@ export const contactFormSlice = createSlice({
     setContactFormDetails(state, action) {
       state.contactFormDetails = action.payload;
     },
+    setContactFormDetailsWhenBookingError(state, action) {
+      state.contactFormDetails = action.payload;
+    },
     resetContactFormFields(state) {
       state.contactFormDetails = INITIAL_STATE;
     },
@@ -77,6 +80,7 @@ export const {
   resetContactFormFields,
   resetErrorMessage,
   resetContactFormState,
+  setContactFormDetailsWhenBookingError,
 } = contactFormSlice.actions;
 
 export const contactFormReducer = contactFormSlice.reducer;
