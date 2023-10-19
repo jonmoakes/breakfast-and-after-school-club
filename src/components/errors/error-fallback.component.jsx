@@ -17,7 +17,7 @@ const ErrorFallback = () => {
         <ProgressiveImg
           src={Image}
           placeholderSrc={PlaceholderImage}
-          alt="logo"
+          alt="error-image"
         />
       </ErrorFallbackImageDiv>
 

@@ -10,7 +10,7 @@ import {
   ThursdayCell,
   FridayCell,
 } from "../../styles/tables/tables.styles";
-import { dashboardRoute } from "../../strings/strings";
+import { yourCustomerBookingsRoute } from "../../strings/strings";
 
 const BookingsTableRenderTable = ({
   headerGroups,
@@ -22,7 +22,7 @@ const BookingsTableRenderTable = ({
   const location = useLocation();
 
   const tableClassName =
-    location.pathname === dashboardRoute ? "" : "user-bookings";
+    location.pathname === yourCustomerBookingsRoute ? "" : "user-bookings";
 
   return (
     <>

@@ -1,19 +1,19 @@
 import { useSelector } from "react-redux";
 
-import useGetUserBookings from "./user-bookings-hooks/use-get-user-bookings";
+import useGetBookedSessions from "./your-customer-bookings-hooks/use-get-booked-sessions";
 
-import { selectIsLoading } from "../../store/user-bookings/user-bookings.selector";
+import { selectIsLoading } from "../../store/booked-sessions/booked-sessions.selector";
 
+import Loader from "../../components/loader/loader.component";
 import TableHelp from "../../components/tables/table-help.component";
-import UserBookingsTable from "./user-bookings-table.component";
+import BookingsTable from "./your-customer-bookings-table.component";
 
 import { Container } from "../../styles/container/container.styles";
 import { ParentDiv } from "../../styles/div/div.styles";
 import { BlackTitle } from "../../styles/h1/h1.styles";
-import Loader from "../../components/loader/loader.component";
 
-const UserBookings = () => {
-  useGetUserBookings();
+const YourCustomerBookings = () => {
+  useGetBookedSessions();
 
   const isLoading = useSelector(selectIsLoading);
 
@@ -22,13 +22,13 @@ const UserBookings = () => {
       {isLoading ? <Loader /> : null}
 
       <ParentDiv>
-        <BlackTitle>booked sessions</BlackTitle>
+        <BlackTitle>session bookings</BlackTitle>
         <TableHelp />
       </ParentDiv>
 
-      <UserBookingsTable />
+      <BookingsTable />
     </Container>
   );
 };
 
-export default UserBookings;
+export default YourCustomerBookings;

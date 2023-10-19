@@ -5,6 +5,7 @@ import {
   bookSessionRoute,
   childInfoRoute,
   closeAccountRoute,
+  yourCustomerBookingsRoute,
   updateEmailRoute,
   updatePasswordRequestRoute,
   userBookingsRoute,
@@ -12,6 +13,24 @@ import {
 
 const useNavigateToRoute = () => {
   const navigate = useNavigate();
+
+  const appOwnerButtons = [
+    {
+      id: 1,
+      text: "view bookings",
+      onClick: () => navigate(yourCustomerBookingsRoute),
+    },
+    {
+      id: 2,
+      text: " update email",
+      onClick: () => navigate(updateEmailRoute),
+    },
+    {
+      id: 3,
+      text: " update password",
+      onClick: () => navigate(updatePasswordRequestRoute),
+    },
+  ];
 
   const emailProviderButtons = [
     {
@@ -82,6 +101,7 @@ const useNavigateToRoute = () => {
   return {
     emailProviderButtons,
     authProviderButtons,
+    appOwnerButtons,
   };
 };
 

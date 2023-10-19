@@ -16,15 +16,15 @@ import {
 import { Text } from "../../styles/p/p.styles";
 import { BlueH2 } from "../../styles/h2/h2.styles";
 import { BlackSpan } from "../../styles/span/span.styles";
-import { dashboardRoute } from "../../strings/strings";
+import { yourCustomerBookingsRoute } from "../../strings/strings";
 
 const UserBookingsHelp = () => {
   const shouldShowElement = useSelector(selectShouldShowElement);
   const dispatch = useDispatch();
   const location = useLocation();
 
-  const isDashboardRoute = () => {
-    return location.pathname === dashboardRoute ? true : false;
+  const isYourCustomerBookingsRoute = () => {
+    return location.pathname === yourCustomerBookingsRoute ? true : false;
   };
 
   return (
@@ -39,7 +39,7 @@ const UserBookingsHelp = () => {
         </AccordionTitle>
         {shouldShowElement && (
           <AccordionContent>
-            {isDashboardRoute() ? (
+            {isYourCustomerBookingsRoute() ? (
               <>
                 <BlueH2>toggling current day or all time bookings:</BlueH2>
                 <Text>
@@ -70,7 +70,7 @@ const UserBookingsHelp = () => {
               </>
             ) : null}
 
-            {!isDashboardRoute() ? (
+            {!isYourCustomerBookingsRoute() ? (
               <>
                 <BlueH2>cancelling a booking:</BlueH2>
                 <Text>
@@ -110,7 +110,7 @@ const UserBookingsHelp = () => {
               a full date would be for example 2023-05-25 for 25th May 2023.
             </Text>
 
-            {isDashboardRoute() ? (
+            {isYourCustomerBookingsRoute() ? (
               <Text>
                 if you tap the button to change the table filtering, please note
                 that if you have a search term already entered as you swap, you

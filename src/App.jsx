@@ -33,7 +33,6 @@ import {
   updatePasswordResultRoute,
   localhostUpdatePasswordResultRoute,
   closeAccountRoute,
-  dashboardRoute,
   socialLoginResultRoute,
   localhostSocialLoginResultRoute,
   paymentResultRoute,
@@ -44,6 +43,7 @@ import {
   chosenEntryChildDetailsRoute,
   userBookingsRoute,
   cancelBookingRoute,
+  yourCustomerBookingsRoute,
 } from "./strings/strings";
 
 import FloatingBackButton from "./components/floating-back-button/floating-back-button.component";
@@ -55,7 +55,9 @@ const Home = lazy(() => import("./routes/home/home.component"));
 const Contact = lazy(() => import("./routes/contact/contact.component"));
 const SignUp = lazy(() => import("./routes/sign-up/sign-up.component"));
 const SignIn = lazy(() => import("./routes/sign-in/sign-in.component"));
-const Dashboard = lazy(() => import("./routes/dashboard/dashboard.component"));
+const YourCustomerBookings = lazy(() =>
+  import("./routes/your-customer-bookings/your-customer-bookings.component")
+);
 const UserBookings = lazy(() =>
   import("./routes/user-bookings/users-bookings.component")
 );
@@ -172,10 +174,10 @@ const App = () => {
                 element={<DeleteChildInfo />}
               />
               <Route
-                path={dashboardRoute}
+                path={yourCustomerBookingsRoute}
                 element={
                   currentUser && currentUser.id === ownerId ? (
-                    <Dashboard />
+                    <YourCustomerBookings />
                   ) : (
                     <Account />
                   )

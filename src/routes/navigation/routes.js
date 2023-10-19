@@ -5,7 +5,7 @@ import {
   accountRoute,
   signInRoute,
   signUpRoute,
-  dashboardRoute,
+  yourCustomerBookingsRoute,
   addFundsRoute,
   childInfoRoute,
 } from "../../strings/strings";
@@ -19,6 +19,6 @@ export const signedInRoutes = [
   contactRoute,
 ];
 
-export const ownerSignedInRoutes = [dashboardRoute, accountRoute];
+export const ownerSignedInRoutes = [yourCustomerBookingsRoute, accountRoute];
 
 export const signedOutRoutes = [signInRoute, signUpRoute, contactRoute];

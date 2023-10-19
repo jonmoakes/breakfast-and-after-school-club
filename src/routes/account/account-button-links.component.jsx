@@ -12,13 +12,25 @@ const AccountButtonLinks = () => {
   const currentUser = useSelector(selectCurrentUser);
   const { provider } = currentUser;
 
-  const { emailProviderButtons, authProviderButtons } = useNavigateToRoute();
-
+  const { emailProviderButtons, authProviderButtons, appOwnerButtons } =
+    useNavigateToRoute();
+  console.log(currentUser.id);
   return (
     <ParentDiv>
       <BlueH2>what would you like to do?</BlueH2>
 
-      {provider === "email"
+      {currentUser.id === import.meta.env.VITE_APP_OWNER_ID
+        ? appOwnerButtons.map((button) => {
+            const { id, text, onClick } = button;
+            return (
+              <div key={id}>
+                <BlackHr />
+                <YellowGreenButton onClick={onClick}>{text}</YellowGreenButton>
+              </div>
+            );
+          })
+        : currentUser.id !== import.meta.env.VITE_APP_OWNER_ID &&
+          provider === "email"
         ? emailProviderButtons.map((button) => {
             const { id, text, onClick } = button;
             return (
