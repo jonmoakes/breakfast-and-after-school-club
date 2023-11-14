@@ -6,7 +6,6 @@ import {
   resetSessionDocAsync,
   addSessionBookingInfoAsync,
 } from "./book-session-thunks";
-import { resetSessionErrorMessage } from "../../strings/strings";
 
 const INITIAL_STATE = {
   sessionType: "",
@@ -26,7 +25,7 @@ const INITIAL_STATE = {
   },
   addSessionBookingInfo: {
     result: "",
-    error: "",
+    error: null,
   },
 };
 
@@ -93,10 +92,10 @@ export const bookSessionSlice = createSlice({
         state.resetSessionDoc.result = "fulfilled";
         state.resetSessionDoc.error = null;
       })
-      .addCase(resetSessionDocAsync.rejected, (state) => {
+      .addCase(resetSessionDocAsync.rejected, (state, action) => {
         state.isLoading = false;
         state.resetSessionDoc.result = "rejected";
-        state.resetSessionDoc.error = resetSessionErrorMessage;
+        state.resetSessionDoc.error = action.payload;
       })
       .addCase(addSessionBookingInfoAsync.pending, (state) => {
         state.isLoading = true;

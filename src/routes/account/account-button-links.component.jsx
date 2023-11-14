@@ -14,7 +14,7 @@ const AccountButtonLinks = () => {
 
   const { emailProviderButtons, authProviderButtons, appOwnerButtons } =
     useNavigateToRoute();
-  console.log(currentUser.id);
+
   return (
     <ParentDiv>
       <BlueH2>what would you like to do?</BlueH2>

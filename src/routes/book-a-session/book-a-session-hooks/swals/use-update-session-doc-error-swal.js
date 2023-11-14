@@ -43,7 +43,7 @@ const useUpdateSessionDocErrorSwal = () => {
       fireSwal(
         "error",
         updateSessionDocErrorMessage,
-        `"${updateSessionError}"`,
+        updateSessionError,
         0,
         true,
         false

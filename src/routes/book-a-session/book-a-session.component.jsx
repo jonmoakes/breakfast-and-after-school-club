@@ -4,6 +4,7 @@ import useGetSessionPrices from "../../hooks/use-get-session-prices";
 import useIsOnline from "../../hooks/use-is-online";
 import useGetUsersChildren from "../child-info/child-info-hooks/use-get-users-children";
 import useSessionSpacesListener from "./book-a-session-hooks/use-session-spaces-listener";
+import useGetUserBookings from "../../hooks/use-get-user-bookings";
 
 import Loaders from "./sections/loaders.component";
 import NetworkError from "../../components/errors/network-error.component";
@@ -21,6 +22,7 @@ const BookASession = () => {
   useGetSessionPrices();
   useGetUsersChildren();
   useSessionSpacesListener();
+  useGetUserBookings();
   const { isOnline } = useIsOnline();
 
   return (

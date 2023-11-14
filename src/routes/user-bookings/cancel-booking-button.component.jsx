@@ -1,26 +1,19 @@
-import { useDispatch } from "react-redux";
-import { Link } from "react-router-dom";
-
-import { addUserBookingToDelete } from "../../store/user-booking-to-delete/user-booking-to-delete.slice";
-
 import { ParentDiv, TableEditsButtonDiv } from "../../styles/div/div.styles";
 import { RemoveEntryButton } from "../../styles/buttons/buttons.styles";
 import { Text } from "../../styles/p/p.styles";
-
-import { cancelBookingRoute } from "../../strings/strings";
+import useCheckDateAndGoToCancelBookingRoute from "./user-bookings-hooks/use-check-date-and-go-to-cancel-booking-route";
 
 const CancelBookingButton = ({ chosenEntry }) => {
-  const dispatch = useDispatch();
+  const { checkDateAndGoToCancelBookingRoute } =
+    useCheckDateAndGoToCancelBookingRoute(chosenEntry);
+
   return (
     <>
       {chosenEntry.length === 1 ? (
         <TableEditsButtonDiv>
-          <Link
-            to={cancelBookingRoute}
-            onClick={() => dispatch(addUserBookingToDelete(chosenEntry))}
-          >
-            <RemoveEntryButton>cancel booking</RemoveEntryButton>
-          </Link>
+          <RemoveEntryButton onClick={checkDateAndGoToCancelBookingRoute}>
+            cancel booking
+          </RemoveEntryButton>
         </TableEditsButtonDiv>
       ) : chosenEntry.length > 1 ? (
         <ParentDiv>

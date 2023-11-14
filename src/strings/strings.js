@@ -69,8 +69,22 @@ export const sessionDocFailureMessage = "session doc failure";
 export const balanceDocFailureMessage = "balance doc failure";
 export const resetSessionDocFailureMessage = "reset session doc failure";
 export const updateSessionDocErrorMessage = `<span style="font-size: 20px;">there was an error booking your session. your wallet balance has not changed. if the issue persists, please contact us using the contact form and quote the following error:</span>`;
-export const errorBookingSessionMessage = `<span style="font-size: 20px;">sorry, there was an error making your booking. your wallet balance has not been deducted. please tap the "ok" button to continue. if the issue continues, please contact us using the contact form and quote the following error:</span>`;
-export const resetSessionErrorMessage = `<span style="font-size: 20px;">well this is embarassing.. We've had another error on our end, please contact us and quote the following error:</span>`;
+export const errorUpdatingBalanceMessage = `<span style="font-size: 20px;">sorry, there was an error making your booking. please tap the "ok" button to continue. if the issue continues, please contact us using the contact form and quote the following error:</span>`;
+export const resetSessionErrorMessage = `<span style="font-size: 20px;">well this is embarassing.. We've had another error on our end.</span>`;
+export const sessionAlreadyBookedMessage = (sessionType, childName) =>
+  `you already have the ${sessionType} session booked on this day for ${childName}.`;
+export const sessionAlreadyBookedInstructions =
+  "please check your bookings on the 'bookings' page.";
+export const mutipleChildBookingChildAlreadyBookedMessage = (
+  sessionType,
+  matchingChildName
+) =>
+  `${matchingChildName} has already been booked for the ${getSessionTypeString(
+    sessionType
+  )} session on this day.`;
+export const removeChildFromSelectionMessage =
+  "if you want to book this session, please remove this child from your selection to prevent double booking.";
+// send data manually to contact form.
 export const addSessionBookingInfoErrorMessage = `<span style="font-size: 16px;">sorry, there was an error completing your session booking. the funds were deducted from your wallet but our database didn't receive your booking info. please tap 'ok' below and then fill out our contact form,  giving the name of your child(ren) on your booking and the date and session you wanted to book for so we can manually add your details! Rest assured, you can still send your child(ren) in for the session you have just booked!</span>`;
 export const lastMinuteNoSessionsMessage =
   "sorry, just before you pressed the confirm button, another user booked the last session..";
@@ -117,8 +131,17 @@ export const contactFormDetailsPrePopulatedMessage =
   "please contact us urgently by tapping the ok button. We will populate the contact form with the details we need to fix our error, so you simply need to press the 'send message' button when on the contact form. We apologise for the inconvenience.";
 export const errorCancellingBookingMessage =
   "sorry, there was an error cancelling your booking.";
-export const errorCancellingBookingInstructions =
+export const errorInstructions =
   "please contact us by tapping the ok button. We will populate the form with the error message, so you simply need to press the 'send message' button when on the contact form. We apologise for the inconvenience.";
+export const cantCancelPastBookingMessage =
+  "sorry, you can't cancel a past booking.";
+export const tooLateToCancelMorningMessage =
+  "it's too late to cancel your morning session.";
+export const tooLateToCancelAfternoonMessage =
+  "it's too late to cancel your afternoon session.";
+export const cancelBeforeTimeMessage = (hour) => {
+  return `please cancel before ${hour} if you wish to cancel the morning session.`;
+};
 // success
 export const successMessage = "success!";
 export const checkEmailMessage = "please check your email!";
@@ -140,8 +163,7 @@ export const childDeletedMessage =
   "the child has been deleted from the database!";
 
 // infos
-export const emailResponseTimeMessage =
-  "Your Message Has Been Message Sent! We Aim To Respond Within 24 Hours.";
+export const emailResponseTimeMessage = "Your Message Has Been Sent!";
 export const loseAllDataMessage =
   "you will lose any data that you have currently entered into this form.";
 export const signInWithNewPasswordMessage =

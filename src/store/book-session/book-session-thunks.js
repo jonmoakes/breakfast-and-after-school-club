@@ -7,7 +7,7 @@ import { lastMinuteNoSessionsMessage } from "../../strings/strings";
 
 export const updateSessionDocAsync = createAsyncThunk(
   "updateSessionDoc",
-  async ({ date, sessionType }, thunkAPI) => {
+  async ({ date, sessionType, childrenSelectedForBooking }, thunkAPI) => {
     try {
       const getChosenDateDocument = await databases.listDocuments(
         import.meta.env.VITE_DEVELOPMENT_DATABASE_ID,
@@ -22,6 +22,10 @@ export const updateSessionDocAsync = createAsyncThunk(
       } else {
         const { $id, morningSessionSpaces, afternoonSessionSpaces } =
           dateDocument[0];
+
+        const numberOfSpacesToDeduct = childrenSelectedForBooking.length
+          ? childrenSelectedForBooking.length
+          : 1;
 
         if (
           (sessionType === "morning" && !morningSessionSpaces) ||
@@ -42,22 +46,24 @@ export const updateSessionDocAsync = createAsyncThunk(
 
         if (sessionType === "morning") {
           updatedSessionSpaces = {
-            morningSessionSpaces: morningSessionSpaces - 1,
+            morningSessionSpaces: morningSessionSpaces - numberOfSpacesToDeduct,
           };
         } else if (
           sessionType === "afternoonShort" ||
           sessionType === "afternoonLong"
         ) {
           updatedSessionSpaces = {
-            afternoonSessionSpaces: afternoonSessionSpaces - 1,
+            afternoonSessionSpaces:
+              afternoonSessionSpaces - numberOfSpacesToDeduct,
           };
         } else if (
           sessionType === "morningAndAfternoonShort" ||
           sessionType === "morningAndAfternoonLong"
         ) {
           updatedSessionSpaces = {
-            morningSessionSpaces: morningSessionSpaces - 1,
-            afternoonSessionSpaces: afternoonSessionSpaces - 1,
+            morningSessionSpaces: morningSessionSpaces - numberOfSpacesToDeduct,
+            afternoonSessionSpaces:
+              afternoonSessionSpaces - numberOfSpacesToDeduct,
           };
         }
 
@@ -98,7 +104,11 @@ export const updateUserDocBalanceAsync = createAsyncThunk(
 
 export const resetSessionDocAsync = createAsyncThunk(
   "resetSessionDoc",
-  async ({ date, sessionType }, thunkAPI) => {
+  async ({ date, sessionType, childrenSelectedForBooking }, thunkAPI) => {
+    const numberOfSpacesToAdd = childrenSelectedForBooking.length
+      ? childrenSelectedForBooking.length
+      : 1;
+
     try {
       const getChosenDateDocument = await databases.listDocuments(
         import.meta.env.VITE_DEVELOPMENT_DATABASE_ID,
@@ -118,22 +128,24 @@ export const resetSessionDocAsync = createAsyncThunk(
 
         if (sessionType === "morning") {
           updatedSessionSpaces = {
-            morningSessionSpaces: morningSessionSpaces + 1,
+            morningSessionSpaces: morningSessionSpaces + numberOfSpacesToAdd,
           };
         } else if (
           sessionType === "afternoonShort" ||
           sessionType === "afternoonLong"
         ) {
           updatedSessionSpaces = {
-            afternoonSessionSpaces: afternoonSessionSpaces + 1,
+            afternoonSessionSpaces:
+              afternoonSessionSpaces + numberOfSpacesToAdd,
           };
         } else if (
           sessionType === "morningAndAfternoonShort" ||
           sessionType === "morningAndAfternoonLong"
         ) {
           updatedSessionSpaces = {
-            morningSessionSpaces: morningSessionSpaces + 1,
-            afternoonSessionSpaces: afternoonSessionSpaces + 1,
+            morningSessionSpaces: morningSessionSpaces + numberOfSpacesToAdd,
+            afternoonSessionSpaces:
+              afternoonSessionSpaces + numberOfSpacesToAdd,
           };
         }
 
@@ -145,8 +157,7 @@ export const resetSessionDocAsync = createAsyncThunk(
         );
       }
     } catch (error) {
-      const errorMessage = `error updating sessions - ${error.message}`;
-      return thunkAPI.rejectWithValue(errorMessage);
+      return thunkAPI.rejectWithValue(error.message);
     }
   }
 );

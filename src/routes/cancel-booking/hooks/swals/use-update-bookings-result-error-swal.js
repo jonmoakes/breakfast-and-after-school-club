@@ -9,7 +9,7 @@ import { setContactFormDetailsWhenBookingError } from "../../../../store/contact
 
 import {
   contactRoute,
-  errorCancellingBookingInstructions,
+  errorInstructions,
   errorCancellingBookingMessage,
 } from "../../../../strings/strings";
 
@@ -34,7 +34,7 @@ const useUpdateBookingsResultErrorSwal = () => {
     fireSwal(
       "error",
       errorCancellingBookingMessage,
-      errorCancellingBookingInstructions,
+      errorInstructions,
       0,
       true,
       false
