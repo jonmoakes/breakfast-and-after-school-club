@@ -13,7 +13,7 @@ const useGetDateAndTime = () => {
   morningCloseTime.setHours(7, 25, 0);
 
   const afternoonCloseTime = new Date();
-  afternoonCloseTime.setHours(18, 25, 0);
+  afternoonCloseTime.setHours(15, 25, 0);
 
   const formattedTodaysDate = format(
     new Date(currentDateAndTime),

@@ -71,15 +71,13 @@ export const resetSessionDocFailureMessage = "reset session doc failure";
 export const updateSessionDocErrorMessage = `<span style="font-size: 20px;">there was an error booking your session. your wallet balance has not changed. if the issue persists, please contact us using the contact form and quote the following error:</span>`;
 export const errorUpdatingBalanceMessage = `<span style="font-size: 20px;">sorry, there was an error making your booking. please tap the "ok" button to continue. if the issue continues, please contact us using the contact form and quote the following error:</span>`;
 export const resetSessionErrorMessage = `<span style="font-size: 20px;">well this is embarassing.. We've had another error on our end.</span>`;
-export const sessionAlreadyBookedMessage = (sessionType, childName) =>
-  `you already have the ${sessionType} session booked on this day for ${childName}.`;
+export const sessionAlreadyBookedMessage =
+  "you already have a session booked on this day that includes the session you were trying to book.";
 export const sessionAlreadyBookedInstructions =
-  "please check your bookings on the 'bookings' page.";
-export const mutipleChildBookingChildAlreadyBookedMessage = (
-  sessionType,
-  matchingChildName
-) =>
-  `${matchingChildName} has already been booked for the ${getSessionTypeString(
+  "please check your bookings for this day to prevent double bookings.";
+
+export const mutipleChildBookingChildAlreadyBookedMessage = (sessionType) =>
+  ` has already been booked for the ${getSessionTypeString(
     sessionType
   )} session on this day.`;
 export const removeChildFromSelectionMessage =

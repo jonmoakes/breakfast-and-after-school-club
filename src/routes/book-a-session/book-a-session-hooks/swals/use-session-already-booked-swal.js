@@ -1,35 +1,30 @@
 import useFireSwal from "../../../../hooks/use-fire-swal";
+
 import {
   mutipleChildBookingChildAlreadyBookedMessage,
   removeChildFromSelectionMessage,
-  //   sessionAlreadyBookedInstructions,
+  sessionAlreadyBookedInstructions,
   sessionAlreadyBookedMessage,
 } from "../../../../strings/strings";
 
 const useSessionAlreadyBookedSwal = () => {
   const { fireSwal } = useFireSwal();
 
-  const singleChildSessionAlreadyBookedSwal = (sessionType, childName) => {
+  const singleChildSessionAlreadyBookedSwal = () => {
     fireSwal(
       "error",
-      sessionAlreadyBookedMessage(sessionType, childName),
-      "",
+      sessionAlreadyBookedMessage,
+      sessionAlreadyBookedInstructions,
       0,
       true,
       false
     );
   };
 
-  const multipleChildSessionAlreadyBookedSwal = (
-    sessionType,
-    matchingChildName
-  ) => {
+  const multipleChildSessionAlreadyBookedSwal = (sessionType) => {
     fireSwal(
       "error",
-      mutipleChildBookingChildAlreadyBookedMessage(
-        sessionType,
-        matchingChildName
-      ),
+      mutipleChildBookingChildAlreadyBookedMessage(sessionType),
       removeChildFromSelectionMessage,
       0,
       true,
