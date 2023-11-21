@@ -51,7 +51,7 @@ const MagicUrlResult = () => {
       <ParentDiv>
         {!error ? (
           <>
-            <BlackTitle>please wahhit...</BlackTitle>
+            <BlackTitle>please wait...</BlackTitle>
             <BlueH2>signing you in...</BlueH2>
           </>
         ) : (
