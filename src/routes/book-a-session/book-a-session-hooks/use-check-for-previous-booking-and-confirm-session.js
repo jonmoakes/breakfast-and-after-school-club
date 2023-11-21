@@ -3,7 +3,8 @@ import { useSelector } from "react-redux";
 import useConditionalLogic from "./use-conditional-logic";
 import useConfirmSwal from "../../../hooks/use-confirm-swal";
 import useSessionAlreadyBookedSwal from "./swals/use-session-already-booked-swal";
-import useSingleChildSessionAlreadyBooked from "./use-single-child-session-already-booked.js";
+import useChildSessionAlreadyBooked from "./use-child-session-already-booked";
+import useConfirmResult from "./use-confirm-result";
 
 import { selectChildrenSelectedForBooking } from "../../../store/book-session/book-session.selector";
 
@@ -13,15 +14,13 @@ import {
   imSureMessage,
 } from "../../../strings/strings";
 
-const useCheckForPreviousBookingAndHandleBooking = () => {
+const useCheckForPreviousBookingAndConfirmSession = () => {
   const { confirmSwal } = useConfirmSwal();
   const { date } = useConditionalLogic();
-  const { singleChildSessionAlreadyBooked } =
-    useSingleChildSessionAlreadyBooked();
-  const {
-    singleChildSessionAlreadyBookedSwal,
-    // multipleChildSessionAlreadyBookedSwal,
-  } = useSessionAlreadyBookedSwal();
+  const { singleChildSessionAlreadyBooked, multipleChildSessionAlreadyBooked } =
+    useChildSessionAlreadyBooked();
+  const { sessionAlreadyBookedSwal } = useSessionAlreadyBookedSwal();
+  const { confirmResult } = useConfirmResult();
 
   const childrenSelectedForBooking = useSelector(
     selectChildrenSelectedForBooking
@@ -29,21 +28,15 @@ const useCheckForPreviousBookingAndHandleBooking = () => {
 
   const childrenSelectedViaCheckbox = childrenSelectedForBooking.length;
 
-  const checkForPreviousBookingAndHandleBooking = (
-    sessionType,
-    price,
-    confirmResult
-  ) => {
+  const checkForPreviousBookingAndConfirmSession = (sessionType, price) => {
     if (
-      !childrenSelectedViaCheckbox &&
-      singleChildSessionAlreadyBooked(sessionType)
+      (!childrenSelectedViaCheckbox &&
+        singleChildSessionAlreadyBooked(sessionType)) ||
+      (childrenSelectedViaCheckbox &&
+        multipleChildSessionAlreadyBooked(sessionType))
     ) {
-      singleChildSessionAlreadyBookedSwal();
-    }
-    //  else if (childrenSelectedViaCheckbox) {
-    //   multipleChildSessionAlreadyBookedSwal(sessionType);
-    // }
-    else {
+      sessionAlreadyBookedSwal();
+    } else {
       confirmSwal(
         confirmSureBookSession(sessionType, date),
         fundsDeductedFromBalance(price),
@@ -53,7 +46,7 @@ const useCheckForPreviousBookingAndHandleBooking = () => {
     }
   };
 
-  return { checkForPreviousBookingAndHandleBooking };
+  return { checkForPreviousBookingAndConfirmSession };
 };
 
-export default useCheckForPreviousBookingAndHandleBooking;
+export default useCheckForPreviousBookingAndConfirmSession;

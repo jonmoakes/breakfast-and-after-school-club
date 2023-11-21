@@ -5,7 +5,7 @@ export const TABLE_COLUMNS = [
     Header: "date",
     accessor: "date",
     Cell: ({ value }) => {
-      return format(new Date(value), "dd MMMM yyyy");
+      return format(new Date(value), "EEEE dd MMMM yyyy");
     },
   },
   {

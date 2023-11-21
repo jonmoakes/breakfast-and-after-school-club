@@ -1,14 +1,9 @@
 import { useSelector } from "react-redux";
+
 import { selectUserBookings } from "../../../store/user-bookings/user-bookings.selector";
-import { selectUsersChildren } from "../../../store/get-users-children/get-users-children.selector";
-import useConditionalLogic from "./use-conditional-logic";
 
-const useSingleChildSessionAlreadyBooked = () => {
-  const { date } = useConditionalLogic();
-
-  const usersChildren = useSelector(selectUsersChildren);
+const useGetBookingdataAndSessionTypeToLowercase = () => {
   const userBookings = useSelector(selectUserBookings);
-  const { childName } = usersChildren[0];
 
   const userBookingsDatesAndNamesAndSessionType = userBookings.map(
     (userBooking) => {
@@ -46,20 +41,14 @@ const useSingleChildSessionAlreadyBooked = () => {
     (sessionType.toLowerCase().includes("morning") ||
       sessionType.toLowerCase().includes("afternoon"));
 
-  const singleChildSessionAlreadyBooked = (sessionType) => {
-    return !!userBookingsDatesAndNamesAndSessionType.find(
-      (userBooking) =>
-        userBooking.date === date &&
-        userBooking.childrensName === childName &&
-        (isMorningSession(userBooking, sessionType) ||
-          isAfternoonShortSession(userBooking, sessionType) ||
-          isAfternoonLongSession(userBooking, sessionType) ||
-          isMorningAndAfternoonShortSession(userBooking, sessionType) ||
-          isMorningAndAfternoonLongSession(userBooking, sessionType))
-    );
+  return {
+    userBookingsDatesAndNamesAndSessionType,
+    isMorningSession,
+    isAfternoonShortSession,
+    isAfternoonLongSession,
+    isMorningAndAfternoonShortSession,
+    isMorningAndAfternoonLongSession,
   };
-
-  return { singleChildSessionAlreadyBooked };
 };
 
-export default useSingleChildSessionAlreadyBooked;
+export default useGetBookingdataAndSessionTypeToLowercase;

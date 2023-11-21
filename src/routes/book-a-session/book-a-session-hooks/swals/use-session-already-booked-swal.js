@@ -1,8 +1,10 @@
+import { useSelector } from "react-redux";
+
 import useFireSwal from "../../../../hooks/use-fire-swal";
 
+import { selectChildrenSelectedForBooking } from "../../../../store/book-session/book-session.selector";
+
 import {
-  mutipleChildBookingChildAlreadyBookedMessage,
-  removeChildFromSelectionMessage,
   sessionAlreadyBookedInstructions,
   sessionAlreadyBookedMessage,
 } from "../../../../strings/strings";
@@ -10,10 +12,14 @@ import {
 const useSessionAlreadyBookedSwal = () => {
   const { fireSwal } = useFireSwal();
 
-  const singleChildSessionAlreadyBookedSwal = () => {
+  const childrenSelectedForBooking = useSelector(
+    selectChildrenSelectedForBooking
+  );
+
+  const sessionAlreadyBookedSwal = () => {
     fireSwal(
       "error",
-      sessionAlreadyBookedMessage,
+      sessionAlreadyBookedMessage(childrenSelectedForBooking),
       sessionAlreadyBookedInstructions,
       0,
       true,
@@ -21,20 +27,8 @@ const useSessionAlreadyBookedSwal = () => {
     );
   };
 
-  const multipleChildSessionAlreadyBookedSwal = (sessionType) => {
-    fireSwal(
-      "error",
-      mutipleChildBookingChildAlreadyBookedMessage(sessionType),
-      removeChildFromSelectionMessage,
-      0,
-      true,
-      false
-    );
-  };
-
   return {
-    singleChildSessionAlreadyBookedSwal,
-    multipleChildSessionAlreadyBookedSwal,
+    sessionAlreadyBookedSwal,
   };
 };
 

@@ -1,23 +1,13 @@
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 
 import useConditionalLogic from "./use-conditional-logic";
 import useSessionSpacesErrorSwals from "./swals/use-session-spaces-error-swals";
-import useCheckForPreviousBookingAndHandleBooking from "./use-check-for-previous-booking-and-handle-booking";
+import useCheckForPreviousBookingAndConfirmSession from "./use-check-for-previous-booking-and-confirm-session";
 
-import { selectChildrenSelectedForBooking } from "../../../store/book-session/book-session.selector";
-import { selectCurrentUser } from "../../../store/user/user.selector";
-import { selectUsersChildren } from "../../../store/get-users-children/get-users-children.selector";
 import { setSessionType } from "../../../store/book-session/book-session.slice";
-import { addSessionBookingInfoAsync } from "../../../store/book-session/book-session-thunks";
-
-import {
-  updateSessionDocAsync,
-  updateUserDocBalanceAsync,
-} from "../../../store/book-session/book-session-thunks";
 
 const useConfirmSession = () => {
   const {
-    date,
     notEnoughMorningSpacesForMultipleChildren,
     notEnoughAfternoonSpacesForMultipleChildren,
     notEnoughMorningSpacesForMultipleChildrenInMorningAndAfternoonSession,
@@ -29,40 +19,10 @@ const useConfirmSession = () => {
     morningAndAfternoonSessionMorningErrorSwal,
     morningAndAfternoonSessionAfternoonErrorSwal,
   } = useSessionSpacesErrorSwals();
-  const { checkForPreviousBookingAndHandleBooking } =
-    useCheckForPreviousBookingAndHandleBooking();
+  const { checkForPreviousBookingAndConfirmSession } =
+    useCheckForPreviousBookingAndConfirmSession();
 
-  const currentUser = useSelector(selectCurrentUser);
-  const childrenSelectedForBooking = useSelector(
-    selectChildrenSelectedForBooking
-  );
-  const usersChildren = useSelector(selectUsersChildren);
-
-  const { id } = currentUser;
   const dispatch = useDispatch();
-
-  const confirmResult = (sessionType, price) => {
-    dispatch(
-      updateSessionDocAsync({ date, sessionType, childrenSelectedForBooking })
-    ).then((resultAction) => {
-      if (updateSessionDocAsync.fulfilled.match(resultAction)) {
-        dispatch(updateUserDocBalanceAsync({ id, price })).then(
-          (resultAction) => {
-            if (updateUserDocBalanceAsync.fulfilled.match(resultAction)) {
-              dispatch(
-                addSessionBookingInfoAsync({
-                  date,
-                  sessionType,
-                  usersChildren,
-                  childrenSelectedForBooking,
-                })
-              );
-            }
-          }
-        );
-      }
-    });
-  };
 
   const confirmSession = (sessionType, price) => {
     dispatch(setSessionType(sessionType));
@@ -84,11 +44,7 @@ const useConfirmSession = () => {
     ) {
       morningAndAfternoonSessionAfternoonErrorSwal();
     } else {
-      checkForPreviousBookingAndHandleBooking(
-        sessionType,
-        price,
-        confirmResult
-      );
+      checkForPreviousBookingAndConfirmSession(sessionType, price);
     }
   };
 

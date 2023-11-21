@@ -1,6 +1,6 @@
 import { useSelector, useDispatch } from "react-redux";
 
-import useHideSignUpPasswordOnEmpty from "../sign-up-form-hooks/use-hide-sign-up-password-on-empty.js";
+import useHideSignUpPasswordOnEmpty from "../sign-up-form-hooks/use-hide-sign-up-password-on-empty";
 
 import {
   selectSignUpPasswordIsVisible,

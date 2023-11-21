@@ -71,8 +71,12 @@ export const resetSessionDocFailureMessage = "reset session doc failure";
 export const updateSessionDocErrorMessage = `<span style="font-size: 20px;">there was an error booking your session. your wallet balance has not changed. if the issue persists, please contact us using the contact form and quote the following error:</span>`;
 export const errorUpdatingBalanceMessage = `<span style="font-size: 20px;">sorry, there was an error making your booking. please tap the "ok" button to continue. if the issue continues, please contact us using the contact form and quote the following error:</span>`;
 export const resetSessionErrorMessage = `<span style="font-size: 20px;">well this is embarassing.. We've had another error on our end.</span>`;
-export const sessionAlreadyBookedMessage =
-  "you already have a session booked on this day that includes the session you were trying to book.";
+export const sessionAlreadyBookedMessage = (childrenSelectedForBooking) => {
+  return childrenSelectedForBooking.length
+    ? "you have children booked into this session already."
+    : "you have already booked this session for this day.";
+};
+
 export const sessionAlreadyBookedInstructions =
   "please check your bookings for this day to prevent double bookings.";
 
@@ -138,7 +142,7 @@ export const tooLateToCancelMorningMessage =
 export const tooLateToCancelAfternoonMessage =
   "it's too late to cancel your afternoon session.";
 export const cancelBeforeTimeMessage = (hour) => {
-  return `please cancel before ${hour} if you wish to cancel the morning session.`;
+  return `please cancel before ${hour} if you wish to cancel this session.`;
 };
 // success
 export const successMessage = "success!";
@@ -194,8 +198,8 @@ export const alreadyClickedOnUpdatePasswordLink =
 export const checkBackRegularlyMessage =
   "if a session becomes available again, it will appear here in realtime so please check back often!";
 export const entriesAreTheSameMessage = "you haven't changed any data yet.";
-export const bookingCancelledMessage = "booking cancelled";
-export const walletBeenUpdatedMessage = "you wallet balance has been updated.";
+export const bookingCancelledMessage = "booking cancelled.";
+export const walletBeenUpdatedMessage = "your wallet balance has been updated.";
 //confirms
 export const confirmCancelBookingMessage =
   "do you want to cancel this booking?";

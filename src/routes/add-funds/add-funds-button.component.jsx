@@ -1,5 +1,5 @@
 import useGetPaymentResult from "./add-funds-hooks/use-get-payment-result";
-import useShouldShowAddFundsButton from "./add-funds-hooks/use-should-show-add-funds-button.component.js";
+import useShouldShowAddFundsButton from "./add-funds-hooks/use-should-show-add-funds-button.component";
 
 import { YellowGreenButton } from "../../styles/buttons/buttons.styles";
 
