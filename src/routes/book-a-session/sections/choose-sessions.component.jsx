@@ -16,6 +16,7 @@ import { Text } from "../../../styles/p/p.styles";
 
 const ChooseSessions = () => {
   useGetDateAndTime();
+
   const {
     showNothing,
     onlyMorningSessionsAvailable,

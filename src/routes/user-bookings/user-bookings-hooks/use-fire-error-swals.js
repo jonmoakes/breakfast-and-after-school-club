@@ -14,7 +14,7 @@ const useFireErrorSwals = () => {
   };
 
   const cantCancelMorningSessionSwal = () => {
-    const hour = "9AM";
+    const hour = "7AM";
     fireSwal(
       "error",
       tooLateToCancelMorningMessage,

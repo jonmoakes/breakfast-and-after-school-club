@@ -7,20 +7,23 @@ import { selectGetPricesError } from "../../../store/session-types-and-prices/se
 
 import DateErrors from "./date-errors.component";
 import SpacesAvailableInfo from "./spaces-available-info.component";
-import ErrorFetchingPrices from "./error-fetching-prices.component";
+import ErrorFetchingPrices from "../../../components/errors/get-session-prices-error.component";
 
 import { Form, StyledInput, Label } from "../../../styles/form/form.styles";
 import { ParentDiv } from "../../../styles/div/div.styles";
+import useRequestDateData from "../book-a-session-hooks/use-request-date-data";
 
 const ChooseDate = () => {
+  //get sessions spaces and date info for the chosen date.
+  useRequestDateData();
   const { chooseDateHandleChange } = useChooseDateHandleChange();
   const { shouldShowDatePicker, date } = useConditionalLogic();
 
-  const error = useSelector(selectGetPricesError);
+  const fetchPricesError = useSelector(selectGetPricesError);
 
   return (
     <>
-      {error ? (
+      {fetchPricesError ? (
         <ErrorFetchingPrices />
       ) : shouldShowDatePicker() ? (
         <ParentDiv>

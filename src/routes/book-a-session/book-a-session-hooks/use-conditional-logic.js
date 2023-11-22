@@ -35,6 +35,7 @@ const useConditionalLogic = () => {
   const childrenSelectedForBooking = useSelector(
     selectChildrenSelectedForBooking
   );
+  const getPricesError = useSelector(selectGetPricesError);
 
   const date = requestDateData ? requestDateData.date : "";
   const morningSessionSpaces = requestDateData
@@ -182,7 +183,8 @@ const useConditionalLogic = () => {
       dateUnavailable() ||
       dateChosenInThePast() ||
       dateNotChosenOrDateChosenAndBalanceTooLow() ||
-      noSessionsAvailable()
+      noSessionsAvailable() ||
+      getPricesError
       ? true
       : false;
   };

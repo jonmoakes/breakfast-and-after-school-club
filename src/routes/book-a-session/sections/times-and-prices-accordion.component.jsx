@@ -1,5 +1,7 @@
 import { useSelector, useDispatch } from "react-redux";
 
+import useGetSessionPrices from "../../../hooks/use-get-session-prices";
+
 import {
   selectMorningSessionPrice,
   selectAfternoonShortSessionPrice,
@@ -24,6 +26,7 @@ import { BlueSpan } from "../../../styles/span/span.styles";
 import { BlackHr } from "../../../styles/hr/hr.styles";
 
 const TimesAndPricesAccordion = () => {
+  useGetSessionPrices();
   const shouldShowSecondElement = useSelector(selectShouldShowSecondElement);
 
   const dispatch = useDispatch();

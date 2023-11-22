@@ -9,6 +9,7 @@ import { RelativePositionDiv } from "../../styles/div/div.styles";
 import { BackButton } from "../../styles/buttons/buttons.styles";
 
 import {
+  cancelBookingRoute,
   childInfoRoute,
   chosenEntryChildDetailsRoute,
   deleteChildInfoRoute,
@@ -37,7 +38,8 @@ const FloatingBackButton = () => {
       path === childInfoRoute ||
       path === editChildInfoRoute ||
       path === deleteChildInfoRoute ||
-      path === chosenEntryChildDetailsRoute
+      path === chosenEntryChildDetailsRoute ||
+      path === cancelBookingRoute
       ? true
       : false;
   };

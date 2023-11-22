@@ -9,8 +9,10 @@ import { RedSpan } from "../../styles/span/span.styles";
 import { StyledLink } from "../../styles/link/link.styles";
 
 import { addChildInfoRoute, bookSessionRoute } from "../../strings/strings";
+// import useWalletBalanceListener from "../../hooks/use-wallet-balance-listener";
 
 const WalletBalance = () => {
+  // useWalletBalanceListener();
   const currentUser = useSelector(selectCurrentUser);
   const usersChildren = useSelector(selectUsersChildren);
   const { walletBalance } = currentUser;
