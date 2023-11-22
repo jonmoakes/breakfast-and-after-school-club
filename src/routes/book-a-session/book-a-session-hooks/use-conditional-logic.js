@@ -61,7 +61,7 @@ const useConditionalLogic = () => {
 
   const shouldShowDatePicker = () => {
     return walletBalance &&
-      walletBalance >= priceMultipliedBy100(sessionPrice) &&
+      walletBalance >= 400 &&
       usersChildren !== undefined &&
       !error
       ? true
@@ -69,9 +69,7 @@ const useConditionalLogic = () => {
   };
 
   const hasInsufficientFunds = () => {
-    return !walletBalance || walletBalance < priceMultipliedBy100(sessionPrice)
-      ? true
-      : false;
+    return !walletBalance || walletBalance < 400 ? true : false;
   };
 
   const noDateSelected = () => {
