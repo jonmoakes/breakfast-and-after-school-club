@@ -11,7 +11,7 @@ import {
 
 import useIsOnline from "../../hooks/use-is-online";
 
-import { selectUserBookings } from "../../store/user-bookings/user-bookings.selector";
+import { selectUserBookingsWithFormattedDate } from "../../store/user-bookings/user-bookings.selector";
 
 import { TABLE_COLUMNS } from "./table-columns";
 import NetworkError from "../../components/errors/network-error.component";
@@ -25,7 +25,8 @@ import CancelBookingButton from "./cancel-booking-button.component";
 const UserBookingsTable = () => {
   const { isOnline } = useIsOnline();
 
-  let userBookings = useSelector(selectUserBookings);
+  let userBookings = useSelector(selectUserBookingsWithFormattedDate);
+
   const columns = useMemo(() => TABLE_COLUMNS, []);
   const data = useMemo(() => userBookings, [userBookings]);
 

@@ -403,19 +403,24 @@ export const OptionsForm = styled.form`
     margin: 10px auto 0px auto;
     font-family: inherit;
     background-color: lightgrey;
-    width: 1.5em;
-    height: 1.5em;
+    width: 1.5rem;
+    height: 1.5rem;
     border: 2px solid black;
     border-radius: 0.15em;
     transform: translateY(-0.075em);
     display: grid;
     place-content: center;
+
+    @media screen and (max-width: 650px) {
+      width: 2rem;
+      height: 2rem;
+    }
   }
 
   input[type="checkbox"]::before {
     content: "";
-    width: 0.9em;
-    height: 0.9em;
+    width: 0.9rem;
+    height: 0.9rem;
     clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
     transform: scale(0);
     transform-origin: bottom left;
