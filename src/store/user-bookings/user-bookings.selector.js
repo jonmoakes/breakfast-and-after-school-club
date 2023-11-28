@@ -23,13 +23,14 @@ export const selectUserBookingsWithFormattedDate = createSelector(
       formattedDate: format(parseISO(booking.date), "EEEE dd MMMM yyyy"),
     }));
 
-    // Sort the array based on 'formattedDate'
-    const sortedUserBookings = formattedUserBookings.sort((a, b) => {
-      const dateA = new Date(a.date);
-      const dateB = new Date(b.date);
+    const sortedUserBookings = formattedUserBookings.sort(
+      (bookingA, bookingB) => {
+        const dateA = new Date(bookingA.date);
+        const dateB = new Date(bookingB.date);
 
-      return dateA - dateB;
-    });
+        return dateA - dateB;
+      }
+    );
 
     return sortedUserBookings;
   }

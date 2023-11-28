@@ -89,25 +89,35 @@ const UserBookingsHelp = () => {
               </>
             ) : null}
 
-            <BlueH2>searching dates:</BlueH2>
+            <BlueH2>searching:</BlueH2>
             <Text>
-              please note, if you're searching for a date, please search for
-              it's numerical value.
+              enter a search term in the search box to show only bookings that
+              match that search.
+            </Text>
+            <Text>
+              you can search for anything that will have been entered into any
+              of the table headers ( ie a date, a child name, a session type etc
+              ).
             </Text>
             <BlueH2>searching for a month:</BlueH2>
-            <Text>for example "11" for november or "04" for april.</Text>
+            <Text>
+              please search for the months name - ie 'november' as opposed to
+              its numerical value ( 11 ).
+            </Text>
             <BlueH2>searching for a date and month:</BlueH2>
             <Text>
               if you're searching for a date and month, for example August 12th,
               <br />
-              please search for 08-12. ( make sure to include the "-"! ).
+              please search for 08 august.
             </Text>
             <Text>
-              another example is 07-05 for July 5th, or 12-04 for December 4th.
+              you don't need to type the 'th' ie the 20th as this will not show
+              up any results, even though you may have a booking on that date.
             </Text>
             <BlueH2>searching for a full date:</BlueH2>
             <Text>
-              a full date would be for example 2023-05-25 for 25th May 2023.
+              a full date would be for example '03 april 2024' or 12 december
+              2022.
             </Text>
 
             {isYourCustomerBookingsRoute() ? (

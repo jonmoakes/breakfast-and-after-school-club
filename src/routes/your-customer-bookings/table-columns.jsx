@@ -1,12 +1,9 @@
-import { format } from "date-fns";
 import { EmailLink } from "../../styles/p/p.styles";
+
 export const TABLE_COLUMNS = [
   {
     Header: "date",
-    accessor: "date",
-    Cell: ({ value }) => {
-      return format(new Date(value), "dd MMMM yyyy");
-    },
+    accessor: "formattedDate",
   },
   {
     Header: "session",
