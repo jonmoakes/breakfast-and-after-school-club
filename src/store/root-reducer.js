@@ -32,6 +32,7 @@ import { getBookedSessionsReducer } from "./booked-sessions/booked-sessions.slic
 import { chosenEntryChildDetailsReducer } from "./chosen-entry-child-details/chosen-entry-child-details.slice";
 import { userBookingsReducer } from "./user-bookings/user-bookings.slice";
 import { userBookingToDeleteReducer } from "./user-booking-to-delete/user-booking-to-delete.slice";
+import { sendEmailReducer } from "./send-email/send-email.slice";
 
 export const rootReducer = combineReducers({
   hamburgerMenu: hamburgerMenuReducer,
@@ -66,4 +67,5 @@ export const rootReducer = combineReducers({
   chosenEntryChildDetails: chosenEntryChildDetailsReducer,
   userBookings: userBookingsReducer,
   userBookingToDelete: userBookingToDeleteReducer,
+  sendEmail: sendEmailReducer,
 });

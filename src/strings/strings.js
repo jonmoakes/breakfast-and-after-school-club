@@ -117,6 +117,10 @@ export const afternoonSessionSpacesErrorMessage = (childrenSelectedLength) => {
 export const afternoonSpacesRemainingMessage = (afternoonSessionSpaces) => {
   return `for this session, we have ${afternoonSessionSpaces} space(s) remaining today.`;
 };
+export const errorSendingBookingConfirmationEmail =
+  "there was an error sending your booking confirmation email.";
+export const getBookingInfoEmailInstructions =
+  "if you require this email, please contact us using the contact form on our website. Rest assured however, your booking has been successfully made!";
 export const errorUpdatingChild =
   "sorry, there was an error updating your childs information. please try again.";
 export const errorDeletingChildMessage =

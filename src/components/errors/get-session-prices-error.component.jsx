@@ -15,6 +15,7 @@ import {
   contactRoute,
   userBookingsRoute,
 } from "../../strings/strings";
+import { resetBookSessionState } from "../../store/book-session/book-session.slice";
 
 const GetSessionPricesError = () => {
   const navigate = useNavigate();
@@ -24,6 +25,7 @@ const GetSessionPricesError = () => {
   const path = location.pathname;
 
   const handleClick = () => {
+    dispatch(resetBookSessionState());
     dispatch(resetSessionPricesError());
     if (path === bookSessionRoute) {
       navigate(accountRoute);

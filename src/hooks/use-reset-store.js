@@ -37,6 +37,7 @@ import {
   editChildInfoRoute,
   deleteChildInfoRoute,
 } from "../strings/strings";
+import { resetSendEmailState } from "../store/send-email/send-email.slice";
 
 const useResetStore = () => {
   const dispatch = useDispatch();
@@ -77,6 +78,7 @@ const useResetStore = () => {
         dispatch(clearShouldShowElementsState());
         dispatch(setCurrentDateAndTime(new Date()));
         dispatch(resetBookSessionState());
+        dispatch(resetSendEmailState());
         break;
       case updateEmailRoute:
         dispatch(clearShouldShowElementsState());
