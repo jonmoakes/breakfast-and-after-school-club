@@ -25,6 +25,28 @@ export const sendEmailBookingConfirmationAsync = createAsyncThunk(
   }
 );
 
+export const sendAddBookingInfoErrorEmailAsync = createAsyncThunk(
+  "sendAddBookingInfoErrorEmail",
+  async ({ message }, thunkAPI) => {
+    try {
+      const email = import.meta.env.VITE_APP_OWNER_EMAIL;
+      const subject =
+        "Breakfast & After School Club - A Booking Was Not Added To The Database.";
+
+      const response = await axios.post(SEND_EMAIL_ENDPOINT, {
+        email,
+        subject,
+        message,
+      });
+
+      const { status } = response;
+      return status;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
 const INITIAL_STATE = {
   isLoading: false,
   statusCode: "",
@@ -51,7 +73,20 @@ export const sendEmailSlice = createSlice({
       })
       .addCase(sendEmailBookingConfirmationAsync.rejected, (state, action) => {
         state.isLoading = false;
+        state.statusCode = "";
+        state.error = action.payload;
+      })
+      .addCase(sendAddBookingInfoErrorEmailAsync.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(sendAddBookingInfoErrorEmailAsync.fulfilled, (state, action) => {
+        state.isLoading = false;
         state.statusCode = action.payload;
+        state.error = null;
+      })
+      .addCase(sendAddBookingInfoErrorEmailAsync.rejected, (state, action) => {
+        state.isLoading = false;
+        state.statusCode = "";
         state.error = action.payload;
       });
   },

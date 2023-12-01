@@ -8,7 +8,7 @@ export const handler = async (event) => {
   const data = {
     to: email,
     from: process.env.VITE_APP_OWNER_EMAIL,
-    subject: subject,
+    subject,
     text: message,
   };
 

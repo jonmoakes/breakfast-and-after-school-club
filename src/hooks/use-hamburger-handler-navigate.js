@@ -28,7 +28,6 @@ const useHamburgerHandlerNavigate = () => {
       dispatch(hideHamburgerMenu());
       navigate(url);
     } else if (!showHamburgerMenu) {
-      resetStore();
       navigate(url);
     }
     resetStore();

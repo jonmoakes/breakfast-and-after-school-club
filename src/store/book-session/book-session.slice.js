@@ -105,10 +105,10 @@ export const bookSessionSlice = createSlice({
         state.addSessionBookingInfo.result = "fulfilled";
         state.addSessionBookingInfo.error = null;
       })
-      .addCase(addSessionBookingInfoAsync.rejected, (state) => {
+      .addCase(addSessionBookingInfoAsync.rejected, (state, action) => {
         state.isLoading = false;
         state.addSessionBookingInfo.result = "rejected";
-        state.addSessionBookingInfo.error = "error";
+        state.addSessionBookingInfo.error = action.payload;
       });
   },
 });

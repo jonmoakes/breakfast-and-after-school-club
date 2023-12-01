@@ -71,6 +71,7 @@ export const resetSessionDocFailureMessage = "reset session doc failure";
 export const updateSessionDocErrorMessage = `<span style="font-size: 20px;">there was an error booking your session. your wallet balance has not changed. if the issue persists, please contact us using the contact form and quote the following error:</span>`;
 export const errorUpdatingBalanceMessage = `<span style="font-size: 20px;">sorry, there was an error making your booking. please tap the "ok" button to continue. if the issue continues, please contact us using the contact form and quote the following error:</span>`;
 export const resetSessionErrorMessage = `<span style="font-size: 20px;">well this is embarassing.. We've had another error on our end.</span>`;
+export const failedToSendEmailInstructions = `<span style="font-size: 20px;">sorry, the email failed to send...when you tap ok, you will be redirected to the 'contact us' page, with the form pre populated with the details that we need to fix our error, so please simply press the 'send message' button when on the contact form. We apologise for the inconvenience. please tap ok to continue!</span>`;
 export const sessionAlreadyBookedMessage = (childrenSelectedForBooking) => {
   return childrenSelectedForBooking.length
     ? "you have children booked into this session already."
@@ -86,8 +87,7 @@ export const mutipleChildBookingChildAlreadyBookedMessage = (sessionType) =>
   )} session on this day.`;
 export const removeChildFromSelectionMessage =
   "if you want to book this session, please remove this child from your selection to prevent double booking.";
-// send data manually to contact form.
-export const addSessionBookingInfoErrorMessage = `<span style="font-size: 16px;">sorry, there was an error completing your session booking. the funds were deducted from your wallet but our database didn't receive your booking info. please tap 'ok' below and then fill out our contact form,  giving the name of your child(ren) on your booking and the date and session you wanted to book for so we can manually add your details! Rest assured, you can still send your child(ren) in for the session you have just booked!</span>`;
+export const addSessionBookingInfoErrorMessage = `<span style="font-size: 16px;">sorry, there was an error completing your session booking. the funds were deducted from your wallet but our database didn't receive your booking info. When you tap ok below, we will automatically send an email to the app owner who will then manually add your booking details to the database. Rest assured, you can still send your child(ren) in for the session you have just booked! If the booking does not show up in your 'bookings' section within 24hrs, please contact us using our contact form. Please tap 'ok' below to continue!</span>`;
 export const lastMinuteNoSessionsMessage =
   "sorry, just before you pressed the confirm button, another user booked the last session..";
 export const morningSessionSpacesInvalidDocError =

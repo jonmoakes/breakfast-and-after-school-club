@@ -77,6 +77,7 @@ const useSendEmailBookingConfirmation = () => {
       }
     });
   };
+
   return { sendEmailConfirmation };
 };
 
