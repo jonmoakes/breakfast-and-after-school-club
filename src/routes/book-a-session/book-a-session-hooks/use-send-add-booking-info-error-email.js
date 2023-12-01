@@ -13,10 +13,11 @@ import { sendAddBookingInfoErrorEmailAsync } from "../../../store/send-email/sen
 import { setContactFormDetailsWhenBookingError } from "../../../store/contact-form/contact-form.slice";
 
 import {
-  accountRoute,
   contactRoute,
   failedToSendEmailInstructions,
+  userBookingsRoute,
 } from "../../../strings/strings";
+import { createChildrenToAddToBooking } from "../../../functions/create-children-to-add-to-booking";
 
 const useSendAddBookingInfoErrorEmail = () => {
   const { date } = useConditionalLogic();
@@ -36,13 +37,12 @@ const useSendAddBookingInfoErrorEmail = () => {
   const oneChildChosen = childrenSelectedForBooking.join(" ");
   const namesToAddToBooking = childrenSelectedForBooking.join(", ");
 
-  const childrenInBooking = !childrenSelectedForBooking.length
-    ? childName
-    : childrenSelectedForBooking.length === 1
-    ? oneChildChosen
-    : childrenSelectedForBooking.length > 1
-    ? namesToAddToBooking
-    : childrenSelectedForBooking;
+  const childrenInBooking = createChildrenToAddToBooking(
+    childrenSelectedForBooking,
+    childName,
+    oneChildChosen,
+    namesToAddToBooking
+  );
 
   const message = `Error Adding The Following Booking To The Database. Please Add Manually.\n\n\nSession Booking Data:\n\nDate:\n${date}\n\nSession:\n${sessionType}\n\nChildren In Booking:\n${childrenInBooking}\n\nParent Email:\n${parentEmail}\n\nParent Name:\n${parentName}`;
 
@@ -56,7 +56,7 @@ const useSendAddBookingInfoErrorEmail = () => {
     dispatch(sendAddBookingInfoErrorEmailAsync({ message })).then(
       (resultAction) => {
         if (sendAddBookingInfoErrorEmailAsync.fulfilled.match(resultAction)) {
-          resetStateAndNavigate(accountRoute);
+          resetStateAndNavigate(userBookingsRoute);
         } else {
           fireSwal(
             "error",

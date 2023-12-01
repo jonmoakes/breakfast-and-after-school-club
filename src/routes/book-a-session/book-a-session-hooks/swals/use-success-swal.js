@@ -8,7 +8,7 @@ import {
 
 const useSuccessSwal = () => {
   const { fireSwal } = useFireSwal();
-  const { sendEmailConfirmation } = useSendEmailBookingConfirmation();
+  const { sendEmailBookingConfirmation } = useSendEmailBookingConfirmation();
 
   const successSwal = () => {
     fireSwal(
@@ -20,7 +20,7 @@ const useSuccessSwal = () => {
       false
     ).then((isConfirmed) => {
       if (isConfirmed) {
-        sendEmailConfirmation();
+        sendEmailBookingConfirmation();
       }
     });
   };

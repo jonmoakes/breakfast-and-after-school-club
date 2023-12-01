@@ -4,6 +4,7 @@ import { Query, ID } from "appwrite";
 import { getUserDocument } from "../user/functions";
 
 import { lastMinuteNoSessionsMessage } from "../../strings/strings";
+import { createChildrenToAddToBooking } from "../../functions/create-children-to-add-to-booking";
 
 export const updateSessionDocAsync = createAsyncThunk(
   "updateSessionDoc",
@@ -178,13 +179,12 @@ export const addSessionBookingInfoAsync = createAsyncThunk(
       const sessionBooking = {
         date,
         sessionType,
-        childrensName: !childrenSelectedForBooking.length
-          ? childName
-          : childrenSelectedForBooking.length === 1
-          ? oneChildChosen
-          : childrenSelectedForBooking.length > 1
-          ? namesToAddToBooking
-          : childrenSelectedForBooking,
+        childrensName: createChildrenToAddToBooking(
+          childrenSelectedForBooking,
+          childName,
+          oneChildChosen,
+          namesToAddToBooking
+        ),
         parentEmail,
         parentName,
       };
