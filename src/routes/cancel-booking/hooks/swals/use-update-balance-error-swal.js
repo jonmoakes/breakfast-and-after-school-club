@@ -27,7 +27,7 @@ const useUpdateBalanceErrorSwal = () => {
   const { sessionType } = userBookingToDelete || {};
   const { name, email } = currentUser;
 
-  const errorToSend = {
+  const dataToSendToContactForm = {
     name,
     email,
     message: `Booking cancellation result - Success.\n\nSession Spaces Update result: Success.\n\nBalance amount to update:\n\n${sessionType} price * ${numberOfChildrenInBooking} `,
@@ -43,7 +43,9 @@ const useUpdateBalanceErrorSwal = () => {
       false
     ).then((isConfirmed) => {
       if (isConfirmed) {
-        dispatch(setContactFormDetailsWhenBookingError(errorToSend));
+        dispatch(
+          setContactFormDetailsWhenBookingError(dataToSendToContactForm)
+        );
         resetStateAndNavigate(contactRoute);
       }
     });

@@ -1,20 +1,19 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { databases } from "../../utils/appwrite/appwrite-config";
 
+import { CREATE_PAYMENT_INTENT_ENDPOINT } from "../../../netlify/api-endpoints/api-endpoints";
+
 export const getClientSecretAsync = createAsyncThunk(
   "getClientSecret",
   async ({ walletFundsToAdd }, thunkAPI) => {
     try {
-      const response = await fetch(
-        "/.netlify/functions/create-payment-intent",
-        {
-          method: "post",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ amount: Math.round(walletFundsToAdd * 100) }),
-        }
-      ).then((res) => res.json());
+      const response = await fetch(CREATE_PAYMENT_INTENT_ENDPOINT, {
+        method: "post",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ amount: Math.round(walletFundsToAdd * 100) }),
+      }).then((res) => res.json());
 
       const client_secret = response.paymentIntent.client_secret;
 

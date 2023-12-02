@@ -2,8 +2,10 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
 import { emailToSend } from "./email-to-send";
+
 import { SEND_EMAIL_ENDPOINT } from "../../../netlify/api-endpoints/api-endpoints";
 
+// sends the user a copy of their booking details via email
 export const sendEmailBookingConfirmationAsync = createAsyncThunk(
   "sendEmailBookingConfirmation",
   async (
@@ -25,13 +27,11 @@ export const sendEmailBookingConfirmationAsync = createAsyncThunk(
   }
 );
 
-export const sendAddBookingInfoErrorEmailAsync = createAsyncThunk(
-  "sendAddBookingInfoErrorEmail",
-  async ({ message }, thunkAPI) => {
+export const sendEmailWithErrorAsync = createAsyncThunk(
+  "sendEmailWithError",
+  async ({ subject, message }, thunkAPI) => {
     try {
       const email = import.meta.env.VITE_APP_OWNER_EMAIL;
-      const subject =
-        "Breakfast & After School Club - A Booking Was Not Added To The Database.";
 
       const response = await axios.post(SEND_EMAIL_ENDPOINT, {
         email,
@@ -76,15 +76,15 @@ export const sendEmailSlice = createSlice({
         state.statusCode = "";
         state.error = action.payload;
       })
-      .addCase(sendAddBookingInfoErrorEmailAsync.pending, (state) => {
+      .addCase(sendEmailWithErrorAsync.pending, (state) => {
         state.isLoading = true;
       })
-      .addCase(sendAddBookingInfoErrorEmailAsync.fulfilled, (state, action) => {
+      .addCase(sendEmailWithErrorAsync.fulfilled, (state, action) => {
         state.isLoading = false;
         state.statusCode = action.payload;
         state.error = null;
       })
-      .addCase(sendAddBookingInfoErrorEmailAsync.rejected, (state, action) => {
+      .addCase(sendEmailWithErrorAsync.rejected, (state, action) => {
         state.isLoading = false;
         state.statusCode = "";
         state.error = action.payload;

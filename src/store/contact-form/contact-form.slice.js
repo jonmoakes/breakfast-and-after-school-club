@@ -4,20 +4,19 @@ import axios from "axios";
 import { emailToSend } from "./email-to-send";
 import { capitalizeString } from "../../functions/capitalize-string";
 
+import { SEND_CONTACT_FORM_MESSAGE_ENDPOINT } from "../../../netlify/api-endpoints/api-endpoints";
+
 export const sendContactFormMessageAsync = createAsyncThunk(
   "contactForm",
   async ({ name, email, message }, thunkAPI) => {
     try {
-      const response = await axios.post(
-        "/.netlify/functions/send-contact-form-message",
-        {
-          message: emailToSend(
-            capitalizeString(name),
-            email,
-            capitalizeString(message)
-          ),
-        }
-      );
+      const response = await axios.post(SEND_CONTACT_FORM_MESSAGE_ENDPOINT, {
+        message: emailToSend(
+          capitalizeString(name),
+          email,
+          capitalizeString(message)
+        ),
+      });
 
       const { status } = response;
       return status;

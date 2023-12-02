@@ -24,7 +24,7 @@ const useUpdateBookingsResultErrorSwal = () => {
   const { name, email } = currentUser;
   const error = updateBookingsDoc.error;
 
-  const errorToSend = {
+  const dataToSendToContactForm = {
     name,
     email,
     message: `Booking cancellation result - Failure.\n\nError Received:\n${error}`,
@@ -40,7 +40,9 @@ const useUpdateBookingsResultErrorSwal = () => {
       false
     ).then((isConfirmed) => {
       if (isConfirmed) {
-        dispatch(setContactFormDetailsWhenBookingError(errorToSend));
+        dispatch(
+          setContactFormDetailsWhenBookingError(dataToSendToContactForm)
+        );
         resetStateAndNavigate(contactRoute);
       }
     });

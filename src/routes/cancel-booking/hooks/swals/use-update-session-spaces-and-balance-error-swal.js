@@ -26,7 +26,7 @@ const useUpdateSessionSpacesAndBalanceErrorSwal = () => {
   const { date, sessionType } = userBookingToDelete || {};
   const { name, email } = currentUser;
 
-  const errorToSend = {
+  const dataToSendToContactForm = {
     name,
     email,
     message: `Booking cancellation result - Success.\n\nSession Spaces Update result: Fail.\n\nBooking Details:\n\nDate: ${date}\n\nSession Type: ${sessionType}\n\nspaces to update: ${numberOfChildrenInBooking}\n\nbalance to update: session type price * ${numberOfChildrenInBooking} `,
@@ -42,7 +42,9 @@ const useUpdateSessionSpacesAndBalanceErrorSwal = () => {
       false
     ).then((isConfirmed) => {
       if (isConfirmed) {
-        dispatch(setContactFormDetailsWhenBookingError(errorToSend));
+        dispatch(
+          setContactFormDetailsWhenBookingError(dataToSendToContactForm)
+        );
         resetStateAndNavigate(contactRoute);
       }
     });

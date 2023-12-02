@@ -4,30 +4,29 @@ import { useSelector, useDispatch } from "react-redux";
 import useFireSwal from "../../../../hooks/use-fire-swal";
 import useResetStateAndNavigate from "../return-logic-and-reset-state/use-reset-state-and-navigate";
 import useConditionalLogic from "../use-conditional-logic";
+import useSendResetSessionSpacesErrorEmail from "../use-send-reset-session-spaces-error-email";
 
 import {
   selectChildrenSelectedForBooking,
   selectSessionType,
   selectUpdateUserDocBalance,
 } from "../../../../store/book-session/book-session.selector";
-import { selectCurrentUser } from "../../../../store/user/user.selector";
 import { resetSessionDocAsync } from "../../../../store/book-session/book-session-thunks";
-import { setContactFormDetailsWhenBookingError } from "../../../../store/contact-form/contact-form.slice";
 
 import {
-  accountRoute,
-  contactRoute,
   errorUpdatingBalanceMessage,
   errorInstructions,
   resetSessionErrorMessage,
+  bookSessionRoute,
 } from "../../../../strings/strings";
 
 const useUpdateBalanceErrorResetSessionDocSwal = () => {
   const { fireSwal } = useFireSwal();
+  const { sendResetSessionSpacesErrorEmail } =
+    useSendResetSessionSpacesErrorEmail();
   const { resetStateAndNavigate } = useResetStateAndNavigate();
   const { date } = useConditionalLogic();
 
-  const currentUser = useSelector(selectCurrentUser);
   const childrenSelectedForBooking = useSelector(
     selectChildrenSelectedForBooking
   );
@@ -38,22 +37,6 @@ const useUpdateBalanceErrorResetSessionDocSwal = () => {
 
   const [swalConfirmed, setSwalConfirmed] = useState(false);
   const dispatch = useDispatch();
-
-  const numberOfSpacesToAdd = childrenSelectedForBooking.length
-    ? childrenSelectedForBooking.length
-    : 1;
-
-  const { name, email } = currentUser;
-  const errorToSend = {
-    name,
-    email,
-    message: `Session Spaces Error:\n\nDate:\n${date}\n\nSession Type:\n${sessionType}\n\nSpaces To Add:\n${numberOfSpacesToAdd}`,
-  };
-
-  // here, the session spaces have been updated but the users balance has not been deducted due to error. the goal is to reset the session spaces to what they were before the attempted booking.
-  // When the user clicks ok, we try to reset the sessions back to what they were.
-  // if resetting the sessions fails, then the sessions spaces is still wrong but the balance doesn't need correcting as we are going to manually update the session spaces using the data in the errorToSend variable above.
-  // this needs to be sent via email.
 
   const updateBalanceErrorResetSessionDocSwal = () => {
     fireSwal(
@@ -74,9 +57,8 @@ const useUpdateBalanceErrorResetSessionDocSwal = () => {
           })
         ).then((action) => {
           if (resetSessionDocAsync.fulfilled.match(action)) {
-            resetStateAndNavigate(accountRoute);
+            resetStateAndNavigate(bookSessionRoute);
           } else if (resetSessionDocAsync.rejected.match(action)) {
-            // send an email containing errorToSend. navigate to bookSessionRoute on successful email send.
             fireSwal(
               "error",
               resetSessionErrorMessage,
@@ -86,8 +68,7 @@ const useUpdateBalanceErrorResetSessionDocSwal = () => {
               false
             ).then((isConfirmed) => {
               if (isConfirmed) {
-                dispatch(setContactFormDetailsWhenBookingError(errorToSend));
-                resetStateAndNavigate(contactRoute);
+                sendResetSessionSpacesErrorEmail();
               }
             });
           }

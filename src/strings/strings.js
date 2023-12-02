@@ -138,7 +138,7 @@ export const contactFormDetailsPrePopulatedMessage =
 export const errorCancellingBookingMessage =
   "sorry, there was an error cancelling your booking.";
 export const errorInstructions =
-  "please contact us by tapping the ok button. We will populate the form with the error message, so you simply need to press the 'send message' button when on the contact form. We apologise for the inconvenience.";
+  "please tap ok to continue. This will email the app owner with details of the error, allowing them to fix it manually. Your balance has not been affected. We apologise for the inconvenience.";
 export const cantCancelPastBookingMessage =
   "sorry, you can't cancel a past booking.";
 export const tooLateToCancelMorningMessage =

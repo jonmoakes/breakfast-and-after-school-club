@@ -8,18 +8,16 @@ import {
   selectChildrenSelectedForBooking,
   selectSessionType,
 } from "../../../store/book-session/book-session.selector";
-import { selectUsersChildren } from "../../../store/get-users-children/get-users-children.selector";
 import { sendEmailWithErrorAsync } from "../../../store/send-email/send-email.slice";
 import { setContactFormDetailsWhenBookingError } from "../../../store/contact-form/contact-form.slice";
 
 import {
+  bookSessionRoute,
   contactRoute,
   failedToSendEmailInstructions,
-  userBookingsRoute,
 } from "../../../strings/strings";
-import { createChildrenToAddToBooking } from "../../../functions/create-children-to-add-to-booking";
 
-const useSendAddBookingInfoErrorEmail = () => {
+const useSendResetSessionSpacesErrorEmail = () => {
   const { date } = useConditionalLogic();
   const { resetStateAndNavigate } = useResetStateAndNavigate();
   const { fireSwal } = useFireSwal();
@@ -28,26 +26,17 @@ const useSendAddBookingInfoErrorEmail = () => {
     selectChildrenSelectedForBooking
   );
   const sessionType = useSelector(selectSessionType);
-  const usersChildren = useSelector(selectUsersChildren);
+
   const dispatch = useDispatch();
 
-  const childName = usersChildren.length ? usersChildren[0].childName : "";
-  const parentEmail = usersChildren.length ? usersChildren[0].parentEmail : "";
-  const parentName = usersChildren.length ? usersChildren[0].parentName : "";
-  const oneChildChosen = childrenSelectedForBooking.join(" ");
-  const namesToAddToBooking = childrenSelectedForBooking.join(", ");
-
-  const childrenInBooking = createChildrenToAddToBooking(
-    childrenSelectedForBooking,
-    childName,
-    oneChildChosen,
-    namesToAddToBooking
-  );
+  const numberOfSpacesToAdd = childrenSelectedForBooking.length
+    ? childrenSelectedForBooking.length
+    : 1;
 
   const subject =
-    "Breakfast & After School Club - A Booking Was Not Added To The Database.";
+    "Breakfast & After School Club - Error Resetting Session Data";
 
-  const message = `Error Adding The Following Booking To The Database. Please Add Manually.\n_____________\nSession Booking Data:\n\nDate:\n${date}\n\nSession:\n${sessionType}\n\nChildren In Booking:\n${childrenInBooking}\n\nParent Email:\n${parentEmail}\n\nParent Name:\n${parentName}`;
+  const message = `There Was An Error Resetting Session Data After Updating A Users Balance Failed, Which Caused A Failed Booking Attempt. Please Add The Following To The Database Manually:\n_____________\nDate:\n${date}\n\nSession Type:\n${sessionType}\n\nSpaces To Add:\n${numberOfSpacesToAdd}`;
 
   const dataToSendToContactForm = {
     name: "Email Failed To Send Error",
@@ -55,11 +44,11 @@ const useSendAddBookingInfoErrorEmail = () => {
     message,
   };
 
-  const sendAddBookingInfoErrorEmail = () => {
+  const sendResetSessionSpacesErrorEmail = () => {
     dispatch(sendEmailWithErrorAsync({ subject, message })).then(
       (resultAction) => {
         if (sendEmailWithErrorAsync.fulfilled.match(resultAction)) {
-          resetStateAndNavigate(userBookingsRoute);
+          resetStateAndNavigate(bookSessionRoute);
         } else {
           fireSwal(
             "error",
@@ -81,7 +70,7 @@ const useSendAddBookingInfoErrorEmail = () => {
     );
   };
 
-  return { sendAddBookingInfoErrorEmail };
+  return { sendResetSessionSpacesErrorEmail };
 };
 
-export default useSendAddBookingInfoErrorEmail;
+export default useSendResetSessionSpacesErrorEmail;
