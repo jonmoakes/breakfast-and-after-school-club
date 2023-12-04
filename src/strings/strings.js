@@ -146,7 +146,7 @@ export const tooLateToCancelMorningMessage =
 export const tooLateToCancelAfternoonMessage =
   "it's too late to cancel your afternoon session.";
 export const cancelBeforeTimeMessage = (hour) => {
-  return `please cancel before ${hour} if you wish to cancel this session.`;
+  return `please cancel before ${hour} if you wish to cancel a session.`;
 };
 export const couldntFetchPreviousBookingsMessage =
   "sorry, we couldn't fetch your previous bookings, which we use to check for double bookings.";

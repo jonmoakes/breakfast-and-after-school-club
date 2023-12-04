@@ -7,6 +7,11 @@ export const selectSessionType = createSelector(
   (bookSessionSlice) => bookSessionSlice.sessionType
 );
 
+export const selectSessionPrice = createSelector(
+  [selectBookSessionReducer],
+  (bookSessionSlice) => bookSessionSlice.sessionPrice
+);
+
 export const selectBookSessionIsLoading = createSelector(
   [selectBookSessionReducer],
   (bookSessionSlice) => bookSessionSlice.isLoading

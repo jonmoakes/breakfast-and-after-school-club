@@ -9,14 +9,30 @@ import { SEND_EMAIL_ENDPOINT } from "../../../netlify/api-endpoints/api-endpoint
 export const sendEmailBookingConfirmationAsync = createAsyncThunk(
   "sendEmailBookingConfirmation",
   async (
-    { email, subject, name, date, sessionType, childrenInBooking },
+    {
+      email,
+      subject,
+      name,
+      date,
+      sessionType,
+      childrenInBooking,
+      sessionPrice,
+      walletBalance,
+    },
     thunkAPI
   ) => {
     try {
       const response = await axios.post(SEND_EMAIL_ENDPOINT, {
         email,
         subject,
-        message: emailToSend(name, date, sessionType, childrenInBooking),
+        message: emailToSend(
+          name,
+          date,
+          sessionType,
+          childrenInBooking,
+          sessionPrice,
+          walletBalance
+        ),
       });
 
       const { status } = response;

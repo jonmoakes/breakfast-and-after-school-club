@@ -3,7 +3,14 @@ import { format } from "date-fns";
 import { getSessionTypeString } from "../../functions/get-session-type-string";
 import { capitalizeString } from "../../functions/capitalize-string";
 
-export const emailToSend = (name, date, sessionType, childrenInBooking) => {
+export const emailToSend = (
+  name,
+  date,
+  sessionType,
+  childrenInBooking,
+  sessionPrice,
+  walletBalance
+) => {
   return `______________________________________________
 
 Dear ${name},
@@ -21,9 +28,13 @@ ${capitalizeString(getSessionTypeString(sessionType))}
 Child(ren) In The Booking:
 ${capitalizeString(childrenInBooking)}
 
-______________________________________________
+Funds Deducted From Your Wallet:
+£${sessionPrice / 100}
 
-You will also recieved a separate email containing your receipt.
+Remaining Wallet Balance:
+£${walletBalance / 100}
+
+______________________________________________
 
 Thank you for using the Breakfast & After School Club App!
 

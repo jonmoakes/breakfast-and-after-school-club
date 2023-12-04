@@ -7,6 +7,7 @@ import { selectCurrentUser } from "../../../store/user/user.selector";
 import { selectRequestDateData } from "../../../store/request-date-data/request-date-data.selector";
 import {
   selectSessionType,
+  selectSessionPrice,
   selectChildrenSelectedForBooking,
 } from "../../../store/book-session/book-session.selector";
 import { selectUsersChildren } from "../../../store/get-users-children/get-users-children.selector";
@@ -27,6 +28,7 @@ const useSendEmailBookingConfirmation = () => {
   const currentUser = useSelector(selectCurrentUser);
   const requestDateData = useSelector(selectRequestDateData);
   const sessionType = useSelector(selectSessionType);
+  const sessionPrice = useSelector(selectSessionPrice);
   const childrenSelectedForBooking = useSelector(
     selectChildrenSelectedForBooking
   );
@@ -34,7 +36,7 @@ const useSendEmailBookingConfirmation = () => {
 
   const dispatch = useDispatch();
 
-  const { name, email } = currentUser;
+  const { name, email, walletBalance } = currentUser;
   const date = requestDateData ? requestDateData.date : "";
   const childName = usersChildren[0] ? usersChildren[0].childName : "";
   const oneChildChosen = childrenSelectedForBooking.join(" ");
@@ -58,6 +60,8 @@ const useSendEmailBookingConfirmation = () => {
         date,
         sessionType,
         childrenInBooking,
+        sessionPrice,
+        walletBalance,
       })
     ).then((resultAction) => {
       if (sendEmailBookingConfirmationAsync.fulfilled.match(resultAction)) {

@@ -9,6 +9,7 @@ import {
 
 const INITIAL_STATE = {
   sessionType: "",
+  sessionPrice: null,
   isLoading: false,
   childrenSelectedForBooking: [],
   updateSessionDoc: {
@@ -35,6 +36,9 @@ export const bookSessionSlice = createSlice({
   reducers: {
     setSessionType(state, action) {
       state.sessionType = action.payload;
+    },
+    setSessionPrice(state, action) {
+      state.sessionPrice = action.payload;
     },
     setChildrenSelectedForBooking: (state, action) => {
       const checkboxName = Object.keys(action.payload)[0];
