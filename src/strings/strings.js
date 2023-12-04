@@ -152,6 +152,7 @@ export const couldntFetchPreviousBookingsMessage =
   "sorry, we couldn't fetch your previous bookings, which we use to check for double bookings.";
 export const requestUserCheckForDoubleCheckBookings =
   "by proceeding, you confirm that you have checked that you have not double booked any sessions. If you do make a mistake however, you can always cancel bookings from your bookings table.";
+export const errorSendCancellationConfirmationEmailMessage = `<span style="font-size: 20px;">sorry, there was an error sending you the email with confirmation of this cancellation. Rest assured though, your booking has been cancelled and funds have been added to your wallet. if you require this email confirmation, please contact us using our contact form.</span>`;
 // success
 export const successMessage = "success!";
 export const checkEmailMessage = "please check your email!";

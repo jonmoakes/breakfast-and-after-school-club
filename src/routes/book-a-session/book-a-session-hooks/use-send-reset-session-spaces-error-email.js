@@ -8,7 +8,7 @@ import {
   selectChildrenSelectedForBooking,
   selectSessionType,
 } from "../../../store/book-session/book-session.selector";
-import { sendEmailWithErrorAsync } from "../../../store/send-email/send-email.slice";
+import { sendEmailWithErrorAsync } from "../../../store/send-email/send-email-thunks";
 import { setContactFormDetailsWhenBookingError } from "../../../store/contact-form/contact-form.slice";
 
 import {

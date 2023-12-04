@@ -1,15 +1,14 @@
 import useFireSwal from "../../../../hooks/use-fire-swal";
-import useResetStateAndNavigate from "../return-logic-and-reset-state/use-reset-state-and-navigate";
+import useSendCancellationEmail from "../use-send-cancellation-email";
 
 import {
   bookingCancelledMessage,
-  userBookingsRoute,
   walletBeenUpdatedMessage,
 } from "../../../../strings/strings";
 
 const useSuccessSwal = () => {
   const { fireSwal } = useFireSwal();
-  const { resetStateAndNavigate } = useResetStateAndNavigate();
+  const { sendCancellationEmail } = useSendCancellationEmail();
 
   const successSwal = () => {
     fireSwal(
@@ -21,7 +20,7 @@ const useSuccessSwal = () => {
       false
     ).then((isConfirmed) => {
       if (isConfirmed) {
-        resetStateAndNavigate(userBookingsRoute);
+        sendCancellationEmail();
       }
     });
   };

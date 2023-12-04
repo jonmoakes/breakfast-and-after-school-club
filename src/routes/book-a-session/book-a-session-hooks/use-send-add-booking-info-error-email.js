@@ -9,7 +9,7 @@ import {
   selectSessionType,
 } from "../../../store/book-session/book-session.selector";
 import { selectUsersChildren } from "../../../store/get-users-children/get-users-children.selector";
-import { sendEmailWithErrorAsync } from "../../../store/send-email/send-email.slice";
+import { sendEmailWithErrorAsync } from "../../../store/send-email/send-email-thunks";
 import { setContactFormDetailsWhenBookingError } from "../../../store/contact-form/contact-form.slice";
 
 import {

@@ -11,7 +11,7 @@ import {
   selectChildrenSelectedForBooking,
 } from "../../../store/book-session/book-session.selector";
 import { selectUsersChildren } from "../../../store/get-users-children/get-users-children.selector";
-import { sendEmailBookingConfirmationAsync } from "../../../store/send-email/send-email.slice";
+import { sendEmailBookingConfirmationAsync } from "../../../store/send-email/send-email-thunks";
 
 import {
   errorSendingBookingConfirmationEmail,
