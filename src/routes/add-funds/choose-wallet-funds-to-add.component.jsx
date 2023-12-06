@@ -6,6 +6,8 @@ import useHandleWalletFundsChange from "./add-funds-hooks/use-handle-wallet-fund
 import { selectWalletFundsToAdd } from "../../store/wallet-funds-to-add/wallet-funds-to-add.selector";
 
 import { Form, StyledInput } from "../../styles/form/form.styles";
+import { Text } from "../../styles/p/p.styles";
+import { BlackHr } from "../../styles/hr/hr.styles";
 
 import { addFundsPlaceholder } from "../../strings/strings";
 
@@ -16,19 +18,23 @@ const ChooseWalletFundsToAdd = () => {
   const walletFundsToAdd = useSelector(selectWalletFundsToAdd);
 
   return (
-    <Form className="add-funds">
-      <StyledInput
-        type="number"
-        pattern="[0-9]*"
-        name="walletFunds"
-        value={walletFundsToAdd || ""}
-        min={1}
-        max={100}
-        placeholder={addFundsPlaceholder}
-        onChange={handleWalletFundsChange}
-        required
-      />
-    </Form>
+    <>
+      <BlackHr />
+      <Text>how much would you like to add to your wallet?</Text>
+      <Form className="add-funds">
+        <StyledInput
+          type="number"
+          pattern="[0-9]*"
+          name="walletFunds"
+          value={walletFundsToAdd || ""}
+          min={1}
+          max={100}
+          placeholder={addFundsPlaceholder}
+          onChange={handleWalletFundsChange}
+          required
+        />
+      </Form>
+    </>
   );
 };
 

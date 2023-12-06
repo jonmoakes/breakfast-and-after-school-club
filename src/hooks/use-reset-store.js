@@ -13,7 +13,10 @@ import { clearSignInFormDetails } from "../store/sign-in-form/sign-in-form.slice
 import { clearSignUpFormDetails } from "../store/sign-up-form/sign-up-form.slice";
 import { resetUpdateEmailState } from "../store/update-email/update-email.slice";
 import { clearWalletFundsToAdd } from "../store/wallet-funds-to-add/wallet-funds-to-add.slice";
-import { resetPreResultHandlePaymentState } from "../store/handle-payment/handle-payment.slice";
+import {
+  resetAllHandlePaymentState,
+  resetPreResultHandlePaymentState,
+} from "../store/handle-payment/handle-payment.slice";
 import { resetUpdatePasswordRequestState } from "../store/update-password-request/update-password-request.slice";
 import { setCurrentDateAndTime } from "../store/date-and-time/date-and-time.slice";
 import { resetChildInfo } from "../store/add-child-info/add-child-info.slice";
@@ -36,6 +39,7 @@ import {
   addChildInfoRoute,
   editChildInfoRoute,
   deleteChildInfoRoute,
+  paymentResultRoute,
 } from "../strings/strings";
 import { resetSendEmailState } from "../store/send-email/send-email.slice";
 
@@ -72,6 +76,11 @@ const useResetStore = () => {
         dispatch(clearShouldShowElementsState());
         dispatch(clearWalletFundsToAdd());
         dispatch(resetPreResultHandlePaymentState());
+        break;
+      case paymentResultRoute:
+        dispatch(resetCardInputState());
+        dispatch(resetAllHandlePaymentState());
+        dispatch(clearWalletFundsToAdd());
         break;
       case bookSessionRoute:
         dispatch(resetRequestDateDataState());

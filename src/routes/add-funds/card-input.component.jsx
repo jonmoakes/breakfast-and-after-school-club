@@ -12,7 +12,7 @@ import CardInputErrors from "./errors-help-redirect/card-input-errors.component"
 import AddFundsButton from "./add-funds-button.component";
 
 import { CardInputDiv, ParentDiv } from "../../styles/div/div.styles";
-
+import { Text } from "../../styles/p/p.styles";
 import { options } from "./card-input-styles/card-input-styles";
 
 const CardInput = () => {
@@ -30,6 +30,7 @@ const CardInput = () => {
         <>
           <CardInputErrors />
           <ParentDiv>
+            <Text>please enter your card details</Text>
             <CardInputDiv>
               <CardElement {...{ options }} onChange={handleCardInputChange} />
             </CardInputDiv>

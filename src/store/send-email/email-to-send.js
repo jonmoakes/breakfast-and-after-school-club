@@ -15,9 +15,9 @@ export const emailToSend = (
 
 Dear ${name},
 
-This is your confirmation of your breakfast & after school club booking that you recently made.
+This Is Confirmation Of Your Breakfast & After School Club Booking That You Recently Made.
 
-Your booking details are:
+Your Booking Details Are:
 
 Selected Date:
 ${date ? format(new Date(date), "dd MMMM yyyy") : ""}
@@ -31,7 +31,7 @@ ${capitalizeString(childrenInBooking)}
 Funds Deducted From Your Wallet:
 £${sessionPrice / 100}
 
-Remaining Wallet Balance:
+Remaining Wallet Balance Directly After This Booking:
 £${walletBalance / 100}
 
 ______________________________________________
@@ -54,9 +54,9 @@ export const cancellationEmailToSend = (
 
 Dear ${name},
 
-This is your confirmation that your breakfast & after school club booking has been cancelled.
+This Is Confirmation That Your Breakfast & After School Club Booking Was Cancelled.
 
-The details of the booking that was cancelled are:
+The Details Of The Booking That Was Cancelled Are:
 
 Booking Date:
 ${date ? format(new Date(date), "dd MMMM yyyy") : ""}

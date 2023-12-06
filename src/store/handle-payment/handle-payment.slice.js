@@ -45,10 +45,9 @@ export const getPaymentResultAsync = createAsyncThunk(
   }
 );
 
-export const uploadWalletFundsToDatabaseAsync = createAsyncThunk(
-  "uploadWalletFundsToDatabase",
-  async ({ uploadResult, id, walletFundsToAdd }, thunkAPI) => {
-    if (uploadResult) return;
+export const addWalletFundsToDatabaseAsync = createAsyncThunk(
+  "addWalletFundsToDatabase",
+  async ({ id, walletFundsToAdd }, thunkAPI) => {
     try {
       const walletBalanceFromDatabase = await databases.getDocument(
         import.meta.env.VITE_DEVELOPMENT_DATABASE_ID,
@@ -78,7 +77,7 @@ const initialState = {
   error: null,
   showConfirmButton: false,
   paymentResult: {},
-  uploadResult: "",
+  walletFundsAddedResult: "",
 };
 
 const handlePaymentSlice = createSlice({
@@ -135,18 +134,18 @@ const handlePaymentSlice = createSlice({
         state.error = action.payload;
         state.showConfirmButton = false;
       })
-      .addCase(uploadWalletFundsToDatabaseAsync.pending, (state) => {
+      .addCase(addWalletFundsToDatabaseAsync.pending, (state) => {
         state.isLoading = true;
       })
-      .addCase(uploadWalletFundsToDatabaseAsync.fulfilled, (state) => {
+      .addCase(addWalletFundsToDatabaseAsync.fulfilled, (state) => {
         state.isLoading = false;
-        state.uploadResult = "success";
+        state.walletFundsAddedResult = "succeeded";
         state.paymentResult = {};
         state.error = null;
       })
-      .addCase(uploadWalletFundsToDatabaseAsync.rejected, (state, action) => {
+      .addCase(addWalletFundsToDatabaseAsync.rejected, (state, action) => {
         state.isLoading = false;
-        state.uploadResult = "failed";
+        state.walletFundsAddedResult = "rejected";
         state.paymentResult = {};
         state.error = action.payload;
       });

@@ -1,8 +1,6 @@
 import { useSelector } from "react-redux";
 
-import useHandlePaymentSucceeded from "./payment-result-hooks/use-handle-payment-succeeded";
-import useHandlePaymentFailed from "./payment-result-hooks/use-handle-payment-failed";
-import useGetUploadResult from "./payment-result-hooks/use-get-upload-result";
+import useGetPaymentResult from "./payment-result-hooks/use-get-payment-result";
 
 import { selectHandlePaymentIsLoading } from "../../store/handle-payment/handle-payment.selector";
 
@@ -14,9 +12,7 @@ import { BlackTitle } from "../../styles/h1/h1.styles";
 import { ParentDiv } from "../../styles/div/div.styles";
 
 const PaymentResult = () => {
-  useHandlePaymentSucceeded();
-  useHandlePaymentFailed();
-  useGetUploadResult();
+  useGetPaymentResult();
 
   const isLoading = useSelector(selectHandlePaymentIsLoading);
 

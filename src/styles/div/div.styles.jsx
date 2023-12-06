@@ -215,7 +215,7 @@ export const CardInputDiv = styled.div`
   background-color: ${customLightGrey};
   height: 60px;
   width: 50%;
-  margin: 30px auto 40px auto;
+  margin: 10px auto 40px auto;
   padding: 20px 20px 30px 20px;
   border-radius: 5px;
   border: 2px solid ${customBlack};

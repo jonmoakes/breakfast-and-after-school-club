@@ -24,7 +24,7 @@ export const Form = styled.form`
   }
 
   &.add-funds {
-    margin: 20px auto 30px auto;
+    margin: 0px auto 30px auto;
   }
 
   &.book-session {

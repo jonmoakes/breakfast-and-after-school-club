@@ -10,9 +10,6 @@ const NoSearchResult = () => (
     <Text>
       or tap the <RedSpan>'X'</RedSpan> in the search bar to clear it.
     </Text>
-    <Text>
-      tap the searching date help button for help on how to search for dates.
-    </Text>
   </NoSearchResultDiv>
 );
 

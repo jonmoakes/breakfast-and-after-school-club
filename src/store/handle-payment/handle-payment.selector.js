@@ -22,9 +22,9 @@ export const selectPaymentResult = createSelector(
   (handlePaymentSlice) => handlePaymentSlice.paymentResult
 );
 
-export const selectUploadResult = createSelector(
+export const selectWalletFundsAddedResult = createSelector(
   [selectHandlePaymentReducer],
-  (handlePaymentSlice) => handlePaymentSlice.uploadResult
+  (handlePaymentSlice) => handlePaymentSlice.walletFundsAddedResult
 );
 
 export const selectShowConfirmButton = createSelector(
