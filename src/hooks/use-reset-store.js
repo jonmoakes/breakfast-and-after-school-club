@@ -81,6 +81,7 @@ const useResetStore = () => {
         dispatch(resetCardInputState());
         dispatch(resetAllHandlePaymentState());
         dispatch(clearWalletFundsToAdd());
+        dispatch(resetSendEmailState());
         break;
       case bookSessionRoute:
         dispatch(resetRequestDateDataState());

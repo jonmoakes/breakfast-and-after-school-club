@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
 
-import useHandlePaymentSucceeded from "../payment-result-hooks/use-handle-payment-succeeded";
+import useUpdateWalletBalance from "./use-update-wallet-balance";
 import useHandlePaymentFailed from "../payment-result-hooks/use-handle-payment-failed";
 
 import {
@@ -10,7 +10,7 @@ import {
 } from "../../../store/handle-payment/handle-payment.selector";
 
 const useGetPaymentResult = () => {
-  const { handlePaymentSucceeded } = useHandlePaymentSucceeded();
+  const { updateWalletBalance } = useUpdateWalletBalance();
   const { handlePaymentFailed } = useHandlePaymentFailed();
 
   const paymentResult = useSelector(selectPaymentResult);
@@ -22,21 +22,18 @@ const useGetPaymentResult = () => {
       : paymentResult.paymentIntent.status;
 
   useEffect(() => {
-    if (
-      !Object.keys(paymentResult).length ||
-      paymentResultStatus === "undefined"
-    )
+    if (!Object.keys(paymentResult).length || paymentResult === "completed")
       return;
 
     if (paymentResultStatus === "succeeded") {
-      handlePaymentSucceeded();
+      updateWalletBalance();
     } else {
       handlePaymentFailed();
     }
   }, [
     paymentResult,
     paymentResultStatus,
-    handlePaymentSucceeded,
+    updateWalletBalance,
     handlePaymentFailed,
     walletFundsAddedResult,
   ]);

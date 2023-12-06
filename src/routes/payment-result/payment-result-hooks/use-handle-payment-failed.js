@@ -1,20 +1,20 @@
 import { useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
 
 import useFireSwal from "../../../hooks/use-fire-swal";
+import useHamburgerHandlerNavigate from "../../../hooks/use-hamburger-handler-navigate";
 
 import { selectPaymentResult } from "../../../store/handle-payment/handle-payment.selector";
 
 import {
-  addFundsRoute,
+  accountRoute,
   errorSubmittingPaymentMessage,
 } from "../../../strings/strings";
 
 const useHandlePaymentSucceeded = () => {
   const { fireSwal } = useFireSwal();
+  const { hamburgerHandlerNavigate } = useHamburgerHandlerNavigate();
 
   const paymentResult = useSelector(selectPaymentResult);
-  const navigate = useNavigate();
 
   const handlePaymentFailed = () => {
     fireSwal(
@@ -26,7 +26,7 @@ const useHandlePaymentSucceeded = () => {
       false
     ).then((isConfirmed) => {
       if (isConfirmed) {
-        navigate(addFundsRoute);
+        hamburgerHandlerNavigate(accountRoute);
       }
     });
   };

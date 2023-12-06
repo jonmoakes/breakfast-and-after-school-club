@@ -124,29 +124,25 @@ const handlePaymentSlice = createSlice({
         state.isLoading = false;
         state.client_secret = "";
         state.paymentResult = action.payload;
-        state.error = null;
         state.showConfirmButton = false;
       })
       .addCase(getPaymentResultAsync.rejected, (state, action) => {
         state.isLoading = false;
         state.client_secret = "";
-        state.paymentResult = {};
         state.error = action.payload;
         state.showConfirmButton = false;
       })
       .addCase(addWalletFundsToDatabaseAsync.pending, (state) => {
         state.isLoading = true;
+        state.paymentResult = "completed";
       })
       .addCase(addWalletFundsToDatabaseAsync.fulfilled, (state) => {
         state.isLoading = false;
         state.walletFundsAddedResult = "succeeded";
-        state.paymentResult = {};
-        state.error = null;
       })
       .addCase(addWalletFundsToDatabaseAsync.rejected, (state, action) => {
         state.isLoading = false;
         state.walletFundsAddedResult = "rejected";
-        state.paymentResult = {};
         state.error = action.payload;
       });
   },
