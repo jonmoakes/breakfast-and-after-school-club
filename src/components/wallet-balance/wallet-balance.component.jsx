@@ -3,8 +3,13 @@ import { useLocation } from "react-router-dom";
 
 import useGetWalletBalance from "./wallet-balance-hooks/use-get-wallet-balance";
 
-import { selectCurrentUser } from "../../store/user/user.selector";
+import {
+  selectCurrentUser,
+  selectIsUserLoading,
+} from "../../store/user/user.selector";
 import { selectUsersChildren } from "../../store/get-users-children/get-users-children.selector";
+
+import Loader from "../loader/loader.component";
 
 import { Text } from "../../styles/p/p.styles";
 import { RedSpan } from "../../styles/span/span.styles";
@@ -19,6 +24,7 @@ const WalletBalance = () => {
 
   const currentUser = useSelector(selectCurrentUser);
   const usersChildren = useSelector(selectUsersChildren);
+  const isLoading = useSelector(selectIsUserLoading);
 
   const { walletBalance } = currentUser;
 
@@ -26,6 +32,7 @@ const WalletBalance = () => {
 
   return (
     <>
+      {isLoading ? <Loader /> : null}
       {location.pathname === bookSessionRoute && usersChildren === undefined ? (
         <>
           <Text>
