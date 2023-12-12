@@ -295,4 +295,5 @@ export const BalanceCheckButton = styled.button`
   outline: none;
   border: 1px solid ${customBlack};
   border-radius: 2px;
+  color: ${customBlack};
 `;
