@@ -13,7 +13,7 @@ export const HamburgerSpan = styled.span`
 `;
 
 export const HamburgerSpanCloseMenu = styled(HamburgerSpan)`
-  background-color: ${customRed};
+  background-color: ${customBlue};
 `;
 
 export const BorderLink = styled.span`

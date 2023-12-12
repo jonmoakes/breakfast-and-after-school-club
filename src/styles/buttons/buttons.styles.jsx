@@ -293,6 +293,6 @@ export const BalanceCheckButton = styled.button`
   margin: -5px auto 5px auto;
   text-transform: capitalize;
   outline: none;
-  border: 1px solid black;
+  border: 1px solid ${customBlack};
   border-radius: 2px;
 `;
