@@ -46,6 +46,7 @@ const WalletBalance = () => {
           <Text>
             your current wallet balance is:
             <br />
+            <br />
             <RedSpan>£{(walletBalance / 100).toFixed(2)}</RedSpan>
           </Text>
           <BalanceCheckButton onClick={confirmRequestLatestWalletBalance}>
