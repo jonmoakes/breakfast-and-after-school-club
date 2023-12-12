@@ -1,6 +1,8 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { account } from "../../utils/appwrite/appwrite-config";
-import { ID } from "appwrite";
+
+import { databases } from "../../utils/appwrite/appwrite-config";
+import { ID, Query } from "appwrite";
 
 import {
   getUserDocument,
@@ -140,6 +142,28 @@ export const signOutAsync = createAsyncThunk(
   async (_, thunkAPI) => {
     try {
       await account.deleteSession("current");
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
+export const getUsersWalletBalanceAsync = createAsyncThunk(
+  "getUsersWalletBalance",
+  async ({ id }, thunkAPI) => {
+    try {
+      const getChildrenDocuments = await databases.listDocuments(
+        import.meta.env.VITE_DEVELOPMENT_DATABASE_ID,
+        import.meta.env.VITE_USER_COLLECTION_ID,
+        [Query.equal("id", id)]
+      );
+
+      const { documents, total } = getChildrenDocuments;
+      if (!total) return;
+
+      const { walletBalance } = documents[0];
+
+      return walletBalance;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }

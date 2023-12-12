@@ -8,6 +8,7 @@ import { selectCurrentUser } from "../../../store/user/user.selector";
 import { selectChildrenSelectedForBooking } from "../../../store/book-session/book-session.selector";
 import { selectUsersChildren } from "../../../store/get-users-children/get-users-children.selector";
 import useConditionalLogic from "./use-conditional-logic";
+import { getUsersWalletBalanceAsync } from "../../../store/user/user.actions";
 
 const useConfirmResult = () => {
   const { date } = useConditionalLogic();
@@ -36,7 +37,11 @@ const useConfirmResult = () => {
                   usersChildren,
                   childrenSelectedForBooking,
                 })
-              );
+              ).then((resultAction) => {
+                if (addSessionBookingInfoAsync.fulfilled.match(resultAction)) {
+                  dispatch(getUsersWalletBalanceAsync({ id }));
+                }
+              });
             }
           }
         );

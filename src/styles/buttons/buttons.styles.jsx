@@ -288,3 +288,11 @@ export const PaginationPageButton = styled(Button)`
     width: 40px;
   }
 `;
+
+export const BalanceCheckButton = styled.button`
+  margin: -5px auto 5px auto;
+  text-transform: capitalize;
+  outline: none;
+  border: 1px solid black;
+  border-radius: 2px;
+`;

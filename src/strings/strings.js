@@ -153,12 +153,16 @@ export const couldntFetchPreviousBookingsMessage =
 export const requestUserCheckForDoubleCheckBookings =
   "by proceeding, you confirm that you have checked that you have not double booked any sessions. If you do make a mistake however, you can always cancel bookings from your bookings table.";
 export const errorSendCancellationConfirmationEmailMessage = `<span style="font-size: 20px;">sorry, there was an error sending you the email with confirmation of this cancellation. Rest assured though, your booking has been cancelled and funds have been added to your wallet. if you require this email confirmation, please contact us using our contact form.</span>`;
+export const errorFetchingBalanceMessage =
+  "sorry, we couldn't fetch your balance..";
 // success
 export const successMessage = "success!";
 export const checkEmailMessage = "please check your email!";
 export const fundsAddedMessage = (email) => {
   return `Success! The funds have been added to your wallet and a confirmation Email Has Been Sent To<br/><span style="text-transform: lowercase; font-size: 20px; color: hsl(60, 100%, 50%);">${email}</span>`;
 };
+
+export const balanceSuccessfullyReceivedMessage = `<span style="font-size: 20px;">balance successfully received! you will now see your latest balance. if you still think your balance is incorrect, please contact us using our contact form so that we can help!</span>`;
 export const passwordResetSuccessMessage =
   "your password has been successfuly reset!";
 export const closeAccountSuccess =
@@ -253,7 +257,7 @@ export const confirmSendMagicUrlRequest = (email) => {
 export const confirmUpdateEmailMessage = (newEmail) => {
   return `are you sure you wish to update your email to be <span style="text-transform: lowercase;  color: hsl(60, 100%, 50%);">${newEmail}</span>?`;
 };
-
+export const confirmRequestWalletBalance = `<span style="font-size: 20px;">when you tap 'get balance' below,  we will contact our servers to check for your latest wallet balance. if different to what is currently here,  it will updated automatically. if there is no change and you still think that your balance is incorrect, please contact us using our contact form.</span>`;
 export const confirmAddChildMessage =
   "are you sure you want to add this child?";
 export const confirmUpdateChildMessage =

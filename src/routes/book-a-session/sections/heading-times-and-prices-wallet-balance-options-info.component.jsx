@@ -1,5 +1,4 @@
 import TimesAndPricesAccordion from "./times-and-prices-accordion.component";
-import WalletBalance from "../../../components/wallet-balance/wallet-balance.component";
 import OptionsAvailableInfo from "./options-available-info.component";
 
 import { InnerDiv } from "../../../styles/div/div.styles";
@@ -11,8 +10,6 @@ const HeadingTimesAndPricesWalletBalanceOptionsInfo = () => (
     <BlueH2>choose sessions:</BlueH2>
     <TimesAndPricesAccordion />
     <InnerDiv>
-      <BlackHr />
-      <WalletBalance />
       <BlackHr />
       <OptionsAvailableInfo />
     </InnerDiv>

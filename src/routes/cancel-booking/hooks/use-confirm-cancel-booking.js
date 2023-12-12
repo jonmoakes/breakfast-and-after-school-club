@@ -16,6 +16,7 @@ import {
   fundsReaddedToAccountMessage,
   imSureMessage,
 } from "../../../strings/strings";
+import { getUsersWalletBalanceAsync } from "../../../store/user/user.actions";
 
 const useConfirmDeleteChildInfo = () => {
   const { confirmSwal } = useConfirmSwal();
@@ -44,7 +45,13 @@ const useConfirmDeleteChildInfo = () => {
             })
           ).then((resultAction) => {
             if (updateSessionSpacesDocAsync.fulfilled.match(resultAction)) {
-              dispatch(refundUserAsync({ id, refundPrice }));
+              dispatch(refundUserAsync({ id, refundPrice })).then(
+                (resultAction) => {
+                  if (refundUserAsync.fulfilled.match(resultAction)) {
+                    dispatch(getUsersWalletBalanceAsync({ id }));
+                  }
+                }
+              );
             }
           });
         }

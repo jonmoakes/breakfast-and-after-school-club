@@ -8,6 +8,7 @@ import {
   requestGoogleSignInAsync,
   signInMagicUrlAsync,
   signOutAsync,
+  getUsersWalletBalanceAsync,
 } from "./user.actions";
 
 import {
@@ -116,6 +117,17 @@ const userSlice = createSlice({
         state.error = null;
       })
       .addCase(signOutAsync.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = action.payload;
+      })
+      .addCase(getUsersWalletBalanceAsync.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(getUsersWalletBalanceAsync.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.currentUser.walletBalance = action.payload;
+      })
+      .addCase(getUsersWalletBalanceAsync.rejected, (state, action) => {
         state.isLoading = false;
         state.error = action.payload;
       });
