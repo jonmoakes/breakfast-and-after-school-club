@@ -40,8 +40,10 @@ import {
   editChildInfoRoute,
   deleteChildInfoRoute,
   paymentResultRoute,
+  cancelBookingRoute,
 } from "../strings/strings";
 import { resetSendEmailState } from "../store/send-email/send-email.slice";
+import { resetBookingToDeleteState } from "../store/user-booking-to-delete/user-booking-to-delete.slice";
 
 const useResetStore = () => {
   const dispatch = useDispatch();
@@ -109,6 +111,9 @@ const useResetStore = () => {
         break;
       case deleteChildInfoRoute:
         dispatch(resetDeleteChildInfoState());
+        break;
+      case cancelBookingRoute:
+        dispatch(resetBookingToDeleteState());
         break;
       default:
         return;

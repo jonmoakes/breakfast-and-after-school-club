@@ -1,5 +1,5 @@
 import useFireSwal from "../../../../hooks/use-fire-swal";
-import useSendCancellationEmail from "../use-send-cancellation-email";
+import useSendCancellationEmail from "../emails/use-send-cancellation-email";
 
 import {
   bookingCancelledMessage,

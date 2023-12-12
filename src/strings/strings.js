@@ -73,6 +73,7 @@ export const errorUpdatingBalanceMessage = `<span style="font-size: 20px;">sorry
 export const resetSessionErrorMessage = `<span style="font-size: 20px;">well this is embarassing.. We've had another error on our end.</span>`;
 export const failedToSendEmailInstructions = `<span style="font-size: 20px;">sorry, the email failed to send...when you tap ok, you will be redirected to the 'contact us' page, with the form pre populated with the details that we need to fix our error, so please simply press the 'send message' button when on the contact form. We apologise for the inconvenience. please tap ok to continue!</span>`;
 export const failedToUpdateBalanceMessage = `<span style="font-size: 20px;">there was an error when adding your funds. the payment has successfully completed, but there was an error updating your balance in our database. please tap 'ok' below. This will email the app owner with all the necessary details so that they can update the database manually. if your balance has not been updated in 24 hours, or if you urgently need to book a session, please contact us using the contact form. We are sorry for the inconvenience!</span>`;
+export const failedToUpdateBalanceOnCancellationMessage = `<span style="font-size:20px;">sorry, your booking was cancelled, but your balance was not updated correctly. please tap on 'ok' below. When you do, we will send an email to the app owner with the details required to manually update your balance. if your balance has not updated within 24h hours, please contact us using the contact form. We apologise for the inconvenience!</span>`;
 export const sessionAlreadyBookedMessage = (childrenSelectedForBooking) => {
   return childrenSelectedForBooking.length
     ? "you have children booked into this session already."
@@ -132,8 +133,6 @@ export const ageError = "the age value should be between 4 and 11";
 export const cantIncludeCommaMessage = "names can't include a comma";
 export const alreadyHaveChildNameMessage =
   "you can't add a child with the same name.";
-export const bookingCancelledButBalanceUpdateError =
-  "sorry, your booking was cancelled, but your balance was not updated correctly.";
 export const contactFormDetailsPrePopulatedMessage =
   "please contact us urgently by tapping the ok button. We will populate the contact form with the details we need to fix our error, so you simply need to press the 'send message' button when on the contact form. We apologise for the inconvenience.";
 export const errorCancellingBookingMessage =

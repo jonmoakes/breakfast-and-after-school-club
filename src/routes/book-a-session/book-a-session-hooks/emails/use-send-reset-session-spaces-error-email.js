@@ -1,25 +1,25 @@
 import { useDispatch, useSelector } from "react-redux";
 
-import useConditionalLogic from "../book-a-session-hooks/use-conditional-logic";
-import useResetStateAndNavigate from "./return-logic-and-reset-state/use-reset-state-and-navigate";
-import useFireSwal from "../../../hooks/use-fire-swal";
+import useConditionalLogic from "../use-conditional-logic";
+import useHamburgerHandlerNavigate from "../../../../hooks/use-hamburger-handler-navigate";
+import useFireSwal from "../../../../hooks/use-fire-swal";
 
 import {
   selectChildrenSelectedForBooking,
   selectSessionType,
-} from "../../../store/book-session/book-session.selector";
-import { sendEmailWithErrorAsync } from "../../../store/send-email/send-email-thunks";
-import { setContactFormDetailsWhenBookingError } from "../../../store/contact-form/contact-form.slice";
+} from "../../../../store/book-session/book-session.selector";
+import { sendEmailWithErrorAsync } from "../../../../store/send-email/send-email-thunks";
+import { setContactFormDetailsWhenBookingError } from "../../../../store/contact-form/contact-form.slice";
 
 import {
   bookSessionRoute,
   contactRoute,
   failedToSendEmailInstructions,
-} from "../../../strings/strings";
+} from "../../../../strings/strings";
 
 const useSendResetSessionSpacesErrorEmail = () => {
   const { date } = useConditionalLogic();
-  const { resetStateAndNavigate } = useResetStateAndNavigate();
+  const { hamburgerHandlerNavigate } = useHamburgerHandlerNavigate();
   const { fireSwal } = useFireSwal();
 
   const childrenSelectedForBooking = useSelector(
@@ -36,7 +36,9 @@ const useSendResetSessionSpacesErrorEmail = () => {
   const subject =
     "Breakfast & After School Club - Error Resetting Session Data";
 
-  const message = `There Was An Error Resetting Session Data After Updating A Users Balance Failed, Which Caused A Failed Booking Attempt. Please Add The Following To The Database Manually:\n_____________\nDate:\n${date}\n\nSession Type:\n${sessionType}\n\nSpaces To Add:\n${numberOfSpacesToAdd}`;
+  const message = `Hi,\n\nThere Was Recently An Error Resetting Session Data After Updating A Users Balance Failed, Which Caused A Failed Booking Attempt.\n\nPlease Go Into The Term Dates Section Of Your Database And Find The Following Date:\n${date}\n\nFor The Following Session Type:\n${sessionType}\n\nAdd ${numberOfSpacesToAdd} To It.\n\nFor Example, If On the Date, for The Morning Session, You Had 20 Spaces Left, Add ${numberOfSpacesToAdd} To It To Make ${
+    Number(20) + numberOfSpacesToAdd
+  }.`;
 
   const dataToSendToContactForm = {
     name: "Email Failed To Send Error",
@@ -48,7 +50,7 @@ const useSendResetSessionSpacesErrorEmail = () => {
     dispatch(sendEmailWithErrorAsync({ subject, message })).then(
       (resultAction) => {
         if (sendEmailWithErrorAsync.fulfilled.match(resultAction)) {
-          resetStateAndNavigate(bookSessionRoute);
+          hamburgerHandlerNavigate(bookSessionRoute);
         } else {
           fireSwal(
             "error",
@@ -62,7 +64,7 @@ const useSendResetSessionSpacesErrorEmail = () => {
               dispatch(
                 setContactFormDetailsWhenBookingError(dataToSendToContactForm)
               );
-              resetStateAndNavigate(contactRoute);
+              hamburgerHandlerNavigate(contactRoute);
             }
           });
         }

@@ -1,5 +1,5 @@
 import useFireSwal from "../../../../hooks/use-fire-swal";
-import useSendEmailBookingConfirmation from "../use-send-email-booking-confirmation";
+import useSendEmailBookingConfirmation from "../emails/use-send-email-booking-confirmation";
 
 import {
   sessionBookedMessage,

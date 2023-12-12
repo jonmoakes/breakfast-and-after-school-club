@@ -84,7 +84,6 @@ export const sendEmailWithErrorAsync = createAsyncThunk(
   "sendEmailWithError",
   async ({ subject, message }, thunkAPI) => {
     try {
-      throw new Error("whoops");
       const email = import.meta.env.VITE_APP_OWNER_EMAIL;
 
       const response = await axios.post(SEND_EMAIL_ENDPOINT, {

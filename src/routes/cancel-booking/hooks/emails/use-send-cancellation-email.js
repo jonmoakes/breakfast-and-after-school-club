@@ -1,22 +1,22 @@
 import { useSelector, useDispatch } from "react-redux";
 
-import useFireSwal from "../../../hooks/use-fire-swal";
-import useResetStateAndNavigate from "./return-logic-and-reset-state/use-reset-state-and-navigate";
+import useFireSwal from "../../../../hooks/use-fire-swal";
+import useHamburgerHandlerNavigate from "../../../../hooks/use-hamburger-handler-navigate";
+import useGetRefundPrice from "../use-get-refund-price";
 
-import { selectCurrentUser } from "../../../store/user/user.selector";
-import { selectUserBookingToDelete } from "../../../store/user-booking-to-delete/user-booking-to-delete.selector";
-import { sendBookingCancellationConfirmationEmailAsync } from "../../../store/send-email/send-email-thunks";
+import { selectCurrentUser } from "../../../../store/user/user.selector";
+import { selectUserBookingToDelete } from "../../../../store/user-booking-to-delete/user-booking-to-delete.selector";
+import { sendBookingCancellationConfirmationEmailAsync } from "../../../../store/send-email/send-email-thunks";
+import { selectUsersChildren } from "../../../../store/get-users-children/get-users-children.selector";
 
 import {
   errorSendCancellationConfirmationEmailMessage,
   userBookingsRoute,
-} from "../../../strings/strings";
-import { selectUsersChildren } from "../../../store/get-users-children/get-users-children.selector";
-import useGetRefundPrice from "./use-get-refund-price";
+} from "../../../../strings/strings";
 
 const useSendCancellationEmail = () => {
   const { fireSwal } = useFireSwal();
-  const { resetStateAndNavigate } = useResetStateAndNavigate();
+  const { hamburgerHandlerNavigate } = useHamburgerHandlerNavigate();
   let { refundPrice, totalRefundPrice } = useGetRefundPrice();
 
   const currentUser = useSelector(selectCurrentUser);
@@ -26,9 +26,7 @@ const useSendCancellationEmail = () => {
   const dispatch = useDispatch();
 
   const { name, email, walletBalance } = currentUser;
-
   const { date, sessionType, childrensName } = userBookingToDelete || {};
-
   refundPrice = usersChildren.length === 1 ? refundPrice : totalRefundPrice;
 
   const subject =
@@ -52,7 +50,7 @@ const useSendCancellationEmail = () => {
           resultAction
         )
       ) {
-        resetStateAndNavigate(userBookingsRoute);
+        hamburgerHandlerNavigate(userBookingsRoute);
       } else {
         fireSwal(
           "error",
@@ -64,7 +62,7 @@ const useSendCancellationEmail = () => {
         ).then((isConfirmed) => {
           if (isConfirmed) {
             //don't need to do anything else as swal tells user to contact if they need the confirmation email.
-            resetStateAndNavigate(userBookingsRoute);
+            hamburgerHandlerNavigate(userBookingsRoute);
           }
         });
       }

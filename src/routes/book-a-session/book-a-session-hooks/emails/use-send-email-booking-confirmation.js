@@ -1,29 +1,29 @@
 import { useSelector, useDispatch } from "react-redux";
 
-import useFireSwal from "../../../hooks/use-fire-swal";
-import useResetStateAndNavigate from "./return-logic-and-reset-state/use-reset-state-and-navigate";
+import useFireSwal from "../../../../hooks/use-fire-swal";
+import useHamburgerHandlerNavigate from "../../../../hooks/use-hamburger-handler-navigate";
 
-import { selectCurrentUser } from "../../../store/user/user.selector";
-import { selectRequestDateData } from "../../../store/request-date-data/request-date-data.selector";
+import { selectCurrentUser } from "../../../../store/user/user.selector";
+import { selectRequestDateData } from "../../../../store/request-date-data/request-date-data.selector";
 import {
   selectSessionType,
   selectSessionPrice,
   selectChildrenSelectedForBooking,
-} from "../../../store/book-session/book-session.selector";
-import { selectUsersChildren } from "../../../store/get-users-children/get-users-children.selector";
-import { sendEmailBookingConfirmationAsync } from "../../../store/send-email/send-email-thunks";
+} from "../../../../store/book-session/book-session.selector";
+import { selectUsersChildren } from "../../../../store/get-users-children/get-users-children.selector";
+import { sendEmailBookingConfirmationAsync } from "../../../../store/send-email/send-email-thunks";
 
 import {
   errorSendingBookingConfirmationEmail,
   getBookingInfoEmailInstructions,
   userBookingsRoute,
-} from "../../../strings/strings";
+} from "../../../../strings/strings";
 
-import { createChildrenToAddToBooking } from "../../../functions/create-children-to-add-to-booking";
+import { createChildrenToAddToBooking } from "../../../../functions/create-children-to-add-to-booking";
 
 const useSendEmailBookingConfirmation = () => {
   const { fireSwal } = useFireSwal();
-  const { resetStateAndNavigate } = useResetStateAndNavigate();
+  const { hamburgerHandlerNavigate } = useHamburgerHandlerNavigate();
 
   const currentUser = useSelector(selectCurrentUser);
   const requestDateData = useSelector(selectRequestDateData);
@@ -65,7 +65,7 @@ const useSendEmailBookingConfirmation = () => {
       })
     ).then((resultAction) => {
       if (sendEmailBookingConfirmationAsync.fulfilled.match(resultAction)) {
-        resetStateAndNavigate(userBookingsRoute);
+        hamburgerHandlerNavigate(userBookingsRoute);
       } else {
         fireSwal(
           "error",
@@ -77,7 +77,7 @@ const useSendEmailBookingConfirmation = () => {
         ).then((isConfirmed) => {
           if (isConfirmed) {
             //don't need to do anything else as swal tells user to contact if they need the confirmation email.
-            resetStateAndNavigate(userBookingsRoute);
+            hamburgerHandlerNavigate(userBookingsRoute);
           }
         });
       }

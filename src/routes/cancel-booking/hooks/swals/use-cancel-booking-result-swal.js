@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
 
-import useReturnLogic from "../return-logic-and-reset-state/use-return-logic";
+import useReturnLogic from "../use-return-logic";
 import useSuccessSwal from "./use-success-swal";
 import useUpdateBookingsResultErrorSwal from "./use-update-bookings-result-error-swal";
 import useUpdateBalanceErrorSwal from "./use-update-balance-error-swal";

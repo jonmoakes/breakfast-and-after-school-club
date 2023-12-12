@@ -1,49 +1,35 @@
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 
 import useFireSwal from "../../../../hooks/use-fire-swal";
-import useResetStateAndNavigate from "../return-logic-and-reset-state/use-reset-state-and-navigate";
+import useHamburgerHandlerNavigate from "../../../../hooks/use-hamburger-handler-navigate";
 
 import { selectUpdateBookingsDoc } from "../../../../store/user-booking-to-delete/user-booking-to-delete.selector";
-import { selectCurrentUser } from "../../../../store/user/user.selector";
-import { setContactFormDetailsWhenBookingError } from "../../../../store/contact-form/contact-form.slice";
 
 import {
-  contactRoute,
-  errorInstructions,
   errorCancellingBookingMessage,
+  errorReceivedMessage,
+  userBookingsRoute,
 } from "../../../../strings/strings";
 
 const useUpdateBookingsResultErrorSwal = () => {
   const { fireSwal } = useFireSwal();
-  const { resetStateAndNavigate } = useResetStateAndNavigate();
+  const { hamburgerHandlerNavigate } = useHamburgerHandlerNavigate();
 
   const updateBookingsDoc = useSelector(selectUpdateBookingsDoc);
-  const currentUser = useSelector(selectCurrentUser);
 
-  const dispatch = useDispatch();
-  const { name, email } = currentUser;
   const error = updateBookingsDoc.error;
-
-  const dataToSendToContactForm = {
-    name,
-    email,
-    message: `Booking cancellation result - Failure.\n\nError Received:\n${error}`,
-  };
 
   const updateBookingsResultErrorSwal = () => {
     fireSwal(
       "error",
       errorCancellingBookingMessage,
-      errorInstructions,
+      errorReceivedMessage(error),
       0,
       true,
       false
     ).then((isConfirmed) => {
       if (isConfirmed) {
-        dispatch(
-          setContactFormDetailsWhenBookingError(dataToSendToContactForm)
-        );
-        resetStateAndNavigate(contactRoute);
+        hamburgerHandlerNavigate(userBookingsRoute);
       }
     });
   };

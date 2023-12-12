@@ -2,7 +2,7 @@ import { useSelector } from "react-redux";
 
 import { selectUserBookings } from "../../../store/user-bookings/user-bookings.selector";
 
-const useGetBookingdataAndSessionTypeToLowercase = () => {
+const useGetBookingDataAndSessionTypeToLowercase = () => {
   const userBookings = useSelector(selectUserBookings);
 
   const userBookingsDatesAndNamesAndSessionType = userBookings.map(
@@ -51,4 +51,4 @@ const useGetBookingdataAndSessionTypeToLowercase = () => {
   };
 };
 
-export default useGetBookingdataAndSessionTypeToLowercase;
+export default useGetBookingDataAndSessionTypeToLowercase;

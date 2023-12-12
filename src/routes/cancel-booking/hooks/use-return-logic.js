@@ -5,7 +5,7 @@ import {
   selectUpdateBookingsDoc,
   selectUpdateSessionSpacesDoc,
   selectUpdateUserDocBalance,
-} from "../../../../store/user-booking-to-delete/user-booking-to-delete.selector";
+} from "../../../store/user-booking-to-delete/user-booking-to-delete.selector";
 
 const useReturnLogic = () => {
   const updateBookingsDoc = useSelector(selectUpdateBookingsDoc);

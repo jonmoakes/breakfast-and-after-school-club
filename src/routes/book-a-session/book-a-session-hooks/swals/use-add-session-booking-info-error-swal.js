@@ -1,5 +1,5 @@
 import useFireSwal from "../../../../hooks/use-fire-swal";
-import useSendAddBookingInfoErrorEmail from "../use-send-add-booking-info-error-email";
+import useSendAddBookingInfoErrorEmail from "../emails/use-send-add-booking-info-error-email";
 
 import { addSessionBookingInfoErrorMessage } from "../../../../strings/strings";
 

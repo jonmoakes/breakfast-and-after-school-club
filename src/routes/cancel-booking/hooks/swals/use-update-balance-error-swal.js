@@ -1,52 +1,24 @@
-import { useSelector, useDispatch } from "react-redux";
-
 import useFireSwal from "../../../../hooks/use-fire-swal";
-import useResetStateAndNavigate from "../return-logic-and-reset-state/use-reset-state-and-navigate";
-import useGetRefundPrice from "../use-get-refund-price";
+import useSendBalanceNotUpdatedErrorEmail from "../emails/use-send-balance-not-updated-error-email";
 
-import { selectUserBookingToDelete } from "../../../../store/user-booking-to-delete/user-booking-to-delete.selector";
-import { selectCurrentUser } from "../../../../store/user/user.selector";
-import { setContactFormDetailsWhenBookingError } from "../../../../store/contact-form/contact-form.slice";
-
-import {
-  bookingCancelledButBalanceUpdateError,
-  contactFormDetailsPrePopulatedMessage,
-  contactRoute,
-} from "../../../../strings/strings";
+import { failedToUpdateBalanceOnCancellationMessage } from "../../../../strings/strings";
 
 const useUpdateBalanceErrorSwal = () => {
   const { fireSwal } = useFireSwal();
-  const { resetStateAndNavigate } = useResetStateAndNavigate();
-  const { numberOfChildrenInBooking } = useGetRefundPrice();
-
-  const userBookingToDelete = useSelector(selectUserBookingToDelete);
-  const currentUser = useSelector(selectCurrentUser);
-
-  const dispatch = useDispatch();
-
-  const { sessionType } = userBookingToDelete || {};
-  const { name, email } = currentUser;
-
-  const dataToSendToContactForm = {
-    name,
-    email,
-    message: `Booking cancellation result - Success.\n\nSession Spaces Update result: Success.\n\nBalance amount to update:\n\n${sessionType} price * ${numberOfChildrenInBooking} `,
-  };
+  const { sendBalanceNotUpdatedErrorEmail } =
+    useSendBalanceNotUpdatedErrorEmail();
 
   const updateBalanceErrorSwal = () => {
     fireSwal(
       "error",
-      bookingCancelledButBalanceUpdateError,
-      contactFormDetailsPrePopulatedMessage,
+      failedToUpdateBalanceOnCancellationMessage,
+      "",
       0,
       true,
       false
     ).then((isConfirmed) => {
       if (isConfirmed) {
-        dispatch(
-          setContactFormDetailsWhenBookingError(dataToSendToContactForm)
-        );
-        resetStateAndNavigate(contactRoute);
+        sendBalanceNotUpdatedErrorEmail();
       }
     });
   };

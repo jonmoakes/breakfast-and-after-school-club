@@ -1,51 +1,26 @@
-import { useSelector, useDispatch } from "react-redux";
-
 import useFireSwal from "../../../../hooks/use-fire-swal";
-import useResetStateAndNavigate from "../return-logic-and-reset-state/use-reset-state-and-navigate";
-import useGetRefundPrice from "../use-get-refund-price";
+import useSendSessionSpacesAndBalanceErrorEmail from "../emails/use-send-session-spaces-and-balance-error-email";
 
-import { selectUserBookingToDelete } from "../../../../store/user-booking-to-delete/user-booking-to-delete.selector";
-import { selectCurrentUser } from "../../../../store/user/user.selector";
-import { setContactFormDetailsWhenBookingError } from "../../../../store/contact-form/contact-form.slice";
-
-import {
-  bookingCancelledButBalanceUpdateError,
-  contactFormDetailsPrePopulatedMessage,
-  contactRoute,
-} from "../../../../strings/strings";
+import { failedToUpdateBalanceOnCancellationMessage } from "../../../../strings/strings";
 
 const useUpdateSessionSpacesAndBalanceErrorSwal = () => {
   const { fireSwal } = useFireSwal();
-  const { resetStateAndNavigate } = useResetStateAndNavigate();
-  const { numberOfChildrenInBooking } = useGetRefundPrice();
+  const { sendSessionSpacesAndBalanceErrorEmail } =
+    useSendSessionSpacesAndBalanceErrorEmail();
 
-  const userBookingToDelete = useSelector(selectUserBookingToDelete);
-  const currentUser = useSelector(selectCurrentUser);
-
-  const dispatch = useDispatch();
-  const { date, sessionType } = userBookingToDelete || {};
-  const { name, email } = currentUser;
-
-  const dataToSendToContactForm = {
-    name,
-    email,
-    message: `Booking cancellation result - Success.\n\nSession Spaces Update result: Fail.\n\nBooking Details:\n\nDate: ${date}\n\nSession Type: ${sessionType}\n\nspaces to update: ${numberOfChildrenInBooking}\n\nbalance to update: session type price * ${numberOfChildrenInBooking} `,
-  };
+  // the session spaces and users balance have failed to update here, however the user doesn't need to know about the session spaces as it doesn't affect them.. so we tell them that their balance has not updated and all the erelevent data will be sent in the email to the app owner.
 
   const updateSessionSpacesAndBalanceErrorSwal = () => {
     fireSwal(
-      "error",
-      bookingCancelledButBalanceUpdateError,
-      contactFormDetailsPrePopulatedMessage,
+      "info",
+      failedToUpdateBalanceOnCancellationMessage,
+      "",
       0,
       true,
       false
     ).then((isConfirmed) => {
       if (isConfirmed) {
-        dispatch(
-          setContactFormDetailsWhenBookingError(dataToSendToContactForm)
-        );
-        resetStateAndNavigate(contactRoute);
+        sendSessionSpacesAndBalanceErrorEmail();
       }
     });
   };

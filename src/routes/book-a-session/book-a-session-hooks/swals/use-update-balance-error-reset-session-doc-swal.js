@@ -2,9 +2,9 @@ import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
 import useFireSwal from "../../../../hooks/use-fire-swal";
-import useResetStateAndNavigate from "../return-logic-and-reset-state/use-reset-state-and-navigate";
 import useConditionalLogic from "../use-conditional-logic";
-import useSendResetSessionSpacesErrorEmail from "../use-send-reset-session-spaces-error-email";
+import useSendResetSessionSpacesErrorEmail from "../emails/use-send-reset-session-spaces-error-email";
+import useHamburgerHandlerNavigate from "../../../../hooks/use-hamburger-handler-navigate";
 
 import {
   selectChildrenSelectedForBooking,
@@ -24,7 +24,8 @@ const useUpdateBalanceErrorResetSessionDocSwal = () => {
   const { fireSwal } = useFireSwal();
   const { sendResetSessionSpacesErrorEmail } =
     useSendResetSessionSpacesErrorEmail();
-  const { resetStateAndNavigate } = useResetStateAndNavigate();
+
+  const { hamburgerHandlerNavigate } = useHamburgerHandlerNavigate();
   const { date } = useConditionalLogic();
 
   const childrenSelectedForBooking = useSelector(
@@ -57,8 +58,8 @@ const useUpdateBalanceErrorResetSessionDocSwal = () => {
           })
         ).then((action) => {
           if (resetSessionDocAsync.fulfilled.match(action)) {
-            resetStateAndNavigate(bookSessionRoute);
-          } else if (resetSessionDocAsync.rejected.match(action)) {
+            hamburgerHandlerNavigate(bookSessionRoute);
+          } else {
             fireSwal(
               "error",
               resetSessionErrorMessage,

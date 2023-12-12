@@ -1,28 +1,29 @@
 import { useDispatch, useSelector } from "react-redux";
 
-import useConditionalLogic from "../book-a-session-hooks/use-conditional-logic";
-import useResetStateAndNavigate from "./return-logic-and-reset-state/use-reset-state-and-navigate";
-import useFireSwal from "../../../hooks/use-fire-swal";
+import useConditionalLogic from "../use-return-logic";
+import useFireSwal from "../../../../hooks/use-fire-swal";
+import useHamburgerHandlerNavigate from "../../../../hooks/use-hamburger-handler-navigate";
 
 import {
   selectChildrenSelectedForBooking,
   selectSessionType,
-} from "../../../store/book-session/book-session.selector";
-import { selectUsersChildren } from "../../../store/get-users-children/get-users-children.selector";
-import { sendEmailWithErrorAsync } from "../../../store/send-email/send-email-thunks";
-import { setContactFormDetailsWhenBookingError } from "../../../store/contact-form/contact-form.slice";
+} from "../../../../store/book-session/book-session.selector";
+import { selectUsersChildren } from "../../../../store/get-users-children/get-users-children.selector";
+import { sendEmailWithErrorAsync } from "../../../../store/send-email/send-email-thunks";
+import { setContactFormDetailsWhenBookingError } from "../../../../store/contact-form/contact-form.slice";
 
 import {
   contactRoute,
   failedToSendEmailInstructions,
   userBookingsRoute,
-} from "../../../strings/strings";
-import { createChildrenToAddToBooking } from "../../../functions/create-children-to-add-to-booking";
+} from "../../../../strings/strings";
+
+import { createChildrenToAddToBooking } from "../../../../functions/create-children-to-add-to-booking";
 
 const useSendAddBookingInfoErrorEmail = () => {
   const { date } = useConditionalLogic();
-  const { resetStateAndNavigate } = useResetStateAndNavigate();
   const { fireSwal } = useFireSwal();
+  const { hamburgerHandlerNavigate } = useHamburgerHandlerNavigate();
 
   const childrenSelectedForBooking = useSelector(
     selectChildrenSelectedForBooking
@@ -47,7 +48,7 @@ const useSendAddBookingInfoErrorEmail = () => {
   const subject =
     "Breakfast & After School Club - A Booking Was Not Added To The Database.";
 
-  const message = `Error Adding The Following Booking To The Database. Please Add Manually.\n_____________\nSession Booking Data:\n\nDate:\n${date}\n\nSession:\n${sessionType}\n\nChildren In Booking:\n${childrenInBooking}\n\nParent Email:\n${parentEmail}\n\nParent Name:\n${parentName}`;
+  const message = `Error Adding The Following Booking To The Database. Please Add Manually.\n_____________\n\nSession Booking Data:\n\nDate:\n${date}\n\nSession:\n${sessionType}\n\nChildren In Booking:\n${childrenInBooking}\n\nParent Email:\n${parentEmail}\n\nParent Name:\n${parentName}`;
 
   const dataToSendToContactForm = {
     name: "Email Failed To Send Error",
@@ -59,7 +60,7 @@ const useSendAddBookingInfoErrorEmail = () => {
     dispatch(sendEmailWithErrorAsync({ subject, message })).then(
       (resultAction) => {
         if (sendEmailWithErrorAsync.fulfilled.match(resultAction)) {
-          resetStateAndNavigate(userBookingsRoute);
+          hamburgerHandlerNavigate(userBookingsRoute);
         } else {
           fireSwal(
             "error",
@@ -73,7 +74,7 @@ const useSendAddBookingInfoErrorEmail = () => {
               dispatch(
                 setContactFormDetailsWhenBookingError(dataToSendToContactForm)
               );
-              resetStateAndNavigate(contactRoute);
+              hamburgerHandlerNavigate(contactRoute);
             }
           });
         }

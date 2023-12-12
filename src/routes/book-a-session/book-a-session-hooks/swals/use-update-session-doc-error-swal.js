@@ -1,7 +1,7 @@
 import { useSelector } from "react-redux";
 
 import useFireSwal from "../../../../hooks/use-fire-swal";
-import useResetStateAndNavigate from "../return-logic-and-reset-state/use-reset-state-and-navigate";
+import useHamburgerHandlerNavigate from "../../../../hooks/use-hamburger-handler-navigate";
 
 import { selectUpdateSessionDoc } from "../../../../store/book-session/book-session.selector";
 
@@ -16,7 +16,7 @@ import {
 
 const useUpdateSessionDocErrorSwal = () => {
   const { fireSwal } = useFireSwal();
-  const { resetStateAndNavigate } = useResetStateAndNavigate();
+  const { hamburgerHandlerNavigate } = useHamburgerHandlerNavigate();
 
   const updateSessionDoc = useSelector(selectUpdateSessionDoc);
   const updateSessionError = updateSessionDoc.error;
@@ -36,7 +36,7 @@ const useUpdateSessionDocErrorSwal = () => {
         false
       ).then((isConfirmed) => {
         if (isConfirmed) {
-          resetStateAndNavigate(bookSessionRoute);
+          hamburgerHandlerNavigate(bookSessionRoute);
         }
       });
     } else {
@@ -49,7 +49,7 @@ const useUpdateSessionDocErrorSwal = () => {
         false
       ).then((isConfirmed) => {
         if (isConfirmed) {
-          resetStateAndNavigate(bookSessionRoute);
+          hamburgerHandlerNavigate(bookSessionRoute);
         }
       });
     }

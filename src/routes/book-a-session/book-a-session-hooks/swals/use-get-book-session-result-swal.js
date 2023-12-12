@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
 
-import useReturnLogic from "../return-logic-and-reset-state/use-return-logic";
+import useReturnLogic from "../use-return-logic";
 import useSuccessSwal from "./use-success-swal";
 import useUpdateSessionDocErrorSwal from "./use-update-session-doc-error-swal";
 import useUpdateBalanceErrorResetSessionDocSwal from "./use-update-balance-error-reset-session-doc-swal";
