@@ -7,15 +7,14 @@ import PlaceholderImage from "../../assets/placeholder-image.jpeg";
 
 const Intro = () => (
   <ParentDiv>
-    <BlackTitle>welcome to the</BlackTitle>
     <ImageDiv>
       <ProgressiveImg
         src={Image}
         placeholderSrc={PlaceholderImage}
-        alt="logo"
+        alt="breakfast and after school club logo"
       />
     </ImageDiv>
-    <BlackTitle>demo!</BlackTitle>
+    <BlackTitle>Effortless Childcare Management for Schools</BlackTitle>
   </ParentDiv>
 );
 

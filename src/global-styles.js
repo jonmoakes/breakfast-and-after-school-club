@@ -50,9 +50,7 @@ export const GlobalStyle = createGlobalStyle`
             margin-bottom:10px;
             color:${customBlue};
 
-            &.with-margin {
-                margin: 0px 0px 10px 0px;
-            }
+            
 
             @media screen and (max-width:450px) {
                 font-size:16px;

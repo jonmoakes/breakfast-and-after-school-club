@@ -149,7 +149,7 @@ export const ErrorFallbackImageDiv = styled.div`
 export const ImageDiv = styled.div`
   width: 30%;
   height: 30%;
-  margin: 0px auto 0px auto;
+  margin: 20px auto 0px auto;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -165,6 +165,9 @@ export const ImageDiv = styled.div`
   }
 `;
 
+export const FeatureDiv = styled.div`
+  width: 80%;
+`;
 export const RelativePositionDiv = styled.div`
   position: relative;
   width: 100%;

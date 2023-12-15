@@ -311,3 +311,4 @@ export const editChildInfoRoute = "/edit-child";
 export const deleteChildInfoRoute = "/delete-child";
 export const chosenEntryChildDetailsRoute = "/child-details";
 export const cancelBookingRoute = "/cancel-booking";
+export const aboutRoute = "/about";

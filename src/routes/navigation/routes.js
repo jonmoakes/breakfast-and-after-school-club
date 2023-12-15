@@ -8,6 +8,7 @@ import {
   yourCustomerBookingsRoute,
   addFundsRoute,
   childInfoRoute,
+  aboutRoute,
 } from "../../strings/strings";
 
 export const signedInRoutes = [
@@ -21,4 +22,9 @@ export const signedInRoutes = [
 
 export const ownerSignedInRoutes = [yourCustomerBookingsRoute, accountRoute];
 
-export const signedOutRoutes = [signInRoute, signUpRoute, contactRoute];
+export const signedOutRoutes = [
+  signInRoute,
+  signUpRoute,
+  contactRoute,
+  aboutRoute,
+];
