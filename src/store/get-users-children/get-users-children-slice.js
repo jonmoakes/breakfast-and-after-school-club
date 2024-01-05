@@ -7,7 +7,7 @@ export const getUsersChildrenAsync = createAsyncThunk(
   async ({ email }, thunkAPI) => {
     try {
       const getChildrenDocuments = await databases.listDocuments(
-        import.meta.env.VITE_DEVELOPMENT_DATABASE_ID,
+        import.meta.env.VITE_TEST_SCHOOL_DATABASE_ID,
         import.meta.env.VITE_CHILDREN_COLLECTION_ID,
         [Query.equal("parentEmail", email)]
       );

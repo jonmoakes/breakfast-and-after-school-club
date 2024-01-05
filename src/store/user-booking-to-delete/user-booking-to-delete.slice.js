@@ -9,7 +9,7 @@ export const deleteUserBookingAsync = createAsyncThunk(
       const { $id } = userBookingToDelete;
 
       const getBookingDocuments = await databases.listDocuments(
-        import.meta.env.VITE_DEVELOPMENT_DATABASE_ID,
+        import.meta.env.VITE_TEST_SCHOOL_DATABASE_ID,
         import.meta.env.VITE_BOOKED_SESSIONS_COLLECTION_ID,
         [Query.equal("$id", $id)]
       );
@@ -19,7 +19,7 @@ export const deleteUserBookingAsync = createAsyncThunk(
       if (!total) return;
 
       await databases.deleteDocument(
-        import.meta.env.VITE_DEVELOPMENT_DATABASE_ID,
+        import.meta.env.VITE_TEST_SCHOOL_DATABASE_ID,
         import.meta.env.VITE_BOOKED_SESSIONS_COLLECTION_ID,
         $id,
         userBookingToDelete
@@ -35,7 +35,7 @@ export const updateSessionSpacesDocAsync = createAsyncThunk(
   async ({ date, sessionType, numberOfChildrenInBooking }, thunkAPI) => {
     try {
       const getDateDocumentToUpdate = await databases.listDocuments(
-        import.meta.env.VITE_DEVELOPMENT_DATABASE_ID,
+        import.meta.env.VITE_TEST_SCHOOL_DATABASE_ID,
         import.meta.env.VITE_2023_2024_TERM_DATES_COLLECTION_ID,
         [Query.equal("date", date)]
       );
@@ -76,7 +76,7 @@ export const updateSessionSpacesDocAsync = createAsyncThunk(
         }
 
         await databases.updateDocument(
-          import.meta.env.VITE_DEVELOPMENT_DATABASE_ID,
+          import.meta.env.VITE_TEST_SCHOOL_DATABASE_ID,
           import.meta.env.VITE_2023_2024_TERM_DATES_COLLECTION_ID,
           $id,
           updatedSessionSpaces
@@ -93,7 +93,7 @@ export const refundUserAsync = createAsyncThunk(
   async ({ id, refundPrice }, thunkAPI) => {
     try {
       const getUserDocument = await databases.listDocuments(
-        import.meta.env.VITE_DEVELOPMENT_DATABASE_ID,
+        import.meta.env.VITE_TEST_SCHOOL_DATABASE_ID,
         import.meta.env.VITE_USER_COLLECTION_ID,
         [Query.equal("id", id)]
       );
@@ -103,7 +103,7 @@ export const refundUserAsync = createAsyncThunk(
       if (total && documents.length) {
         const { walletBalance } = documents[0];
         await databases.updateDocument(
-          import.meta.env.VITE_DEVELOPMENT_DATABASE_ID,
+          import.meta.env.VITE_TEST_SCHOOL_DATABASE_ID,
           import.meta.env.VITE_USER_COLLECTION_ID,
           id,
           { walletBalance: walletBalance + refundPrice }

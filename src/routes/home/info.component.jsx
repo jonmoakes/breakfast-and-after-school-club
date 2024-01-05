@@ -59,9 +59,8 @@ const Info = () => (
     </FeatureDiv>
 
     <FeatureDiv>
-      <BlueH2 className="no-underline">want to find out more?</BlueH2>
       <Link to={aboutRoute}>
-        <CustomButton>about the app</CustomButton>
+        <CustomButton>find out more!</CustomButton>
       </Link>
       <Text>
         or get in touch to request a full demo or to ask any questions!

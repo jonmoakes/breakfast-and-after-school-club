@@ -13,7 +13,7 @@ const useSessionSpacesListener = () => {
 
   useEffect(() => {
     const unsubscribe = client.subscribe(
-      `databases.${import.meta.env.VITE_DEVELOPMENT_DATABASE_ID}.collections.${
+      `databases.${import.meta.env.VITE_TEST_SCHOOL_DATABASE_ID}.collections.${
         import.meta.env.VITE_2023_2024_TERM_DATES_COLLECTION_ID
       }.documents.${documentId}`,
 

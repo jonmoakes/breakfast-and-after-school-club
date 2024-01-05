@@ -8,7 +8,7 @@ export const getSessionPricesAsync = createAsyncThunk(
   async (_, thunkAPI) => {
     try {
       const getPrices = await databases.getDocument(
-        `${import.meta.env.VITE_DEVELOPMENT_DATABASE_ID}`,
+        `${import.meta.env.VITE_TEST_SCHOOL_DATABASE_ID}`,
         `${import.meta.env.VITE_SESSION_PRICES_COLLECTION_ID}`,
         `${import.meta.env.VITE_SESSION_PRICES_DOCUMENT_ID}`
       );

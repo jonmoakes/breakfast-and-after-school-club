@@ -11,6 +11,7 @@ import {
 
 import Loader from "../../components/loader/loader.component";
 import Email from "./sections/sign-in-email.component";
+import SignInSchoolCode from "./sections/sign-in-school-code.component";
 import Passwords from "./sections/sign-in-password.component";
 import SignInButton from "./sections/sign-in-button.component";
 import SocialLogins from "../../components/social-logins/social-logins.component";
@@ -52,6 +53,7 @@ const SignIn = () => {
       <ParentDiv>
         <Form>
           <Email {...{ handleSignInFormChange }} />
+          <SignInSchoolCode {...{ handleSignInFormChange }} />
           <Passwords {...{ handleSignInFormChange }} />
           <SignInButton />
           <MagicUrlButton />

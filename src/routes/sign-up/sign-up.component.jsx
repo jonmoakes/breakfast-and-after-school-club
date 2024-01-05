@@ -11,6 +11,7 @@ import {
 
 import Loader from "../../components/loader/loader.component";
 import SignUpName from "./sections/sign-up-name.component";
+import SignUpSchoolCode from "./sections/sign-up-school-code.component";
 import SignUpEmail from "./sections/sign-up-email.component";
 import SignUpPasswords from "./sections/sign-up-passwords.component";
 import SignUpButton from "./sections/sign-up-button.component";
@@ -58,6 +59,7 @@ const SignUp = () => {
         <Form>
           <SignUpName {...{ handleSignUpFormChange }} />
           <SignUpEmail {...{ handleSignUpFormChange }} />
+          <SignUpSchoolCode {...{ handleSignUpFormChange }} />
           <SignUpPasswords {...{ handleSignUpFormChange }} />
           <SignUpButton />
           <MagicUrlButton />

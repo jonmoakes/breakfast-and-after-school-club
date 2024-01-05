@@ -7,7 +7,7 @@ export const requestDateDataAsync = createAsyncThunk(
   async ({ chosenDate }, thunkAPI) => {
     try {
       const getChosenDateDocument = await databases.listDocuments(
-        import.meta.env.VITE_DEVELOPMENT_DATABASE_ID,
+        import.meta.env.VITE_TEST_SCHOOL_DATABASE_ID,
         import.meta.env.VITE_2023_2024_TERM_DATES_COLLECTION_ID,
         [Query.equal("date", chosenDate)]
       );

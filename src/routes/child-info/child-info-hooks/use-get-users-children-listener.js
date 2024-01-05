@@ -15,7 +15,7 @@ const useGetUsersChildrenListener = () => {
     if (!currentUser) return;
 
     const unsubscribe = client.subscribe(
-      `databases.${import.meta.env.VITE_DEVELOPMENT_DATABASE_ID}.collections.${
+      `databases.${import.meta.env.VITE_TEST_SCHOOL_DATABASE_ID}.collections.${
         import.meta.env.VITE_CHILDREN_COLLECTION_ID
       }.documents`,
 

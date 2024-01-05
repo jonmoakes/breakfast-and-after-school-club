@@ -4,7 +4,10 @@ import { ID } from "appwrite";
 
 export const addChildInfoAsync = createAsyncThunk(
   "addChildInfo",
-  async ({ childInfo, name, email }, thunkAPI) => {
+  async (
+    { childInfo, name, email, databaseId, childrenCollectionId },
+    thunkAPI
+  ) => {
     try {
       const {
         childName,
@@ -25,8 +28,8 @@ export const addChildInfoAsync = createAsyncThunk(
       };
 
       await databases.createDocument(
-        import.meta.env.VITE_DEVELOPMENT_DATABASE_ID,
-        import.meta.env.VITE_CHILDREN_COLLECTION_ID,
+        databaseId,
+        childrenCollectionId,
         ID.unique(),
         child
       );

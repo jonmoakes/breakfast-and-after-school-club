@@ -5,7 +5,6 @@ import { databases } from "../../utils/appwrite/appwrite-config";
 import { ID, Query } from "appwrite";
 
 import {
-  getUserDocument,
   getRetrievedUserFromDocument,
   createDocumentAndSetUser,
 } from "./functions";
@@ -13,25 +12,43 @@ import {
   localhostSocialLoginResultRoute,
   socialLoginResultRoute,
 } from "../../strings/strings";
+import { manorBeachCode } from "../../school-codes/school-codes";
 
 export const getUserOnLoadAsync = createAsyncThunk(
   "user/getUserOnLoad",
   async (_, thunkAPI) => {
     try {
-      const userDocument = await getUserDocument();
-      const { user, session } = userDocument;
+      const schoolCode = localStorage.getItem("schoolCode");
+      const user = await account.get();
+      const session = await account.getSession("current");
+      if (!user || !session || !schoolCode) return;
 
-      if (!user || !session) return;
+      let retrievedUser, createdUser;
 
-      const retrievedUser = await getRetrievedUserFromDocument();
-      const createdUser = await createDocumentAndSetUser();
+      switch (schoolCode) {
+        case manorBeachCode:
+          retrievedUser = await getRetrievedUserFromDocument(schoolCode);
+          createdUser = await createDocumentAndSetUser(schoolCode);
 
-      if (retrievedUser) {
-        return retrievedUser;
-      } else if (createdUser) {
-        return createdUser;
-      } else if (!retrievedUser && !createdUser) {
-        return null;
+          if (retrievedUser) {
+            return retrievedUser;
+          } else if (createdUser) {
+            return createdUser;
+          } else if (!retrievedUser && !createdUser) {
+            return null;
+          }
+          break;
+        default:
+          retrievedUser = await getRetrievedUserFromDocument(schoolCode);
+          createdUser = await createDocumentAndSetUser(schoolCode);
+
+          if (retrievedUser) {
+            return retrievedUser;
+          } else if (createdUser) {
+            return createdUser;
+          } else if (!retrievedUser && !createdUser) {
+            return null;
+          }
       }
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
@@ -41,10 +58,11 @@ export const getUserOnLoadAsync = createAsyncThunk(
 
 export const signInAsync = createAsyncThunk(
   "user/signIn",
-  async ({ email, password }, thunkAPI) => {
+  async ({ email, password, schoolCode }, thunkAPI) => {
     try {
       await account.createEmailSession(email, password);
-      return await getRetrievedUserFromDocument();
+      localStorage.setItem("schoolCode", schoolCode);
+      return await getRetrievedUserFromDocument(schoolCode);
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }
@@ -53,12 +71,79 @@ export const signInAsync = createAsyncThunk(
 
 export const signUpAsync = createAsyncThunk(
   "user/signUp",
-  async ({ email, password, name }, thunkAPI) => {
+  async ({ email, password, name, schoolCode }, thunkAPI) => {
     try {
       await account.create(ID.unique(), email, password, name);
       await account.createEmailSession(email, password);
+      localStorage.setItem("schoolCode", schoolCode);
 
-      return await createDocumentAndSetUser();
+      const localStorageSchoolCode = localStorage.getItem("schoolCode");
+      if (!localStorageSchoolCode) return;
+
+      const user = await account.get();
+      const session = await account.getSession("current");
+
+      let userDocument;
+
+      switch (schoolCode) {
+        case manorBeachCode:
+          userDocument = await databases.listDocuments(
+            import.meta.env.VITE_MANOR_BEACH_DATABASE_ID,
+            import.meta.env.VITE_MANOR_BEACH_USER_COLLECTION_ID,
+            [Query.equal("id", user.$id)]
+          );
+
+          if (!userDocument.total && !userDocument.documents.length) {
+            const createdUser = {
+              id: user.$id,
+              createdAt: user.$createdAt,
+              name: user.name,
+              email: user.email,
+              walletBalance: 0,
+              provider: session.provider,
+              schoolCode,
+            };
+
+            await databases.createDocument(
+              import.meta.env.VITE_MANOR_BEACH_DATABASE_ID,
+              import.meta.env.VITE_MANOR_BEACH_USER_COLLECTION_ID,
+              user.$id,
+              createdUser
+            );
+
+            return createdUser;
+          } else {
+            return null;
+          }
+        default:
+          userDocument = await databases.listDocuments(
+            import.meta.env.VITE_TEST_SCHOOL_DATABASE_ID,
+            import.meta.env.VITE_TEST_SCHOOL_USER_COLLECTION_ID,
+            [Query.equal("id", user.$id)]
+          );
+
+          if (!userDocument.total && !userDocument.documents.length) {
+            const createdUser = {
+              id: user.$id,
+              createdAt: user.$createdAt,
+              name: user.name,
+              email: user.email,
+              walletBalance: 0,
+              provider: session.provider,
+              schoolCode,
+            };
+            await databases.createDocument(
+              import.meta.env.VITE_TEST_SCHOOL_DATABASE_ID,
+              import.meta.env.VITE_TEST_SCHOOL_USER_COLLECTION_ID,
+              user.$id,
+              createdUser
+            );
+
+            return createdUser;
+          } else {
+            return null;
+          }
+      }
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }
@@ -142,6 +227,7 @@ export const signOutAsync = createAsyncThunk(
   async (_, thunkAPI) => {
     try {
       await account.deleteSession("current");
+      localStorage.removeItem("schoolCode");
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }
@@ -153,7 +239,7 @@ export const getUsersWalletBalanceAsync = createAsyncThunk(
   async ({ id }, thunkAPI) => {
     try {
       const getChildrenDocuments = await databases.listDocuments(
-        import.meta.env.VITE_DEVELOPMENT_DATABASE_ID,
+        import.meta.env.VITE_TEST_SCHOOL_DATABASE_ID,
         import.meta.env.VITE_USER_COLLECTION_ID,
         [Query.equal("id", id)]
       );

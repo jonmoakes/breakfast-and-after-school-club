@@ -11,6 +11,8 @@ import {
   getUsersWalletBalanceAsync,
 } from "./user.actions";
 
+import { setIds } from "./set-ids";
+
 import {
   errorRequestingFacebookSignIn,
   errorRequestingGoogleSignIn,
@@ -20,15 +22,13 @@ const initialState = {
   currentUser: null,
   isLoading: false,
   error: null,
+  environmentVariables: {},
 };
 
 const userSlice = createSlice({
   name: "user",
   initialState,
   reducers: {
-    setCurrentUser(state, action) {
-      state.currentUser = action.payload;
-    },
     resetErrorMessage(state) {
       state.error = null;
     },
@@ -45,6 +45,8 @@ const userSlice = createSlice({
         state.isLoading = false;
         state.currentUser = action.payload;
         state.error = null;
+        // const { schoolCode } = state.currentUser;
+        // state.environmentVariables = setIds(schoolCode);
       })
       .addCase(getUserOnLoadAsync.rejected, (state, action) => {
         state.isLoading = false;
@@ -57,6 +59,8 @@ const userSlice = createSlice({
         state.isLoading = false;
         state.currentUser = action.payload;
         state.error = null;
+        const { schoolCode } = state.currentUser;
+        state.environmentVariables = setIds(schoolCode);
       })
       .addCase(signInAsync.rejected, (state, action) => {
         state.isLoading = false;
@@ -69,6 +73,8 @@ const userSlice = createSlice({
         state.isLoading = false;
         state.currentUser = action.payload;
         state.error = null;
+        // const { schoolCode } = state.currentUser;
+        state.environmentVariables = setIds("02mb");
       })
       .addCase(signUpAsync.rejected, (state, action) => {
         state.isLoading = false;
@@ -115,6 +121,7 @@ const userSlice = createSlice({
         state.isLoading = false;
         state.currentUser = null;
         state.error = null;
+        state.environmentVariables = {};
       })
       .addCase(signOutAsync.rejected, (state, action) => {
         state.isLoading = false;
@@ -134,7 +141,6 @@ const userSlice = createSlice({
   },
 });
 
-export const { resetErrorMessage, setCurrentUser, setWalletBalance } =
-  userSlice.actions;
+export const { resetErrorMessage, setWalletBalance } = userSlice.actions;
 
 export const userReducer = userSlice.reducer;

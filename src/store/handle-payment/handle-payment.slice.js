@@ -50,7 +50,7 @@ export const addWalletFundsToDatabaseAsync = createAsyncThunk(
   async ({ id, walletFundsToAdd }, thunkAPI) => {
     try {
       const walletBalanceFromDatabase = await databases.getDocument(
-        import.meta.env.VITE_DEVELOPMENT_DATABASE_ID,
+        import.meta.env.VITE_TEST_SCHOOL_DATABASE_ID,
         import.meta.env.VITE_USER_COLLECTION_ID,
         id
       );
@@ -58,7 +58,7 @@ export const addWalletFundsToDatabaseAsync = createAsyncThunk(
       const { walletBalance } = walletBalanceFromDatabase;
 
       await databases.updateDocument(
-        import.meta.env.VITE_DEVELOPMENT_DATABASE_ID,
+        import.meta.env.VITE_TEST_SCHOOL_DATABASE_ID,
         import.meta.env.VITE_USER_COLLECTION_ID,
         id,
         {

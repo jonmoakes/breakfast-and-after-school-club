@@ -7,7 +7,7 @@ export const getUserBookingsAsync = createAsyncThunk(
   async ({ email }, thunkAPI) => {
     try {
       const getBookingDocuments = await databases.listDocuments(
-        import.meta.env.VITE_DEVELOPMENT_DATABASE_ID,
+        import.meta.env.VITE_TEST_SCHOOL_DATABASE_ID,
         import.meta.env.VITE_BOOKED_SESSIONS_COLLECTION_ID,
         [Query.equal("parentEmail", email)]
       );

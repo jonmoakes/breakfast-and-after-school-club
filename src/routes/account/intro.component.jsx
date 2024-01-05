@@ -2,7 +2,7 @@ import { useSelector } from "react-redux";
 
 import { selectCurrentUser } from "../../store/user/user.selector";
 
-import WalletBalance from "../../components/wallet-balance/wallet-balance.component";
+// import WalletBalance from "../../components/wallet-balance/wallet-balance.component";
 
 import { ParentDiv } from "../../styles/div/div.styles";
 import { Text } from "../../styles/p/p.styles";
@@ -14,7 +14,7 @@ const Intro = () => {
   return (
     <ParentDiv>
       <Text>welcome{name ? ` ${name}!` : "!"}</Text>
-      <WalletBalance />
+      {/* <WalletBalance /> */}
     </ParentDiv>
   );
 };

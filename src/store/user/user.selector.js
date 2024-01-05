@@ -12,6 +12,11 @@ export const selectIsUserLoading = createSelector(
   (userSlice) => userSlice.isLoading
 );
 
+export const selectEnvironmentVariables = createSelector(
+  [selectUserReducer],
+  (userSlice) => userSlice.environmentVariables
+);
+
 export const selectError = createSelector(
   [selectUserReducer],
   (userSlice) => userSlice.error

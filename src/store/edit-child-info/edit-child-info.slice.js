@@ -9,7 +9,7 @@ export const updateChildInfoAsync = createAsyncThunk(
       const { $id } = updatedChildInfo;
 
       const getChildrenDocuments = await databases.listDocuments(
-        import.meta.env.VITE_DEVELOPMENT_DATABASE_ID,
+        import.meta.env.VITE_TEST_SCHOOL_DATABASE_ID,
         import.meta.env.VITE_CHILDREN_COLLECTION_ID,
         [Query.equal("$id", $id)]
       );
@@ -19,7 +19,7 @@ export const updateChildInfoAsync = createAsyncThunk(
       if (!total) return;
 
       await databases.updateDocument(
-        import.meta.env.VITE_DEVELOPMENT_DATABASE_ID,
+        import.meta.env.VITE_TEST_SCHOOL_DATABASE_ID,
         import.meta.env.VITE_CHILDREN_COLLECTION_ID,
         $id,
         updatedChildInfo

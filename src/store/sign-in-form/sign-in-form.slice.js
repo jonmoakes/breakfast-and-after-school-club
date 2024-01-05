@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const defaultSignInFormDetails = {
   email: "",
+  schoolCode: "",
   password: "",
 };
 const INITIAL_STATE = {

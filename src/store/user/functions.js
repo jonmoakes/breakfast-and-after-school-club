@@ -1,26 +1,79 @@
 import { account, databases } from "../../utils/appwrite/appwrite-config";
 import { Query } from "appwrite";
+import { manorBeachCode } from "../../school-codes/school-codes";
 
-export const getUserDocument = async () => {
+const listUserDocuments = async (databaseId, userCollectionId, userId) => {
+  return await databases.listDocuments(databaseId, userCollectionId, [
+    Query.equal("id", userId),
+  ]);
+};
+
+const createDocument = async (
+  databaseId,
+  userCollectionId,
+  userId,
+  userData
+) => {
+  await databases.createDocument(
+    databaseId,
+    userCollectionId,
+    userId,
+    userData
+  );
+};
+
+export const getUserDocument = async (schoolCode) => {
   const user = await account.get();
   const session = await account.getSession("current");
 
-  const userDocument = await databases.listDocuments(
-    import.meta.env.VITE_DEVELOPMENT_DATABASE_ID,
-    import.meta.env.VITE_USER_COLLECTION_ID,
-    [Query.equal("id", user.$id)]
-  );
+  let userDocument;
+
+  switch (schoolCode) {
+    case manorBeachCode:
+      userDocument = await listUserDocuments(
+        import.meta.env.VITE_MANOR_BEACH_DATABASE_ID,
+        import.meta.env.VITE_MANOR_BEACH_USER_COLLECTION_ID,
+        user.$id
+      );
+      break;
+    default:
+      userDocument = await listUserDocuments(
+        import.meta.env.VITE_TEST_SCHOOL_DATABASE_ID,
+        import.meta.env.VITE_TEST_SCHOOL_USER_COLLECTION_ID,
+        user.$id
+      );
+  }
 
   const { total, documents } = userDocument;
+
   return { user, session, total, documents };
 };
 
-export const getRetrievedUserFromDocument = async () => {
-  const userDocument = await getUserDocument();
+export const getRetrievedUserFromDocument = async (schoolCode) => {
+  const user = await account.get();
+
+  let userDocument;
+
+  switch (schoolCode) {
+    case manorBeachCode:
+      userDocument = await listUserDocuments(
+        import.meta.env.VITE_MANOR_BEACH_DATABASE_ID,
+        import.meta.env.VITE_MANOR_BEACH_USER_COLLECTION_ID,
+        user.$id
+      );
+      break;
+    default:
+      userDocument = await listUserDocuments(
+        import.meta.env.VITE_TEST_SCHOOL_DATABASE_ID,
+        import.meta.env.VITE_TEST_SCHOOL_USER_COLLECTION_ID,
+        user.$id
+      );
+  }
+
   const { total, documents } = userDocument;
 
   if (total && documents.length) {
-    const { id, name, email, createdAt, walletBalance, provider } =
+    const { id, name, email, createdAt, walletBalance, provider, schoolCode } =
       documents[0];
 
     return {
@@ -30,35 +83,68 @@ export const getRetrievedUserFromDocument = async () => {
       email,
       walletBalance,
       provider,
+      schoolCode,
     };
   } else {
     return null;
   }
 };
 
-export const createDocumentAndSetUser = async () => {
-  const userDocument = await getUserDocument();
-  const { user, session, total, documents } = userDocument;
+export const createDocumentAndSetUser = async (schoolCode) => {
+  const user = await account.get();
+  const session = await account.getSession("current");
 
-  if (!total && !documents.length) {
-    const createdUser = {
-      id: user.$id,
-      createdAt: user.$createdAt,
-      name: user.name,
-      email: user.email,
-      walletBalance: 0,
-      provider: session.provider,
-    };
+  let userDocument;
 
-    await databases.createDocument(
-      import.meta.env.VITE_DEVELOPMENT_DATABASE_ID,
-      import.meta.env.VITE_USER_COLLECTION_ID,
-      user.$id,
-      createdUser
-    );
+  switch (schoolCode) {
+    case manorBeachCode:
+      userDocument = await listUserDocuments(
+        import.meta.env.VITE_MANOR_BEACH_DATABASE_ID,
+        import.meta.env.VITE_MANOR_BEACH_USER_COLLECTION_ID,
+        user.$id
+      );
+      break;
+    default:
+      userDocument = await listUserDocuments(
+        import.meta.env.VITE_TEST_SCHOOL_DATABASE_ID,
+        import.meta.env.VITE_TEST_SCHOOL_USER_COLLECTION_ID,
+        user.$id
+      );
 
-    return createdUser;
-  } else {
-    return null;
+      const { total, documents } = userDocument;
+
+      if (!total && !documents.length) {
+        const createdUser = {
+          id: user.$id,
+          createdAt: user.$createdAt,
+          name: user.name,
+          email: user.email,
+          walletBalance: 0,
+          provider: session.provider,
+          schoolCode,
+        };
+
+        switch (schoolCode) {
+          case manorBeachCode:
+            await createDocument(
+              import.meta.env.VITE_MANOR_BEACH_DATABASE_ID,
+              import.meta.env.VITE_MANOR_BEACH_USER_COLLECTION_ID,
+              user.$id,
+              createdUser
+            );
+            break;
+          default:
+            await createDocument(
+              import.meta.env.VITE_TEST_SCHOOL_DATABASE_ID,
+              import.meta.env.VITE_TEST_SCHOOL_USER_COLLECTION_ID,
+              user.$id,
+              createdUser
+            );
+        }
+
+        return createdUser;
+      } else {
+        return null;
+      }
   }
 };

@@ -11,7 +11,7 @@ export const updateSessionDocAsync = createAsyncThunk(
   async ({ date, sessionType, childrenSelectedForBooking }, thunkAPI) => {
     try {
       const getChosenDateDocument = await databases.listDocuments(
-        import.meta.env.VITE_DEVELOPMENT_DATABASE_ID,
+        import.meta.env.VITE_TEST_SCHOOL_DATABASE_ID,
         import.meta.env.VITE_2023_2024_TERM_DATES_COLLECTION_ID,
         [Query.equal("date", date)]
       );
@@ -69,7 +69,7 @@ export const updateSessionDocAsync = createAsyncThunk(
         }
 
         await databases.updateDocument(
-          import.meta.env.VITE_DEVELOPMENT_DATABASE_ID,
+          import.meta.env.VITE_TEST_SCHOOL_DATABASE_ID,
           import.meta.env.VITE_2023_2024_TERM_DATES_COLLECTION_ID,
           $id,
           updatedSessionSpaces
@@ -91,7 +91,7 @@ export const updateUserDocBalanceAsync = createAsyncThunk(
       if (total && documents.length) {
         const { walletBalance } = documents[0];
         await databases.updateDocument(
-          import.meta.env.VITE_DEVELOPMENT_DATABASE_ID,
+          import.meta.env.VITE_TEST_SCHOOL_DATABASE_ID,
           import.meta.env.VITE_USER_COLLECTION_ID,
           id,
           { walletBalance: walletBalance - price }
@@ -112,7 +112,7 @@ export const resetSessionDocAsync = createAsyncThunk(
 
     try {
       const getChosenDateDocument = await databases.listDocuments(
-        import.meta.env.VITE_DEVELOPMENT_DATABASE_ID,
+        import.meta.env.VITE_TEST_SCHOOL_DATABASE_ID,
         import.meta.env.VITE_2023_2024_TERM_DATES_COLLECTION_ID,
         [Query.equal("date", date)]
       );
@@ -151,7 +151,7 @@ export const resetSessionDocAsync = createAsyncThunk(
         }
 
         await databases.updateDocument(
-          import.meta.env.VITE_DEVELOPMENT_DATABASE_ID,
+          import.meta.env.VITE_TEST_SCHOOL_DATABASE_ID,
           import.meta.env.VITE_2023_2024_TERM_DATES_COLLECTION_ID,
           $id,
           updatedSessionSpaces
@@ -191,7 +191,7 @@ export const addSessionBookingInfoAsync = createAsyncThunk(
       };
 
       await databases.createDocument(
-        import.meta.env.VITE_DEVELOPMENT_DATABASE_ID,
+        import.meta.env.VITE_TEST_SCHOOL_DATABASE_ID,
         import.meta.env.VITE_BOOKED_SESSIONS_COLLECTION_ID,
         ID.unique(),
         sessionBooking

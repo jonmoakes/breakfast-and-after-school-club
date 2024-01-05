@@ -13,22 +13,27 @@ import {
   passwordsDontMatchMessage,
 } from "../../../strings/strings";
 
+import { setProjectId } from "../../../functions/set-project-id";
+
 const useHandleSignUpFormSubmit = () => {
   const { fireSwal } = useFireSwal();
 
   const signUpFormDetails = useSelector(selectSignUpFormDetails);
+
   const dispatch = useDispatch();
-  const { name, email, password, confirmPassword } = signUpFormDetails;
+  const { name, email, schoolCode, password, confirmPassword } =
+    signUpFormDetails;
 
   const handleSignUpFormSubmit = () => {
-    if (!name || !email || !password || !confirmPassword) {
+    if (!name || !email || !schoolCode || !password || !confirmPassword) {
       fireSwal("error", missingFieldsMessage, "", 0, true, false);
     } else if (!validateEmail(email)) {
       fireSwal("error", invalidEmailErrorMessage, "", 0, true, false);
     } else if (password !== confirmPassword) {
       fireSwal("error", passwordsDontMatchMessage, "", 0, true, false);
     } else {
-      dispatch(signUpAsync({ email, password, name }));
+      setProjectId(schoolCode);
+      dispatch(signUpAsync({ email, password, name, schoolCode }));
     }
   };
 

@@ -11,7 +11,7 @@ export const getChosenEntryChildDetailsAsync = createAsyncThunk(
         : null;
 
       const getChosenEntryChildDetailsDocuments = await databases.listDocuments(
-        import.meta.env.VITE_DEVELOPMENT_DATABASE_ID,
+        import.meta.env.VITE_TEST_SCHOOL_DATABASE_ID,
         import.meta.env.VITE_CHILDREN_COLLECTION_ID,
         [Query.search("childName", searchForChildNames)]
       );

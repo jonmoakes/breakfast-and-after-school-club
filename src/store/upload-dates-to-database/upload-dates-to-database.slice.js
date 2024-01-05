@@ -9,7 +9,7 @@ export const uploadDatesToDatabaseAsync = createAsyncThunk(
   async ({ datesList, collectionId }, thunkAPI) => {
     try {
       const uploadDates = [];
-      const databaseId = import.meta.env.VITE_DEVELOPMENT_DATABASE_ID;
+      const databaseId = import.meta.env.VITE_TEST_SCHOOL_DATABASE_ID;
 
       for (const date of datesList) {
         const result = await databases.createDocument(
