@@ -5,11 +5,17 @@ import { useLocation } from "react-router-dom";
 import { getUsersChildrenAsync } from "../store/get-users-children/get-users-children-slice";
 import { getUserBookingsAsync } from "../store/user-bookings/user-bookings.slice";
 
-import { selectCurrentUser } from "../store/user/user.selector";
+import {
+  selectCurrentUser,
+  selectEnvironmentVariables,
+} from "../store/user/user.selector";
 import { bookSessionRoute, childInfoRoute } from "../strings/strings";
 
 const useGetUsersChildrenAndConditionallyUserBookings = () => {
   const currentUser = useSelector(selectCurrentUser);
+  const envVariables = useSelector(selectEnvironmentVariables);
+
+  const { databaseId, childrenCollectionId } = envVariables;
 
   const location = useLocation();
   const dispatch = useDispatch();
@@ -19,7 +25,9 @@ const useGetUsersChildrenAndConditionallyUserBookings = () => {
 
   useEffect(() => {
     if (path === childInfoRoute) {
-      dispatch(getUsersChildrenAsync({ email }));
+      dispatch(
+        getUsersChildrenAsync({ databaseId, childrenCollectionId, email })
+      );
     } else if (path === bookSessionRoute) {
       dispatch(getUsersChildrenAsync({ email })).then((resultAction) => {
         if (getUsersChildrenAsync.fulfilled.match(resultAction)) {
@@ -27,7 +35,7 @@ const useGetUsersChildrenAndConditionallyUserBookings = () => {
         }
       });
     }
-  }, [dispatch, email, path]);
+  }, [dispatch, email, path, databaseId, childrenCollectionId]);
 };
 
 export default useGetUsersChildrenAndConditionallyUserBookings;

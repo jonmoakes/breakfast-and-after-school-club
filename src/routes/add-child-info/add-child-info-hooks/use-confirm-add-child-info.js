@@ -4,7 +4,10 @@ import useFireSwal from "../../../hooks/use-fire-swal";
 import useConfirmSwal from "../../../hooks/use-confirm-swal";
 
 import { selectAddChildInfo } from "../../../store/add-child-info/add-child-info.selector";
-import { selectCurrentUser } from "../../../store/user/user.selector";
+import {
+  selectCurrentUser,
+  selectEnvironmentVariables,
+} from "../../../store/user/user.selector";
 import { selectUsersChildren } from "../../../store/get-users-children/get-users-children.selector";
 import { addChildInfoAsync } from "../../../store/add-child-info/add-child-info.slice";
 
@@ -24,16 +27,25 @@ const useConfirmAddChildInfo = () => {
   const childInfo = useSelector(selectAddChildInfo);
   const currentUser = useSelector(selectCurrentUser);
   const usersChildren = useSelector(selectUsersChildren);
+  const environmentVariables = useSelector(selectEnvironmentVariables);
 
   const dispatch = useDispatch();
   const { childName, age } = childInfo;
   const { name, email } = currentUser;
 
+  const databaseId = environmentVariables.databaseId;
+  const collectionId = environmentVariables.childrenCollectionId;
+
   const confirmResult = () => {
-    dispatch(addChildInfoAsync({ childInfo, name, email }));
+    dispatch(
+      addChildInfoAsync({ childInfo, name, email, databaseId, collectionId })
+    );
   };
 
-  const usersChildrensNames = usersChildren.map((child) => child.childName);
+  const usersChildrensNames =
+    usersChildren !== undefined
+      ? usersChildren.map((child) => child.childName)
+      : [];
 
   const isCaseSensitiveMatch = (array, searchString) => {
     const lowerSearchString = searchString.toLowerCase();

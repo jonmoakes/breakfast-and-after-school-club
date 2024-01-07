@@ -2,6 +2,8 @@ import { format } from "date-fns";
 import { getSessionTypeString } from "../functions/get-session-type-string";
 
 //errors
+export const errorSigningInInstructions =
+  "please check your email, password and school code and try again.";
 export const errorSendingMessage =
   "sorry, there was an error sending your message...";
 export const missingEmailFieldsErrorMessage =
@@ -155,6 +157,9 @@ export const requestUserCheckForDoubleCheckBookings =
 export const errorSendCancellationConfirmationEmailMessage = `<span style="font-size: 20px;">sorry, there was an error sending you the email with confirmation of this cancellation. Rest assured though, your booking has been cancelled and funds have been added to your wallet. if you require this email confirmation, please contact us using our contact form.</span>`;
 export const errorFetchingBalanceMessage =
   "sorry, we couldn't fetch your balance..";
+export const invalidSchoolCode = "Invalid school code";
+export const invalidSchoolCodeHelpMessage =
+  "please try again. if you have forgotten your code, please contact your school.";
 // success
 export const successMessage = "success!";
 export const checkEmailMessage = "please check your email!";

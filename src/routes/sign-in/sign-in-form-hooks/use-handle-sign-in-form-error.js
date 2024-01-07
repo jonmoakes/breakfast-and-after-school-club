@@ -8,6 +8,7 @@ import { selectError } from "../../../store/user/user.selector";
 import {
   appwriteNoUserError,
   errorSigningInMessage,
+  errorSigningInInstructions,
 } from "../../../strings/strings";
 
 const useHandleSignInFormError = () => {
@@ -19,7 +20,14 @@ const useHandleSignInFormError = () => {
   useEffect(() => {
     if (!error || (error && error === appwriteNoUserError)) return;
 
-    fireSwal("error", errorSigningInMessage, error, 0, true, false);
+    fireSwal(
+      "error",
+      errorSigningInMessage,
+      errorSigningInInstructions,
+      0,
+      true,
+      false
+    );
     dispatch(resetErrorMessage());
   }, [fireSwal, error, dispatch]);
 };

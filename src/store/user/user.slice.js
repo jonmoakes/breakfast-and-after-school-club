@@ -45,8 +45,8 @@ const userSlice = createSlice({
         state.isLoading = false;
         state.currentUser = action.payload;
         state.error = null;
-        // const { schoolCode } = state.currentUser;
-        // state.environmentVariables = setIds(schoolCode);
+        const { schoolCode } = state.currentUser;
+        state.environmentVariables = setIds(schoolCode);
       })
       .addCase(getUserOnLoadAsync.rejected, (state, action) => {
         state.isLoading = false;

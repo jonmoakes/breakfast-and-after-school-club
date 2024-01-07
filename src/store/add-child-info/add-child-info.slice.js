@@ -1,13 +1,10 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { databases } from "../../utils/appwrite/appwrite-config";
 import { ID } from "appwrite";
+import { createDatabaseDocument } from "../../utils/appwrite/appwrite-functions";
 
 export const addChildInfoAsync = createAsyncThunk(
   "addChildInfo",
-  async (
-    { childInfo, name, email, databaseId, childrenCollectionId },
-    thunkAPI
-  ) => {
+  async ({ childInfo, name, email, databaseId, collectionId }, thunkAPI) => {
     try {
       const {
         childName,
@@ -17,7 +14,7 @@ export const addChildInfoAsync = createAsyncThunk(
         additionalInfo,
       } = childInfo;
 
-      const child = {
+      const dataToAdd = {
         parentName: name,
         parentEmail: email,
         childName,
@@ -27,11 +24,11 @@ export const addChildInfoAsync = createAsyncThunk(
         additionalInfo,
       };
 
-      await databases.createDocument(
+      await createDatabaseDocument(
         databaseId,
-        childrenCollectionId,
+        collectionId,
         ID.unique(),
-        child
+        dataToAdd
       );
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);

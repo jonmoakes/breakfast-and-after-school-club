@@ -10,9 +10,12 @@ import { validateEmail } from "../../../functions/validate-email";
 import {
   invalidEmailErrorMessage,
   missingFieldsMessage,
+  invalidSchoolCode,
+  invalidSchoolCodeHelpMessage,
 } from "../../../strings/strings";
 
 import { setProjectId } from "../../../functions/set-project-id";
+import { isNotValidSchoolCode } from "../../../functions/is-not-valid-school-code";
 
 const useHandleSignInFormSubmit = () => {
   const { fireSwal } = useFireSwal();
@@ -27,6 +30,15 @@ const useHandleSignInFormSubmit = () => {
       fireSwal("error", missingFieldsMessage, "", 0, true, false);
     } else if (!validateEmail(email)) {
       fireSwal("error", invalidEmailErrorMessage, "", 0, true, false);
+    } else if (isNotValidSchoolCode(schoolCode)) {
+      fireSwal(
+        "error",
+        invalidSchoolCode,
+        invalidSchoolCodeHelpMessage,
+        0,
+        true,
+        false
+      );
     } else {
       setProjectId(schoolCode);
       dispatch(signInAsync({ email, password, schoolCode }));

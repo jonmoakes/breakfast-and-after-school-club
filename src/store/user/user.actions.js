@@ -1,18 +1,19 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { account } from "../../utils/appwrite/appwrite-config";
 
-import { databases } from "../../utils/appwrite/appwrite-config";
-import { ID, Query } from "appwrite";
+import { ID } from "appwrite";
 
 import {
   getRetrievedUserFromDocument,
   createDocumentAndSetUser,
+  getSchoolConfig,
+  operateOnUserDocument,
 } from "./functions";
+
 import {
   localhostSocialLoginResultRoute,
   socialLoginResultRoute,
 } from "../../strings/strings";
-import { manorBeachCode } from "../../school-codes/school-codes";
 
 export const getUserOnLoadAsync = createAsyncThunk(
   "user/getUserOnLoad",
@@ -23,32 +24,12 @@ export const getUserOnLoadAsync = createAsyncThunk(
       const session = await account.getSession("current");
       if (!user || !session || !schoolCode) return;
 
-      let retrievedUser, createdUser;
+      const retrievedUser = await getRetrievedUserFromDocument(schoolCode);
 
-      switch (schoolCode) {
-        case manorBeachCode:
-          retrievedUser = await getRetrievedUserFromDocument(schoolCode);
-          createdUser = await createDocumentAndSetUser(schoolCode);
-
-          if (retrievedUser) {
-            return retrievedUser;
-          } else if (createdUser) {
-            return createdUser;
-          } else if (!retrievedUser && !createdUser) {
-            return null;
-          }
-          break;
-        default:
-          retrievedUser = await getRetrievedUserFromDocument(schoolCode);
-          createdUser = await createDocumentAndSetUser(schoolCode);
-
-          if (retrievedUser) {
-            return retrievedUser;
-          } else if (createdUser) {
-            return createdUser;
-          } else if (!retrievedUser && !createdUser) {
-            return null;
-          }
+      if (retrievedUser) {
+        return retrievedUser;
+      } else {
+        return null;
       }
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
@@ -76,74 +57,7 @@ export const signUpAsync = createAsyncThunk(
       await account.create(ID.unique(), email, password, name);
       await account.createEmailSession(email, password);
       localStorage.setItem("schoolCode", schoolCode);
-
-      const localStorageSchoolCode = localStorage.getItem("schoolCode");
-      if (!localStorageSchoolCode) return;
-
-      const user = await account.get();
-      const session = await account.getSession("current");
-
-      let userDocument;
-
-      switch (schoolCode) {
-        case manorBeachCode:
-          userDocument = await databases.listDocuments(
-            import.meta.env.VITE_MANOR_BEACH_DATABASE_ID,
-            import.meta.env.VITE_MANOR_BEACH_USER_COLLECTION_ID,
-            [Query.equal("id", user.$id)]
-          );
-
-          if (!userDocument.total && !userDocument.documents.length) {
-            const createdUser = {
-              id: user.$id,
-              createdAt: user.$createdAt,
-              name: user.name,
-              email: user.email,
-              walletBalance: 0,
-              provider: session.provider,
-              schoolCode,
-            };
-
-            await databases.createDocument(
-              import.meta.env.VITE_MANOR_BEACH_DATABASE_ID,
-              import.meta.env.VITE_MANOR_BEACH_USER_COLLECTION_ID,
-              user.$id,
-              createdUser
-            );
-
-            return createdUser;
-          } else {
-            return null;
-          }
-        default:
-          userDocument = await databases.listDocuments(
-            import.meta.env.VITE_TEST_SCHOOL_DATABASE_ID,
-            import.meta.env.VITE_TEST_SCHOOL_USER_COLLECTION_ID,
-            [Query.equal("id", user.$id)]
-          );
-
-          if (!userDocument.total && !userDocument.documents.length) {
-            const createdUser = {
-              id: user.$id,
-              createdAt: user.$createdAt,
-              name: user.name,
-              email: user.email,
-              walletBalance: 0,
-              provider: session.provider,
-              schoolCode,
-            };
-            await databases.createDocument(
-              import.meta.env.VITE_TEST_SCHOOL_DATABASE_ID,
-              import.meta.env.VITE_TEST_SCHOOL_USER_COLLECTION_ID,
-              user.$id,
-              createdUser
-            );
-
-            return createdUser;
-          } else {
-            return null;
-          }
-      }
+      return await createDocumentAndSetUser(schoolCode);
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }
@@ -196,6 +110,7 @@ export const requestGoogleSignInAsync = createAsyncThunk(
   }
 );
 
+// need to add school code to magic url siogn in form then refactor here
 export const signInMagicUrlAsync = createAsyncThunk(
   "user/signInWithMagicUrl",
   async (_, thunkAPI) => {
@@ -207,15 +122,18 @@ export const signInMagicUrlAsync = createAsyncThunk(
       await account.updateMagicURLSession(userId, secret);
 
       const retrievedUser = await getRetrievedUserFromDocument();
-      const createdUser = await createDocumentAndSetUser();
+      // const createdUser = await createDocumentAndSetUser();
 
       if (retrievedUser) {
         return retrievedUser;
-      } else if (createdUser) {
-        return createdUser;
-      } else if (!retrievedUser && !createdUser) {
+      } else {
         return null;
       }
+      //    else if (createdUser) {
+      //     return createdUser;
+      //   } else if (!retrievedUser && !createdUser) {
+      //     return null;
+      //   }
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }
@@ -236,15 +154,18 @@ export const signOutAsync = createAsyncThunk(
 
 export const getUsersWalletBalanceAsync = createAsyncThunk(
   "getUsersWalletBalance",
-  async ({ id }, thunkAPI) => {
+  async ({ schoolCode, id }, thunkAPI) => {
     try {
-      const getChildrenDocuments = await databases.listDocuments(
-        import.meta.env.VITE_TEST_SCHOOL_DATABASE_ID,
-        import.meta.env.VITE_USER_COLLECTION_ID,
-        [Query.equal("id", id)]
+      const { databaseId, collectionId } = getSchoolConfig(schoolCode);
+
+      const getUsersDocument = await operateOnUserDocument(
+        "list",
+        databaseId,
+        collectionId,
+        id
       );
 
-      const { documents, total } = getChildrenDocuments;
+      const { documents, total } = getUsersDocument;
       if (!total) return;
 
       const { walletBalance } = documents[0];

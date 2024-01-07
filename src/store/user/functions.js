@@ -1,75 +1,68 @@
 import { account, databases } from "../../utils/appwrite/appwrite-config";
 import { Query } from "appwrite";
-import { manorBeachCode } from "../../school-codes/school-codes";
+import { schoolCodesList } from "../../school-codes-list/school-codes-list";
 
-const listUserDocuments = async (databaseId, userCollectionId, userId) => {
-  return await databases.listDocuments(databaseId, userCollectionId, [
-    Query.equal("id", userId),
-  ]);
+const { manorBeach } = schoolCodesList;
+
+export const getSchoolConfig = (schoolCode) => {
+  switch (schoolCode) {
+    case manorBeach:
+      return {
+        databaseId: import.meta.env.VITE_MANOR_BEACH_DATABASE_ID,
+        collectionId: import.meta.env.VITE_MANOR_BEACH_USER_COLLECTION_ID,
+      };
+    default:
+      return {
+        databaseId: import.meta.env.VITE_TEST_SCHOOL_DATABASE_ID,
+        collectionId: import.meta.env.VITE_TEST_SCHOOL_USER_COLLECTION_ID,
+      };
+  }
 };
 
-const createDocument = async (
+export const operateOnUserDocument = async (
+  operation,
   databaseId,
-  userCollectionId,
+  collectionId,
   userId,
   userData
 ) => {
-  await databases.createDocument(
-    databaseId,
-    userCollectionId,
-    userId,
-    userData
-  );
-};
-
-export const getUserDocument = async (schoolCode) => {
-  const user = await account.get();
-  const session = await account.getSession("current");
-
-  let userDocument;
-
-  switch (schoolCode) {
-    case manorBeachCode:
-      userDocument = await listUserDocuments(
-        import.meta.env.VITE_MANOR_BEACH_DATABASE_ID,
-        import.meta.env.VITE_MANOR_BEACH_USER_COLLECTION_ID,
-        user.$id
+  switch (operation) {
+    case "list":
+      return await databases.listDocuments(databaseId, collectionId, [
+        Query.equal("id", userId),
+      ]);
+    case "create":
+      return await databases.createDocument(
+        databaseId,
+        collectionId,
+        userId,
+        userData
       );
-      break;
+    case "update":
+      return await databases.updateDocument(
+        databaseId,
+        collectionId,
+        userId,
+        userData
+      );
     default:
-      userDocument = await listUserDocuments(
-        import.meta.env.VITE_TEST_SCHOOL_DATABASE_ID,
-        import.meta.env.VITE_TEST_SCHOOL_USER_COLLECTION_ID,
-        user.$id
-      );
+      throw new Error(`Unsupported operation: ${operation}`);
   }
-
-  const { total, documents } = userDocument;
-
-  return { user, session, total, documents };
 };
 
 export const getRetrievedUserFromDocument = async (schoolCode) => {
   const user = await account.get();
+  const { databaseId, collectionId } = getSchoolConfig(schoolCode);
 
-  let userDocument;
+  const userDocument = await operateOnUserDocument(
+    "list",
+    databaseId,
+    collectionId,
+    user.$id
+  );
 
-  switch (schoolCode) {
-    case manorBeachCode:
-      userDocument = await listUserDocuments(
-        import.meta.env.VITE_MANOR_BEACH_DATABASE_ID,
-        import.meta.env.VITE_MANOR_BEACH_USER_COLLECTION_ID,
-        user.$id
-      );
-      break;
-    default:
-      userDocument = await listUserDocuments(
-        import.meta.env.VITE_TEST_SCHOOL_DATABASE_ID,
-        import.meta.env.VITE_TEST_SCHOOL_USER_COLLECTION_ID,
-        user.$id
-      );
-  }
-
+  // number of documents found in database and the document.
+  //Should only be 1 as only 1 should match the user.$id
   const { total, documents } = userDocument;
 
   if (total && documents.length) {
@@ -93,58 +86,55 @@ export const getRetrievedUserFromDocument = async (schoolCode) => {
 export const createDocumentAndSetUser = async (schoolCode) => {
   const user = await account.get();
   const session = await account.getSession("current");
+  const { databaseId, collectionId } = getSchoolConfig(schoolCode);
 
-  let userDocument;
+  const userDocument = await operateOnUserDocument(
+    "list",
+    databaseId,
+    collectionId,
+    user.$id
+  );
 
-  switch (schoolCode) {
-    case manorBeachCode:
-      userDocument = await listUserDocuments(
-        import.meta.env.VITE_MANOR_BEACH_DATABASE_ID,
-        import.meta.env.VITE_MANOR_BEACH_USER_COLLECTION_ID,
-        user.$id
-      );
-      break;
-    default:
-      userDocument = await listUserDocuments(
-        import.meta.env.VITE_TEST_SCHOOL_DATABASE_ID,
-        import.meta.env.VITE_TEST_SCHOOL_USER_COLLECTION_ID,
-        user.$id
-      );
+  const { total, documents } = userDocument;
 
-      const { total, documents } = userDocument;
+  if (!total && !documents.length) {
+    const createdUser = {
+      id: user.$id,
+      createdAt: user.$createdAt,
+      name: user.name,
+      email: user.email,
+      walletBalance: 0,
+      provider: session.provider,
+      schoolCode,
+    };
 
-      if (!total && !documents.length) {
-        const createdUser = {
-          id: user.$id,
-          createdAt: user.$createdAt,
-          name: user.name,
-          email: user.email,
-          walletBalance: 0,
-          provider: session.provider,
-          schoolCode,
-        };
-
-        switch (schoolCode) {
-          case manorBeachCode:
-            await createDocument(
-              import.meta.env.VITE_MANOR_BEACH_DATABASE_ID,
-              import.meta.env.VITE_MANOR_BEACH_USER_COLLECTION_ID,
-              user.$id,
-              createdUser
-            );
-            break;
-          default:
-            await createDocument(
-              import.meta.env.VITE_TEST_SCHOOL_DATABASE_ID,
-              import.meta.env.VITE_TEST_SCHOOL_USER_COLLECTION_ID,
-              user.$id,
-              createdUser
-            );
-        }
-
-        return createdUser;
-      } else {
-        return null;
-      }
+    await operateOnUserDocument(
+      "create",
+      databaseId,
+      collectionId,
+      user.$id,
+      createdUser
+    );
+    return createdUser;
+  } else {
+    return null;
   }
+};
+
+// for future refactoring - book session thunks etc
+export const getUserDocument = async (schoolCode) => {
+  const user = await account.get();
+  const session = await account.getSession("current");
+
+  const { databaseId, collectionId } = getSchoolConfig(schoolCode);
+  const userDocument = await operateOnUserDocument(
+    "list",
+    databaseId,
+    collectionId,
+    user.$id
+  );
+
+  const { total, documents } = userDocument;
+
+  return { user, session, total, documents };
 };

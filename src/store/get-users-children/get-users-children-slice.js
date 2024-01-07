@@ -1,17 +1,16 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { databases } from "../../utils/appwrite/appwrite-config";
-import { Query } from "appwrite";
+import { listChildrenDocumentsWhereQueryIsParentEmail } from "../../utils/appwrite/appwrite-functions";
 
 export const getUsersChildrenAsync = createAsyncThunk(
   "getChildren",
-  async ({ email }, thunkAPI) => {
+  async ({ databaseId, childrenCollectionId, email }, thunkAPI) => {
     try {
-      const getChildrenDocuments = await databases.listDocuments(
-        import.meta.env.VITE_TEST_SCHOOL_DATABASE_ID,
-        import.meta.env.VITE_CHILDREN_COLLECTION_ID,
-        [Query.equal("parentEmail", email)]
-      );
-
+      const getChildrenDocuments =
+        await listChildrenDocumentsWhereQueryIsParentEmail(
+          databaseId,
+          childrenCollectionId,
+          email
+        );
       const { documents, total } = getChildrenDocuments;
       if (!total) return;
 

@@ -1,8 +1,10 @@
-import { manorBeachCode } from "../../school-codes/school-codes";
+import { schoolCodesList } from "../../school-codes-list/school-codes-list";
 
 export const setIds = (schoolCode) => {
+  const { manorBeach } = schoolCodesList;
+
   switch (schoolCode) {
-    case manorBeachCode:
+    case manorBeach:
       return {
         projectId: import.meta.env.VITE_MANOR_BEACH_PROJECT_ID,
         databaseId: import.meta.env.VITE_MANOR_BEACH_DATABASE_ID,

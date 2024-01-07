@@ -6,14 +6,16 @@ import { selectSignUpFormDetails } from "../../../store/sign-up-form/sign-up-for
 import { signUpAsync } from "../../../store/user/user.actions";
 
 import { validateEmail } from "../../../functions/validate-email";
+import { setProjectId } from "../../../functions/set-project-id";
+import { isNotValidSchoolCode } from "../../../functions/is-not-valid-school-code";
 
 import {
   invalidEmailErrorMessage,
+  invalidSchoolCode,
+  invalidSchoolCodeHelpMessage,
   missingFieldsMessage,
   passwordsDontMatchMessage,
 } from "../../../strings/strings";
-
-import { setProjectId } from "../../../functions/set-project-id";
 
 const useHandleSignUpFormSubmit = () => {
   const { fireSwal } = useFireSwal();
@@ -31,6 +33,15 @@ const useHandleSignUpFormSubmit = () => {
       fireSwal("error", invalidEmailErrorMessage, "", 0, true, false);
     } else if (password !== confirmPassword) {
       fireSwal("error", passwordsDontMatchMessage, "", 0, true, false);
+    } else if (isNotValidSchoolCode(schoolCode)) {
+      fireSwal(
+        "error",
+        invalidSchoolCode,
+        invalidSchoolCodeHelpMessage,
+        0,
+        true,
+        false
+      );
     } else {
       setProjectId(schoolCode);
       dispatch(signUpAsync({ email, password, name, schoolCode }));

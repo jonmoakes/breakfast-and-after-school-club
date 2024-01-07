@@ -25,7 +25,7 @@ const useGetWalletBalance = () => {
   const currentUser = useSelector(selectCurrentUser);
   const error = useSelector(selectError);
 
-  const { id } = currentUser;
+  const { schoolCode, id } = currentUser;
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -45,18 +45,20 @@ const useGetWalletBalance = () => {
   }, [dispatch, error, fireSwal]);
 
   const confirmResult = () => {
-    dispatch(getUsersWalletBalanceAsync({ id })).then((resultAction) => {
-      if (getUsersWalletBalanceAsync.fulfilled.match(resultAction)) {
-        fireSwal(
-          "success",
-          balanceSuccessfullyReceivedMessage,
-          "",
-          0,
-          true,
-          false
-        );
+    dispatch(getUsersWalletBalanceAsync({ schoolCode, id })).then(
+      (resultAction) => {
+        if (getUsersWalletBalanceAsync.fulfilled.match(resultAction)) {
+          fireSwal(
+            "success",
+            balanceSuccessfullyReceivedMessage,
+            "",
+            0,
+            true,
+            false
+          );
+        }
       }
-    });
+    );
   };
 
   const confirmRequestLatestWalletBalance = () => {
