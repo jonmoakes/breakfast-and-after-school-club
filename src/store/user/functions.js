@@ -1,5 +1,8 @@
-import { account, databases } from "../../utils/appwrite/appwrite-config";
-import { Query } from "appwrite";
+import { account } from "../../utils/appwrite/appwrite-config";
+import {
+  listDocumentsByQuery,
+  manageDatabaseDocument,
+} from "../../utils/appwrite/appwrite-functions/";
 import { schoolCodesList } from "../../school-codes-list/school-codes-list";
 
 const { manorBeach } = schoolCodesList;
@@ -19,46 +22,18 @@ export const getSchoolConfig = (schoolCode) => {
   }
 };
 
-export const operateOnUserDocument = async (
-  operation,
-  databaseId,
-  collectionId,
-  userId,
-  userData
-) => {
-  switch (operation) {
-    case "list":
-      return await databases.listDocuments(databaseId, collectionId, [
-        Query.equal("id", userId),
-      ]);
-    case "create":
-      return await databases.createDocument(
-        databaseId,
-        collectionId,
-        userId,
-        userData
-      );
-    case "update":
-      return await databases.updateDocument(
-        databaseId,
-        collectionId,
-        userId,
-        userData
-      );
-    default:
-      throw new Error(`Unsupported operation: ${operation}`);
-  }
-};
-
 export const getRetrievedUserFromDocument = async (schoolCode) => {
   const user = await account.get();
   const { databaseId, collectionId } = getSchoolConfig(schoolCode);
 
-  const userDocument = await operateOnUserDocument(
-    "list",
+  const queryIndex = "$id";
+  const queryValue = user.$id;
+
+  const userDocument = await listDocumentsByQuery(
     databaseId,
     collectionId,
-    user.$id
+    queryIndex,
+    queryValue
   );
 
   // number of documents found in database and the document.
@@ -88,17 +63,21 @@ export const createDocumentAndSetUser = async (schoolCode) => {
   const session = await account.getSession("current");
   const { databaseId, collectionId } = getSchoolConfig(schoolCode);
 
-  const userDocument = await operateOnUserDocument(
-    "list",
+  const queryIndex = "$id";
+  const queryValue = user.$id;
+  const documentId = user.$id;
+
+  const userDocument = await listDocumentsByQuery(
     databaseId,
     collectionId,
-    user.$id
+    queryIndex,
+    queryValue
   );
 
   const { total, documents } = userDocument;
 
   if (!total && !documents.length) {
-    const createdUser = {
+    const dataToAdd = {
       id: user.$id,
       createdAt: user.$createdAt,
       name: user.name,
@@ -108,14 +87,15 @@ export const createDocumentAndSetUser = async (schoolCode) => {
       schoolCode,
     };
 
-    await operateOnUserDocument(
+    await manageDatabaseDocument(
       "create",
       databaseId,
       collectionId,
-      user.$id,
-      createdUser
+      documentId,
+      dataToAdd
     );
-    return createdUser;
+
+    return dataToAdd;
   } else {
     return null;
   }
@@ -126,12 +106,15 @@ export const getUserDocument = async (schoolCode) => {
   const user = await account.get();
   const session = await account.getSession("current");
 
+  const queryIndex = "$id";
+  const queryValue = user.$id;
+
   const { databaseId, collectionId } = getSchoolConfig(schoolCode);
-  const userDocument = await operateOnUserDocument(
-    "list",
+  const userDocument = await listDocumentsByQuery(
     databaseId,
     collectionId,
-    user.$id
+    queryIndex,
+    queryValue
   );
 
   const { total, documents } = userDocument;

@@ -33,8 +33,9 @@ const useConfirmAddChildInfo = () => {
   const { childName, age } = childInfo;
   const { name, email } = currentUser;
 
-  const databaseId = environmentVariables.databaseId;
-  const collectionId = environmentVariables.childrenCollectionId;
+  //childrenCollectionId is being renamed to collectionId
+  const { databaseId, childrenCollectionId: collectionId } =
+    environmentVariables;
 
   const confirmResult = () => {
     dispatch(
@@ -47,6 +48,7 @@ const useConfirmAddChildInfo = () => {
       ? usersChildren.map((child) => child.childName)
       : [];
 
+  console.log(usersChildrensNames);
   const isCaseSensitiveMatch = (array, searchString) => {
     const lowerSearchString = searchString.toLowerCase();
     return array.includes(lowerSearchString);

@@ -15,7 +15,7 @@ const LoaderTitleInfo = () => {
   const isLoading = useSelector(selectIsLoading);
   const deleteChildInfo = useSelector(selectDeleteChildInfo);
 
-  const { childName = "" } = deleteChildInfo || {};
+  const { childName } = deleteChildInfo || {};
 
   return (
     <>

@@ -1,26 +1,46 @@
 import { databases } from "../../utils/appwrite/appwrite-config";
 import { Query } from "appwrite";
 
-export const listChildrenDocumentsWhereQueryIsParentEmail = async (
+export const listDocumentsByQuery = async (
   databaseId,
-  childrenCollectionId,
-  email
+  collectionId,
+  queryIndex,
+  queryValue
 ) => {
-  return await databases.listDocuments(databaseId, childrenCollectionId, [
-    Query.equal("parentEmail", email),
-  ]);
+  const query = [Query.equal(queryIndex, queryValue)];
+  return await databases.listDocuments(databaseId, collectionId, query);
 };
 
-export const createDatabaseDocument = async (
+export const manageDatabaseDocument = async (
+  type,
   databaseId,
   collectionId,
   documentId,
-  dataToAdd
+  data
 ) => {
-  return await databases.createDocument(
-    databaseId,
-    collectionId,
-    documentId,
-    dataToAdd
-  );
+  switch (type) {
+    case "create":
+      return await databases.createDocument(
+        databaseId,
+        collectionId,
+        documentId,
+        data
+      );
+    case "update":
+      return await databases.updateDocument(
+        databaseId,
+        collectionId,
+        documentId,
+        data
+      );
+    case "delete":
+      return await databases.deleteDocument(
+        databaseId,
+        collectionId,
+        documentId,
+        data
+      );
+    default:
+      throw new Error(`Unsupported operation: ${type}`);
+  }
 };

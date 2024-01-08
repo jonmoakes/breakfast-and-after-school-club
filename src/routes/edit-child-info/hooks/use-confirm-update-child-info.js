@@ -5,6 +5,7 @@ import useFireSwal from "../../../hooks/use-fire-swal";
 
 import { updateChildInfoAsync } from "../../../store/edit-child-info/edit-child-info.slice";
 
+import { selectEnvironmentVariables } from "../../../store/user/user.selector";
 import { selectEditChildInfo } from "../../../store/edit-child-info/edit-child-info.selector";
 
 import {
@@ -20,8 +21,12 @@ const useConfirmUpdateChildInfo = () => {
   const { fireSwal } = useFireSwal();
 
   const originalChildInfo = useSelector(selectEditChildInfo);
+  const environmentVariables = useSelector(selectEnvironmentVariables);
+  const { databaseId, childrenCollectionId: collectionId } =
+    environmentVariables;
 
   const {
+    $id,
     childName = "",
     age = "",
     medicalInfo = "",
@@ -32,7 +37,14 @@ const useConfirmUpdateChildInfo = () => {
   const dispatch = useDispatch();
 
   const confirmResult = (updatedChildInfo) => {
-    dispatch(updateChildInfoAsync({ updatedChildInfo }));
+    dispatch(
+      updateChildInfoAsync({
+        $id,
+        databaseId,
+        collectionId,
+        updatedChildInfo,
+      })
+    );
   };
 
   const entriesAreTheSame = (updatedChildInfo) => {

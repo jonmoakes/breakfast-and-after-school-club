@@ -15,18 +15,22 @@ const useGetUsersChildrenAndConditionallyUserBookings = () => {
   const currentUser = useSelector(selectCurrentUser);
   const envVariables = useSelector(selectEnvironmentVariables);
 
-  const { databaseId, childrenCollectionId } = envVariables;
+  const { email } = currentUser;
+  const { databaseId, childrenCollectionId: collectionId } = envVariables;
 
   const location = useLocation();
   const dispatch = useDispatch();
 
-  const { email } = currentUser;
   const path = location.pathname;
 
   useEffect(() => {
     if (path === childInfoRoute) {
       dispatch(
-        getUsersChildrenAsync({ databaseId, childrenCollectionId, email })
+        getUsersChildrenAsync({
+          email,
+          databaseId,
+          collectionId,
+        })
       );
     } else if (path === bookSessionRoute) {
       dispatch(getUsersChildrenAsync({ email })).then((resultAction) => {
@@ -35,7 +39,7 @@ const useGetUsersChildrenAndConditionallyUserBookings = () => {
         }
       });
     }
-  }, [dispatch, email, path, databaseId, childrenCollectionId]);
+  }, [dispatch, email, path, databaseId, collectionId]);
 };
 
 export default useGetUsersChildrenAndConditionallyUserBookings;

@@ -4,6 +4,7 @@ import useConfirmSwal from "../../../hooks/use-confirm-swal";
 
 import { selectDeleteChildInfo } from "../../../store/delete-child-info/delete-child-info.selector";
 import { deleteChildInfoAsync } from "../../../store/delete-child-info/delete-child-info.slice";
+import { selectEnvironmentVariables } from "../../../store/user/user.selector";
 
 import {
   confirmDeleteChildMessage,
@@ -14,11 +15,14 @@ const useConfirmDeleteChildInfo = () => {
   const { confirmSwal } = useConfirmSwal();
 
   const childInfo = useSelector(selectDeleteChildInfo);
+  const environmentVariables = useSelector(selectEnvironmentVariables);
 
+  const { databaseId, childrenCollectionId: collectionId } =
+    environmentVariables;
   const dispatch = useDispatch();
 
   const confirmResult = () => {
-    dispatch(deleteChildInfoAsync({ childInfo }));
+    dispatch(deleteChildInfoAsync({ childInfo, databaseId, collectionId }));
   };
 
   const confirmDeleteChildInfo = () => {

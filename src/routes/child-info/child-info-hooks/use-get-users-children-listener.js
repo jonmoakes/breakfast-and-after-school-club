@@ -15,8 +15,8 @@ const useGetUsersChildrenListener = () => {
   const environmentVariables = useSelector(selectEnvironmentVariables);
   const dispatch = useDispatch();
 
-  const databaseId = environmentVariables.databaseId;
-  const collectionId = environmentVariables.childrenCollectionId;
+  const { databaseId, childrenCollectionId: collectionId } =
+    environmentVariables;
 
   useEffect(() => {
     if (!currentUser) return;

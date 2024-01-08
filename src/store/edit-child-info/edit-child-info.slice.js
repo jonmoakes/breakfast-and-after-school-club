@@ -1,28 +1,35 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { databases } from "../../utils/appwrite/appwrite-config";
-import { Query } from "appwrite";
+import {
+  listDocumentsByQuery,
+  manageDatabaseDocument,
+} from "../../utils/appwrite/appwrite-functions";
 
 export const updateChildInfoAsync = createAsyncThunk(
   "updateChild",
-  async ({ updatedChildInfo }, thunkAPI) => {
+  async ({ $id, databaseId, collectionId, updatedChildInfo }, thunkAPI) => {
     try {
-      const { $id } = updatedChildInfo;
+      const queryIndex = "$id";
+      const queryValue = $id;
+      const documentId = $id;
+      const dataToUpdate = updatedChildInfo;
 
-      const getChildrenDocuments = await databases.listDocuments(
-        import.meta.env.VITE_TEST_SCHOOL_DATABASE_ID,
-        import.meta.env.VITE_CHILDREN_COLLECTION_ID,
-        [Query.equal("$id", $id)]
+      const getChildrenDocuments = await listDocumentsByQuery(
+        databaseId,
+        collectionId,
+        queryIndex,
+        queryValue
       );
 
       const { total } = getChildrenDocuments;
 
       if (!total) return;
 
-      await databases.updateDocument(
-        import.meta.env.VITE_TEST_SCHOOL_DATABASE_ID,
-        import.meta.env.VITE_CHILDREN_COLLECTION_ID,
-        $id,
-        updatedChildInfo
+      await manageDatabaseDocument(
+        "update",
+        databaseId,
+        collectionId,
+        documentId,
+        dataToUpdate
       );
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
