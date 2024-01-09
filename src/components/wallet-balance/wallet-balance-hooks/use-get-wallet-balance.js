@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 import useConfirmSwal from "../../../hooks/use-confirm-swal";
 import useFireSwal from "../../../hooks/use-fire-swal";
+import useGetEnvironmentVariables from "../../../hooks/use-get-environment-variables";
 
 import {
   selectCurrentUser,
@@ -21,11 +22,13 @@ import {
 const useGetWalletBalance = () => {
   const { confirmSwal } = useConfirmSwal();
   const { fireSwal } = useFireSwal();
+  const { databaseId, userCollectionId: collectionId } =
+    useGetEnvironmentVariables();
 
   const currentUser = useSelector(selectCurrentUser);
   const error = useSelector(selectError);
 
-  const { schoolCode, id } = currentUser;
+  const { id } = currentUser;
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -45,7 +48,7 @@ const useGetWalletBalance = () => {
   }, [dispatch, error, fireSwal]);
 
   const confirmResult = () => {
-    dispatch(getUsersWalletBalanceAsync({ schoolCode, id })).then(
+    dispatch(getUsersWalletBalanceAsync({ id, databaseId, collectionId })).then(
       (resultAction) => {
         if (getUsersWalletBalanceAsync.fulfilled.match(resultAction)) {
           fireSwal(

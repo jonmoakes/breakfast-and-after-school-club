@@ -1,6 +1,6 @@
-import { schoolCodesList } from "../../school-codes-list/school-codes-list";
+import { schoolCodesList } from "../school-codes-list/school-codes-list";
 
-export const setIds = (schoolCode) => {
+export const setEnvironmentVariables = (schoolCode) => {
   const { manorBeach } = schoolCodesList;
 
   switch (schoolCode) {

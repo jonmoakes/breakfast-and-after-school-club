@@ -1,13 +1,11 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { account } from "../../utils/appwrite/appwrite-config";
 import { listDocumentsByQuery } from "../../utils/appwrite/appwrite-functions";
-
 import { ID } from "appwrite";
 
 import {
   getRetrievedUserFromDocument,
   createDocumentAndSetUser,
-  getSchoolConfig,
 } from "./functions";
 
 import {
@@ -154,10 +152,8 @@ export const signOutAsync = createAsyncThunk(
 
 export const getUsersWalletBalanceAsync = createAsyncThunk(
   "getUsersWalletBalance",
-  async ({ schoolCode, id }, thunkAPI) => {
+  async ({ id, databaseId, collectionId }, thunkAPI) => {
     try {
-      const { databaseId, collectionId } = getSchoolConfig(schoolCode);
-
       const queryIndex = "$id";
       const queryValue = id;
 

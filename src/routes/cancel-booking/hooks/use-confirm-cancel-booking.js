@@ -2,6 +2,7 @@ import { useSelector, useDispatch } from "react-redux";
 
 import useConfirmSwal from "../../../hooks/use-confirm-swal";
 import useGetRefundPrice from "./use-get-refund-price";
+import useGetEnvironmentVariables from "../../../hooks/use-get-environment-variables";
 
 import { selectUserBookingToDelete } from "../../../store/user-booking-to-delete/user-booking-to-delete.selector";
 import { selectUsersChildren } from "../../../store/get-users-children/get-users-children.selector";
@@ -22,6 +23,8 @@ const useConfirmDeleteChildInfo = () => {
   const { confirmSwal } = useConfirmSwal();
   let { refundPrice, totalRefundPrice, numberOfChildrenInBooking } =
     useGetRefundPrice();
+  const { databaseId, userCollectionId: collectionId } =
+    useGetEnvironmentVariables();
 
   const currentUser = useSelector(selectCurrentUser);
   const userBookingToDelete = useSelector(selectUserBookingToDelete);
@@ -48,7 +51,13 @@ const useConfirmDeleteChildInfo = () => {
               dispatch(refundUserAsync({ id, refundPrice })).then(
                 (resultAction) => {
                   if (refundUserAsync.fulfilled.match(resultAction)) {
-                    dispatch(getUsersWalletBalanceAsync({ id }));
+                    dispatch(
+                      getUsersWalletBalanceAsync({
+                        id,
+                        databaseId,
+                        collectionId,
+                      })
+                    );
                   }
                 }
               );

@@ -1,17 +1,23 @@
 import { useDispatch, useSelector } from "react-redux";
+
+import useConditionalLogic from "./use-conditional-logic";
+import useGetEnvironmentVariables from "../../../hooks/use-get-environment-variables";
+
 import {
   addSessionBookingInfoAsync,
   updateSessionDocAsync,
   updateUserDocBalanceAsync,
 } from "../../../store/book-session/book-session-thunks";
+
 import { selectCurrentUser } from "../../../store/user/user.selector";
 import { selectChildrenSelectedForBooking } from "../../../store/book-session/book-session.selector";
 import { selectUsersChildren } from "../../../store/get-users-children/get-users-children.selector";
-import useConditionalLogic from "./use-conditional-logic";
 import { getUsersWalletBalanceAsync } from "../../../store/user/user.actions";
 
 const useConfirmResult = () => {
   const { date } = useConditionalLogic();
+  const { databaseId, userCollectionId: collectionId } =
+    useGetEnvironmentVariables();
 
   const usersChildren = useSelector(selectUsersChildren);
   const childrenSelectedForBooking = useSelector(
@@ -39,7 +45,9 @@ const useConfirmResult = () => {
                 })
               ).then((resultAction) => {
                 if (addSessionBookingInfoAsync.fulfilled.match(resultAction)) {
-                  dispatch(getUsersWalletBalanceAsync({ id }));
+                  dispatch(
+                    getUsersWalletBalanceAsync({ id, databaseId, collectionId })
+                  );
                 }
               });
             }

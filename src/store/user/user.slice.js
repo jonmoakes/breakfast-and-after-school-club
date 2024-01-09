@@ -11,7 +11,7 @@ import {
   getUsersWalletBalanceAsync,
 } from "./user.actions";
 
-import { setIds } from "./set-ids";
+import { setEnvironmentVariables } from "../../functions/set-environment-variables";
 
 import {
   errorRequestingFacebookSignIn,
@@ -46,7 +46,7 @@ const userSlice = createSlice({
         state.currentUser = action.payload;
         state.error = null;
         const { schoolCode } = state.currentUser;
-        state.environmentVariables = setIds(schoolCode);
+        state.environmentVariables = setEnvironmentVariables(schoolCode);
       })
       .addCase(getUserOnLoadAsync.rejected, (state, action) => {
         state.isLoading = false;
@@ -60,7 +60,7 @@ const userSlice = createSlice({
         state.currentUser = action.payload;
         state.error = null;
         const { schoolCode } = state.currentUser;
-        state.environmentVariables = setIds(schoolCode);
+        state.environmentVariables = setEnvironmentVariables(schoolCode);
       })
       .addCase(signInAsync.rejected, (state, action) => {
         state.isLoading = false;
@@ -74,7 +74,7 @@ const userSlice = createSlice({
         state.currentUser = action.payload;
         state.error = null;
         const { schoolCode } = state.currentUser;
-        state.environmentVariables = setIds(schoolCode);
+        state.environmentVariables = setEnvironmentVariables(schoolCode);
       })
       .addCase(signUpAsync.rejected, (state, action) => {
         state.isLoading = false;

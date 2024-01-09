@@ -1,15 +1,26 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 
+// import { setSendGridApiKey } from "../../functions/set-sendgrid-api-key";
 import { closeAccountSuccess } from "../../strings/strings";
 
 import { SEND_ACCOUNT_CLOSURE_MESSAGE_ENDPOINT } from "../../../netlify/api-endpoints/api-endpoints";
 
 export const closeAccountAsync = createAsyncThunk(
   "user/closeAccount",
-  async ({ email, appOwnerEmail, accountClosureEmail }, thunkAPI) => {
+  async (
+    { schoolCode, email, appOwnerEmail, accountClosureEmail },
+    thunkAPI
+  ) => {
     try {
-      const dataToSend = { email, appOwnerEmail, accountClosureEmail };
+      // setSendGridApiKey(schoolCode);
+      // console.log("hi ", setSendGridApiKey(schoolCode));
+      const dataToSend = {
+        schoolCode,
+        email,
+        appOwnerEmail,
+        accountClosureEmail,
+      };
       await axios.post(SEND_ACCOUNT_CLOSURE_MESSAGE_ENDPOINT, {
         message: dataToSend,
       });

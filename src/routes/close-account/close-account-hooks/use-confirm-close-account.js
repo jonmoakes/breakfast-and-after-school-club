@@ -3,11 +3,9 @@ import { useSelector, useDispatch } from "react-redux";
 import useConfirmSwal from "../../../hooks/use-confirm-swal";
 import useFireSwal from "../../../hooks/use-fire-swal";
 import useAccountClosureEmail from "./use-account-closure-email";
+import useGetEnvironmentVariables from "../../../hooks/use-get-environment-variables";
 
-import {
-  selectCurrentUser,
-  selectEnvironmentVariables,
-} from "../../../store/user/user.selector";
+import { selectCurrentUser } from "../../../store/user/user.selector";
 
 import { closeAccountAsync } from "../../../store/close-account/close-account.slice";
 
@@ -22,17 +20,22 @@ const useConfirmCloseAccount = () => {
   const { confirmSwal } = useConfirmSwal();
   const { fireSwal } = useFireSwal();
   const { accountClosureEmail } = useAccountClosureEmail();
+  const { appOwnerEmail } = useGetEnvironmentVariables();
 
   const currentUser = useSelector(selectCurrentUser);
-  const environmentVariables = useSelector(selectEnvironmentVariables);
-
-  const { appOwnerEmail } = environmentVariables;
 
   const dispatch = useDispatch();
-  const { walletBalance, email } = currentUser;
+  const { walletBalance, email, schoolCode } = currentUser;
 
   const confirmResult = () => {
-    dispatch(closeAccountAsync({ email, appOwnerEmail, accountClosureEmail }));
+    dispatch(
+      closeAccountAsync({
+        schoolCode,
+        email,
+        appOwnerEmail,
+        accountClosureEmail,
+      })
+    );
   };
 
   const confirmCloseAccount = () => {

@@ -3,12 +3,10 @@ import { useSelector, useDispatch } from "react-redux";
 import useFireSwal from "../../../hooks/use-fire-swal";
 import useHamburgerHandlerNavigate from "../../../hooks/use-hamburger-handler-navigate";
 import useSendUpdateBalanceErrorEmail from "./use-send-update-balance-error-email";
+import useGetEnvironmentVariables from "../../../hooks/use-get-environment-variables";
 
 import { selectWalletFundsToAdd } from "../../../store/wallet-funds-to-add/wallet-funds-to-add.selector";
-import {
-  selectCurrentUser,
-  selectEnvironmentVariables,
-} from "../../../store/user/user.selector";
+import { selectCurrentUser } from "../../../store/user/user.selector";
 import { addWalletFundsToDatabaseAsync } from "../../../store/handle-payment/handle-payment.slice";
 import { getUsersWalletBalanceAsync } from "../../../store/user/user.actions";
 
@@ -22,15 +20,14 @@ const useUpdateWalletBalance = () => {
   const { fireSwal } = useFireSwal();
   const { hamburgerHandlerNavigate } = useHamburgerHandlerNavigate();
   const { sendUpdateBalanceErrorEmail } = useSendUpdateBalanceErrorEmail();
+  const { databaseId, userCollectionId: collectionId } =
+    useGetEnvironmentVariables();
 
   const currentUser = useSelector(selectCurrentUser);
   const walletFundsToAdd = useSelector(selectWalletFundsToAdd);
-  const environmentVariables = useSelector(selectEnvironmentVariables);
-
-  const { databaseId, userCollectionId: collectionId } = environmentVariables;
 
   const dispatch = useDispatch();
-  const { id, email, schoolCode } = currentUser;
+  const { id, email } = currentUser;
 
   const updateWalletBalance = () => {
     dispatch(
@@ -42,7 +39,7 @@ const useUpdateWalletBalance = () => {
       })
     ).then((resultAction) => {
       if (addWalletFundsToDatabaseAsync.fulfilled.match(resultAction)) {
-        dispatch(getUsersWalletBalanceAsync({ schoolCode, id }));
+        dispatch(getUsersWalletBalanceAsync({ id, databaseId, collectionId }));
         fireSwal("success", fundsAddedMessage(email), "", 0, true, false).then(
           (isConfirmed) => {
             if (isConfirmed) {
