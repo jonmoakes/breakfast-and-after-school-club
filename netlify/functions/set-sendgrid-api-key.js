@@ -6,7 +6,8 @@ export const setSendgridApiKey = (schoolCode) => {
 
   switch (schoolCode) {
     case manorBeach:
-      sgMail.setApiKey(process.env.VITE_MANOR_BEACH_SENDGRID_API_KEY);
+      // change this to manor beach when set up
+      sgMail.setApiKey(process.env.VITE_SENDGRID_API_KEY);
       break;
     default:
       sgMail.setApiKey(process.env.VITE_SENDGRID_API_KEY);
