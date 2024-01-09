@@ -3,6 +3,7 @@ import { schoolCodesList } from "../school-codes-list/school-codes-list";
 const { manorBeach } = schoolCodesList;
 
 export const getSchoolDatabaseAndUserCollectionIds = (schoolCode) => {
+  if (!schoolCode) return;
   switch (schoolCode) {
     case manorBeach:
       return {
