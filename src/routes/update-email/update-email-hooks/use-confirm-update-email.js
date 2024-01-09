@@ -4,7 +4,10 @@ import useFireSwal from "../../../hooks/use-fire-swal";
 import useConfirmSwal from "../../../hooks/use-confirm-swal";
 
 import { selectUpdateEmailDetails } from "../../../store/update-email/update-email.selector";
-import { selectCurrentUser } from "../../../store/user/user.selector";
+import {
+  selectCurrentUser,
+  selectEnvironmentVariables,
+} from "../../../store/user/user.selector";
 import { updateEmailAsync } from "../../../store/update-email/update-email.slice";
 
 import { validateEmail } from "../../../functions/validate-email";
@@ -23,13 +26,17 @@ const useConfirmUpdateEmail = () => {
 
   const updateEmailDetails = useSelector(selectUpdateEmailDetails);
   const currentUser = useSelector(selectCurrentUser);
+  const environmentVariables = useSelector(selectEnvironmentVariables);
 
   const dispatch = useDispatch();
+  const { databaseId, userCollectionId: collectionId } = environmentVariables;
   const { id, email } = currentUser;
   const { newEmail, password } = updateEmailDetails;
 
   const confirmResult = () => {
-    dispatch(updateEmailAsync({ newEmail, password, id }));
+    dispatch(
+      updateEmailAsync({ id, newEmail, password, databaseId, collectionId })
+    );
   };
 
   const confirmUpdateEmail = () => {

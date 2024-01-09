@@ -73,8 +73,8 @@ const userSlice = createSlice({
         state.isLoading = false;
         state.currentUser = action.payload;
         state.error = null;
-        // const { schoolCode } = state.currentUser;
-        state.environmentVariables = setIds("02mb");
+        const { schoolCode } = state.currentUser;
+        state.environmentVariables = setIds(schoolCode);
       })
       .addCase(signUpAsync.rejected, (state, action) => {
         state.isLoading = false;

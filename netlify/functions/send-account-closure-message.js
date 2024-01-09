@@ -7,7 +7,7 @@ export const handler = async (event) => {
 
   const data = {
     to: message.email,
-    from: process.env.VITE_APP_OWNER_EMAIL,
+    from: message.appOwnerEmail,
     subject:
       "Account Closure Info For Your BREAKFAST & AFTER SCHOOL CLUB Account",
     text: message.accountClosureEmail,

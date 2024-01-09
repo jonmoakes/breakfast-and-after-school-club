@@ -7,9 +7,9 @@ import { SEND_ACCOUNT_CLOSURE_MESSAGE_ENDPOINT } from "../../../netlify/api-endp
 
 export const closeAccountAsync = createAsyncThunk(
   "user/closeAccount",
-  async ({ email, accountClosureEmail }, thunkAPI) => {
+  async ({ email, appOwnerEmail, accountClosureEmail }, thunkAPI) => {
     try {
-      const dataToSend = { email, accountClosureEmail };
+      const dataToSend = { email, appOwnerEmail, accountClosureEmail };
       await axios.post(SEND_ACCOUNT_CLOSURE_MESSAGE_ENDPOINT, {
         message: dataToSend,
       });

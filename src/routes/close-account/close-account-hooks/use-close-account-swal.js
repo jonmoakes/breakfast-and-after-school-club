@@ -30,7 +30,7 @@ const useCloseAccountSwal = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (closeAccountSuccessMessage !== "") {
+    if (closeAccountSuccessMessage) {
       fireSwal(
         "success",
         closeAccountSuccessMessage,
@@ -40,7 +40,7 @@ const useCloseAccountSwal = () => {
         false
       );
       navigate(accountRoute);
-    } else if (closeAccountErrorMessage !== "") {
+    } else if (closeAccountErrorMessage) {
       fireSwal(
         "error",
         errorSendingAccountClosureRequest,

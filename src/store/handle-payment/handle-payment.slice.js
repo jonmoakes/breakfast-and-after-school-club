@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { databases } from "../../utils/appwrite/appwrite-config";
+import { manageDatabaseDocument } from "../../utils/appwrite/appwrite-functions";
 
 import { CREATE_PAYMENT_INTENT_ENDPOINT } from "../../../netlify/api-endpoints/api-endpoints";
 
@@ -47,23 +47,26 @@ export const getPaymentResultAsync = createAsyncThunk(
 
 export const addWalletFundsToDatabaseAsync = createAsyncThunk(
   "addWalletFundsToDatabase",
-  async ({ id, walletFundsToAdd }, thunkAPI) => {
+  async ({ databaseId, collectionId, id, walletFundsToAdd }, thunkAPI) => {
     try {
-      const walletBalanceFromDatabase = await databases.getDocument(
-        import.meta.env.VITE_TEST_SCHOOL_DATABASE_ID,
-        import.meta.env.VITE_USER_COLLECTION_ID,
+      const walletBalanceFromDatabase = await manageDatabaseDocument(
+        "get",
+        databaseId,
+        collectionId,
         id
       );
 
       const { walletBalance } = walletBalanceFromDatabase;
+      const dataToUpdate = {
+        walletBalance: walletBalance + Math.round(walletFundsToAdd * 100),
+      };
 
-      await databases.updateDocument(
-        import.meta.env.VITE_TEST_SCHOOL_DATABASE_ID,
-        import.meta.env.VITE_USER_COLLECTION_ID,
+      await manageDatabaseDocument(
+        "update",
+        databaseId,
+        collectionId,
         id,
-        {
-          walletBalance: walletBalance + Math.round(walletFundsToAdd * 100),
-        }
+        dataToUpdate
       );
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);

@@ -40,6 +40,8 @@ export const manageDatabaseDocument = async (
         documentId,
         data
       );
+    case "get":
+      return await databases.getDocument(databaseId, collectionId, documentId);
     default:
       throw new Error(`Unsupported operation: ${type}`);
   }

@@ -4,9 +4,13 @@ import useConfirmSwal from "../../../hooks/use-confirm-swal";
 import useFireSwal from "../../../hooks/use-fire-swal";
 import useAccountClosureEmail from "./use-account-closure-email";
 
+import {
+  selectCurrentUser,
+  selectEnvironmentVariables,
+} from "../../../store/user/user.selector";
+
 import { closeAccountAsync } from "../../../store/close-account/close-account.slice";
 
-import { selectCurrentUser } from "../../../store/user/user.selector";
 import {
   imSureMessage,
   loseAllAccountDataMessage,
@@ -20,12 +24,15 @@ const useConfirmCloseAccount = () => {
   const { accountClosureEmail } = useAccountClosureEmail();
 
   const currentUser = useSelector(selectCurrentUser);
+  const environmentVariables = useSelector(selectEnvironmentVariables);
+
+  const { appOwnerEmail } = environmentVariables;
 
   const dispatch = useDispatch();
   const { walletBalance, email } = currentUser;
 
   const confirmResult = () => {
-    dispatch(closeAccountAsync({ email, accountClosureEmail }));
+    dispatch(closeAccountAsync({ email, appOwnerEmail, accountClosureEmail }));
   };
 
   const confirmCloseAccount = () => {

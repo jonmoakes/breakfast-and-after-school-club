@@ -1,16 +1,20 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { account, databases } from "../../utils/appwrite/appwrite-config";
+import { account } from "../../utils/appwrite/appwrite-config";
+import { manageDatabaseDocument } from "../../utils/appwrite/appwrite-functions";
 
 export const updateEmailAsync = createAsyncThunk(
   "updateEmail",
-  async ({ newEmail, password, id }, thunkAPI) => {
+  async ({ id, newEmail, password, databaseId, collectionId }, thunkAPI) => {
     try {
+      const documentId = id;
+      const dataToUpdate = { email: newEmail };
       await account.updateEmail(newEmail, password);
-      await databases.updateDocument(
-        import.meta.env.VITE_TEST_SCHOOL_DATABASE_ID,
-        import.meta.env.VITE_USER_COLLECTION_ID,
-        id,
-        { email: newEmail }
+      await manageDatabaseDocument(
+        "update",
+        databaseId,
+        collectionId,
+        documentId,
+        dataToUpdate
       );
       await account.deleteSessions();
     } catch (error) {
