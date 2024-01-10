@@ -1,7 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 
 import useConditionalLogic from "./use-conditional-logic";
-import useGetEnvironmentVariables from "../../../hooks/use-get-environment-variables";
 
 import {
   addSessionBookingInfoAsync,
@@ -9,50 +8,72 @@ import {
   updateUserDocBalanceAsync,
 } from "../../../store/book-session/book-session-thunks";
 
-import { selectCurrentUser } from "../../../store/user/user.selector";
+import {
+  selectCurrentUser,
+  selectEnvironmentVariables,
+} from "../../../store/user/user.selector";
 import { selectChildrenSelectedForBooking } from "../../../store/book-session/book-session.selector";
 import { selectUsersChildren } from "../../../store/get-users-children/get-users-children.selector";
 import { getUsersWalletBalanceAsync } from "../../../store/user/user.actions";
 
 const useConfirmResult = () => {
   const { date } = useConditionalLogic();
-  const { databaseId, userCollectionId: collectionId } =
-    useGetEnvironmentVariables();
 
   const usersChildren = useSelector(selectUsersChildren);
   const childrenSelectedForBooking = useSelector(
     selectChildrenSelectedForBooking
   );
   const currentUser = useSelector(selectCurrentUser);
+  const envVariables = useSelector(selectEnvironmentVariables);
   const dispatch = useDispatch();
 
-  const { id } = currentUser;
+  const { schoolCode, id } = currentUser;
+  const {
+    databaseId,
+    termDatesCollectionId: collectionId,
+    userCollectionId,
+    bookedSessionsCollectionId,
+  } = envVariables;
 
   const confirmResult = (sessionType, price) => {
     dispatch(
-      updateSessionDocAsync({ date, sessionType, childrenSelectedForBooking })
+      updateSessionDocAsync({
+        date,
+        databaseId,
+        collectionId,
+        childrenSelectedForBooking,
+        sessionType,
+      })
     ).then((resultAction) => {
       if (updateSessionDocAsync.fulfilled.match(resultAction)) {
-        dispatch(updateUserDocBalanceAsync({ id, price })).then(
-          (resultAction) => {
-            if (updateUserDocBalanceAsync.fulfilled.match(resultAction)) {
-              dispatch(
-                addSessionBookingInfoAsync({
-                  date,
-                  sessionType,
-                  usersChildren,
-                  childrenSelectedForBooking,
-                })
-              ).then((resultAction) => {
-                if (addSessionBookingInfoAsync.fulfilled.match(resultAction)) {
-                  dispatch(
-                    getUsersWalletBalanceAsync({ id, databaseId, collectionId })
-                  );
-                }
-              });
-            }
+        dispatch(
+          updateUserDocBalanceAsync({
+            schoolCode,
+            id,
+            price,
+            databaseId,
+            userCollectionId,
+          })
+        ).then((resultAction) => {
+          if (updateUserDocBalanceAsync.fulfilled.match(resultAction)) {
+            dispatch(
+              addSessionBookingInfoAsync({
+                usersChildren,
+                date,
+                sessionType,
+                childrenSelectedForBooking,
+                bookedSessionsCollectionId,
+                databaseId,
+              })
+            ).then((resultAction) => {
+              if (addSessionBookingInfoAsync.fulfilled.match(resultAction)) {
+                dispatch(
+                  getUsersWalletBalanceAsync({ id, databaseId, collectionId })
+                );
+              }
+            });
           }
-        );
+        });
       }
     });
   };

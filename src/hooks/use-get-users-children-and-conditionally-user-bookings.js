@@ -16,7 +16,11 @@ const useGetUsersChildrenAndConditionallyUserBookings = () => {
   const envVariables = useSelector(selectEnvironmentVariables);
 
   const { email } = currentUser;
-  const { databaseId, childrenCollectionId: collectionId } = envVariables;
+  const {
+    databaseId,
+    childrenCollectionId: collectionId,
+    bookedSessionsCollectionId,
+  } = envVariables;
 
   const location = useLocation();
   const dispatch = useDispatch();
@@ -33,13 +37,28 @@ const useGetUsersChildrenAndConditionallyUserBookings = () => {
         })
       );
     } else if (path === bookSessionRoute) {
-      dispatch(getUsersChildrenAsync({ email })).then((resultAction) => {
-        if (getUsersChildrenAsync.fulfilled.match(resultAction)) {
-          dispatch(getUserBookingsAsync({ email }));
+      dispatch(getUsersChildrenAsync({ email, databaseId, collectionId })).then(
+        (resultAction) => {
+          if (getUsersChildrenAsync.fulfilled.match(resultAction)) {
+            dispatch(
+              getUserBookingsAsync({
+                email,
+                databaseId,
+                bookedSessionsCollectionId,
+              })
+            );
+          }
         }
-      });
+      );
     }
-  }, [dispatch, email, path, databaseId, collectionId]);
+  }, [
+    dispatch,
+    email,
+    path,
+    databaseId,
+    collectionId,
+    bookedSessionsCollectionId,
+  ]);
 };
 
 export default useGetUsersChildrenAndConditionallyUserBookings;

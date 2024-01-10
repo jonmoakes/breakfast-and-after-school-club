@@ -5,7 +5,7 @@ import useReturnLogic from "../use-return-logic";
 import useSuccessSwal from "./use-success-swal";
 import useUpdateSessionDocErrorSwal from "./use-update-session-doc-error-swal";
 import useUpdateBalanceErrorResetSessionDocSwal from "./use-update-balance-error-reset-session-doc-swal";
-import useAddSessionBookingInfoErrorSwal from "./use-add-session-booking-info-error-swal";
+// import useAddSessionBookingInfoErrorSwal from "./use-add-session-booking-info-error-swal";
 
 import {
   selectUpdateSessionDoc,
@@ -19,8 +19,8 @@ const useGetBookSessionResultSwal = () => {
   const { updateSessionDocErrorSwal } = useUpdateSessionDocErrorSwal();
   const { swalConfirmed, updateBalanceErrorResetSessionDocSwal } =
     useUpdateBalanceErrorResetSessionDocSwal();
-  const { addSessionBookingInfoErrorSwal } =
-    useAddSessionBookingInfoErrorSwal();
+  // const { addSessionBookingInfoErrorSwal } =
+  //   useAddSessionBookingInfoErrorSwal();
 
   const updateSessionDoc = useSelector(selectUpdateSessionDoc);
   const updateUserDocBalance = useSelector(selectUpdateUserDocBalance);
@@ -51,7 +51,8 @@ const useGetBookSessionResultSwal = () => {
       updateBalanceResult === "fulfilled" &&
       addSessionBookingInfoResult === "rejected"
     ) {
-      addSessionBookingInfoErrorSwal();
+      console.log("add session booking info error swal");
+      // addSessionBookingInfoErrorSwal();
     }
   }, [
     noActionsFiredYet,
@@ -62,7 +63,7 @@ const useGetBookSessionResultSwal = () => {
     updateSessionDocErrorSwal,
     updateSessionResult,
     addSessionBookingInfoResult,
-    addSessionBookingInfoErrorSwal,
+    // addSessionBookingInfoErrorSwal,
   ]);
 };
 

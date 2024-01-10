@@ -26,12 +26,13 @@ const useConfirmUpdateEmail = () => {
 
   const updateEmailDetails = useSelector(selectUpdateEmailDetails);
   const currentUser = useSelector(selectCurrentUser);
-  const environmentVariables = useSelector(selectEnvironmentVariables);
+  const envVariables = useSelector(selectEnvironmentVariables);
 
   const dispatch = useDispatch();
-  const { databaseId, userCollectionId: collectionId } = environmentVariables;
+
   const { id, email } = currentUser;
   const { newEmail, password } = updateEmailDetails;
+  const { databaseId, userCollectionId: collectionId } = envVariables;
 
   const confirmResult = () => {
     dispatch(

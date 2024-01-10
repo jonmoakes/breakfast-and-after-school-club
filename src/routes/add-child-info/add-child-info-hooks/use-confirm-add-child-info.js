@@ -27,15 +27,14 @@ const useConfirmAddChildInfo = () => {
   const childInfo = useSelector(selectAddChildInfo);
   const currentUser = useSelector(selectCurrentUser);
   const usersChildren = useSelector(selectUsersChildren);
-  const environmentVariables = useSelector(selectEnvironmentVariables);
+  const envVariables = useSelector(selectEnvironmentVariables);
 
   const dispatch = useDispatch();
   const { childName, age } = childInfo;
   const { name, email } = currentUser;
 
   //childrenCollectionId is being renamed to collectionId
-  const { databaseId, childrenCollectionId: collectionId } =
-    environmentVariables;
+  const { databaseId, childrenCollectionId: collectionId } = envVariables;
 
   const confirmResult = () => {
     dispatch(
@@ -48,7 +47,6 @@ const useConfirmAddChildInfo = () => {
       ? usersChildren.map((child) => child.childName)
       : [];
 
-  console.log(usersChildrensNames);
   const isCaseSensitiveMatch = (array, searchString) => {
     const lowerSearchString = searchString.toLowerCase();
     return array.includes(lowerSearchString);

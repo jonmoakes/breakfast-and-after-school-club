@@ -21,9 +21,9 @@ const useConfirmUpdateChildInfo = () => {
   const { fireSwal } = useFireSwal();
 
   const originalChildInfo = useSelector(selectEditChildInfo);
-  const environmentVariables = useSelector(selectEnvironmentVariables);
-  const { databaseId, childrenCollectionId: collectionId } =
-    environmentVariables;
+  const envVariables = useSelector(selectEnvironmentVariables);
+
+  const { databaseId, childrenCollectionId: collectionId } = envVariables;
 
   const {
     $id,

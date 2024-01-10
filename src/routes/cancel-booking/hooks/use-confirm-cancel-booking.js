@@ -2,37 +2,39 @@ import { useSelector, useDispatch } from "react-redux";
 
 import useConfirmSwal from "../../../hooks/use-confirm-swal";
 import useGetRefundPrice from "./use-get-refund-price";
-import useGetEnvironmentVariables from "../../../hooks/use-get-environment-variables";
 
 import { selectUserBookingToDelete } from "../../../store/user-booking-to-delete/user-booking-to-delete.selector";
 import { selectUsersChildren } from "../../../store/get-users-children/get-users-children.selector";
-import { selectCurrentUser } from "../../../store/user/user.selector";
+import {
+  selectCurrentUser,
+  selectEnvironmentVariables,
+} from "../../../store/user/user.selector";
 import {
   deleteUserBookingAsync,
   refundUserAsync,
   updateSessionSpacesDocAsync,
 } from "../../../store/user-booking-to-delete/user-booking-to-delete.slice";
+import { getUsersWalletBalanceAsync } from "../../../store/user/user.actions";
 import {
   confirmCancelBookingMessage,
   fundsReaddedToAccountMessage,
   imSureMessage,
 } from "../../../strings/strings";
-import { getUsersWalletBalanceAsync } from "../../../store/user/user.actions";
 
 const useConfirmDeleteChildInfo = () => {
   const { confirmSwal } = useConfirmSwal();
   let { refundPrice, totalRefundPrice, numberOfChildrenInBooking } =
     useGetRefundPrice();
-  const { databaseId, userCollectionId: collectionId } =
-    useGetEnvironmentVariables();
 
   const currentUser = useSelector(selectCurrentUser);
   const userBookingToDelete = useSelector(selectUserBookingToDelete);
   const usersChildren = useSelector(selectUsersChildren);
+  const envVariables = useSelector(selectEnvironmentVariables);
 
   const dispatch = useDispatch();
   const { id } = currentUser;
   const { date, sessionType } = userBookingToDelete || {};
+  const { databaseId, userCollectionId: collectionId } = envVariables;
 
   refundPrice = usersChildren.length === 1 ? refundPrice : totalRefundPrice;
 

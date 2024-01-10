@@ -1,5 +1,5 @@
 import useFireSwal from "../../../../hooks/use-fire-swal";
-import useSendEmailBookingConfirmation from "../emails/use-send-email-booking-confirmation";
+// import useSendEmailBookingConfirmation from "../emails/use-send-email-booking-confirmation";
 
 import {
   sessionBookedMessage,
@@ -8,7 +8,7 @@ import {
 
 const useSuccessSwal = () => {
   const { fireSwal } = useFireSwal();
-  const { sendEmailBookingConfirmation } = useSendEmailBookingConfirmation();
+  // const { sendEmailBookingConfirmation } = useSendEmailBookingConfirmation();
 
   const successSwal = () => {
     fireSwal(
@@ -20,7 +20,8 @@ const useSuccessSwal = () => {
       false
     ).then((isConfirmed) => {
       if (isConfirmed) {
-        sendEmailBookingConfirmation();
+        console.log("send email here when refactored");
+        // sendEmailBookingConfirmation();
       }
     });
   };

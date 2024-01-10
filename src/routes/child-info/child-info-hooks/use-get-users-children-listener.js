@@ -12,11 +12,10 @@ import { setUsersChildren } from "../../../store/get-users-children/get-users-ch
 const useGetUsersChildrenListener = () => {
   const currentUser = useSelector(selectCurrentUser);
   const usersChildren = useSelector(selectUsersChildren);
-  const environmentVariables = useSelector(selectEnvironmentVariables);
+  const envVariables = useSelector(selectEnvironmentVariables);
   const dispatch = useDispatch();
 
-  const { databaseId, childrenCollectionId: collectionId } =
-    environmentVariables;
+  const { databaseId, childrenCollectionId: collectionId } = envVariables;
 
   useEffect(() => {
     if (!currentUser) return;

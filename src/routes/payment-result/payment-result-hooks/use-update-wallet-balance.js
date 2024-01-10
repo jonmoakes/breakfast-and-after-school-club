@@ -3,10 +3,12 @@ import { useSelector, useDispatch } from "react-redux";
 import useFireSwal from "../../../hooks/use-fire-swal";
 import useHamburgerHandlerNavigate from "../../../hooks/use-hamburger-handler-navigate";
 import useSendUpdateBalanceErrorEmail from "./use-send-update-balance-error-email";
-import useGetEnvironmentVariables from "../../../hooks/use-get-environment-variables";
 
 import { selectWalletFundsToAdd } from "../../../store/wallet-funds-to-add/wallet-funds-to-add.selector";
-import { selectCurrentUser } from "../../../store/user/user.selector";
+import {
+  selectCurrentUser,
+  selectEnvironmentVariables,
+} from "../../../store/user/user.selector";
 import { addWalletFundsToDatabaseAsync } from "../../../store/handle-payment/handle-payment.slice";
 import { getUsersWalletBalanceAsync } from "../../../store/user/user.actions";
 
@@ -20,11 +22,12 @@ const useUpdateWalletBalance = () => {
   const { fireSwal } = useFireSwal();
   const { hamburgerHandlerNavigate } = useHamburgerHandlerNavigate();
   const { sendUpdateBalanceErrorEmail } = useSendUpdateBalanceErrorEmail();
-  const { databaseId, userCollectionId: collectionId } =
-    useGetEnvironmentVariables();
 
   const currentUser = useSelector(selectCurrentUser);
   const walletFundsToAdd = useSelector(selectWalletFundsToAdd);
+  const envVariables = useSelector(selectEnvironmentVariables);
+
+  const { databaseId, userCollectionId: collectionId } = envVariables;
 
   const dispatch = useDispatch();
   const { id, email } = currentUser;

@@ -5,15 +5,26 @@ import { getUserDocument } from "../user/functions";
 
 import { lastMinuteNoSessionsMessage } from "../../strings/strings";
 import { createChildrenToAddToBooking } from "../../functions/create-children-to-add-to-booking";
+import {
+  listDocumentsByQuery,
+  manageDatabaseDocument,
+} from "../../utils/appwrite/appwrite-functions";
 
 export const updateSessionDocAsync = createAsyncThunk(
   "updateSessionDoc",
-  async ({ date, sessionType, childrenSelectedForBooking }, thunkAPI) => {
+  async (
+    { date, databaseId, collectionId, childrenSelectedForBooking, sessionType },
+    thunkAPI
+  ) => {
     try {
-      const getChosenDateDocument = await databases.listDocuments(
-        import.meta.env.VITE_TEST_SCHOOL_DATABASE_ID,
-        import.meta.env.VITE_2023_2024_TERM_DATES_COLLECTION_ID,
-        [Query.equal("date", date)]
+      const queryIndex = "date";
+      const queryValue = date;
+
+      const getChosenDateDocument = await listDocumentsByQuery(
+        databaseId,
+        collectionId,
+        queryIndex,
+        queryValue
       );
 
       const dateDocument = getChosenDateDocument.documents;
@@ -68,11 +79,15 @@ export const updateSessionDocAsync = createAsyncThunk(
           };
         }
 
-        await databases.updateDocument(
-          import.meta.env.VITE_TEST_SCHOOL_DATABASE_ID,
-          import.meta.env.VITE_2023_2024_TERM_DATES_COLLECTION_ID,
-          $id,
-          updatedSessionSpaces
+        const documentId = $id;
+        const dataToUpdate = updatedSessionSpaces;
+
+        await manageDatabaseDocument(
+          "update",
+          databaseId,
+          collectionId,
+          documentId,
+          dataToUpdate
         );
       }
     } catch (error) {
@@ -83,19 +98,32 @@ export const updateSessionDocAsync = createAsyncThunk(
 
 export const updateUserDocBalanceAsync = createAsyncThunk(
   "updateUserDocBalance",
-  async ({ id, price }, thunkAPI) => {
+  async ({ schoolCode, id, price, databaseId, userCollectionId }, thunkAPI) => {
     try {
-      const userDocument = await getUserDocument();
+      const userDocument = await getUserDocument(schoolCode);
       const { total, documents } = userDocument;
 
       if (total && documents.length) {
         const { walletBalance } = documents[0];
-        await databases.updateDocument(
-          import.meta.env.VITE_TEST_SCHOOL_DATABASE_ID,
-          import.meta.env.VITE_USER_COLLECTION_ID,
-          id,
-          { walletBalance: walletBalance - price }
+
+        const documentId = id;
+        const dataToUpdate = { walletBalance: walletBalance - price };
+        const collectionId = userCollectionId;
+
+        await manageDatabaseDocument(
+          "update",
+          databaseId,
+          collectionId,
+          documentId,
+          dataToUpdate
         );
+
+        // await databases.updateDocument(
+        //   import.meta.env.VITE_TEST_SCHOOL_DATABASE_ID,
+        //   import.meta.env.VITE_USER_COLLECTION_ID,
+        //   id,
+        //   { walletBalance: walletBalance - price }
+        // );
       }
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
@@ -167,7 +195,14 @@ export const resetSessionDocAsync = createAsyncThunk(
 export const addSessionBookingInfoAsync = createAsyncThunk(
   "addSessionBookingInfo",
   async (
-    { date, sessionType, usersChildren, childrenSelectedForBooking },
+    {
+      usersChildren,
+      date,
+      sessionType,
+      childrenSelectedForBooking,
+      bookedSessionsCollectionId,
+      databaseId,
+    },
     thunkAPI
   ) => {
     // gets the child name if user has only one child;
@@ -190,12 +225,24 @@ export const addSessionBookingInfoAsync = createAsyncThunk(
         parentName,
       };
 
-      await databases.createDocument(
-        import.meta.env.VITE_TEST_SCHOOL_DATABASE_ID,
-        import.meta.env.VITE_BOOKED_SESSIONS_COLLECTION_ID,
-        ID.unique(),
-        sessionBooking
+      const collectionId = bookedSessionsCollectionId;
+      const documentId = ID.unique();
+      const data = sessionBooking;
+
+      await manageDatabaseDocument(
+        "create",
+        databaseId,
+        collectionId,
+        documentId,
+        data
       );
+
+      // await databases.createDocument(
+      //   import.meta.env.VITE_TEST_SCHOOL_DATABASE_ID,
+      //   import.meta.env.VITE_BOOKED_SESSIONS_COLLECTION_ID,
+      //   ID.unique(),
+      //   sessionBooking
+      // );
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }

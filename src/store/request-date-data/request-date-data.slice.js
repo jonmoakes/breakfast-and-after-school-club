@@ -1,16 +1,25 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { databases } from "../../utils/appwrite/appwrite-config";
-import { Query } from "appwrite";
+import { listDocumentsByQuery } from "../../utils/appwrite/appwrite-functions";
 
 export const requestDateDataAsync = createAsyncThunk(
   "requestDateData",
-  async ({ chosenDate }, thunkAPI) => {
+  async ({ databaseId, collectionId, chosenDate }, thunkAPI) => {
     try {
-      const getChosenDateDocument = await databases.listDocuments(
-        import.meta.env.VITE_TEST_SCHOOL_DATABASE_ID,
-        import.meta.env.VITE_2023_2024_TERM_DATES_COLLECTION_ID,
-        [Query.equal("date", chosenDate)]
+      const queryIndex = "date";
+      const queryValue = chosenDate;
+
+      const getChosenDateDocument = await listDocumentsByQuery(
+        databaseId,
+        collectionId,
+        queryIndex,
+        queryValue
       );
+
+      // const getChosenDateDocument = await databases.listDocuments(
+      //   import.meta.env.VITE_TEST_SCHOOL_DATABASE_ID,
+      //   import.meta.env.VITE_2023_2024_TERM_DATES_COLLECTION_ID,
+      //   [Query.equal("date", chosenDate)]
+      // );
       const { documents } = getChosenDateDocument;
       if (!documents.length) {
         throw new Error("is not available");

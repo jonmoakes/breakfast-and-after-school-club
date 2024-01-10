@@ -3,11 +3,11 @@ import { useDispatch, useSelector } from "react-redux";
 
 import useConfirmSwal from "../../../hooks/use-confirm-swal";
 import useFireSwal from "../../../hooks/use-fire-swal";
-import useGetEnvironmentVariables from "../../../hooks/use-get-environment-variables";
 
 import {
   selectCurrentUser,
   selectError,
+  selectEnvironmentVariables,
 } from "../../../store/user/user.selector";
 import { getUsersWalletBalanceAsync } from "../../../store/user/user.actions";
 import { resetErrorMessage } from "../../../store/user/user.slice";
@@ -22,13 +22,14 @@ import {
 const useGetWalletBalance = () => {
   const { confirmSwal } = useConfirmSwal();
   const { fireSwal } = useFireSwal();
-  const { databaseId, userCollectionId: collectionId } =
-    useGetEnvironmentVariables();
 
   const currentUser = useSelector(selectCurrentUser);
   const error = useSelector(selectError);
+  const envVariables = useSelector(selectEnvironmentVariables);
 
   const { id } = currentUser;
+  //userCollectionId is being renamed to collectionId
+  const { databaseId, userCollectionId: collectionId } = envVariables;
   const dispatch = useDispatch();
 
   useEffect(() => {

@@ -15,10 +15,9 @@ const useConfirmDeleteChildInfo = () => {
   const { confirmSwal } = useConfirmSwal();
 
   const childInfo = useSelector(selectDeleteChildInfo);
-  const environmentVariables = useSelector(selectEnvironmentVariables);
+  const envVariables = useSelector(selectEnvironmentVariables);
 
-  const { databaseId, childrenCollectionId: collectionId } =
-    environmentVariables;
+  const { databaseId, childrenCollectionId: collectionId } = envVariables;
   const dispatch = useDispatch();
 
   const confirmResult = () => {
