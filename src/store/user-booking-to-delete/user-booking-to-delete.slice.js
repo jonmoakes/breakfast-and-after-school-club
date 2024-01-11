@@ -1,28 +1,40 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { databases } from "../../utils/appwrite/appwrite-config";
-import { Query } from "appwrite";
+import {
+  listDocumentsByQuery,
+  manageDatabaseDocument,
+} from "../../utils/appwrite/appwrite-functions";
 
 export const deleteUserBookingAsync = createAsyncThunk(
   "deleteUserbooking",
-  async ({ userBookingToDelete }, thunkAPI) => {
+  async (
+    { userBookingToDelete, bookedSessionsCollectionId, databaseId },
+    thunkAPI
+  ) => {
     try {
       const { $id } = userBookingToDelete;
+      const collectionId = bookedSessionsCollectionId;
+      const queryIndex = "$id";
+      const queryValue = $id;
+      const documentId = $id;
+      const data = userBookingToDelete;
 
-      const getBookingDocuments = await databases.listDocuments(
-        import.meta.env.VITE_TEST_SCHOOL_DATABASE_ID,
-        import.meta.env.VITE_BOOKED_SESSIONS_COLLECTION_ID,
-        [Query.equal("$id", $id)]
+      const getBookingDocuments = await listDocumentsByQuery(
+        databaseId,
+        collectionId,
+        queryIndex,
+        queryValue
       );
 
       const { total } = getBookingDocuments;
 
       if (!total) return;
 
-      await databases.deleteDocument(
-        import.meta.env.VITE_TEST_SCHOOL_DATABASE_ID,
-        import.meta.env.VITE_BOOKED_SESSIONS_COLLECTION_ID,
-        $id,
-        userBookingToDelete
+      await manageDatabaseDocument(
+        "delete",
+        databaseId,
+        collectionId,
+        documentId,
+        data
       );
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
@@ -32,12 +44,26 @@ export const deleteUserBookingAsync = createAsyncThunk(
 
 export const updateSessionSpacesDocAsync = createAsyncThunk(
   "updateSessionSpacesDoc",
-  async ({ date, sessionType, numberOfChildrenInBooking }, thunkAPI) => {
+  async (
+    {
+      termDatesCollectionId,
+      date,
+      databaseId,
+      sessionType,
+      numberOfChildrenInBooking,
+    },
+    thunkAPI
+  ) => {
     try {
-      const getDateDocumentToUpdate = await databases.listDocuments(
-        import.meta.env.VITE_TEST_SCHOOL_DATABASE_ID,
-        import.meta.env.VITE_2023_2024_TERM_DATES_COLLECTION_ID,
-        [Query.equal("date", date)]
+      const collectionId = termDatesCollectionId;
+      const queryIndex = "date";
+      const queryValue = date;
+
+      const getDateDocumentToUpdate = await listDocumentsByQuery(
+        databaseId,
+        collectionId,
+        queryIndex,
+        queryValue
       );
 
       const dateDocument = getDateDocumentToUpdate.documents;
@@ -75,11 +101,15 @@ export const updateSessionSpacesDocAsync = createAsyncThunk(
           };
         }
 
-        await databases.updateDocument(
-          import.meta.env.VITE_TEST_SCHOOL_DATABASE_ID,
-          import.meta.env.VITE_2023_2024_TERM_DATES_COLLECTION_ID,
-          $id,
-          updatedSessionSpaces
+        const documentId = $id;
+        const data = updatedSessionSpaces;
+
+        await manageDatabaseDocument(
+          "update",
+          databaseId,
+          collectionId,
+          documentId,
+          data
         );
       }
     } catch (error) {
@@ -90,23 +120,32 @@ export const updateSessionSpacesDocAsync = createAsyncThunk(
 
 export const refundUserAsync = createAsyncThunk(
   "refundUser",
-  async ({ id, refundPrice }, thunkAPI) => {
+  async ({ id, databaseId, collectionId, refundPrice }, thunkAPI) => {
     try {
-      const getUserDocument = await databases.listDocuments(
-        import.meta.env.VITE_TEST_SCHOOL_DATABASE_ID,
-        import.meta.env.VITE_USER_COLLECTION_ID,
-        [Query.equal("id", id)]
+      const queryIndex = "id";
+      const queryValue = id;
+      const documentId = id;
+
+      const getUserDocument = await listDocumentsByQuery(
+        databaseId,
+        collectionId,
+        queryIndex,
+        queryValue
       );
 
       const { total, documents } = getUserDocument;
 
       if (total && documents.length) {
         const { walletBalance } = documents[0];
-        await databases.updateDocument(
-          import.meta.env.VITE_TEST_SCHOOL_DATABASE_ID,
-          import.meta.env.VITE_USER_COLLECTION_ID,
-          id,
-          { walletBalance: walletBalance + refundPrice }
+
+        const data = { walletBalance: walletBalance + refundPrice };
+
+        await manageDatabaseDocument(
+          "update",
+          databaseId,
+          collectionId,
+          documentId,
+          data
         );
       }
     } catch (error) {

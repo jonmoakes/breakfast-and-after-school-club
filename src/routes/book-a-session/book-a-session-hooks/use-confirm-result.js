@@ -27,11 +27,11 @@ const useConfirmResult = () => {
   const envVariables = useSelector(selectEnvironmentVariables);
   const dispatch = useDispatch();
 
-  const { schoolCode, id } = currentUser;
+  const { id } = currentUser;
   const {
     databaseId,
-    termDatesCollectionId: collectionId,
-    userCollectionId,
+    termDatesCollectionId,
+    userCollectionId: collectionId,
     bookedSessionsCollectionId,
   } = envVariables;
 
@@ -40,7 +40,7 @@ const useConfirmResult = () => {
       updateSessionDocAsync({
         date,
         databaseId,
-        collectionId,
+        termDatesCollectionId,
         childrenSelectedForBooking,
         sessionType,
       })
@@ -48,11 +48,10 @@ const useConfirmResult = () => {
       if (updateSessionDocAsync.fulfilled.match(resultAction)) {
         dispatch(
           updateUserDocBalanceAsync({
-            schoolCode,
             id,
-            price,
             databaseId,
-            userCollectionId,
+            collectionId,
+            price,
           })
         ).then((resultAction) => {
           if (updateUserDocBalanceAsync.fulfilled.match(resultAction)) {
@@ -68,7 +67,11 @@ const useConfirmResult = () => {
             ).then((resultAction) => {
               if (addSessionBookingInfoAsync.fulfilled.match(resultAction)) {
                 dispatch(
-                  getUsersWalletBalanceAsync({ id, databaseId, collectionId })
+                  getUsersWalletBalanceAsync({
+                    id,
+                    databaseId,
+                    collectionId,
+                  })
                 );
               }
             });

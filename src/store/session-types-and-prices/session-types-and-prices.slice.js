@@ -1,16 +1,17 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { databases } from "../../utils/appwrite/appwrite-config";
 
 import { createSessionTypesAndPricesObject } from "../../functions/create-session-types-and-prices-object";
+import { manageDatabaseDocument } from "../../utils/appwrite/appwrite-functions";
 
 export const getSessionPricesAsync = createAsyncThunk(
   "getSessionPrices",
-  async (_, thunkAPI) => {
+  async ({ databaseId, collectionId, documentId }, thunkAPI) => {
     try {
-      const getPrices = await databases.getDocument(
-        `${import.meta.env.VITE_TEST_SCHOOL_DATABASE_ID}`,
-        `${import.meta.env.VITE_SESSION_PRICES_COLLECTION_ID}`,
-        `${import.meta.env.VITE_SESSION_PRICES_DOCUMENT_ID}`
+      const getPrices = await manageDatabaseDocument(
+        "get",
+        databaseId,
+        collectionId,
+        documentId
       );
       const {
         morningSessionPrice,

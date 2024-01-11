@@ -1,7 +1,7 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { databases } from "../../utils/appwrite/appwrite-config";
 import { Query, ID } from "appwrite";
-import { getUserDocument } from "../user/functions";
+// import { getUserDocument } from "../user/functions";
 
 import { lastMinuteNoSessionsMessage } from "../../strings/strings";
 import { createChildrenToAddToBooking } from "../../functions/create-children-to-add-to-booking";
@@ -13,10 +13,17 @@ import {
 export const updateSessionDocAsync = createAsyncThunk(
   "updateSessionDoc",
   async (
-    { date, databaseId, collectionId, childrenSelectedForBooking, sessionType },
+    {
+      date,
+      databaseId,
+      termDatesCollectionId,
+      childrenSelectedForBooking,
+      sessionType,
+    },
     thunkAPI
   ) => {
     try {
+      const collectionId = termDatesCollectionId;
       const queryIndex = "date";
       const queryValue = date;
 
@@ -98,17 +105,26 @@ export const updateSessionDocAsync = createAsyncThunk(
 
 export const updateUserDocBalanceAsync = createAsyncThunk(
   "updateUserDocBalance",
-  async ({ schoolCode, id, price, databaseId, userCollectionId }, thunkAPI) => {
+  async ({ id, databaseId, collectionId, price }, thunkAPI) => {
     try {
-      const userDocument = await getUserDocument(schoolCode);
+      // const userDocument = await getUserDocument(schoolCode);
+      const queryIndex = "$id";
+      const queryValue = id;
+      const documentId = id;
+
+      const userDocument = await listDocumentsByQuery(
+        databaseId,
+        collectionId,
+        queryIndex,
+        queryValue
+      );
+
       const { total, documents } = userDocument;
 
       if (total && documents.length) {
         const { walletBalance } = documents[0];
 
-        const documentId = id;
         const dataToUpdate = { walletBalance: walletBalance - price };
-        const collectionId = userCollectionId;
 
         await manageDatabaseDocument(
           "update",
@@ -117,13 +133,6 @@ export const updateUserDocBalanceAsync = createAsyncThunk(
           documentId,
           dataToUpdate
         );
-
-        // await databases.updateDocument(
-        //   import.meta.env.VITE_TEST_SCHOOL_DATABASE_ID,
-        //   import.meta.env.VITE_USER_COLLECTION_ID,
-        //   id,
-        //   { walletBalance: walletBalance - price }
-        // );
       }
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);

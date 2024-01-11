@@ -34,7 +34,7 @@ export const setEnvironmentVariables = (schoolCode) => {
         sessionPricesCollectionId: import.meta.env
           .VITE_TEST_SCHOOL_SESSION_PRICES_COLLECTION_ID,
         sessionPricesDocumentId: import.meta.env
-          .VITE_MANOR_BEACH_SESSION_PRICES_DOCUMENT_ID,
+          .VITE_TEST_SCHOOL_SESSION_PRICES_DOCUMENT_ID,
         childrenCollectionId: import.meta.env
           .VITE_TEST_SCHOOL_CHILDREN_COLLECTION_ID,
         bookedSessionsCollectionId: import.meta.env

@@ -165,6 +165,7 @@ export const getUsersWalletBalanceAsync = createAsyncThunk(
       );
 
       const { documents, total } = getUsersDocument;
+
       if (!total) return;
 
       const { walletBalance } = documents[0];

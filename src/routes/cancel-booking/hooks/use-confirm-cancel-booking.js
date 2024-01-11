@@ -34,40 +34,51 @@ const useConfirmDeleteChildInfo = () => {
   const dispatch = useDispatch();
   const { id } = currentUser;
   const { date, sessionType } = userBookingToDelete || {};
-  const { databaseId, userCollectionId: collectionId } = envVariables;
+  const {
+    databaseId,
+    userCollectionId: collectionId,
+    bookedSessionsCollectionId,
+    termDatesCollectionId,
+  } = envVariables;
 
   refundPrice = usersChildren.length === 1 ? refundPrice : totalRefundPrice;
 
   const confirmResult = () => {
-    dispatch(deleteUserBookingAsync({ userBookingToDelete })).then(
-      (resultAction) => {
-        if (deleteUserBookingAsync.fulfilled.match(resultAction)) {
-          dispatch(
-            updateSessionSpacesDocAsync({
-              date,
-              sessionType,
-              numberOfChildrenInBooking,
-            })
-          ).then((resultAction) => {
-            if (updateSessionSpacesDocAsync.fulfilled.match(resultAction)) {
-              dispatch(refundUserAsync({ id, refundPrice })).then(
-                (resultAction) => {
-                  if (refundUserAsync.fulfilled.match(resultAction)) {
-                    dispatch(
-                      getUsersWalletBalanceAsync({
-                        id,
-                        databaseId,
-                        collectionId,
-                      })
-                    );
-                  }
-                }
-              );
-            }
-          });
-        }
+    dispatch(
+      deleteUserBookingAsync({
+        userBookingToDelete,
+        bookedSessionsCollectionId,
+        databaseId,
+      })
+    ).then((resultAction) => {
+      if (deleteUserBookingAsync.fulfilled.match(resultAction)) {
+        dispatch(
+          updateSessionSpacesDocAsync({
+            termDatesCollectionId,
+            date,
+            databaseId,
+            sessionType,
+            numberOfChildrenInBooking,
+          })
+        ).then((resultAction) => {
+          if (updateSessionSpacesDocAsync.fulfilled.match(resultAction)) {
+            dispatch(
+              refundUserAsync({ id, databaseId, collectionId, refundPrice })
+            ).then((resultAction) => {
+              if (refundUserAsync.fulfilled.match(resultAction)) {
+                dispatch(
+                  getUsersWalletBalanceAsync({
+                    id,
+                    databaseId,
+                    collectionId,
+                  })
+                );
+              }
+            });
+          }
+        });
       }
-    );
+    });
   };
 
   const confirmCancelBooking = () => {
