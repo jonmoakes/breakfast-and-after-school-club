@@ -3,9 +3,11 @@ import axios from "axios";
 
 import { emailToSend, cancellationEmailToSend } from "./email-to-send";
 
-import { SEND_EMAIL_ENDPOINT } from "../../../netlify/api-endpoints/api-endpoints";
+import {
+  SEND_EMAIL_ENDPOINT,
+  SEND_EMAIL_WITH_ERROR_ENDPOINT,
+} from "../../../netlify/api-endpoints/api-endpoints";
 
-// sends the user a copy of their booking details via email
 export const sendEmailBookingConfirmationAsync = createAsyncThunk(
   "sendEmailBookingConfirmation",
   async (
@@ -82,12 +84,13 @@ export const sendBookingCancellationConfirmationEmailAsync = createAsyncThunk(
 
 export const sendEmailWithErrorAsync = createAsyncThunk(
   "sendEmailWithError",
-  async ({ subject, message }, thunkAPI) => {
+  async ({ appOwnerEmail, subject, message }, thunkAPI) => {
     try {
-      const email = import.meta.env.VITE_APP_OWNER_EMAIL;
+      const appAdminEmail = import.meta.env.VITE_APP_ADMIN_EMAIL;
 
-      const response = await axios.post(SEND_EMAIL_ENDPOINT, {
-        email,
+      const response = await axios.post(SEND_EMAIL_WITH_ERROR_ENDPOINT, {
+        appOwnerEmail,
+        appAdminEmail,
         subject,
         message,
       });

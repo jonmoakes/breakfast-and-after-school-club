@@ -3,11 +3,13 @@ import sgMail from "@sendgrid/mail";
 sgMail.setApiKey(process.env.VITE_SENDGRID_API_KEY);
 
 export const handler = async (event) => {
-  const { email, subject, message } = JSON.parse(event.body);
+  const { appOwnerEmail, appAdminEmail, subject, message } = JSON.parse(
+    event.body
+  );
 
   const data = {
-    to: email,
-    from: process.env.VITE_APP_ADMIN_EMAIL,
+    to: appOwnerEmail,
+    from: appAdminEmail,
     subject,
     text: message,
   };

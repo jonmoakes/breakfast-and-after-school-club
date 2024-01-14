@@ -8,11 +8,11 @@ export const setEnvironmentVariables = (schoolCode) => {
       return {
         projectId: import.meta.env.VITE_MANOR_BEACH_PROJECT_ID,
         databaseId: import.meta.env.VITE_MANOR_BEACH_DATABASE_ID,
-        appOwnerEmail: import.meta.env.VITE_MANOR_BEACH_APP_OWNER_EMAIL,
+        appOwnerEmail: import.meta.env.VITE_MANOR_BEACH_SCHOOL_EMAIL,
         appOwnerId: import.meta.env.VITE_MANOR_BEACH_APP_OWNER_ID,
         userCollectionId: import.meta.env.VITE_MANOR_BEACH_USER_COLLECTION_ID,
         termDatesCollectionId: import.meta.env
-          .VITE_MANOR_BEACH_2023_2024_TERM_DATES_COLLECTION_ID,
+          .VITE_MANOR_BEACH_TERM_DATES_COLLECTION_ID,
         sessionPricesCollectionId: import.meta.env
           .VITE_MANOR_BEACH_SESSION_PRICES_COLLECTION_ID,
         sessionPricesDocumentId: import.meta.env
@@ -26,11 +26,11 @@ export const setEnvironmentVariables = (schoolCode) => {
       return {
         projectId: import.meta.env.VITE_TEST_SCHOOL_PROJECT_ID,
         databaseId: import.meta.env.VITE_TEST_SCHOOL_DATABASE_ID,
-        appOwnerEmail: import.meta.env.VITE_TEST_SCHOOL_APP_OWNER_EMAIL,
+        appOwnerEmail: import.meta.env.VITE_TEST_SCHOOL_SCHOOL_EMAIL,
         appOwnerId: import.meta.env.VITE_TEST_SCHOOL_APP_OWNER_ID,
         userCollectionId: import.meta.env.VITE_TEST_SCHOOL_USER_COLLECTION_ID,
         termDatesCollectionId: import.meta.env
-          .VITE_TEST_SCHOOL_2023_2024_TERM_DATES_COLLECTION_ID,
+          .VITE_TEST_SCHOOL_TERM_DATES_COLLECTION_ID,
         sessionPricesCollectionId: import.meta.env
           .VITE_TEST_SCHOOL_SESSION_PRICES_COLLECTION_ID,
         sessionPricesDocumentId: import.meta.env

@@ -1,6 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
 
-import useConditionalLogic from "../use-return-logic";
 import useFireSwal from "../../../../hooks/use-fire-swal";
 import useHamburgerHandlerNavigate from "../../../../hooks/use-hamburger-handler-navigate";
 
@@ -9,8 +8,8 @@ import {
   selectSessionType,
 } from "../../../../store/book-session/book-session.selector";
 import { selectUsersChildren } from "../../../../store/get-users-children/get-users-children.selector";
+import { selectEnvironmentVariables } from "../../../../store/user/user.selector";
 import { sendEmailWithErrorAsync } from "../../../../store/send-email/send-email-thunks";
-import { setContactFormDetailsWhenBookingError } from "../../../../store/contact-form/contact-form.slice";
 
 import {
   contactRoute,
@@ -20,8 +19,7 @@ import {
 
 import { createChildrenToAddToBooking } from "../../../../functions/create-children-to-add-to-booking";
 
-const useSendAddBookingInfoErrorEmail = () => {
-  const { date } = useConditionalLogic();
+const useSendAddBookingInfoErrorEmail = (date) => {
   const { fireSwal } = useFireSwal();
   const { hamburgerHandlerNavigate } = useHamburgerHandlerNavigate();
 
@@ -30,6 +28,7 @@ const useSendAddBookingInfoErrorEmail = () => {
   );
   const sessionType = useSelector(selectSessionType);
   const usersChildren = useSelector(selectUsersChildren);
+  const envVariables = useSelector(selectEnvironmentVariables);
   const dispatch = useDispatch();
 
   const childName = usersChildren.length ? usersChildren[0].childName : "";
@@ -37,6 +36,7 @@ const useSendAddBookingInfoErrorEmail = () => {
   const parentName = usersChildren.length ? usersChildren[0].parentName : "";
   const oneChildChosen = childrenSelectedForBooking.join(" ");
   const namesToAddToBooking = childrenSelectedForBooking.join(", ");
+  const { appOwnerEmail } = envVariables;
 
   const childrenInBooking = createChildrenToAddToBooking(
     childrenSelectedForBooking,
@@ -50,14 +50,8 @@ const useSendAddBookingInfoErrorEmail = () => {
 
   const message = `Error Adding The Following Booking To The Database. Please Add Manually.\n_____________\n\nSession Booking Data:\n\nDate:\n${date}\n\nSession:\n${sessionType}\n\nChildren In Booking:\n${childrenInBooking}\n\nParent Email:\n${parentEmail}\n\nParent Name:\n${parentName}`;
 
-  const dataToSendToContactForm = {
-    name: "Email Failed To Send Error",
-    email: "info@breakfast-and-afterschool-club.com",
-    message,
-  };
-
   const sendAddBookingInfoErrorEmail = () => {
-    dispatch(sendEmailWithErrorAsync({ subject, message })).then(
+    dispatch(sendEmailWithErrorAsync({ appOwnerEmail, subject, message })).then(
       (resultAction) => {
         if (sendEmailWithErrorAsync.fulfilled.match(resultAction)) {
           hamburgerHandlerNavigate(userBookingsRoute);
@@ -71,9 +65,6 @@ const useSendAddBookingInfoErrorEmail = () => {
             false
           ).then((isConfirmed) => {
             if (isConfirmed) {
-              dispatch(
-                setContactFormDetailsWhenBookingError(dataToSendToContactForm)
-              );
               hamburgerHandlerNavigate(contactRoute);
             }
           });

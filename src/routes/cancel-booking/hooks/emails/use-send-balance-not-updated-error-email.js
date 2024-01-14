@@ -6,7 +6,6 @@ import useHamburgerHandlerNavigate from "../../../../hooks/use-hamburger-handler
 
 import { sendEmailWithErrorAsync } from "../../../../store/send-email/send-email-thunks";
 import { selectCurrentUser } from "../../../../store/user/user.selector";
-import { setContactFormDetailsWhenBookingError } from "../../../../store/contact-form/contact-form.slice";
 
 import {
   contactRoute,
@@ -36,12 +35,6 @@ const useSendBalanceNotUpdatedErrorEmail = () => {
     Number(500) + refundAmount
   }.`;
 
-  const dataToSendToContactForm = {
-    name: "Email Failed To Send Error",
-    email: "info@breakfast-and-afterschool-club.com",
-    message,
-  };
-
   const sendBalanceNotUpdatedErrorEmail = () => {
     dispatch(sendEmailWithErrorAsync({ subject, message })).then(
       (resultAction) => {
@@ -57,9 +50,6 @@ const useSendBalanceNotUpdatedErrorEmail = () => {
             false
           ).then((isConfirmed) => {
             if (isConfirmed) {
-              dispatch(
-                setContactFormDetailsWhenBookingError(dataToSendToContactForm)
-              );
               hamburgerHandlerNavigate(contactRoute);
             }
           });

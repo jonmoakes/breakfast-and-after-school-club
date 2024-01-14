@@ -8,7 +8,7 @@ const useUpdateSessionSpacesAndBalanceErrorSwal = () => {
   const { sendSessionSpacesAndBalanceErrorEmail } =
     useSendSessionSpacesAndBalanceErrorEmail();
 
-  // the session spaces and users balance have failed to update here, however the user doesn't need to know about the session spaces as it doesn't affect them.. so we tell them that their balance has not updated and all the erelevent data will be sent in the email to the app owner.
+  // the session spaces and users balance have failed to update here, however the user doesn't need to know about the session spaces as it doesn't affect them.. so we tell them that their balance has not updated and all the relevent data will be sent in the email to the app owner.
 
   const updateSessionSpacesAndBalanceErrorSwal = () => {
     fireSwal(

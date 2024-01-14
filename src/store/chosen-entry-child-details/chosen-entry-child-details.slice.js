@@ -1,21 +1,27 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { databases } from "../../utils/appwrite/appwrite-config";
-import { Query } from "appwrite";
+import { listDocumentsBySearch } from "../../utils/appwrite/appwrite-functions";
 
 export const getChosenEntryChildDetailsAsync = createAsyncThunk(
   "getChosenEntryChildDetails",
-  async ({ chosenEntry }, thunkAPI) => {
+  async ({ chosenEntry, databaseId, collectionId }, thunkAPI) => {
     try {
       const searchForChildNames = chosenEntry.length
         ? chosenEntry[0].childrensName
         : null;
 
-      const getChosenEntryChildDetailsDocuments = await databases.listDocuments(
-        import.meta.env.VITE_TEST_SCHOOL_DATABASE_ID,
-        import.meta.env.VITE_CHILDREN_COLLECTION_ID,
-        [Query.search("childName", searchForChildNames)]
+      const searchIndex = "childName";
+      const searchValue = searchForChildNames;
+
+      const getChosenEntryChildDetailsDocuments = await listDocumentsBySearch(
+        databaseId,
+        collectionId,
+        searchIndex,
+        searchValue
       );
+
       const { documents, total } = getChosenEntryChildDetailsDocuments;
+
+      console.log(total);
 
       if (!total) return;
 

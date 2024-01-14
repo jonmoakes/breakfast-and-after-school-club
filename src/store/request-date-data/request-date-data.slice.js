@@ -15,11 +15,6 @@ export const requestDateDataAsync = createAsyncThunk(
         queryValue
       );
 
-      // const getChosenDateDocument = await databases.listDocuments(
-      //   import.meta.env.VITE_TEST_SCHOOL_DATABASE_ID,
-      //   import.meta.env.VITE_2023_2024_TERM_DATES_COLLECTION_ID,
-      //   [Query.equal("date", chosenDate)]
-      // );
       const { documents } = getChosenDateDocument;
       if (!documents.length) {
         throw new Error("is not available");
@@ -59,15 +54,11 @@ const requestDateDataSlice = createSlice({
     setChosenDate(state, action) {
       state.requestDateData.chosenDate = action.payload;
     },
-    resetChosenDate(state) {
-      state.requestDateData.chosenDate = "";
-    },
+
     setDateData(state, action) {
       state.requestDateData.dateData = action.payload;
     },
-    resetDateData(state) {
-      state.requestDateData.dateData = state.requestDateData.dateData = null;
-    },
+
     resetErrorMessage(state) {
       state.requestDateData.error = "";
     },
@@ -97,7 +88,6 @@ const requestDateDataSlice = createSlice({
 export const {
   setChosenDate,
   setDateData,
-  resetChosenDate,
   resetErrorMessage,
   resetRequestDateDataState,
 } = requestDateDataSlice.actions;

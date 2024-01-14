@@ -5,7 +5,10 @@ import useIsRouteWithNavWarning from "../../hooks/use-is-route-with-nav-warning"
 import useHamburgerHandlerNavigate from "../../hooks/use-hamburger-handler-navigate";
 import useConfirmSwal from "../../hooks/use-confirm-swal";
 
-import { selectCurrentUser } from "../../store/user/user.selector";
+import {
+  selectCurrentUser,
+  selectEnvironmentVariables,
+} from "../../store/user/user.selector";
 
 import { NavLink } from "../../styles/p/p.styles";
 import { BorderLink } from "../../styles/span/span.styles";
@@ -24,12 +27,16 @@ const NavNotAppOwner = () => {
   const { confirmForwardToNewRoute } = useConfirmSwal();
 
   const currentUser = useSelector(selectCurrentUser);
+  const envVariables = useSelector(selectEnvironmentVariables);
+
+  const { appOwnerId } = envVariables;
   const location = useLocation();
-  const ownerId = import.meta.env.VITE_APP_OWNER_ID;
 
   return (
     <>
-      {currentUser && currentUser.id !== ownerId && !isRouteWithNavWarning() ? (
+      {currentUser &&
+      currentUser.id !== appOwnerId &&
+      !isRouteWithNavWarning() ? (
         <>
           {signedInRoutes.map((route) => {
             return route !== location.pathname ? (
@@ -46,7 +53,9 @@ const NavNotAppOwner = () => {
         </>
       ) : null}
 
-      {currentUser && currentUser.id !== ownerId && isRouteWithNavWarning() ? (
+      {currentUser &&
+      currentUser.id !== appOwnerId &&
+      isRouteWithNavWarning() ? (
         <>
           {signedInRoutes.map((route) => {
             return route !== location.pathname ? (

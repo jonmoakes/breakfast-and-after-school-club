@@ -6,10 +6,9 @@ import { datesUploadedToDatabaseSuccessMessage } from "../../strings/strings";
 
 export const uploadDatesToDatabaseAsync = createAsyncThunk(
   "uploadDatesToDatabase",
-  async ({ datesList, collectionId }, thunkAPI) => {
+  async ({ datesList, databaseId, collectionId }, thunkAPI) => {
     try {
       const uploadDates = [];
-      const databaseId = import.meta.env.VITE_TEST_SCHOOL_DATABASE_ID;
 
       for (const date of datesList) {
         const result = await databases.createDocument(

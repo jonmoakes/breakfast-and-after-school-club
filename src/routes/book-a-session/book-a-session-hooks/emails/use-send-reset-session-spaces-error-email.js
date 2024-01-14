@@ -8,8 +8,8 @@ import {
   selectChildrenSelectedForBooking,
   selectSessionType,
 } from "../../../../store/book-session/book-session.selector";
+import { selectEnvironmentVariables } from "../../../../store/user/user.selector";
 import { sendEmailWithErrorAsync } from "../../../../store/send-email/send-email-thunks";
-import { setContactFormDetailsWhenBookingError } from "../../../../store/contact-form/contact-form.slice";
 
 import {
   bookSessionRoute,
@@ -26,12 +26,13 @@ const useSendResetSessionSpacesErrorEmail = () => {
     selectChildrenSelectedForBooking
   );
   const sessionType = useSelector(selectSessionType);
-
+  const envVariables = useSelector(selectEnvironmentVariables);
   const dispatch = useDispatch();
 
   const numberOfSpacesToAdd = childrenSelectedForBooking.length
     ? childrenSelectedForBooking.length
     : 1;
+  const { appOwnerEmail } = envVariables;
 
   const subject =
     "Breakfast & After School Club - Error Resetting Session Data";
@@ -40,14 +41,8 @@ const useSendResetSessionSpacesErrorEmail = () => {
     Number(20) + numberOfSpacesToAdd
   }.`;
 
-  const dataToSendToContactForm = {
-    name: "Email Failed To Send Error",
-    email: "info@breakfast-and-afterschool-club.com",
-    message,
-  };
-
   const sendResetSessionSpacesErrorEmail = () => {
-    dispatch(sendEmailWithErrorAsync({ subject, message })).then(
+    dispatch(sendEmailWithErrorAsync({ appOwnerEmail, subject, message })).then(
       (resultAction) => {
         if (sendEmailWithErrorAsync.fulfilled.match(resultAction)) {
           hamburgerHandlerNavigate(bookSessionRoute);
@@ -61,9 +56,6 @@ const useSendResetSessionSpacesErrorEmail = () => {
             false
           ).then((isConfirmed) => {
             if (isConfirmed) {
-              dispatch(
-                setContactFormDetailsWhenBookingError(dataToSendToContactForm)
-              );
               hamburgerHandlerNavigate(contactRoute);
             }
           });

@@ -1,7 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { databases } from "../../utils/appwrite/appwrite-config";
-import { Query, ID } from "appwrite";
-// import { getUserDocument } from "../user/functions";
+import { ID } from "appwrite";
 
 import { lastMinuteNoSessionsMessage } from "../../strings/strings";
 import { createChildrenToAddToBooking } from "../../functions/create-children-to-add-to-booking";
@@ -107,7 +105,6 @@ export const updateUserDocBalanceAsync = createAsyncThunk(
   "updateUserDocBalance",
   async ({ id, databaseId, collectionId, price }, thunkAPI) => {
     try {
-      // const userDocument = await getUserDocument(schoolCode);
       const queryIndex = "$id";
       const queryValue = id;
       const documentId = id;
@@ -142,18 +139,23 @@ export const updateUserDocBalanceAsync = createAsyncThunk(
 
 export const resetSessionDocAsync = createAsyncThunk(
   "resetSessionDoc",
-  async ({ date, sessionType, childrenSelectedForBooking }, thunkAPI) => {
+  async (
+    { childrenSelectedForBooking, date, databaseId, collectionId, sessionType },
+    thunkAPI
+  ) => {
     const numberOfSpacesToAdd = childrenSelectedForBooking.length
       ? childrenSelectedForBooking.length
       : 1;
 
     try {
-      const getChosenDateDocument = await databases.listDocuments(
-        import.meta.env.VITE_TEST_SCHOOL_DATABASE_ID,
-        import.meta.env.VITE_2023_2024_TERM_DATES_COLLECTION_ID,
-        [Query.equal("date", date)]
+      const queryIndex = "date";
+      const queryValue = date;
+      const getChosenDateDocument = await listDocumentsByQuery(
+        databaseId,
+        collectionId,
+        queryIndex,
+        queryValue
       );
-
       const dateDocument = getChosenDateDocument.documents;
 
       if (!dateDocument.length) {
@@ -187,11 +189,15 @@ export const resetSessionDocAsync = createAsyncThunk(
           };
         }
 
-        await databases.updateDocument(
-          import.meta.env.VITE_TEST_SCHOOL_DATABASE_ID,
-          import.meta.env.VITE_2023_2024_TERM_DATES_COLLECTION_ID,
-          $id,
-          updatedSessionSpaces
+        const documentId = $id;
+        const data = updatedSessionSpaces;
+
+        await manageDatabaseDocument(
+          "update",
+          databaseId,
+          collectionId,
+          documentId,
+          data
         );
       }
     } catch (error) {
@@ -245,13 +251,6 @@ export const addSessionBookingInfoAsync = createAsyncThunk(
         documentId,
         data
       );
-
-      // await databases.createDocument(
-      //   import.meta.env.VITE_TEST_SCHOOL_DATABASE_ID,
-      //   import.meta.env.VITE_BOOKED_SESSIONS_COLLECTION_ID,
-      //   ID.unique(),
-      //   sessionBooking
-      // );
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }

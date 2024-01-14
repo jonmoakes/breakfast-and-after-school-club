@@ -4,10 +4,12 @@ import useFireSwal from "../../../../hooks/use-fire-swal";
 import useHamburgerHandlerNavigate from "../../../../hooks/use-hamburger-handler-navigate";
 import useGetRefundPrice from "../use-get-refund-price";
 
-import { selectCurrentUser } from "../../../../store/user/user.selector";
+import {
+  selectCurrentUser,
+  selectEnvironmentVariables,
+} from "../../../../store/user/user.selector";
 import { selectUserBookingToDelete } from "../../../../store/user-booking-to-delete/user-booking-to-delete.selector";
 import { sendEmailWithErrorAsync } from "../../../../store/send-email/send-email-thunks";
-import { setContactFormDetailsWhenBookingError } from "../../../../store/contact-form/contact-form.slice";
 
 import {
   contactRoute,
@@ -23,10 +25,12 @@ const useSendSessionSpacesAndBalanceErrorEmail = () => {
 
   const currentUser = useSelector(selectCurrentUser);
   const userBookingToDelete = useSelector(selectUserBookingToDelete);
+  const envVariables = useSelector(selectEnvironmentVariables);
 
   const dispatch = useDispatch();
 
   const { id } = currentUser;
+  const { appOwnerEmail } = envVariables;
 
   const { date, sessionType, parentEmail, parentName } =
     userBookingToDelete || {};
@@ -41,13 +45,8 @@ const useSendSessionSpacesAndBalanceErrorEmail = () => {
     Number(500) + refundAmount
   }.`;
 
-  const dataToSendToContactForm = {
-    name: "Email Failed To Send Error",
-    email: "info@breakfast-and-afterschool-club.com",
-    message,
-  };
   const sendSessionSpacesAndBalanceErrorEmail = () => {
-    dispatch(sendEmailWithErrorAsync({ subject, message })).then(
+    dispatch(sendEmailWithErrorAsync({ appOwnerEmail, subject, message })).then(
       (resultAction) => {
         if (sendEmailWithErrorAsync.fulfilled.match(resultAction)) {
           hamburgerHandlerNavigate(userBookingsRoute);
@@ -61,9 +60,6 @@ const useSendSessionSpacesAndBalanceErrorEmail = () => {
             false
           ).then((isConfirmed) => {
             if (isConfirmed) {
-              dispatch(
-                setContactFormDetailsWhenBookingError(dataToSendToContactForm)
-              );
               hamburgerHandlerNavigate(contactRoute);
             }
           });

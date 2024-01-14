@@ -11,6 +11,20 @@ export const listDocumentsByQuery = async (
   return await databases.listDocuments(databaseId, collectionId, query);
 };
 
+export const listDocumentsBySearch = async (
+  databaseId,
+  collectionId,
+  searchIndex,
+  searchValue
+) => {
+  const searchQuery = [Query.search(searchIndex, searchValue)];
+  return await databases.listDocuments(databaseId, collectionId, searchQuery);
+};
+
+export const listDocumentsInACollection = async (databaseId, collectionId) => {
+  return await databases.listDocuments(databaseId, collectionId);
+};
+
 export const manageDatabaseDocument = async (
   type,
   databaseId,

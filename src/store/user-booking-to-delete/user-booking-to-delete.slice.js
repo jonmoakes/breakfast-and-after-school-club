@@ -126,14 +126,14 @@ export const refundUserAsync = createAsyncThunk(
       const queryValue = id;
       const documentId = id;
 
-      const getUserDocument = await listDocumentsByQuery(
+      const userDocument = await listDocumentsByQuery(
         databaseId,
         collectionId,
         queryIndex,
         queryValue
       );
 
-      const { total, documents } = getUserDocument;
+      const { total, documents } = userDocument;
 
       if (total && documents.length) {
         const { walletBalance } = documents[0];

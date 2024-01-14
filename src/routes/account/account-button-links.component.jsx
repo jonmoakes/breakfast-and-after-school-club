@@ -1,7 +1,10 @@
 import { useSelector } from "react-redux";
 import useNavigateToRoute from "./account-hooks/use-navigate-to-route";
 
-import { selectCurrentUser } from "../../store/user/user.selector";
+import {
+  selectCurrentUser,
+  selectEnvironmentVariables,
+} from "../../store/user/user.selector";
 
 import { YellowGreenButton } from "../../styles/buttons/buttons.styles";
 import { ParentDiv } from "../../styles/div/div.styles";
@@ -10,7 +13,9 @@ import { BlackHr } from "../../styles/hr/hr.styles";
 
 const AccountButtonLinks = () => {
   const currentUser = useSelector(selectCurrentUser);
+  const envVariables = useSelector(selectEnvironmentVariables);
   const { provider } = currentUser;
+  const { appOwnerId } = envVariables;
 
   const { emailProviderButtons, authProviderButtons, appOwnerButtons } =
     useNavigateToRoute();
@@ -19,7 +24,7 @@ const AccountButtonLinks = () => {
     <ParentDiv>
       <BlueH2>what would you like to do?</BlueH2>
 
-      {currentUser.id === import.meta.env.VITE_APP_OWNER_ID
+      {currentUser.id === appOwnerId
         ? appOwnerButtons.map((button) => {
             const { id, text, onClick } = button;
             return (
@@ -29,8 +34,7 @@ const AccountButtonLinks = () => {
               </div>
             );
           })
-        : currentUser.id !== import.meta.env.VITE_APP_OWNER_ID &&
-          provider === "email"
+        : currentUser.id !== appOwnerId && provider === "email"
         ? emailProviderButtons.map((button) => {
             const { id, text, onClick } = button;
             return (

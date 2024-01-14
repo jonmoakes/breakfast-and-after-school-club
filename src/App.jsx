@@ -8,7 +8,10 @@ import "./App.css";
 import useGetUserOnLoad from "./hooks/use-get-user-on-load";
 import useWalletBalanceListener from "./hooks/use-wallet-balance-listener";
 
-import { selectCurrentUser } from "./store/user/user.selector";
+import {
+  selectCurrentUser,
+  selectEnvironmentVariables,
+} from "./store/user/user.selector";
 
 import PrivateRoutes from "./components/private-routes/private-routes.component";
 import ErrorFallback from "./components/errors/error-fallback.component";
@@ -121,7 +124,8 @@ const App = () => {
   useWalletBalanceListener();
 
   const currentUser = useSelector(selectCurrentUser);
-  const ownerId = import.meta.env.VITE_APP_OWNER_ID;
+  const envVariables = useSelector(selectEnvironmentVariables);
+  const { appOwnerId } = envVariables;
 
   return (
     <>
@@ -174,7 +178,7 @@ const App = () => {
               <Route
                 path={yourCustomerBookingsRoute}
                 element={
-                  currentUser && currentUser.id === ownerId ? (
+                  currentUser && currentUser.id === appOwnerId ? (
                     <YourCustomerBookings />
                   ) : (
                     <Account />

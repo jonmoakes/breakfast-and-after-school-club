@@ -2,22 +2,26 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { client } from "../../../utils/appwrite/appwrite-config";
 
-import { selectCurrentUser } from "../../../store/user/user.selector";
+import {
+  selectCurrentUser,
+  selectEnvironmentVariables,
+} from "../../../store/user/user.selector";
 import { selectBookedSessions } from "../../../store/booked-sessions/booked-sessions.selector";
 import { setBookedSessions } from "../../../store/booked-sessions/booked-sessions.slice";
 
 const useGetBookedSessionsListener = () => {
   const currentUser = useSelector(selectCurrentUser);
   const bookedSessions = useSelector(selectBookedSessions);
+  const envVariables = useSelector(selectEnvironmentVariables);
+
+  const { databaseId, bookedSessionsCollectionId } = envVariables;
   const dispatch = useDispatch();
 
   useEffect(() => {
     if (!currentUser) return;
 
     const unsubscribe = client.subscribe(
-      `databases.${import.meta.env.VITE_TEST_SCHOOL_DATABASE_ID}.collections.${
-        import.meta.env.VITE_BOOKED_SESSIONS_COLLECTION_ID
-      }.documents`,
+      `databases.${databaseId}.collections.${bookedSessionsCollectionId}.documents`,
 
       (response) => {
         const updatedEntry = response.payload;
@@ -57,7 +61,13 @@ const useGetBookedSessionsListener = () => {
     return () => {
       unsubscribe();
     };
-  }, [dispatch, currentUser, bookedSessions]);
+  }, [
+    dispatch,
+    currentUser,
+    bookedSessions,
+    bookedSessionsCollectionId,
+    databaseId,
+  ]);
 };
 
 export default useGetBookedSessionsListener;

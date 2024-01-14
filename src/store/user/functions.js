@@ -85,25 +85,3 @@ export const createDocumentAndSetUser = async (schoolCode) => {
     return null;
   }
 };
-
-// for future refactoring - book session thunks etc
-export const getUserDocument = async (schoolCode) => {
-  const user = await account.get();
-  const session = await account.getSession("current");
-
-  const queryIndex = "$id";
-  const queryValue = user.$id;
-
-  const { databaseId, collectionId } =
-    getSchoolDatabaseAndUserCollectionIds(schoolCode);
-  const userDocument = await listDocumentsByQuery(
-    databaseId,
-    collectionId,
-    queryIndex,
-    queryValue
-  );
-
-  const { total, documents } = userDocument;
-
-  return { user, session, total, documents };
-};

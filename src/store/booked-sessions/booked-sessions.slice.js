@@ -1,13 +1,13 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { databases } from "../../utils/appwrite/appwrite-config";
+import { listDocumentsInACollection } from "../../utils/appwrite/appwrite-functions";
 
 export const getBookedSessionsAsync = createAsyncThunk(
   "getBookings",
-  async (_, thunkAPI) => {
+  async ({ databaseId, collectionId }, thunkAPI) => {
     try {
-      const getBookingDocuments = await databases.listDocuments(
-        import.meta.env.VITE_TEST_SCHOOL_DATABASE_ID,
-        import.meta.env.VITE_BOOKED_SESSIONS_COLLECTION_ID
+      const getBookingDocuments = await listDocumentsInACollection(
+        databaseId,
+        collectionId
       );
 
       const { documents, total } = getBookingDocuments;
