@@ -1,6 +1,6 @@
 import { account } from "../../utils/appwrite/appwrite-config";
 import {
-  listDocumentsByQuery,
+  listDocumentsByQueryOrSearch,
   manageDatabaseDocument,
 } from "../../utils/appwrite/appwrite-functions/";
 import { getSchoolDatabaseAndUserCollectionIds } from "../../functions/get-school-db-and-user-collection-ids";
@@ -13,7 +13,7 @@ export const getRetrievedUserFromDocument = async (schoolCode) => {
   const queryIndex = "$id";
   const queryValue = user.$id;
 
-  const userDocument = await listDocumentsByQuery(
+  const userDocument = await listDocumentsByQueryOrSearch(
     databaseId,
     collectionId,
     queryIndex,
@@ -52,7 +52,7 @@ export const createDocumentAndSetUser = async (schoolCode) => {
   const queryValue = user.$id;
   const documentId = user.$id;
 
-  const userDocument = await listDocumentsByQuery(
+  const userDocument = await listDocumentsByQueryOrSearch(
     databaseId,
     collectionId,
     queryIndex,

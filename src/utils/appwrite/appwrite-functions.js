@@ -1,24 +1,17 @@
 import { databases } from "../../utils/appwrite/appwrite-config";
 import { Query } from "appwrite";
 
-export const listDocumentsByQuery = async (
+export const listDocumentsByQueryOrSearch = async (
   databaseId,
   collectionId,
-  queryIndex,
-  queryValue
+  index,
+  value,
+  isSearch = false
 ) => {
-  const query = [Query.equal(queryIndex, queryValue)];
+  const query = isSearch
+    ? [Query.search(index, value)]
+    : [Query.equal(index, value)];
   return await databases.listDocuments(databaseId, collectionId, query);
-};
-
-export const listDocumentsBySearch = async (
-  databaseId,
-  collectionId,
-  searchIndex,
-  searchValue
-) => {
-  const searchQuery = [Query.search(searchIndex, searchValue)];
-  return await databases.listDocuments(databaseId, collectionId, searchQuery);
 };
 
 export const listDocumentsInACollection = async (databaseId, collectionId) => {

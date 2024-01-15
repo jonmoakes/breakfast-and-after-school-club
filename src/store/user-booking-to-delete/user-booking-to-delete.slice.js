@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import {
-  listDocumentsByQuery,
+  listDocumentsByQueryOrSearch,
   manageDatabaseDocument,
 } from "../../utils/appwrite/appwrite-functions";
 
@@ -18,7 +18,7 @@ export const deleteUserBookingAsync = createAsyncThunk(
       const documentId = $id;
       const data = userBookingToDelete;
 
-      const getBookingDocuments = await listDocumentsByQuery(
+      const getBookingDocuments = await listDocumentsByQueryOrSearch(
         databaseId,
         collectionId,
         queryIndex,
@@ -59,7 +59,7 @@ export const updateSessionSpacesDocAsync = createAsyncThunk(
       const queryIndex = "date";
       const queryValue = date;
 
-      const getDateDocumentToUpdate = await listDocumentsByQuery(
+      const getDateDocumentToUpdate = await listDocumentsByQueryOrSearch(
         databaseId,
         collectionId,
         queryIndex,
@@ -126,7 +126,7 @@ export const refundUserAsync = createAsyncThunk(
       const queryValue = id;
       const documentId = id;
 
-      const userDocument = await listDocumentsByQuery(
+      const userDocument = await listDocumentsByQueryOrSearch(
         databaseId,
         collectionId,
         queryIndex,

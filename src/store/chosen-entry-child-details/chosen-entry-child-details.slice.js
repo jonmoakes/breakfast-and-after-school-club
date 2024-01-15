@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { listDocumentsBySearch } from "../../utils/appwrite/appwrite-functions";
+import { listDocumentsByQueryOrSearch } from "../../utils/appwrite/appwrite-functions";
 
 export const getChosenEntryChildDetailsAsync = createAsyncThunk(
   "getChosenEntryChildDetails",
@@ -12,12 +12,14 @@ export const getChosenEntryChildDetailsAsync = createAsyncThunk(
       const searchIndex = "childName";
       const searchValue = searchForChildNames;
 
-      const getChosenEntryChildDetailsDocuments = await listDocumentsBySearch(
-        databaseId,
-        collectionId,
-        searchIndex,
-        searchValue
-      );
+      const getChosenEntryChildDetailsDocuments =
+        await listDocumentsByQueryOrSearch(
+          databaseId,
+          collectionId,
+          searchIndex,
+          searchValue,
+          true
+        );
 
       const { documents, total } = getChosenEntryChildDetailsDocuments;
 

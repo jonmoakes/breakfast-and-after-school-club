@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import {
-  listDocumentsByQuery,
+  listDocumentsByQueryOrSearch,
   manageDatabaseDocument,
 } from "../../utils/appwrite/appwrite-functions";
 
@@ -14,7 +14,7 @@ export const deleteChildInfoAsync = createAsyncThunk(
       const queryValue = $id;
       const dataToDelete = childInfo;
 
-      const getChildrenDocuments = await listDocumentsByQuery(
+      const getChildrenDocuments = await listDocumentsByQueryOrSearch(
         databaseId,
         collectionId,
         queryIndex,

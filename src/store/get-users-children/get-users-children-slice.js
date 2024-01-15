@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { listDocumentsByQuery } from "../../utils/appwrite/appwrite-functions";
+import { listDocumentsByQueryOrSearch } from "../../utils/appwrite/appwrite-functions";
 
 export const getUsersChildrenAsync = createAsyncThunk(
   "getChildren",
@@ -8,7 +8,7 @@ export const getUsersChildrenAsync = createAsyncThunk(
       const queryIndex = "parentEmail";
       const queryValue = email;
 
-      const getChildrenDocuments = await listDocumentsByQuery(
+      const getChildrenDocuments = await listDocumentsByQueryOrSearch(
         databaseId,
         collectionId,
         queryIndex,

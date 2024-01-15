@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { listDocumentsByQuery } from "../../utils/appwrite/appwrite-functions";
+import { listDocumentsByQueryOrSearch } from "../../utils/appwrite/appwrite-functions";
 
 export const getUserBookingsAsync = createAsyncThunk(
   "getUserBookings",
@@ -10,7 +10,7 @@ export const getUserBookingsAsync = createAsyncThunk(
 
       const collectionId = bookedSessionsCollectionId;
 
-      const getBookingDocuments = await listDocumentsByQuery(
+      const getBookingDocuments = await listDocumentsByQueryOrSearch(
         databaseId,
         collectionId,
         queryIndex,

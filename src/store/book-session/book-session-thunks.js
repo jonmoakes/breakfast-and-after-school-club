@@ -4,7 +4,7 @@ import { ID } from "appwrite";
 import { lastMinuteNoSessionsMessage } from "../../strings/strings";
 import { createChildrenToAddToBooking } from "../../functions/create-children-to-add-to-booking";
 import {
-  listDocumentsByQuery,
+  listDocumentsByQueryOrSearch,
   manageDatabaseDocument,
 } from "../../utils/appwrite/appwrite-functions";
 
@@ -25,7 +25,7 @@ export const updateSessionDocAsync = createAsyncThunk(
       const queryIndex = "date";
       const queryValue = date;
 
-      const getChosenDateDocument = await listDocumentsByQuery(
+      const getChosenDateDocument = await listDocumentsByQueryOrSearch(
         databaseId,
         collectionId,
         queryIndex,
@@ -109,7 +109,7 @@ export const updateUserDocBalanceAsync = createAsyncThunk(
       const queryValue = id;
       const documentId = id;
 
-      const userDocument = await listDocumentsByQuery(
+      const userDocument = await listDocumentsByQueryOrSearch(
         databaseId,
         collectionId,
         queryIndex,
@@ -150,7 +150,7 @@ export const resetSessionDocAsync = createAsyncThunk(
     try {
       const queryIndex = "date";
       const queryValue = date;
-      const getChosenDateDocument = await listDocumentsByQuery(
+      const getChosenDateDocument = await listDocumentsByQueryOrSearch(
         databaseId,
         collectionId,
         queryIndex,

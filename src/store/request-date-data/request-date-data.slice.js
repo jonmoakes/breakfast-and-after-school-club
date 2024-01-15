@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { listDocumentsByQuery } from "../../utils/appwrite/appwrite-functions";
+import { listDocumentsByQueryOrSearch } from "../../utils/appwrite/appwrite-functions";
 
 export const requestDateDataAsync = createAsyncThunk(
   "requestDateData",
@@ -8,7 +8,7 @@ export const requestDateDataAsync = createAsyncThunk(
       const queryIndex = "date";
       const queryValue = chosenDate;
 
-      const getChosenDateDocument = await listDocumentsByQuery(
+      const getChosenDateDocument = await listDocumentsByQueryOrSearch(
         databaseId,
         collectionId,
         queryIndex,

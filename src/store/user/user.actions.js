@@ -1,6 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { account } from "../../utils/appwrite/appwrite-config";
-import { listDocumentsByQuery } from "../../utils/appwrite/appwrite-functions";
+import { listDocumentsByQueryOrSearch } from "../../utils/appwrite/appwrite-functions";
 import { ID } from "appwrite";
 
 import {
@@ -157,7 +157,7 @@ export const getUsersWalletBalanceAsync = createAsyncThunk(
       const queryIndex = "$id";
       const queryValue = id;
 
-      const getUsersDocument = await listDocumentsByQuery(
+      const getUsersDocument = await listDocumentsByQueryOrSearch(
         databaseId,
         collectionId,
         queryIndex,

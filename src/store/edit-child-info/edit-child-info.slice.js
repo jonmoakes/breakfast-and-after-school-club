@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import {
-  listDocumentsByQuery,
+  listDocumentsByQueryOrSearch,
   manageDatabaseDocument,
 } from "../../utils/appwrite/appwrite-functions";
 
@@ -13,7 +13,7 @@ export const updateChildInfoAsync = createAsyncThunk(
       const documentId = $id;
       const dataToUpdate = updatedChildInfo;
 
-      const getChildrenDocuments = await listDocumentsByQuery(
+      const getChildrenDocuments = await listDocumentsByQueryOrSearch(
         databaseId,
         collectionId,
         queryIndex,
