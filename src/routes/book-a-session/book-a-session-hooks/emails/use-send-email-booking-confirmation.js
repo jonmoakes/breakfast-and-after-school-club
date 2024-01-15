@@ -49,13 +49,10 @@ const useSendEmailBookingConfirmation = () => {
     namesToAddToBooking
   );
 
-  const subject = "Your Breakfast & After School Club Booking Confirmation";
-
   const sendEmailBookingConfirmation = () => {
     dispatch(
       sendEmailBookingConfirmationAsync({
         email,
-        subject,
         name,
         date,
         sessionType,

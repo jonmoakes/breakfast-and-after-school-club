@@ -1,11 +1,9 @@
 import sgMail from "@sendgrid/mail";
-import { setSendgridApiKey } from "./set-sendgrid-api-key";
 
 export const handler = async (event) => {
   const { message } = JSON.parse(event.body);
 
-  const schoolCode = message.schoolCode;
-  setSendgridApiKey(schoolCode);
+  // const schoolCode = message.schoolCode;
 
   const data = {
     to: message.email,

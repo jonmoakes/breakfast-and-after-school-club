@@ -1,7 +1,11 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
+import { format } from "date-fns";
 
-import { emailToSend, cancellationEmailToSend } from "./email-to-send";
+import { getSessionTypeString } from "../../functions/get-session-type-string";
+import { capitalizeString } from "../../functions/capitalize-string";
+
+import { cancellationEmailToSend } from "./email-to-send";
 
 import {
   SEND_EMAIL_ENDPOINT,
@@ -13,7 +17,6 @@ export const sendEmailBookingConfirmationAsync = createAsyncThunk(
   async (
     {
       email,
-      subject,
       name,
       date,
       sessionType,
@@ -24,17 +27,21 @@ export const sendEmailBookingConfirmationAsync = createAsyncThunk(
     thunkAPI
   ) => {
     try {
+      const usersName = capitalizeString(name);
+      const formattedDate = date ? format(new Date(date), "dd MMMM yyyy") : "";
+      const sessionBooked = capitalizeString(getSessionTypeString(sessionType));
+      const kidsInBooking = capitalizeString(childrenInBooking);
+      const fundsToDeduct = sessionPrice / 100;
+      const balanceRemaining = walletBalance / 100;
+
       const response = await axios.post(SEND_EMAIL_ENDPOINT, {
         email,
-        subject,
-        message: emailToSend(
-          name,
-          date,
-          sessionType,
-          childrenInBooking,
-          sessionPrice,
-          walletBalance
-        ),
+        usersName,
+        formattedDate,
+        sessionBooked,
+        kidsInBooking,
+        fundsToDeduct,
+        balanceRemaining,
       });
 
       const { status } = response;
