@@ -7,6 +7,3 @@
   for = "/*"
     [headers.values]
     Access-Control-Allow-Origin = "*"
-
-    [[plugins]]
-  package = "@netlify/plugin-emails"

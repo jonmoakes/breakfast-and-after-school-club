@@ -1,5 +1,4 @@
 import postmark from "postmark";
-// const postmark = require("postmark");
 const client = new postmark.ServerClient(process.env.VITE_POSTMARK_API_KEY);
 
 export const handler = async (event) => {
