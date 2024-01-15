@@ -1,4 +1,5 @@
-const postmark = require("postmark");
+import postmark from "postmark";
+// const postmark = require("postmark");
 const client = new postmark.ServerClient(process.env.VITE_POSTMARK_API_KEY);
 
 export const handler = async (event) => {
@@ -35,6 +36,7 @@ export const handler = async (event) => {
       body: "Email sent successfully",
     };
   } catch (error) {
+    console.log(error);
     return {
       statusCode: 500,
       body: JSON.stringify({ error: error.message }),
