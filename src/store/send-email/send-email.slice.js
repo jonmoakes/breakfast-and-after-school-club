@@ -2,10 +2,11 @@ import { createSlice } from "@reduxjs/toolkit";
 import {
   sendEmailBookingConfirmationAsync,
   sendBookingCancellationConfirmationEmailAsync,
-  sendEmailWithErrorAsync,
   sendEmailBookingNotAddedToDatabaseAsync,
   sendEmailResetSessionSpacesErrorAsync,
   sendEmailResetSessionSpacesAndBalanceErrorAsync,
+  sendEmailBalanceNotUpdatedErrorAsync,
+  sendEmailWalletFundsNotAddedErrorAsync,
 } from "./send-email-thunks";
 
 const INITIAL_STATE = {
@@ -42,8 +43,9 @@ export const sendEmailSlice = createSlice({
     handleAsyncAction(builder, sendEmailBookingNotAddedToDatabaseAsync);
     handleAsyncAction(builder, sendEmailResetSessionSpacesErrorAsync);
     handleAsyncAction(builder, sendBookingCancellationConfirmationEmailAsync);
-    handleAsyncAction(builder, sendEmailWithErrorAsync);
     handleAsyncAction(builder, sendEmailResetSessionSpacesAndBalanceErrorAsync);
+    handleAsyncAction(builder, sendEmailBalanceNotUpdatedErrorAsync);
+    handleAsyncAction(builder, sendEmailWalletFundsNotAddedErrorAsync);
   },
 });
 

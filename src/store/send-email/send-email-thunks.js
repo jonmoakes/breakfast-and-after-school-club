@@ -6,11 +6,12 @@ import { getSessionTypeString } from "../../functions/get-session-type-string";
 
 import {
   SEND_EMAIL_CANCELLATION_ENDPOINT,
-  SEND_EMAIL_WITH_ERROR_ENDPOINT,
   SEND_EMAIL_BOOKING_CONFIRMATION_ENDPOINT,
   SEND_EMAIL_BOOKING_NOT_ADDED_TO_DATABASE_ENDPOINT,
   SEND_EMAIL_RESET_SESSION_SPACES_ERROR_ENDPOINT,
   SEND_EMAIL_RESET_SESSION_SPACES_AND_BALANCE_ERROR_ENDPOINT,
+  SEND_EMAIL_BALANCE_NOT_UPDATED_ERROR_ENDPOINT,
+  SEND_EMAIL_WALET_FUNDS_NOT_ADDED_ERROR_ENDPOINT,
 } from "../../../netlify/api-endpoints/api-endpoints";
 
 export const sendEmailBookingConfirmationAsync = createAsyncThunk(
@@ -186,18 +187,40 @@ export const sendEmailResetSessionSpacesAndBalanceErrorAsync = createAsyncThunk(
   }
 );
 
-export const sendEmailWithErrorAsync = createAsyncThunk(
-  "sendEmailWithError",
-  async ({ appOwnerEmail, subject, message }, thunkAPI) => {
+export const sendEmailBalanceNotUpdatedErrorAsync = createAsyncThunk(
+  "sendEmailBalanceNotUpdatedError",
+  async ({ appOwnerEmail, id, refundAmount }, thunkAPI) => {
     try {
-      const appAdminEmail = import.meta.env.VITE_APP_ADMIN_EMAIL;
+      const response = await axios.post(
+        SEND_EMAIL_BALANCE_NOT_UPDATED_ERROR_ENDPOINT,
+        {
+          appOwnerEmail,
+          id,
+          refundAmount,
+        }
+      );
 
-      const response = await axios.post(SEND_EMAIL_WITH_ERROR_ENDPOINT, {
-        appOwnerEmail,
-        appAdminEmail,
-        subject,
-        message,
-      });
+      const { status } = response;
+      return status;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
+export const sendEmailWalletFundsNotAddedErrorAsync = createAsyncThunk(
+  "sendEmailWalletFundsNotAddedError",
+  async ({ appOwnerEmail, id, walletFundsToAdd }, thunkAPI) => {
+    try {
+      walletFundsToAdd = walletFundsToAdd * 100;
+      const response = await axios.post(
+        SEND_EMAIL_WALET_FUNDS_NOT_ADDED_ERROR_ENDPOINT,
+        {
+          appOwnerEmail,
+          id,
+          walletFundsToAdd,
+        }
+      );
 
       const { status } = response;
       return status;

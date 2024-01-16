@@ -16,3 +16,7 @@ export const SEND_EMAIL_RESET_SESSION_SPACES_ERROR_ENDPOINT =
   "/.netlify/functions/send-email-reset-session-spaces-error";
 export const SEND_EMAIL_RESET_SESSION_SPACES_AND_BALANCE_ERROR_ENDPOINT =
   "/.netlify/functions/send-email-reset-session-spaces-and-balance-error";
+export const SEND_EMAIL_BALANCE_NOT_UPDATED_ERROR_ENDPOINT =
+  "/.netlify/functions/send-email-balance-not-updated-error";
+export const SEND_EMAIL_WALET_FUNDS_NOT_ADDED_ERROR_ENDPOINT =
+  "/.netlify/functions/send-email-wallet-funds-not-added-error";
