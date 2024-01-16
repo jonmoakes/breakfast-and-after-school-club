@@ -9,7 +9,7 @@ import {
 } from "../../../../store/book-session/book-session.selector";
 import { selectUsersChildren } from "../../../../store/get-users-children/get-users-children.selector";
 import { selectEnvironmentVariables } from "../../../../store/user/user.selector";
-import { sendEmailBookingNotAddedToDatabseAsync } from "../../../../store/send-email/send-email-thunks";
+import { sendEmailBookingNotAddedToDatabaseAsync } from "../../../../store/send-email/send-email-thunks";
 
 import {
   contactRoute,
@@ -47,7 +47,7 @@ const useSendAddBookingInfoErrorEmail = (date) => {
 
   const sendAddBookingInfoErrorEmail = () => {
     dispatch(
-      sendEmailBookingNotAddedToDatabseAsync({
+      sendEmailBookingNotAddedToDatabaseAsync({
         appOwnerEmail,
         date,
         sessionType,
@@ -57,7 +57,7 @@ const useSendAddBookingInfoErrorEmail = (date) => {
       })
     ).then((resultAction) => {
       if (
-        sendEmailBookingNotAddedToDatabseAsync.fulfilled.match(resultAction)
+        sendEmailBookingNotAddedToDatabaseAsync.fulfilled.match(resultAction)
       ) {
         hamburgerHandlerNavigate(userBookingsRoute);
       } else {

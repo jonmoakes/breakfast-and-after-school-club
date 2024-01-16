@@ -9,7 +9,7 @@ import {
   selectSessionType,
 } from "../../../../store/book-session/book-session.selector";
 import { selectEnvironmentVariables } from "../../../../store/user/user.selector";
-import { sendEmailWithErrorAsync } from "../../../../store/send-email/send-email-thunks";
+import { sendEmailResetSessionSpacesErrorAsync } from "../../../../store/send-email/send-email-thunks";
 
 import {
   bookSessionRoute,
@@ -34,34 +34,32 @@ const useSendResetSessionSpacesErrorEmail = () => {
     : 1;
   const { appOwnerEmail } = envVariables;
 
-  const subject =
-    "Breakfast & After School Club - Error Resetting Session Data";
-
-  const message = `Hi,\n\nThere Was Recently An Error Resetting Session Data After Updating A Users Balance Failed, Which Caused A Failed Booking Attempt.\n\nPlease Go Into The Term Dates Section Of Your Database And Find The Following Date:\n${date}\n\nFor The Following Session Type:\n${sessionType}\n\nAdd ${numberOfSpacesToAdd} To It.\n\nFor Example, If On the Date, for The Morning Session, You Had 20 Spaces Left, Add ${numberOfSpacesToAdd} To It To Make ${
-    Number(20) + numberOfSpacesToAdd
-  }.`;
-
   const sendResetSessionSpacesErrorEmail = () => {
-    dispatch(sendEmailWithErrorAsync({ appOwnerEmail, subject, message })).then(
-      (resultAction) => {
-        if (sendEmailWithErrorAsync.fulfilled.match(resultAction)) {
-          hamburgerHandlerNavigate(bookSessionRoute);
-        } else {
-          fireSwal(
-            "error",
-            failedToSendEmailInstructions,
-            "",
-            0,
-            true,
-            false
-          ).then((isConfirmed) => {
-            if (isConfirmed) {
-              hamburgerHandlerNavigate(contactRoute);
-            }
-          });
-        }
+    dispatch(
+      sendEmailResetSessionSpacesErrorAsync({
+        appOwnerEmail,
+        date,
+        sessionType,
+        numberOfSpacesToAdd,
+      })
+    ).then((resultAction) => {
+      if (sendEmailResetSessionSpacesErrorAsync.fulfilled.match(resultAction)) {
+        hamburgerHandlerNavigate(bookSessionRoute);
+      } else {
+        fireSwal(
+          "error",
+          failedToSendEmailInstructions,
+          "",
+          0,
+          true,
+          false
+        ).then((isConfirmed) => {
+          if (isConfirmed) {
+            hamburgerHandlerNavigate(contactRoute);
+          }
+        });
       }
-    );
+    });
   };
 
   return { sendResetSessionSpacesErrorEmail };
