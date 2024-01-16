@@ -4,6 +4,7 @@ import {
   sendEmailBookingConfirmationAsync,
   sendBookingCancellationConfirmationEmailAsync,
   sendEmailWithErrorAsync,
+  sendEmailBookingNotAddedToDatabseAsync,
 } from "./send-email-thunks";
 
 const INITIAL_STATE = {
@@ -35,6 +36,25 @@ export const sendEmailSlice = createSlice({
         state.statusCode = "";
         state.error = action.payload;
       })
+      .addCase(sendEmailBookingNotAddedToDatabseAsync.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(
+        sendEmailBookingNotAddedToDatabseAsync.fulfilled,
+        (state, action) => {
+          state.isLoading = false;
+          state.statusCode = action.payload;
+          state.error = null;
+        }
+      )
+      .addCase(
+        sendEmailBookingNotAddedToDatabseAsync.rejected,
+        (state, action) => {
+          state.isLoading = false;
+          state.statusCode = "";
+          state.error = action.payload;
+        }
+      )
       .addCase(
         sendBookingCancellationConfirmationEmailAsync.pending,
         (state) => {
@@ -57,6 +77,7 @@ export const sendEmailSlice = createSlice({
           state.error = action.payload;
         }
       )
+
       .addCase(sendEmailWithErrorAsync.pending, (state) => {
         state.isLoading = true;
       })

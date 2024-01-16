@@ -9,7 +9,7 @@ import {
 } from "../../../../store/book-session/book-session.selector";
 import { selectUsersChildren } from "../../../../store/get-users-children/get-users-children.selector";
 import { selectEnvironmentVariables } from "../../../../store/user/user.selector";
-import { sendEmailWithErrorAsync } from "../../../../store/send-email/send-email-thunks";
+import { sendEmailBookingNotAddedToDatabseAsync } from "../../../../store/send-email/send-email-thunks";
 
 import {
   contactRoute,
@@ -45,32 +45,36 @@ const useSendAddBookingInfoErrorEmail = (date) => {
     namesToAddToBooking
   );
 
-  const subject =
-    "Breakfast & After School Club - A Booking Was Not Added To The Database.";
-
-  const message = `Error Adding The Following Booking To The Database. Please Add Manually.\n_____________\n\nSession Booking Data:\n\nDate:\n${date}\n\nSession:\n${sessionType}\n\nChildren In Booking:\n${childrenInBooking}\n\nParent Email:\n${parentEmail}\n\nParent Name:\n${parentName}`;
-
   const sendAddBookingInfoErrorEmail = () => {
-    dispatch(sendEmailWithErrorAsync({ appOwnerEmail, subject, message })).then(
-      (resultAction) => {
-        if (sendEmailWithErrorAsync.fulfilled.match(resultAction)) {
-          hamburgerHandlerNavigate(userBookingsRoute);
-        } else {
-          fireSwal(
-            "error",
-            failedToSendEmailInstructions,
-            "",
-            0,
-            true,
-            false
-          ).then((isConfirmed) => {
-            if (isConfirmed) {
-              hamburgerHandlerNavigate(contactRoute);
-            }
-          });
-        }
+    dispatch(
+      sendEmailBookingNotAddedToDatabseAsync({
+        appOwnerEmail,
+        date,
+        sessionType,
+        childrenInBooking,
+        parentEmail,
+        parentName,
+      })
+    ).then((resultAction) => {
+      if (
+        sendEmailBookingNotAddedToDatabseAsync.fulfilled.match(resultAction)
+      ) {
+        hamburgerHandlerNavigate(userBookingsRoute);
+      } else {
+        fireSwal(
+          "error",
+          failedToSendEmailInstructions,
+          "",
+          0,
+          true,
+          false
+        ).then((isConfirmed) => {
+          if (isConfirmed) {
+            hamburgerHandlerNavigate(contactRoute);
+          }
+        });
       }
-    );
+    });
   };
 
   return { sendAddBookingInfoErrorEmail };

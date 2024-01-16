@@ -29,14 +29,10 @@ const useSendCancellationEmail = () => {
   const { date, sessionType, childrensName } = userBookingToDelete || {};
   refundPrice = usersChildren.length === 1 ? refundPrice : totalRefundPrice;
 
-  const subject =
-    "Your Breakfast & After School Club Booking Cancellation Confirmation";
-
   const sendCancellationEmail = () => {
     dispatch(
       sendBookingCancellationConfirmationEmailAsync({
         email,
-        subject,
         name,
         date,
         sessionType,

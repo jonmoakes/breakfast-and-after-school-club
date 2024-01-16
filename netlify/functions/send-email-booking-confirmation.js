@@ -4,7 +4,7 @@ const client = new postmark.ServerClient(process.env.VITE_POSTMARK_API_KEY);
 export const handler = async (event) => {
   const {
     email,
-    usersName,
+    name,
     formattedDate,
     sessionBooked,
     kidsInBooking,
@@ -20,12 +20,12 @@ export const handler = async (event) => {
       TemplateModel: {
         product_url: "https://www.breakfast-and-after-school-club.co.uk",
         product_name: "Breakfast & After School Club",
-        usersName: usersName,
-        formattedDate: formattedDate,
-        sessionBooked: sessionBooked,
-        kidsInBooking: kidsInBooking,
-        fundsToDeduct: fundsToDeduct,
-        balanceRemaining: balanceRemaining,
+        name,
+        formattedDate,
+        sessionBooked,
+        kidsInBooking,
+        fundsToDeduct,
+        balanceRemaining,
       },
     });
 
@@ -42,31 +42,3 @@ export const handler = async (event) => {
     };
   }
 };
-
-// import sgMail from "@sendgrid/mail";
-
-// sgMail.setApiKey(process.env.VITE_SENDGRID_API_KEY);
-
-// export const handler = async (event) => {
-//   const { email, subject, message } = JSON.parse(event.body);
-
-//   const data = {
-//     to: email,
-//     from: process.env.VITE_APP_ADMIN_EMAIL,
-//     subject,
-//     text: message,
-//   };
-
-//   try {
-//     await sgMail.send(data);
-//     return {
-//       statusCode: 202,
-//       body: "Email sent successfully",
-//     };
-//   } catch (error) {
-//     return {
-//       statusCode: 500,
-//       body: JSON.stringify({ error: error.message }),
-//     };
-//   }
-// };

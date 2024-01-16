@@ -206,7 +206,6 @@ export const resetSessionDocAsync = createAsyncThunk(
   }
 );
 
-// adds the booking data to the database
 export const addSessionBookingInfoAsync = createAsyncThunk(
   "addSessionBookingInfo",
   async (
