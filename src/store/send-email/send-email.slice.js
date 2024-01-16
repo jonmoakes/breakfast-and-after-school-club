@@ -5,6 +5,7 @@ import {
   sendEmailWithErrorAsync,
   sendEmailBookingNotAddedToDatabaseAsync,
   sendEmailResetSessionSpacesErrorAsync,
+  sendEmailResetSessionSpacesAndBalanceErrorAsync,
 } from "./send-email-thunks";
 
 const INITIAL_STATE = {
@@ -42,6 +43,7 @@ export const sendEmailSlice = createSlice({
     handleAsyncAction(builder, sendEmailResetSessionSpacesErrorAsync);
     handleAsyncAction(builder, sendBookingCancellationConfirmationEmailAsync);
     handleAsyncAction(builder, sendEmailWithErrorAsync);
+    handleAsyncAction(builder, sendEmailResetSessionSpacesAndBalanceErrorAsync);
   },
 });
 

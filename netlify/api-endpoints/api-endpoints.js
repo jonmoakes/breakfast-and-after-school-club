@@ -14,3 +14,5 @@ export const SEND_EMAIL_BOOKING_NOT_ADDED_TO_DATABASE_ENDPOINT =
   "/.netlify/functions/send-email-booking-not-added-to-database";
 export const SEND_EMAIL_RESET_SESSION_SPACES_ERROR_ENDPOINT =
   "/.netlify/functions/send-email-reset-session-spaces-error";
+export const SEND_EMAIL_RESET_SESSION_SPACES_AND_BALANCE_ERROR_ENDPOINT =
+  "/.netlify/functions/send-email-reset-session-spaces-and-balance-error";

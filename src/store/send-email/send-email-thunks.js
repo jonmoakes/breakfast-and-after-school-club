@@ -10,6 +10,7 @@ import {
   SEND_EMAIL_BOOKING_CONFIRMATION_ENDPOINT,
   SEND_EMAIL_BOOKING_NOT_ADDED_TO_DATABASE_ENDPOINT,
   SEND_EMAIL_RESET_SESSION_SPACES_ERROR_ENDPOINT,
+  SEND_EMAIL_RESET_SESSION_SPACES_AND_BALANCE_ERROR_ENDPOINT,
 } from "../../../netlify/api-endpoints/api-endpoints";
 
 export const sendEmailBookingConfirmationAsync = createAsyncThunk(
@@ -88,7 +89,6 @@ export const sendEmailBookingNotAddedToDatabaseAsync = createAsyncThunk(
   }
 );
 
-// this one
 export const sendEmailResetSessionSpacesErrorAsync = createAsyncThunk(
   "sendEmailResetSessionSpacesError",
   async (
@@ -143,6 +143,40 @@ export const sendBookingCancellationConfirmationEmailAsync = createAsyncThunk(
         fundsAddedToWallet,
         newBalance,
       });
+
+      const { status } = response;
+      return status;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
+export const sendEmailResetSessionSpacesAndBalanceErrorAsync = createAsyncThunk(
+  "sendEmailResetSessionSpacesAndBalanceError",
+  async (
+    {
+      appOwnerEmail,
+      date,
+      sessionType,
+      numberOfChildrenInBooking,
+      id,
+      refundAmount,
+    },
+    thunkAPI
+  ) => {
+    try {
+      const response = await axios.post(
+        SEND_EMAIL_RESET_SESSION_SPACES_AND_BALANCE_ERROR_ENDPOINT,
+        {
+          appOwnerEmail,
+          date,
+          sessionType,
+          numberOfChildrenInBooking,
+          id,
+          refundAmount,
+        }
+      );
 
       const { status } = response;
       return status;

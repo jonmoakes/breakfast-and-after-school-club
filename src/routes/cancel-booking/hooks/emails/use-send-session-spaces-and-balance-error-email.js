@@ -9,7 +9,7 @@ import {
   selectEnvironmentVariables,
 } from "../../../../store/user/user.selector";
 import { selectUserBookingToDelete } from "../../../../store/user-booking-to-delete/user-booking-to-delete.selector";
-import { sendEmailWithErrorAsync } from "../../../../store/send-email/send-email-thunks";
+import { sendEmailResetSessionSpacesAndBalanceErrorAsync } from "../../../../store/send-email/send-email-thunks";
 
 import {
   contactRoute,
@@ -32,40 +32,43 @@ const useSendSessionSpacesAndBalanceErrorEmail = () => {
   const { id } = currentUser;
   const { appOwnerEmail } = envVariables;
 
-  const { date, sessionType, parentEmail, parentName } =
-    userBookingToDelete || {};
+  const { date, sessionType } = userBookingToDelete || {};
 
   const refundAmount =
     numberOfChildrenInBooking > 1 ? totalRefundPrice : refundPrice;
 
-  const subject =
-    "Breakfast & After School Club - Session Spaces And Balance Not Updated After Cancellation";
-
-  const message = `There Was An Error Updating Session Spaces And Therefore A Users Balance After A Cancelled Booking.\n\nPlease Go Into Your 'Term Dates' Section For The Current Year In The Database And Find The Entry With The Following Date:\n${date}\n\nThen Use These Details To Update The session Spaces:\n\nSession Type: ${sessionType}\n\nSpaces To Add: ${numberOfChildrenInBooking}\n\nFor Example, If The Session Type Is 'morningAndAfternoonShort', Then Increase Both The 'morningSessionSpaces' And The 'afternoonSessionspaces' Fields By ${numberOfChildrenInBooking}'\n\n\nThen, Please Go Into Your 'Users' Section In The Database And Find The User With The Following Id:\n${id}\n\nName:\n${parentName}\n\nEmail:\n${parentEmail}\n\nThen Please Update The Users Wallet Balance To Be Whatever It Is Plus:\n\n${refundAmount}\n\nFor Example, If There Wallet Balance Is Currently 500 ( £5 ), The New Wallet Balance Should Be ${
-    Number(500) + refundAmount
-  }.`;
-
   const sendSessionSpacesAndBalanceErrorEmail = () => {
-    dispatch(sendEmailWithErrorAsync({ appOwnerEmail, subject, message })).then(
-      (resultAction) => {
-        if (sendEmailWithErrorAsync.fulfilled.match(resultAction)) {
-          hamburgerHandlerNavigate(userBookingsRoute);
-        } else {
-          fireSwal(
-            "error",
-            failedToSendEmailInstructions,
-            "",
-            0,
-            true,
-            false
-          ).then((isConfirmed) => {
-            if (isConfirmed) {
-              hamburgerHandlerNavigate(contactRoute);
-            }
-          });
-        }
+    dispatch(
+      sendEmailResetSessionSpacesAndBalanceErrorAsync({
+        appOwnerEmail,
+        date,
+        sessionType,
+        numberOfChildrenInBooking,
+        id,
+        refundAmount,
+      })
+    ).then((resultAction) => {
+      if (
+        sendEmailResetSessionSpacesAndBalanceErrorAsync.fulfilled.match(
+          resultAction
+        )
+      ) {
+        hamburgerHandlerNavigate(userBookingsRoute);
+      } else {
+        fireSwal(
+          "error",
+          failedToSendEmailInstructions,
+          "",
+          0,
+          true,
+          false
+        ).then((isConfirmed) => {
+          if (isConfirmed) {
+            hamburgerHandlerNavigate(contactRoute);
+          }
+        });
       }
-    );
+    });
   };
 
   return { sendSessionSpacesAndBalanceErrorEmail };
