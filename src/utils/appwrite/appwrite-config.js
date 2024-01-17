@@ -9,12 +9,12 @@ const { manorBeach } = schoolCodesList;
 switch (schoolCode) {
   case manorBeach:
     client
-      .setEndpoint("https://cloud.appwrite.io/v1")
+      .setEndpoint("https://appwrite.breakfast-and-after-school-club.co.uk/v1")
       .setProject(import.meta.env.VITE_MANOR_BEACH_PROJECT_ID);
     break;
   default:
     client
-      .setEndpoint("https://cloud.appwrite.io/v1")
+      .setEndpoint("https://appwrite.breakfast-and-after-school-club.co.uk/v1")
       .setProject(import.meta.env.VITE_TEST_SCHOOL_PROJECT_ID);
 }
 
