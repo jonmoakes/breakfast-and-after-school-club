@@ -1,21 +1,32 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
-
-import { emailToSend } from "./email-to-send";
-import { capitalizeString } from "../../functions/capitalize-string";
-
 import { SEND_CONTACT_FORM_MESSAGE_ENDPOINT } from "../../../netlify/api-endpoints/api-endpoints";
 
 export const sendContactFormMessageAsync = createAsyncThunk(
   "contactForm",
-  async ({ name, email, message }, thunkAPI) => {
+  async (
+    { currentUserEmail, appOwnerEmail, name, email, message },
+    thunkAPI
+  ) => {
     try {
+      const getEmailToSendMessageTo = () => {
+        let emailToSendMessageTo;
+
+        if (currentUserEmail === appOwnerEmail || appOwnerEmail === undefined) {
+          emailToSendMessageTo = import.meta.env.VITE_APP_ADMIN_EMAIL;
+        } else {
+          emailToSendMessageTo = appOwnerEmail;
+        }
+        return emailToSendMessageTo;
+      };
+
+      const sendTo = getEmailToSendMessageTo();
+
       const response = await axios.post(SEND_CONTACT_FORM_MESSAGE_ENDPOINT, {
-        message: emailToSend(
-          capitalizeString(name),
-          email,
-          capitalizeString(message)
-        ),
+        sendTo,
+        name,
+        email,
+        message,
       });
 
       const { status } = response;
@@ -54,6 +65,12 @@ export const contactFormSlice = createSlice({
       return INITIAL_STATE;
     },
   },
+  selectors: {
+    selectContactFormDetails: (state) => state.contactFormDetails,
+    selectSendMessageIsLoading: (state) => state.isLoading,
+    selectSendMessageResponseStatus: (state) => state.responseStatus,
+    selectSendMessageError: (state) => state.error,
+  },
   extraReducers: (builder) => {
     builder
       .addCase(sendContactFormMessageAsync.pending, (state) => {
@@ -77,5 +94,11 @@ export const {
   resetErrorMessage,
   resetContactFormState,
 } = contactFormSlice.actions;
+export const {
+  selectContactFormDetails,
+  selectSendMessageIsLoading,
+  selectSendMessageResponseStatus,
+  selectSendMessageError,
+} = contactFormSlice.selectors;
 
 export const contactFormReducer = contactFormSlice.reducer;

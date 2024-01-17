@@ -3,8 +3,14 @@ import { useDispatch, useSelector } from "react-redux";
 import useFireSwal from "../../../hooks/use-fire-swal";
 import useConfirmSwal from "../../../hooks/use-confirm-swal";
 
-import { sendContactFormMessageAsync } from "../../../store/contact-form/contact-form.slice";
-import { selectContactFormDetails } from "../../../store/contact-form/contact-form.selector";
+import {
+  selectCurrentUser,
+  selectEnvironmentVariables,
+} from "../../../store/user/user.selector";
+import {
+  sendContactFormMessageAsync,
+  selectContactFormDetails,
+} from "../../../store/contact-form/contact-form.slice";
 
 import { validateEmail } from "../../../functions/validate-email";
 
@@ -20,11 +26,25 @@ const useConfirmSendContactFormMessage = () => {
   const { confirmSwal } = useConfirmSwal();
 
   const contactFormDetails = useSelector(selectContactFormDetails);
-  const dispatch = useDispatch();
+  const currentUser = useSelector(selectCurrentUser);
+  const envVariables = useSelector(selectEnvironmentVariables);
+
   const { name, email, message } = contactFormDetails;
+  const { appOwnerEmail } = envVariables;
+  const currentUserEmail = currentUser ? currentUser.email : "";
+
+  const dispatch = useDispatch();
 
   const confirmResult = () => {
-    dispatch(sendContactFormMessageAsync({ name, email, message }));
+    dispatch(
+      sendContactFormMessageAsync({
+        currentUserEmail,
+        appOwnerEmail,
+        name,
+        email,
+        message,
+      })
+    );
   };
 
   const confirmSendContactFormMessage = () => {

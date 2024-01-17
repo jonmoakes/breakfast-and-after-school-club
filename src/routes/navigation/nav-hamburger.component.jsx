@@ -1,7 +1,9 @@
 import { useDispatch, useSelector } from "react-redux";
 
-import { toggleHamburgerMenu } from "../../store/hamburger-menu/hamburger-menu.slice";
-import { selectShowHamburgerMenu } from "../../store/hamburger-menu/hamburger-menu.selector";
+import {
+  toggleHamburgerMenu,
+  selectShowHamburgerMenu,
+} from "../../store/hamburger-menu/hamburger-menu.slice";
 
 import { HamburgerContainer, Hamburger } from "../../styles/div/div.styles";
 import {

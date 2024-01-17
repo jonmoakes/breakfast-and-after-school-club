@@ -1,7 +1,9 @@
 import { useDispatch, useSelector } from "react-redux";
 
-import { selectContactFormDetails } from "../../../store/contact-form/contact-form.selector";
-import { setContactFormDetails } from "../../../store/contact-form/contact-form.slice";
+import {
+  setContactFormDetails,
+  selectContactFormDetails,
+} from "../../../store/contact-form/contact-form.slice";
 
 const useHandleContactFormDetailsChange = () => {
   const contactFormDetails = useSelector(selectContactFormDetails);

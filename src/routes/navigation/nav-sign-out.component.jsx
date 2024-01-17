@@ -7,8 +7,10 @@ import useIsOnline from "../../hooks/use-is-online";
 
 import { signOutAsync } from "../../store/user/user.actions";
 import { selectCurrentUser } from "../../store/user/user.selector";
-import { selectShowHamburgerMenu } from "../../store/hamburger-menu/hamburger-menu.selector";
-import { hideHamburgerMenu } from "../../store/hamburger-menu/hamburger-menu.slice";
+import {
+  hideHamburgerMenu,
+  selectShowHamburgerMenu,
+} from "../../store/hamburger-menu/hamburger-menu.slice";
 
 import { NavLink } from "../../styles/p/p.styles";
 import { BorderLink } from "../../styles/span/span.styles";

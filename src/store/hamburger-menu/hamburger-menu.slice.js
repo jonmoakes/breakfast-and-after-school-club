@@ -15,9 +15,13 @@ export const hamburgerMenuSlice = createSlice({
       state.showHamburgerMenu = action.payload;
     },
   },
+  selectors: {
+    selectShowHamburgerMenu: (state) => state.showHamburgerMenu,
+  },
 });
 
 export const { hideHamburgerMenu, toggleHamburgerMenu } =
   hamburgerMenuSlice.actions;
+export const { selectShowHamburgerMenu } = hamburgerMenuSlice.selectors;
 
 export const hamburgerMenuReducer = hamburgerMenuSlice.reducer;

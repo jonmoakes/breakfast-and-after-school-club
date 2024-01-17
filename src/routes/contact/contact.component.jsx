@@ -2,7 +2,7 @@ import { useSelector } from "react-redux";
 
 import useSendContactFormMessageResultSwal from "./contact-form-hooks/use-send-contact-form-message-result-swal";
 
-import { selectSendMessageIsLoading } from "../../store/contact-form/contact-form.selector";
+import { selectSendMessageIsLoading } from "../../store/contact-form/contact-form.slice";
 
 import Loader from "../../components/loader/loader.component";
 import ContactForm from "./sections/contact-form.component";

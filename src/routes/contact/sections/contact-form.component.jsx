@@ -2,7 +2,7 @@ import { useSelector } from "react-redux";
 
 import useHandleContactFormDetailsChange from "../contact-form-hooks/use-handle-contact-form-details-change";
 
-import { selectContactFormDetails } from "../../../store/contact-form/contact-form.selector";
+import { selectContactFormDetails } from "../../../store/contact-form/contact-form.slice";
 
 import SendMessageButton from "./send-message-button.component";
 
@@ -13,7 +13,6 @@ import {
   StyledTextArea,
   Label,
 } from "../../../styles/form/form.styles";
-
 import { RedSpan } from "../../../styles/span/span.styles";
 import { ParentDiv } from "../../../styles/div/div.styles";
 import { Text } from "../../../styles/p/p.styles";

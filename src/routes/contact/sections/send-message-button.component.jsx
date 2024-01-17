@@ -1,8 +1,9 @@
 import { useSelector } from "react-redux";
 
+import useIsOnline from "../../../hooks/use-is-online";
 import useConfirmSendContactFormMessage from "../contact-form-hooks/use-confirm-send-contact-form-message";
 
-import { selectSendMessageIsLoading } from "../../../store/contact-form/contact-form.selector";
+import { selectSendMessageIsLoading } from "../../../store/contact-form/contact-form.slice";
 
 import NetworkError from "../../../components/errors/network-error.component";
 
@@ -11,7 +12,6 @@ import {
   YellowGreenButton,
 } from "../../../styles/buttons/buttons.styles";
 import { BlackHr } from "../../../styles/hr/hr.styles";
-import useIsOnline from "../../../hooks/use-is-online";
 
 const SendMessageButton = () => {
   const { isOnline } = useIsOnline();

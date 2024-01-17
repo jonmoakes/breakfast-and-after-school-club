@@ -4,18 +4,16 @@ import { useSelector, useDispatch } from "react-redux";
 import useFireSwal from "../../../hooks/use-fire-swal";
 
 import {
+  resetContactFormState,
   selectSendMessageResponseStatus,
   selectSendMessageError,
-} from "../../../store/contact-form/contact-form.selector";
+} from "../../../store/contact-form/contact-form.slice";
+
 import {
   emailResponseTimeMessage,
   errorSendingMessage,
   successMessage,
 } from "../../../strings/strings";
-import {
-  resetContactFormFields,
-  resetErrorMessage,
-} from "../../../store/contact-form/contact-form.slice";
 
 const useSendContactFormMessageResultSwal = () => {
   const { fireSwal } = useFireSwal();
@@ -36,7 +34,7 @@ const useSendContactFormMessageResultSwal = () => {
         false
       ).then((isConfirmed) => {
         if (isConfirmed) {
-          dispatch(resetContactFormFields());
+          dispatch(resetContactFormState());
         }
       });
     } else if (error) {
@@ -49,7 +47,7 @@ const useSendContactFormMessageResultSwal = () => {
         false
       ).then((isConfirmed) => {
         if (isConfirmed) {
-          dispatch(resetErrorMessage());
+          dispatch(resetContactFormState());
         }
       });
     }
