@@ -17,7 +17,6 @@ import { magicUrlRequestReducer } from "./magic-url-request/magic-url-request.sl
 import { updateEmailReducer } from "./update-email/update-email.slice";
 import { updatePasswordRequestReducer } from "./update-password-request/update-password-request.slice";
 import { updatePasswordResultReducer } from "./update-password-result/update-password-result.slice";
-import { closeAccountReducer } from "./close-account/close-account.slice";
 import { uploadDatesToDatabaseReducer } from "./upload-dates-to-database/upload-dates-to-database.slice";
 import { requestDateDataReducer } from "./request-date-data/request-date-data.slice";
 import { handlePaymentReducer } from "./handle-payment/handle-payment.slice";
@@ -52,7 +51,6 @@ export const rootReducer = combineReducers({
   updateEmail: updateEmailReducer,
   updatePasswordRequest: updatePasswordRequestReducer,
   updatePasswordResult: updatePasswordResultReducer,
-  closeAccount: closeAccountReducer,
   uploadDatesToDatabase: uploadDatesToDatabaseReducer,
   requestDateData: requestDateDataReducer,
   handlePayment: handlePaymentReducer,

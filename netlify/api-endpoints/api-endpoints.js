@@ -20,3 +20,5 @@ export const SEND_EMAIL_BALANCE_NOT_UPDATED_ERROR_ENDPOINT =
   "/.netlify/functions/send-email-balance-not-updated-error";
 export const SEND_EMAIL_WALET_FUNDS_NOT_ADDED_ERROR_ENDPOINT =
   "/.netlify/functions/send-email-wallet-funds-not-added-error";
+export const SEND_EMAIL_TO_ADMIN_CLOSE_ACCOUNT_REQUEST_ENDPOINT =
+  "/.netlify/functions/send-email-to-admin-close-account-request";

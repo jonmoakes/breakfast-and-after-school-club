@@ -2,7 +2,7 @@ import { useSelector } from "react-redux";
 
 import useConfirmCloseAccount from "./close-account-hooks/use-confirm-close-account";
 import useCloseAccountSwal from "./close-account-hooks/use-close-account-swal";
-import { selectCloseAccountIsLoading } from "../../store/close-account/close-account.selector";
+import { selectSendEmailIsLoading } from "../../store/send-email/send-email.slice";
 
 import Loader from "../../components/loader/loader.component";
 
@@ -19,11 +19,11 @@ const CloseAccount = () => {
   useCloseAccountSwal();
   const { confirmCloseAccount } = useConfirmCloseAccount();
 
-  const closeAccountIsLoading = useSelector(selectCloseAccountIsLoading);
+  const isLoading = useSelector(selectSendEmailIsLoading);
 
   return (
     <Container>
-      {closeAccountIsLoading ? <Loader /> : null}
+      {isLoading ? <Loader /> : null}
       <ParentDiv>
         <BlackTitle>close your account</BlackTitle>
       </ParentDiv>

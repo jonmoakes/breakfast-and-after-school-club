@@ -5,68 +5,58 @@ import { useNavigate } from "react-router-dom";
 import useFireSwal from "../../../hooks/use-fire-swal";
 
 import {
-  selectCloseAccountSuccessMessage,
-  selectCloseAccountError,
-} from "../../../store/close-account/close-account.selector";
-import {
-  resetErrorMessage,
-  resetSuccessMessage,
-} from "../../../store/close-account/close-account.slice";
+  selectSendEmailStatusCode,
+  selectSendEmailError,
+  resetSendEmailState,
+} from "../../../store/send-email/send-email.slice";
 
 import {
   accountRoute,
   errorSendingAccountClosureRequest,
   receiveEmailWhenCompleteMessage,
+  successSendingCloseAccountEmailMessage,
 } from "../../../strings/strings";
 
 const useCloseAccountSwal = () => {
   const { fireSwal } = useFireSwal();
 
-  const closeAccountSuccessMessage = useSelector(
-    selectCloseAccountSuccessMessage
-  );
-  const closeAccountErrorMessage = useSelector(selectCloseAccountError);
+  const statusCode = useSelector(selectSendEmailStatusCode);
+  const error = useSelector(selectSendEmailError);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (closeAccountSuccessMessage) {
+    if (!statusCode && !error) return;
+
+    if (statusCode === 202) {
       fireSwal(
         "success",
-        closeAccountSuccessMessage,
+        successSendingCloseAccountEmailMessage,
         receiveEmailWhenCompleteMessage,
         0,
         true,
         false
-      );
-      navigate(accountRoute);
-    } else if (closeAccountErrorMessage) {
+      ).then((isConfirmed) => {
+        if (isConfirmed) {
+          dispatch(resetSendEmailState());
+          navigate(accountRoute);
+        }
+      });
+    } else {
       fireSwal(
         "error",
         errorSendingAccountClosureRequest,
-        `the error received was: '${closeAccountErrorMessage}'.please try again`,
+        `the error received was: '${error}'.please try again or contact the school directly if the error continues.`,
         0,
         true,
         false
-      );
-      navigate(accountRoute);
+      ).then((isConfirmed) => {
+        if (isConfirmed) {
+          dispatch(resetSendEmailState());
+        }
+      });
     }
-
-    return () => {
-      if (!closeAccountSuccessMessage && !closeAccountErrorMessage) return;
-      if (closeAccountSuccessMessage) {
-        dispatch(resetSuccessMessage());
-      } else if (closeAccountErrorMessage) {
-        dispatch(resetErrorMessage());
-      }
-    };
-  }, [
-    closeAccountSuccessMessage,
-    closeAccountErrorMessage,
-    fireSwal,
-    dispatch,
-    navigate,
-  ]);
+  }, [statusCode, error, fireSwal, dispatch, navigate]);
 };
 
 export default useCloseAccountSwal;

@@ -7,6 +7,7 @@ import {
   sendEmailResetSessionSpacesAndBalanceErrorAsync,
   sendEmailBalanceNotUpdatedErrorAsync,
   sendEmailWalletFundsNotAddedErrorAsync,
+  sendEmailToAdminCloseAccountRequestAsync,
 } from "./send-email-thunks";
 
 const INITIAL_STATE = {
@@ -37,6 +38,14 @@ export const sendEmailSlice = createSlice({
   initialState: INITIAL_STATE,
   reducers: {
     resetSendEmailState: () => INITIAL_STATE,
+    resetErrorMessage(state) {
+      state.error = null;
+    },
+  },
+  selectors: {
+    selectSendEmailIsLoading: (state) => state.isLoading,
+    selectSendEmailStatusCode: (state) => state.statusCode,
+    selectSendEmailError: (state) => state.error,
   },
   extraReducers: (builder) => {
     handleAsyncAction(builder, sendEmailBookingConfirmationAsync);
@@ -46,9 +55,16 @@ export const sendEmailSlice = createSlice({
     handleAsyncAction(builder, sendEmailResetSessionSpacesAndBalanceErrorAsync);
     handleAsyncAction(builder, sendEmailBalanceNotUpdatedErrorAsync);
     handleAsyncAction(builder, sendEmailWalletFundsNotAddedErrorAsync);
+    handleAsyncAction(builder, sendEmailToAdminCloseAccountRequestAsync);
   },
 });
 
-export const { resetSendEmailState } = sendEmailSlice.actions;
+export const { resetSendEmailState, resetErrorMessage } =
+  sendEmailSlice.actions;
+export const {
+  selectSendEmailError,
+  selectSendEmailIsLoading,
+  selectSendEmailStatusCode,
+} = sendEmailSlice.selectors;
 
 export const sendEmailReducer = sendEmailSlice.reducer;

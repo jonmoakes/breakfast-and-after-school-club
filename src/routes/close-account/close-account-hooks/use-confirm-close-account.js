@@ -2,14 +2,12 @@ import { useSelector, useDispatch } from "react-redux";
 
 import useConfirmSwal from "../../../hooks/use-confirm-swal";
 import useFireSwal from "../../../hooks/use-fire-swal";
-import useAccountClosureEmail from "./use-account-closure-email";
 
 import {
   selectCurrentUser,
   selectEnvironmentVariables,
 } from "../../../store/user/user.selector";
-
-import { closeAccountAsync } from "../../../store/close-account/close-account.slice";
+import { sendEmailToAdminCloseAccountRequestAsync } from "../../../store/send-email/send-email-thunks";
 
 import {
   imSureMessage,
@@ -21,22 +19,21 @@ import {
 const useConfirmCloseAccount = () => {
   const { confirmSwal } = useConfirmSwal();
   const { fireSwal } = useFireSwal();
-  const { accountClosureEmail } = useAccountClosureEmail();
 
   const currentUser = useSelector(selectCurrentUser);
   const envVariables = useSelector(selectEnvironmentVariables);
 
   const dispatch = useDispatch();
-  const { walletBalance, email, schoolCode } = currentUser;
+  const { walletBalance, schoolCode, id, email } = currentUser;
   const { appOwnerEmail } = envVariables;
 
   const confirmResult = () => {
     dispatch(
-      closeAccountAsync({
+      sendEmailToAdminCloseAccountRequestAsync({
         schoolCode,
-        email,
+        id,
         appOwnerEmail,
-        accountClosureEmail,
+        email,
       })
     );
   };

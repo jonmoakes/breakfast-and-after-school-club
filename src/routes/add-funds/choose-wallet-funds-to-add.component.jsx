@@ -23,6 +23,7 @@ const ChooseWalletFundsToAdd = () => {
       <Text>how much would you like to add to your wallet?</Text>
       <Form className="add-funds">
         <StyledInput
+          onWheel={(e) => e.target.blur()}
           type="number"
           pattern="[0-9]*"
           name="walletFunds"

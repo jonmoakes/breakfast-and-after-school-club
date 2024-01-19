@@ -166,6 +166,8 @@ export const checkEmailMessage = "please check your email!";
 export const fundsAddedMessage = (email) => {
   return `Success! The funds have been added to your wallet and a confirmation Email Has Been Sent To<br/><span style="text-transform: lowercase; font-size: 20px; color: hsl(60, 100%, 50%);">${email}</span>`;
 };
+export const successSendingCloseAccountEmailMessage =
+  "request successfuly sent!";
 
 export const balanceSuccessfullyReceivedMessage = `<span style="font-size: 20px;">balance successfully received! you will now see your latest balance. if you still think your balance is incorrect, please contact us using our contact form so that we can help!</span>`;
 export const passwordResetSuccessMessage =

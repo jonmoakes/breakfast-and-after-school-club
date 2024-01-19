@@ -12,6 +12,7 @@ import {
   SEND_EMAIL_RESET_SESSION_SPACES_AND_BALANCE_ERROR_ENDPOINT,
   SEND_EMAIL_BALANCE_NOT_UPDATED_ERROR_ENDPOINT,
   SEND_EMAIL_WALET_FUNDS_NOT_ADDED_ERROR_ENDPOINT,
+  SEND_EMAIL_TO_ADMIN_CLOSE_ACCOUNT_REQUEST_ENDPOINT,
 } from "../../../netlify/api-endpoints/api-endpoints";
 
 export const sendEmailBookingConfirmationAsync = createAsyncThunk(
@@ -219,6 +220,28 @@ export const sendEmailWalletFundsNotAddedErrorAsync = createAsyncThunk(
           appOwnerEmail,
           id,
           walletFundsToAdd,
+        }
+      );
+
+      const { status } = response;
+      return status;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
+export const sendEmailToAdminCloseAccountRequestAsync = createAsyncThunk(
+  "sendEmailToAdminCloseAccountRequest",
+  async ({ schoolCode, id, appOwnerEmail, email }, thunkAPI) => {
+    try {
+      const response = await axios.post(
+        SEND_EMAIL_TO_ADMIN_CLOSE_ACCOUNT_REQUEST_ENDPOINT,
+        {
+          schoolCode,
+          id,
+          appOwnerEmail,
+          email,
         }
       );
 
