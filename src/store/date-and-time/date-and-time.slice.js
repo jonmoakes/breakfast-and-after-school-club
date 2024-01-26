@@ -11,10 +11,13 @@ export const dateAndTimeSlice = createSlice({
     setCurrentDateAndTime(state, action) {
       state.currentDateAndTime = action.payload;
     },
+    resetDateAndTimeState: () => {
+      return INITIAL_STATE;
+    },
   },
 });
 
-export const { setCurrentDateAndTime, clearCurrentDateAndTime } =
+export const { setCurrentDateAndTime, resetDateAndTimeState } =
   dateAndTimeSlice.actions;
 
 export const dateAndTimeReducer = dateAndTimeSlice.reducer;

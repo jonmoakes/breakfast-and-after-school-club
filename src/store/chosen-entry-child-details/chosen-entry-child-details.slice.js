@@ -23,8 +23,6 @@ export const getChosenEntryChildDetailsAsync = createAsyncThunk(
 
       const { documents, total } = getChosenEntryChildDetailsDocuments;
 
-      console.log(total);
-
       if (!total) return;
 
       return documents;

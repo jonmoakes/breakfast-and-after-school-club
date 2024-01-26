@@ -37,14 +37,14 @@ export const getBookedSessionsSlice = createSlice({
     resetError(state) {
       state.error = null;
     },
-    resetBookedSessions(state) {
-      state.bookedSessions = [];
-    },
     setShowAllDates(state, action) {
       state.showAllDates = action.payload;
     },
     toggleShowAllDates(state) {
       state.showAllDates = !state.showAllDates;
+    },
+    resetBookedSessionsState: () => {
+      return INITIAL_STATE;
     },
   },
   extraReducers: (builder) => {
@@ -67,7 +67,7 @@ export const getBookedSessionsSlice = createSlice({
 
 export const {
   setBookedSessions,
-  resetBookedSessions,
+  resetBookedSessionsState,
   setShowAllDates,
   resetError,
   toggleShowAllDates,

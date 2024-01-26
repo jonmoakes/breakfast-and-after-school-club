@@ -2,9 +2,9 @@ import { useCallback, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import { selectSignInFormDetails } from "../../../store/sign-in-form/sign-in-form.selector";
-import { clearSignInFormDetails } from "../../../store/sign-in-form/sign-in-form.slice";
+import { resetSignInFormState } from "../../../store/sign-in-form/sign-in-form.slice";
 import { selectSignUpFormDetails } from "../../../store/sign-up-form/sign-up-form.selector";
-import { clearSignUpFormDetails } from "../../../store/sign-up-form/sign-up-form.slice";
+import { resetSignUpFormState } from "../../../store/sign-up-form/sign-up-form.slice";
 import { selectError } from "../../../store/user/user.selector";
 
 const useCheckForAndClearFormDetails = () => {
@@ -22,7 +22,7 @@ const useCheckForAndClearFormDetails = () => {
           Object.values(signUpFormDetails).every((value) => value === "")
       )
     ) {
-      dispatch(clearSignInFormDetails());
+      dispatch(resetSignInFormState());
     } else {
       return;
     }
@@ -36,7 +36,7 @@ const useCheckForAndClearFormDetails = () => {
           Object.values(signUpFormDetails).every((value) => value !== "")
       )
     ) {
-      dispatch(clearSignUpFormDetails());
+      dispatch(resetSignUpFormState());
     } else {
       return;
     }

@@ -11,9 +11,12 @@ export const isOnlineSlice = createSlice({
     setOnlineStatus(state, action) {
       state.isOnline = action.payload;
     },
+    resetIsOnlineState: () => {
+      return INITIAL_STATE;
+    },
   },
 });
 
-export const { setOnlineStatus } = isOnlineSlice.actions;
+export const { setOnlineStatus, resetIsOnlineState } = isOnlineSlice.actions;
 
 export const isOnlineReducer = isOnlineSlice.reducer;

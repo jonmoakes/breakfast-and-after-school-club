@@ -38,7 +38,12 @@ const useSendEmailBookingConfirmation = () => {
 
   const { name, email, walletBalance } = currentUser;
   const date = requestDateData ? requestDateData.date : "";
-  const childName = usersChildren[0] ? usersChildren[0].childName : "";
+
+  const childName =
+    usersChildren && usersChildren[0] !== undefined
+      ? usersChildren[0].childName
+      : "";
+
   const oneChildChosen = childrenSelectedForBooking.join(" ");
   const namesToAddToBooking = childrenSelectedForBooking.join(", ");
 

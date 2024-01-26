@@ -37,7 +37,9 @@ export const sendEmailSlice = createSlice({
   name: "sendEmail",
   initialState: INITIAL_STATE,
   reducers: {
-    resetSendEmailState: () => INITIAL_STATE,
+    resetSendEmailState: () => {
+      return INITIAL_STATE;
+    },
     resetErrorMessage(state) {
       state.error = null;
     },

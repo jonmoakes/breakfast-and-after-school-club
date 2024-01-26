@@ -16,13 +16,13 @@ export const signInFormSlice = createSlice({
     setSignInFormDetails(state, action) {
       state.signInFormDetails = action.payload;
     },
-    clearSignInFormDetails(state) {
-      state.signInFormDetails = defaultSignInFormDetails;
+    resetSignInFormState: () => {
+      return INITIAL_STATE;
     },
   },
 });
 
-export const { setSignInFormDetails, clearSignInFormDetails } =
+export const { setSignInFormDetails, resetSignInFormState } =
   signInFormSlice.actions;
 
 export const signInFormReducer = signInFormSlice.reducer;

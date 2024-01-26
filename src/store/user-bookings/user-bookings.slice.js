@@ -43,8 +43,8 @@ export const userBookingsSlice = createSlice({
     resetError(state) {
       state.error = null;
     },
-    resetUserBookings(state) {
-      state.userBookings = [];
+    resetUserBookingsState: () => {
+      return INITIAL_STATE;
     },
   },
   extraReducers: (builder) => {
@@ -65,7 +65,7 @@ export const userBookingsSlice = createSlice({
   },
 });
 
-export const { setUserBookings, resetUserBookings, resetError } =
+export const { setUserBookings, resetError, resetUserBookingsState } =
   userBookingsSlice.actions;
 
 export const userBookingsReducer = userBookingsSlice.reducer;

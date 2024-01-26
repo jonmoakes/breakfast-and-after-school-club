@@ -50,6 +50,9 @@ export const sessionTypesAndPricesSlice = createSlice({
     resetSessionPricesError(state) {
       state.error = null;
     },
+    resetSessionTypesAndPricesState: () => {
+      return INITIAL_STATE;
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -69,7 +72,10 @@ export const sessionTypesAndPricesSlice = createSlice({
   },
 });
 
-export const { setSessionTypesAndPrices, resetSessionPricesError } =
-  sessionTypesAndPricesSlice.actions;
+export const {
+  setSessionTypesAndPrices,
+  resetSessionPricesError,
+  resetSessionTypesAndPricesState,
+} = sessionTypesAndPricesSlice.actions;
 
 export const sessionTypesAndPricesReducer = sessionTypesAndPricesSlice.reducer;

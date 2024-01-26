@@ -31,9 +31,19 @@ const useSendAddBookingInfoErrorEmail = (date) => {
   const envVariables = useSelector(selectEnvironmentVariables);
   const dispatch = useDispatch();
 
-  const childName = usersChildren.length ? usersChildren[0].childName : "";
-  const parentEmail = usersChildren.length ? usersChildren[0].parentEmail : "";
-  const parentName = usersChildren.length ? usersChildren[0].parentName : "";
+  const childName =
+    usersChildren && usersChildren[0] !== undefined
+      ? usersChildren[0].childName
+      : "";
+  const parentEmail =
+    usersChildren && usersChildren[0] !== undefined
+      ? usersChildren[0].parentEmail
+      : "";
+  const parentName =
+    usersChildren && usersChildren[0] !== undefined
+      ? usersChildren[0].parentName
+      : "";
+
   const oneChildChosen = childrenSelectedForBooking.join(" ");
   const namesToAddToBooking = childrenSelectedForBooking.join(", ");
   const { appOwnerEmail } = envVariables;

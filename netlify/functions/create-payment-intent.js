@@ -3,12 +3,10 @@ import stripe from "stripe";
 
 config(); // Load environment variables from .env file
 
-const stripeKey = stripe(process.env.VITE_STRIPE_SECRET_KEY);
-
 export const handler = async (event) => {
   try {
-    const { amount } = JSON.parse(event.body);
-
+    const { stripeSecretKey, amount } = JSON.parse(event.body);
+    const stripeKey = stripe(stripeSecretKey);
     const paymentIntent = await stripeKey.paymentIntents.create({
       amount,
       currency: "gbp",

@@ -18,13 +18,13 @@ export const signUpFormSlice = createSlice({
     setSignUpFormDetails(state, action) {
       state.signUpFormDetails = action.payload;
     },
-    clearSignUpFormDetails(state) {
-      state.signUpFormDetails = defaultSignUpFormDetails;
+    resetSignUpFormState: () => {
+      return INITIAL_STATE;
     },
   },
 });
 
-export const { setSignUpFormDetails, clearSignUpFormDetails } =
+export const { setSignUpFormDetails, resetSignUpFormState } =
   signUpFormSlice.actions;
 
 export const signUpFormReducer = signUpFormSlice.reducer;

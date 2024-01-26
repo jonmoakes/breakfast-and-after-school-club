@@ -63,10 +63,10 @@ export const addChildInfoSlice = createSlice({
     resetResult(state) {
       state.result = "";
     },
-    resetError(state) {
-      state.error = null;
+    resetError() {
+      return INITIAL_STATE;
     },
-    resetChildInfo(state) {
+    resetAllChildInfoState(state) {
       state.childInfo = defaultChildInfo;
     },
   },
@@ -88,7 +88,7 @@ export const addChildInfoSlice = createSlice({
   },
 });
 
-export const { setChildInfo, resetChildInfo, resetResult, resetError } =
+export const { setChildInfo, resetAllChildInfoState, resetResult, resetError } =
   addChildInfoSlice.actions;
 
 export const addChildInfoReducer = addChildInfoSlice.reducer;

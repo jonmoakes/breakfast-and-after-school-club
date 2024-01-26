@@ -27,9 +27,8 @@ export const shouldShowElementSlice = createSlice({
     toggleShowSecondElement(state) {
       state.shouldShowSecondElement = !state.shouldShowSecondElement;
     },
-    clearShouldShowElementsState(state) {
-      state.shouldShowElement = false;
-      state.shouldShowSecondElement = false;
+    resetShouldShowElementState: () => {
+      return INITIAL_STATE;
     },
   },
 });
@@ -41,7 +40,7 @@ export const {
   showSecondElement,
   hideSecondElement,
   toggleShowSecondElement,
-  clearShouldShowElementsState,
+  resetShouldShowElementState,
 } = shouldShowElementSlice.actions;
 
 export const shouldShowElementReducer = shouldShowElementSlice.reducer;

@@ -44,6 +44,9 @@ export const getUsersChildrenSlice = createSlice({
     resetUsersChildren(state) {
       state.usersChildren = [];
     },
+    resetAllGetUsersChildrenState: () => {
+      return INITIAL_STATE;
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -63,7 +66,11 @@ export const getUsersChildrenSlice = createSlice({
   },
 });
 
-export const { setUsersChildren, resetUsersChildren, resetError } =
-  getUsersChildrenSlice.actions;
+export const {
+  setUsersChildren,
+  resetUsersChildren,
+  resetError,
+  resetAllGetUsersChildrenState,
+} = getUsersChildrenSlice.actions;
 
 export const getUsersChildrenReducer = getUsersChildrenSlice.reducer;

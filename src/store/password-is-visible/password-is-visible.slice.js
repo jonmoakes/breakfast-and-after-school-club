@@ -66,6 +66,9 @@ export const passwordIsVisibleSlice = createSlice({
     hideUpdatePasswordConfirmPasswordIsVisible(state) {
       state.updatePasswordConfirmPasswordIsVisible = false;
     },
+    resetPasswordIsVisibleState: () => {
+      return INITIAL_STATE;
+    },
   },
 });
 
@@ -86,6 +89,7 @@ export const {
   toggleUpdatePasswordConfirmPasswordIsVisible,
   hideUpdatePasswordIsVisible,
   hideUpdatePasswordConfirmPasswordIsVisible,
+  resetPasswordIsVisibleState,
 } = passwordIsVisibleSlice.actions;
 
 export const passwordIsVisibleReducer = passwordIsVisibleSlice.reducer;

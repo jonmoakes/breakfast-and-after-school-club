@@ -5,7 +5,10 @@ import { useStripe, CardElement, useElements } from "@stripe/react-stripe-js";
 import useConfirmSwal from "../../../hooks/use-confirm-swal";
 
 import { selectWalletFundsToAdd } from "../../../store/wallet-funds-to-add/wallet-funds-to-add.selector";
-import { selectCurrentUser } from "../../../store/user/user.selector";
+import {
+  selectCurrentUser,
+  selectEnvironmentVariables,
+} from "../../../store/user/user.selector";
 import {
   selectClientSecret,
   selectShowConfirmButton,
@@ -15,7 +18,7 @@ import {
   getClientSecretAsync,
   getPaymentResultAsync,
 } from "../../../store/handle-payment/handle-payment.slice";
-import { clearWalletFundsToAdd } from "../../../store/wallet-funds-to-add/wallet-funds-to-add.slice";
+import { resetWalletFundsToAddState } from "../../../store/wallet-funds-to-add/wallet-funds-to-add.slice";
 import { resetAllHandlePaymentState } from "../../../store/handle-payment/handle-payment.slice";
 import { resetCardInputState } from "../../../store/card-input-result/card-input-result.slice";
 
@@ -27,12 +30,14 @@ import {
 const useGetPaymentResult = () => {
   const { confirmSwal } = useConfirmSwal();
 
+  const envVariables = useSelector(selectEnvironmentVariables);
   const walletFundsToAdd = useSelector(selectWalletFundsToAdd);
   const currentUser = useSelector(selectCurrentUser);
   const client_secret = useSelector(selectClientSecret);
   const cardInputResult = useSelector(selectCardInputResult);
   const showConfirmButton = useSelector(selectShowConfirmButton);
   const { name, email } = currentUser;
+  const { stripeSecretKey } = envVariables;
   const { showPrePayButton } = cardInputResult;
 
   const dispatch = useDispatch();
@@ -41,7 +46,7 @@ const useGetPaymentResult = () => {
 
   const getClientSecret = () => {
     if (!stripe || !elements) return;
-    dispatch(getClientSecretAsync({ walletFundsToAdd }));
+    dispatch(getClientSecretAsync({ stripeSecretKey, walletFundsToAdd }));
   };
 
   useEffect(() => {
@@ -71,7 +76,7 @@ const useGetPaymentResult = () => {
     const cancelResult = () => {
       dispatch(resetAllHandlePaymentState());
       dispatch(resetCardInputState());
-      dispatch(clearWalletFundsToAdd());
+      dispatch(resetWalletFundsToAddState());
     };
 
     confirmSwal(

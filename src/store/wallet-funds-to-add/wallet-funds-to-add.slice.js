@@ -11,13 +11,13 @@ export const walletFundsToAddSlice = createSlice({
     setWalletFundsToAdd(state, action) {
       state.walletFundsToAdd = action.payload;
     },
-    clearWalletFundsToAdd(state) {
-      state.walletFundsToAdd = 0;
+    resetWalletFundsToAddState: () => {
+      return INITIAL_STATE;
     },
   },
 });
 
-export const { setWalletFundsToAdd, clearWalletFundsToAdd } =
+export const { setWalletFundsToAdd, resetWalletFundsToAddState } =
   walletFundsToAddSlice.actions;
 
 export const walletFundsToAddReducer = walletFundsToAddSlice.reducer;

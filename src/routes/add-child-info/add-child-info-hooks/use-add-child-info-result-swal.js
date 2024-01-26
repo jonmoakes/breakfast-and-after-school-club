@@ -9,7 +9,7 @@ import {
   selectError,
 } from "../../../store/add-child-info/add-child-info.selector";
 import {
-  resetChildInfo,
+  resetAllChildInfoState,
   resetError,
   resetResult,
 } from "../../../store/add-child-info/add-child-info.slice";
@@ -40,7 +40,7 @@ const useAddChildInfoResultSwal = () => {
         (isConfirmed) => {
           if (isConfirmed) {
             dispatch(resetResult());
-            dispatch(resetChildInfo());
+            dispatch(resetAllChildInfoState());
             navigate(childInfoRoute);
           }
         }

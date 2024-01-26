@@ -2,7 +2,7 @@ import { useSelector, useDispatch } from "react-redux";
 
 import { selectHandlePaymentError } from "../../../store/handle-payment/handle-payment.selector";
 import { resetErrorMessage } from "../../../store/handle-payment/handle-payment.slice";
-import { clearWalletFundsToAdd } from "../../../store/wallet-funds-to-add/wallet-funds-to-add.slice";
+import { resetWalletFundsToAddState } from "../../../store/wallet-funds-to-add/wallet-funds-to-add.slice";
 import { resetCardInputState } from "../../../store/card-input-result/card-input-result.slice";
 
 import { ParentDiv } from "../../../styles/div/div.styles";
@@ -16,7 +16,7 @@ const AddFundsError = () => {
 
   const clearErrorAndResetFundsToAdd = () => {
     dispatch(resetErrorMessage());
-    dispatch(clearWalletFundsToAdd());
+    dispatch(resetWalletFundsToAddState());
     dispatch(resetCardInputState());
   };
 

@@ -1,25 +1,42 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { BrowserRouter } from "react-router-dom";
-import { Provider } from "react-redux";
-
+import { Provider, useSelector } from "react-redux";
 import { store } from "./store/store";
 import { StyleSheetManager } from "styled-components";
 import App from "./App";
 import "./index.css";
 import * as serviceWorkerRegistration from "./serviceWorkerRegistration";
 import { Elements } from "@stripe/react-stripe-js";
-import { stripePromise } from "./utils/stripe/stripe.utils";
 import "regenerator-runtime";
+import { loadStripe } from "@stripe/stripe-js";
+import { selectEnvironmentVariables } from "./store/user/user.selector";
+
+const AppContainer = () => {
+  const envVariables = useSelector(selectEnvironmentVariables);
+  const { stripePublishableKey } = envVariables;
+
+  return (
+    <>
+      {stripePublishableKey ? (
+        <>
+          <Elements stripe={loadStripe(stripePublishableKey)}>
+            <App />
+          </Elements>
+        </>
+      ) : (
+        <App />
+      )}
+    </>
+  );
+};
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <Provider store={store}>
       <BrowserRouter>
         <StyleSheetManager shouldForwardProp={(prop) => prop !== "theme"}>
-          <Elements stripe={stripePromise}>
-            <App />
-          </Elements>
+          <AppContainer />
         </StyleSheetManager>
       </BrowserRouter>
     </Provider>
