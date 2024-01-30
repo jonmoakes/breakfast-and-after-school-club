@@ -26,42 +26,6 @@ export const LogoImage = styled.img`
   padding-bottom: 1px;
 `;
 
-export const SocialImage = styled.img`
-  width: 75px;
-  height: 75px;
-  transition: all 0.5s ease-in-out;
-  margin: 0px 20px;
-
-  &.fb {
-    width: 61px;
-    height: 61px;
-  }
-
-  &:hover {
-    cursor: pointer;
-    transform: scale(1.2);
-
-    @media screen and (max-width: 1366px) {
-      transform: none;
-      transition: none;
-    }
-  }
-
-  @media screen and (max-width: 600px) {
-    width: 50px;
-    height: 50px;
-
-    &.fb {
-      width: 44px;
-      height: 44px;
-    }
-  }
-
-  @media screen and (max-width: 280px) {
-    margin: 10px auto;
-  }
-`;
-
 export const AddIcon = styled.img`
   width: 70px;
   height: 70px;

@@ -23,9 +23,6 @@ import {
   signInRoute,
   accountRoute,
   updateEmailRoute,
-  magicUrlResultRoute,
-  magicUrlRequestRoute,
-  localhostMagicUrlResultRoute,
   forgotPasswordRequestRoute,
   forgotPasswordResultRoute,
   localhostForgotPasswordResultRoute,
@@ -35,8 +32,6 @@ import {
   updatePasswordResultRoute,
   localhostUpdatePasswordResultRoute,
   closeAccountRoute,
-  socialLoginResultRoute,
-  localhostSocialLoginResultRoute,
   paymentResultRoute,
   childInfoRoute,
   addChildInfoRoute,
@@ -103,15 +98,6 @@ const UpdatePasswordResult = lazy(() =>
 const CloseAccount = lazy(() =>
   import("./routes/close-account/close-account.component")
 );
-const MagicUrlRequest = lazy(() =>
-  import("./routes/magic-url-request/magic-url-request.component")
-);
-const MagicUrlResult = lazy(() =>
-  import("./routes/magic-url-result/magic-url-result.component")
-);
-const SocialLoginResult = lazy(() =>
-  import("./routes/social-login-result/social-login-result.component")
-);
 const ForgotPasswordRequest = lazy(() =>
   import("./routes/forgot-password-request/forgot-password-request.component")
 );
@@ -139,15 +125,6 @@ const App = () => {
             <Route path={signInRoute} element={<SignIn />} />
             <Route path={contactRoute} element={<Contact />} />
             <Route path={signUpRoute} element={<SignUp />} />
-            <Route path={magicUrlRequestRoute} element={<MagicUrlRequest />} />
-            <Route
-              path={magicUrlResultRoute || localhostMagicUrlResultRoute}
-              element={<MagicUrlResult />}
-            />
-            <Route
-              path={socialLoginResultRoute || localhostSocialLoginResultRoute}
-              element={<SocialLoginResult />}
-            />
             <Route
               path={forgotPasswordRequestRoute}
               element={<ForgotPasswordRequest />}

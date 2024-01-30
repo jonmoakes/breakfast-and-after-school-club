@@ -18,7 +18,6 @@ import {
   deleteChildInfoRoute,
   editChildInfoRoute,
   forgotPasswordResultRoute,
-  magicUrlResultRoute,
   updatePasswordResultRoute,
 } from "../../strings/strings";
 
@@ -41,8 +40,7 @@ const Navigation = () => {
       {isRouteWithHeader() ? (
         <Nav>
           <NavLogo />
-          {path !== magicUrlResultRoute &&
-          path !== forgotPasswordResultRoute &&
+          {path !== forgotPasswordResultRoute &&
           path !== updatePasswordResultRoute ? (
             <>
               <NavHamburger />

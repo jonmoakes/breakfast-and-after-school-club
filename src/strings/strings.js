@@ -43,18 +43,8 @@ export const uploadFundsDatabaseErrorInstructions = (
 ) => {
   return `the error received was: '${error.message}'. please contact the app owner quoting the error message and the amount you tried to add to your wallet ( £${walletFundsToAdd} ). We apologise for the error!`;
 };
-export const errorRquestingOAuth2Session =
-  "error requesting OAuth2Session. please try again";
-export const errorRequestingFacebookSignIn =
-  "error requesting facebook sign in. please try again.";
-export const errorRequestingGoogleSignIn =
-  "error requesting google sign in. please try again.";
 export const emailAddressNotInDatabase =
   "the email address you entered does not match any email in our database.";
-export const errorRequestingMagicUrl =
-  "there was an error requesting your magicUrl link";
-export const magicUrlNoUserDocCreatedMessage =
-  "your user session was created but we couldn't finish the process of creating your account. please contact us using our contact form quoting this error message.";
 export const appwriteNoUserError =
   "User (role: guests) missing scope (account)";
 export const appwriteIdAlreadyExistsError =
@@ -258,9 +248,6 @@ export const imSureMessage = "i'm sure";
 export const addFundsMessage = "yes, add funds!";
 export const yesSendIt = "yes, send it!";
 export const yesAddChild = "yes, add child";
-export const confirmSendMagicUrlRequest = (email) => {
-  return `would you like to send a magic URL request to <span style="text-transform: lowercase;  color: hsl(60, 100%, 50%);">${email}</span>?`;
-};
 export const confirmUpdateEmailMessage = (newEmail) => {
   return `are you sure you wish to update your email to be <span style="text-transform: lowercase;  color: hsl(60, 100%, 50%);">${newEmail}</span>?`;
 };
@@ -292,13 +279,6 @@ export const childInfoRoute = "/child-info";
 export const addChildInfoRoute = "/add-child-info";
 export const signInRoute = "/sign-in";
 export const signUpRoute = "/sign-up";
-export const magicUrlRequestRoute = "/magic-url-request";
-export const magicUrlResultRoute = "/magic-url-result";
-export const localhostMagicUrlResultRoute =
-  "http://localhost:8888/magic-url-result";
-export const localhostSocialLoginResultRoute =
-  "http://localhost:8888/social-login-result";
-export const socialLoginResultRoute = "/social-login-result";
 export const payNowRoute = "/pay-now";
 export const updateEmailRoute = "/update-email";
 export const updatePasswordRequestRoute = "/update-password-request";

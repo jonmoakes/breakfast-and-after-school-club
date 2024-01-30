@@ -14,7 +14,6 @@ import { resetForgotPasswordResultState } from "../../../store/forgot-password-r
 import { resetAllGetUsersChildrenState } from "../../../store/get-users-children/get-users-children-slice";
 import { resetAllHandlePaymentState } from "../../../store/handle-payment/handle-payment.slice";
 import { resetIsOnlineState } from "../../../store/is-online/is-online.slice";
-import { resetMagicUrlRequestState } from "../../../store/magic-url-request/magic-url-request.slice";
 import { resetPasswordIsVisibleState } from "../../../store/password-is-visible/password-is-visible.slice";
 import { resetRequestDateDataState } from "../../../store/request-date-data/request-date-data.slice";
 import { resetSendEmailState } from "../../../store/send-email/send-email.slice";
@@ -47,7 +46,6 @@ const useResetAllStoreOnSignOut = () => {
     dispatch(resetAllGetUsersChildrenState());
     dispatch(resetAllHandlePaymentState());
     dispatch(resetIsOnlineState());
-    dispatch(resetMagicUrlRequestState());
     dispatch(resetPasswordIsVisibleState());
     dispatch(resetRequestDateDataState());
     dispatch(resetSendEmailState());

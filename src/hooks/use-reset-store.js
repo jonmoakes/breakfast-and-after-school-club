@@ -5,7 +5,6 @@ import { resetCardInputState } from "../store/card-input-result/card-input-resul
 import { resetContactFormState } from "../store/contact-form/contact-form.slice";
 import { resetForgotPasswordRequestState } from "../store/forgot-password-request/forgot-password-request.slice";
 import { resetForgotPasswordResultState } from "../store/forgot-password-result/forgot-password-result.slice";
-import { resetMagicUrlRequestState } from "../store/magic-url-request/magic-url-request.slice";
 import { clearNewPasswordDetails } from "../store/update-password-result/update-password-result.slice";
 import { resetRequestDateDataState } from "../store/request-date-data/request-date-data.slice";
 import { resetShouldShowElementState } from "../store/should-show-element/should-show-element.slice";
@@ -30,7 +29,6 @@ import {
   contactRoute,
   forgotPasswordResultRoute,
   forgotPasswordRequestRoute,
-  magicUrlRequestRoute,
   signInRoute,
   signUpRoute,
   updateEmailRoute,
@@ -65,10 +63,6 @@ const useResetStore = () => {
         break;
       case forgotPasswordResultRoute:
         dispatch(resetForgotPasswordResultState());
-        break;
-      case magicUrlRequestRoute:
-        dispatch(resetMagicUrlRequestState());
-        dispatch(resetShouldShowElementState());
         break;
       case contactRoute:
         dispatch(resetContactFormState());

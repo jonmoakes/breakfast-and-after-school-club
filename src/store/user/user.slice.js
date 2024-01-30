@@ -4,19 +4,11 @@ import {
   getUserOnLoadAsync,
   signInAsync,
   signUpAsync,
-  requestFacebookSignInAsync,
-  requestGoogleSignInAsync,
-  signInMagicUrlAsync,
   signOutAsync,
   getUsersWalletBalanceAsync,
 } from "./user.actions";
 
 import { setEnvironmentVariables } from "../../functions/set-environment-variables";
-
-import {
-  errorRequestingFacebookSignIn,
-  errorRequestingGoogleSignIn,
-} from "../../strings/strings";
 
 const initialState = {
   currentUser: null,
@@ -77,40 +69,6 @@ const userSlice = createSlice({
         state.environmentVariables = setEnvironmentVariables(schoolCode);
       })
       .addCase(signUpAsync.rejected, (state, action) => {
-        state.isLoading = false;
-        state.error = action.payload;
-      })
-      .addCase(requestFacebookSignInAsync.pending, (state) => {
-        state.isLoading = true;
-      })
-      .addCase(requestFacebookSignInAsync.fulfilled, (state) => {
-        state.isLoading = false;
-        state.error = null;
-      })
-      .addCase(requestFacebookSignInAsync.rejected, (state) => {
-        state.isLoading = false;
-        state.error = errorRequestingFacebookSignIn;
-      })
-      .addCase(requestGoogleSignInAsync.pending, (state) => {
-        state.isLoading = true;
-      })
-      .addCase(requestGoogleSignInAsync.fulfilled, (state) => {
-        state.isLoading = false;
-        state.error = null;
-      })
-      .addCase(requestGoogleSignInAsync.rejected, (state) => {
-        state.isLoading = false;
-        state.error = errorRequestingGoogleSignIn;
-      })
-      .addCase(signInMagicUrlAsync.pending, (state) => {
-        state.isLoading = true;
-      })
-      .addCase(signInMagicUrlAsync.fulfilled, (state, action) => {
-        state.isLoading = false;
-        state.currentUser = action.payload;
-        state.error = null;
-      })
-      .addCase(signInMagicUrlAsync.rejected, (state, action) => {
         state.isLoading = false;
         state.error = action.payload;
       })

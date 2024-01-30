@@ -4,8 +4,6 @@ import { useLocation } from "react-router-dom";
 
 import { getUserOnLoadAsync } from "../store/user/user.actions";
 import { selectCurrentUser } from "../store/user/user.selector";
-import { magicUrlResultRoute } from "../strings/strings";
-
 const useGetUserOnLoad = () => {
   const currentUser = useSelector(selectCurrentUser);
   const dispatch = useDispatch();
@@ -13,7 +11,7 @@ const useGetUserOnLoad = () => {
   const path = location.pathname;
 
   useEffect(() => {
-    if (currentUser || path === magicUrlResultRoute) return;
+    if (currentUser) return;
     dispatch(getUserOnLoadAsync());
   }, [dispatch, currentUser, path]);
 };

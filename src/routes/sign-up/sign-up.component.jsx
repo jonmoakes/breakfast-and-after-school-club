@@ -15,8 +15,6 @@ import SignUpSchoolCode from "./sections/sign-up-school-code.component";
 import SignUpEmail from "./sections/sign-up-email.component";
 import SignUpPasswords from "./sections/sign-up-passwords.component";
 import SignUpButton from "./sections/sign-up-button.component";
-import SocialLogins from "../../components/social-logins/social-logins.component";
-import MagicUrlButton from "../../components/magic-url-button/magic-url-button.component";
 
 import { Container } from "../../styles/container/container.styles";
 import { ParentDiv } from "../../styles/div/div.styles";
@@ -62,8 +60,6 @@ const SignUp = () => {
           <SignUpSchoolCode {...{ handleSignUpFormChange }} />
           <SignUpPasswords {...{ handleSignUpFormChange }} />
           <SignUpButton />
-          <MagicUrlButton />
-          <SocialLogins />
         </Form>
       </ParentDiv>
     </Container>

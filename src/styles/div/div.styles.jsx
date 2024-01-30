@@ -250,20 +250,6 @@ export const TopMarginDiv = styled.div`
   align-items: center;
 `;
 
-export const SocialLoginsDiv = styled.div`
-  width: 100%;
-  height: auto;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  margin: 30px auto;
-
-  @media screen and (max-width: 280px) {
-    flex-direction: column;
-  }
-`;
-
 export const Accordion = styled.div.withConfig({
   shouldForwardProp: (prop) => prop !== "shouldShowElement",
 })`

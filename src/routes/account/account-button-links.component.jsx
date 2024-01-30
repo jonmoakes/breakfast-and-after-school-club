@@ -14,11 +14,9 @@ import { BlackHr } from "../../styles/hr/hr.styles";
 const AccountButtonLinks = () => {
   const currentUser = useSelector(selectCurrentUser);
   const envVariables = useSelector(selectEnvironmentVariables);
-  const { provider } = currentUser;
   const { appOwnerId } = envVariables;
 
-  const { emailProviderButtons, authProviderButtons, appOwnerButtons } =
-    useNavigateToRoute();
+  const { notAppOwnerButtons, appOwnerButtons } = useNavigateToRoute();
 
   return (
     <ParentDiv>
@@ -34,17 +32,7 @@ const AccountButtonLinks = () => {
               </div>
             );
           })
-        : currentUser.id !== appOwnerId && provider === "email"
-        ? emailProviderButtons.map((button) => {
-            const { id, text, onClick } = button;
-            return (
-              <div key={id}>
-                <BlackHr />
-                <YellowGreenButton onClick={onClick}>{text}</YellowGreenButton>
-              </div>
-            );
-          })
-        : authProviderButtons.map((button) => {
+        : notAppOwnerButtons.map((button) => {
             const { id, text, onClick } = button;
             return (
               <div key={id}>

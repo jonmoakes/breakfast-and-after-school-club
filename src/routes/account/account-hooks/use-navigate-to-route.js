@@ -32,7 +32,7 @@ const useNavigateToRoute = () => {
     },
   ];
 
-  const emailProviderButtons = [
+  const notAppOwnerButtons = [
     {
       id: 1,
       text: "view your bookings",
@@ -70,37 +70,8 @@ const useNavigateToRoute = () => {
     },
   ];
 
-  const authProviderButtons = [
-    {
-      id: 1,
-      text: "view your bookings",
-      onClick: () => navigate(userBookingsRoute),
-    },
-    {
-      id: 2,
-      text: "book a session",
-      onClick: () => navigate(bookSessionRoute),
-    },
-    {
-      id: 3,
-      text: "add funds",
-      onClick: () => navigate(addFundsRoute),
-    },
-    {
-      id: 4,
-      text: "child info",
-      onClick: () => navigate(childInfoRoute),
-    },
-    {
-      id: 5,
-      text: " close account",
-      onClick: () => navigate(closeAccountRoute),
-    },
-  ];
-
   return {
-    emailProviderButtons,
-    authProviderButtons,
+    notAppOwnerButtons,
     appOwnerButtons,
   };
 };

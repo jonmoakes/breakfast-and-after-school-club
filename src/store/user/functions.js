@@ -25,7 +25,7 @@ export const getRetrievedUserFromDocument = async (schoolCode) => {
   const { total, documents } = userDocument;
 
   if (total && documents.length) {
-    const { id, name, email, createdAt, walletBalance, provider, schoolCode } =
+    const { id, name, email, createdAt, walletBalance, schoolCode } =
       documents[0];
 
     return {
@@ -34,7 +34,6 @@ export const getRetrievedUserFromDocument = async (schoolCode) => {
       name,
       email,
       walletBalance,
-      provider,
       schoolCode,
     };
   } else {
@@ -44,7 +43,6 @@ export const getRetrievedUserFromDocument = async (schoolCode) => {
 
 export const createDocumentAndSetUser = async (schoolCode) => {
   const user = await account.get();
-  const session = await account.getSession("current");
   const { databaseId, collectionId } =
     getSchoolDatabaseAndUserCollectionIds(schoolCode);
 
@@ -68,7 +66,6 @@ export const createDocumentAndSetUser = async (schoolCode) => {
       name: user.name,
       email: user.email,
       walletBalance: 0,
-      provider: session.provider,
       schoolCode,
     };
 
