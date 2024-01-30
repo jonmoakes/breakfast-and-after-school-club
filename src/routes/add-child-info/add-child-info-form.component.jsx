@@ -2,7 +2,7 @@ import { useSelector } from "react-redux";
 
 import useHandleAddChildInfoChange from "./add-child-info-hooks/use-handle-add-child-info-change";
 
-import { selectAddChildInfo } from "../../store/add-child-info/add-child-info.selector";
+import { selectAddChildInfo } from "../../store/add-child-info/add-child-info.slice";
 
 import AddChildInfoButton from "./add-child-info-button.component";
 

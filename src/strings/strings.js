@@ -119,9 +119,7 @@ export const errorUpdatingChild =
   "sorry, there was an error updating your childs information. please try again.";
 export const errorDeletingChildMessage =
   "sorry, there was an error deleting your child. please try again.";
-export const appwriteAgeAttributeError =
-  "Value must be a valid range between 4 and 11";
-export const ageError = "the age value should be between 4 and 11";
+export const appwriteAgeAttributeError = 'Attribute "age" has invalid format';
 export const cantIncludeCommaMessage = "names can't include a comma";
 export const alreadyHaveChildNameMessage =
   "you can't add a child with the same name.";

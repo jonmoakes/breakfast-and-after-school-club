@@ -1,42 +1,5 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { ID } from "appwrite";
-import { manageDatabaseDocument } from "../../utils/appwrite/appwrite-functions";
-
-export const addChildInfoAsync = createAsyncThunk(
-  "addChildInfo",
-  async ({ childInfo, name, email, databaseId, collectionId }, thunkAPI) => {
-    try {
-      const {
-        childName,
-        age,
-        medicalInfo,
-        dietryRequirements,
-        additionalInfo,
-      } = childInfo;
-
-      const documentId = ID.unique();
-
-      const dataToAdd = {
-        parentName: name,
-        parentEmail: email,
-        childName,
-        age,
-        medicalInfo,
-        dietryRequirements,
-        additionalInfo,
-      };
-      await manageDatabaseDocument(
-        "create",
-        databaseId,
-        collectionId,
-        documentId,
-        dataToAdd
-      );
-    } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
-    }
-  }
-);
+import { createSlice } from "@reduxjs/toolkit";
+import { addChildInfoAsync } from "./add-child-info.actions";
 
 const defaultChildInfo = {
   childName: "",
@@ -60,15 +23,21 @@ export const addChildInfoSlice = createSlice({
     setChildInfo(state, action) {
       state.childInfo = action.payload;
     },
-    resetResult(state) {
+    resetAddChildInfoResult(state) {
       state.result = "";
     },
-    resetError() {
+    resetAddChildInfoError(state) {
+      state.error = null;
+    },
+    resetAllChildInfoState() {
       return INITIAL_STATE;
     },
-    resetAllChildInfoState(state) {
-      state.childInfo = defaultChildInfo;
-    },
+  },
+  selectors: {
+    selectAddChildInfoIsLoading: (state) => state.isLoading,
+    selectAddChildInfo: (state) => state.childInfo,
+    selectAddChildInfoResult: (state) => state.result,
+    selectAddChildInfoError: (state) => state.error,
   },
   extraReducers: (builder) => {
     builder
@@ -88,7 +57,18 @@ export const addChildInfoSlice = createSlice({
   },
 });
 
-export const { setChildInfo, resetAllChildInfoState, resetResult, resetError } =
-  addChildInfoSlice.actions;
+export const {
+  setChildInfo,
+  resetAllChildInfoState,
+  resetAddChildInfoResult,
+  resetAddChildInfoError,
+} = addChildInfoSlice.actions;
+
+export const {
+  selectAddChildInfoIsLoading,
+  selectAddChildInfo,
+  selectAddChildInfoResult,
+  selectAddChildInfoError,
+} = addChildInfoSlice.selectors;
 
 export const addChildInfoReducer = addChildInfoSlice.reducer;

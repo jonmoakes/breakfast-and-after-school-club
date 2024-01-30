@@ -3,13 +3,13 @@ import { useDispatch, useSelector } from "react-redux";
 import useFireSwal from "../../../hooks/use-fire-swal";
 import useConfirmSwal from "../../../hooks/use-confirm-swal";
 
-import { selectAddChildInfo } from "../../../store/add-child-info/add-child-info.selector";
 import {
   selectCurrentUser,
   selectEnvironmentVariables,
 } from "../../../store/user/user.selector";
 import { selectUsersChildren } from "../../../store/get-users-children/get-users-children.selector";
-import { addChildInfoAsync } from "../../../store/add-child-info/add-child-info.slice";
+import { addChildInfoAsync } from "../../../store/add-child-info/add-child-info.actions";
+import { selectAddChildInfo } from "../../../store/add-child-info/add-child-info.slice";
 
 import {
   alreadyHaveChildNameMessage,
