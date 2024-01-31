@@ -6,7 +6,7 @@ import {
   selectUpdateSessionDoc,
   selectUpdateUserDocBalance,
   selectAddSessionBookingInfo,
-} from "../../../store/book-session/book-session.selector";
+} from "../../../store/book-session/book-session.slice";
 
 const useReturnLogic = () => {
   const updateSessionDoc = useSelector(selectUpdateSessionDoc);

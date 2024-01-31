@@ -7,7 +7,7 @@ import useFireSwal from "../../../../hooks/use-fire-swal";
 import {
   selectChildrenSelectedForBooking,
   selectSessionType,
-} from "../../../../store/book-session/book-session.selector";
+} from "../../../../store/book-session/book-session.slice";
 import { selectEnvironmentVariables } from "../../../../store/user/user.selector";
 import { sendEmailResetSessionSpacesErrorAsync } from "../../../../store/send-email/send-email-thunks";
 

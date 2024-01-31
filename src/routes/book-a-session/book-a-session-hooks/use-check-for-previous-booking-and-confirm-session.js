@@ -7,8 +7,8 @@ import useSessionAlreadyBookedSwal from "./swals/use-session-already-booked-swal
 import useConfirmResult from "./use-confirm-result";
 import useCouldntFetchUserBookingsErrorSwal from "./swals/use-couldnt-fetch-user-bookings-error-swal";
 
-import { selectChildrenSelectedForBooking } from "../../../store/book-session/book-session.selector";
-import { selectError } from "../../../store/user-bookings/user-bookings.selector";
+import { selectChildrenSelectedForBooking } from "../../../store/book-session/book-session.slice";
+import { selectGetUserBookingsError } from "../../../store/user-bookings/user-bookings.selector";
 
 import {
   confirmSureBookSession,
@@ -29,7 +29,7 @@ const useCheckForPreviousBookingAndConfirmSession = () => {
   const childrenSelectedForBooking = useSelector(
     selectChildrenSelectedForBooking
   );
-  const userBookingsFetchError = useSelector(selectError);
+  const userBookingsFetchError = useSelector(selectGetUserBookingsError);
 
   const childrenSelectedViaCheckbox = childrenSelectedForBooking.length;
 

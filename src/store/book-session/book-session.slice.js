@@ -60,6 +60,17 @@ export const bookSessionSlice = createSlice({
       return INITIAL_STATE;
     },
   },
+  selectors: {
+    selectSessionType: (state) => state.sessionType,
+    selectSessionPrice: (state) => state.sessionPrice,
+    selectBookSessionIsLoading: (state) => state.isLoading,
+    selectUpdateSessionDoc: (state) => state.updateSessionDoc,
+    selectUpdateUserDocBalance: (state) => state.updateUserDocBalance,
+    selectResetSessionDoc: (state) => state.resetSessionDoc,
+    selectAddSessionBookingInfo: (state) => state.addSessionBookingInfo,
+    selectChildrenSelectedForBooking: (state) =>
+      state.childrenSelectedForBooking,
+  },
   extraReducers: (builder) => {
     builder
       .addCase(updateSessionDocAsync.pending, (state) => {
@@ -125,5 +136,16 @@ export const {
   setChildrenSelectedForBooking,
   resetChildrenSelectedForBooking,
 } = bookSessionSlice.actions;
+
+export const {
+  selectSessionType,
+  selectSessionPrice,
+  selectBookSessionIsLoading,
+  selectUpdateSessionDoc,
+  selectUpdateUserDocBalance,
+  selectResetSessionDoc,
+  selectAddSessionBookingInfo,
+  selectChildrenSelectedForBooking,
+} = bookSessionSlice.selectors;
 
 export const bookSessionReducer = bookSessionSlice.reducer;

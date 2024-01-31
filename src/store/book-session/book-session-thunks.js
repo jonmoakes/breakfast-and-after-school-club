@@ -1,12 +1,12 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { ID } from "appwrite";
-
-import { lastMinuteNoSessionsMessage } from "../../strings/strings";
-import { createChildrenToAddToBooking } from "../../functions/create-children-to-add-to-booking";
 import {
   listDocumentsByQueryOrSearch,
   manageDatabaseDocument,
 } from "../../utils/appwrite/appwrite-functions";
+
+import { lastMinuteNoSessionsMessage } from "../../strings/strings";
+import { createChildrenToAddToBooking } from "../../functions/create-children-to-add-to-booking";
 
 export const updateSessionDocAsync = createAsyncThunk(
   "updateSessionDoc",

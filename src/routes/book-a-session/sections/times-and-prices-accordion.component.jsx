@@ -1,7 +1,10 @@
 import { useSelector, useDispatch } from "react-redux";
 
-import useGetSessionPrices from "../../../hooks/use-get-session-prices";
-
+import {
+  selectAfternoonLongSessionTime,
+  selectMorningSessionTime,
+  selectAfternoonShortSessionTime,
+} from "../../../store/request-date-data/request-date-data.slice";
 import {
   selectMorningSessionPrice,
   selectAfternoonShortSessionPrice,
@@ -26,10 +29,7 @@ import { BlueSpan } from "../../../styles/span/span.styles";
 import { BlackHr } from "../../../styles/hr/hr.styles";
 
 const TimesAndPricesAccordion = () => {
-  useGetSessionPrices();
   const shouldShowSecondElement = useSelector(selectShouldShowSecondElement);
-
-  const dispatch = useDispatch();
   const morningPrice = useSelector(selectMorningSessionPrice);
   const afternoonShortPrice = useSelector(selectAfternoonShortSessionPrice);
   const afternoonLongPrice = useSelector(selectAfternoonLongSessionPrice);
@@ -39,6 +39,13 @@ const TimesAndPricesAccordion = () => {
   const morningAndAfternoonLongPrice = useSelector(
     selectMorningAndAfternoonLongSessionPrice
   );
+  const morningSessionTime = useSelector(selectMorningSessionTime);
+  const afternoonShortSessionTime = useSelector(
+    selectAfternoonShortSessionTime
+  );
+  const afternoonLongSessionTime = useSelector(selectAfternoonLongSessionTime);
+
+  const dispatch = useDispatch();
 
   // SecondAccordion is for if there are 2 accordions on a page as they have separate states.
   return (
@@ -60,14 +67,14 @@ const TimesAndPricesAccordion = () => {
             <Text>
               morning session:
               <br />
-              7.30am &ndash; 9.00am
+              {morningSessionTime}
               <br /> cost: <BlueSpan>£{morningPrice}</BlueSpan> per child.
             </Text>
             <BlackHr />
             <Text>
               afternoon session ( short ):
               <br />
-              3.20pm &ndash; 4.30pm
+              {afternoonShortSessionTime}
               <br /> cost: <BlueSpan>£{afternoonShortPrice}</BlueSpan> per
               child.
             </Text>
@@ -75,12 +82,13 @@ const TimesAndPricesAccordion = () => {
             <Text>
               afternoon session ( long ):
               <br />
-              3.20pm &ndash; 6pm
+              {afternoonLongSessionTime}
               <br /> cost: <BlueSpan>£{afternoonLongPrice}</BlueSpan> per child.
             </Text>
             <BlackHr />
             <Text>
-              morning and afternoon sessions ( short ):
+              morning and afternoon sessions
+              <br />( short ):
               <br /> cost: <BlueSpan>
                 £{morningAndAfternoonShortPrice}
               </BlueSpan>{" "}
@@ -88,7 +96,8 @@ const TimesAndPricesAccordion = () => {
             </Text>
             <BlackHr />
             <Text>
-              morning and afternoon sessions ( long ):
+              morning and afternoon sessions
+              <br />( long ):
               <br /> cost: <BlueSpan>
                 £{morningAndAfternoonLongPrice}
               </BlueSpan>{" "}

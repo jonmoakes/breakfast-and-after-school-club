@@ -10,7 +10,8 @@ import { StyledLink } from "../../../styles/link/link.styles";
 import { addFundsRoute } from "../../../strings/strings";
 
 const BalanceCheckAndBookSessionHelp = () => {
-  const { hasInsufficientFunds, noChildrenAddedYet } = useConditionalLogic();
+  const { hasInsufficientFunds, noChildrenAddedYet, morningSessionPrice } =
+    useConditionalLogic();
 
   return (
     <ParentDiv>
@@ -18,9 +19,9 @@ const BalanceCheckAndBookSessionHelp = () => {
       {noChildrenAddedYet() ? null : !noChildrenAddedYet() &&
         hasInsufficientFunds() ? (
         <Text>
-          you need at least £4 in your wallet to book a session. please{" "}
-          <StyledLink to={addFundsRoute}>Add funds</StyledLink> to your account
-          in order to continue.
+          you need at least £{morningSessionPrice} in your wallet to book a
+          session. please <StyledLink to={addFundsRoute}>Add funds</StyledLink>{" "}
+          to your account in order to continue.
         </Text>
       ) : (
         <SessionHelpAccordion />

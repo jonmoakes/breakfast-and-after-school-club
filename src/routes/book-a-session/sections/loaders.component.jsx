@@ -1,7 +1,7 @@
 import { useSelector } from "react-redux";
 
-import { selectRequestDateDataIsLoading } from "../../../store/request-date-data/request-date-data.selector";
-import { selectBookSessionIsLoading } from "../../../store/book-session/book-session.selector";
+import { selectRequestDateDataIsLoading } from "../../../store/request-date-data/request-date-data.slice";
+import { selectBookSessionIsLoading } from "../../../store/book-session/book-session.slice";
 import { selectGetPricesIsLoading } from "../../../store/session-types-and-prices/session-types-and-prices.selector";
 import { selectSendEmailIsLoading } from "../../../store/send-email/send-email.slice";
 

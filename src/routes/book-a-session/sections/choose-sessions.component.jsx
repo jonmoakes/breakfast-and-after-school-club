@@ -1,5 +1,5 @@
 import useConditionalLogic from "../book-a-session-hooks/use-conditional-logic";
-import useGetDateAndTime from "../book-a-session-hooks/use-get-date-and-time";
+import useSetDateAndTime from "../book-a-session-hooks/use-set-date-and-time";
 
 import ChildCheckbox from "./child-checkbox.component";
 
@@ -15,10 +15,10 @@ import { BlackHr } from "../../../styles/hr/hr.styles";
 import { Text } from "../../../styles/p/p.styles";
 
 const ChooseSessions = () => {
-  useGetDateAndTime();
+  useSetDateAndTime();
 
   const {
-    showNothing,
+    dateInPastOrNotChosenOrChosenAndBalanceTooLowOrNoSpacesAvailable,
     onlyMorningSessionsAvailable,
     notTodaysOrIsTodayAndBeforeMorningCloseTime,
     isTodayAndAfterCloseTime,
@@ -26,17 +26,18 @@ const ChooseSessions = () => {
     atLeastOneChildHasBeenSelected,
     hasOneChild,
     hasMoreThanOneChild,
+    afternoonCloseTime,
   } = useConditionalLogic();
 
   return (
     <>
       <ChildCheckbox />
 
-      {showNothing() ? null : isTodayAndAfterCloseTime() ? (
+      {dateInPastOrNotChosenOrChosenAndBalanceTooLowOrNoSpacesAvailable() ? null : isTodayAndAfterCloseTime() ? (
         <ParentDiv>
           <Text>
             sorry, the latest time for booking the afternoon session on the
-            current day is 3:25pm.
+            current day is {afternoonCloseTime}
           </Text>
         </ParentDiv>
       ) : (hasOneChild() && notTodaysOrIsTodayAndBeforeMorningCloseTime()) ||

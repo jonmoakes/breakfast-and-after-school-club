@@ -1,5 +1,5 @@
 import { useSelector } from "react-redux";
-import { selectChildrenSelectedForBooking } from "../store/book-session/book-session.selector";
+import { selectChildrenSelectedForBooking } from "../store/book-session/book-session.slice";
 
 import { priceMultipliedBy100 } from "../functions/price-multiplied-by-100";
 

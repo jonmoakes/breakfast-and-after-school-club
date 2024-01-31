@@ -1,7 +1,7 @@
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
-import useGetUsersChildrenAndConditionallyUserBookings from "../../hooks/use-get-users-children-and-conditionally-user-bookings";
+import useGetUsersChildrenAndConditionallyUserBookingsAndSessionPrices from "../../hooks/use-get-users-children-and-conditionally-user-bookings-and-session-prices";
 import useGetUsersChildrenErrorSwal from "./child-info-hooks/use-get-users-children-error-swal";
 
 import { selectIsLoading } from "../../store/get-users-children/get-users-children.selector";
@@ -18,7 +18,7 @@ import { BlackTitle } from "../../styles/h1/h1.styles";
 import { addChildInfoRoute } from "../../strings/strings";
 
 const ChildInfo = () => {
-  useGetUsersChildrenAndConditionallyUserBookings();
+  useGetUsersChildrenAndConditionallyUserBookingsAndSessionPrices();
   useGetUsersChildrenErrorSwal();
 
   const isLoading = useSelector(selectIsLoading);

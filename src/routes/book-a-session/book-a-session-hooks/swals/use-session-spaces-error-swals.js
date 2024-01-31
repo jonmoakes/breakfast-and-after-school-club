@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import useFireSwal from "../../../../hooks/use-fire-swal";
 import useConditionalLogic from "../use-conditional-logic";
 
-import { selectChildrenSelectedForBooking } from "../../../../store/book-session/book-session.selector";
+import { selectChildrenSelectedForBooking } from "../../../../store/book-session/book-session.slice";
 import {
   afternoonSessionSpacesErrorMessage,
   afternoonSpacesRemainingMessage,

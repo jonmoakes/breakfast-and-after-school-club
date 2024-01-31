@@ -13,6 +13,12 @@ export const selectGetPricesError = createSelector(
   (sessionTypesAndPricesSlice) => sessionTypesAndPricesSlice.error
 );
 
+export const selectSessionTypesAndPrices = createSelector(
+  [selectSessionTypesAndPricesReducer],
+  (sessionTypesAndPricesSlice) =>
+    sessionTypesAndPricesSlice.sessionTypesAndPrices
+);
+
 export const selectMorningSessionType = createSelector(
   [selectSessionTypesAndPricesReducer],
   (sessionTypesAndPricesSlice) =>

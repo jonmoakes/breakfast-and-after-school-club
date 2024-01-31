@@ -119,10 +119,6 @@ export const InnerDiv = styled.div`
   height: auto;
   margin: 0px auto;
 
-  @media screen and (max-width: 600px) {
-    /* margin: 25px; */
-  }
-
   @media screen and (max-width: 375px) {
     padding: 10px;
   }
@@ -364,27 +360,6 @@ export const TableEditsButtonDiv = styled.div`
     margin: 0px auto 40px auto;
   }
 `;
-
-// export const Div = styled.div`
-//   margin: 50px auto;
-//   width: 50%;
-//   height: auto;
-//   background-color: ${customWhite};
-//   box-shadow: 25px 50px 50px ${customBlack};
-//   border-radius: 15px;
-//   padding: 20px;
-//   border: 2px solid ${customBlack};
-
-//   @media screen and (max-width: 1366px) {
-//     width: 70%;
-//     box-shadow: none;
-//   }
-
-//   @media screen and (max-width: 450px) {
-//     width: 85%;
-//     padding: 20px 10px;
-//   }
-// `;
 
 export const RadioDiv = styled.div`
   width: 100%;

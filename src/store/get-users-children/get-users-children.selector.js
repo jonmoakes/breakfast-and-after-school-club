@@ -17,7 +17,7 @@ export const selectResult = createSelector(
   (getUsersChildrenSlice) => getUsersChildrenSlice.result
 );
 
-export const selectError = createSelector(
+export const selectGetUsersChildrenError = createSelector(
   [selectGetUsersChildrenReducer],
   (getUsersChildrenSlice) => getUsersChildrenSlice.error
 );

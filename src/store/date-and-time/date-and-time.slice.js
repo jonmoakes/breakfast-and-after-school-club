@@ -15,9 +15,14 @@ export const dateAndTimeSlice = createSlice({
       return INITIAL_STATE;
     },
   },
+  selectors: {
+    selectCurrentDateAndTime: (state) => state.currentDateAndTime,
+  },
 });
 
 export const { setCurrentDateAndTime, resetDateAndTimeState } =
   dateAndTimeSlice.actions;
+
+export const { selectCurrentDateAndTime } = dateAndTimeSlice.selectors;
 
 export const dateAndTimeReducer = dateAndTimeSlice.reducer;

@@ -2,9 +2,11 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { client } from "../../../utils/appwrite/appwrite-config";
 
-import { selectRequestDateData } from "../../../store/request-date-data/request-date-data.selector";
+import {
+  selectRequestDateData,
+  setDateData,
+} from "../../../store/request-date-data/request-date-data.slice";
 import { selectEnvironmentVariables } from "../../../store/user/user.selector";
-import { setDateData } from "../../../store/request-date-data/request-date-data.slice";
 
 const useSessionSpacesListener = () => {
   const requestDateData = useSelector(selectRequestDateData); // gets the dateData object from the slice

@@ -12,7 +12,7 @@ import {
   selectCurrentUser,
   selectEnvironmentVariables,
 } from "../../../store/user/user.selector";
-import { selectChildrenSelectedForBooking } from "../../../store/book-session/book-session.selector";
+import { selectChildrenSelectedForBooking } from "../../../store/book-session/book-session.slice";
 import { selectUsersChildren } from "../../../store/get-users-children/get-users-children.selector";
 import { getUsersWalletBalanceAsync } from "../../../store/user/user.actions";
 

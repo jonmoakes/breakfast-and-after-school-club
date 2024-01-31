@@ -10,7 +10,7 @@ import {
   selectChildrenSelectedForBooking,
   selectSessionType,
   selectUpdateUserDocBalance,
-} from "../../../../store/book-session/book-session.selector";
+} from "../../../../store/book-session/book-session.slice";
 import { selectEnvironmentVariables } from "../../../../store/user/user.selector";
 import { resetSessionDocAsync } from "../../../../store/book-session/book-session-thunks";
 

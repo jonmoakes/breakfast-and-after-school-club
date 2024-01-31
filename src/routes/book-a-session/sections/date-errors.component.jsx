@@ -1,21 +1,44 @@
 import useConditionalLogic from "../book-a-session-hooks/use-conditional-logic";
 
-import { WarningDiv } from "../../../styles/div/div.styles";
+import { ErrorDiv, WarningDiv } from "../../../styles/div/div.styles";
 import { Text } from "../../../styles/p/p.styles";
+import { StyledLink } from "../../../styles/link/link.styles";
+import { contactRoute } from "../../../strings/strings";
+import { RedSpan } from "../../../styles/span/span.styles";
 
 const DateErrors = () => {
-  const { dateUnavailable, dateChosenInThePast, earlyFinishDates, isToday } =
-    useConditionalLogic();
+  const {
+    dateUnavailable,
+    dateChosenInThePast,
+    dateHasEarlyFinishTime,
+    requestDateErrorMessage,
+  } = useConditionalLogic();
 
   return (
     <>
       {dateUnavailable() ? (
-        <WarningDiv>
-          <Text>
-            sorry, there are no sessions available{" "}
-            {isToday() ? "today" : "for this day"}.
-          </Text>
-        </WarningDiv>
+        <>
+          {requestDateErrorMessage !== "is not available" ? (
+            <ErrorDiv>
+              <Text>
+                sorry, we received an error when trying to fetch your requested
+                date. the error received was:
+              </Text>
+              <Text>
+                <RedSpan>{requestDateErrorMessage}</RedSpan>
+              </Text>
+              <Text>
+                please try again and{" "}
+                <StyledLink to={contactRoute}>contact us</StyledLink> if the
+                problem persists.
+              </Text>
+            </ErrorDiv>
+          ) : (
+            <WarningDiv>
+              <Text>sorry, there are no sessions available for this day.</Text>
+            </WarningDiv>
+          )}
+        </>
       ) : dateChosenInThePast() ? (
         <WarningDiv>
           <Text>
@@ -23,11 +46,11 @@ const DateErrors = () => {
             date.
           </Text>
         </WarningDiv>
-      ) : earlyFinishDates() ? (
+      ) : dateHasEarlyFinishTime() ? (
         <WarningDiv>
           <Text>
-            please note, we close at 1:30pm on this date which is why no
-            afternoon sessions are available.
+            please note, we close at {dateHasEarlyFinishTime()} on this date
+            which is why no afternoon sessions are available.
           </Text>
         </WarningDiv>
       ) : null}

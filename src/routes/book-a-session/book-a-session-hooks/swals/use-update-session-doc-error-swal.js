@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import useFireSwal from "../../../../hooks/use-fire-swal";
 import useHamburgerHandlerNavigate from "../../../../hooks/use-hamburger-handler-navigate";
 
-import { selectUpdateSessionDoc } from "../../../../store/book-session/book-session.selector";
+import { selectUpdateSessionDoc } from "../../../../store/book-session/book-session.slice";
 
 import {
   afternoonSessionSpacesInvalidDocError,

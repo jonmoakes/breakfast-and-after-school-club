@@ -10,8 +10,11 @@ import { ParentDiv, RadioDiv } from "../../../styles/div/div.styles";
 import { OptionsForm } from "../../../styles/form/form.styles";
 
 const ChildCheckbox = () => {
-  const { isTodayAndAfterCloseTime, showNothing, hasOneChild } =
-    useConditionalLogic();
+  const {
+    dateInPastOrNotChosenOrChosenAndBalanceTooLowOrNoSpacesAvailable,
+    isTodayAndAfterCloseTime,
+    hasOneChild,
+  } = useConditionalLogic();
 
   const usersChildrenList = useSelector(selectUsersChildren);
   const dispatch = useDispatch();
@@ -23,7 +26,9 @@ const ChildCheckbox = () => {
 
   return (
     <>
-      {showNothing() || isTodayAndAfterCloseTime() || hasOneChild() ? null : (
+      {dateInPastOrNotChosenOrChosenAndBalanceTooLowOrNoSpacesAvailable() ||
+      isTodayAndAfterCloseTime() ||
+      hasOneChild() ? null : (
         <>
           <ParentDiv>
             <Text>which children would you like to book the session for?</Text>

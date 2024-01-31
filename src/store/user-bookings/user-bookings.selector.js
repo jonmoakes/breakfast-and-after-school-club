@@ -36,7 +36,7 @@ export const selectUserBookingsWithFormattedDate = createSelector(
   }
 );
 
-export const selectError = createSelector(
+export const selectGetUserBookingsError = createSelector(
   [selectUserBookingsReducer],
   (userBookingsSlice) => userBookingsSlice.error
 );

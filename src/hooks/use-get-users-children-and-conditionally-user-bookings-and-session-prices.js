@@ -10,8 +10,9 @@ import {
   selectEnvironmentVariables,
 } from "../store/user/user.selector";
 import { bookSessionRoute, childInfoRoute } from "../strings/strings";
+import { getSessionPricesAsync } from "../store/session-types-and-prices/session-types-and-prices.slice";
 
-const useGetUsersChildrenAndConditionallyUserBookings = () => {
+const useGetUsersChildrenAndConditionallyUserBookingsAndSessionPrices = () => {
   const currentUser = useSelector(selectCurrentUser);
   const envVariables = useSelector(selectEnvironmentVariables);
 
@@ -20,6 +21,8 @@ const useGetUsersChildrenAndConditionallyUserBookings = () => {
     databaseId,
     childrenCollectionId: collectionId,
     bookedSessionsCollectionId,
+    sessionPricesCollectionId,
+    sessionPricesDocumentId,
   } = envVariables;
 
   const location = useLocation();
@@ -46,7 +49,19 @@ const useGetUsersChildrenAndConditionallyUserBookings = () => {
                 databaseId,
                 bookedSessionsCollectionId,
               })
-            );
+            ).then((resultAction) => {
+              if (getUserBookingsAsync.fulfilled.match(resultAction)) {
+                const collectionId = sessionPricesCollectionId;
+                const documentId = sessionPricesDocumentId;
+                dispatch(
+                  getSessionPricesAsync({
+                    databaseId,
+                    collectionId,
+                    documentId,
+                  })
+                );
+              }
+            });
           }
         }
       );
@@ -58,7 +73,9 @@ const useGetUsersChildrenAndConditionallyUserBookings = () => {
     databaseId,
     collectionId,
     bookedSessionsCollectionId,
+    sessionPricesCollectionId,
+    sessionPricesDocumentId,
   ]);
 };
 
-export default useGetUsersChildrenAndConditionallyUserBookings;
+export default useGetUsersChildrenAndConditionallyUserBookingsAndSessionPrices;
