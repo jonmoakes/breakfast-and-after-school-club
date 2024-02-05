@@ -1,4 +1,4 @@
-import useGetSessionPrices from "../../hooks/use-get-session-prices";
+import useGetSessionPrices from "./hooks/use-get-session-prices";
 import useCancelBookingResultSwal from "./hooks/swals/use-cancel-booking-result-swal";
 
 import LoaderTitleButtons from "./loader-title-buttons.component";

@@ -1,7 +1,7 @@
 import { useDispatch } from "react-redux";
 import useFireSwal from "../../../../hooks/use-fire-swal";
 
-import { resetError } from "../../../../store/user-bookings/user-bookings.slice";
+import { resetGetUserBookingsError } from "../../../../store/user-bookings/user-bookings.slice";
 import { requestUserCheckForDoubleCheckBookings } from "../../../../strings/strings";
 
 const useCouldntFetchUserBookingsErrorSwal = () => {
@@ -22,7 +22,7 @@ const useCouldntFetchUserBookingsErrorSwal = () => {
       false
     ).then((isConfirmed) => {
       if (isConfirmed) {
-        dispatch(resetError());
+        dispatch(resetGetUserBookingsError());
         confirmResult(sessionType, price);
       }
     });

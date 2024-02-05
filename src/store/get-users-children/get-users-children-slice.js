@@ -38,7 +38,7 @@ export const getUsersChildrenSlice = createSlice({
     setUsersChildren(state, action) {
       state.usersChildren = action.payload;
     },
-    resetError(state) {
+    resetUsersChildrenError(state) {
       state.error = null;
     },
     resetUsersChildren(state) {
@@ -69,7 +69,7 @@ export const getUsersChildrenSlice = createSlice({
 export const {
   setUsersChildren,
   resetUsersChildren,
-  resetError,
+  resetUsersChildrenError,
   resetAllGetUsersChildrenState,
 } = getUsersChildrenSlice.actions;
 

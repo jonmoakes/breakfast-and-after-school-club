@@ -8,12 +8,12 @@ import { selectGetPricesError } from "../../store/session-types-and-prices/sessi
 
 import Loader from "../../components/loader/loader.component";
 import WalletUpdateInfo from "./wallet-update-info.component";
+import GetSessionPricesError from "../../components/errors/get-session-prices-error.component";
 
 import { ParentDiv } from "../../styles/div/div.styles";
 import { BlackTitle } from "../../styles/h1/h1.styles";
 import { Text } from "../../styles/p/p.styles";
 import { YellowGreenButton } from "../../styles/buttons/buttons.styles";
-import GetSessionPricesError from "../../components/errors/get-session-prices-error.component";
 
 const LoaderTitleButtons = () => {
   const { confirmCancelBooking } = useConfirmCancelBooking();

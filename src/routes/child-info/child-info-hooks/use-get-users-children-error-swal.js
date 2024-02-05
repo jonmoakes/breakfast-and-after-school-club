@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import useFireSwal from "../../../hooks/use-fire-swal";
 
 import { selectGetUsersChildrenError } from "../../../store/get-users-children/get-users-children.selector";
-import { resetError } from "../../../store/get-users-children/get-users-children-slice";
+import { resetUsersChildrenError } from "../../../store/get-users-children/get-users-children-slice";
 
 import {
   errorFetchingChildren,
@@ -28,7 +28,7 @@ const useGetUsersChildrenErrorSwal = () => {
       false
     ).then((isConfirmed) => {
       if (isConfirmed) {
-        dispatch(resetError());
+        dispatch(resetUsersChildrenError());
       }
     });
   }, [dispatch, error, fireSwal]);

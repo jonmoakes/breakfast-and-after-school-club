@@ -40,7 +40,7 @@ export const userBookingsSlice = createSlice({
     setUserBookings(state, action) {
       state.userBookings = action.payload;
     },
-    resetError(state) {
+    resetGetUserBookingsError(state) {
       state.error = null;
     },
     resetUserBookingsState: () => {
@@ -65,7 +65,10 @@ export const userBookingsSlice = createSlice({
   },
 });
 
-export const { setUserBookings, resetError, resetUserBookingsState } =
-  userBookingsSlice.actions;
+export const {
+  setUserBookings,
+  resetGetUserBookingsError,
+  resetUserBookingsState,
+} = userBookingsSlice.actions;
 
 export const userBookingsReducer = userBookingsSlice.reducer;
