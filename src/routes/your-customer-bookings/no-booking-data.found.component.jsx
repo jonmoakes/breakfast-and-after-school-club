@@ -1,7 +1,9 @@
 import { useSelector, useDispatch } from "react-redux";
 
-import { selectBookedSessions } from "../../store/booked-sessions/booked-sessions.selector";
-import { setShowAllDates } from "../../store/booked-sessions/booked-sessions.slice";
+import {
+  setShowAllDates,
+  selectBookedSessions,
+} from "../../store/booked-sessions/booked-sessions.slice";
 
 import { contactRoute } from "../../strings/strings";
 import {

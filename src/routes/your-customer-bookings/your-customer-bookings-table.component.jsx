@@ -13,15 +13,16 @@ import { format } from "date-fns";
 import useIsOnline from "../../hooks/use-is-online";
 import useGetBookedSessionsListener from "./your-customer-bookings-hooks/use-get-booked-sessions-listener";
 
-import { selectBookedSessionWithFormattedDate } from "../../store/booked-sessions/booked-sessions.selector";
-import { selectShowAllDates } from "../../store/booked-sessions/booked-sessions.selector";
+import {
+  selectShowAllDates,
+  selectBookedSessionWithFormattedDate,
+} from "../../store/booked-sessions/booked-sessions.slice";
 
 import { TABLE_COLUMNS } from "./table-columns";
 import NetworkError from "../../components/errors/network-error.component";
 import TableCheckBox from "../../components/tables/table-checkbox";
 import GetChildDetailsButton from "./get-child-details-button.component";
 import NoBookingDataFound from "./no-booking-data.found.component";
-
 import BookingsTableRenderTable from "../../components/tables/bookings-table-render-table.component";
 import TableSearchBox from "../../components/tables/table-search-box.component";
 import ToggleBookingsShownButton from "./toggle-bookings-show-button.component";
@@ -31,21 +32,28 @@ const YourCustomerBookingsTable = () => {
   useGetBookedSessionsListener();
   const { isOnline } = useIsOnline();
 
-  let bookedSessions = useSelector(selectBookedSessionWithFormattedDate);
+  const bookedSessions = useSelector(selectBookedSessionWithFormattedDate);
   const showAllDates = useSelector(selectShowAllDates);
+
+  let sortedBookings = bookedSessions.sort((bookingA, bookingB) => {
+    const dateA = new Date(bookingA.date);
+    const dateB = new Date(bookingB.date);
+
+    return dateA - dateB;
+  });
 
   const columns = useMemo(() => TABLE_COLUMNS, []);
 
   const data = useMemo(
     () =>
       !showAllDates
-        ? bookedSessions.filter((row) => {
+        ? sortedBookings.filter((row) => {
             const rowDate = row.date;
             const formattedTodaysDate = format(new Date(), "yyyy-MM-dd");
             return rowDate === formattedTodaysDate;
           })
-        : bookedSessions,
-    [bookedSessions, showAllDates]
+        : sortedBookings,
+    [sortedBookings, showAllDates]
   );
 
   const initialState = useMemo(
@@ -109,7 +117,7 @@ const YourCustomerBookingsTable = () => {
   const { globalFilter, pageIndex, pageSize } = state;
 
   const chosenEntry = selectedFlatRows.map((row) => row.original);
-  bookedSessions = chosenEntry;
+  sortedBookings = chosenEntry;
 
   return (
     <>
@@ -127,7 +135,7 @@ const YourCustomerBookingsTable = () => {
         }}
       />
 
-      <ToggleBookingsShownButton {...{ bookedSessions, data }} />
+      <ToggleBookingsShownButton {...{ sortedBookings, data }} />
 
       <GetChildDetailsButton {...{ chosenEntry }} />
 

@@ -59,7 +59,7 @@ export const rootReducer = combineReducers({
   getUsersChildren: getUsersChildrenReducer,
   editChildInfo: editChildInfoReducer,
   deleteChildInfo: deleteChildInfoReducer,
-  bookedSessions: getBookedSessionsReducer,
+  getBookedSessions: getBookedSessionsReducer,
   chosenEntryChildDetails: chosenEntryChildDetailsReducer,
   userBookings: userBookingsReducer,
   userBookingToDelete: userBookingToDeleteReducer,

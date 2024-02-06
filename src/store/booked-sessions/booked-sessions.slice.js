@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { listDocumentsInACollection } from "../../utils/appwrite/appwrite-functions";
+import { format, parseISO } from "date-fns";
 
 export const getBookedSessionsAsync = createAsyncThunk(
   "getBookings",
@@ -47,6 +48,16 @@ export const getBookedSessionsSlice = createSlice({
       return INITIAL_STATE;
     },
   },
+  selectors: {
+    selectBookedSessionsIsLoading: (state) => state.isLoading,
+    selectBookedSessions: (state) => state.bookedSessions || [],
+    selectShowAllDates: (state) => state.showAllDates,
+    selectBookedSessionWithFormattedDate: (state) =>
+      state.bookedSessions.map((booking) => ({
+        ...booking,
+        formattedDate: format(parseISO(booking.date), "EEEE dd MMMM yyyy"),
+      })),
+  },
   extraReducers: (builder) => {
     builder
       .addCase(getBookedSessionsAsync.pending, (state) => {
@@ -72,5 +83,12 @@ export const {
   resetError,
   toggleShowAllDates,
 } = getBookedSessionsSlice.actions;
+
+export const {
+  selectBookedSessionsIsLoading,
+  selectBookedSessions,
+  selectShowAllDates,
+  selectBookedSessionWithFormattedDate,
+} = getBookedSessionsSlice.selectors;
 
 export const getBookedSessionsReducer = getBookedSessionsSlice.reducer;

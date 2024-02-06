@@ -6,7 +6,7 @@ import {
   selectCurrentUser,
   selectEnvironmentVariables,
 } from "../../../store/user/user.selector";
-import { selectBookedSessions } from "../../../store/booked-sessions/booked-sessions.selector";
+import { selectBookedSessions } from "../../../store/booked-sessions/booked-sessions.slice";
 import { setBookedSessions } from "../../../store/booked-sessions/booked-sessions.slice";
 
 const useGetBookedSessionsListener = () => {
