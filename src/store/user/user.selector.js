@@ -17,7 +17,7 @@ export const selectEnvironmentVariables = createSelector(
   (userSlice) => userSlice.environmentVariables
 );
 
-export const selectError = createSelector(
+export const selectUserError = createSelector(
   [selectUserReducer],
   (userSlice) => userSlice.error
 );

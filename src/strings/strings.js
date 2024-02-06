@@ -84,10 +84,6 @@ export const removeChildFromSelectionMessage =
 export const addSessionBookingInfoErrorMessage = `<span style="font-size: 16px;">sorry, there was an error completing your session booking. the funds were deducted from your wallet but our database didn't receive your booking info. When you tap ok below, we will automatically send an email to the app owner who will then manually add your booking details to the database. Rest assured, you can still send your child(ren) in for the session you have just booked! If the booking does not show up in your 'bookings' section within 24hrs, please contact us using our contact form. Please tap 'ok' below to continue!</span>`;
 export const lastMinuteNoSessionsMessage =
   "sorry, just before you pressed the confirm button, another user booked the last session..";
-export const morningSessionSpacesInvalidDocError =
-  'Invalid document structure: Attribute "morningSessionSpaces" has invalid format. Value must be a valid range between 0 and 30';
-export const afternoonSessionSpacesInvalidDocError =
-  'Invalid document structure: Attribute "afternoonSessionSpaces" has invalid format. Value must be a valid range between 0 and 30';
 export const errorAddingChild = "there was an error adding your child";
 export const enterChildsName = "please enter your childs full name";
 export const enterChildsAge = "please enter your childs age";
@@ -138,10 +134,6 @@ export const tooLateToCancelAfternoonMessage =
 export const cancelBeforeTimeMessage = (hour) => {
   return `please cancel before ${hour} if you wish to cancel a session.`;
 };
-export const couldntFetchPreviousBookingsMessage =
-  "sorry, we couldn't fetch your previous bookings, which we use to check for double bookings.";
-export const requestUserCheckForDoubleCheckBookings =
-  "by proceeding, you confirm that you have checked that you have not double booked any sessions. If you do make a mistake however, you can always cancel bookings from your bookings table.";
 export const errorSendCancellationConfirmationEmailMessage = `<span style="font-size: 20px;">sorry, there was an error sending you the email with confirmation of this cancellation. Rest assured though, your booking has been cancelled and funds have been added to your wallet. if you require this email confirmation, please contact us using our contact form.</span>`;
 export const errorFetchingBalanceMessage =
   "sorry, we couldn't fetch your balance..";

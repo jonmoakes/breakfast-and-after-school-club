@@ -6,11 +6,11 @@ import useFireSwal from "../../../hooks/use-fire-swal";
 
 import {
   selectCurrentUser,
-  selectError,
+  selectUserError,
   selectEnvironmentVariables,
 } from "../../../store/user/user.selector";
 import { getUsersWalletBalanceAsync } from "../../../store/user/user.actions";
-import { resetErrorMessage } from "../../../store/user/user.slice";
+import { resetUserErrorMessage } from "../../../store/user/user.slice";
 
 import {
   balanceSuccessfullyReceivedMessage,
@@ -24,7 +24,7 @@ const useGetWalletBalance = () => {
   const { fireSwal } = useFireSwal();
 
   const currentUser = useSelector(selectCurrentUser);
-  const error = useSelector(selectError);
+  const error = useSelector(selectUserError);
   const envVariables = useSelector(selectEnvironmentVariables);
 
   const { id } = currentUser;
@@ -43,7 +43,7 @@ const useGetWalletBalance = () => {
       false
     ).then((isConfirmed) => {
       if (isConfirmed) {
-        dispatch(resetErrorMessage());
+        dispatch(resetUserErrorMessage());
       }
     });
   }, [dispatch, error, fireSwal]);

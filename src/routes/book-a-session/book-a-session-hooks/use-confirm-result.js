@@ -2,19 +2,17 @@ import { useDispatch, useSelector } from "react-redux";
 
 import useConditionalLogic from "./use-conditional-logic";
 
+import { selectUsersChildren } from "../../../store/get-users-children/get-users-children.selector";
 import {
   addSessionBookingInfoAsync,
   updateSessionDocAsync,
   updateUserDocBalanceAsync,
 } from "../../../store/book-session/book-session-thunks";
-
 import {
   selectCurrentUser,
   selectEnvironmentVariables,
 } from "../../../store/user/user.selector";
 import { selectChildrenSelectedForBooking } from "../../../store/book-session/book-session.slice";
-import { selectUsersChildren } from "../../../store/get-users-children/get-users-children.selector";
-import { getUsersWalletBalanceAsync } from "../../../store/user/user.actions";
 
 const useConfirmResult = () => {
   const { date } = useConditionalLogic();
@@ -64,17 +62,7 @@ const useConfirmResult = () => {
                 bookedSessionsCollectionId,
                 databaseId,
               })
-            ).then((resultAction) => {
-              if (addSessionBookingInfoAsync.fulfilled.match(resultAction)) {
-                dispatch(
-                  getUsersWalletBalanceAsync({
-                    id,
-                    databaseId,
-                    collectionId,
-                  })
-                );
-              }
-            });
+            );
           }
         });
       }

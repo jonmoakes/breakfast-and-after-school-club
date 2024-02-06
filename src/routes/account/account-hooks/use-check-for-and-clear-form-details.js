@@ -5,10 +5,10 @@ import { selectSignInFormDetails } from "../../../store/sign-in-form/sign-in-for
 import { resetSignInFormState } from "../../../store/sign-in-form/sign-in-form.slice";
 import { selectSignUpFormDetails } from "../../../store/sign-up-form/sign-up-form.selector";
 import { resetSignUpFormState } from "../../../store/sign-up-form/sign-up-form.slice";
-import { selectError } from "../../../store/user/user.selector";
+import { selectUserError } from "../../../store/user/user.selector";
 
 const useCheckForAndClearFormDetails = () => {
-  const error = useSelector(selectError);
+  const error = useSelector(selectUserError);
   const signInFormDetails = useSelector(selectSignInFormDetails);
   const signUpFormDetails = useSelector(selectSignUpFormDetails);
 

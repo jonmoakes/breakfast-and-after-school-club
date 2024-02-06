@@ -21,7 +21,7 @@ const userSlice = createSlice({
   name: "user",
   initialState,
   reducers: {
-    resetErrorMessage(state) {
+    resetUserErrorMessage(state) {
       state.error = null;
     },
     setWalletBalance(state, action) {
@@ -99,6 +99,6 @@ const userSlice = createSlice({
   },
 });
 
-export const { resetErrorMessage, setWalletBalance } = userSlice.actions;
+export const { resetUserErrorMessage, setWalletBalance } = userSlice.actions;
 
 export const userReducer = userSlice.reducer;

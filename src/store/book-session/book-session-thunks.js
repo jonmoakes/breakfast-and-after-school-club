@@ -8,6 +8,7 @@ import {
 import { lastMinuteNoSessionsMessage } from "../../strings/strings";
 import { createChildrenToAddToBooking } from "../../functions/create-children-to-add-to-booking";
 
+//decrease the no of sessions in the database
 export const updateSessionDocAsync = createAsyncThunk(
   "updateSessionDoc",
   async (
@@ -101,6 +102,7 @@ export const updateSessionDocAsync = createAsyncThunk(
   }
 );
 
+// updates wallet balance in the database. If this fails, resetSessionDocAsync runs to reset the session spaces to what they were before updateSessionDocAsync above.
 export const updateUserDocBalanceAsync = createAsyncThunk(
   "updateUserDocBalance",
   async ({ id, databaseId, collectionId, price }, thunkAPI) => {
@@ -137,6 +139,58 @@ export const updateUserDocBalanceAsync = createAsyncThunk(
   }
 );
 
+// add the booking to the database. If successful, sendEmailBookingConfirmationAsync from the sendEmail Reducer runs. If that is successful, the user is redirected to the bookings page. If addSessionBookingInfoAsync fails, sendAddBookingInfoErrorEmail from the EmailReducer runs, telling the appOwner to update the database manually.
+export const addSessionBookingInfoAsync = createAsyncThunk(
+  "addSessionBookingInfo",
+  async (
+    {
+      usersChildren,
+      date,
+      sessionType,
+      childrenSelectedForBooking,
+      bookedSessionsCollectionId,
+      databaseId,
+    },
+    thunkAPI
+  ) => {
+    // gets the child name if user has only one child;
+    const oneChildChosen = childrenSelectedForBooking.join(" ");
+    const namesToAddToBooking = childrenSelectedForBooking.join(", ");
+
+    const { childName, parentEmail, parentName } = usersChildren[0];
+
+    try {
+      const sessionBooking = {
+        date,
+        sessionType,
+        childrensName: createChildrenToAddToBooking(
+          childrenSelectedForBooking,
+          childName,
+          oneChildChosen,
+          namesToAddToBooking
+        ),
+        parentEmail,
+        parentName,
+      };
+
+      const collectionId = bookedSessionsCollectionId;
+      const documentId = ID.unique();
+      const data = sessionBooking;
+
+      await manageDatabaseDocument(
+        "create",
+        databaseId,
+        collectionId,
+        documentId,
+        data
+      );
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
+// runs if updateUserDocBalanceAsync fails above. If resetSessionDocAsync fails, we fire sendEmailResetSessionSpacesErrorAsync from the emailReducer, which emails the app owner, telling them to update the session spaces manually with the date, sessionType and numberOfSpacesToAdd contained within the email. If the sending of the email fails, the user is told to contact the school.
 export const resetSessionDocAsync = createAsyncThunk(
   "resetSessionDoc",
   async (
@@ -200,56 +254,6 @@ export const resetSessionDocAsync = createAsyncThunk(
           data
         );
       }
-    } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
-    }
-  }
-);
-
-export const addSessionBookingInfoAsync = createAsyncThunk(
-  "addSessionBookingInfo",
-  async (
-    {
-      usersChildren,
-      date,
-      sessionType,
-      childrenSelectedForBooking,
-      bookedSessionsCollectionId,
-      databaseId,
-    },
-    thunkAPI
-  ) => {
-    // gets the child name if user has only one child;
-    const oneChildChosen = childrenSelectedForBooking.join(" ");
-    const namesToAddToBooking = childrenSelectedForBooking.join(", ");
-
-    const { childName, parentEmail, parentName } = usersChildren[0];
-
-    try {
-      const sessionBooking = {
-        date,
-        sessionType,
-        childrensName: createChildrenToAddToBooking(
-          childrenSelectedForBooking,
-          childName,
-          oneChildChosen,
-          namesToAddToBooking
-        ),
-        parentEmail,
-        parentName,
-      };
-
-      const collectionId = bookedSessionsCollectionId;
-      const documentId = ID.unique();
-      const data = sessionBooking;
-
-      await manageDatabaseDocument(
-        "create",
-        databaseId,
-        collectionId,
-        documentId,
-        data
-      );
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }

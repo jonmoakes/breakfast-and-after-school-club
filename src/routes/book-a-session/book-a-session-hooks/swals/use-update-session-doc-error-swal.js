@@ -6,11 +6,9 @@ import useHamburgerHandlerNavigate from "../../../../hooks/use-hamburger-handler
 import { selectUpdateSessionDoc } from "../../../../store/book-session/book-session.slice";
 
 import {
-  afternoonSessionSpacesInvalidDocError,
   bookSessionRoute,
   checkBackRegularlyMessage,
   lastMinuteNoSessionsMessage,
-  morningSessionSpacesInvalidDocError,
   updateSessionDocErrorMessage,
 } from "../../../../strings/strings";
 
@@ -22,11 +20,7 @@ const useUpdateSessionDocErrorSwal = () => {
   const updateSessionError = updateSessionDoc.error;
 
   const updateSessionDocErrorSwal = () => {
-    if (
-      updateSessionError === lastMinuteNoSessionsMessage ||
-      updateSessionError === morningSessionSpacesInvalidDocError ||
-      updateSessionError === afternoonSessionSpacesInvalidDocError
-    ) {
+    if (updateSessionError === lastMinuteNoSessionsMessage) {
       fireSwal(
         "error",
         lastMinuteNoSessionsMessage,
