@@ -42,12 +42,14 @@ import {
   deleteChildInfoRoute,
   paymentResultRoute,
   cancelBookingRoute,
+  yourCustomerBookingsRoute,
 } from "../strings/strings";
 import { resetSendEmailState } from "../store/send-email/send-email.slice";
 import { resetBookingToDeleteState } from "../store/user-booking-to-delete/user-booking-to-delete.slice";
 import { resetSessionPricesError } from "../store/session-types-and-prices/session-types-and-prices.slice";
 import { resetUsersChildrenError } from "../store/get-users-children/get-users-children-slice";
 import { resetGetUserBookingsError } from "../store/user-bookings/user-bookings.slice";
+import { resetBookedSessionsState } from "../store/booked-sessions/booked-sessions.slice";
 
 const useResetStore = () => {
   const sessionPricesError = useSelector(selectGetPricesError);
@@ -124,6 +126,9 @@ const useResetStore = () => {
         break;
       case cancelBookingRoute:
         dispatch(resetBookingToDeleteState());
+        break;
+      case yourCustomerBookingsRoute:
+        dispatch(resetBookedSessionsState());
         break;
       default:
         return;

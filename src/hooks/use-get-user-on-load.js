@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
 
-import { getUserOnLoadAsync } from "../store/user/user.actions";
+import { getUserOnLoadAsync } from "../store/user/user.thunks";
 import { selectCurrentUser } from "../store/user/user.selector";
 const useGetUserOnLoad = () => {
   const currentUser = useSelector(selectCurrentUser);

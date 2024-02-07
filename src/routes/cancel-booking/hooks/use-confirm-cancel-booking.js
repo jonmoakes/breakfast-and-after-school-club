@@ -14,7 +14,7 @@ import {
   refundUserAsync,
   updateSessionSpacesDocAsync,
 } from "../../../store/user-booking-to-delete/user-booking-to-delete.slice";
-import { getUsersWalletBalanceAsync } from "../../../store/user/user.actions";
+import { getUsersWalletBalanceAsync } from "../../../store/user/user.thunks";
 import {
   confirmCancelBookingMessage,
   fundsReaddedToAccountMessage,

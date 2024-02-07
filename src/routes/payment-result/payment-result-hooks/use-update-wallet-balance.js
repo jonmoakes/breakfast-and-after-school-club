@@ -10,7 +10,7 @@ import {
   selectEnvironmentVariables,
 } from "../../../store/user/user.selector";
 import { addWalletFundsToDatabaseAsync } from "../../../store/handle-payment/handle-payment.slice";
-import { getUsersWalletBalanceAsync } from "../../../store/user/user.actions";
+import { getUsersWalletBalanceAsync } from "../../../store/user/user.thunks";
 
 import {
   bookSessionRoute,

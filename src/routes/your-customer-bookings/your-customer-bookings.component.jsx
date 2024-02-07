@@ -25,7 +25,6 @@ const YourCustomerBookings = () => {
         <BlackTitle>session bookings</BlackTitle>
         <TableHelp />
       </ParentDiv>
-
       <BookingsTable />
     </Container>
   );

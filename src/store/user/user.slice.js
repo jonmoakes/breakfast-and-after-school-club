@@ -6,7 +6,7 @@ import {
   signUpAsync,
   signOutAsync,
   getUsersWalletBalanceAsync,
-} from "./user.actions";
+} from "./user.thunks";
 
 import { setEnvironmentVariables } from "../../functions/set-environment-variables";
 

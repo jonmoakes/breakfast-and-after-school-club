@@ -16,10 +16,12 @@ import useGetBookedSessionsListener from "./your-customer-bookings-hooks/use-get
 import {
   selectShowAllDates,
   selectBookedSessionWithFormattedDate,
+  selectBookedSessionsError,
 } from "../../store/booked-sessions/booked-sessions.slice";
 
 import { TABLE_COLUMNS } from "./table-columns";
 import NetworkError from "../../components/errors/network-error.component";
+import ErrorFetchingRequiredData from "../../components/errors/error-fetching-required-data.component";
 import TableCheckBox from "../../components/tables/table-checkbox";
 import GetChildDetailsButton from "./get-child-details-button.component";
 import NoBookingDataFound from "./no-booking-data.found.component";
@@ -34,6 +36,7 @@ const YourCustomerBookingsTable = () => {
 
   const bookedSessions = useSelector(selectBookedSessionWithFormattedDate);
   const showAllDates = useSelector(selectShowAllDates);
+  const bookedSessionsError = useSelector(selectBookedSessionsError);
 
   let sortedBookings = bookedSessions.sort((bookingA, bookingB) => {
     const dateA = new Date(bookingA.date);
@@ -123,52 +126,58 @@ const YourCustomerBookingsTable = () => {
     <>
       {!isOnline ? <NetworkError /> : null}
 
-      <NoBookingDataFound {...{ data }} />
-
-      <TableSearchBox
-        {...{
-          chosenEntry,
-          rows,
-          data,
-          globalFilter,
-          setGlobalFilter,
-        }}
-      />
-
-      <ToggleBookingsShownButton {...{ sortedBookings, data }} />
-
-      <GetChildDetailsButton {...{ chosenEntry }} />
-
-      {data.length ? (
+      {bookedSessionsError ? (
+        <ErrorFetchingRequiredData />
+      ) : (
         <>
-          <BookingsTableRenderTable
+          <NoBookingDataFound {...{ data }} />
+
+          <TableSearchBox
             {...{
-              headerGroups,
-              getTableProps,
-              getTableBodyProps,
-              page,
-              prepareRow,
+              chosenEntry,
+              rows,
+              data,
+              globalFilter,
+              setGlobalFilter,
             }}
           />
 
-          <BookingsTablePagination
-            {...{
-              data,
-              rows,
-              pageIndex,
-              pageOptions,
-              gotoPage,
-              canPreviousPage,
-              previousPage,
-              nextPage,
-              canNextPage,
-              pageCount,
-              pageSize,
-              setPageSize,
-            }}
-          />
+          <ToggleBookingsShownButton {...{ sortedBookings, data }} />
+
+          <GetChildDetailsButton {...{ chosenEntry }} />
+
+          {data.length ? (
+            <>
+              <BookingsTableRenderTable
+                {...{
+                  headerGroups,
+                  getTableProps,
+                  getTableBodyProps,
+                  page,
+                  prepareRow,
+                }}
+              />
+
+              <BookingsTablePagination
+                {...{
+                  data,
+                  rows,
+                  pageIndex,
+                  pageOptions,
+                  gotoPage,
+                  canPreviousPage,
+                  previousPage,
+                  nextPage,
+                  canNextPage,
+                  pageCount,
+                  pageSize,
+                  setPageSize,
+                }}
+              />
+            </>
+          ) : null}
         </>
-      ) : null}
+      )}
     </>
   );
 };

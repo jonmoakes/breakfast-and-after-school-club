@@ -6,30 +6,34 @@ import { selectGetUserBookingsError } from "../../store/user-bookings/user-booki
 import { Text } from "../../styles/p/p.styles";
 import { RedSpan } from "../../styles/span/span.styles";
 import { ErrorDiv } from "../../styles/div/div.styles";
+import { selectBookedSessionsError } from "../../store/booked-sessions/booked-sessions.slice";
 
-const ErrorFetchingRequiredDateDataInfo = () => {
+const ShowFetchErrors = () => {
   const getUsersChildrenError = useSelector(selectGetUsersChildrenError);
   const getUsersBookingsError = useSelector(selectGetUserBookingsError);
   const getSessionTypesAndPricesError = useSelector(selectGetPricesError);
   const requestDateError = useSelector(selectRequestDateDataErrorMessage);
+  const getBookedSessionsError = useSelector(selectBookedSessionsError);
 
   const errorToDisplay =
     getUsersChildrenError ||
     getUsersBookingsError ||
     getSessionTypesAndPricesError ||
-    requestDateError;
+    requestDateError ||
+    getBookedSessionsError;
 
   const headingForError = () => {
     if (getUsersChildrenError) return "failed to fetch users children";
     if (getUsersBookingsError) return "failed to fetch users bookings";
     if (getSessionTypesAndPricesError) return "failed to fetch session prices";
     if (requestDateError) return "failed to fetch request date data";
+    if (getBookedSessionsError) return "failed to fetch your bookings";
     return "";
   };
 
   return (
     <ErrorDiv>
-      {errorToDisplay && (
+      {errorToDisplay ? (
         <>
           <Text>{headingForError()}..</Text>
           <Text>
@@ -37,9 +41,9 @@ const ErrorFetchingRequiredDateDataInfo = () => {
             <br />'<RedSpan>{errorToDisplay}</RedSpan>'
           </Text>
         </>
-      )}
+      ) : null}
     </ErrorDiv>
   );
 };
 
-export default ErrorFetchingRequiredDateDataInfo;
+export default ShowFetchErrors;

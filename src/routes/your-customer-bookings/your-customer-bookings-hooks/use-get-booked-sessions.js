@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-import { getBookedSessionsAsync } from "../../../store/booked-sessions/booked-sessions.slice";
+import { getBookedSessionsAsync } from "../../../store/booked-sessions/booked-sessions-thunks";
 
 import {
   selectCurrentUser,

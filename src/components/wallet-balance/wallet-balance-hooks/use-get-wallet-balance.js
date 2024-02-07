@@ -9,7 +9,7 @@ import {
   selectUserError,
   selectEnvironmentVariables,
 } from "../../../store/user/user.selector";
-import { getUsersWalletBalanceAsync } from "../../../store/user/user.actions";
+import { getUsersWalletBalanceAsync } from "../../../store/user/user.thunks";
 import { resetUserErrorMessage } from "../../../store/user/user.slice";
 
 import {
