@@ -6,12 +6,12 @@ import {
   selectCurrentUser,
   selectEnvironmentVariables,
 } from "../../../store/user/user.selector";
-import { selectBookedSessions } from "../../../store/booked-sessions/booked-sessions.slice";
+import { selectBookedSessionsSelectors } from "../../../store/booked-sessions/booked-sessions.slice";
 import { setBookedSessions } from "../../../store/booked-sessions/booked-sessions.slice";
 
 const useGetBookedSessionsListener = () => {
   const currentUser = useSelector(selectCurrentUser);
-  const bookedSessions = useSelector(selectBookedSessions);
+  const { bookedSessions } = useSelector(selectBookedSessionsSelectors);
   const envVariables = useSelector(selectEnvironmentVariables);
 
   const { databaseId, bookedSessionsCollectionId } = envVariables;

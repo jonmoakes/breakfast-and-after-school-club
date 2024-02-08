@@ -2,7 +2,7 @@ import { useSelector } from "react-redux";
 
 import useFireSwal from "../../../../hooks/use-fire-swal";
 
-import { selectChildrenSelectedForBooking } from "../../../../store/book-session/book-session.slice";
+import { selectBookSessionSelectors } from "../../../../store/book-session/book-session.slice";
 
 import {
   sessionAlreadyBookedInstructions,
@@ -12,8 +12,8 @@ import {
 const useSessionAlreadyBookedSwal = () => {
   const { fireSwal } = useFireSwal();
 
-  const childrenSelectedForBooking = useSelector(
-    selectChildrenSelectedForBooking
+  const { childrenSelectedForBooking } = useSelector(
+    selectBookSessionSelectors
   );
 
   const sessionAlreadyBookedSwal = () => {

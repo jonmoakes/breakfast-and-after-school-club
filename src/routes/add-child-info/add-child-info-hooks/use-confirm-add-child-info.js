@@ -9,7 +9,7 @@ import {
 } from "../../../store/user/user.selector";
 import { selectUsersChildren } from "../../../store/get-users-children/get-users-children.selector";
 import { addChildInfoAsync } from "../../../store/add-child-info/add-child-info-thunks";
-import { selectAddChildInfo } from "../../../store/add-child-info/add-child-info.slice";
+import { selectAddChildInfoSelectors } from "../../../store/add-child-info/add-child-info.slice";
 
 import {
   alreadyHaveChildNameMessage,
@@ -24,7 +24,7 @@ const useConfirmAddChildInfo = () => {
   const { fireSwal } = useFireSwal();
   const { confirmSwal } = useConfirmSwal();
 
-  const childInfo = useSelector(selectAddChildInfo);
+  const { childInfo } = useSelector(selectAddChildInfoSelectors);
   const currentUser = useSelector(selectCurrentUser);
   const usersChildren = useSelector(selectUsersChildren);
   const envVariables = useSelector(selectEnvironmentVariables);

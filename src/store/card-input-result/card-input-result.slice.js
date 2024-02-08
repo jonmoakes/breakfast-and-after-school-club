@@ -20,9 +20,13 @@ const cardInputResultSlice = createSlice({
       return initialState;
     },
   },
+  selectors: {
+    selectCardInputResult: (state) => state.cardInputResult,
+  },
 });
 
 export const { setCardInputResult, resetCardInputState } =
   cardInputResultSlice.actions;
+export const { selectCardInputResult } = cardInputResultSlice.selectors;
 
 export const cardInputResultReducer = cardInputResultSlice.reducer;

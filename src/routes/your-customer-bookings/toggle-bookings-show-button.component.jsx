@@ -1,15 +1,15 @@
 import { useDispatch, useSelector } from "react-redux";
 
 import {
+  selectBookedSessionsSelectors,
   setShowAllDates,
-  selectShowAllDates,
 } from "../../store/booked-sessions/booked-sessions.slice";
 
 import { FilterEntriesButtonDiv } from "../../styles/div/div.styles";
 import { GreyButton } from "../../styles/buttons/buttons.styles";
 
 const ToggleBookingsShownButton = ({ sortedBookings, data }) => {
-  const showAllDates = useSelector(selectShowAllDates);
+  const { showAllDates } = useSelector(selectBookedSessionsSelectors);
 
   const dispatch = useDispatch();
 

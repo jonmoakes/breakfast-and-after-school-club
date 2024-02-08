@@ -1,5 +1,5 @@
 import { useCallback, useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
 import useFireSwal from "../../../hooks/use-fire-swal";
@@ -8,8 +8,7 @@ import {
   resetAllChildInfoState,
   resetAddChildInfoError,
   resetAddChildInfoResult,
-  selectAddChildInfoResult,
-  selectAddChildInfoError,
+  selectAddChildInfoSelectors,
 } from "../../../store/add-child-info/add-child-info.slice";
 
 import {
@@ -23,16 +22,19 @@ import {
 const useAddChildInfoResultSwal = () => {
   const { fireSwal } = useFireSwal();
 
-  const result = useSelector(selectAddChildInfoResult);
-  const error = useSelector(selectAddChildInfoError);
+  const { addChildInfoResult, addChildInfoError } = useSelector(
+    selectAddChildInfoSelectors
+  );
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
   // removes part of the error message for user readability.
-  const errorTextToRemove = error ? error.indexOf("must be") : null;
+  const errorTextToRemove = addChildInfoError
+    ? addChildInfoError.indexOf("must be")
+    : null;
   const ageErrorForUser = errorTextToRemove
-    ? `the childs age ${error.slice(errorTextToRemove)}`
+    ? `the childs age ${addChildInfoError.slice(errorTextToRemove)}`
     : null;
 
   const resetResultAndError = useCallback(() => {
@@ -41,9 +43,9 @@ const useAddChildInfoResultSwal = () => {
   }, [dispatch]);
 
   useEffect(() => {
-    if (!result) return;
+    if (!addChildInfoResult) return;
 
-    if (result === "fulfilled") {
+    if (addChildInfoResult === "fulfilled") {
       fireSwal("success", childAddedMessage, "", 0, true, false).then(
         (isConfirmed) => {
           if (isConfirmed) {
@@ -52,8 +54,8 @@ const useAddChildInfoResultSwal = () => {
           }
         }
       );
-    } else if (result === "rejected") {
-      if (error.includes(appwriteAgeAttributeError)) {
+    } else if (addChildInfoResult === "rejected") {
+      if (addChildInfoError.includes(appwriteAgeAttributeError)) {
         fireSwal(
           "error",
           errorAddingChild,
@@ -70,7 +72,7 @@ const useAddChildInfoResultSwal = () => {
         fireSwal(
           "error",
           errorAddingChild,
-          errorReceivedMessage(error),
+          errorReceivedMessage(addChildInfoError),
           0,
           true,
           false
@@ -82,8 +84,8 @@ const useAddChildInfoResultSwal = () => {
       }
     }
   }, [
-    result,
-    error,
+    addChildInfoResult,
+    addChildInfoError,
     fireSwal,
     navigate,
     dispatch,

@@ -18,7 +18,7 @@ import {
   selectGetUsersChildrenError,
   selectUsersChildren,
 } from "../../../store/get-users-children/get-users-children.selector";
-import { selectChildrenSelectedForBooking } from "../../../store/book-session/book-session.slice";
+import { selectBookSessionSelectors } from "../../../store/book-session/book-session.slice";
 import { selectGetUserBookingsError } from "../../../store/user-bookings/user-bookings.selector";
 
 import { priceMultipliedBy100 } from "../../../functions/price-multiplied-by-100";
@@ -34,8 +34,8 @@ const useConditionalLogic = () => {
   const chosenDate = useSelector(selectChosenDate);
   const currentUser = useSelector(selectCurrentUser);
   const usersChildren = useSelector(selectUsersChildren);
-  const childrenSelectedForBooking = useSelector(
-    selectChildrenSelectedForBooking
+  const { childrenSelectedForBooking } = useSelector(
+    selectBookSessionSelectors
   );
   const getUsersChildrenError = useSelector(selectGetUsersChildrenError);
   const getUsersBookingsError = useSelector(selectGetUserBookingsError);

@@ -1,11 +1,11 @@
 import { useSelector } from "react-redux";
-import { selectChildrenSelectedForBooking } from "../store/book-session/book-session.slice";
+import { selectBookSessionSelectors } from "../store/book-session/book-session.slice";
 
 import { priceMultipliedBy100 } from "../functions/price-multiplied-by-100";
 
 const useGetPriceOfBooking = () => {
-  const childrenSelectedForBooking = useSelector(
-    selectChildrenSelectedForBooking
+  const { childrenSelectedForBooking } = useSelector(
+    selectBookSessionSelectors
   );
 
   // if only 1 child is selected or if users only has one child, price = sessionPrice * 100.

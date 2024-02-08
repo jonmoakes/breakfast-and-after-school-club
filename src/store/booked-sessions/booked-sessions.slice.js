@@ -1,9 +1,8 @@
-import { createSlice } from "@reduxjs/toolkit";
-import { format, parseISO } from "date-fns";
+import { createSelector, createSlice } from "@reduxjs/toolkit";
 import { getBookedSessionsAsync } from "./booked-sessions-thunks";
 
 const INITIAL_STATE = {
-  isLoading: false,
+  bookedSessionsIsLoading: false,
   bookedSessions: [],
   bookedSessionsError: null,
   showAllDates: false,
@@ -27,28 +26,38 @@ export const getBookedSessionsSlice = createSlice({
     },
   },
   selectors: {
-    selectBookedSessionsIsLoading: (state) => state.isLoading,
-    selectBookedSessions: (state) => state.bookedSessions || [],
-    selectShowAllDates: (state) => state.showAllDates,
-    selectBookedSessionWithFormattedDate: (state) =>
-      state.bookedSessions.map((booking) => ({
-        ...booking,
-        formattedDate: format(parseISO(booking.date), "EEEE dd MMMM yyyy"),
-      })),
-    selectBookedSessionsError: (state) => state.bookedSessionsError,
+    selectBookedSessionsSelectors: createSelector(
+      (state) => state.bookedSessionsIsLoading,
+      (state) => state.bookedSessions || [],
+      (state) => state.showAllDates,
+      (state) => state.bookedSessionsError,
+      (
+        bookedSessionsIsLoading,
+        bookedSessions,
+        showAllDates,
+        bookedSessionsError
+      ) => {
+        return {
+          bookedSessionsIsLoading,
+          bookedSessions,
+          showAllDates,
+          bookedSessionsError,
+        };
+      }
+    ),
   },
   extraReducers: (builder) => {
     builder
       .addCase(getBookedSessionsAsync.pending, (state) => {
-        state.isLoading = true;
+        state.bookedSessionsIsLoading = true;
       })
       .addCase(getBookedSessionsAsync.fulfilled, (state, action) => {
-        state.isLoading = false;
+        state.bookedSessionsIsLoading = false;
         state.bookedSessions = action.payload;
         state.bookedSessionsError = null;
       })
       .addCase(getBookedSessionsAsync.rejected, (state, action) => {
-        state.isLoading = false;
+        state.bookedSessionsIsLoading = false;
         state.bookedSessions = [];
         state.bookedSessionsError = action.payload;
       });
@@ -62,12 +71,7 @@ export const {
   toggleShowAllDates,
 } = getBookedSessionsSlice.actions;
 
-export const {
-  selectBookedSessionsIsLoading,
-  selectBookedSessions,
-  selectShowAllDates,
-  selectBookedSessionWithFormattedDate,
-  selectBookedSessionsError,
-} = getBookedSessionsSlice.selectors;
+export const { selectBookedSessionsSelectors } =
+  getBookedSessionsSlice.selectors;
 
 export const getBookedSessionsReducer = getBookedSessionsSlice.reducer;

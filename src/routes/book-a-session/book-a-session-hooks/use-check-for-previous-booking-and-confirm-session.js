@@ -6,7 +6,7 @@ import useConfirmSwal from "../../../hooks/use-confirm-swal";
 import useSessionAlreadyBookedSwal from "./swals/use-session-already-booked-swal";
 import useConfirmResult from "./use-confirm-result";
 
-import { selectChildrenSelectedForBooking } from "../../../store/book-session/book-session.slice";
+import { selectBookSessionSelectors } from "../../../store/book-session/book-session.slice";
 
 import {
   confirmSureBookSession,
@@ -22,8 +22,8 @@ const useCheckForPreviousBookingAndConfirmSession = () => {
     useChildSessionAlreadyBooked();
   const { sessionAlreadyBookedSwal } = useSessionAlreadyBookedSwal();
 
-  const childrenSelectedForBooking = useSelector(
-    selectChildrenSelectedForBooking
+  const { childrenSelectedForBooking } = useSelector(
+    selectBookSessionSelectors
   );
 
   const childrenSelectedViaCheckbox = childrenSelectedForBooking.length;

@@ -2,7 +2,7 @@ import { useSelector, useDispatch } from "react-redux";
 
 import {
   setShowAllDates,
-  selectBookedSessions,
+  selectBookedSessionsSelectors,
 } from "../../store/booked-sessions/booked-sessions.slice";
 
 import { contactRoute } from "../../strings/strings";
@@ -16,7 +16,7 @@ import { Text } from "../../styles/p/p.styles";
 import { StyledLink } from "../../styles/link/link.styles";
 
 const NoBookingDataFound = ({ data }) => {
-  const bookedSessions = useSelector(selectBookedSessions);
+  const { bookedSessions } = useSelector(selectBookedSessionsSelectors);
   const dispatch = useDispatch();
 
   const noBookingDataFound = () => {

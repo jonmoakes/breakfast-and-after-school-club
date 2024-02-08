@@ -1,18 +1,15 @@
 import { useCallback } from "react";
 import { useSelector } from "react-redux";
 
-import {
-  selectResetSessionDoc,
-  selectUpdateSessionDoc,
-  selectUpdateUserDocBalance,
-  selectAddSessionBookingInfo,
-} from "../../../store/book-session/book-session.slice";
+import { selectBookSessionSelectors } from "../../../store/book-session/book-session.slice";
 
 const useReturnLogic = () => {
-  const updateSessionDoc = useSelector(selectUpdateSessionDoc);
-  const updateUserDocBalance = useSelector(selectUpdateUserDocBalance);
-  const resetSessionDoc = useSelector(selectResetSessionDoc);
-  const addSessionBookingInfo = useSelector(selectAddSessionBookingInfo);
+  const {
+    updateSessionDoc,
+    updateUserDocBalance,
+    resetSessionDoc,
+    addSessionBookingInfo,
+  } = useSelector(selectBookSessionSelectors);
 
   const updateSessionResult = updateSessionDoc.result;
   const updateSessionError = updateSessionDoc.error;

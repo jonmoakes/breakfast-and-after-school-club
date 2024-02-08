@@ -5,11 +5,7 @@ import useHamburgerHandlerNavigate from "../../../../hooks/use-hamburger-handler
 
 import { selectCurrentUser } from "../../../../store/user/user.selector";
 import { selectRequestDateData } from "../../../../store/request-date-data/request-date-data.slice";
-import {
-  selectSessionType,
-  selectSessionPrice,
-  selectChildrenSelectedForBooking,
-} from "../../../../store/book-session/book-session.slice";
+import { selectBookSessionSelectors } from "../../../../store/book-session/book-session.slice";
 import { selectUsersChildren } from "../../../../store/get-users-children/get-users-children.selector";
 import { sendEmailBookingConfirmationAsync } from "../../../../store/send-email/send-email-thunks";
 
@@ -27,10 +23,8 @@ const useSendEmailBookingConfirmation = () => {
 
   const currentUser = useSelector(selectCurrentUser);
   const requestDateData = useSelector(selectRequestDateData);
-  const sessionType = useSelector(selectSessionType);
-  const sessionPrice = useSelector(selectSessionPrice);
-  const childrenSelectedForBooking = useSelector(
-    selectChildrenSelectedForBooking
+  const { sessionType, sessionPrice, childrenSelectedForBooking } = useSelector(
+    selectBookSessionSelectors
   );
   const usersChildren = useSelector(selectUsersChildren);
 

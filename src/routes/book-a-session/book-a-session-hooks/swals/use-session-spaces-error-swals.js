@@ -3,7 +3,8 @@ import { useSelector } from "react-redux";
 import useFireSwal from "../../../../hooks/use-fire-swal";
 import useConditionalLogic from "../use-conditional-logic";
 
-import { selectChildrenSelectedForBooking } from "../../../../store/book-session/book-session.slice";
+import { selectBookSessionSelectors } from "../../../../store/book-session/book-session.slice";
+
 import {
   afternoonSessionSpacesErrorMessage,
   afternoonSpacesRemainingMessage,
@@ -16,8 +17,8 @@ const useSessionSpacesErrorSwals = () => {
   const { morningSessionSpaces, afternoonSessionSpaces } =
     useConditionalLogic();
 
-  const childrenSelectedForBooking = useSelector(
-    selectChildrenSelectedForBooking
+  const { childrenSelectedForBooking } = useSelector(
+    selectBookSessionSelectors
   );
 
   const childrenSelectedLength = childrenSelectedForBooking.length;

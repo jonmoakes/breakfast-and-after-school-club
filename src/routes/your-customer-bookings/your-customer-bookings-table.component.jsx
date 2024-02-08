@@ -8,16 +8,12 @@ import {
   useRowSelect,
   useColumnOrder,
 } from "react-table";
-import { format } from "date-fns";
+import { format, parseISO } from "date-fns";
 
 import useIsOnline from "../../hooks/use-is-online";
 import useGetBookedSessionsListener from "./your-customer-bookings-hooks/use-get-booked-sessions-listener";
 
-import {
-  selectShowAllDates,
-  selectBookedSessionWithFormattedDate,
-  selectBookedSessionsError,
-} from "../../store/booked-sessions/booked-sessions.slice";
+import { selectBookedSessionsSelectors } from "../../store/booked-sessions/booked-sessions.slice";
 
 import { TABLE_COLUMNS } from "./table-columns";
 import NetworkError from "../../components/errors/network-error.component";
@@ -34,16 +30,25 @@ const YourCustomerBookingsTable = () => {
   useGetBookedSessionsListener();
   const { isOnline } = useIsOnline();
 
-  const bookedSessions = useSelector(selectBookedSessionWithFormattedDate);
-  const showAllDates = useSelector(selectShowAllDates);
-  const bookedSessionsError = useSelector(selectBookedSessionsError);
+  const { showAllDates, bookedSessionsError, bookedSessions } = useSelector(
+    selectBookedSessionsSelectors
+  );
 
-  let sortedBookings = bookedSessions.sort((bookingA, bookingB) => {
-    const dateA = new Date(bookingA.date);
-    const dateB = new Date(bookingB.date);
+  let sortedBookings = useMemo(
+    () =>
+      bookedSessions
+        .map((booking) => ({
+          ...booking,
+          formattedDate: format(parseISO(booking.date), "EEEE dd MMMM yyyy"),
+        }))
+        .sort((bookingA, bookingB) => {
+          const dateA = new Date(bookingA.date);
+          const dateB = new Date(bookingB.date);
 
-    return dateA - dateB;
-  });
+          return dateA - dateB;
+        }),
+    [bookedSessions]
+  );
 
   const columns = useMemo(() => TABLE_COLUMNS, []);
 
@@ -124,9 +129,9 @@ const YourCustomerBookingsTable = () => {
 
   return (
     <>
-      {!isOnline ? <NetworkError /> : null}
-
-      {bookedSessionsError ? (
+      {!isOnline ? (
+        <NetworkError />
+      ) : bookedSessionsError ? (
         <ErrorFetchingRequiredData />
       ) : (
         <>

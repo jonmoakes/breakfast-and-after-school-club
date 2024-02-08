@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, createSelector } from "@reduxjs/toolkit";
 import { addChildInfoAsync } from "./add-child-info-thunks";
 
 const defaultChildInfo = {
@@ -10,10 +10,10 @@ const defaultChildInfo = {
 };
 
 const INITIAL_STATE = {
-  isLoading: false,
+  addChildInfoIsLoading: false,
   childInfo: defaultChildInfo,
-  result: "",
-  error: null,
+  addChildInfoResult: "",
+  addChildInfoError: null,
 };
 
 export const addChildInfoSlice = createSlice({
@@ -24,39 +24,53 @@ export const addChildInfoSlice = createSlice({
       state.childInfo = action.payload;
     },
     resetAddChildInfoResult(state) {
-      state.result = "";
+      state.addChildInfoResult = "";
     },
     resetAddChildInfoError(state) {
-      state.error = null;
+      state.addChildInfoError = null;
     },
     resetAllChildInfoState() {
       return INITIAL_STATE;
     },
   },
   selectors: {
-    selectAddChildInfoIsLoading: (state) => state.isLoading,
-    selectAddChildInfo: (state) => state.childInfo,
-    selectAddChildInfoResult: (state) => state.result,
-    selectAddChildInfoError: (state) => state.error,
+    selectAddChildInfoSelectors: createSelector(
+      (state) => state.addChildInfoIsLoading,
+      (state) => state.childInfo,
+      (state) => state.addChildInfoResult,
+      (state) => state.addChildInfoError,
+      (
+        addChildInfoIsLoading,
+        childInfo,
+        addChildInfoResult,
+        addChildInfoError
+      ) => {
+        return {
+          addChildInfoIsLoading,
+          childInfo,
+          addChildInfoResult,
+          addChildInfoError,
+        };
+      }
+    ),
   },
   extraReducers: (builder) => {
     builder
       .addCase(addChildInfoAsync.pending, (state) => {
-        state.isLoading = true;
+        state.addChildInfoIsLoading = true;
       })
       .addCase(addChildInfoAsync.fulfilled, (state) => {
-        state.isLoading = false;
-        state.result = "fulfilled";
-        state.error = null;
+        state.addChildInfoIsLoading = false;
+        state.addChildInfoResult = "fulfilled";
+        state.addChildInfoError = null;
       })
       .addCase(addChildInfoAsync.rejected, (state, action) => {
-        state.isLoading = false;
-        state.result = "rejected";
-        state.error = action.payload;
+        state.addChildInfoIsLoading = false;
+        state.addChildInfoResult = "rejected";
+        state.addChildInfoError = action.payload;
       });
   },
 });
-
 export const {
   setChildInfo,
   resetAllChildInfoState,
@@ -64,11 +78,6 @@ export const {
   resetAddChildInfoError,
 } = addChildInfoSlice.actions;
 
-export const {
-  selectAddChildInfoIsLoading,
-  selectAddChildInfo,
-  selectAddChildInfoResult,
-  selectAddChildInfoError,
-} = addChildInfoSlice.selectors;
+export const { selectAddChildInfoSelectors } = addChildInfoSlice.selectors;
 
 export const addChildInfoReducer = addChildInfoSlice.reducer;

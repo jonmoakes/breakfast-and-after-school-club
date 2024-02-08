@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSelector, createSlice } from "@reduxjs/toolkit";
 
 import {
   updateSessionDocAsync,
@@ -10,7 +10,7 @@ import {
 const INITIAL_STATE = {
   sessionType: "",
   sessionPrice: null,
-  isLoading: false,
+  bookSessionIsLoading: false,
   childrenSelectedForBooking: [],
   updateSessionDoc: {
     result: "",
@@ -61,67 +61,89 @@ export const bookSessionSlice = createSlice({
     },
   },
   selectors: {
-    selectSessionType: (state) => state.sessionType,
-    selectSessionPrice: (state) => state.sessionPrice,
-    selectBookSessionIsLoading: (state) => state.isLoading,
-    selectUpdateSessionDoc: (state) => state.updateSessionDoc,
-    selectUpdateUserDocBalance: (state) => state.updateUserDocBalance,
-    selectResetSessionDoc: (state) => state.resetSessionDoc,
-    selectAddSessionBookingInfo: (state) => state.addSessionBookingInfo,
-    selectChildrenSelectedForBooking: (state) =>
-      state.childrenSelectedForBooking,
+    selectBookSessionSelectors: createSelector(
+      (state) => state.sessionType,
+      (state) => state.sessionPrice,
+      (state) => state.bookSessionIsLoading,
+      (state) => state.updateSessionDoc,
+      (state) => state.updateUserDocBalance,
+      (state) => state.resetSessionDoc,
+      (state) => state.addSessionBookingInfo,
+      (state) => state.childrenSelectedForBooking,
+      (
+        sessionType,
+        sessionPrice,
+        bookSessionIsLoading,
+        updateSessionDoc,
+        updateUserDocBalance,
+        resetSessionDoc,
+        addSessionBookingInfo,
+        childrenSelectedForBooking
+      ) => {
+        return {
+          sessionType,
+          sessionPrice,
+          bookSessionIsLoading,
+          updateSessionDoc,
+          updateUserDocBalance,
+          resetSessionDoc,
+          addSessionBookingInfo,
+          childrenSelectedForBooking,
+        };
+      }
+    ),
   },
   extraReducers: (builder) => {
     builder
       .addCase(updateSessionDocAsync.pending, (state) => {
-        state.isLoading = true;
+        state.bookSessionIsLoading = true;
       })
       .addCase(updateSessionDocAsync.fulfilled, (state) => {
-        state.isLoading = false;
+        state.bookSessionIsLoading = false;
         state.updateSessionDoc.result = "fulfilled";
         state.updateSessionDoc.error = null;
       })
       .addCase(updateSessionDocAsync.rejected, (state, action) => {
-        state.isLoading = false;
+        state.bookSessionIsLoading = false;
         state.updateSessionDoc.result = "rejected";
         state.updateSessionDoc.error = action.payload;
       })
       .addCase(updateUserDocBalanceAsync.pending, (state) => {
-        state.isLoading = true;
+        state.bookSessionIsLoading = true;
       })
       .addCase(updateUserDocBalanceAsync.fulfilled, (state) => {
-        state.isLoading = false;
+        state.bookSessionIsLoading = false;
         state.updateUserDocBalance.result = "fulfilled";
         state.updateUserDocBalance.error = null;
       })
       .addCase(updateUserDocBalanceAsync.rejected, (state, action) => {
-        state.isLoading = false;
+        state.bookSessionIsLoading = false;
         state.updateUserDocBalance.result = "rejected";
         state.updateUserDocBalance.error = action.payload;
       })
       .addCase(resetSessionDocAsync.pending, (state) => {
-        state.isLoading = true;
+        state.bookSessionIsLoading = true;
       })
       .addCase(resetSessionDocAsync.fulfilled, (state) => {
-        state.isLoading = false;
+        state.bookSessionIsLoading = false;
         state.resetSessionDoc.result = "fulfilled";
         state.resetSessionDoc.error = null;
       })
       .addCase(resetSessionDocAsync.rejected, (state, action) => {
-        state.isLoading = false;
+        state.bookSessionIsLoading = false;
         state.resetSessionDoc.result = "rejected";
         state.resetSessionDoc.error = action.payload;
       })
       .addCase(addSessionBookingInfoAsync.pending, (state) => {
-        state.isLoading = true;
+        state.bookSessionIsLoading = true;
       })
       .addCase(addSessionBookingInfoAsync.fulfilled, (state) => {
-        state.isLoading = false;
+        state.bookSessionIsLoading = false;
         state.addSessionBookingInfo.result = "fulfilled";
         state.addSessionBookingInfo.error = null;
       })
       .addCase(addSessionBookingInfoAsync.rejected, (state, action) => {
-        state.isLoading = false;
+        state.bookSessionIsLoading = false;
         state.addSessionBookingInfo.result = "rejected";
         state.addSessionBookingInfo.error = action.payload;
       });
@@ -137,15 +159,6 @@ export const {
   resetChildrenSelectedForBooking,
 } = bookSessionSlice.actions;
 
-export const {
-  selectSessionType,
-  selectSessionPrice,
-  selectBookSessionIsLoading,
-  selectUpdateSessionDoc,
-  selectUpdateUserDocBalance,
-  selectResetSessionDoc,
-  selectAddSessionBookingInfo,
-  selectChildrenSelectedForBooking,
-} = bookSessionSlice.selectors;
+export const { selectBookSessionSelectors } = bookSessionSlice.selectors;
 
 export const bookSessionReducer = bookSessionSlice.reducer;

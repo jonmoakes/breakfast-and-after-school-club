@@ -7,11 +7,7 @@ import useUpdateSessionDocErrorSwal from "./use-update-session-doc-error-swal";
 import useUpdateBalanceErrorResetSessionDocSwal from "./use-update-balance-error-reset-session-doc-swal";
 import useAddSessionBookingInfoErrorSwal from "./use-add-session-booking-info-error-swal";
 
-import {
-  selectUpdateSessionDoc,
-  selectUpdateUserDocBalance,
-  selectAddSessionBookingInfo,
-} from "../../../../store/book-session/book-session.slice";
+import { selectBookSessionSelectors } from "../../../../store/book-session/book-session.slice";
 
 const useGetBookSessionResultSwal = () => {
   const { noActionsFiredYet } = useReturnLogic();
@@ -22,9 +18,8 @@ const useGetBookSessionResultSwal = () => {
   const { addSessionBookingInfoErrorSwal } =
     useAddSessionBookingInfoErrorSwal();
 
-  const updateSessionDoc = useSelector(selectUpdateSessionDoc);
-  const updateUserDocBalance = useSelector(selectUpdateUserDocBalance);
-  const addSessionBookingInfo = useSelector(selectAddSessionBookingInfo);
+  const { updateSessionDoc, updateUserDocBalance, addSessionBookingInfo } =
+    useSelector(selectBookSessionSelectors);
 
   const updateSessionResult = updateSessionDoc.result;
   const updateBalanceResult = updateUserDocBalance.result;

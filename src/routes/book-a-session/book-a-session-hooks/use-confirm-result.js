@@ -12,14 +12,14 @@ import {
   selectCurrentUser,
   selectEnvironmentVariables,
 } from "../../../store/user/user.selector";
-import { selectChildrenSelectedForBooking } from "../../../store/book-session/book-session.slice";
+import { selectBookSessionSelectors } from "../../../store/book-session/book-session.slice";
 
 const useConfirmResult = () => {
   const { date } = useConditionalLogic();
 
   const usersChildren = useSelector(selectUsersChildren);
-  const childrenSelectedForBooking = useSelector(
-    selectChildrenSelectedForBooking
+  const { childrenSelectedForBooking } = useSelector(
+    selectBookSessionSelectors
   );
   const currentUser = useSelector(selectCurrentUser);
   const envVariables = useSelector(selectEnvironmentVariables);

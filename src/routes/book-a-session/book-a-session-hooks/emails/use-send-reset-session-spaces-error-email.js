@@ -4,10 +4,7 @@ import useConditionalLogic from "../use-conditional-logic";
 import useHamburgerHandlerNavigate from "../../../../hooks/use-hamburger-handler-navigate";
 import useFireSwal from "../../../../hooks/use-fire-swal";
 
-import {
-  selectChildrenSelectedForBooking,
-  selectSessionType,
-} from "../../../../store/book-session/book-session.slice";
+import { selectBookSessionSelectors } from "../../../../store/book-session/book-session.slice";
 import { selectEnvironmentVariables } from "../../../../store/user/user.selector";
 import { sendEmailResetSessionSpacesErrorAsync } from "../../../../store/send-email/send-email-thunks";
 
@@ -22,10 +19,9 @@ const useSendResetSessionSpacesErrorEmail = () => {
   const { hamburgerHandlerNavigate } = useHamburgerHandlerNavigate();
   const { fireSwal } = useFireSwal();
 
-  const childrenSelectedForBooking = useSelector(
-    selectChildrenSelectedForBooking
+  const { sessionType, childrenSelectedForBooking } = useSelector(
+    selectBookSessionSelectors
   );
-  const sessionType = useSelector(selectSessionType);
   const envVariables = useSelector(selectEnvironmentVariables);
   const dispatch = useDispatch();
 

@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import useFireSwal from "../../../../hooks/use-fire-swal";
 import useHamburgerHandlerNavigate from "../../../../hooks/use-hamburger-handler-navigate";
 
-import { selectUpdateSessionDoc } from "../../../../store/book-session/book-session.slice";
+import { selectBookSessionSelectors } from "../../../../store/book-session/book-session.slice";
 
 import {
   bookSessionRoute,
@@ -16,7 +16,7 @@ const useUpdateSessionDocErrorSwal = () => {
   const { fireSwal } = useFireSwal();
   const { hamburgerHandlerNavigate } = useHamburgerHandlerNavigate();
 
-  const updateSessionDoc = useSelector(selectUpdateSessionDoc);
+  const { updateSessionDoc } = useSelector(selectBookSessionSelectors);
   const updateSessionError = updateSessionDoc.error;
 
   const updateSessionDocErrorSwal = () => {

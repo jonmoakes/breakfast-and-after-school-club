@@ -3,8 +3,10 @@ import { useDispatch, useSelector } from "react-redux";
 
 import { selectClientSecret } from "../../../store/handle-payment/handle-payment.selector";
 import { selectWalletFundsToAdd } from "../../../store/wallet-funds-to-add/wallet-funds-to-add.selector";
-import { selectCardInputResult } from "../../../store/card-input-result/card-input-result.selector";
-import { resetCardInputState } from "../../../store/card-input-result/card-input-result.slice";
+import {
+  selectCardInputResult,
+  resetCardInputState,
+} from "../../../store/card-input-result/card-input-result.slice";
 import { resetClientSecret } from "../../../store/handle-payment/handle-payment.slice";
 
 const useClearCardInputOnZeroWalletFunds = () => {

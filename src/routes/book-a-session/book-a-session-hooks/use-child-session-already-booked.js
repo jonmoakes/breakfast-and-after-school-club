@@ -4,7 +4,7 @@ import useConditionalLogic from "./use-conditional-logic";
 import useGetBookingDataAndSessionTypeToLowercase from "./use-get-booking-data-and-session-type-to-lowercase";
 
 import { selectUsersChildren } from "../../../store/get-users-children/get-users-children.selector";
-import { selectChildrenSelectedForBooking } from "../../../store/book-session/book-session.slice";
+import { selectBookSessionSelectors } from "../../../store/book-session/book-session.slice";
 
 const useChildSessionAlreadyBooked = () => {
   const { date } = useConditionalLogic();
@@ -18,8 +18,8 @@ const useChildSessionAlreadyBooked = () => {
   } = useGetBookingDataAndSessionTypeToLowercase();
 
   const usersChildren = useSelector(selectUsersChildren);
-  const childrenSelectedForBooking = useSelector(
-    selectChildrenSelectedForBooking
+  const { childrenSelectedForBooking } = useSelector(
+    selectBookSessionSelectors
   );
   const { childName } = usersChildren[0];
 

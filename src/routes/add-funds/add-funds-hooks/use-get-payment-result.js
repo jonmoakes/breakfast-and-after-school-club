@@ -13,14 +13,16 @@ import {
   selectClientSecret,
   selectShowConfirmButton,
 } from "../../../store/handle-payment/handle-payment.selector";
-import { selectCardInputResult } from "../../../store/card-input-result/card-input-result.selector";
+import {
+  selectCardInputResult,
+  resetCardInputState,
+} from "../../../store/card-input-result/card-input-result.slice";
 import {
   getClientSecretAsync,
   getPaymentResultAsync,
 } from "../../../store/handle-payment/handle-payment.slice";
 import { resetWalletFundsToAddState } from "../../../store/wallet-funds-to-add/wallet-funds-to-add.slice";
 import { resetAllHandlePaymentState } from "../../../store/handle-payment/handle-payment.slice";
-import { resetCardInputState } from "../../../store/card-input-result/card-input-result.slice";
 
 import {
   addFundsMessage,

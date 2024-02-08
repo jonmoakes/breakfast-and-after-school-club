@@ -6,10 +6,7 @@ import useHamburgerHandlerNavigate from "../../../../hooks/use-hamburger-handler
 import { selectUsersChildren } from "../../../../store/get-users-children/get-users-children.selector";
 import { selectEnvironmentVariables } from "../../../../store/user/user.selector";
 import { sendEmailBookingNotAddedToDatabaseAsync } from "../../../../store/send-email/send-email-thunks";
-import {
-  selectSessionType,
-  selectChildrenSelectedForBooking,
-} from "../../../../store/book-session/book-session.slice";
+import { selectBookSessionSelectors } from "../../../../store/book-session/book-session.slice";
 
 import {
   contactRoute,
@@ -23,10 +20,9 @@ const useSendAddBookingInfoErrorEmail = (date) => {
   const { fireSwal } = useFireSwal();
   const { hamburgerHandlerNavigate } = useHamburgerHandlerNavigate();
 
-  const childrenSelectedForBooking = useSelector(
-    selectChildrenSelectedForBooking
+  const { sessionType, childrenSelectedForBooking } = useSelector(
+    selectBookSessionSelectors
   );
-  const sessionType = useSelector(selectSessionType);
   const usersChildren = useSelector(selectUsersChildren);
   const envVariables = useSelector(selectEnvironmentVariables);
   const dispatch = useDispatch();

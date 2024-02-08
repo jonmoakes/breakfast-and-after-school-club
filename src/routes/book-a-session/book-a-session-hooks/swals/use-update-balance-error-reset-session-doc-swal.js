@@ -6,11 +6,7 @@ import useConditionalLogic from "../use-conditional-logic";
 import useSendResetSessionSpacesErrorEmail from "../emails/use-send-reset-session-spaces-error-email";
 import useHamburgerHandlerNavigate from "../../../../hooks/use-hamburger-handler-navigate";
 
-import {
-  selectChildrenSelectedForBooking,
-  selectSessionType,
-  selectUpdateUserDocBalance,
-} from "../../../../store/book-session/book-session.slice";
+import { selectBookSessionSelectors } from "../../../../store/book-session/book-session.slice";
 import { selectEnvironmentVariables } from "../../../../store/user/user.selector";
 import { resetSessionDocAsync } from "../../../../store/book-session/book-session-thunks";
 
@@ -28,14 +24,10 @@ const useUpdateBalanceErrorResetSessionDocSwal = () => {
 
   const { hamburgerHandlerNavigate } = useHamburgerHandlerNavigate();
   const { date } = useConditionalLogic();
-
-  const childrenSelectedForBooking = useSelector(
-    selectChildrenSelectedForBooking
-  );
-  const sessionType = useSelector(selectSessionType);
+  const { sessionType, childrenSelectedForBooking, updateUserDocBalance } =
+    useSelector(selectBookSessionSelectors);
   const envVariables = useSelector(selectEnvironmentVariables);
 
-  const updateUserDocBalance = useSelector(selectUpdateUserDocBalance);
   const updateBalanceError = updateUserDocBalance.error;
   const { databaseId, termDatesCollectionId: collectionId } = envVariables;
 

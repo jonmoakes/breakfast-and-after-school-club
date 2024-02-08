@@ -2,7 +2,7 @@ import { useSelector } from "react-redux";
 
 import useHandleAddChildInfoChange from "./add-child-info-hooks/use-handle-add-child-info-change";
 
-import { selectAddChildInfo } from "../../store/add-child-info/add-child-info.slice";
+import { selectAddChildInfoSelectors } from "../../store/add-child-info/add-child-info.slice";
 
 import AddChildInfoButton from "./add-child-info-button.component";
 
@@ -22,9 +22,9 @@ import { leaveBlankIfNothingToAdd, anyOtherInfo } from "../../strings/strings";
 const AddChildInfoForm = () => {
   const { handleAddChildInfoChange } = useHandleAddChildInfoChange();
 
-  const addChildInfo = useSelector(selectAddChildInfo);
+  const { childInfo } = useSelector(selectAddChildInfoSelectors);
   const { childName, age, medicalInfo, dietryRequirements, additionalInfo } =
-    addChildInfo;
+    childInfo;
 
   return (
     <ParentDiv>

@@ -2,7 +2,7 @@ import { useSelector } from "react-redux";
 
 import useGetBookedSessions from "./your-customer-bookings-hooks/use-get-booked-sessions";
 
-import { selectBookedSessionsIsLoading } from "../../store/booked-sessions/booked-sessions.slice";
+import { selectBookedSessionsSelectors } from "../../store/booked-sessions/booked-sessions.slice";
 
 import Loader from "../../components/loader/loader.component";
 import TableHelp from "../../components/tables/table-help.component";
@@ -15,11 +15,13 @@ import { BlackTitle } from "../../styles/h1/h1.styles";
 const YourCustomerBookings = () => {
   useGetBookedSessions();
 
-  const isLoading = useSelector(selectBookedSessionsIsLoading);
+  const { bookedSessionsIsLoading } = useSelector(
+    selectBookedSessionsSelectors
+  );
 
   return (
     <Container>
-      {isLoading ? <Loader /> : null}
+      {bookedSessionsIsLoading ? <Loader /> : null}
 
       <ParentDiv>
         <BlackTitle>session bookings</BlackTitle>
