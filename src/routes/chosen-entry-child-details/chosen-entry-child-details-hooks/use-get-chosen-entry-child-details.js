@@ -5,8 +5,7 @@ import {
   selectCurrentUser,
   selectEnvironmentVariables,
 } from "../../../store/user/user.selector";
-
-import { getChosenEntryChildDetailsAsync } from "../../../store/chosen-entry-child-details/chosen-entry-child-details.slice";
+import { getChosenEntryChildDetailsAsync } from "../../../store/chosen-entry-child-details/chosen-entry-child-details-thunks";
 
 const useGetChosenEntryChildDetails = (chosenEntry) => {
   const currentUser = useSelector(selectCurrentUser);

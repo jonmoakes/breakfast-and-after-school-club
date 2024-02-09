@@ -2,7 +2,7 @@ import { useSelector } from "react-redux";
 
 import useCancelAndReturn from "../../hooks/use-cancel-and-return";
 
-import { selectChosenEntryChildDetails } from "../../store/chosen-entry-child-details/chosen-entry-child-details.selector";
+import { selectChosenEntryChildDetailsSelectors } from "../../store/chosen-entry-child-details/chosen-entry-child-details.slice";
 
 import { ParentDiv } from "../../styles/div/div.styles";
 import { Text } from "../../styles/p/p.styles";
@@ -14,7 +14,9 @@ import { HrWithMargin } from "../../styles/hr/hr.styles";
 const ChildDetails = () => {
   const { cancelAndReturn } = useCancelAndReturn();
 
-  const chosenEntryChildDetails = useSelector(selectChosenEntryChildDetails);
+  const { chosenEntryChildDetails } = useSelector(
+    selectChosenEntryChildDetailsSelectors
+  );
 
   return (
     <>

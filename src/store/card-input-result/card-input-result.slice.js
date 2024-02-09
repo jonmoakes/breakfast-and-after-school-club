@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSelector, createSlice } from "@reduxjs/toolkit";
 
 const defaultCardPaymentResult = {
   error: "",
@@ -21,7 +21,11 @@ const cardInputResultSlice = createSlice({
     },
   },
   selectors: {
-    selectCardInputResult: (state) => state.cardInputResult,
+    selectCardInputResult: createSelector(
+      (state) => state.cardInputResult,
+      // Transform the value into an object (if needed)
+      (cardInputResult) => ({ ...cardInputResult })
+    ),
   },
 });
 

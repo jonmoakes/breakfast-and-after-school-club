@@ -4,8 +4,11 @@ import { useNavigate } from "react-router-dom";
 
 import useFireSwal from "../../../hooks/use-fire-swal";
 
-import { selectError } from "../../../store/chosen-entry-child-details/chosen-entry-child-details.selector";
-import { resetError } from "../../../store/chosen-entry-child-details/chosen-entry-child-details.slice";
+import {
+  resetChosenEntryChildDetailsError,
+  selectChosenEntryChildDetailsSelectors,
+} from "../../../store/chosen-entry-child-details/chosen-entry-child-details.slice";
+
 import {
   errorFetchingChildDetails,
   errorReceivedMessage,
@@ -14,28 +17,30 @@ import {
 const useGetChildrenEntryChildDetailsErrorSwal = () => {
   const { fireSwal } = useFireSwal();
 
-  const error = useSelector(selectError);
+  const { chosenEntryChildDetailsError } = useSelector(
+    selectChosenEntryChildDetailsSelectors
+  );
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (!error) return;
+    if (!chosenEntryChildDetailsError) return;
 
     fireSwal(
       "error",
       errorFetchingChildDetails,
-      errorReceivedMessage(error),
+      errorReceivedMessage(chosenEntryChildDetailsError),
       0,
       true,
       false
     ).then((isConfirmed) => {
       if (isConfirmed) {
-        dispatch(resetError());
+        dispatch(resetChosenEntryChildDetailsError());
         navigate(-1);
       }
     });
-  }, [error, fireSwal, dispatch, navigate]);
+  }, [chosenEntryChildDetailsError, fireSwal, dispatch, navigate]);
 };
 
 export default useGetChildrenEntryChildDetailsErrorSwal;

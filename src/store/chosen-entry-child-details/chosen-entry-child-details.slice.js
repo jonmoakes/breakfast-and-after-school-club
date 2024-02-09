@@ -1,74 +1,65 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { listDocumentsByQueryOrSearch } from "../../utils/appwrite/appwrite-functions";
-
-export const getChosenEntryChildDetailsAsync = createAsyncThunk(
-  "getChosenEntryChildDetails",
-  async ({ chosenEntry, databaseId, collectionId }, thunkAPI) => {
-    try {
-      const searchForChildNames = chosenEntry.length
-        ? chosenEntry[0].childrensName
-        : null;
-
-      const searchIndex = "childName";
-      const searchValue = searchForChildNames;
-
-      const getChosenEntryChildDetailsDocuments =
-        await listDocumentsByQueryOrSearch(
-          databaseId,
-          collectionId,
-          searchIndex,
-          searchValue,
-          true
-        );
-
-      const { documents, total } = getChosenEntryChildDetailsDocuments;
-
-      if (!total) return;
-
-      return documents;
-    } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
-    }
-  }
-);
+import { createSelector, createSlice } from "@reduxjs/toolkit";
+import { getChosenEntryChildDetailsAsync } from "./chosen-entry-child-details-thunks";
 
 const INITIAL_STATE = {
-  isLoading: false,
+  chosenEntryChildDetailsIsLoading: false,
   chosenEntryChildDetails: [],
-  error: null,
+  chosenEntryChildDetailsError: null,
 };
 
 export const chosenEntryChildDetailsSlice = createSlice({
   name: "chosenEntryChildDetails",
   initialState: INITIAL_STATE,
   reducers: {
-    resetError(state) {
-      state.error = null;
+    resetChosenEntryChildDetailsError(state) {
+      state.chosenEntryChildDetailsError = null;
     },
     resetChosenEntryChildDetailsState: () => {
       return INITIAL_STATE;
     },
   },
+  selectors: {
+    selectChosenEntryChildDetailsSelectors: createSelector(
+      (state) => state.chosenEntryChildDetailsIsLoading,
+      (state) => state.chosenEntryChildDetails || [],
+      (state) => state.chosenEntryChildDetailsError,
+      (
+        chosenEntryChildDetailsIsLoading,
+        chosenEntryChildDetails,
+        chosenEntryChildDetailsError
+      ) => {
+        return {
+          chosenEntryChildDetailsIsLoading,
+          chosenEntryChildDetails,
+          chosenEntryChildDetailsError,
+        };
+      }
+    ),
+  },
   extraReducers: (builder) => {
     builder
       .addCase(getChosenEntryChildDetailsAsync.pending, (state) => {
-        state.isLoading = true;
+        state.chosenEntryChildDetailsIsLoading = true;
       })
       .addCase(getChosenEntryChildDetailsAsync.fulfilled, (state, action) => {
-        state.isLoading = false;
+        state.chosenEntryChildDetailsIsLoading = false;
         state.chosenEntryChildDetails = action.payload;
-        state.error = null;
+        state.chosenEntryChildDetailsError = null;
       })
       .addCase(getChosenEntryChildDetailsAsync.rejected, (state, action) => {
-        state.isLoading = false;
+        state.chosenEntryChildDetailsIsLoading = false;
         state.chosenEntryChildDetails = [];
-        state.error = action.payload;
+        state.chosenEntryChildDetailsError = action.payload;
       });
   },
 });
 
-export const { resetError, resetChosenEntryChildDetailsState } =
-  chosenEntryChildDetailsSlice.actions;
+export const {
+  resetChosenEntryChildDetailsError,
+  resetChosenEntryChildDetailsState,
+} = chosenEntryChildDetailsSlice.actions;
+export const { selectChosenEntryChildDetailsSelectors } =
+  chosenEntryChildDetailsSlice.selectors;
 
 export const chosenEntryChildDetailsReducer =
   chosenEntryChildDetailsSlice.reducer;
