@@ -1,8 +1,8 @@
 import { useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
 
 import useIsRouteWithNavWarning from "../../hooks/use-is-route-with-nav-warning";
 import useConfirmSwal from "../../hooks/use-confirm-swal";
+import useHamburgerHandlerNavigate from "../../hooks/use-hamburger-handler-navigate";
 
 import { selectCurrentUser } from "../../store/user/user.selector";
 
@@ -20,8 +20,7 @@ const NavLogo = () => {
   const currentUser = useSelector(selectCurrentUser);
   const { isRouteWithNavWarning } = useIsRouteWithNavWarning();
   const { confirmForwardToNewRoute } = useConfirmSwal();
-
-  const navigate = useNavigate();
+  const { hamburgerHandlerNavigate } = useHamburgerHandlerNavigate();
 
   const handleClick = () => {
     const route = "/";
@@ -34,7 +33,7 @@ const NavLogo = () => {
         route
       );
     } else {
-      navigate(route);
+      hamburgerHandlerNavigate(route);
     }
   };
 

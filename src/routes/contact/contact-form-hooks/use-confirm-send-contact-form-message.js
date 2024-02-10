@@ -7,10 +7,8 @@ import {
   selectCurrentUser,
   selectEnvironmentVariables,
 } from "../../../store/user/user.selector";
-import {
-  sendContactFormMessageAsync,
-  selectContactFormDetails,
-} from "../../../store/contact-form/contact-form.slice";
+import { selectContactFormSelectors } from "../../../store/contact-form/contact-form.slice";
+import { sendContactFormMessageAsync } from "../../../store/contact-form/contact-form-thunks";
 
 import { validateEmail } from "../../../functions/validate-email";
 
@@ -25,7 +23,8 @@ const useConfirmSendContactFormMessage = () => {
   const { fireSwal } = useFireSwal();
   const { confirmSwal } = useConfirmSwal();
 
-  const contactFormDetails = useSelector(selectContactFormDetails);
+  const { contactFormDetails } = useSelector(selectContactFormSelectors);
+
   const currentUser = useSelector(selectCurrentUser);
   const envVariables = useSelector(selectEnvironmentVariables);
 

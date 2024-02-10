@@ -5,8 +5,7 @@ import useFireSwal from "../../../hooks/use-fire-swal";
 
 import {
   resetContactFormState,
-  selectSendMessageResponseStatus,
-  selectSendMessageError,
+  selectContactFormSelectors,
 } from "../../../store/contact-form/contact-form.slice";
 
 import {
@@ -18,12 +17,13 @@ import {
 const useSendContactFormMessageResultSwal = () => {
   const { fireSwal } = useFireSwal();
 
-  const responseStatus = useSelector(selectSendMessageResponseStatus);
-  const error = useSelector(selectSendMessageError);
+  const { responseStatus, contactFormError } = useSelector(
+    selectContactFormSelectors
+  );
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (!responseStatus && !error) return;
+    if (!responseStatus && !contactFormError) return;
     if (responseStatus === 202) {
       fireSwal(
         "success",
@@ -37,11 +37,11 @@ const useSendContactFormMessageResultSwal = () => {
           dispatch(resetContactFormState());
         }
       });
-    } else if (error) {
+    } else if (contactFormError) {
       fireSwal(
         "error",
         errorSendingMessage,
-        `the error received was: ${error}. please try again.`,
+        `the error received was: ${contactFormError}. please try again.`,
         0,
         true,
         false
@@ -51,7 +51,7 @@ const useSendContactFormMessageResultSwal = () => {
         }
       });
     }
-  }, [dispatch, error, fireSwal, responseStatus]);
+  }, [dispatch, contactFormError, fireSwal, responseStatus]);
 };
 
 export default useSendContactFormMessageResultSwal;

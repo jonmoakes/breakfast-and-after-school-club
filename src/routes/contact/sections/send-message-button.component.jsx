@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import useIsOnline from "../../../hooks/use-is-online";
 import useConfirmSendContactFormMessage from "../contact-form-hooks/use-confirm-send-contact-form-message";
 
-import { selectSendMessageIsLoading } from "../../../store/contact-form/contact-form.slice";
+import { selectContactFormSelectors } from "../../../store/contact-form/contact-form.slice";
 
 import NetworkError from "../../../components/errors/network-error.component";
 
@@ -17,7 +17,7 @@ const SendMessageButton = () => {
   const { isOnline } = useIsOnline();
   const { confirmSendContactFormMessage } = useConfirmSendContactFormMessage();
 
-  const isLoading = useSelector(selectSendMessageIsLoading);
+  const { contactFormIsLoading } = useSelector(selectContactFormSelectors);
 
   return (
     <>
@@ -25,7 +25,7 @@ const SendMessageButton = () => {
 
       {!isOnline ? (
         <NetworkError />
-      ) : isOnline && !isLoading ? (
+      ) : isOnline && !contactFormIsLoading ? (
         <YellowGreenButton
           type="button"
           onClick={confirmSendContactFormMessage}
@@ -34,7 +34,7 @@ const SendMessageButton = () => {
         </YellowGreenButton>
       ) : (
         isOnline &&
-        isLoading && (
+        contactFormIsLoading && (
           <DisabledButton className="disabled">please wait...</DisabledButton>
         )
       )}

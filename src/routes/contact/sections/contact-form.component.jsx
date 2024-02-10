@@ -2,7 +2,7 @@ import { useSelector } from "react-redux";
 
 import useHandleContactFormDetailsChange from "../contact-form-hooks/use-handle-contact-form-details-change";
 
-import { selectContactFormDetails } from "../../../store/contact-form/contact-form.slice";
+import { selectContactFormSelectors } from "../../../store/contact-form/contact-form.slice";
 
 import SendMessageButton from "./send-message-button.component";
 
@@ -21,7 +21,7 @@ const ContactForm = () => {
   const { handleContactFormDetailsChange } =
     useHandleContactFormDetailsChange();
 
-  const contactFormDetails = useSelector(selectContactFormDetails);
+  const { contactFormDetails } = useSelector(selectContactFormSelectors);
   const { name, email, message } = contactFormDetails;
 
   return (
