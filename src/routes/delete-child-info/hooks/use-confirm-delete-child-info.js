@@ -2,8 +2,8 @@ import { useSelector, useDispatch } from "react-redux";
 
 import useConfirmSwal from "../../../hooks/use-confirm-swal";
 
-import { selectDeleteChildInfo } from "../../../store/delete-child-info/delete-child-info.selector";
-import { deleteChildInfoAsync } from "../../../store/delete-child-info/delete-child-info.slice";
+import { selectDeleteChildInfoSelectors } from "../../../store/delete-child-info/delete-child-info.slice";
+import { deleteChildInfoAsync } from "../../../store/delete-child-info/delete-child-info-thunks";
 import { selectEnvironmentVariables } from "../../../store/user/user.selector";
 
 import {
@@ -14,14 +14,16 @@ import {
 const useConfirmDeleteChildInfo = () => {
   const { confirmSwal } = useConfirmSwal();
 
-  const childInfo = useSelector(selectDeleteChildInfo);
+  const { childToDeleteInfo } = useSelector(selectDeleteChildInfoSelectors);
   const envVariables = useSelector(selectEnvironmentVariables);
 
   const { databaseId, childrenCollectionId: collectionId } = envVariables;
   const dispatch = useDispatch();
 
   const confirmResult = () => {
-    dispatch(deleteChildInfoAsync({ childInfo, databaseId, collectionId }));
+    dispatch(
+      deleteChildInfoAsync({ childToDeleteInfo, databaseId, collectionId })
+    );
   };
 
   const confirmDeleteChildInfo = () => {

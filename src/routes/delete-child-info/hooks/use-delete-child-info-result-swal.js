@@ -5,13 +5,10 @@ import { useNavigate } from "react-router-dom";
 import useFireSwal from "../../../hooks/use-fire-swal";
 
 import {
-  selectResult,
-  selectError,
-} from "../../../store/delete-child-info/delete-child-info.selector";
-import {
   resetDeleteChildInfoState,
-  resetError,
-  resetResult,
+  resetDeleteChildInfoResult,
+  resetDeleteChildInfoError,
+  selectDeleteChildInfoSelectors,
 } from "../../../store/delete-child-info/delete-child-info.slice";
 
 import {
@@ -24,16 +21,17 @@ import {
 const useDeleteChildInfoResultSwal = () => {
   const { fireSwal } = useFireSwal();
 
-  const result = useSelector(selectResult);
-  const error = useSelector(selectError);
+  const { deleteChildInfoResult, deleteChildInfoError } = useSelector(
+    selectDeleteChildInfoSelectors
+  );
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (!result) return;
+    if (!deleteChildInfoResult) return;
 
-    if (result === "fulfilled") {
+    if (deleteChildInfoResult === "fulfilled") {
       fireSwal("success", childDeletedMessage, "", 0, true, false).then(
         (isConfirmed) => {
           if (isConfirmed) {
@@ -42,22 +40,28 @@ const useDeleteChildInfoResultSwal = () => {
           }
         }
       );
-    } else if (result === "rejected") {
+    } else if (deleteChildInfoResult === "rejected") {
       fireSwal(
         "error",
         errorDeletingChildMessage,
-        errorReceivedMessage(error),
+        errorReceivedMessage(deleteChildInfoError),
         0,
         true,
         false
       ).then((isConfirmed) => {
         if (isConfirmed) {
-          dispatch(resetResult());
-          dispatch(resetError());
+          dispatch(resetDeleteChildInfoError());
+          dispatch(resetDeleteChildInfoResult());
         }
       });
     }
-  }, [result, error, fireSwal, navigate, dispatch]);
+  }, [
+    deleteChildInfoError,
+    deleteChildInfoResult,
+    fireSwal,
+    navigate,
+    dispatch,
+  ]);
 };
 
 export default useDeleteChildInfoResultSwal;

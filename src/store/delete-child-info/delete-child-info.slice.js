@@ -1,48 +1,11 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import {
-  listDocumentsByQueryOrSearch,
-  manageDatabaseDocument,
-} from "../../utils/appwrite/appwrite-functions";
-
-export const deleteChildInfoAsync = createAsyncThunk(
-  "deleteChild",
-  async ({ childInfo, databaseId, collectionId }, thunkAPI) => {
-    try {
-      const { $id } = childInfo;
-      const documentId = $id;
-      const queryIndex = "$id";
-      const queryValue = $id;
-      const dataToDelete = childInfo;
-
-      const getChildrenDocuments = await listDocumentsByQueryOrSearch(
-        databaseId,
-        collectionId,
-        queryIndex,
-        queryValue
-      );
-
-      const { total } = getChildrenDocuments;
-
-      if (!total) return;
-
-      await manageDatabaseDocument(
-        "delete",
-        databaseId,
-        collectionId,
-        documentId,
-        dataToDelete
-      );
-    } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
-    }
-  }
-);
+import { createSelector, createSlice } from "@reduxjs/toolkit";
+import { deleteChildInfoAsync } from "./delete-child-info-thunks";
 
 const INITIAL_STATE = {
-  isLoading: false,
+  deleteChildInfoIsLoading: false,
   childToDeleteInfo: {},
-  result: "",
-  error: null,
+  deleteChildInfoResult: "",
+  deleteChildInfoError: null,
 };
 
 export const deleteChildInfoSlice = createSlice({
@@ -55,40 +18,63 @@ export const deleteChildInfoSlice = createSlice({
     resetChildToDeleteInfo(state) {
       state.childToDeleteInfo = {};
     },
-    resetError(state) {
-      state.error = null;
+    resetDeleteChildInfoError(state) {
+      state.deleteChildInfoError = null;
     },
-    resetResult(state) {
-      state.result = "";
+    resetDeleteChildInfoResult(state) {
+      state.deleteChildInfoResult = "";
     },
     resetDeleteChildInfoState: () => {
       return INITIAL_STATE;
     },
   },
+  selectors: {
+    selectDeleteChildInfoSelectors: createSelector(
+      (state) => state.deleteChildInfoIsLoading,
+      (state) => state.childToDeleteInfo[0],
+      (state) => state.deleteChildInfoResult,
+      (state) => state.deleteChildInfoError,
+      (
+        deleteChildInfoIsLoading,
+        childToDeleteInfo,
+        deleteChildInfoResult,
+        deleteChildInfoError
+      ) => {
+        return {
+          deleteChildInfoIsLoading,
+          childToDeleteInfo,
+          deleteChildInfoResult,
+          deleteChildInfoError,
+        };
+      }
+    ),
+  },
   extraReducers: (builder) => {
     builder
       .addCase(deleteChildInfoAsync.pending, (state) => {
-        state.isLoading = true;
+        state.deleteChildInfoIsLoading = true;
       })
       .addCase(deleteChildInfoAsync.fulfilled, (state) => {
-        state.isLoading = false;
-        state.result = "fulfilled";
-        state.error = null;
+        state.deleteChildInfoIsLoading = false;
+        state.deleteChildInfoResult = "fulfilled";
+        state.deleteChildInfoError = null;
       })
       .addCase(deleteChildInfoAsync.rejected, (state, action) => {
-        state.isLoading = false;
-        state.result = "rejected";
-        state.error = action.payload;
+        state.deleteChildInfoIsLoading = false;
+        state.deleteChildInfoResult = "rejected";
+        state.deleteChildInfoError = action.payload;
       });
   },
 });
 
 export const {
   addChildToDelete,
-  resetError,
-  resetResult,
+  resetDeleteChildInfoError,
+  resetDeleteChildInfoResult,
   resetChildToDeleteInfo,
   resetDeleteChildInfoState,
 } = deleteChildInfoSlice.actions;
+export const { selectDeleteChildInfoSelectors } =
+  deleteChildInfoSlice.selectors;
 
 export const deleteChildInfoReducer = deleteChildInfoSlice.reducer;
