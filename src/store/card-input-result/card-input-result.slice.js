@@ -23,8 +23,11 @@ const cardInputResultSlice = createSlice({
   selectors: {
     selectCardInputResult: createSelector(
       (state) => state.cardInputResult,
-      // Transform the value into an object (if needed)
-      (cardInputResult) => ({ ...cardInputResult })
+      (cardInputResult) => {
+        return {
+          cardInputResult,
+        };
+      }
     ),
   },
 });

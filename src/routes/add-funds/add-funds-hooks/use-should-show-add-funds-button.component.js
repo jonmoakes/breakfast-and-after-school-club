@@ -6,7 +6,7 @@ import { selectCardInputResult } from "../../../store/card-input-result/card-inp
 
 const useShouldShowAddFundsButton = () => {
   const client_secret = useSelector(selectClientSecret);
-  const cardInputResult = useSelector(selectCardInputResult);
+  const { cardInputResult } = useSelector(selectCardInputResult);
   const walletFundsToAdd = useSelector(selectWalletFundsToAdd);
 
   const { showPrePayButton } = cardInputResult;

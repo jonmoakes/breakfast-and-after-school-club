@@ -12,7 +12,7 @@ import { resetClientSecret } from "../../../store/handle-payment/handle-payment.
 const useClearCardInputOnZeroWalletFunds = () => {
   const client_secret = useSelector(selectClientSecret);
   const walletFundsToAdd = useSelector(selectWalletFundsToAdd);
-  const cardInputResult = useSelector(selectCardInputResult);
+  const { cardInputResult } = useSelector(selectCardInputResult);
 
   const dispatch = useDispatch();
   const { error, warning, showPrePayButton } = cardInputResult;

@@ -36,7 +36,7 @@ const useGetPaymentResult = () => {
   const walletFundsToAdd = useSelector(selectWalletFundsToAdd);
   const currentUser = useSelector(selectCurrentUser);
   const client_secret = useSelector(selectClientSecret);
-  const cardInputResult = useSelector(selectCardInputResult);
+  const { cardInputResult } = useSelector(selectCardInputResult);
   const showConfirmButton = useSelector(selectShowConfirmButton);
   const { name, email } = currentUser;
   const { stripeSecretKey } = envVariables;

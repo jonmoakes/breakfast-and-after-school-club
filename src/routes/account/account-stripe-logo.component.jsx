@@ -8,7 +8,7 @@ import { ItalicStripeText } from "../../styles/p/p.styles";
 import { StripeLogo } from "../../styles/svg/svg.styles";
 
 const AccountStripeLogo = () => {
-  const cardInputResult = useSelector(selectCardInputResult);
+  const { cardInputResult } = useSelector(selectCardInputResult);
   const walletFundsToAdd = useSelector(selectWalletFundsToAdd);
 
   const { showPrePayButton } = cardInputResult;

@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSelector, createSlice } from "@reduxjs/toolkit";
 
 const INITIAL_STATE = {
   currentDateAndTime: new Date(),
@@ -16,7 +16,14 @@ export const dateAndTimeSlice = createSlice({
     },
   },
   selectors: {
-    selectCurrentDateAndTime: (state) => state.currentDateAndTime,
+    selectCurrentDateAndTime: createSelector(
+      (state) => state.currentDateAndTime,
+      (currentDateAndTime) => {
+        return {
+          currentDateAndTime,
+        };
+      }
+    ),
   },
 });
 

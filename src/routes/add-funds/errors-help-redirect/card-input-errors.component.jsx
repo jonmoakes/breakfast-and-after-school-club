@@ -6,7 +6,7 @@ import { PaymentErrorDiv, WarningDiv } from "../../../styles/div/div.styles";
 import { Text, WhiteText } from "../../../styles/p/p.styles";
 
 const CardInputErrors = () => {
-  const cardInputResult = useSelector(selectCardInputResult);
+  const { cardInputResult } = useSelector(selectCardInputResult);
 
   const { warning, error } = cardInputResult;
 

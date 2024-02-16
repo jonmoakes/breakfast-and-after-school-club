@@ -24,7 +24,7 @@ import { selectGetUserBookingsError } from "../../../store/user-bookings/user-bo
 import { priceMultipliedBy100 } from "../../../functions/price-multiplied-by-100";
 
 const useConditionalLogic = () => {
-  const currentDateAndTime = useSelector(selectCurrentDateAndTime);
+  const { currentDateAndTime } = useSelector(selectCurrentDateAndTime);
   const requestDateData = useSelector(selectRequestDateData);
   const morningSessionPrice = useSelector(selectMorningSessionPrice);
   const requestDateErrorMessage = useSelector(
