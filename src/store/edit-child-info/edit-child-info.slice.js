@@ -1,51 +1,15 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import {
-  listDocumentsByQueryOrSearch,
-  manageDatabaseDocument,
-} from "../../utils/appwrite/appwrite-functions";
-
-export const updateChildInfoAsync = createAsyncThunk(
-  "updateChild",
-  async ({ $id, databaseId, collectionId, updatedChildInfo }, thunkAPI) => {
-    try {
-      const queryIndex = "$id";
-      const queryValue = $id;
-      const documentId = $id;
-      const dataToUpdate = updatedChildInfo;
-
-      const getChildrenDocuments = await listDocumentsByQueryOrSearch(
-        databaseId,
-        collectionId,
-        queryIndex,
-        queryValue
-      );
-
-      const { total } = getChildrenDocuments;
-
-      if (!total) return;
-
-      await manageDatabaseDocument(
-        "update",
-        databaseId,
-        collectionId,
-        documentId,
-        dataToUpdate
-      );
-    } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
-    }
-  }
-);
+import { createSelector, createSlice } from "@reduxjs/toolkit";
+import { editChildInfoAsync } from "./edit-child-info-thunks";
 
 const INITIAL_STATE = {
-  isLoading: false,
+  editChildInfoIsLoading: false,
   childToEditInfo: {},
-  result: "",
-  error: null,
+  editChildInfoResult: "",
+  editChildInfoError: null,
 };
 
 export const editChildInfoSlice = createSlice({
-  name: "updateChildInfo",
+  name: "editChildInfo",
   initialState: INITIAL_STATE,
   reducers: {
     addChildToEdit(state, action) {
@@ -54,40 +18,62 @@ export const editChildInfoSlice = createSlice({
     resetChildToEditInfo(state) {
       state.childToEditInfo = {};
     },
-    resetError(state) {
-      state.error = null;
+    resetEditChildInfoError(state) {
+      state.editChildInfoError = null;
     },
-    resetResult(state) {
-      state.result = "";
+    resetEditChildInfoResult(state) {
+      state.editChildInfoResult = "";
     },
     resetEditChildInfoState: () => {
       return INITIAL_STATE;
     },
   },
+  selectors: {
+    selectEditChildInfoSelectors: createSelector(
+      (state) => state.editChildInfoIsLoading,
+      (state) => state.childToEditInfo[0],
+      (state) => state.editChildInfoResult,
+      (state) => state.editChildInfoError,
+      (
+        editChildInfoIsLoading,
+        childToEditInfo,
+        editChildInfoResult,
+        editChildInfoError
+      ) => {
+        return {
+          editChildInfoIsLoading,
+          childToEditInfo,
+          editChildInfoResult,
+          editChildInfoError,
+        };
+      }
+    ),
+  },
   extraReducers: (builder) => {
     builder
-      .addCase(updateChildInfoAsync.pending, (state) => {
-        state.isLoading = true;
+      .addCase(editChildInfoAsync.pending, (state) => {
+        state.editChildInfoIsLoading = true;
       })
-      .addCase(updateChildInfoAsync.fulfilled, (state) => {
-        state.isLoading = false;
-        state.result = "fulfilled";
-        state.error = null;
+      .addCase(editChildInfoAsync.fulfilled, (state) => {
+        state.editChildInfoIsLoading = false;
+        state.editChildInfoResult = "fulfilled";
+        state.editChildInfoError = null;
       })
-      .addCase(updateChildInfoAsync.rejected, (state, action) => {
-        state.isLoading = false;
-        state.result = "rejected";
-        state.error = action.payload;
+      .addCase(editChildInfoAsync.rejected, (state, action) => {
+        state.editChildInfoIsLoading = false;
+        state.editChildInfoResult = "rejected";
+        state.editChildInfoError = action.payload;
       });
   },
 });
 
 export const {
   addChildToEdit,
-  resetError,
-  resetResult,
+  resetEditChildInfoError,
+  resetEditChildInfoResult,
   resetChildToEditInfo,
   resetEditChildInfoState,
 } = editChildInfoSlice.actions;
+export const { selectEditChildInfoSelectors } = editChildInfoSlice.selectors;
 
 export const editChildInfoReducer = editChildInfoSlice.reducer;

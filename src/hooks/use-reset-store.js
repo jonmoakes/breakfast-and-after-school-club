@@ -76,7 +76,6 @@ const useResetStore = () => {
         dispatch(resetForgotPasswordResultState());
         break;
       case contactRoute:
-        console.log("me");
         dispatch(resetContactFormState());
         break;
       case addFundsRoute:

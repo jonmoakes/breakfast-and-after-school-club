@@ -3,10 +3,9 @@ import { useSelector, useDispatch } from "react-redux";
 import useConfirmSwal from "../../../hooks/use-confirm-swal";
 import useFireSwal from "../../../hooks/use-fire-swal";
 
-import { updateChildInfoAsync } from "../../../store/edit-child-info/edit-child-info.slice";
-
 import { selectEnvironmentVariables } from "../../../store/user/user.selector";
-import { selectEditChildInfo } from "../../../store/edit-child-info/edit-child-info.selector";
+import { selectEditChildInfoSelectors } from "../../../store/edit-child-info/edit-child-info.slice";
+import { editChildInfoAsync } from "../../../store/edit-child-info/edit-child-info-thunks";
 
 import {
   confirmUpdateChildMessage,
@@ -20,7 +19,7 @@ const useConfirmUpdateChildInfo = () => {
   const { confirmSwal } = useConfirmSwal();
   const { fireSwal } = useFireSwal();
 
-  const originalChildInfo = useSelector(selectEditChildInfo);
+  const { childToEditInfo } = useSelector(selectEditChildInfoSelectors);
   const envVariables = useSelector(selectEnvironmentVariables);
 
   const { databaseId, childrenCollectionId: collectionId } = envVariables;
@@ -32,13 +31,13 @@ const useConfirmUpdateChildInfo = () => {
     medicalInfo = "",
     dietryRequirements = "",
     additionalInfo = "",
-  } = originalChildInfo || {}; // Use an empty object as a fallback if originalChildInfo is undefined
+  } = childToEditInfo || {}; // Use an empty object as a fallback if originalChildInfo is undefined
 
   const dispatch = useDispatch();
 
   const confirmResult = (updatedChildInfo) => {
     dispatch(
-      updateChildInfoAsync({
+      editChildInfoAsync({
         $id,
         databaseId,
         collectionId,

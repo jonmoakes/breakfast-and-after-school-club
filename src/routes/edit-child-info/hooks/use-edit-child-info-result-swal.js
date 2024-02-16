@@ -5,13 +5,10 @@ import { useNavigate } from "react-router-dom";
 import useFireSwal from "../../../hooks/use-fire-swal";
 
 import {
-  selectResult,
-  selectError,
-} from "../../../store/edit-child-info/edit-child-info.selector";
-import {
   resetEditChildInfoState,
-  resetError,
-  resetResult,
+  resetEditChildInfoResult,
+  resetEditChildInfoError,
+  selectEditChildInfoSelectors,
 } from "../../../store/edit-child-info/edit-child-info.slice";
 
 import {
@@ -24,16 +21,17 @@ import {
 const useEditChildInfoResultSwal = () => {
   const { fireSwal } = useFireSwal();
 
-  const result = useSelector(selectResult);
-  const error = useSelector(selectError);
+  const { editChildInfoResult, editChildInfoError } = useSelector(
+    selectEditChildInfoSelectors
+  );
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (!result) return;
+    if (!editChildInfoResult) return;
 
-    if (result === "fulfilled") {
+    if (editChildInfoResult === "fulfilled") {
       fireSwal("success", childUpdatedMessage, "", 0, true, false).then(
         (isConfirmed) => {
           if (isConfirmed) {
@@ -42,22 +40,22 @@ const useEditChildInfoResultSwal = () => {
           }
         }
       );
-    } else if (result === "rejected") {
+    } else if (editChildInfoResult === "rejected") {
       fireSwal(
         "error",
         errorUpdatingChild,
-        errorReceivedMessage(error),
+        errorReceivedMessage(editChildInfoError),
         0,
         true,
         false
       ).then((isConfirmed) => {
         if (isConfirmed) {
-          dispatch(resetResult());
-          dispatch(resetError());
+          dispatch(resetEditChildInfoResult());
+          dispatch(resetEditChildInfoError());
         }
       });
     }
-  }, [result, error, fireSwal, navigate, dispatch]);
+  }, [editChildInfoResult, editChildInfoError, fireSwal, navigate, dispatch]);
 };
 
 export default useEditChildInfoResultSwal;

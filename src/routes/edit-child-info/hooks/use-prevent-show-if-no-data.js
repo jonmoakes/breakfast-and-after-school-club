@@ -2,19 +2,20 @@ import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
-import { selectEditChildInfo } from "../../../store/edit-child-info/edit-child-info.selector";
+import { selectEditChildInfoSelectors } from "../../../store/edit-child-info/edit-child-info.slice";
 
 import { childInfoRoute } from "../../../strings/strings";
 
 const usePreventShowIfNoData = () => {
-  const childInfo = useSelector(selectEditChildInfo);
+  const { childToEditInfo } = useSelector(selectEditChildInfoSelectors);
 
   const navigate = useNavigate();
+
   useEffect(() => {
-    if (childInfo === undefined) {
+    if (childToEditInfo === undefined) {
       navigate(childInfoRoute);
     }
-  }, [navigate, childInfo]);
+  }, [navigate, childToEditInfo]);
 };
 
 export default usePreventShowIfNoData;

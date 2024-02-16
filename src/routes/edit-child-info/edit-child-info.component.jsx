@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import usePreventShowIfNoData from "./hooks/use-prevent-show-if-no-data";
 import useEditChildInfoResultSwal from "./hooks/use-edit-child-info-result-swal";
 
-import { selectIsLoading } from "../../store/edit-child-info/edit-child-info.selector";
+import { selectEditChildInfoSelectors } from "../../store/edit-child-info/edit-child-info.slice";
 
 import Loader from "../../components/loader/loader.component";
 import EditChildInfoForm from "./edit-child-info-form.component";
@@ -16,11 +16,11 @@ const EditChildInfo = () => {
   usePreventShowIfNoData();
   useEditChildInfoResultSwal();
 
-  const isLoading = useSelector(selectIsLoading);
+  const { editChildInfoIsLoading } = useSelector(selectEditChildInfoSelectors);
 
   return (
     <NoHeaderFooterContainer>
-      {isLoading ? <Loader /> : null}
+      {editChildInfoIsLoading ? <Loader /> : null}
 
       <ParentDiv>
         <BlackTitle>edit child info</BlackTitle>

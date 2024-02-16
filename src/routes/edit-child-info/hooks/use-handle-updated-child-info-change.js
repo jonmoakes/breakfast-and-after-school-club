@@ -1,20 +1,20 @@
 import { useState } from "react";
 import { useSelector } from "react-redux";
 
-import { selectEditChildInfo } from "../../../store/edit-child-info/edit-child-info.selector";
+import { selectEditChildInfoSelectors } from "../../../store/edit-child-info/edit-child-info.slice";
 
 const useHandleUpdatedChildInfoChange = () => {
-  const originalChildEntry = useSelector(selectEditChildInfo);
+  const { childToEditInfo } = useSelector(selectEditChildInfoSelectors);
 
   const [updatedChildInfo, setUpdatedChildInfo] = useState({
-    $id: originalChildEntry ? originalChildEntry.$id : "",
-    childName: originalChildEntry ? originalChildEntry.childName : "",
-    age: originalChildEntry ? originalChildEntry.age : "",
-    medicalInfo: originalChildEntry ? originalChildEntry.medicalInfo : "",
-    dietryRequirements: originalChildEntry
-      ? originalChildEntry.dietryRequirements
+    $id: childToEditInfo ? childToEditInfo.$id : "",
+    childName: childToEditInfo ? childToEditInfo.childName : "",
+    age: childToEditInfo ? childToEditInfo.age : "",
+    medicalInfo: childToEditInfo ? childToEditInfo.medicalInfo : "",
+    dietryRequirements: childToEditInfo
+      ? childToEditInfo.dietryRequirements
       : "",
-    additionalInfo: originalChildEntry ? originalChildEntry.additionalInfo : "",
+    additionalInfo: childToEditInfo ? childToEditInfo.additionalInfo : "",
   });
 
   const handleUpdatedChildInfoChange = (event) => {
