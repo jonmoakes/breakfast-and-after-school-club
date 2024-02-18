@@ -3,11 +3,8 @@ import { useSelector, useDispatch } from "react-redux";
 import useHandleForgotPasswordRequestEmailChange from "./forgot-password-request-hooks/use-handle-forgot-password-request-email-change";
 import useForgotPasswordRequestSwal from "./forgot-password-request-hooks/use-forgot-password-request-swal";
 
-import {
-  selectForgotPasswordRequestEmail,
-  selectForgotPasswordRequestIsLoading,
-} from "../../store/forgot-password-request/forgot-password-request.selector";
-import { generateForgotPasswordLinkAsync } from "../../store/forgot-password-request/forgot-password-request.slice";
+import { selectForgotPasswordRequestSelectors } from "../../store/forgot-password-request/forgot-password-request.slice";
+import { generateForgotPasswordLinkAsync } from "../../store/forgot-password-request/forgot-password-request-thunks";
 
 import Loader from "../../components/loader/loader.component";
 
@@ -25,16 +22,14 @@ const ForgotPasswordRequest = () => {
   const { handleForgotPasswordRequestEmailChange } =
     useHandleForgotPasswordRequestEmailChange();
 
-  const forgotPasswordRequestEmail = useSelector(
-    selectForgotPasswordRequestEmail
-  );
-  const isLoading = useSelector(selectForgotPasswordRequestIsLoading);
+  const { forgotPasswordRequestEmail, forgotPasswordRequestIsLoading } =
+    useSelector(selectForgotPasswordRequestSelectors);
 
   const dispatch = useDispatch();
 
   return (
     <Container>
-      {isLoading ? <Loader /> : null}
+      {forgotPasswordRequestIsLoading ? <Loader /> : null}
       <ParentDiv>
         <BlackTitle>forgot password</BlackTitle>
       </ParentDiv>

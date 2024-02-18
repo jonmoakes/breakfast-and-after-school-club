@@ -1,37 +1,11 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { account } from "../../utils/appwrite/appwrite-config";
-
-import {
-  localhostForgotPasswordResultRoute,
-  forgotPasswordResultRoute,
-} from "../../strings/strings";
-
-export const generateForgotPasswordLinkAsync = createAsyncThunk(
-  "forgotPasswordRequest",
-  async ({ forgotPasswordRequestEmail }, thunkAPI) => {
-    try {
-      if (import.meta.env.MODE === "development") {
-        await account.createRecovery(
-          forgotPasswordRequestEmail,
-          localhostForgotPasswordResultRoute
-        );
-      } else if (import.meta.env.MODE === "production") {
-        await account.createRecovery(
-          forgotPasswordRequestEmail,
-          `https://breakfast-and-after-school-club.netlify.app${forgotPasswordResultRoute}`
-        );
-      }
-    } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
-    }
-  }
-);
+import { createSelector, createSlice } from "@reduxjs/toolkit";
+import { generateForgotPasswordLinkAsync } from "./forgot-password-request-thunks";
 
 const INITIAL_STATE = {
   forgotPasswordRequestEmail: "",
-  isLoading: false,
-  requestResult: "",
-  error: null,
+  forgotPasswordRequestIsLoading: false,
+  forgotPasswordRequestResult: "",
+  forgotPasswordRequestError: null,
 };
 
 export const forgotPasswordRequestSlice = createSlice({
@@ -41,40 +15,55 @@ export const forgotPasswordRequestSlice = createSlice({
     setForgotPasswordRequestEmail(state, action) {
       state.forgotPasswordRequestEmail = action.payload;
     },
-    resetPasswordRequestError(state) {
-      state.error = null;
-    },
-    resetPasswordRequestResult(state) {
-      state.requestResult = "";
-    },
     resetForgotPasswordRequestState: () => {
       return INITIAL_STATE;
     },
   },
+  selectors: {
+    selectForgotPasswordRequestSelectors: createSelector(
+      (state) => state.forgotPasswordRequestEmail,
+      (state) => state.forgotPasswordRequestIsLoading,
+      (state) => state.forgotPasswordRequestResult,
+      (state) => state.forgotPasswordRequestError,
+      (
+        forgotPasswordRequestEmail,
+        forgotPasswordRequestIsLoading,
+        forgotPasswordRequestResult,
+        forgotPasswordRequestError
+      ) => {
+        return {
+          forgotPasswordRequestEmail,
+          forgotPasswordRequestIsLoading,
+          forgotPasswordRequestResult,
+          forgotPasswordRequestError,
+        };
+      }
+    ),
+  },
   extraReducers: (builder) => {
     builder
       .addCase(generateForgotPasswordLinkAsync.pending, (state) => {
-        state.isLoading = true;
+        state.forgotPasswordRequestIsLoading = true;
       })
       .addCase(generateForgotPasswordLinkAsync.fulfilled, (state) => {
-        state.isLoading = false;
-        state.error = null;
+        state.forgotPasswordRequestIsLoading = false;
+        state.forgotPasswordRequestError = null;
         state.forgotPasswordRequestEmail = "";
-        state.requestResult = "success";
+        state.forgotPasswordRequestResult = "success";
       })
       .addCase(generateForgotPasswordLinkAsync.rejected, (state, action) => {
-        state.isLoading = false;
-        state.error = action.payload;
-        state.requestResult = "";
+        state.forgotPasswordRequestIsLoading = false;
+        state.forgotPasswordRequestError = action.payload;
+        state.forgotPasswordRequestResult = "";
       });
   },
 });
 
 export const {
   setForgotPasswordRequestEmail,
-  resetPasswordRequestResult,
-  resetPasswordRequestError,
   resetForgotPasswordRequestState,
 } = forgotPasswordRequestSlice.actions;
+export const { selectForgotPasswordRequestSelectors } =
+  forgotPasswordRequestSlice.selectors;
 
 export const forgotPasswordRequestReducer = forgotPasswordRequestSlice.reducer;

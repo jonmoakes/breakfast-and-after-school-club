@@ -2,20 +2,16 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import useFireSwal from "../../../hooks/use-fire-swal";
-
 import {
-  selectForgotPasswordRequestError,
-  selectForgotPasswordRequestResult,
-} from "../../../store/forgot-password-request/forgot-password-request.selector";
-import {
-  resetPasswordRequestError,
-  resetPasswordRequestResult,
+  resetForgotPasswordRequestState,
+  selectForgotPasswordRequestSelectors,
 } from "../../../store/forgot-password-request/forgot-password-request.slice";
 
 import {
   appwriteUserNotFoundMessage,
   checkEmailMessage,
   emailAddressNotInDatabase,
+  errorReceivedMessage,
   errorRequestForgotPasswordLinkMessage,
   successMessage,
 } from "../../../strings/strings";
@@ -23,46 +19,51 @@ import {
 const useForgotPasswordRequestSwal = () => {
   const { fireSwal } = useFireSwal();
 
-  const requestResult = useSelector(selectForgotPasswordRequestResult);
-  const error = useSelector(selectForgotPasswordRequestError);
+  const { forgotPasswordRequestResult, forgotPasswordRequestError } =
+    useSelector(selectForgotPasswordRequestSelectors);
+
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (!error && !requestResult) return;
+    if (!forgotPasswordRequestResult && !forgotPasswordRequestError) return;
 
-    if (requestResult) {
+    if (forgotPasswordRequestResult) {
       fireSwal(
         "success",
         successMessage,
         checkEmailMessage,
-        "",
         0,
         true,
         false
       ).then((isConfirmed) => {
         if (isConfirmed) {
-          dispatch(resetPasswordRequestResult());
+          dispatch(resetForgotPasswordRequestState());
         }
       });
-    } else if (error) {
-      const errorMessageResult =
-        error === appwriteUserNotFoundMessage
+    } else if (forgotPasswordRequestError) {
+      const error =
+        forgotPasswordRequestError === appwriteUserNotFoundMessage
           ? emailAddressNotInDatabase
-          : `${error}`;
+          : forgotPasswordRequestError;
       fireSwal(
         "error",
         errorRequestForgotPasswordLinkMessage,
-        errorMessageResult,
+        errorReceivedMessage(error),
         0,
         true,
         false
       ).then((isConfirmed) => {
         if (isConfirmed) {
-          dispatch(resetPasswordRequestError());
+          dispatch(resetForgotPasswordRequestState());
         }
       });
     }
-  }, [dispatch, error, fireSwal, requestResult]);
+  }, [
+    dispatch,
+    forgotPasswordRequestError,
+    fireSwal,
+    forgotPasswordRequestResult,
+  ]);
 };
 
 export default useForgotPasswordRequestSwal;
