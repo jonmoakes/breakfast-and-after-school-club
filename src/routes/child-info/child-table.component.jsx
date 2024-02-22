@@ -12,7 +12,7 @@ import {
 import useIsOnline from "../../hooks/use-is-online";
 import useGetUsersChildrenListener from "./child-info-hooks/use-get-users-children-listener";
 
-import { selectUsersChildren } from "../../store/get-users-children/get-users-children.selector";
+import { selectGetUsersChildrenSelectors } from "../../store/get-users-children/get-users-children.slice";
 
 import { TABLE_COLUMNS } from "./table-columns";
 import TableNoEntriesInfo from "../../components/tables/table-no-entries-info.component";
@@ -25,7 +25,7 @@ const ChildTable = () => {
   useGetUsersChildrenListener();
   const { isOnline } = useIsOnline();
 
-  let usersChildren = useSelector(selectUsersChildren);
+  let { usersChildren } = useSelector(selectGetUsersChildrenSelectors);
 
   const columns = useMemo(() => TABLE_COLUMNS, []);
   const data = useMemo(

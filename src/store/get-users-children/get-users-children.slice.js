@@ -1,34 +1,10 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { listDocumentsByQueryOrSearch } from "../../utils/appwrite/appwrite-functions";
-
-export const getUsersChildrenAsync = createAsyncThunk(
-  "getChildren",
-  async ({ email, databaseId, collectionId }, thunkAPI) => {
-    try {
-      const queryIndex = "parentEmail";
-      const queryValue = email;
-
-      const getChildrenDocuments = await listDocumentsByQueryOrSearch(
-        databaseId,
-        collectionId,
-        queryIndex,
-        queryValue
-      );
-
-      const { documents, total } = getChildrenDocuments;
-      if (!total) return;
-
-      return documents;
-    } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
-    }
-  }
-);
+import { createSelector, createSlice } from "@reduxjs/toolkit";
+import { getUsersChildrenAsync } from "./get-users-children.thunks";
 
 const INITIAL_STATE = {
-  isLoading: false,
+  getUsersChildrenIsLoading: false,
   usersChildren: [],
-  error: null,
+  getUsersChildrenError: null,
 };
 
 export const getUsersChildrenSlice = createSlice({
@@ -39,7 +15,7 @@ export const getUsersChildrenSlice = createSlice({
       state.usersChildren = action.payload;
     },
     resetUsersChildrenError(state) {
-      state.error = null;
+      state.getUsersChildrenError = null;
     },
     resetUsersChildren(state) {
       state.usersChildren = [];
@@ -48,20 +24,34 @@ export const getUsersChildrenSlice = createSlice({
       return INITIAL_STATE;
     },
   },
+  selectors: {
+    selectGetUsersChildrenSelectors: createSelector(
+      (state) => state.getUsersChildrenIsLoading,
+      (state) => state.usersChildren,
+      (state) => state.getUsersChildrenError,
+      (getUsersChildrenIsLoading, usersChildren, getUsersChildrenError) => {
+        return {
+          getUsersChildrenIsLoading,
+          usersChildren,
+          getUsersChildrenError,
+        };
+      }
+    ),
+  },
   extraReducers: (builder) => {
     builder
       .addCase(getUsersChildrenAsync.pending, (state) => {
-        state.isLoading = true;
+        state.getUsersChildrenIsLoading = true;
       })
       .addCase(getUsersChildrenAsync.fulfilled, (state, action) => {
-        state.isLoading = false;
+        state.getUsersChildrenIsLoading = false;
         state.usersChildren = action.payload;
-        state.error = null;
+        state.getUsersChildrenError = null;
       })
       .addCase(getUsersChildrenAsync.rejected, (state, action) => {
-        state.isLoading = false;
+        state.getUsersChildrenIsLoading = false;
         state.usersChildren = [];
-        state.error = action.payload;
+        state.getUsersChildrenError = action.payload;
       });
   },
 });
@@ -72,5 +62,7 @@ export const {
   resetUsersChildrenError,
   resetAllGetUsersChildrenState,
 } = getUsersChildrenSlice.actions;
+export const { selectGetUsersChildrenSelectors } =
+  getUsersChildrenSlice.selectors;
 
 export const getUsersChildrenReducer = getUsersChildrenSlice.reducer;

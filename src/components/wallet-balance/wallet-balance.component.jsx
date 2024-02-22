@@ -7,7 +7,7 @@ import {
   selectCurrentUser,
   selectIsUserLoading,
 } from "../../store/user/user.selector";
-import { selectUsersChildren } from "../../store/get-users-children/get-users-children.selector";
+import { selectGetUsersChildrenSelectors } from "../../store/get-users-children/get-users-children.slice";
 
 import Loader from "../loader/loader.component";
 
@@ -23,7 +23,7 @@ const WalletBalance = () => {
   const { confirmRequestLatestWalletBalance } = useGetWalletBalance();
 
   const currentUser = useSelector(selectCurrentUser);
-  const usersChildren = useSelector(selectUsersChildren);
+  const { usersChildren } = useSelector(selectGetUsersChildrenSelectors);
   const isLoading = useSelector(selectIsUserLoading);
 
   const { walletBalance } = currentUser;

@@ -3,9 +3,9 @@ import { useDispatch, useSelector } from "react-redux";
 import useFireSwal from "../../../../hooks/use-fire-swal";
 import useHamburgerHandlerNavigate from "../../../../hooks/use-hamburger-handler-navigate";
 
-import { selectUsersChildren } from "../../../../store/get-users-children/get-users-children.selector";
+import { selectGetUsersChildrenSelectors } from "../../../../store/get-users-children/get-users-children.slice";
 import { selectEnvironmentVariables } from "../../../../store/user/user.selector";
-import { sendEmailBookingNotAddedToDatabaseAsync } from "../../../../store/send-email/send-email-thunks";
+import { sendEmailBookingNotAddedToDatabaseAsync } from "../../../../store/send-email/send-email.thunks";
 import { selectBookSessionSelectors } from "../../../../store/book-session/book-session.slice";
 
 import {
@@ -23,7 +23,7 @@ const useSendAddBookingInfoErrorEmail = (date) => {
   const { sessionType, childrenSelectedForBooking } = useSelector(
     selectBookSessionSelectors
   );
-  const usersChildren = useSelector(selectUsersChildren);
+  const { usersChildren } = useSelector(selectGetUsersChildrenSelectors);
   const envVariables = useSelector(selectEnvironmentVariables);
   const dispatch = useDispatch();
 

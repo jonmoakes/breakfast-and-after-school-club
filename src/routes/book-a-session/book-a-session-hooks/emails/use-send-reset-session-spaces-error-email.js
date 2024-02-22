@@ -6,7 +6,7 @@ import useFireSwal from "../../../../hooks/use-fire-swal";
 
 import { selectBookSessionSelectors } from "../../../../store/book-session/book-session.slice";
 import { selectEnvironmentVariables } from "../../../../store/user/user.selector";
-import { sendEmailResetSessionSpacesErrorAsync } from "../../../../store/send-email/send-email-thunks";
+import { sendEmailResetSessionSpacesErrorAsync } from "../../../../store/send-email/send-email.thunks";
 
 import {
   bookSessionRoute,

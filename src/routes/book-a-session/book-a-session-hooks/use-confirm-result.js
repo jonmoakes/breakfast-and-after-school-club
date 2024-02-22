@@ -2,12 +2,12 @@ import { useDispatch, useSelector } from "react-redux";
 
 import useConditionalLogic from "./use-conditional-logic";
 
-import { selectUsersChildren } from "../../../store/get-users-children/get-users-children.selector";
+import { selectGetUsersChildrenSelectors } from "../../../store/get-users-children/get-users-children.slice";
 import {
   addSessionBookingInfoAsync,
   updateSessionDocAsync,
   updateUserDocBalanceAsync,
-} from "../../../store/book-session/book-session-thunks";
+} from "../../../store/book-session/book-session.thunks";
 import {
   selectCurrentUser,
   selectEnvironmentVariables,
@@ -17,7 +17,7 @@ import { selectBookSessionSelectors } from "../../../store/book-session/book-ses
 const useConfirmResult = () => {
   const { date } = useConditionalLogic();
 
-  const usersChildren = useSelector(selectUsersChildren);
+  const { usersChildren } = useSelector(selectGetUsersChildrenSelectors);
   const { childrenSelectedForBooking } = useSelector(
     selectBookSessionSelectors
   );

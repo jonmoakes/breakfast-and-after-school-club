@@ -6,8 +6,8 @@ import useHamburgerHandlerNavigate from "../../../../hooks/use-hamburger-handler
 import { selectCurrentUser } from "../../../../store/user/user.selector";
 import { selectRequestDateData } from "../../../../store/request-date-data/request-date-data.slice";
 import { selectBookSessionSelectors } from "../../../../store/book-session/book-session.slice";
-import { selectUsersChildren } from "../../../../store/get-users-children/get-users-children.selector";
-import { sendEmailBookingConfirmationAsync } from "../../../../store/send-email/send-email-thunks";
+import { selectGetUsersChildrenSelectors } from "../../../../store/get-users-children/get-users-children.slice";
+import { sendEmailBookingConfirmationAsync } from "../../../../store/send-email/send-email.thunks";
 
 import {
   errorSendingBookingConfirmationEmail,
@@ -26,7 +26,7 @@ const useSendEmailBookingConfirmation = () => {
   const { sessionType, sessionPrice, childrenSelectedForBooking } = useSelector(
     selectBookSessionSelectors
   );
-  const usersChildren = useSelector(selectUsersChildren);
+  const { usersChildren } = useSelector(selectGetUsersChildrenSelectors);
 
   const dispatch = useDispatch();
 

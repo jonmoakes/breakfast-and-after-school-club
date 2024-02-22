@@ -8,7 +8,7 @@ import useHamburgerHandlerNavigate from "../../../../hooks/use-hamburger-handler
 
 import { selectBookSessionSelectors } from "../../../../store/book-session/book-session.slice";
 import { selectEnvironmentVariables } from "../../../../store/user/user.selector";
-import { resetSessionDocAsync } from "../../../../store/book-session/book-session-thunks";
+import { resetSessionDocAsync } from "../../../../store/book-session/book-session.thunks";
 
 import {
   errorUpdatingBalanceMessage,

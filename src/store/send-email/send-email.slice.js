@@ -8,7 +8,7 @@ import {
   sendEmailBalanceNotUpdatedErrorAsync,
   sendEmailWalletFundsNotAddedErrorAsync,
   sendEmailToAdminCloseAccountRequestAsync,
-} from "./send-email-thunks";
+} from "./send-email.thunks";
 
 const INITIAL_STATE = {
   isLoading: false,

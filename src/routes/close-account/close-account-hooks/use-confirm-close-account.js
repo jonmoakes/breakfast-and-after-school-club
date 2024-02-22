@@ -7,7 +7,7 @@ import {
   selectCurrentUser,
   selectEnvironmentVariables,
 } from "../../../store/user/user.selector";
-import { sendEmailToAdminCloseAccountRequestAsync } from "../../../store/send-email/send-email-thunks";
+import { sendEmailToAdminCloseAccountRequestAsync } from "../../../store/send-email/send-email.thunks";
 
 import {
   imSureMessage,

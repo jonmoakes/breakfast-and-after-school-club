@@ -2,15 +2,15 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
 
-import { getUsersChildrenAsync } from "../store/get-users-children/get-users-children-slice";
+import { getUsersChildrenAsync } from "../store/get-users-children/get-users-children.thunks";
 import { getUserBookingsAsync } from "../store/user-bookings/user-bookings.slice";
-
+import { getSessionPricesAsync } from "../store/session-types-and-prices/session-types-and-prices.slice";
 import {
   selectCurrentUser,
   selectEnvironmentVariables,
 } from "../store/user/user.selector";
+
 import { bookSessionRoute, childInfoRoute } from "../strings/strings";
-import { getSessionPricesAsync } from "../store/session-types-and-prices/session-types-and-prices.slice";
 
 const useGetUsersChildrenAndConditionallyUserBookingsAndSessionPrices = () => {
   const currentUser = useSelector(selectCurrentUser);

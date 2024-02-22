@@ -4,7 +4,7 @@ import {
   requestDateDataAsync,
   requestEarlyFinishDatesAsync,
   requestSessionTimesAsync,
-} from "./request-date-data.actions";
+} from "./request-date-data.thunks";
 
 const defaultRequestDateData = {
   chosenDate: "",

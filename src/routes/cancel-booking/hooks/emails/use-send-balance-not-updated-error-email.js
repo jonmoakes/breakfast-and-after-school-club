@@ -4,7 +4,7 @@ import useGetRefundPrice from "../use-get-refund-price";
 import useFireSwal from "../../../../hooks/use-fire-swal";
 import useHamburgerHandlerNavigate from "../../../../hooks/use-hamburger-handler-navigate";
 
-import { sendEmailBalanceNotUpdatedErrorAsync } from "../../../../store/send-email/send-email-thunks";
+import { sendEmailBalanceNotUpdatedErrorAsync } from "../../../../store/send-email/send-email.thunks";
 import {
   selectCurrentUser,
   selectEnvironmentVariables,

@@ -6,8 +6,8 @@ import useGetRefundPrice from "../use-get-refund-price";
 
 import { selectCurrentUser } from "../../../../store/user/user.selector";
 import { selectUserBookingToDelete } from "../../../../store/user-booking-to-delete/user-booking-to-delete.selector";
-import { sendBookingCancellationConfirmationEmailAsync } from "../../../../store/send-email/send-email-thunks";
-import { selectUsersChildren } from "../../../../store/get-users-children/get-users-children.selector";
+import { sendBookingCancellationConfirmationEmailAsync } from "../../../../store/send-email/send-email.thunks";
+import { selectGetUsersChildrenSelectors } from "../../../../store/get-users-children/get-users-children.slice";
 
 import {
   errorSendCancellationConfirmationEmailMessage,
@@ -21,7 +21,7 @@ const useSendCancellationEmail = () => {
 
   const currentUser = useSelector(selectCurrentUser);
   const userBookingToDelete = useSelector(selectUserBookingToDelete);
-  const usersChildren = useSelector(selectUsersChildren);
+  const { usersChildren } = useSelector(selectGetUsersChildrenSelectors);
 
   const dispatch = useDispatch();
 

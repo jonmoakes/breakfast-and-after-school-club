@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import useConfirmSwal from "../../../hooks/use-confirm-swal";
 
 import { selectDeleteChildInfoSelectors } from "../../../store/delete-child-info/delete-child-info.slice";
-import { deleteChildInfoAsync } from "../../../store/delete-child-info/delete-child-info-thunks";
+import { deleteChildInfoAsync } from "../../../store/delete-child-info/delete-child-info.thunks";
 import { selectEnvironmentVariables } from "../../../store/user/user.selector";
 
 import {

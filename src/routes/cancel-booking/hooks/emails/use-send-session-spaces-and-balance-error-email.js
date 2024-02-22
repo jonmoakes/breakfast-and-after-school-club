@@ -9,7 +9,7 @@ import {
   selectEnvironmentVariables,
 } from "../../../../store/user/user.selector";
 import { selectUserBookingToDelete } from "../../../../store/user-booking-to-delete/user-booking-to-delete.selector";
-import { sendEmailResetSessionSpacesAndBalanceErrorAsync } from "../../../../store/send-email/send-email-thunks";
+import { sendEmailResetSessionSpacesAndBalanceErrorAsync } from "../../../../store/send-email/send-email.thunks";
 
 import {
   contactRoute,

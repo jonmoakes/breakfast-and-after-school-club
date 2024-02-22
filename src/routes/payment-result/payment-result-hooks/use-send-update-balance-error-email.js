@@ -8,7 +8,7 @@ import {
   selectEnvironmentVariables,
 } from "../../../store/user/user.selector";
 import { selectWalletFundsToAdd } from "../../../store/wallet-funds-to-add/wallet-funds-to-add.selector";
-import { sendEmailWalletFundsNotAddedErrorAsync } from "../../../store/send-email/send-email-thunks";
+import { sendEmailWalletFundsNotAddedErrorAsync } from "../../../store/send-email/send-email.thunks";
 
 import {
   accountRoute,

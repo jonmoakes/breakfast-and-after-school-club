@@ -5,7 +5,7 @@ import useFireSwal from "../../../hooks/use-fire-swal";
 
 import { selectEnvironmentVariables } from "../../../store/user/user.selector";
 import { selectEditChildInfoSelectors } from "../../../store/edit-child-info/edit-child-info.slice";
-import { editChildInfoAsync } from "../../../store/edit-child-info/edit-child-info-thunks";
+import { editChildInfoAsync } from "../../../store/edit-child-info/edit-child-info.thunks";
 
 import {
   confirmUpdateChildMessage,

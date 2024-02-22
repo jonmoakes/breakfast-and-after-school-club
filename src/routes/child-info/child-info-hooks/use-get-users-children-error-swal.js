@@ -3,8 +3,10 @@ import { useSelector, useDispatch } from "react-redux";
 
 import useFireSwal from "../../../hooks/use-fire-swal";
 
-import { selectGetUsersChildrenError } from "../../../store/get-users-children/get-users-children.selector";
-import { resetUsersChildrenError } from "../../../store/get-users-children/get-users-children-slice";
+import {
+  selectGetUsersChildrenSelectors,
+  resetUsersChildrenError,
+} from "../../../store/get-users-children/get-users-children-slice";
 
 import {
   errorFetchingChildren,
@@ -14,10 +16,13 @@ import {
 const useGetUsersChildrenErrorSwal = () => {
   const { fireSwal } = useFireSwal();
 
-  const error = useSelector(selectGetUsersChildrenError);
+  const { getUsersChildrenError } = useSelector(
+    selectGetUsersChildrenSelectors
+  );
   const dispatch = useDispatch();
 
   useEffect(() => {
+    const error = getUsersChildrenError;
     if (!error) return;
     fireSwal(
       "error",
@@ -31,7 +36,7 @@ const useGetUsersChildrenErrorSwal = () => {
         dispatch(resetUsersChildrenError());
       }
     });
-  }, [dispatch, error, fireSwal]);
+  }, [dispatch, getUsersChildrenError, fireSwal]);
 };
 
 export default useGetUsersChildrenErrorSwal;

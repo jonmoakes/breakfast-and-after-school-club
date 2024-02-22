@@ -1,5 +1,5 @@
 import { createSelector, createSlice } from "@reduxjs/toolkit";
-import { editChildInfoAsync } from "./edit-child-info-thunks";
+import { editChildInfoAsync } from "./edit-child-info.thunks";
 
 const INITIAL_STATE = {
   editChildInfoIsLoading: false,

@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
 
 import { selectGetPricesError } from "../store/session-types-and-prices/session-types-and-prices.selector";
-import { selectGetUsersChildrenError } from "../store/get-users-children/get-users-children.selector";
+import { selectGetUsersChildrenSelectors } from "../store/get-users-children/get-users-children.slice";
 import { selectGetUserBookingsError } from "../store/user-bookings/user-bookings.selector";
 import { resetCardInputState } from "../store/card-input-result/card-input-result.slice";
 import { resetContactFormState } from "../store/contact-form/contact-form.slice";
@@ -50,7 +50,9 @@ import {
 
 const useResetStore = () => {
   const sessionPricesError = useSelector(selectGetPricesError);
-  const getUsersChildrenError = useSelector(selectGetUsersChildrenError);
+  const { getUsersChildrenError } = useSelector(
+    selectGetUsersChildrenSelectors
+  );
   const getUserBookingsError = useSelector(selectGetUserBookingsError);
   const dispatch = useDispatch();
   const location = useLocation();

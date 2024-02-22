@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import useGetUsersChildrenAndConditionallyUserBookingsAndSessionPrices from "../../hooks/use-get-users-children-and-conditionally-user-bookings-and-session-prices";
 import useGetUsersChildrenErrorSwal from "./child-info-hooks/use-get-users-children-error-swal";
 
-import { selectIsLoading } from "../../store/get-users-children/get-users-children.selector";
+import { selectGetUsersChildrenSelectors } from "../../store/get-users-children/get-users-children.slice";
 
 import Loader from "../../components/loader/loader.component";
 import FloatingAddButton from "../../components/floating-add-button/floating-add-button.component";
@@ -21,11 +21,13 @@ const ChildInfo = () => {
   useGetUsersChildrenAndConditionallyUserBookingsAndSessionPrices();
   useGetUsersChildrenErrorSwal();
 
-  const isLoading = useSelector(selectIsLoading);
+  const { getUsersChildrenIsLoading } = useSelector(
+    selectGetUsersChildrenSelectors
+  );
 
   return (
     <Container>
-      {isLoading ? <Loader /> : null}
+      {getUsersChildrenIsLoading ? <Loader /> : null}
 
       <Link to={addChildInfoRoute}>
         <FloatingAddButton />

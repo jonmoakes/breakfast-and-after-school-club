@@ -13,7 +13,7 @@ import {
   requestEarlyFinishDatesAsync,
   requestBookingClosingTimesAsync,
   requestSessionTimesAsync,
-} from "../../../store/request-date-data/request-date-data.actions";
+} from "../../../store/request-date-data/request-date-data.thunks";
 
 const useGetDateDataEarlyFinishDatesAndBookingClosingTimes = () => {
   const chosenDate = useSelector(selectChosenDate);

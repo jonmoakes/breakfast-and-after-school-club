@@ -7,8 +7,8 @@ import {
   selectCurrentUser,
   selectEnvironmentVariables,
 } from "../../../store/user/user.selector";
-import { selectUsersChildren } from "../../../store/get-users-children/get-users-children.selector";
-import { addChildInfoAsync } from "../../../store/add-child-info/add-child-info-thunks";
+import { selectGetUsersChildrenSelectors } from "../../../store/get-users-children/get-users-children.slice";
+import { addChildInfoAsync } from "../../../store/add-child-info/add-child-info.thunks";
 import { selectAddChildInfoSelectors } from "../../../store/add-child-info/add-child-info.slice";
 
 import {
@@ -26,7 +26,7 @@ const useConfirmAddChildInfo = () => {
 
   const { childInfo } = useSelector(selectAddChildInfoSelectors);
   const currentUser = useSelector(selectCurrentUser);
-  const usersChildren = useSelector(selectUsersChildren);
+  const { usersChildren } = useSelector(selectGetUsersChildrenSelectors);
   const envVariables = useSelector(selectEnvironmentVariables);
 
   const dispatch = useDispatch();

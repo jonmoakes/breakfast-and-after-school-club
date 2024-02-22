@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import useConditionalLogic from "../book-a-session-hooks/use-conditional-logic";
 
 import { setChildrenSelectedForBooking } from "../../../store/book-session/book-session.slice";
-import { selectUsersChildren } from "../../../store/get-users-children/get-users-children.selector";
+import { selectGetUsersChildrenSelectors } from "../../../store/get-users-children/get-users-children.slice";
 
 import { Text } from "../../../styles/p/p.styles";
 import { ParentDiv, RadioDiv } from "../../../styles/div/div.styles";
@@ -16,7 +16,7 @@ const ChildCheckbox = () => {
     hasOneChild,
   } = useConditionalLogic();
 
-  const usersChildrenList = useSelector(selectUsersChildren);
+  const { usersChildren } = useSelector(selectGetUsersChildrenSelectors);
   const dispatch = useDispatch();
 
   const handleChange = (event) => {
@@ -34,7 +34,7 @@ const ChildCheckbox = () => {
             <Text>which children would you like to book the session for?</Text>
 
             <OptionsForm onChange={handleChange}>
-              {usersChildrenList.map((child) => (
+              {usersChildren.map((child) => (
                 <RadioDiv key={child.$id}>
                   <label>{child.childName}</label>
                   <input

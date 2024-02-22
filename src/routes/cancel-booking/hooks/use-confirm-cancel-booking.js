@@ -4,7 +4,7 @@ import useConfirmSwal from "../../../hooks/use-confirm-swal";
 import useGetRefundPrice from "./use-get-refund-price";
 
 import { selectUserBookingToDelete } from "../../../store/user-booking-to-delete/user-booking-to-delete.selector";
-import { selectUsersChildren } from "../../../store/get-users-children/get-users-children.selector";
+import { selectGetUsersChildrenSelectors } from "../../../store/get-users-children/get-users-children.slice";
 import {
   selectCurrentUser,
   selectEnvironmentVariables,
@@ -28,7 +28,7 @@ const useConfirmDeleteChildInfo = () => {
 
   const currentUser = useSelector(selectCurrentUser);
   const userBookingToDelete = useSelector(selectUserBookingToDelete);
-  const usersChildren = useSelector(selectUsersChildren);
+  const { usersChildren } = useSelector(selectGetUsersChildrenSelectors);
   const envVariables = useSelector(selectEnvironmentVariables);
 
   const dispatch = useDispatch();

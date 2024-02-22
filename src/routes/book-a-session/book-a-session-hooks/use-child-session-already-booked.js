@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import useConditionalLogic from "./use-conditional-logic";
 import useGetBookingDataAndSessionTypeToLowercase from "./use-get-booking-data-and-session-type-to-lowercase";
 
-import { selectUsersChildren } from "../../../store/get-users-children/get-users-children.selector";
+import { selectGetUsersChildrenSelectors } from "../../../store/get-users-children/get-users-children.slice";
 import { selectBookSessionSelectors } from "../../../store/book-session/book-session.slice";
 
 const useChildSessionAlreadyBooked = () => {
@@ -17,7 +17,7 @@ const useChildSessionAlreadyBooked = () => {
     isMorningAndAfternoonLongSession,
   } = useGetBookingDataAndSessionTypeToLowercase();
 
-  const usersChildren = useSelector(selectUsersChildren);
+  const { usersChildren } = useSelector(selectGetUsersChildrenSelectors);
   const { childrenSelectedForBooking } = useSelector(
     selectBookSessionSelectors
   );

@@ -14,10 +14,7 @@ import {
   selectGetPricesError,
   selectMorningSessionPrice,
 } from "../../../store/session-types-and-prices/session-types-and-prices.selector";
-import {
-  selectGetUsersChildrenError,
-  selectUsersChildren,
-} from "../../../store/get-users-children/get-users-children.selector";
+import { selectGetUsersChildrenSelectors } from "../../../store/get-users-children/get-users-children.slice";
 import { selectBookSessionSelectors } from "../../../store/book-session/book-session.slice";
 import { selectGetUserBookingsError } from "../../../store/user-bookings/user-bookings.selector";
 
@@ -33,11 +30,13 @@ const useConditionalLogic = () => {
 
   const chosenDate = useSelector(selectChosenDate);
   const currentUser = useSelector(selectCurrentUser);
-  const usersChildren = useSelector(selectUsersChildren);
+
+  const { usersChildren, getUsersChildrenError } = useSelector(
+    selectGetUsersChildrenSelectors
+  );
   const { childrenSelectedForBooking } = useSelector(
     selectBookSessionSelectors
   );
-  const getUsersChildrenError = useSelector(selectGetUsersChildrenError);
   const getUsersBookingsError = useSelector(selectGetUserBookingsError);
   const getSessionTypesAndPricesError = useSelector(selectGetPricesError);
   const earlyFinishDates = useSelector(selectEarlyFinishDates);

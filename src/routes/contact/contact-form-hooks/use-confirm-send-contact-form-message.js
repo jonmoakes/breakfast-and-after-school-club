@@ -8,7 +8,7 @@ import {
   selectEnvironmentVariables,
 } from "../../../store/user/user.selector";
 import { selectContactFormSelectors } from "../../../store/contact-form/contact-form.slice";
-import { sendContactFormMessageAsync } from "../../../store/contact-form/contact-form-thunks";
+import { sendContactFormMessageAsync } from "../../../store/contact-form/contact-form.thunks";
 
 import { validateEmail } from "../../../functions/validate-email";
 

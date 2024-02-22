@@ -1,6 +1,6 @@
 import { useSelector } from "react-redux";
 
-import { selectGetUsersChildrenError } from "../../store/get-users-children/get-users-children.selector";
+import { selectGetUsersChildrenSelectors } from "../../store/get-users-children/get-users-children.slice";
 import { selectRequestDateDataErrorMessage } from "../../store/request-date-data/request-date-data.slice";
 import { selectGetPricesError } from "../../store/session-types-and-prices/session-types-and-prices.selector";
 import { selectGetUserBookingsError } from "../../store/user-bookings/user-bookings.selector";
@@ -11,7 +11,9 @@ import { RedSpan } from "../../styles/span/span.styles";
 import { ErrorDiv } from "../../styles/div/div.styles";
 
 const ShowFetchErrors = () => {
-  const getUsersChildrenError = useSelector(selectGetUsersChildrenError);
+  const { getUsersChildrenError } = useSelector(
+    selectGetUsersChildrenSelectors
+  );
   const getUsersBookingsError = useSelector(selectGetUserBookingsError);
   const getSessionTypesAndPricesError = useSelector(selectGetPricesError);
   const requestDateError = useSelector(selectRequestDateDataErrorMessage);
