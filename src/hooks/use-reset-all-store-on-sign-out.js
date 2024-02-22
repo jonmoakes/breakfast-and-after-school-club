@@ -10,7 +10,7 @@ import { resetContactFormState } from "../store/contact-form/contact-form.slice"
 import { resetDateAndTimeState } from "../store/date-and-time/date-and-time.slice";
 import { resetDeleteChildInfoState } from "../store/delete-child-info/delete-child-info.slice";
 import { resetEditChildInfoState } from "../store/edit-child-info/edit-child-info.slice";
-import { resetAllGetUsersChildrenState } from "../store/get-users-children/get-users-children.slice";
+import { resetGetUsersChildrenState } from "../store/get-users-children/get-users-children.slice";
 import { resetAllHandlePaymentState } from "../store/handle-payment/handle-payment.slice";
 import { resetIsOnlineState } from "../store/is-online/is-online.slice";
 import { resetPasswordIsVisibleState } from "../store/password-is-visible/password-is-visible.slice";
@@ -43,7 +43,7 @@ const useResetAllStoreOnSignOut = () => {
     dispatch(resetDeleteChildInfoState());
     dispatch(resetEditChildInfoState());
     dispatch(resetGenerateNewPasswordRequestState());
-    dispatch(resetAllGetUsersChildrenState());
+    dispatch(resetGetUsersChildrenState());
     dispatch(resetAllHandlePaymentState());
     dispatch(resetIsOnlineState());
     dispatch(resetPasswordIsVisibleState());

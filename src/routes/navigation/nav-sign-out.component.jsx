@@ -10,7 +10,7 @@ import { signOutAsync } from "../../store/user/user.thunks";
 import { selectCurrentUser } from "../../store/user/user.selector";
 import {
   hideHamburgerMenu,
-  selectShowHamburgerMenu,
+  selectHamburgerMenuSelectors,
 } from "../../store/hamburger-menu/hamburger-menu.slice";
 
 import { NavLink } from "../../styles/p/p.styles";
@@ -31,7 +31,7 @@ const NavSignOut = () => {
   const { resetAllStoreOnSignOut } = useResetAllStoreOnSignOut();
 
   const currentUser = useSelector(selectCurrentUser);
-  const showHamburgerMenu = useSelector(selectShowHamburgerMenu);
+  const { showHamburgerMenu } = useSelector(selectHamburgerMenuSelectors);
 
   const dispatch = useDispatch();
 

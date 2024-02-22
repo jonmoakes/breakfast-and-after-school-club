@@ -5,7 +5,7 @@ import useResetStore from "./use-reset-store";
 import useIsRouteWithNavWarning from "./use-is-route-with-nav-warning";
 
 import {
-  selectShowHamburgerMenu,
+  selectHamburgerMenuSelectors,
   hideHamburgerMenu,
 } from "../store/hamburger-menu/hamburger-menu.slice";
 
@@ -13,7 +13,7 @@ const useHamburgerHandlerNavigate = () => {
   const { isRouteWithNavWarning } = useIsRouteWithNavWarning();
   const { resetStore } = useResetStore();
 
-  const showHamburgerMenu = useSelector(selectShowHamburgerMenu);
+  const { showHamburgerMenu } = useSelector(selectHamburgerMenuSelectors);
 
   const dispatch = useDispatch();
   const navigate = useNavigate();

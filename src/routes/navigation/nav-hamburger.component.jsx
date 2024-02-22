@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 import {
   toggleHamburgerMenu,
-  selectShowHamburgerMenu,
+  selectHamburgerMenuSelectors,
 } from "../../store/hamburger-menu/hamburger-menu.slice";
 
 import { HamburgerContainer, Hamburger } from "../../styles/div/div.styles";
@@ -12,7 +12,7 @@ import {
 } from "../../styles/span/span.styles";
 
 const NavHamburger = () => {
-  const showHamburgerMenu = useSelector(selectShowHamburgerMenu);
+  const { showHamburgerMenu } = useSelector(selectHamburgerMenuSelectors);
   const dispatch = useDispatch();
 
   return (

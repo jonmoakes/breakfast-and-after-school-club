@@ -6,7 +6,7 @@ import useFireSwal from "../../../hooks/use-fire-swal";
 import {
   selectGetUsersChildrenSelectors,
   resetUsersChildrenError,
-} from "../../../store/get-users-children/get-users-children-slice";
+} from "../../../store/get-users-children/get-users-children.slice";
 
 import {
   errorFetchingChildren,

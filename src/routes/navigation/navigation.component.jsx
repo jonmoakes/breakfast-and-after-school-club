@@ -1,7 +1,7 @@
 import { useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
 
-import { selectShowHamburgerMenu } from "../../store/hamburger-menu/hamburger-menu.slice";
+import { selectHamburgerMenuSelectors } from "../../store/hamburger-menu/hamburger-menu.slice";
 
 import NavLogo from "./nav-logo.component";
 import NavHamburger from "./nav-hamburger.component";
@@ -20,7 +20,7 @@ import {
 } from "../../strings/strings";
 
 const Navigation = () => {
-  const showHamburgerMenu = useSelector(selectShowHamburgerMenu);
+  const { showHamburgerMenu } = useSelector(selectHamburgerMenuSelectors);
   const location = useLocation();
   const path = location.pathname;
 

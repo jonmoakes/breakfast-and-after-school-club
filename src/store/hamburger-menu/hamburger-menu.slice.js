@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSelector, createSlice } from "@reduxjs/toolkit";
 
 const INITIAL_STATE = {
   showHamburgerMenu: false,
@@ -16,12 +16,19 @@ export const hamburgerMenuSlice = createSlice({
     },
   },
   selectors: {
-    selectShowHamburgerMenu: (state) => state.showHamburgerMenu,
+    selectHamburgerMenuSelectors: createSelector(
+      (state) => state.showHamburgerMenu,
+      (showHamburgerMenu) => {
+        return {
+          showHamburgerMenu,
+        };
+      }
+    ),
   },
 });
 
 export const { hideHamburgerMenu, toggleHamburgerMenu } =
   hamburgerMenuSlice.actions;
-export const { selectShowHamburgerMenu } = hamburgerMenuSlice.selectors;
+export const { selectHamburgerMenuSelectors } = hamburgerMenuSlice.selectors;
 
 export const hamburgerMenuReducer = hamburgerMenuSlice.reducer;
