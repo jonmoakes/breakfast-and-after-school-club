@@ -16,6 +16,7 @@ import {
 import PrivateRoutes from "./components/private-routes/private-routes.component";
 import ErrorFallback from "./components/errors/error-fallback.component";
 import Loader from "./components/loader/loader.component";
+import FloatingBackButton from "./components/floating-back-button/floating-back-button.component";
 
 import {
   contactRoute,
@@ -24,13 +25,11 @@ import {
   accountRoute,
   updateEmailRoute,
   forgotPasswordRequestRoute,
-  forgotPasswordResultRoute,
-  localhostForgotPasswordResultRoute,
+  chooseNewPasswordRoute,
+  localhostChooseNewPasswordRoute,
   addFundsRoute,
   bookSessionRoute,
-  updatePasswordRequestRoute,
-  updatePasswordResultRoute,
-  localhostUpdatePasswordResultRoute,
+  updatePasswordRoute,
   closeAccountRoute,
   paymentResultRoute,
   childInfoRoute,
@@ -42,8 +41,6 @@ import {
   cancelBookingRoute,
   yourCustomerBookingsRoute,
 } from "./strings/strings";
-
-import FloatingBackButton from "./components/floating-back-button/floating-back-button.component";
 
 const Navigation = lazy(() =>
   import("./routes/navigation/navigation.component")
@@ -89,20 +86,18 @@ const PaymentResult = lazy(() =>
 const UpdateEmail = lazy(() =>
   import("./routes/update-email/update-email.component")
 );
-const UpdatePasswordRequest = lazy(() =>
-  import("./routes/update-password-request/update-password-request.component")
+const UpdatePassword = lazy(() =>
+  import("./routes/update-password/update-password.component")
 );
-const UpdatePasswordResult = lazy(() =>
-  import("./routes/update-password-result/update-password-result.component")
-);
+
 const CloseAccount = lazy(() =>
   import("./routes/close-account/close-account.component")
 );
 const ForgotPasswordRequest = lazy(() =>
   import("./routes/forgot-password-request/forgot-password-request.component")
 );
-const ForgotPasswordResult = lazy(() =>
-  import("./routes/forgot-password-result/forgot-password-result.component")
+const ChooseNewPassword = lazy(() =>
+  import("./routes/choose-new-password/choose-new-password.component")
 );
 
 const App = () => {
@@ -129,17 +124,10 @@ const App = () => {
               path={forgotPasswordRequestRoute}
               element={<ForgotPasswordRequest />}
             />
+
             <Route
-              path={
-                forgotPasswordResultRoute || localhostForgotPasswordResultRoute
-              }
-              element={<ForgotPasswordResult />}
-            />
-            <Route
-              path={
-                updatePasswordResultRoute || localhostUpdatePasswordResultRoute
-              }
-              element={<UpdatePasswordResult />}
+              path={chooseNewPasswordRoute || localhostChooseNewPasswordRoute}
+              element={<ChooseNewPassword />}
             />
 
             {/*private routes - if no user, redirect to sign in route */}
@@ -183,10 +171,7 @@ const App = () => {
               <Route path={addFundsRoute} element={<AddFunds />} />
               <Route path={paymentResultRoute} element={<PaymentResult />} />
               <Route path={updateEmailRoute} element={<UpdateEmail />} />
-              <Route
-                path={updatePasswordRequestRoute}
-                element={<UpdatePasswordRequest />}
-              />
+              <Route path={updatePasswordRoute} element={<UpdatePassword />} />
               <Route path={closeAccountRoute} element={<CloseAccount />} />
             </Route>
           </Routes>

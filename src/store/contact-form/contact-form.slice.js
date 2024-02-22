@@ -1,5 +1,5 @@
 import { createSelector, createSlice } from "@reduxjs/toolkit";
-import { sendContactFormMessageAsync } from "./contact-form-thunks";
+import { sendContactFormMessageAsync } from "./contact-form.thunks";
 
 const INITIAL_STATE = {
   contactFormIsLoading: false,

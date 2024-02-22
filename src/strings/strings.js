@@ -25,8 +25,8 @@ export const errorSubmittingPaymentMessage =
   "Sorry, There Was An Error Submitting Payment. Your Card Has Not Been Charged. Please Try Again or contact us if the problem persists.";
 export const appwritePasswordError =
   "Invalid credentials. Please check the email and password.";
-export const errorRequestForgotPasswordLinkMessage =
-  "error requesting your forgot password link";
+export const errorRequestResetPasswordLinkMessage =
+  "error requesting your reset password link";
 export const errorRequestUpdatePasswordLinkMessage =
   "error requesting update password link. please try again.";
 export const errorSendingAccountClosureRequest =
@@ -140,6 +140,9 @@ export const errorFetchingBalanceMessage =
 export const invalidSchoolCode = "Invalid school code";
 export const invalidSchoolCodeHelpMessage =
   "please try again. if you have forgotten your code, please contact your school.";
+export const passwordLengthErrorMessage =
+  "password must be at least 8 characters in length. please try again";
+
 // success
 export const successMessage = "success!";
 export const checkEmailMessage = "please check your email!";
@@ -269,19 +272,16 @@ export const childInfoRoute = "/child-info";
 export const addChildInfoRoute = "/add-child-info";
 export const signInRoute = "/sign-in";
 export const signUpRoute = "/sign-up";
+export const forgotPasswordRequestRoute = "/forgot-password-request";
+export const updatePasswordRoute = "/update-password";
+export const chooseNewPasswordRoute = "/choose-new-password";
+export const localhostChooseNewPasswordRoute =
+  "http://localhost:8888/choose-new-password";
 export const payNowRoute = "/pay-now";
 export const updateEmailRoute = "/update-email";
-export const updatePasswordRequestRoute = "/update-password-request";
-export const updatePasswordResultRoute = "/update-password-result";
-export const localhostUpdatePasswordResultRoute =
-  "http://localhost:8888/update-password-result";
 export const closeAccountRoute = "/close-account";
 export const cookiesRoute = "/cookie-policy";
 export const privacyRoute = "/privacy-policy";
-export const forgotPasswordRequestRoute = "/forgot-password-request";
-export const forgotPasswordResultRoute = "/forgot-password-result";
-export const localhostForgotPasswordResultRoute =
-  "http://localhost:8888/forgot-password-result";
 export const addFundsRoute = "/add-funds";
 export const paymentResultRoute = "/payment-result";
 export const editChildInfoRoute = "/edit-child";

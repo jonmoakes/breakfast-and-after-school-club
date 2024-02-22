@@ -5,7 +5,7 @@ import {
   updateUserDocBalanceAsync,
   resetSessionDocAsync,
   addSessionBookingInfoAsync,
-} from "./book-session-thunks";
+} from "./book-session.thunks";
 
 const INITIAL_STATE = {
   sessionType: "",

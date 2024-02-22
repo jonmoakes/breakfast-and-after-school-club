@@ -1,5 +1,5 @@
 import { createSelector, createSlice } from "@reduxjs/toolkit";
-import { getChosenEntryChildDetailsAsync } from "./chosen-entry-child-details-thunks";
+import { getChosenEntryChildDetailsAsync } from "./chosen-entry-child-details.thunks";
 
 const INITIAL_STATE = {
   chosenEntryChildDetailsIsLoading: false,

@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 
-import { customBlue, customRed, customWhite } from "../colors";
+import { customBlack, customBlue, customRed, customWhite } from "../colors";
 
 export const StyledLink = styled(Link)`
   color: ${customBlue};
@@ -19,4 +19,12 @@ export const StyledLink = styled(Link)`
 
 export const WhiteStyledLink = styled(StyledLink)`
   color: ${customWhite};
+
+  &:hover {
+    color: ${customBlack};
+
+    @media screen and (max-width: 1366px) {
+      color: ${customWhite};
+    }
+  }
 `;

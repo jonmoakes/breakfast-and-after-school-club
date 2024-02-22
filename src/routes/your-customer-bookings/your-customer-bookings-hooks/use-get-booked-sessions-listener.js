@@ -26,7 +26,6 @@ const useGetBookedSessionsListener = () => {
       (response) => {
         const updatedEntry = response.payload;
 
-        // Check if it's a delete event
         if (response.events.some((event) => event.includes(".delete"))) {
           const deletedEntryId = updatedEntry.$id;
 

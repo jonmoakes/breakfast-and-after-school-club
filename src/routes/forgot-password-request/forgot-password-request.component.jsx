@@ -1,10 +1,10 @@
 import { useSelector, useDispatch } from "react-redux";
 
 import useHandleForgotPasswordRequestEmailChange from "./forgot-password-request-hooks/use-handle-forgot-password-request-email-change";
-import useForgotPasswordRequestSwal from "./forgot-password-request-hooks/use-forgot-password-request-swal";
+import useResetPasswordRequestResultSwal from "../../hooks/use-reset-password-request-result-swal";
 
-import { selectForgotPasswordRequestSelectors } from "../../store/forgot-password-request/forgot-password-request.slice";
-import { generateForgotPasswordLinkAsync } from "../../store/forgot-password-request/forgot-password-request-thunks";
+import { selectGenerateNewPasswordRequestSelectors } from "../../store/generate-new-password-request/generate-new-password-request.slice";
+import { generateNewPasswordRequestAsync } from "../../store/generate-new-password-request/generate-new-password-request.thunks";
 
 import Loader from "../../components/loader/loader.component";
 
@@ -18,18 +18,21 @@ import { YellowGreenButton } from "../../styles/buttons/buttons.styles";
 import { enterEmailAddress } from "../../strings/strings";
 
 const ForgotPasswordRequest = () => {
-  useForgotPasswordRequestSwal();
+  useResetPasswordRequestResultSwal();
   const { handleForgotPasswordRequestEmailChange } =
     useHandleForgotPasswordRequestEmailChange();
 
-  const { forgotPasswordRequestEmail, forgotPasswordRequestIsLoading } =
-    useSelector(selectForgotPasswordRequestSelectors);
+  const {
+    generateNewPasswordRequestEmail,
+    generateNewPasswordRequestIsLoading,
+  } = useSelector(selectGenerateNewPasswordRequestSelectors);
 
   const dispatch = useDispatch();
 
   return (
     <Container>
-      {forgotPasswordRequestIsLoading ? <Loader /> : null}
+      {generateNewPasswordRequestIsLoading ? <Loader /> : null}
+
       <ParentDiv>
         <BlackTitle>forgot password</BlackTitle>
       </ParentDiv>
@@ -49,17 +52,17 @@ const ForgotPasswordRequest = () => {
             type="email"
             required
             onChange={handleForgotPasswordRequestEmailChange}
-            value={forgotPasswordRequestEmail || ""}
+            value={generateNewPasswordRequestEmail || ""}
             placeholder={enterEmailAddress}
           />
 
-          {forgotPasswordRequestEmail ? (
+          {generateNewPasswordRequestEmail ? (
             <YellowGreenButton
               type="button"
               onClick={() =>
                 dispatch(
-                  generateForgotPasswordLinkAsync({
-                    forgotPasswordRequestEmail,
+                  generateNewPasswordRequestAsync({
+                    generateNewPasswordRequestEmail,
                   })
                 )
               }

@@ -7,7 +7,7 @@ import {
   closeAccountRoute,
   yourCustomerBookingsRoute,
   updateEmailRoute,
-  updatePasswordRequestRoute,
+  updatePasswordRoute,
   userBookingsRoute,
 } from "../../../strings/strings";
 
@@ -28,7 +28,7 @@ const useNavigateToRoute = () => {
     {
       id: 3,
       text: " update password",
-      onClick: () => navigate(updatePasswordRequestRoute),
+      onClick: () => navigate(updatePasswordRoute),
     },
   ];
 
@@ -61,7 +61,7 @@ const useNavigateToRoute = () => {
     {
       id: 6,
       text: " update password",
-      onClick: () => navigate(updatePasswordRequestRoute),
+      onClick: () => navigate(updatePasswordRoute),
     },
     {
       id: 7,

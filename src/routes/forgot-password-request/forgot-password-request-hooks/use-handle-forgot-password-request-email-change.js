@@ -1,12 +1,12 @@
 import { useDispatch } from "react-redux";
 
-import { setForgotPasswordRequestEmail } from "../../../store/forgot-password-request/forgot-password-request.slice";
+import { setGenerateNewPasswordRequestEmail } from "../../../store/generate-new-password-request/generate-new-password-request.slice";
 
 const useHandleForgotPasswordRequestEmailChange = () => {
   const dispatch = useDispatch();
 
   const handleForgotPasswordRequestEmailChange = (event) => {
-    dispatch(setForgotPasswordRequestEmail(event.target.value));
+    dispatch(setGenerateNewPasswordRequestEmail(event.target.value));
   };
 
   return { handleForgotPasswordRequestEmailChange };

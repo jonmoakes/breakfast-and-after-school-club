@@ -17,8 +17,6 @@ import {
   chosenEntryChildDetailsRoute,
   deleteChildInfoRoute,
   editChildInfoRoute,
-  forgotPasswordResultRoute,
-  updatePasswordResultRoute,
 } from "../../strings/strings";
 
 const Navigation = () => {
@@ -40,19 +38,16 @@ const Navigation = () => {
       {isRouteWithHeader() ? (
         <Nav>
           <NavLogo />
-          {path !== forgotPasswordResultRoute &&
-          path !== updatePasswordResultRoute ? (
-            <>
-              <NavHamburger />
+          <>
+            <NavHamburger />
 
-              <Menu {...{ showHamburgerMenu }}>
-                <NavNoUser />
-                <NavAppOwner />
-                <NavNotAppOwner />
-                <NavSignOut />
-              </Menu>
-            </>
-          ) : null}
+            <Menu {...{ showHamburgerMenu }}>
+              <NavNoUser />
+              <NavAppOwner />
+              <NavNotAppOwner />
+              <NavSignOut />
+            </Menu>
+          </>
         </Nav>
       ) : null}
     </>

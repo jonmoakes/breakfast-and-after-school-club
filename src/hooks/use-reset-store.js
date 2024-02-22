@@ -6,9 +6,8 @@ import { selectGetUsersChildrenError } from "../store/get-users-children/get-use
 import { selectGetUserBookingsError } from "../store/user-bookings/user-bookings.selector";
 import { resetCardInputState } from "../store/card-input-result/card-input-result.slice";
 import { resetContactFormState } from "../store/contact-form/contact-form.slice";
-import { resetForgotPasswordRequestState } from "../store/forgot-password-request/forgot-password-request.slice";
-import { resetForgotPasswordResultState } from "../store/forgot-password-result/forgot-password-result.slice";
-import { clearNewPasswordDetails } from "../store/update-password-result/update-password-result.slice";
+import { resetGenerateNewPasswordRequestState } from "../store/generate-new-password-request/generate-new-password-request.slice";
+import { resetChooseNewPasswordState } from "../store/choose-new-password/choose-new-password.slice";
 import { resetRequestDateDataState } from "../store/request-date-data/request-date-data.slice";
 import { resetShouldShowElementState } from "../store/should-show-element/should-show-element.slice";
 import { resetSignInFormState } from "../store/sign-in-form/sign-in-form.slice";
@@ -19,37 +18,35 @@ import {
   resetAllHandlePaymentState,
   resetPreResultHandlePaymentState,
 } from "../store/handle-payment/handle-payment.slice";
-import { resetUpdatePasswordRequestState } from "../store/update-password-request/update-password-request.slice";
 import { setCurrentDateAndTime } from "../store/date-and-time/date-and-time.slice";
 import { resetAllChildInfoState } from "../store/add-child-info/add-child-info.slice";
 import { resetEditChildInfoState } from "../store/edit-child-info/edit-child-info.slice";
 import { resetDeleteChildInfoState } from "../store/delete-child-info/delete-child-info.slice";
 import { resetBookSessionState } from "../store/book-session/book-session.slice";
+import { resetSendEmailState } from "../store/send-email/send-email.slice";
+import { resetBookingToDeleteState } from "../store/user-booking-to-delete/user-booking-to-delete.slice";
+import { resetSessionPricesError } from "../store/session-types-and-prices/session-types-and-prices.slice";
+import { resetUsersChildrenError } from "../store/get-users-children/get-users-children.slice";
+import { resetGetUserBookingsError } from "../store/user-bookings/user-bookings.slice";
+import { resetBookedSessionsState } from "../store/booked-sessions/booked-sessions.slice";
 
 import {
   addFundsRoute,
   bookSessionRoute,
   contactRoute,
-  forgotPasswordResultRoute,
   forgotPasswordRequestRoute,
+  chooseNewPasswordRoute,
   signInRoute,
   signUpRoute,
   updateEmailRoute,
-  updatePasswordRequestRoute,
-  updatePasswordResultRoute,
   addChildInfoRoute,
   editChildInfoRoute,
   deleteChildInfoRoute,
   paymentResultRoute,
   cancelBookingRoute,
   yourCustomerBookingsRoute,
+  localhostChooseNewPasswordRoute,
 } from "../strings/strings";
-import { resetSendEmailState } from "../store/send-email/send-email.slice";
-import { resetBookingToDeleteState } from "../store/user-booking-to-delete/user-booking-to-delete.slice";
-import { resetSessionPricesError } from "../store/session-types-and-prices/session-types-and-prices.slice";
-import { resetUsersChildrenError } from "../store/get-users-children/get-users-children-slice";
-import { resetGetUserBookingsError } from "../store/user-bookings/user-bookings.slice";
-import { resetBookedSessionsState } from "../store/booked-sessions/booked-sessions.slice";
 
 const useResetStore = () => {
   const sessionPricesError = useSelector(selectGetPricesError);
@@ -70,10 +67,11 @@ const useResetStore = () => {
         dispatch(resetSignUpFormState());
         break;
       case forgotPasswordRequestRoute:
-        dispatch(resetForgotPasswordRequestState());
+        dispatch(resetGenerateNewPasswordRequestState());
         break;
-      case forgotPasswordResultRoute:
-        dispatch(resetForgotPasswordResultState());
+      case chooseNewPasswordRoute:
+      case localhostChooseNewPasswordRoute:
+        dispatch(resetChooseNewPasswordState());
         break;
       case contactRoute:
         dispatch(resetContactFormState());
@@ -107,13 +105,6 @@ const useResetStore = () => {
       case updateEmailRoute:
         dispatch(resetShouldShowElementState());
         dispatch(resetUpdateEmailState());
-        break;
-      case updatePasswordRequestRoute:
-        dispatch(resetShouldShowElementState());
-        dispatch(resetUpdatePasswordRequestState());
-        break;
-      case updatePasswordResultRoute:
-        dispatch(clearNewPasswordDetails());
         break;
       case addChildInfoRoute:
         dispatch(resetAllChildInfoState());

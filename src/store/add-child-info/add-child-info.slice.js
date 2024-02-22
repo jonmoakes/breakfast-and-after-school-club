@@ -1,5 +1,5 @@
 import { createSlice, createSelector } from "@reduxjs/toolkit";
-import { addChildInfoAsync } from "./add-child-info-thunks";
+import { addChildInfoAsync } from "./add-child-info.thunks";
 
 const defaultChildInfo = {
   childName: "",

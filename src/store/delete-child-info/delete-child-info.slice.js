@@ -1,5 +1,5 @@
 import { createSelector, createSlice } from "@reduxjs/toolkit";
-import { deleteChildInfoAsync } from "./delete-child-info-thunks";
+import { deleteChildInfoAsync } from "./delete-child-info.thunks";
 
 const INITIAL_STATE = {
   deleteChildInfoIsLoading: false,

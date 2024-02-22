@@ -7,8 +7,6 @@ const INITIAL_STATE = {
   resetPasswordIsVisible: false,
   resetPasswordConfirmPasswordIsVisible: false,
   updateEmailPasswordIsVisible: false,
-  updatePasswordIsVisible: false,
-  updatePasswordConfirmPasswordIsVisible: false,
 };
 
 export const passwordIsVisibleSlice = createSlice({
@@ -50,21 +48,8 @@ export const passwordIsVisibleSlice = createSlice({
     toggleUpdateEmailPasswordIsVisible(state) {
       state.updateEmailPasswordIsVisible = !state.updateEmailPasswordIsVisible;
     },
-    hideUpdatePasswordIsVisible(state) {
-      state.resetPasswordIsVisible = false;
-    },
-    toggleUpdatePasswordIsVisible(state) {
-      state.updatePasswordIsVisible = !state.updatePasswordIsVisible;
-    },
-    toggleUpdatePasswordConfirmPasswordIsVisible(state) {
-      state.updatePasswordConfirmPasswordIsVisible =
-        !state.updatePasswordConfirmPasswordIsVisible;
-    },
     hideUpdateEmailPasswordIsVisible(state) {
       state.updateEmailPasswordIsVisible = false;
-    },
-    hideUpdatePasswordConfirmPasswordIsVisible(state) {
-      state.updatePasswordConfirmPasswordIsVisible = false;
     },
     resetPasswordIsVisibleState: () => {
       return INITIAL_STATE;
@@ -85,10 +70,6 @@ export const {
   hideResetPasswordConfirmPasswordIsVisible,
   toggleUpdateEmailPasswordIsVisible,
   hideUpdateEmailPasswordIsVisible,
-  toggleUpdatePasswordIsVisible,
-  toggleUpdatePasswordConfirmPasswordIsVisible,
-  hideUpdatePasswordIsVisible,
-  hideUpdatePasswordConfirmPasswordIsVisible,
   resetPasswordIsVisibleState,
 } = passwordIsVisibleSlice.actions;
 

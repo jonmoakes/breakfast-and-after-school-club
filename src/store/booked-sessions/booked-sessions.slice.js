@@ -1,5 +1,5 @@
 import { createSelector, createSlice } from "@reduxjs/toolkit";
-import { getBookedSessionsAsync } from "./booked-sessions-thunks";
+import { getBookedSessionsAsync } from "./booked-sessions.thunks";
 
 const INITIAL_STATE = {
   bookedSessionsIsLoading: false,

@@ -4,7 +4,7 @@ import useGetSignOutError from "./navigation-hooks/use-get-sign-out-error";
 import useConfirmSwal from "../../hooks/use-confirm-swal";
 import useFireSwal from "../../hooks/use-fire-swal";
 import useIsOnline from "../../hooks/use-is-online";
-import useResetAllStoreOnSignOut from "./navigation-hooks/use-reset-all-store-on-sign-out";
+import useResetAllStoreOnSignOut from "../../hooks/use-reset-all-store-on-sign-out";
 
 import { signOutAsync } from "../../store/user/user.thunks";
 import { selectCurrentUser } from "../../store/user/user.selector";
@@ -35,7 +35,6 @@ const NavSignOut = () => {
 
   const dispatch = useDispatch();
 
-  // reset all states
   const confirmResult = () => {
     dispatch(signOutAsync());
     resetAllStoreOnSignOut();
