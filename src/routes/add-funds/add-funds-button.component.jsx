@@ -1,11 +1,9 @@
-import useGetPaymentResult from "./add-funds-hooks/use-get-payment-result";
 import useShouldShowAddFundsButton from "./add-funds-hooks/use-should-show-add-funds-button.component";
-
+import useGetClientSecret from "./add-funds-hooks/use-get-client-secret";
 import { YellowGreenButton } from "../../styles/buttons/buttons.styles";
 
 const AddFundsButton = () => {
-  const { getClientSecret } = useGetPaymentResult();
-  useGetPaymentResult();
+  const { getClientSecret } = useGetClientSecret();
   const { shouldShowAddFundsButton } = useShouldShowAddFundsButton();
 
   return (

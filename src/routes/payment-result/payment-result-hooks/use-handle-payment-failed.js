@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import useFireSwal from "../../../hooks/use-fire-swal";
 import useHamburgerHandlerNavigate from "../../../hooks/use-hamburger-handler-navigate";
 
-import { selectPaymentResult } from "../../../store/handle-payment/handle-payment.selector";
+import { selectHandlePaymentSelectors } from "../../../store/handle-payment/handle-payment.slice";
 
 import {
   accountRoute,
@@ -14,7 +14,7 @@ const useHandlePaymentSucceeded = () => {
   const { fireSwal } = useFireSwal();
   const { hamburgerHandlerNavigate } = useHamburgerHandlerNavigate();
 
-  const paymentResult = useSelector(selectPaymentResult);
+  const { paymentResult } = useSelector(selectHandlePaymentSelectors);
 
   const handlePaymentFailed = () => {
     fireSwal(

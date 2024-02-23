@@ -1,7 +1,9 @@
 import { useSelector, useDispatch } from "react-redux";
 
-import { selectHandlePaymentError } from "../../../store/handle-payment/handle-payment.selector";
-import { resetErrorMessage } from "../../../store/handle-payment/handle-payment.slice";
+import {
+  selectHandlePaymentSelectors,
+  resetPreResultHandlePaymentState,
+} from "../../../store/handle-payment/handle-payment.slice";
 import { resetWalletFundsToAddState } from "../../../store/wallet-funds-to-add/wallet-funds-to-add.slice";
 import { resetCardInputState } from "../../../store/card-input-result/card-input-result.slice";
 
@@ -11,23 +13,23 @@ import { Text } from "../../../styles/p/p.styles";
 import { StyledLink } from "../../../styles/link/link.styles";
 
 const AddFundsError = () => {
-  const error = useSelector(selectHandlePaymentError);
+  const { handlePaymentError } = useSelector(selectHandlePaymentSelectors);
   const dispatch = useDispatch();
 
   const clearErrorAndResetFundsToAdd = () => {
-    dispatch(resetErrorMessage());
+    dispatch(resetPreResultHandlePaymentState());
     dispatch(resetWalletFundsToAddState());
     dispatch(resetCardInputState());
   };
 
   return (
     <>
-      {error ? (
+      {handlePaymentError ? (
         <ParentDiv>
           <Text>
             sorry, there was an error on our end. the error received was:
             <br />
-            {error}
+            {handlePaymentError}
           </Text>
           <Text>
             please tap the button below and try again, or{" "}

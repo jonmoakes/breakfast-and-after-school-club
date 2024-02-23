@@ -1,3 +1,5 @@
+import useGetPaymentResult from "./add-funds-hooks/use-get-payment-result";
+
 import RedirectAndLoader from "./errors-help-redirect/redirect-and-loader.component";
 import WalletBalance from "../../components/wallet-balance/wallet-balance.component";
 import AddFundsHelp from "./errors-help-redirect/add-funds-help.component";
@@ -10,23 +12,27 @@ import { ParentDiv } from "../../styles/div/div.styles";
 
 import { BlackTitle } from "../../styles/h1/h1.styles";
 
-const AddFunds = () => (
-  <Container>
-    <RedirectAndLoader />
+const AddFunds = () => {
+  useGetPaymentResult();
 
-    <ParentDiv>
-      <BlackTitle>add funds</BlackTitle>
-    </ParentDiv>
+  return (
+    <Container>
+      <RedirectAndLoader />
 
-    <ParentDiv>
-      <WalletBalance />
-      <AddFundsHelp />
-      <ChooseWalletFundsToAdd />
-    </ParentDiv>
+      <ParentDiv>
+        <BlackTitle>add funds</BlackTitle>
+      </ParentDiv>
 
-    <CardInput />
-    <AddFundsError />
-  </Container>
-);
+      <ParentDiv>
+        <WalletBalance />
+        <AddFundsHelp />
+        <ChooseWalletFundsToAdd />
+      </ParentDiv>
+
+      <CardInput />
+      <AddFundsError />
+    </Container>
+  );
+};
 
 export default AddFunds;

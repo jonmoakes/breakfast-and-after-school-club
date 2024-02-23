@@ -4,26 +4,23 @@ import { useSelector } from "react-redux";
 import useUpdateWalletBalance from "./use-update-wallet-balance";
 import useHandlePaymentFailed from "../payment-result-hooks/use-handle-payment-failed";
 
-import {
-  selectPaymentResult,
-  selectWalletFundsAddedResult,
-} from "../../../store/handle-payment/handle-payment.selector";
+import { selectHandlePaymentSelectors } from "../../../store/handle-payment/handle-payment.slice";
 
 const useGetPaymentResult = () => {
   const { updateWalletBalance } = useUpdateWalletBalance();
   const { handlePaymentFailed } = useHandlePaymentFailed();
 
-  const paymentResult = useSelector(selectPaymentResult);
-  const walletFundsAddedResult = useSelector(selectWalletFundsAddedResult);
+  const { paymentResult } = useSelector(selectHandlePaymentSelectors);
 
+  // payment result is an object initially when fulfilled, which we get the status off. Then, addWalletFundsToDatabaseAsync starts which turns the paymentResult in the reducer to an empty object. Therefore the status from the paymentResult is now undefined.
   const paymentResultStatus =
     paymentResult?.paymentIntent?.status === undefined
-      ? "undefined"
+      ? undefined
       : paymentResult.paymentIntent.status;
 
+  // payment result will be either succeeded or failed here, so will either attempt to update the wallet balance or show the failed swal. If failed, paymentResult will be an empty object ( as in failure, the reducer does not update the paymentResult from its initital empty object ) so will return. If succeeded, as soon as addWalletFundsToDatabaseAsync is pending, paymentResult will be again be turned into an empty object in the reducer so will prevent useEffect running again.
   useEffect(() => {
-    if (!Object.keys(paymentResult).length || paymentResult === "completed")
-      return;
+    if (!Object.keys(paymentResult).length) return;
 
     if (paymentResultStatus === "succeeded") {
       updateWalletBalance();
@@ -31,11 +28,10 @@ const useGetPaymentResult = () => {
       handlePaymentFailed();
     }
   }, [
+    handlePaymentFailed,
     paymentResult,
     paymentResultStatus,
     updateWalletBalance,
-    handlePaymentFailed,
-    walletFundsAddedResult,
   ]);
 };
 

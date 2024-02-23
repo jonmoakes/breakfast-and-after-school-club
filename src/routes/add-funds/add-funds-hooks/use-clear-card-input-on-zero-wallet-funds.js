@@ -1,16 +1,18 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-import { selectClientSecret } from "../../../store/handle-payment/handle-payment.selector";
+import {
+  selectHandlePaymentSelectors,
+  resetClientSecret,
+} from "../../../store/handle-payment/handle-payment.slice";
 import { selectWalletFundsToAdd } from "../../../store/wallet-funds-to-add/wallet-funds-to-add.selector";
 import {
   selectCardInputResult,
   resetCardInputState,
 } from "../../../store/card-input-result/card-input-result.slice";
-import { resetClientSecret } from "../../../store/handle-payment/handle-payment.slice";
 
 const useClearCardInputOnZeroWalletFunds = () => {
-  const client_secret = useSelector(selectClientSecret);
+  const { client_secret } = useSelector(selectHandlePaymentSelectors);
   const walletFundsToAdd = useSelector(selectWalletFundsToAdd);
   const { cardInputResult } = useSelector(selectCardInputResult);
 

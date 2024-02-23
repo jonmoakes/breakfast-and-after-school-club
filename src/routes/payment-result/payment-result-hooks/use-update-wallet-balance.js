@@ -9,7 +9,7 @@ import {
   selectCurrentUser,
   selectEnvironmentVariables,
 } from "../../../store/user/user.selector";
-import { addWalletFundsToDatabaseAsync } from "../../../store/handle-payment/handle-payment.slice";
+import { addWalletFundsToDatabaseAsync } from "../../../store/handle-payment/handle-payment.thunks";
 import { getUsersWalletBalanceAsync } from "../../../store/user/user.thunks";
 
 import {

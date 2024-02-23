@@ -1,11 +1,11 @@
 import { useSelector } from "react-redux";
 
-import { selectClientSecret } from "../../../store/handle-payment/handle-payment.selector";
+import { selectHandlePaymentSelectors } from "../../../store/handle-payment/handle-payment.slice";
 import { selectWalletFundsToAdd } from "../../../store/wallet-funds-to-add/wallet-funds-to-add.selector";
 import { selectCardInputResult } from "../../../store/card-input-result/card-input-result.slice";
 
 const useShouldShowAddFundsButton = () => {
-  const client_secret = useSelector(selectClientSecret);
+  const { client_secret } = useSelector(selectHandlePaymentSelectors);
   const { cardInputResult } = useSelector(selectCardInputResult);
   const walletFundsToAdd = useSelector(selectWalletFundsToAdd);
 

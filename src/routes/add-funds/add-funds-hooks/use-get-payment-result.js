@@ -3,26 +3,20 @@ import { useSelector, useDispatch } from "react-redux";
 import { useStripe, CardElement, useElements } from "@stripe/react-stripe-js";
 
 import useConfirmSwal from "../../../hooks/use-confirm-swal";
+import useGetClientSecret from "./use-get-client-secret";
 
 import { selectWalletFundsToAdd } from "../../../store/wallet-funds-to-add/wallet-funds-to-add.selector";
+import { selectCurrentUser } from "../../../store/user/user.selector";
 import {
-  selectCurrentUser,
-  selectEnvironmentVariables,
-} from "../../../store/user/user.selector";
-import {
-  selectClientSecret,
-  selectShowConfirmButton,
-} from "../../../store/handle-payment/handle-payment.selector";
+  selectHandlePaymentSelectors,
+  resetAllHandlePaymentState,
+} from "../../../store/handle-payment/handle-payment.slice";
 import {
   selectCardInputResult,
   resetCardInputState,
 } from "../../../store/card-input-result/card-input-result.slice";
-import {
-  getClientSecretAsync,
-  getPaymentResultAsync,
-} from "../../../store/handle-payment/handle-payment.slice";
+import { getPaymentResultAsync } from "../../../store/handle-payment/handle-payment.thunks";
 import { resetWalletFundsToAddState } from "../../../store/wallet-funds-to-add/wallet-funds-to-add.slice";
-import { resetAllHandlePaymentState } from "../../../store/handle-payment/handle-payment.slice";
 
 import {
   addFundsMessage,
@@ -31,25 +25,20 @@ import {
 
 const useGetPaymentResult = () => {
   const { confirmSwal } = useConfirmSwal();
+  const { getClientSecret } = useGetClientSecret();
 
-  const envVariables = useSelector(selectEnvironmentVariables);
   const walletFundsToAdd = useSelector(selectWalletFundsToAdd);
   const currentUser = useSelector(selectCurrentUser);
-  const client_secret = useSelector(selectClientSecret);
+  const { client_secret, showConfirmButton, userHasConfirmedPayment } =
+    useSelector(selectHandlePaymentSelectors);
   const { cardInputResult } = useSelector(selectCardInputResult);
-  const showConfirmButton = useSelector(selectShowConfirmButton);
+
   const { name, email } = currentUser;
-  const { stripeSecretKey } = envVariables;
   const { showPrePayButton } = cardInputResult;
 
   const dispatch = useDispatch();
   const stripe = useStripe();
   const elements = useElements();
-
-  const getClientSecret = () => {
-    if (!stripe || !elements) return;
-    dispatch(getClientSecretAsync({ stripeSecretKey, walletFundsToAdd }));
-  };
 
   useEffect(() => {
     const shouldShowConfirmAddFundsSwal = () => {
@@ -61,7 +50,13 @@ const useGetPaymentResult = () => {
         : false;
     };
 
-    if (!stripe || !elements || !shouldShowConfirmAddFundsSwal()) return;
+    if (
+      !stripe ||
+      !elements ||
+      !shouldShowConfirmAddFundsSwal() ||
+      userHasConfirmedPayment
+    )
+      return;
 
     const confirmResult = () => {
       dispatch(
@@ -99,6 +94,7 @@ const useGetPaymentResult = () => {
     walletFundsToAdd,
     showConfirmButton,
     showPrePayButton,
+    userHasConfirmedPayment,
   ]);
 
   return { getClientSecret };
