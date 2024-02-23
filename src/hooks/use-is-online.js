@@ -1,7 +1,9 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { selectIsOnline } from "../store/is-online/is-online.selector";
-import { setOnlineStatus } from "../store/is-online/is-online.slice";
+import {
+  setOnlineStatus,
+  selectIsOnlineSelectors,
+} from "../store/is-online/is-online.slice";
 
 const notBrowserError =
   "checking online status only works in a browser environment.";
@@ -9,7 +11,7 @@ const notABrowserEnv = typeof window === "undefined";
 const navigatorNotPresent = typeof navigator === "undefined";
 
 const useIsOnline = () => {
-  const isOnline = useSelector(selectIsOnline);
+  const { isOnline } = useSelector(selectIsOnlineSelectors);
   const dispatch = useDispatch();
 
   useEffect(() => {

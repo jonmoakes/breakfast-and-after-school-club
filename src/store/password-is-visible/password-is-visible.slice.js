@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSelector, createSlice } from "@reduxjs/toolkit";
 
 const INITIAL_STATE = {
   signInPasswordIsVisible: false,
@@ -10,7 +10,7 @@ const INITIAL_STATE = {
 };
 
 export const passwordIsVisibleSlice = createSlice({
-  name: "togglePasswordIsVisible",
+  name: "passwordIsVisible",
   initialState: INITIAL_STATE,
   reducers: {
     toggleSignInPasswordIsVisible(state) {
@@ -55,6 +55,33 @@ export const passwordIsVisibleSlice = createSlice({
       return INITIAL_STATE;
     },
   },
+  selectors: {
+    selectPasswordIsVisibleSelectors: createSelector(
+      (state) => state.signInPasswordIsVisible,
+      (state) => state.signUpPasswordIsVisible,
+      (state) => state.signUpConfirmPasswordIsVisible,
+      (state) => state.resetPasswordIsVisible,
+      (state) => state.resetPasswordConfirmPasswordIsVisible,
+      (state) => state.updateEmailPasswordIsVisible,
+      (
+        signInPasswordIsVisible,
+        signUpPasswordIsVisible,
+        signUpConfirmPasswordIsVisible,
+        resetPasswordIsVisible,
+        resetPasswordConfirmPasswordIsVisible,
+        updateEmailPasswordIsVisible
+      ) => {
+        return {
+          signInPasswordIsVisible,
+          signUpPasswordIsVisible,
+          signUpConfirmPasswordIsVisible,
+          resetPasswordIsVisible,
+          resetPasswordConfirmPasswordIsVisible,
+          updateEmailPasswordIsVisible,
+        };
+      }
+    ),
+  },
 });
 
 export const {
@@ -74,3 +101,5 @@ export const {
 } = passwordIsVisibleSlice.actions;
 
 export const passwordIsVisibleReducer = passwordIsVisibleSlice.reducer;
+export const { selectPasswordIsVisibleSelectors } =
+  passwordIsVisibleSlice.selectors;

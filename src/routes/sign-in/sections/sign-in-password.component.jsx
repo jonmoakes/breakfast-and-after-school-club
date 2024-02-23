@@ -2,8 +2,10 @@ import { useSelector, useDispatch } from "react-redux";
 
 import useHideSignInPasswordOnEmpty from "../sign-in-form-hooks/use-hide-sign-in-password-on-empty";
 
-import { selectSignInPasswordIsVisible } from "../../../store/password-is-visible/password-is-visible.selector";
-import { toggleSignInPasswordIsVisible } from "../../../store/password-is-visible/password-is-visible.slice";
+import {
+  toggleSignInPasswordIsVisible,
+  selectPasswordIsVisibleSelectors,
+} from "../../../store/password-is-visible/password-is-visible.slice";
 
 import { selectSignInFormDetails } from "../../../store/sign-in-form/sign-in-form.selector";
 
@@ -14,7 +16,9 @@ import { ToggleSignInPassword } from "../../../styles/span/span.styles";
 const SignInPassword = ({ handleSignInFormChange }) => {
   useHideSignInPasswordOnEmpty();
 
-  const signInPasswordIsVisible = useSelector(selectSignInPasswordIsVisible);
+  const { signInPasswordIsVisible } = useSelector(
+    selectPasswordIsVisibleSelectors
+  );
   const signUpFormDetails = useSelector(selectSignInFormDetails);
 
   const dispatch = useDispatch();

@@ -2,20 +2,16 @@ import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
 import {
-  selectResetPasswordIsVisible,
-  selectResetPasswordConfirmPasswordIsVisible,
-} from "../../../store/password-is-visible/password-is-visible.selector";
-import {
   hideResetPasswordIsVisible,
   hideResetPasswordConfirmPasswordIsVisible,
+  selectPasswordIsVisibleSelectors,
 } from "../../../store/password-is-visible/password-is-visible.slice";
 import { selectChooseNewPasswordSelectors } from "../../../store/choose-new-password/choose-new-password.slice";
 
 const useHideResetPasswordFieldsOnEmpty = () => {
-  const resetPasswordIsVisible = useSelector(selectResetPasswordIsVisible);
-  const resetPasswordConfirmPasswordIsVisible = useSelector(
-    selectResetPasswordConfirmPasswordIsVisible
-  );
+  const { resetPasswordIsVisible, resetPasswordConfirmPasswordIsVisible } =
+    useSelector(selectPasswordIsVisibleSelectors);
+
   const { newPasswordDetails } = useSelector(selectChooseNewPasswordSelectors);
 
   const dispatch = useDispatch();

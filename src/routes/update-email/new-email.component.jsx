@@ -6,8 +6,10 @@ import useConfirmUpdateEmail from "./update-email-hooks/use-confirm-update-email
 import useIsOnline from "../../hooks/use-is-online";
 
 import { selectUpdateEmailDetails } from "../../store/update-email/update-email.selector";
-import { selectUpdateEmailPasswordIsVisible } from "../../store/password-is-visible/password-is-visible.selector";
-import { toggleUpdateEmailPasswordIsVisible } from "../../store/password-is-visible/password-is-visible.slice";
+import {
+  toggleUpdateEmailPasswordIsVisible,
+  selectPasswordIsVisibleSelectors,
+} from "../../store/password-is-visible/password-is-visible.slice";
 
 import NetworkError from "../../components/errors/network-error.component";
 
@@ -32,8 +34,8 @@ const NewEmail = () => {
   const { isOnline } = useIsOnline();
 
   const updateEmailDetails = useSelector(selectUpdateEmailDetails);
-  const updateEmailPasswordIsVisible = useSelector(
-    selectUpdateEmailPasswordIsVisible
+  const { updateEmailPasswordIsVisible } = useSelector(
+    selectPasswordIsVisibleSelectors
   );
   const dispatch = useDispatch();
 

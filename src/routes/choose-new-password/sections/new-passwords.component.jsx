@@ -5,12 +5,9 @@ import useHandleChooseNewPasswordFormChange from "../choose-new-password-hooks/u
 
 import { selectChooseNewPasswordSelectors } from "../../../store/choose-new-password/choose-new-password.slice";
 import {
-  selectResetPasswordIsVisible,
-  selectResetPasswordConfirmPasswordIsVisible,
-} from "../../../store/password-is-visible/password-is-visible.selector";
-import {
   toggleResetPasswordIsVisible,
   toggleResetPasswordConfirmPasswordIsVisible,
+  selectPasswordIsVisibleSelectors,
 } from "../../../store/password-is-visible/password-is-visible.slice";
 
 import { Label, PasswordInput } from "../../../styles/form/form.styles";
@@ -31,11 +28,8 @@ const NewPasswords = () => {
   useHideResetPasswordFieldsOnEmpty();
 
   const { newPasswordDetails } = useSelector(selectChooseNewPasswordSelectors);
-  const resetPasswordIsVisible = useSelector(selectResetPasswordIsVisible);
-  const resetPasswordConfirmPasswordIsVisible = useSelector(
-    selectResetPasswordConfirmPasswordIsVisible
-  );
-
+  const { resetPasswordIsVisible, resetPasswordConfirmPasswordIsVisible } =
+    useSelector(selectPasswordIsVisibleSelectors);
   const dispatch = useDispatch();
   const { newPassword, confirmNewPassword } = newPasswordDetails;
 

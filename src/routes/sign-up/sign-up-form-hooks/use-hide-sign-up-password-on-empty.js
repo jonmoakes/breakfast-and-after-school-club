@@ -2,21 +2,16 @@ import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
 import {
-  selectSignUpPasswordIsVisible,
-  selectSignUpConfirmPasswordIsVisible,
-} from "../../../store/password-is-visible/password-is-visible.selector";
-import {
   hideSignUpPasswordIsVisible,
   hideSignUpConfirmPasswordIsVisible,
+  selectPasswordIsVisibleSelectors,
 } from "../../../store/password-is-visible/password-is-visible.slice";
 
 import { selectSignUpFormDetails } from "../../../store/sign-up-form/sign-up-form.selector";
 
 const useHideSignUpPasswordOnEmpty = () => {
-  const signUpPasswordIsVisible = useSelector(selectSignUpPasswordIsVisible);
-  const signUpConfirmPasswordIsVisible = useSelector(
-    selectSignUpConfirmPasswordIsVisible
-  );
+  const { signUpPasswordIsVisible, signUpConfirmPasswordIsVisible } =
+    useSelector(selectPasswordIsVisibleSelectors);
   const signUpFormDetails = useSelector(selectSignUpFormDetails);
 
   const dispatch = useDispatch();
