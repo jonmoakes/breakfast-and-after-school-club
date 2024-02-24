@@ -19,12 +19,6 @@ export const contactFormSlice = createSlice({
     setContactFormDetails(state, action) {
       state.contactFormDetails = action.payload;
     },
-    resetContactFormFields(state) {
-      state.contactFormDetails = INITIAL_STATE;
-    },
-    resetContactFormErrorMessage(state) {
-      state.contactFormError = null;
-    },
     resetContactFormState: () => {
       return INITIAL_STATE;
     },
@@ -67,12 +61,8 @@ export const contactFormSlice = createSlice({
   },
 });
 
-export const {
-  setContactFormDetails,
-  resetContactFormFields,
-  resetErrorMessage,
-  resetContactFormState,
-} = contactFormSlice.actions;
+export const { setContactFormDetails, resetContactFormState } =
+  contactFormSlice.actions;
 export const { selectContactFormSelectors } = contactFormSlice.selectors;
 
 export const contactFormReducer = contactFormSlice.reducer;

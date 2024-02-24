@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSelector, createSlice } from "@reduxjs/toolkit";
 
 import PlaceholderImage from "../../assets/placeholder-image.jpeg";
 
@@ -14,8 +14,20 @@ export const progressiveImageSlice = createSlice({
       state.imgSrc = action.payload;
     },
   },
+  selectors: {
+    selectProgressiveImageSelectors: createSelector(
+      (state) => state.imgSrc,
+      (imgSrc) => {
+        return {
+          imgSrc,
+        };
+      }
+    ),
+  },
 });
 
 export const { setImgSrc } = progressiveImageSlice.actions;
+export const { selectProgressiveImageSelectors } =
+  progressiveImageSlice.selectors;
 
 export const progressiveImageReducer = progressiveImageSlice.reducer;

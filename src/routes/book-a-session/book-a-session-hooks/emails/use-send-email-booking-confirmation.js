@@ -4,7 +4,7 @@ import useFireSwal from "../../../../hooks/use-fire-swal";
 import useHamburgerHandlerNavigate from "../../../../hooks/use-hamburger-handler-navigate";
 
 import { selectCurrentUser } from "../../../../store/user/user.selector";
-import { selectRequestDateData } from "../../../../store/request-date-data/request-date-data.slice";
+import { selectRequestDateDataSelectors } from "../../../../store/request-date-data/request-date-data.slice";
 import { selectBookSessionSelectors } from "../../../../store/book-session/book-session.slice";
 import { selectGetUsersChildrenSelectors } from "../../../../store/get-users-children/get-users-children.slice";
 import { sendEmailBookingConfirmationAsync } from "../../../../store/send-email/send-email.thunks";
@@ -22,7 +22,7 @@ const useSendEmailBookingConfirmation = () => {
   const { hamburgerHandlerNavigate } = useHamburgerHandlerNavigate();
 
   const currentUser = useSelector(selectCurrentUser);
-  const requestDateData = useSelector(selectRequestDateData);
+  const { dateData } = useSelector(selectRequestDateDataSelectors);
   const { sessionType, sessionPrice, childrenSelectedForBooking } = useSelector(
     selectBookSessionSelectors
   );
@@ -31,7 +31,7 @@ const useSendEmailBookingConfirmation = () => {
   const dispatch = useDispatch();
 
   const { name, email, walletBalance } = currentUser;
-  const date = requestDateData ? requestDateData.date : "";
+  const date = dateData ? dateData.date : "";
 
   const childName =
     usersChildren && usersChildren[0] !== undefined

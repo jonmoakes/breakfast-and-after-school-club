@@ -3,19 +3,19 @@ import { useDispatch, useSelector } from "react-redux";
 import { client } from "../../../utils/appwrite/appwrite-config";
 
 import {
-  selectRequestDateData,
   setDateData,
+  selectRequestDateDataSelectors,
 } from "../../../store/request-date-data/request-date-data.slice";
 import { selectEnvironmentVariables } from "../../../store/user/user.selector";
 
 const useSessionSpacesListener = () => {
-  const requestDateData = useSelector(selectRequestDateData); // gets the dateData object from the slice
+  const { dateData } = useSelector(selectRequestDateDataSelectors); // gets the dateData object from the slice
   const envVariables = useSelector(selectEnvironmentVariables);
 
   const dispatch = useDispatch();
 
   const { databaseId, termDatesCollectionId } = envVariables;
-  const documentId = requestDateData ? requestDateData.$id : "";
+  const documentId = dateData ? dateData.$id : "";
 
   useEffect(() => {
     const unsubscribe = client.subscribe(
@@ -26,7 +26,7 @@ const useSessionSpacesListener = () => {
           response.payload;
 
         const updatedDateData = {
-          ...requestDateData,
+          ...dateData,
           morningSessionSpaces,
           afternoonSessionSpaces,
         };
@@ -38,13 +38,7 @@ const useSessionSpacesListener = () => {
     return () => {
       unsubscribe();
     };
-  }, [
-    dispatch,
-    documentId,
-    requestDateData,
-    databaseId,
-    termDatesCollectionId,
-  ]);
+  }, [dispatch, documentId, dateData, databaseId, termDatesCollectionId]);
 };
 
 export default useSessionSpacesListener;

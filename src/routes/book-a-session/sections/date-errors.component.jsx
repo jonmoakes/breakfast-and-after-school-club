@@ -11,21 +11,21 @@ const DateErrors = () => {
     dateUnavailable,
     dateChosenInThePast,
     dateHasEarlyFinishTime,
-    requestDateErrorMessage,
+    requestDateDataError,
   } = useConditionalLogic();
 
   return (
     <>
       {dateUnavailable() ? (
         <>
-          {requestDateErrorMessage !== "is not available" ? (
+          {requestDateDataError !== "is not available" ? (
             <ErrorDiv>
               <Text>
                 sorry, we received an error when trying to fetch your requested
                 date. the error received was:
               </Text>
               <Text>
-                <RedSpan>{requestDateErrorMessage}</RedSpan>
+                <RedSpan>{requestDateDataError}</RedSpan>
               </Text>
               <Text>
                 please try again and{" "}

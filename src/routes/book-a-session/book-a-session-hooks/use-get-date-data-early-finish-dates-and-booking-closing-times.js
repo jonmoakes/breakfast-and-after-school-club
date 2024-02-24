@@ -2,12 +2,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import { selectEnvironmentVariables } from "../../../store/user/user.selector";
-import {
-  selectChosenDate,
-  selectEarlyFinishDates,
-  selectBookingClosingTimes,
-  selectSessionTimes,
-} from "../../../store/request-date-data/request-date-data.slice";
+import { selectRequestDateDataSelectors } from "../../../store/request-date-data/request-date-data.slice";
 import {
   requestDateDataAsync,
   requestEarlyFinishDatesAsync,
@@ -16,11 +11,10 @@ import {
 } from "../../../store/request-date-data/request-date-data.thunks";
 
 const useGetDateDataEarlyFinishDatesAndBookingClosingTimes = () => {
-  const chosenDate = useSelector(selectChosenDate);
+  const { chosenDate, earlyFinishDates, bookingClosingTimes, sessionTimes } =
+    useSelector(selectRequestDateDataSelectors);
   const envVariables = useSelector(selectEnvironmentVariables);
-  const earlyFinishDates = useSelector(selectEarlyFinishDates);
-  const bookingClosingTimes = useSelector(selectBookingClosingTimes);
-  const sessionTimes = useSelector(selectSessionTimes);
+
   const dispatch = useDispatch();
 
   const {

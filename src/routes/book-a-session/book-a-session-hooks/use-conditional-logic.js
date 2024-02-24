@@ -1,13 +1,7 @@
 import { format } from "date-fns";
 import { useSelector } from "react-redux";
 
-import {
-  selectChosenDate,
-  selectEarlyFinishDates,
-  selectRequestDateData,
-  selectRequestDateDataErrorMessage,
-  selectBookingClosingTimes,
-} from "../../../store/request-date-data/request-date-data.slice";
+import { selectRequestDateDataSelectors } from "../../../store/request-date-data/request-date-data.slice";
 import { selectCurrentDateAndTime } from "../../../store/date-and-time/date-and-time.slice";
 import { selectCurrentUser } from "../../../store/user/user.selector";
 import {
@@ -22,15 +16,15 @@ import { priceMultipliedBy100 } from "../../../functions/price-multiplied-by-100
 
 const useConditionalLogic = () => {
   const { currentDateAndTime } = useSelector(selectCurrentDateAndTime);
-  const requestDateData = useSelector(selectRequestDateData);
   const morningSessionPrice = useSelector(selectMorningSessionPrice);
-  const requestDateErrorMessage = useSelector(
-    selectRequestDateDataErrorMessage
-  );
-
-  const chosenDate = useSelector(selectChosenDate);
+  const {
+    chosenDate,
+    dateData,
+    requestDateDataError,
+    earlyFinishDates,
+    bookingClosingTimes,
+  } = useSelector(selectRequestDateDataSelectors);
   const currentUser = useSelector(selectCurrentUser);
-
   const { usersChildren, getUsersChildrenError } = useSelector(
     selectGetUsersChildrenSelectors
   );
@@ -39,17 +33,13 @@ const useConditionalLogic = () => {
   );
   const getUsersBookingsError = useSelector(selectGetUserBookingsError);
   const getSessionTypesAndPricesError = useSelector(selectGetPricesError);
-  const earlyFinishDates = useSelector(selectEarlyFinishDates);
-  const bookingClosingTimes = useSelector(selectBookingClosingTimes);
 
   const { walletBalance } = currentUser;
-  const date = requestDateData ? requestDateData.date : "";
+  const date = dateData ? dateData.date : "";
   const formattedTodaysDate = format(new Date(), "yyyy-MM-dd");
-  const morningSessionSpaces = requestDateData
-    ? requestDateData.morningSessionSpaces
-    : "";
-  const afternoonSessionSpaces = requestDateData
-    ? requestDateData.afternoonSessionSpaces
+  const morningSessionSpaces = dateData ? dateData.morningSessionSpaces : "";
+  const afternoonSessionSpaces = dateData
+    ? dateData.afternoonSessionSpaces
     : "";
   const morningCloseTime = bookingClosingTimes
     ? bookingClosingTimes.morningSessionClosingTime
@@ -63,8 +53,7 @@ const useConditionalLogic = () => {
     return getUsersChildrenError ||
       getUsersBookingsError ||
       getSessionTypesAndPricesError ||
-      (requestDateErrorMessage &&
-        requestDateErrorMessage !== "is not available")
+      (requestDateDataError && requestDateDataError !== "is not available")
       ? true
       : false;
   };
@@ -106,41 +95,32 @@ const useConditionalLogic = () => {
 
   //user has chosen a date from the picker which is why requestDateData is not null but no spaces in the db on that date
   const noSpacesAvailableOnChosenDate = () => {
-    return requestDateData && !morningSessionSpaces && !afternoonSessionSpaces
+    return dateData && !morningSessionSpaces && !afternoonSessionSpaces
       ? true
       : false;
   };
 
   const onlyMorningSessionsAvailable = () => {
-    return requestDateData &&
-      morningSessionSpaces &&
-      !afternoonSessionSpaces &&
-      date
+    return dateData && morningSessionSpaces && !afternoonSessionSpaces && date
       ? true
       : false;
   };
 
   const onlyAfternoonSessionsAvailable = () => {
-    return requestDateData &&
-      !morningSessionSpaces &&
-      afternoonSessionSpaces &&
-      date
+    return dateData && !morningSessionSpaces && afternoonSessionSpaces && date
       ? true
       : false;
   };
 
   const allSessionsAvailable = () => {
-    return requestDateData &&
-      morningSessionSpaces &&
-      afternoonSessionSpaces &&
-      date
+    return dateData && morningSessionSpaces && afternoonSessionSpaces && date
       ? true
       : false;
   };
 
   //meaning school is off that day. also if the function throws an error otherwise, means will not show the child checkbox.
   const dateUnavailable = () => {
-    return requestDateErrorMessage ? true : false;
+    return requestDateDataError ? true : false;
   };
 
   const dateChosenInThePast = () => {
@@ -148,9 +128,8 @@ const useConditionalLogic = () => {
   };
 
   const dateNotChosenOrDateChosenAndBalanceTooLow = () => {
-    return !requestDateData ||
-      (requestDateData &&
-        walletBalance < priceMultipliedBy100(morningSessionPrice))
+    return !dateData ||
+      (dateData && walletBalance < priceMultipliedBy100(morningSessionPrice))
       ? true
       : false;
   };
@@ -271,7 +250,7 @@ const useConditionalLogic = () => {
     dateHasEarlyFinishTime,
     morningSessionPrice,
     formattedTodaysDate,
-    requestDateErrorMessage,
+    requestDateDataError,
     afternoonCloseTime,
   };
 };

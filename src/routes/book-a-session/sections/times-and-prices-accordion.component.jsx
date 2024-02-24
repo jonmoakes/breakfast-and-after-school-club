@@ -1,10 +1,6 @@
 import { useSelector, useDispatch } from "react-redux";
 
-import {
-  selectAfternoonLongSessionTime,
-  selectMorningSessionTime,
-  selectAfternoonShortSessionTime,
-} from "../../../store/request-date-data/request-date-data.slice";
+import { selectRequestDateDataSelectors } from "../../../store/request-date-data/request-date-data.slice";
 import {
   selectMorningSessionPrice,
   selectAfternoonShortSessionPrice,
@@ -39,11 +35,11 @@ const TimesAndPricesAccordion = () => {
   const morningAndAfternoonLongPrice = useSelector(
     selectMorningAndAfternoonLongSessionPrice
   );
-  const morningSessionTime = useSelector(selectMorningSessionTime);
-  const afternoonShortSessionTime = useSelector(
-    selectAfternoonShortSessionTime
-  );
-  const afternoonLongSessionTime = useSelector(selectAfternoonLongSessionTime);
+  const {
+    morningSessionTime,
+    afternoonShortSessionTime,
+    afternoonLongSessionTime,
+  } = useSelector(selectRequestDateDataSelectors);
 
   const dispatch = useDispatch();
 
