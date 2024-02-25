@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { customBlack, customRed, customBlue, customWhite } from "../colors";
+import { customBlack, customRed, customBlue } from "../colors";
 
 import eyeIcon from "../../assets/eye.png";
 import eyeIconHide from "../../assets/hide-eye.png";

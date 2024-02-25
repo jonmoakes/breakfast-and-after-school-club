@@ -31,8 +31,8 @@ const useConfirmCloseAccount = () => {
     dispatch(
       sendEmailToAdminCloseAccountRequestAsync({
         schoolCode,
-        id,
         appOwnerEmail,
+        id,
         email,
       })
     );
