@@ -5,7 +5,7 @@ export const handler = async (event) => {
   const { sendTo, name, email, message } = JSON.parse(event.body);
 
   try {
-    const response = await client.sendEmailWithTemplate({
+    await client.sendEmailWithTemplate({
       From: process.env.VITE_APP_ADMIN_EMAIL,
       To: sendTo,
       TemplateAlias: "send-contact-form-message",
@@ -19,15 +19,11 @@ export const handler = async (event) => {
     });
 
     return {
-      response,
       statusCode: 202,
-      body: "Email sent successfully",
     };
   } catch (error) {
-    console.log(error);
     return {
       statusCode: 500,
-      body: JSON.stringify({ error: error.message }),
     };
   }
 };

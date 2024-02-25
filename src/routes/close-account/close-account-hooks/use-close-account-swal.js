@@ -5,9 +5,8 @@ import { useNavigate } from "react-router-dom";
 import useFireSwal from "../../../hooks/use-fire-swal";
 
 import {
-  selectSendEmailStatusCode,
-  selectSendEmailError,
   resetSendEmailState,
+  selectSendEmailSelectors,
 } from "../../../store/send-email/send-email.slice";
 
 import {
@@ -20,15 +19,17 @@ import {
 const useCloseAccountSwal = () => {
   const { fireSwal } = useFireSwal();
 
-  const statusCode = useSelector(selectSendEmailStatusCode);
-  const error = useSelector(selectSendEmailError);
+  const { sendEmailStatusCode, sendEmailError } = useSelector(
+    selectSendEmailSelectors
+  );
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (!statusCode && !error) return;
+    if (!sendEmailStatusCode && !sendEmailError) return;
 
-    if (statusCode === 202) {
+    if (sendEmailStatusCode === 202) {
       fireSwal(
         "success",
         successSendingCloseAccountEmailMessage,
@@ -46,7 +47,7 @@ const useCloseAccountSwal = () => {
       fireSwal(
         "error",
         errorSendingAccountClosureRequest,
-        `the error received was: '${error}'.please try again or contact the school directly if the error continues.`,
+        `the error received was: '${sendEmailError}'.please try again or contact the school directly if the error continues.`,
         0,
         true,
         false
@@ -56,7 +57,7 @@ const useCloseAccountSwal = () => {
         }
       });
     }
-  }, [statusCode, error, fireSwal, dispatch, navigate]);
+  }, [sendEmailStatusCode, sendEmailError, fireSwal, dispatch, navigate]);
 };
 
 export default useCloseAccountSwal;

@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSelector, createSlice } from "@reduxjs/toolkit";
 import {
   sendEmailBookingConfirmationAsync,
   sendBookingCancellationConfirmationEmailAsync,
@@ -11,25 +11,25 @@ import {
 } from "./send-email.thunks";
 
 const INITIAL_STATE = {
-  isLoading: false,
-  statusCode: "",
-  error: null,
+  sendEmailIsLoading: false,
+  sendEmailStatusCode: "",
+  sendEmailError: null,
 };
 
 const handleAsyncAction = (builder, asyncAction) => {
   builder
     .addCase(asyncAction.pending, (state) => {
-      state.isLoading = true;
+      state.sendEmailIsLoading = true;
     })
     .addCase(asyncAction.fulfilled, (state, action) => {
-      state.isLoading = false;
-      state.statusCode = action.payload;
-      state.error = null;
+      state.sendEmailIsLoading = false;
+      state.sendEmailStatusCode = action.payload;
+      state.sendEmailError = null;
     })
     .addCase(asyncAction.rejected, (state, action) => {
-      state.isLoading = false;
-      state.statusCode = "";
-      state.error = action.payload;
+      state.sendEmailIsLoading = false;
+      state.sendEmailStatusCode = "";
+      state.sendEmailError = action.payload;
     });
 };
 
@@ -40,14 +40,20 @@ export const sendEmailSlice = createSlice({
     resetSendEmailState: () => {
       return INITIAL_STATE;
     },
-    resetErrorMessage(state) {
-      state.error = null;
-    },
   },
   selectors: {
-    selectSendEmailIsLoading: (state) => state.isLoading,
-    selectSendEmailStatusCode: (state) => state.statusCode,
-    selectSendEmailError: (state) => state.error,
+    selectSendEmailSelectors: createSelector(
+      (state) => state.sendEmailIsLoading,
+      (state) => state.sendEmailStatusCode,
+      (state) => state.sendEmailError,
+      (sendEmailIsLoading, sendEmailStatusCode, sendEmailError) => {
+        return {
+          sendEmailIsLoading,
+          sendEmailStatusCode,
+          sendEmailError,
+        };
+      }
+    ),
   },
   extraReducers: (builder) => {
     handleAsyncAction(builder, sendEmailBookingConfirmationAsync);
@@ -61,12 +67,7 @@ export const sendEmailSlice = createSlice({
   },
 });
 
-export const { resetSendEmailState, resetErrorMessage } =
-  sendEmailSlice.actions;
-export const {
-  selectSendEmailError,
-  selectSendEmailIsLoading,
-  selectSendEmailStatusCode,
-} = sendEmailSlice.selectors;
+export const { resetSendEmailState } = sendEmailSlice.actions;
+export const { selectSendEmailSelectors } = sendEmailSlice.selectors;
 
 export const sendEmailReducer = sendEmailSlice.reducer;
