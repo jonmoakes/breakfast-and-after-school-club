@@ -10,6 +10,7 @@ import {
 
 import {
   emailResponseTimeMessage,
+  errorReceivedMessage,
   errorSendingMessage,
   successMessage,
 } from "../../../strings/strings";
@@ -38,10 +39,11 @@ const useSendContactFormMessageResultSwal = () => {
         }
       });
     } else if (contactFormError) {
+      const error = contactFormError;
       fireSwal(
         "error",
         errorSendingMessage,
-        `the error received was: ${contactFormError}. please try again.`,
+        errorReceivedMessage(error),
         0,
         true,
         false
