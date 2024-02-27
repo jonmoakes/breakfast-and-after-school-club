@@ -233,20 +233,19 @@ export const sendEmailWalletFundsNotAddedErrorAsync = createAsyncThunk(
 
 export const sendEmailToAdminCloseAccountRequestAsync = createAsyncThunk(
   "sendEmailToAdminCloseAccountRequest",
-  async ({ schoolCode, appOwnerEmail, id, email }, thunkAPI) => {
+  async ({ appOwnerEmail, id, email }, thunkAPI) => {
     try {
       const response = await axios.post(
         SEND_EMAIL_TO_ADMIN_CLOSE_ACCOUNT_REQUEST_ENDPOINT,
         {
-          schoolCode,
           appOwnerEmail,
           id,
           email,
         }
       );
 
-      const { status } = response;
-      return status;
+      const statusCode = response.status;
+      return statusCode;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }

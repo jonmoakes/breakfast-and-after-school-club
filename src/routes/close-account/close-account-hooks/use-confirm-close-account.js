@@ -24,13 +24,12 @@ const useConfirmCloseAccount = () => {
   const envVariables = useSelector(selectEnvironmentVariables);
 
   const dispatch = useDispatch();
-  const { walletBalance, schoolCode, id, email } = currentUser;
+  const { walletBalance, id, email } = currentUser;
   const { appOwnerEmail } = envVariables;
 
   const confirmResult = () => {
     dispatch(
       sendEmailToAdminCloseAccountRequestAsync({
-        schoolCode,
         appOwnerEmail,
         id,
         email,

@@ -29,8 +29,8 @@ export const sendContactFormMessageAsync = createAsyncThunk(
         message,
       });
 
-      const { status } = response;
-      return status;
+      const statusCode = response.status;
+      return statusCode;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }
