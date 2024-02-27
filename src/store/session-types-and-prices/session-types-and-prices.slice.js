@@ -11,9 +11,6 @@ export const sessionTypesAndPricesSlice = createSlice({
   name: "sessionTypesAndPrices",
   initialState: INITIAL_STATE,
   reducers: {
-    setSessionTypesAndPrices(state, action) {
-      state.sessionTypesAndPrices = action.payload;
-    },
     resetSessionPricesError(state) {
       state.sessionTypesAndPricesError = null;
     },
@@ -89,11 +86,8 @@ export const sessionTypesAndPricesSlice = createSlice({
   },
 });
 
-export const {
-  setSessionTypesAndPrices,
-  resetSessionPricesError,
-  resetSessionTypesAndPricesState,
-} = sessionTypesAndPricesSlice.actions;
+export const { resetSessionPricesError, resetSessionTypesAndPricesState } =
+  sessionTypesAndPricesSlice.actions;
 export const { selectSessionTypesAndPricesSelectors } =
   sessionTypesAndPricesSlice.selectors;
 
