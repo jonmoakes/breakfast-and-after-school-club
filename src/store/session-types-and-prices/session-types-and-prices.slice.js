@@ -1,43 +1,10 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-
-import { createSessionTypesAndPricesObject } from "../../functions/create-session-types-and-prices-object";
-import { manageDatabaseDocument } from "../../utils/appwrite/appwrite-functions";
-
-export const getSessionPricesAsync = createAsyncThunk(
-  "getSessionPrices",
-  async ({ databaseId, collectionId, documentId }, thunkAPI) => {
-    try {
-      const getPrices = await manageDatabaseDocument(
-        "get",
-        databaseId,
-        collectionId,
-        documentId
-      );
-      const {
-        morningSessionPrice,
-        afternoonShortSessionPrice,
-        afternoonLongSessionPrice,
-        morningAndAfternoonShortSessionPrice,
-        morningAndAfternoonLongSessionPrice,
-      } = getPrices;
-
-      return createSessionTypesAndPricesObject(
-        morningSessionPrice,
-        afternoonShortSessionPrice,
-        afternoonLongSessionPrice,
-        morningAndAfternoonShortSessionPrice,
-        morningAndAfternoonLongSessionPrice
-      );
-    } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
-    }
-  }
-);
+import { createSelector, createSlice } from "@reduxjs/toolkit";
+import { getSessionPricesAsync } from "./session-types-and-prices.thunks";
 
 const INITIAL_STATE = {
-  isLoading: false,
+  sessionTypesAndPricesIsLoading: false,
   sessionTypesAndPrices: {},
-  error: null,
+  sessionTypesAndPricesError: null,
 };
 
 export const sessionTypesAndPricesSlice = createSlice({
@@ -48,26 +15,76 @@ export const sessionTypesAndPricesSlice = createSlice({
       state.sessionTypesAndPrices = action.payload;
     },
     resetSessionPricesError(state) {
-      state.error = null;
+      state.sessionTypesAndPricesError = null;
     },
     resetSessionTypesAndPricesState: () => {
       return INITIAL_STATE;
     },
   },
+  selectors: {
+    selectSessionTypesAndPricesSelectors: createSelector(
+      (state) => state.sessionTypesAndPricesIsLoading,
+      (state) => state.sessionTypesAndPrices,
+      (state) => state.sessionTypesAndPricesError,
+      (
+        sessionTypesAndPricesIsLoading,
+        sessionTypesAndPrices,
+        sessionTypesAndPricesError
+      ) => {
+        const morningSessionType =
+          sessionTypesAndPrices?.morningSession?.sessionType ?? "";
+        const morningSessionPrice =
+          sessionTypesAndPrices?.morningSession?.price ?? null;
+        const afternoonShortSessionType =
+          sessionTypesAndPrices?.afternoonShortSession?.sessionType ?? "";
+        const afternoonShortSessionPrice =
+          sessionTypesAndPrices?.afternoonShortSession?.price ?? null;
+        const afternoonLongSessionType =
+          sessionTypesAndPrices?.afternoonLongSession?.sessionType ?? "";
+        const afternoonLongSessionPrice =
+          sessionTypesAndPrices?.afternoonLongSession?.price ?? null;
+        const morningAndAfternoonShortSessionType =
+          sessionTypesAndPrices?.morningAndAfternoonShortSession?.sessionType ??
+          "";
+        const morningAndAfternoonShortSessionPrice =
+          sessionTypesAndPrices?.morningAndAfternoonShortSession?.price ?? null;
+        const morningAndAfternoonLongSessionType =
+          sessionTypesAndPrices?.morningAndAfternoonLongSession?.sessionType ??
+          "";
+        const morningAndAfternoonLongSessionPrice =
+          sessionTypesAndPrices?.morningAndAfternoonLongSession?.price ?? null;
+        return {
+          sessionTypesAndPricesIsLoading,
+          sessionTypesAndPrices,
+          sessionTypesAndPricesError,
+          morningSessionType,
+          morningSessionPrice,
+          afternoonShortSessionType,
+          afternoonShortSessionPrice,
+          afternoonLongSessionType,
+          afternoonLongSessionPrice,
+          morningAndAfternoonShortSessionType,
+          morningAndAfternoonShortSessionPrice,
+          morningAndAfternoonLongSessionType,
+          morningAndAfternoonLongSessionPrice,
+        };
+      }
+    ),
+  },
   extraReducers: (builder) => {
     builder
       .addCase(getSessionPricesAsync.pending, (state) => {
-        state.isLoading = true;
+        state.sessionTypesAndPricesIsLoading = true;
       })
       .addCase(getSessionPricesAsync.fulfilled, (state, action) => {
-        state.isLoading = false;
+        state.sessionTypesAndPricesIsLoading = false;
         state.sessionTypesAndPrices = action.payload;
-        state.error = null;
+        state.sessionTypesAndPricesError = null;
       })
       .addCase(getSessionPricesAsync.rejected, (state, action) => {
-        state.isLoading = false;
+        state.sessionTypesAndPricesIsLoading = false;
         state.sessionTypesAndPrices = {};
-        state.error = action.payload;
+        state.sessionTypesAndPricesError = action.payload;
       });
   },
 });
@@ -77,5 +94,7 @@ export const {
   resetSessionPricesError,
   resetSessionTypesAndPricesState,
 } = sessionTypesAndPricesSlice.actions;
+export const { selectSessionTypesAndPricesSelectors } =
+  sessionTypesAndPricesSlice.selectors;
 
 export const sessionTypesAndPricesReducer = sessionTypesAndPricesSlice.reducer;

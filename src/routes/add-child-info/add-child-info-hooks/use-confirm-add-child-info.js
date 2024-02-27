@@ -32,8 +32,6 @@ const useConfirmAddChildInfo = () => {
   const dispatch = useDispatch();
   const { childName, age } = childInfo;
   const { name, email } = currentUser;
-
-  //childrenCollectionId is being renamed to collectionId
   const { databaseId, childrenCollectionId: collectionId } = envVariables;
 
   const confirmResult = () => {

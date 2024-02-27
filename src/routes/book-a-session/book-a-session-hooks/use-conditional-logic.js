@@ -4,10 +4,7 @@ import { useSelector } from "react-redux";
 import { selectRequestDateDataSelectors } from "../../../store/request-date-data/request-date-data.slice";
 import { selectCurrentDateAndTime } from "../../../store/date-and-time/date-and-time.slice";
 import { selectCurrentUser } from "../../../store/user/user.selector";
-import {
-  selectGetPricesError,
-  selectMorningSessionPrice,
-} from "../../../store/session-types-and-prices/session-types-and-prices.selector";
+import { selectSessionTypesAndPricesSelectors } from "../../../store/session-types-and-prices/session-types-and-prices.slice";
 import { selectGetUsersChildrenSelectors } from "../../../store/get-users-children/get-users-children.slice";
 import { selectBookSessionSelectors } from "../../../store/book-session/book-session.slice";
 import { selectGetUserBookingsError } from "../../../store/user-bookings/user-bookings.selector";
@@ -16,7 +13,6 @@ import { priceMultipliedBy100 } from "../../../functions/price-multiplied-by-100
 
 const useConditionalLogic = () => {
   const { currentDateAndTime } = useSelector(selectCurrentDateAndTime);
-  const morningSessionPrice = useSelector(selectMorningSessionPrice);
   const {
     chosenDate,
     dateData,
@@ -32,7 +28,19 @@ const useConditionalLogic = () => {
     selectBookSessionSelectors
   );
   const getUsersBookingsError = useSelector(selectGetUserBookingsError);
-  const getSessionTypesAndPricesError = useSelector(selectGetPricesError);
+  const {
+    sessionTypesAndPricesError,
+    morningSessionType,
+    morningSessionPrice,
+    afternoonShortSessionType,
+    afternoonShortSessionPrice,
+    afternoonLongSessionType,
+    afternoonLongSessionPrice,
+    morningAndAfternoonShortSessionType,
+    morningAndAfternoonShortSessionPrice,
+    morningAndAfternoonLongSessionType,
+    morningAndAfternoonLongSessionPrice,
+  } = useSelector(selectSessionTypesAndPricesSelectors);
 
   const { walletBalance } = currentUser;
   const date = dateData ? dateData.date : "";
@@ -52,7 +60,7 @@ const useConditionalLogic = () => {
   const errorFetchingData = () => {
     return getUsersChildrenError ||
       getUsersBookingsError ||
-      getSessionTypesAndPricesError ||
+      sessionTypesAndPricesError ||
       (requestDateDataError && requestDateDataError !== "is not available")
       ? true
       : false;
@@ -248,10 +256,19 @@ const useConditionalLogic = () => {
     notEnoughMorningSpacesForMultipleChildrenInMorningAndAfternoonSession,
     notEnoughAfternoonSpacesForMultipleChildrenInMorningAndAfternoonSession,
     dateHasEarlyFinishTime,
-    morningSessionPrice,
     formattedTodaysDate,
     requestDateDataError,
     afternoonCloseTime,
+    morningSessionType,
+    morningSessionPrice,
+    afternoonShortSessionType,
+    afternoonShortSessionPrice,
+    afternoonLongSessionType,
+    afternoonLongSessionPrice,
+    morningAndAfternoonShortSessionType,
+    morningAndAfternoonShortSessionPrice,
+    morningAndAfternoonLongSessionType,
+    morningAndAfternoonLongSessionPrice,
   };
 };
 

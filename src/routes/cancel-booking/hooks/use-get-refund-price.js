@@ -1,25 +1,19 @@
 import { useSelector } from "react-redux";
 
 import { selectUserBookingToDelete } from "../../../store/user-booking-to-delete/user-booking-to-delete.selector";
-import {
-  selectMorningSessionPrice,
-  selectAfternoonShortSessionPrice,
-  selectAfternoonLongSessionPrice,
-  selectMorningAndAfternoonLongSessionPrice,
-  selectMorningAndAfternoonShortSessionPrice,
-} from "../../../store/session-types-and-prices/session-types-and-prices.selector";
+import { selectSessionTypesAndPricesSelectors } from "../../../store/session-types-and-prices/session-types-and-prices.slice";
 
 const useGetRefundPrice = () => {
   const userBookingToDelete = useSelector(selectUserBookingToDelete);
-  const morningPrice = useSelector(selectMorningSessionPrice);
-  const afternoonShortPrice = useSelector(selectAfternoonShortSessionPrice);
-  const afternoonLongPrice = useSelector(selectAfternoonLongSessionPrice);
-  const morningAndAfternoonShortPrice = useSelector(
-    selectMorningAndAfternoonShortSessionPrice
-  );
-  const morningAndAfternoonLongPrice = useSelector(
-    selectMorningAndAfternoonLongSessionPrice
-  );
+
+  const {
+    morningSessionPrice,
+    afternoonShortSessionPrice,
+    afternoonLongSessionPrice,
+    morningAndAfternoonShortSessionPrice,
+    morningAndAfternoonLongSessionPrice,
+  } = useSelector(selectSessionTypesAndPricesSelectors);
+
   const { sessionType } = userBookingToDelete || {};
 
   const childrensName = userBookingToDelete
@@ -29,15 +23,15 @@ const useGetRefundPrice = () => {
   const getRefundPrice = () => {
     switch (sessionType) {
       case "afternoonShort":
-        return afternoonShortPrice * 100;
+        return afternoonShortSessionPrice * 100;
       case "afternoonLong":
-        return afternoonLongPrice * 100;
+        return afternoonLongSessionPrice * 100;
       case "morningAndAfternoonShort":
-        return morningAndAfternoonShortPrice * 100;
+        return morningAndAfternoonShortSessionPrice * 100;
       case "morningAndAfternoonLong":
-        return morningAndAfternoonLongPrice * 100;
+        return morningAndAfternoonLongSessionPrice * 100;
       default:
-        return morningPrice * 100;
+        return morningSessionPrice * 100;
     }
   };
 

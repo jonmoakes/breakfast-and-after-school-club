@@ -5,23 +5,21 @@ import useConfirmSession from "../../book-a-session-hooks/use-confirm-session";
 import useGetPriceOfBooking from "../../../../hooks/use-get-price-of-booking";
 
 import { selectCurrentUser } from "../../../../store/user/user.selector";
-import {
-  selectAfternoonLongSessionType,
-  selectAfternoonLongSessionPrice,
-} from "../../../../store/session-types-and-prices/session-types-and-prices.selector";
 
 import { YellowGreenButton } from "../../../../styles/buttons/buttons.styles";
 import { BlackHr } from "../../../../styles/hr/hr.styles";
 
 const AfternoonSessionLongButton = () => {
-  const { onlyAfternoonSessionsAvailable, allSessionsAvailable } =
-    useConditionalLogic();
+  const {
+    onlyAfternoonSessionsAvailable,
+    allSessionsAvailable,
+    afternoonLongSessionType: sessionType,
+    afternoonLongSessionPrice: sessionPrice,
+  } = useConditionalLogic();
   const { confirmSession } = useConfirmSession();
   const { getPriceOfBooking } = useGetPriceOfBooking();
 
   const currentUser = useSelector(selectCurrentUser);
-  const sessionType = useSelector(selectAfternoonLongSessionType);
-  const sessionPrice = useSelector(selectAfternoonLongSessionPrice);
 
   const { walletBalance } = currentUser;
 

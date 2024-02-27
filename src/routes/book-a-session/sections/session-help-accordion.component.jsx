@@ -1,7 +1,8 @@
 import { useSelector, useDispatch } from "react-redux";
 
+import useConditionalLogic from "../book-a-session-hooks/use-conditional-logic";
+
 import { selectShouldShowElement } from "../../../store/should-show-element/should-show-element.selector";
-import { selectMorningSessionPrice } from "../../../store/session-types-and-prices/session-types-and-prices.selector";
 
 import {
   hideElement,
@@ -20,8 +21,9 @@ import { StyledLink } from "../../../styles/link/link.styles";
 import { userBookingsRoute } from "../../../strings/strings";
 
 const SessionHelpAccordion = () => {
+  const { morningSessionPrice } = useConditionalLogic();
+
   const shouldShowElement = useSelector(selectShouldShowElement);
-  const morningSessionPrice = useSelector(selectMorningSessionPrice);
 
   const dispatch = useDispatch();
 

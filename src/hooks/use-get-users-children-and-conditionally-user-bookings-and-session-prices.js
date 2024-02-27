@@ -4,7 +4,7 @@ import { useLocation } from "react-router-dom";
 
 import { getUsersChildrenAsync } from "../store/get-users-children/get-users-children.thunks";
 import { getUserBookingsAsync } from "../store/user-bookings/user-bookings.slice";
-import { getSessionPricesAsync } from "../store/session-types-and-prices/session-types-and-prices.slice";
+import { getSessionPricesAsync } from "../store/session-types-and-prices/session-types-and-prices.thunks";
 import {
   selectCurrentUser,
   selectEnvironmentVariables,

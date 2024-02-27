@@ -4,7 +4,7 @@ import useConfirmCancelBooking from "./hooks/use-confirm-cancel-booking";
 import useCancelAndReturn from "../../hooks/use-cancel-and-return";
 
 import { selectIsLoading } from "../../store/user-booking-to-delete/user-booking-to-delete.selector";
-import { selectGetPricesError } from "../../store/session-types-and-prices/session-types-and-prices.selector";
+import { selectSessionTypesAndPricesSelectors } from "../../store/session-types-and-prices/session-types-and-prices.slice";
 
 import Loader from "../../components/loader/loader.component";
 import WalletUpdateInfo from "./wallet-update-info.component";
@@ -22,7 +22,9 @@ const LoaderTitleButtons = () => {
 
   const isLoading = useSelector(selectIsLoading);
   const { sendEmailIsLoading } = useSelector(selectSendEmailSelectors);
-  const sessionPricesError = useSelector(selectGetPricesError);
+  const { sessionTypesAndPricesError } = useSelector(
+    selectSessionTypesAndPricesSelectors
+  );
 
   return (
     <>
@@ -32,7 +34,7 @@ const LoaderTitleButtons = () => {
         <BlackTitle>cancel booking</BlackTitle>
       </ParentDiv>
 
-      {!sessionPricesError ? (
+      {!sessionTypesAndPricesError ? (
         <>
           <WalletUpdateInfo />
 

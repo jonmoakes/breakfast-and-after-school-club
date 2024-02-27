@@ -1,13 +1,8 @@
 import { useSelector, useDispatch } from "react-redux";
 
+import useConditionalLogic from "../book-a-session-hooks/use-conditional-logic";
+
 import { selectRequestDateDataSelectors } from "../../../store/request-date-data/request-date-data.slice";
-import {
-  selectMorningSessionPrice,
-  selectAfternoonShortSessionPrice,
-  selectAfternoonLongSessionPrice,
-  selectMorningAndAfternoonShortSessionPrice,
-  selectMorningAndAfternoonLongSessionPrice,
-} from "../../../store/session-types-and-prices/session-types-and-prices.selector";
 import { selectShouldShowSecondElement } from "../../../store/should-show-element/should-show-element.selector";
 import {
   hideSecondElement,
@@ -25,16 +20,15 @@ import { BlueSpan } from "../../../styles/span/span.styles";
 import { BlackHr } from "../../../styles/hr/hr.styles";
 
 const TimesAndPricesAccordion = () => {
+  const {
+    morningSessionPrice,
+    afternoonShortSessionPrice,
+    afternoonLongSessionPrice,
+    morningAndAfternoonShortSessionPrice,
+    morningAndAfternoonLongSessionPrice,
+  } = useConditionalLogic();
+
   const shouldShowSecondElement = useSelector(selectShouldShowSecondElement);
-  const morningPrice = useSelector(selectMorningSessionPrice);
-  const afternoonShortPrice = useSelector(selectAfternoonShortSessionPrice);
-  const afternoonLongPrice = useSelector(selectAfternoonLongSessionPrice);
-  const morningAndAfternoonShortPrice = useSelector(
-    selectMorningAndAfternoonShortSessionPrice
-  );
-  const morningAndAfternoonLongPrice = useSelector(
-    selectMorningAndAfternoonLongSessionPrice
-  );
   const {
     morningSessionTime,
     afternoonShortSessionTime,
@@ -64,40 +58,42 @@ const TimesAndPricesAccordion = () => {
               morning session:
               <br />
               {morningSessionTime}
-              <br /> cost: <BlueSpan>£{morningPrice}</BlueSpan> per child.
+              <br /> cost: <BlueSpan>£{morningSessionPrice}</BlueSpan> per
+              child.
             </Text>
             <BlackHr />
             <Text>
               afternoon session ( short ):
               <br />
               {afternoonShortSessionTime}
-              <br /> cost: <BlueSpan>£{afternoonShortPrice}</BlueSpan> per
-              child.
+              <br /> cost: <BlueSpan>
+                £{afternoonShortSessionPrice}
+              </BlueSpan>{" "}
+              per child.
             </Text>
             <BlackHr />
             <Text>
               afternoon session ( long ):
               <br />
               {afternoonLongSessionTime}
-              <br /> cost: <BlueSpan>£{afternoonLongPrice}</BlueSpan> per child.
+              <br /> cost: <BlueSpan>£{afternoonLongSessionPrice}</BlueSpan> per
+              child.
             </Text>
             <BlackHr />
             <Text>
               morning and afternoon sessions
               <br />( short ):
-              <br /> cost: <BlueSpan>
-                £{morningAndAfternoonShortPrice}
-              </BlueSpan>{" "}
-              per child.
+              <br /> cost:{" "}
+              <BlueSpan>£{morningAndAfternoonShortSessionPrice}</BlueSpan> per
+              child.
             </Text>
             <BlackHr />
             <Text>
               morning and afternoon sessions
               <br />( long ):
-              <br /> cost: <BlueSpan>
-                £{morningAndAfternoonLongPrice}
-              </BlueSpan>{" "}
-              per child.
+              <br /> cost:{" "}
+              <BlueSpan>£{morningAndAfternoonLongSessionPrice}</BlueSpan> per
+              child.
             </Text>
             <BlackHr />
             <Text>

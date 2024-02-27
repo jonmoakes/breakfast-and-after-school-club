@@ -8,7 +8,7 @@ const useAddSessionBookingInfoErrorSwal = () => {
   const { fireSwal } = useFireSwal();
   const { date } = useConditionalLogic();
 
-  //passing the date to stop it being undefined as store is clered by the time we get there if you try to select it in the hook itself
+  //passing the date to stop it being undefined as store is cleared by the time we get there if you try to select it in the hook itself
   const { sendAddBookingInfoErrorEmail } =
     useSendAddBookingInfoErrorEmail(date);
 

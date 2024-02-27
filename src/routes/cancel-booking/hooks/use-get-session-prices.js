@@ -2,16 +2,14 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import { selectEnvironmentVariables } from "../../../store/user/user.selector";
-import {
-  selectGetPricesError,
-  selectSessionTypesAndPrices,
-} from "../../../store/session-types-and-prices/session-types-and-prices.selector";
-import { getSessionPricesAsync } from "../../../store/session-types-and-prices/session-types-and-prices.slice";
+import { selectSessionTypesAndPricesSelectors } from "../../../store/session-types-and-prices/session-types-and-prices.slice";
+import { getSessionPricesAsync } from "../../../store/session-types-and-prices/session-types-and-prices.thunks";
 
 const useGetSessionPrices = () => {
-  const sessionTypesAndPrices = useSelector(selectSessionTypesAndPrices);
+  const { sessionTypesAndPrices, sessionTypesAndPricesError } = useSelector(
+    selectSessionTypesAndPricesSelectors
+  );
   const envVariables = useSelector(selectEnvironmentVariables);
-  const getPricesError = useSelector(selectGetPricesError);
   const {
     databaseId,
     sessionPricesCollectionId: collectionId,
@@ -21,7 +19,8 @@ const useGetSessionPrices = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (Object.keys(sessionTypesAndPrices).length || getPricesError) return;
+    if (Object.keys(sessionTypesAndPrices).length || sessionTypesAndPricesError)
+      return;
     dispatch(getSessionPricesAsync({ databaseId, collectionId, documentId }));
   }, [
     dispatch,
@@ -29,7 +28,7 @@ const useGetSessionPrices = () => {
     collectionId,
     documentId,
     sessionTypesAndPrices,
-    getPricesError,
+    sessionTypesAndPricesError,
   ]);
 };
 

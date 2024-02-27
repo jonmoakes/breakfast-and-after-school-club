@@ -1,7 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
 
-import { selectGetPricesError } from "../store/session-types-and-prices/session-types-and-prices.selector";
 import { selectGetUsersChildrenSelectors } from "../store/get-users-children/get-users-children.slice";
 import { selectGetUserBookingsError } from "../store/user-bookings/user-bookings.selector";
 import { resetCardInputState } from "../store/card-input-result/card-input-result.slice";
@@ -25,7 +24,10 @@ import { resetDeleteChildInfoState } from "../store/delete-child-info/delete-chi
 import { resetBookSessionState } from "../store/book-session/book-session.slice";
 import { resetSendEmailState } from "../store/send-email/send-email.slice";
 import { resetBookingToDeleteState } from "../store/user-booking-to-delete/user-booking-to-delete.slice";
-import { resetSessionPricesError } from "../store/session-types-and-prices/session-types-and-prices.slice";
+import {
+  resetSessionPricesError,
+  selectSessionTypesAndPricesSelectors,
+} from "../store/session-types-and-prices/session-types-and-prices.slice";
 import { resetUsersChildrenError } from "../store/get-users-children/get-users-children.slice";
 import { resetGetUserBookingsError } from "../store/user-bookings/user-bookings.slice";
 import { resetBookedSessionsState } from "../store/booked-sessions/booked-sessions.slice";
@@ -49,7 +51,9 @@ import {
 } from "../strings/strings";
 
 const useResetStore = () => {
-  const sessionPricesError = useSelector(selectGetPricesError);
+  const { sessionTypesAndPricesError } = useSelector(
+    selectSessionTypesAndPricesSelectors
+  );
   const { getUsersChildrenError } = useSelector(
     selectGetUsersChildrenSelectors
   );
@@ -96,7 +100,7 @@ const useResetStore = () => {
         dispatch(setCurrentDateAndTime(new Date()));
         dispatch(resetBookSessionState());
         dispatch(resetSendEmailState());
-        if (sessionPricesError) {
+        if (sessionTypesAndPricesError) {
           dispatch(resetSessionPricesError());
         } else if (getUsersChildrenError) {
           dispatch(resetUsersChildrenError());
