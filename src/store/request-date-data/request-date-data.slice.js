@@ -43,9 +43,6 @@ const requestDateDataSlice = createSlice({
       (state) => state.earlyFinishDates,
       (state) => state.bookingClosingTimes,
       (state) => state.sessionTimes,
-      (state) => state.sessionTimes?.morningSessionTime ?? null,
-      (state) => state.sessionTimes?.afternoonShortSessionTime ?? null,
-      (state) => state.sessionTimes?.afternoonLongSessionTime ?? null,
       (
         chosenDate,
         requestDateDataIsLoading,
@@ -53,11 +50,14 @@ const requestDateDataSlice = createSlice({
         requestDateDataError,
         earlyFinishDates,
         bookingClosingTimes,
-        sessionTimes,
-        morningSessionTime,
-        afternoonShortSessionTime,
-        afternoonLongSessionTime
+        sessionTimes
       ) => {
+        const morningSessionTime = sessionTimes?.morningSessionTime ?? null;
+        const afternoonShortSessionTime =
+          sessionTimes?.afternoonShortSessionTime ?? null;
+        const afternoonLongSessionTime =
+          sessionTimes?.afternoonLongSessionTime ?? null;
+
         return {
           chosenDate,
           requestDateDataIsLoading,

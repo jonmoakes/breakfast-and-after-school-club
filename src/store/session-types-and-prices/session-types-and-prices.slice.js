@@ -50,6 +50,7 @@ export const sessionTypesAndPricesSlice = createSlice({
           "";
         const morningAndAfternoonLongSessionPrice =
           sessionTypesAndPrices?.morningAndAfternoonLongSession?.price ?? null;
+
         return {
           sessionTypesAndPricesIsLoading,
           sessionTypesAndPrices,
