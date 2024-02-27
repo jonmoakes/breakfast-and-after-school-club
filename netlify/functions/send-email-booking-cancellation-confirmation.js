@@ -13,10 +13,10 @@ export const handler = async (event) => {
   } = JSON.parse(event.body);
 
   try {
-    const response = await client.sendEmailWithTemplate({
+    await client.sendEmailWithTemplate({
       From: process.env.VITE_APP_ADMIN_EMAIL,
       To: email,
-      TemplateAlias: "send-booking-cancellation-confirmation",
+      TemplateAlias: "send-email-booking-cancellation-confirmation",
       TemplateModel: {
         product_url: "https://www.breakfast-and-after-school-club.co.uk",
         product_name: "Breakfast & After School Club",
@@ -30,15 +30,11 @@ export const handler = async (event) => {
     });
 
     return {
-      response,
       statusCode: 202,
-      body: "Email sent successfully",
     };
   } catch (error) {
-    console.log(error);
     return {
       statusCode: 500,
-      body: JSON.stringify({ error: error.message }),
     };
   }
 };

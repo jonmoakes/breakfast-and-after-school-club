@@ -10,7 +10,7 @@ const defaultRequestDateData = {
   chosenDate: "",
   requestDateDataIsLoading: false,
   dateData: null,
-  requestDateDataError: "",
+  requestDateDataError: null,
 };
 
 const INITIAL_STATE = {
@@ -83,7 +83,7 @@ const requestDateDataSlice = createSlice({
         //can reset chosenDateToEmpty as will have the same date from the date data.
         state.requestDateData.chosenDate = "";
         state.requestDateData.dateData = action.payload;
-        state.requestDateData.requestDateDataError = "";
+        state.requestDateData.requestDateDataError = null;
       })
       .addCase(requestDateDataAsync.rejected, (state, action) => {
         state.requestDateData.requestDateDataIsLoading = false;

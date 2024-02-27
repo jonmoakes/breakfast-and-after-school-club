@@ -9,7 +9,7 @@ import NetworkError from "../../components/errors/network-error.component";
 import BalanceCheckAndBookSessionHelp from "./sections/balance-check-and-book-session-help.component";
 import ChooseDate from "./sections/choose-date.component";
 import ChooseSessions from "./sections/choose-sessions.component";
-import ErrorFetchingRequiredData from "../../components/errors/error-fetching-required-data.component";
+import ShowFetchErrors from "../../components/errors/show-fetch-errors.component";
 
 import { Container } from "../../styles/container/container.styles";
 import { ParentDiv } from "../../styles/div/div.styles";
@@ -34,7 +34,7 @@ const BookASession = () => {
       {isOnline ? (
         <>
           {errorFetchingData() ? (
-            <ErrorFetchingRequiredData />
+            <ShowFetchErrors />
           ) : (
             <>
               <BalanceCheckAndBookSessionHelp />

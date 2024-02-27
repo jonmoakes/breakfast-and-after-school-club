@@ -6,7 +6,7 @@ import useGetRefundPrice from "../use-get-refund-price";
 
 import { selectCurrentUser } from "../../../../store/user/user.selector";
 import { selectUserBookingToDelete } from "../../../../store/user-booking-to-delete/user-booking-to-delete.selector";
-import { sendBookingCancellationConfirmationEmailAsync } from "../../../../store/send-email/send-email.thunks";
+import { sendEmailBookingCancellationConfirmationAsync } from "../../../../store/send-email/send-email.thunks";
 import { selectGetUsersChildrenSelectors } from "../../../../store/get-users-children/get-users-children.slice";
 
 import {
@@ -31,7 +31,7 @@ const useSendCancellationEmail = () => {
 
   const sendCancellationEmail = () => {
     dispatch(
-      sendBookingCancellationConfirmationEmailAsync({
+      sendEmailBookingCancellationConfirmationAsync({
         email,
         name,
         date,
@@ -42,7 +42,7 @@ const useSendCancellationEmail = () => {
       })
     ).then((resultAction) => {
       if (
-        sendBookingCancellationConfirmationEmailAsync.fulfilled.match(
+        sendEmailBookingCancellationConfirmationAsync.fulfilled.match(
           resultAction
         )
       ) {

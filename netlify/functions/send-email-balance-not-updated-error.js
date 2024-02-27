@@ -5,7 +5,7 @@ export const handler = async (event) => {
   const { appOwnerEmail, id, refundAmount } = JSON.parse(event.body);
 
   try {
-    const response = await client.sendEmailWithTemplate({
+    await client.sendEmailWithTemplate({
       From: process.env.VITE_APP_ADMIN_EMAIL,
       To: appOwnerEmail,
       TemplateAlias: "send-email-balance-not-updated-error",
@@ -18,15 +18,11 @@ export const handler = async (event) => {
     });
 
     return {
-      response,
       statusCode: 202,
-      body: "Email sent successfully",
     };
   } catch (error) {
-    console.log(error);
     return {
       statusCode: 500,
-      body: JSON.stringify({ error: error.message }),
     };
   }
 };

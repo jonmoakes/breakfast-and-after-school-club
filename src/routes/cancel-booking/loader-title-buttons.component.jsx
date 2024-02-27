@@ -14,17 +14,19 @@ import { ParentDiv } from "../../styles/div/div.styles";
 import { BlackTitle } from "../../styles/h1/h1.styles";
 import { Text } from "../../styles/p/p.styles";
 import { YellowGreenButton } from "../../styles/buttons/buttons.styles";
+import { selectSendEmailSelectors } from "../../store/send-email/send-email.slice";
 
 const LoaderTitleButtons = () => {
   const { confirmCancelBooking } = useConfirmCancelBooking();
   const { cancelAndReturn } = useCancelAndReturn();
 
   const isLoading = useSelector(selectIsLoading);
+  const { sendEmailIsLoading } = useSelector(selectSendEmailSelectors);
   const sessionPricesError = useSelector(selectGetPricesError);
 
   return (
     <>
-      {isLoading ? <Loader /> : null}
+      {isLoading || sendEmailIsLoading ? <Loader /> : null}
 
       <ParentDiv>
         <BlackTitle>cancel booking</BlackTitle>

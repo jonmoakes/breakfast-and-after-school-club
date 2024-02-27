@@ -5,7 +5,7 @@ import { format } from "date-fns";
 import { getSessionTypeString } from "../../functions/get-session-type-string";
 
 import {
-  SEND_EMAIL_CANCELLATION_ENDPOINT,
+  SEND_EMAIL_BOOKING_CANCELLATION_CONFIRMATION_ENDPOINT,
   SEND_EMAIL_BOOKING_CONFIRMATION_ENDPOINT,
   SEND_EMAIL_BOOKING_NOT_ADDED_TO_DATABASE_ENDPOINT,
   SEND_EMAIL_RESET_SESSION_SPACES_ERROR_ENDPOINT,
@@ -49,8 +49,8 @@ export const sendEmailBookingConfirmationAsync = createAsyncThunk(
         }
       );
 
-      const { status } = response;
-      return status;
+      const statusCode = response.status;
+      return statusCode;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }
@@ -83,8 +83,8 @@ export const sendEmailBookingNotAddedToDatabaseAsync = createAsyncThunk(
         }
       );
 
-      const { status } = response;
-      return status;
+      const statusCode = response.status;
+      return statusCode;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }
@@ -108,16 +108,16 @@ export const sendEmailResetSessionSpacesErrorAsync = createAsyncThunk(
         }
       );
 
-      const { status } = response;
-      return status;
+      const statusCode = response.status;
+      return statusCode;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }
   }
 );
 
-export const sendBookingCancellationConfirmationEmailAsync = createAsyncThunk(
-  "sendBookingCancellationConfirmationEmail",
+export const sendEmailBookingCancellationConfirmationAsync = createAsyncThunk(
+  "sendEmailBookingCancellationConfirmation",
   async (
     {
       email,
@@ -136,18 +136,21 @@ export const sendBookingCancellationConfirmationEmailAsync = createAsyncThunk(
       const fundsAddedToWallet = refundPrice / 100;
       const newBalance = walletBalance / 100;
 
-      const response = await axios.post(SEND_EMAIL_CANCELLATION_ENDPOINT, {
-        email,
-        name,
-        formattedDate,
-        sessionBooked,
-        childrensName,
-        fundsAddedToWallet,
-        newBalance,
-      });
+      const response = await axios.post(
+        SEND_EMAIL_BOOKING_CANCELLATION_CONFIRMATION_ENDPOINT,
+        {
+          email,
+          name,
+          formattedDate,
+          sessionBooked,
+          childrensName,
+          fundsAddedToWallet,
+          newBalance,
+        }
+      );
 
-      const { status } = response;
-      return status;
+      const statusCode = response.status;
+      return statusCode;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }
@@ -180,8 +183,8 @@ export const sendEmailResetSessionSpacesAndBalanceErrorAsync = createAsyncThunk(
         }
       );
 
-      const { status } = response;
-      return status;
+      const statusCode = response.status;
+      return statusCode;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }
@@ -201,8 +204,8 @@ export const sendEmailBalanceNotUpdatedErrorAsync = createAsyncThunk(
         }
       );
 
-      const { status } = response;
-      return status;
+      const statusCode = response.status;
+      return statusCode;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }
@@ -223,8 +226,8 @@ export const sendEmailWalletFundsNotAddedErrorAsync = createAsyncThunk(
         }
       );
 
-      const { status } = response;
-      return status;
+      const statusCode = response.status;
+      return statusCode;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }

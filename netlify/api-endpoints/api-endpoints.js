@@ -1,7 +1,7 @@
 export const SEND_EMAIL_BOOKING_CONFIRMATION_ENDPOINT =
   "/.netlify/functions/send-email-booking-confirmation";
-export const SEND_EMAIL_CANCELLATION_ENDPOINT =
-  "/.netlify/functions/send-email-cancellation";
+export const SEND_EMAIL_BOOKING_CANCELLATION_CONFIRMATION_ENDPOINT =
+  "/.netlify/functions/send-email-booking-cancellation-confirmation";
 export const SEND_EMAIL_WITH_ERROR_ENDPOINT =
   "/.netlify/functions/send-email-with-error";
 export const SEND_CONTACT_FORM_MESSAGE_ENDPOINT =

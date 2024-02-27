@@ -5,11 +5,10 @@ import WalletBalance from "../../components/wallet-balance/wallet-balance.compon
 import AddFundsHelp from "./errors-help-redirect/add-funds-help.component";
 import ChooseWalletFundsToAdd from "./choose-wallet-funds-to-add.component";
 import CardInput from "./card-input.component";
-import AddFundsError from "./errors-help-redirect/add-funds-error.component";
+import ShowFetchErrors from "../../components/errors/show-fetch-errors.component";
 
 import { Container } from "../../styles/container/container.styles";
 import { ParentDiv } from "../../styles/div/div.styles";
-
 import { BlackTitle } from "../../styles/h1/h1.styles";
 
 const AddFunds = () => {
@@ -30,7 +29,7 @@ const AddFunds = () => {
       </ParentDiv>
 
       <CardInput />
-      <AddFundsError />
+      <ShowFetchErrors />
     </Container>
   );
 };

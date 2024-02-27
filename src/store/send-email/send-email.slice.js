@@ -1,7 +1,7 @@
 import { createSelector, createSlice } from "@reduxjs/toolkit";
 import {
   sendEmailBookingConfirmationAsync,
-  sendBookingCancellationConfirmationEmailAsync,
+  sendEmailBookingCancellationConfirmationAsync,
   sendEmailBookingNotAddedToDatabaseAsync,
   sendEmailResetSessionSpacesErrorAsync,
   sendEmailResetSessionSpacesAndBalanceErrorAsync,
@@ -59,7 +59,7 @@ export const sendEmailSlice = createSlice({
     handleAsyncAction(builder, sendEmailBookingConfirmationAsync);
     handleAsyncAction(builder, sendEmailBookingNotAddedToDatabaseAsync);
     handleAsyncAction(builder, sendEmailResetSessionSpacesErrorAsync);
-    handleAsyncAction(builder, sendBookingCancellationConfirmationEmailAsync);
+    handleAsyncAction(builder, sendEmailBookingCancellationConfirmationAsync);
     handleAsyncAction(builder, sendEmailResetSessionSpacesAndBalanceErrorAsync);
     handleAsyncAction(builder, sendEmailBalanceNotUpdatedErrorAsync);
     handleAsyncAction(builder, sendEmailWalletFundsNotAddedErrorAsync);
