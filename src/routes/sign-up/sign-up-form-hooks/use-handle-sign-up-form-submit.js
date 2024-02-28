@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 import useFireSwal from "../../../hooks/use-fire-swal";
 
-import { selectSignUpFormDetails } from "../../../store/sign-up-form/sign-up-form.selector";
+import { selectSignUpFormSelectors } from "../../../store/sign-up-form/sign-up-form.slice";
 import { signUpAsync } from "../../../store/user/user.thunks";
 
 import { validateEmail } from "../../../functions/validate-email";
@@ -20,7 +20,7 @@ import {
 const useHandleSignUpFormSubmit = () => {
   const { fireSwal } = useFireSwal();
 
-  const signUpFormDetails = useSelector(selectSignUpFormDetails);
+  const { signUpFormDetails } = useSelector(selectSignUpFormSelectors);
 
   const dispatch = useDispatch();
   const { name, email, schoolCode, password, confirmPassword } =

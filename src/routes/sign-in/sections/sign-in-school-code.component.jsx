@@ -1,13 +1,13 @@
 import { useSelector } from "react-redux";
 
-import { selectSignInFormDetails } from "../../../store/sign-in-form/sign-in-form.selector";
+import { selectSignInFormSelectors } from "../../../store/sign-in-form/sign-in-form.slice";
 
 import { LowercasedInput, Label } from "../../../styles/form/form.styles";
 
 const SignInSchoolCode = ({ handleSignInFormChange }) => {
-  const signInformDetails = useSelector(selectSignInFormDetails);
+  const { signInFormDetails } = useSelector(selectSignInFormSelectors);
 
-  const { schoolCode } = signInformDetails;
+  const { schoolCode } = signInFormDetails;
 
   return (
     <>

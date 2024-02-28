@@ -1,16 +1,20 @@
 import { useCallback, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-import { selectSignInFormDetails } from "../../../store/sign-in-form/sign-in-form.selector";
-import { resetSignInFormState } from "../../../store/sign-in-form/sign-in-form.slice";
-import { selectSignUpFormDetails } from "../../../store/sign-up-form/sign-up-form.selector";
-import { resetSignUpFormState } from "../../../store/sign-up-form/sign-up-form.slice";
+import {
+  selectSignInFormSelectors,
+  resetSignInFormState,
+} from "../../../store/sign-in-form/sign-in-form.slice";
+import {
+  resetSignUpFormState,
+  selectSignUpFormSelectors,
+} from "../../../store/sign-up-form/sign-up-form.slice";
 import { selectUserError } from "../../../store/user/user.selector";
 
 const useCheckForAndClearFormDetails = () => {
   const error = useSelector(selectUserError);
-  const signInFormDetails = useSelector(selectSignInFormDetails);
-  const signUpFormDetails = useSelector(selectSignUpFormDetails);
+  const { signInFormDetails } = useSelector(selectSignInFormSelectors);
+  const { signUpFormDetails } = useSelector(selectSignUpFormSelectors);
 
   const dispatch = useDispatch();
 

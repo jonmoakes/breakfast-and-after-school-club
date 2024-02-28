@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSelector, createSlice } from "@reduxjs/toolkit";
 
 const defaultSignInFormDetails = {
   email: "",
@@ -20,9 +20,20 @@ export const signInFormSlice = createSlice({
       return INITIAL_STATE;
     },
   },
+  selectors: {
+    selectSignInFormSelectors: createSelector(
+      (state) => state.signInFormDetails,
+      (signInFormDetails) => {
+        return {
+          signInFormDetails,
+        };
+      }
+    ),
+  },
 });
 
 export const { setSignInFormDetails, resetSignInFormState } =
   signInFormSlice.actions;
+export const { selectSignInFormSelectors } = signInFormSlice.selectors;
 
 export const signInFormReducer = signInFormSlice.reducer;

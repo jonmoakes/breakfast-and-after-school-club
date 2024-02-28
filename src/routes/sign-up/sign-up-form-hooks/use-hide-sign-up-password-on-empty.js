@@ -6,13 +6,12 @@ import {
   hideSignUpConfirmPasswordIsVisible,
   selectPasswordIsVisibleSelectors,
 } from "../../../store/password-is-visible/password-is-visible.slice";
-
-import { selectSignUpFormDetails } from "../../../store/sign-up-form/sign-up-form.selector";
+import { selectSignUpFormSelectors } from "../../../store/sign-up-form/sign-up-form.slice";
 
 const useHideSignUpPasswordOnEmpty = () => {
   const { signUpPasswordIsVisible, signUpConfirmPasswordIsVisible } =
     useSelector(selectPasswordIsVisibleSelectors);
-  const signUpFormDetails = useSelector(selectSignUpFormDetails);
+  const { signUpFormDetails } = useSelector(selectSignUpFormSelectors);
 
   const dispatch = useDispatch();
   const { password, confirmPassword } = signUpFormDetails;

@@ -5,14 +5,14 @@ import {
   hideSignInPasswordIsVisible,
   selectPasswordIsVisibleSelectors,
 } from "../../../store/password-is-visible/password-is-visible.slice";
-import { selectSignInFormDetails } from "../../../store/sign-in-form/sign-in-form.selector";
+import { selectSignInFormSelectors } from "../../../store/sign-in-form/sign-in-form.slice";
 
 const useHideSignUpPasswordOnEmpty = () => {
   const { signInPasswordIsVisible } = useSelector(
     selectPasswordIsVisibleSelectors
   );
 
-  const signInFormDetails = useSelector(selectSignInFormDetails);
+  const { signInFormDetails } = useSelector(selectSignInFormSelectors);
 
   const dispatch = useDispatch();
   const { password } = signInFormDetails;

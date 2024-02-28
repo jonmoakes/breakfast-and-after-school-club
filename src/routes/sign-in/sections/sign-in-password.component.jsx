@@ -6,8 +6,7 @@ import {
   toggleSignInPasswordIsVisible,
   selectPasswordIsVisibleSelectors,
 } from "../../../store/password-is-visible/password-is-visible.slice";
-
-import { selectSignInFormDetails } from "../../../store/sign-in-form/sign-in-form.selector";
+import { selectSignInFormSelectors } from "../../../store/sign-in-form/sign-in-form.slice";
 
 import { RelativePositionDiv } from "../../../styles/div/div.styles";
 import { Label, PasswordInput } from "../../../styles/form/form.styles";
@@ -19,10 +18,10 @@ const SignInPassword = ({ handleSignInFormChange }) => {
   const { signInPasswordIsVisible } = useSelector(
     selectPasswordIsVisibleSelectors
   );
-  const signUpFormDetails = useSelector(selectSignInFormDetails);
+  const { signInFormDetails } = useSelector(selectSignInFormSelectors);
 
   const dispatch = useDispatch();
-  const { password } = signUpFormDetails;
+  const { password } = signInFormDetails;
 
   return (
     <>

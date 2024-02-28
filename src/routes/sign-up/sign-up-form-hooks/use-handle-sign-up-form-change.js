@@ -1,10 +1,12 @@
 import { useSelector, useDispatch } from "react-redux";
 
-import { setSignUpFormDetails } from "../../../store/sign-up-form/sign-up-form.slice";
-import { selectSignUpFormDetails } from "../../../store/sign-up-form/sign-up-form.selector";
+import {
+  setSignUpFormDetails,
+  selectSignUpFormSelectors,
+} from "../../../store/sign-up-form/sign-up-form.slice";
 
 const useHandleSignUpFormChange = () => {
-  const signUpFormDetails = useSelector(selectSignUpFormDetails);
+  const { signUpFormDetails } = useSelector(selectSignUpFormSelectors);
   const dispatch = useDispatch();
 
   const handleSignUpFormChange = (event) => {
