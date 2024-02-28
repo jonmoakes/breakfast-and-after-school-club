@@ -1,10 +1,10 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
 
-import { selectShouldShowElement } from "../../store/should-show-element/should-show-element.selector";
 import {
   hideElement,
   toggleShowElement,
+  selectShouldShowElementSelectors,
 } from "../../store/should-show-element/should-show-element.slice";
 
 import { YellowGreenButton } from "../../styles/buttons/buttons.styles";
@@ -16,10 +16,11 @@ import {
 import { Text } from "../../styles/p/p.styles";
 import { BlueH2 } from "../../styles/h2/h2.styles";
 import { BlackSpan } from "../../styles/span/span.styles";
+
 import { yourCustomerBookingsRoute } from "../../strings/strings";
 
 const UserBookingsHelp = () => {
-  const shouldShowElement = useSelector(selectShouldShowElement);
+  const { shouldShowElement } = useSelector(selectShouldShowElementSelectors);
   const dispatch = useDispatch();
   const location = useLocation();
 

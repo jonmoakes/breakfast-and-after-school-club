@@ -3,10 +3,10 @@ import { useSelector, useDispatch } from "react-redux";
 import useConditionalLogic from "../book-a-session-hooks/use-conditional-logic";
 
 import { selectRequestDateDataSelectors } from "../../../store/request-date-data/request-date-data.slice";
-import { selectShouldShowSecondElement } from "../../../store/should-show-element/should-show-element.selector";
 import {
   hideSecondElement,
   toggleShowSecondElement,
+  selectShouldShowElementSelectors,
 } from "../../../store/should-show-element/should-show-element.slice";
 
 import {
@@ -28,7 +28,9 @@ const TimesAndPricesAccordion = () => {
     morningAndAfternoonLongSessionPrice,
   } = useConditionalLogic();
 
-  const shouldShowSecondElement = useSelector(selectShouldShowSecondElement);
+  const { shouldShowSecondElement } = useSelector(
+    selectShouldShowElementSelectors
+  );
   const {
     morningSessionTime,
     afternoonShortSessionTime,

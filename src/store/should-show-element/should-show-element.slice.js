@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSelector, createSlice } from "@reduxjs/toolkit";
 
 const INITIAL_STATE = {
   shouldShowElement: false,
@@ -31,6 +31,18 @@ export const shouldShowElementSlice = createSlice({
       return INITIAL_STATE;
     },
   },
+  selectors: {
+    selectShouldShowElementSelectors: createSelector(
+      (state) => state.shouldShowElement,
+      (state) => state.shouldShowSecondElement,
+      (shouldShowElement, shouldShowSecondElement) => {
+        return {
+          shouldShowElement,
+          shouldShowSecondElement,
+        };
+      }
+    ),
+  },
 });
 
 export const {
@@ -42,5 +54,7 @@ export const {
   toggleShowSecondElement,
   resetShouldShowElementState,
 } = shouldShowElementSlice.actions;
+export const { selectShouldShowElementSelectors } =
+  shouldShowElementSlice.selectors;
 
 export const shouldShowElementReducer = shouldShowElementSlice.reducer;

@@ -1,9 +1,9 @@
 import { useDispatch, useSelector } from "react-redux";
 
-import { selectShouldShowElement } from "../../store/should-show-element/should-show-element.selector";
 import {
   hideElement,
   toggleShowElement,
+  selectShouldShowElementSelectors,
 } from "../../store/should-show-element/should-show-element.slice";
 
 import { YellowGreenButton } from "../../styles/buttons/buttons.styles";
@@ -17,7 +17,7 @@ import { Text } from "../../styles/p/p.styles";
 import { LowercasedSpan } from "../../styles/span/span.styles";
 
 const ChildInfoAccordion = () => {
-  const shouldShowElement = useSelector(selectShouldShowElement);
+  const { shouldShowElement } = useSelector(selectShouldShowElementSelectors);
   const dispatch = useDispatch();
 
   return (

@@ -1,7 +1,9 @@
 import { useSelector, useDispatch } from "react-redux";
 
-import { selectShouldShowElement } from "../../store/should-show-element/should-show-element.selector";
-import { toggleShowElement } from "../../store/should-show-element/should-show-element.slice";
+import {
+  toggleShowElement,
+  selectShouldShowElementSelectors,
+} from "../../store/should-show-element/should-show-element.slice";
 
 import {
   Accordion,
@@ -13,7 +15,7 @@ import {
 import { Text } from "../../styles/p/p.styles";
 
 const ChosenEntryChildDetailsAccordion = () => {
-  const shouldShowElement = useSelector(selectShouldShowElement);
+  const { shouldShowElement } = useSelector(selectShouldShowElementSelectors);
 
   const dispatch = useDispatch();
 
