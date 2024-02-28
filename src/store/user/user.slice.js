@@ -15,6 +15,8 @@ const initialState = {
   isLoading: false,
   error: null,
   environmentVariables: {},
+  walletBalanceResult: "",
+  walletBalanceError: null,
 };
 
 const userSlice = createSlice({
@@ -24,8 +26,11 @@ const userSlice = createSlice({
     resetUserErrorMessage(state) {
       state.error = null;
     },
-    setWalletBalance(state, action) {
-      state.currentUser.walletBalance = action.payload;
+    resetWalletBalanceResult(state) {
+      state.walletBalanceResult = "";
+    },
+    resetWalletBalanceError(state) {
+      state.walletBalanceError = null;
     },
   },
   extraReducers: (builder) => {
@@ -91,14 +96,20 @@ const userSlice = createSlice({
       .addCase(getUsersWalletBalanceAsync.fulfilled, (state, action) => {
         state.isLoading = false;
         state.currentUser.walletBalance = action.payload;
+        state.walletBalanceResult = "success";
       })
       .addCase(getUsersWalletBalanceAsync.rejected, (state, action) => {
         state.isLoading = false;
-        state.error = action.payload;
+        state.walletBalanceResult = "rejected";
+        state.walletBalanceError = action.payload;
       });
   },
 });
 
-export const { resetUserErrorMessage, setWalletBalance } = userSlice.actions;
+export const {
+  resetUserErrorMessage,
+  resetWalletBalanceResult,
+  resetWalletBalanceError,
+} = userSlice.actions;
 
 export const userReducer = userSlice.reducer;

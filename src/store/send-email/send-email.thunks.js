@@ -18,15 +18,7 @@ import {
 export const sendEmailBookingConfirmationAsync = createAsyncThunk(
   "sendEmailBookingConfirmation",
   async (
-    {
-      email,
-      name,
-      date,
-      sessionType,
-      childrenInBooking,
-      sessionPrice,
-      walletBalance,
-    },
+    { email, name, date, sessionType, childrenInBooking, sessionPrice },
     thunkAPI
   ) => {
     try {
@@ -34,7 +26,6 @@ export const sendEmailBookingConfirmationAsync = createAsyncThunk(
       const sessionBooked = getSessionTypeString(sessionType);
       const kidsInBooking = childrenInBooking;
       const fundsToDeduct = sessionPrice / 100;
-      const balanceRemaining = walletBalance / 100;
 
       const response = await axios.post(
         SEND_EMAIL_BOOKING_CONFIRMATION_ENDPOINT,
@@ -45,7 +36,6 @@ export const sendEmailBookingConfirmationAsync = createAsyncThunk(
           sessionBooked,
           kidsInBooking,
           fundsToDeduct,
-          balanceRemaining,
         }
       );
 
@@ -119,22 +109,13 @@ export const sendEmailResetSessionSpacesErrorAsync = createAsyncThunk(
 export const sendEmailBookingCancellationConfirmationAsync = createAsyncThunk(
   "sendEmailBookingCancellationConfirmation",
   async (
-    {
-      email,
-      name,
-      date,
-      sessionType,
-      childrensName,
-      refundPrice,
-      walletBalance,
-    },
+    { email, name, date, sessionType, childrensName, refundPrice },
     thunkAPI
   ) => {
     try {
       const formattedDate = date ? format(new Date(date), "dd MMMM yyyy") : "";
       const sessionBooked = getSessionTypeString(sessionType);
       const fundsAddedToWallet = refundPrice / 100;
-      const newBalance = walletBalance / 100;
 
       const response = await axios.post(
         SEND_EMAIL_BOOKING_CANCELLATION_CONFIRMATION_ENDPOINT,
@@ -145,7 +126,6 @@ export const sendEmailBookingCancellationConfirmationAsync = createAsyncThunk(
           sessionBooked,
           childrensName,
           fundsAddedToWallet,
-          newBalance,
         }
       );
 

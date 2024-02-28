@@ -8,6 +8,8 @@ import useUpdateBalanceErrorResetSessionDocSwal from "./use-update-balance-error
 import useAddSessionBookingInfoErrorSwal from "./use-add-session-booking-info-error-swal";
 
 import { selectBookSessionSelectors } from "../../../../store/book-session/book-session.slice";
+import { selectWalletBalanceResult } from "../../../../store/user/user.selector";
+import useSuccessfulBookingButFailedBalanceFetchSwal from "./use-successful-booking-but-failed-balance-fetch-swal";
 
 const useGetBookSessionResultSwal = () => {
   const { noActionsFiredYet } = useReturnLogic();
@@ -17,9 +19,12 @@ const useGetBookSessionResultSwal = () => {
     useUpdateBalanceErrorResetSessionDocSwal();
   const { addSessionBookingInfoErrorSwal } =
     useAddSessionBookingInfoErrorSwal();
+  const { successfulBookingButFailedBalanceFetchSwal } =
+    useSuccessfulBookingButFailedBalanceFetchSwal();
 
   const { updateSessionDoc, updateUserDocBalance, addSessionBookingInfo } =
     useSelector(selectBookSessionSelectors);
+  const walletBalanceResult = useSelector(selectWalletBalanceResult);
 
   const updateSessionResult = updateSessionDoc.result;
   const updateBalanceResult = updateUserDocBalance.result;
@@ -30,7 +35,8 @@ const useGetBookSessionResultSwal = () => {
     if (
       updateSessionResult === "fulfilled" &&
       updateBalanceResult === "fulfilled" &&
-      addSessionBookingInfoResult === "fulfilled"
+      addSessionBookingInfoResult === "fulfilled" &&
+      walletBalanceResult === "success"
     ) {
       successSwal();
     } else if (updateSessionResult === "rejected") {
@@ -46,6 +52,13 @@ const useGetBookSessionResultSwal = () => {
       addSessionBookingInfoResult === "rejected"
     ) {
       addSessionBookingInfoErrorSwal();
+    } else if (
+      updateSessionResult === "fulfilled" &&
+      updateBalanceResult === "fulfilled" &&
+      addSessionBookingInfoResult === "fulfilled" &&
+      walletBalanceResult === "rejected"
+    ) {
+      successfulBookingButFailedBalanceFetchSwal();
     }
   }, [
     noActionsFiredYet,
@@ -57,6 +70,8 @@ const useGetBookSessionResultSwal = () => {
     updateSessionResult,
     addSessionBookingInfoResult,
     addSessionBookingInfoErrorSwal,
+    walletBalanceResult,
+    successfulBookingButFailedBalanceFetchSwal,
   ]);
 };
 

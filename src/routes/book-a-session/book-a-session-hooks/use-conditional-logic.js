@@ -90,7 +90,8 @@ const useConditionalLogic = () => {
   };
 
   const shouldShowDatePicker = () => {
-    return walletBalance >= priceMultipliedBy100(morningSessionPrice)
+    return !noChildrenAddedYet() &&
+      walletBalance >= priceMultipliedBy100(morningSessionPrice)
       ? true
       : false;
   };

@@ -30,7 +30,7 @@ const useSendEmailBookingConfirmation = () => {
 
   const dispatch = useDispatch();
 
-  const { name, email, walletBalance } = currentUser;
+  const { name, email } = currentUser;
   const date = dateData ? dateData.date : "";
 
   const childName =
@@ -57,7 +57,6 @@ const useSendEmailBookingConfirmation = () => {
         sessionType,
         childrenInBooking,
         sessionPrice,
-        walletBalance,
       })
     ).then((resultAction) => {
       if (sendEmailBookingConfirmationAsync.fulfilled.match(resultAction)) {

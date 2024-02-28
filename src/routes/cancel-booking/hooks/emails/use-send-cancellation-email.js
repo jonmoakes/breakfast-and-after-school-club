@@ -25,7 +25,7 @@ const useSendCancellationEmail = () => {
 
   const dispatch = useDispatch();
 
-  const { name, email, walletBalance } = currentUser;
+  const { name, email } = currentUser;
   const { date, sessionType, childrensName } = userBookingToDelete || {};
   refundPrice = usersChildren.length === 1 ? refundPrice : totalRefundPrice;
 
@@ -38,7 +38,6 @@ const useSendCancellationEmail = () => {
         sessionType,
         childrensName,
         refundPrice,
-        walletBalance,
       })
     ).then((resultAction) => {
       if (

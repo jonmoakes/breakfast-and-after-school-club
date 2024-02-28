@@ -9,7 +9,6 @@ export const handler = async (event) => {
     sessionBooked,
     kidsInBooking,
     fundsToDeduct,
-    balanceRemaining,
   } = JSON.parse(event.body);
 
   try {
@@ -25,7 +24,6 @@ export const handler = async (event) => {
         sessionBooked,
         kidsInBooking,
         fundsToDeduct,
-        balanceRemaining,
       },
     });
 

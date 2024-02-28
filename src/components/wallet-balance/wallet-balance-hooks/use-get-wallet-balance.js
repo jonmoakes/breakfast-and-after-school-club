@@ -6,11 +6,15 @@ import useFireSwal from "../../../hooks/use-fire-swal";
 
 import {
   selectCurrentUser,
-  selectUserError,
   selectEnvironmentVariables,
+  selectWalletBalanceError,
+  selectWalletBalanceResult,
 } from "../../../store/user/user.selector";
 import { getUsersWalletBalanceAsync } from "../../../store/user/user.thunks";
-import { resetUserErrorMessage } from "../../../store/user/user.slice";
+import {
+  resetWalletBalanceError,
+  resetWalletBalanceResult,
+} from "../../../store/user/user.slice";
 
 import {
   balanceSuccessfullyReceivedMessage,
@@ -24,7 +28,8 @@ const useGetWalletBalance = () => {
   const { fireSwal } = useFireSwal();
 
   const currentUser = useSelector(selectCurrentUser);
-  const error = useSelector(selectUserError);
+  const walletBalanceResult = useSelector(selectWalletBalanceResult);
+  const walletBalanceError = useSelector(selectWalletBalanceError);
   const envVariables = useSelector(selectEnvironmentVariables);
 
   const { id } = currentUser;
@@ -33,7 +38,9 @@ const useGetWalletBalance = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (!error) return;
+    if (!walletBalanceResult && !walletBalanceError) return;
+
+    const error = walletBalanceError;
     fireSwal(
       "error",
       errorFetchingBalanceMessage,
@@ -43,10 +50,11 @@ const useGetWalletBalance = () => {
       false
     ).then((isConfirmed) => {
       if (isConfirmed) {
-        dispatch(resetUserErrorMessage());
+        dispatch(resetWalletBalanceResult());
+        dispatch(resetWalletBalanceError());
       }
     });
-  }, [dispatch, error, fireSwal]);
+  }, [dispatch, walletBalanceResult, walletBalanceError, fireSwal]);
 
   const confirmResult = () => {
     dispatch(getUsersWalletBalanceAsync({ id, databaseId, collectionId })).then(
@@ -59,7 +67,11 @@ const useGetWalletBalance = () => {
             0,
             true,
             false
-          );
+          ).then((isConfirmed) => {
+            if (isConfirmed) {
+              dispatch(resetWalletBalanceResult());
+            }
+          });
         }
       }
     );

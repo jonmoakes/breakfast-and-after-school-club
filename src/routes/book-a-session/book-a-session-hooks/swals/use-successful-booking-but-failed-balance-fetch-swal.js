@@ -1,38 +1,39 @@
 import { useDispatch } from "react-redux";
 
 import useFireSwal from "../../../../hooks/use-fire-swal";
-
 import useSendEmailBookingConfirmation from "../emails/use-send-email-booking-confirmation";
 
 import {
-  sessionBookedMessage,
-  viewBookingsMessage,
-} from "../../../../strings/strings";
-import { resetWalletBalanceResult } from "../../../../store/user/user.slice";
+  resetWalletBalanceError,
+  resetWalletBalanceResult,
+} from "../../../../store/user/user.slice";
 
-const useSuccessSwal = () => {
+import { sessionBookedBalanceUpdateFailedMessage } from "../../../../strings/strings";
+
+const useSuccessfulBookingButFailedBalanceFetchSwal = () => {
   const { fireSwal } = useFireSwal();
   const { sendEmailBookingConfirmation } = useSendEmailBookingConfirmation();
 
   const dispatch = useDispatch();
 
-  const successSwal = () => {
+  const successfulBookingButFailedBalanceFetchSwal = () => {
     fireSwal(
-      "success",
-      sessionBookedMessage,
-      viewBookingsMessage,
+      "info",
+      sessionBookedBalanceUpdateFailedMessage,
+      "",
       0,
       true,
       false
     ).then((isConfirmed) => {
       if (isConfirmed) {
         dispatch(resetWalletBalanceResult());
+        dispatch(resetWalletBalanceError());
         sendEmailBookingConfirmation();
       }
     });
   };
 
-  return { successSwal };
+  return { successfulBookingButFailedBalanceFetchSwal };
 };
 
-export default useSuccessSwal;
+export default useSuccessfulBookingButFailedBalanceFetchSwal;

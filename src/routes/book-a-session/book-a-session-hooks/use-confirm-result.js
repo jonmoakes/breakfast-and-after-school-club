@@ -13,6 +13,7 @@ import {
   selectEnvironmentVariables,
 } from "../../../store/user/user.selector";
 import { selectBookSessionSelectors } from "../../../store/book-session/book-session.slice";
+import { getUsersWalletBalanceAsync } from "../../../store/user/user.thunks";
 
 const useConfirmResult = () => {
   const { date } = useConditionalLogic();
@@ -62,7 +63,13 @@ const useConfirmResult = () => {
                 bookedSessionsCollectionId,
                 databaseId,
               })
-            );
+            ).then((resultAction) => {
+              if (addSessionBookingInfoAsync.fulfilled.match(resultAction)) {
+                dispatch(
+                  getUsersWalletBalanceAsync({ id, databaseId, collectionId })
+                );
+              }
+            });
           }
         });
       }

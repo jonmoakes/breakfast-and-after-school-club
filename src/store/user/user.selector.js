@@ -21,3 +21,13 @@ export const selectUserError = createSelector(
   [selectUserReducer],
   (userSlice) => userSlice.error
 );
+
+export const selectWalletBalanceResult = createSelector(
+  [selectUserReducer],
+  (userSlice) => userSlice.walletBalanceResult
+);
+
+export const selectWalletBalanceError = createSelector(
+  [selectUserReducer],
+  (userSlice) => userSlice.walletBalanceError
+);

@@ -6,7 +6,6 @@ import { GlobalStyle } from "./global-styles";
 import "./App.css";
 
 import useGetUserOnLoad from "./hooks/use-get-user-on-load";
-import useWalletBalanceListener from "./hooks/use-wallet-balance-listener";
 
 import {
   selectCurrentUser,
@@ -102,7 +101,6 @@ const ChooseNewPassword = lazy(() =>
 
 const App = () => {
   useGetUserOnLoad();
-  useWalletBalanceListener();
 
   const currentUser = useSelector(selectCurrentUser);
   const envVariables = useSelector(selectEnvironmentVariables);

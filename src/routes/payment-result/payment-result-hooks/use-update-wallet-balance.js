@@ -15,8 +15,13 @@ import { getUsersWalletBalanceAsync } from "../../../store/user/user.thunks";
 import {
   bookSessionRoute,
   failedToUpdateBalanceMessage,
+  fundsAddedBalanceUpdateFailedMessage,
   fundsAddedMessage,
 } from "../../../strings/strings";
+import {
+  resetWalletBalanceError,
+  resetWalletBalanceResult,
+} from "../../../store/user/user.slice";
 
 const useUpdateWalletBalance = () => {
   const { fireSwal } = useFireSwal();
@@ -42,14 +47,40 @@ const useUpdateWalletBalance = () => {
       })
     ).then((resultAction) => {
       if (addWalletFundsToDatabaseAsync.fulfilled.match(resultAction)) {
-        dispatch(getUsersWalletBalanceAsync({ id, databaseId, collectionId }));
-        fireSwal("success", fundsAddedMessage(email), "", 0, true, false).then(
-          (isConfirmed) => {
-            if (isConfirmed) {
-              hamburgerHandlerNavigate(bookSessionRoute);
-            }
+        dispatch(
+          getUsersWalletBalanceAsync({ id, databaseId, collectionId })
+        ).then((resultAction) => {
+          if (getUsersWalletBalanceAsync.fulfilled.match(resultAction)) {
+            fireSwal(
+              "success",
+              fundsAddedMessage(email),
+              "",
+              0,
+              true,
+              false
+            ).then((isConfirmed) => {
+              if (isConfirmed) {
+                dispatch(resetWalletBalanceResult());
+                hamburgerHandlerNavigate(bookSessionRoute);
+              }
+            });
+          } else {
+            fireSwal(
+              "info",
+              fundsAddedBalanceUpdateFailedMessage,
+              "",
+              0,
+              true,
+              false
+            ).then((isConfirmed) => {
+              if (isConfirmed) {
+                dispatch(resetWalletBalanceResult());
+                dispatch(resetWalletBalanceError());
+                hamburgerHandlerNavigate(bookSessionRoute);
+              }
+            });
           }
-        );
+        });
       } else {
         fireSwal(
           "error",
