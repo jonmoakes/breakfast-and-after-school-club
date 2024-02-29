@@ -21,6 +21,7 @@ import BookingsTableRenderTable from "../../components/tables/bookings-table-ren
 import TableSearchBox from "../../components/tables/table-search-box.component";
 import BookingsTablePagination from "../../components/tables/bookings-table-pagination.component";
 import CancelBookingButton from "./cancel-booking-button.component";
+import ShowFetchErrors from "../../components/errors/show-fetch-errors.component";
 
 const UserBookingsTable = () => {
   const { isOnline } = useIsOnline();
@@ -97,6 +98,7 @@ const UserBookingsTable = () => {
     <>
       {!isOnline ? <NetworkError /> : null}
 
+      <ShowFetchErrors />
       <NoBookingsFound {...{ data }} />
 
       <TableSearchBox

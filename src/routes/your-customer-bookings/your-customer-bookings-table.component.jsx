@@ -17,7 +17,7 @@ import { selectBookedSessionsSelectors } from "../../store/booked-sessions/booke
 
 import { TABLE_COLUMNS } from "./table-columns";
 import NetworkError from "../../components/errors/network-error.component";
-import ErrorFetchingRequiredData from "../../components/errors/error-fetching-required-data.component";
+import ShowFetchErrors from "../../components/errors/show-fetch-errors.component";
 import TableCheckBox from "../../components/tables/table-checkbox";
 import GetChildDetailsButton from "./get-child-details-button.component";
 import NoBookingDataFound from "./no-booking-data.found.component";
@@ -132,7 +132,7 @@ const YourCustomerBookingsTable = () => {
       {!isOnline ? (
         <NetworkError />
       ) : bookedSessionsError ? (
-        <ErrorFetchingRequiredData />
+        <ShowFetchErrors />
       ) : (
         <>
           <NoBookingDataFound {...{ data }} />

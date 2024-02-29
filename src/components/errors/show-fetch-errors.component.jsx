@@ -1,4 +1,3 @@
-import { useLocation } from "react-router-dom";
 import useHandleShowError from "./errors-hooks/use-handle-show-error";
 
 import CustomButton from "../custom-button/custom-button.component";
@@ -8,12 +7,11 @@ import { RedSpan } from "../../styles/span/span.styles";
 import { ErrorDiv, ParentDiv } from "../../styles/div/div.styles";
 import { StyledLink } from "../../styles/link/link.styles";
 
-import { bookSessionRoute, contactRoute } from "../../strings/strings";
+import { contactRoute } from "../../strings/strings";
 
 const ShowFetchErrors = () => {
-  const { showErrorHeading, errorToDisplay } = useHandleShowError();
-  const location = useLocation();
-  const path = location.pathname;
+  const { showErrorHeading, errorToDisplay, showTailInfoToUser } =
+    useHandleShowError();
 
   return (
     <>
@@ -21,12 +19,7 @@ const ShowFetchErrors = () => {
         <ParentDiv>
           <Text>
             sorry, there was an error fetching data on our end that we need in
-            order to{" "}
-            <span>
-              {path === bookSessionRoute
-                ? "book a session"
-                : "complete a payment"}
-            </span>
+            order to <span>{showTailInfoToUser()}</span>
             ...
           </Text>
           <ErrorDiv>
