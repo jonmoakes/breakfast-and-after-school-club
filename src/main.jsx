@@ -16,25 +16,24 @@ const AppContainer = () => {
   const { currentUserEnvironmentVariables } = useSelector(
     selectCurrentUserSelectors
   );
-  const { stripePublishableKey } = currentUserEnvironmentVariables;
 
-  const [stripePromise, setStripePromise] = useState(() =>
-    stripePublishableKey ? loadStripe(stripePublishableKey) : null
-  );
+  const [stripePubKey, setStripePubKey] = useState(null);
+
+  const { stripePublishableKey } = currentUserEnvironmentVariables;
 
   useEffect(() => {
     if (stripePublishableKey) {
-      setStripePromise(loadStripe(stripePublishableKey));
+      setStripePubKey(loadStripe(stripePublishableKey));
     } else {
-      setStripePromise(null);
+      setStripePubKey(null);
     }
   }, [stripePublishableKey]);
 
   return (
     <>
-      {stripePromise ? (
+      {stripePubKey ? (
         <>
-          <Elements stripe={stripePromise}>
+          <Elements stripe={stripePubKey}>
             <App />
           </Elements>
         </>
