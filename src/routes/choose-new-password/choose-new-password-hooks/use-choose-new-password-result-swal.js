@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import useFireSwal from "../../../hooks/use-fire-swal";
 import useResetAllStoreOnSignOut from "../../../hooks/use-reset-all-store-on-sign-out";
 
-import { selectCurrentUser } from "../../../store/user/user.selector";
+import { selectCurrentUserSelectors } from "../../../store/user/user.slice";
 import { signOutAsync } from "../../../store/user/user.thunks";
 import {
   selectChooseNewPasswordSelectors,
@@ -15,6 +15,7 @@ import {
 import {
   errorReceivedMessage,
   errorResettingPassword,
+  logoutSoCanSignInWithNewPasswordMessage,
   passwordResetSuccessMessage,
   signInRoute,
   signInWithNewPasswordMessage,
@@ -27,7 +28,7 @@ const useChooseNewPasswordResultSwal = () => {
   const { newPasswordResult, newPasswordError } = useSelector(
     selectChooseNewPasswordSelectors
   );
-  const curentUser = useSelector(selectCurrentUser);
+  const { curentUser } = useSelector(selectCurrentUserSelectors);
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -39,7 +40,7 @@ const useChooseNewPasswordResultSwal = () => {
       fireSwal(
         "success",
         passwordResetSuccessMessage,
-        "we will now log you out so that you can sign in with your new password.",
+        logoutSoCanSignInWithNewPasswordMessage,
         0,
         true,
         false

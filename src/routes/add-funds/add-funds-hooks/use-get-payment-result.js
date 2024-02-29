@@ -6,7 +6,7 @@ import useConfirmSwal from "../../../hooks/use-confirm-swal";
 import useGetClientSecret from "./use-get-client-secret";
 
 import { selectWalletFundsToAdd } from "../../../store/wallet-funds-to-add/wallet-funds-to-add.selector";
-import { selectCurrentUser } from "../../../store/user/user.selector";
+import { selectCurrentUserSelectors } from "../../../store/user/user.slice";
 import {
   selectHandlePaymentSelectors,
   resetAllHandlePaymentState,
@@ -28,7 +28,7 @@ const useGetPaymentResult = () => {
   const { getClientSecret } = useGetClientSecret();
 
   const walletFundsToAdd = useSelector(selectWalletFundsToAdd);
-  const currentUser = useSelector(selectCurrentUser);
+  const { currentUser } = useSelector(selectCurrentUserSelectors);
   const { client_secret, showConfirmButton, userHasConfirmedPayment } =
     useSelector(selectHandlePaymentSelectors);
   const { cardInputResult } = useSelector(selectCardInputResult);

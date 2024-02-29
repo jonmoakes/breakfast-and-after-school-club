@@ -3,19 +3,18 @@ import { useDispatch, useSelector } from "react-redux";
 
 import { getUserBookingsAsync } from "../../../store/user-bookings/user-bookings.slice";
 
-import {
-  selectCurrentUser,
-  selectEnvironmentVariables,
-} from "../../../store/user/user.selector";
+import { selectCurrentUserSelectors } from "../../../store/user/user.slice";
 
 const useGetUserBookings = () => {
-  const currentUser = useSelector(selectCurrentUser);
-  const envVariables = useSelector(selectEnvironmentVariables);
+  const { currentUser, currentUserEnvironmentVariables } = useSelector(
+    selectCurrentUserSelectors
+  );
 
   const dispatch = useDispatch();
 
   const { email } = currentUser;
-  const { databaseId, bookedSessionsCollectionId } = envVariables;
+  const { databaseId, bookedSessionsCollectionId } =
+    currentUserEnvironmentVariables;
 
   useEffect(() => {
     if (!currentUser) return;

@@ -4,11 +4,12 @@ import useFireSwal from "../../../../hooks/use-fire-swal";
 
 import useSendEmailBookingConfirmation from "../emails/use-send-email-booking-confirmation";
 
+import { resetCurrentUserWalletBalanceResult } from "../../../../store/user/user.slice";
+
 import {
   sessionBookedMessage,
   viewBookingsMessage,
 } from "../../../../strings/strings";
-import { resetWalletBalanceResult } from "../../../../store/user/user.slice";
 
 const useSuccessSwal = () => {
   const { fireSwal } = useFireSwal();
@@ -26,7 +27,7 @@ const useSuccessSwal = () => {
       false
     ).then((isConfirmed) => {
       if (isConfirmed) {
-        dispatch(resetWalletBalanceResult());
+        dispatch(resetCurrentUserWalletBalanceResult());
         sendEmailBookingConfirmation();
       }
     });

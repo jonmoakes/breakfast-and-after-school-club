@@ -1,21 +1,19 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-import {
-  selectCurrentUser,
-  selectEnvironmentVariables,
-} from "../../../store/user/user.selector";
+import { selectCurrentUserSelectors } from "../../../store/user/user.slice";
 import { getChosenEntryChildDetailsAsync } from "../../../store/chosen-entry-child-details/chosen-entry-child-details.thunks";
 
 const useGetChosenEntryChildDetails = (chosenEntry) => {
-  const currentUser = useSelector(selectCurrentUser);
-  const envVariables = useSelector(selectEnvironmentVariables);
+  const { currentUser, currentUserEnvironmentVariables } = useSelector(
+    selectCurrentUserSelectors
+  );
 
   const {
     appOwnerId,
     databaseId,
     childrenCollectionId: collectionId,
-  } = envVariables;
+  } = currentUserEnvironmentVariables;
   const dispatch = useDispatch();
 
   useEffect(() => {

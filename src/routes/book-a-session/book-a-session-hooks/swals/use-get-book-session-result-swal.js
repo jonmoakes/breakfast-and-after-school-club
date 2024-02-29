@@ -8,7 +8,7 @@ import useUpdateBalanceErrorResetSessionDocSwal from "./use-update-balance-error
 import useAddSessionBookingInfoErrorSwal from "./use-add-session-booking-info-error-swal";
 
 import { selectBookSessionSelectors } from "../../../../store/book-session/book-session.slice";
-import { selectWalletBalanceResult } from "../../../../store/user/user.selector";
+import { selectCurrentUserSelectors } from "../../../../store/user/user.slice";
 import useSuccessfulBookingButFailedBalanceFetchSwal from "./use-successful-booking-but-failed-balance-fetch-swal";
 
 const useGetBookSessionResultSwal = () => {
@@ -24,7 +24,9 @@ const useGetBookSessionResultSwal = () => {
 
   const { updateSessionDoc, updateUserDocBalance, addSessionBookingInfo } =
     useSelector(selectBookSessionSelectors);
-  const walletBalanceResult = useSelector(selectWalletBalanceResult);
+  const { currentUserWalletBalanceResult } = useSelector(
+    selectCurrentUserSelectors
+  );
 
   const updateSessionResult = updateSessionDoc.result;
   const updateBalanceResult = updateUserDocBalance.result;
@@ -36,14 +38,14 @@ const useGetBookSessionResultSwal = () => {
       updateSessionResult === "fulfilled" &&
       updateBalanceResult === "fulfilled" &&
       addSessionBookingInfoResult === "fulfilled" &&
-      walletBalanceResult === "success"
+      currentUserWalletBalanceResult === "success"
     ) {
       successSwal();
     } else if (
       updateSessionResult === "fulfilled" &&
       updateBalanceResult === "fulfilled" &&
       addSessionBookingInfoResult === "fulfilled" &&
-      walletBalanceResult === "rejected"
+      currentUserWalletBalanceResult === "rejected"
     ) {
       successfulBookingButFailedBalanceFetchSwal();
     } else if (updateSessionResult === "rejected") {
@@ -70,7 +72,7 @@ const useGetBookSessionResultSwal = () => {
     updateSessionResult,
     addSessionBookingInfoResult,
     addSessionBookingInfoErrorSwal,
-    walletBalanceResult,
+    currentUserWalletBalanceResult,
     successfulBookingButFailedBalanceFetchSwal,
   ]);
 };

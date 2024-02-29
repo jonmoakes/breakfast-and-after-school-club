@@ -4,10 +4,7 @@ import { Navigate } from "react-router-dom";
 import useHandleSignUpFormError from "./sign-up-form-hooks/use-handle-sign-up-form-error";
 import useHandleSignUpFormChange from "./sign-up-form-hooks/use-handle-sign-up-form-change";
 
-import {
-  selectIsUserLoading,
-  selectCurrentUser,
-} from "../../store/user/user.selector";
+import { selectCurrentUserSelectors } from "../../store/user/user.slice";
 
 import Loader from "../../components/loader/loader.component";
 import SignUpName from "./sections/sign-up-name.component";
@@ -30,13 +27,14 @@ const SignUp = () => {
   useHandleSignUpFormError();
   const { handleSignUpFormChange } = useHandleSignUpFormChange();
 
-  const isUserLoading = useSelector(selectIsUserLoading);
-  const currentUser = useSelector(selectCurrentUser);
+  const { currentUser, currentUserIsLoading } = useSelector(
+    selectCurrentUserSelectors
+  );
 
   return (
     <Container>
       {currentUser !== null && <Navigate replace to={accountRoute} />}
-      {isUserLoading ? <Loader /> : null}
+      {currentUserIsLoading ? <Loader /> : null}
 
       <ParentDiv>
         <BlackTitle>sign up</BlackTitle>

@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-import { selectEnvironmentVariables } from "../../../store/user/user.selector";
+import { selectCurrentUserSelectors } from "../../../store/user/user.slice";
 import { selectSessionTypesAndPricesSelectors } from "../../../store/session-types-and-prices/session-types-and-prices.slice";
 import { getSessionPricesAsync } from "../../../store/session-types-and-prices/session-types-and-prices.thunks";
 
@@ -9,12 +9,14 @@ const useGetSessionPrices = () => {
   const { sessionTypesAndPrices, sessionTypesAndPricesError } = useSelector(
     selectSessionTypesAndPricesSelectors
   );
-  const envVariables = useSelector(selectEnvironmentVariables);
+  const { currentUserEnvironmentVariables } = useSelector(
+    selectCurrentUserSelectors
+  );
   const {
     databaseId,
     sessionPricesCollectionId: collectionId,
     sessionPricesDocumentId: documentId,
-  } = envVariables;
+  } = currentUserEnvironmentVariables;
 
   const dispatch = useDispatch();
 

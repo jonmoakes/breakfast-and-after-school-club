@@ -3,10 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import useFireSwal from "../../../hooks/use-fire-swal";
 import useConfirmSwal from "../../../hooks/use-confirm-swal";
 
-import {
-  selectCurrentUser,
-  selectEnvironmentVariables,
-} from "../../../store/user/user.selector";
+import { selectCurrentUserSelectors } from "../../../store/user/user.slice";
 import { selectContactFormSelectors } from "../../../store/contact-form/contact-form.slice";
 import { sendContactFormMessageAsync } from "../../../store/contact-form/contact-form.thunks";
 
@@ -25,11 +22,12 @@ const useConfirmSendContactFormMessage = () => {
 
   const { contactFormDetails } = useSelector(selectContactFormSelectors);
 
-  const currentUser = useSelector(selectCurrentUser);
-  const envVariables = useSelector(selectEnvironmentVariables);
+  const { currentUser, currentUserEnvironmentVariables } = useSelector(
+    selectCurrentUserSelectors
+  );
 
   const { name, email, message } = contactFormDetails;
-  const { appOwnerEmail } = envVariables;
+  const { appOwnerEmail } = currentUserEnvironmentVariables;
   const currentUserEmail = currentUser ? currentUser.email : "";
 
   const dispatch = useDispatch();

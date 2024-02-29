@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSelector, createSlice } from "@reduxjs/toolkit";
 
 import {
   getUserOnLoadAsync,
@@ -7,109 +7,139 @@ import {
   signOutAsync,
   getUsersWalletBalanceAsync,
 } from "./user.thunks";
-
-import { setEnvironmentVariables } from "../../functions/set-environment-variables";
+import { setEnvironmentVariables } from "./functions";
 
 const initialState = {
   currentUser: null,
-  isLoading: false,
-  error: null,
-  environmentVariables: {},
-  walletBalanceResult: "",
-  walletBalanceError: null,
+  currentUserIsLoading: false,
+  currentUserError: null,
+  currentUserEnvironmentVariables: {},
+  currentUserWalletBalanceResult: "",
+  currentUserWalletBalanceError: null,
 };
 
 const userSlice = createSlice({
   name: "user",
   initialState,
   reducers: {
-    resetUserErrorMessage(state) {
-      state.error = null;
+    resetCurrentUserErrorMessage(state) {
+      state.currentUserError = null;
     },
-    resetWalletBalanceResult(state) {
-      state.walletBalanceResult = "";
+    resetCurrentUserWalletBalanceResult(state) {
+      state.currentUserWalletBalanceResult = "";
     },
-    resetWalletBalanceError(state) {
-      state.walletBalanceError = null;
+    resetCurrentUserWalletBalanceError(state) {
+      state.currentUserWalletBalanceError = null;
     },
+  },
+  selectors: {
+    selectCurrentUserSelectors: createSelector(
+      (state) => state.currentUser,
+      (state) => state.currentUserIsLoading,
+      (state) => state.currentUserError,
+      (state) => state.currentUserEnvironmentVariables,
+      (state) => state.currentUserWalletBalanceResult,
+      (state) => state.currentUserWalletBalanceError,
+      (
+        currentUser,
+        currentUserIsLoading,
+        currentUserError,
+        currentUserEnvironmentVariables,
+        currentUserWalletBalanceResult,
+        currentUserWalletBalanceError
+      ) => {
+        return {
+          currentUser,
+          currentUserIsLoading,
+          currentUserError,
+          currentUserEnvironmentVariables,
+          currentUserWalletBalanceResult,
+          currentUserWalletBalanceError,
+        };
+      }
+    ),
   },
   extraReducers: (builder) => {
     builder
       .addCase(getUserOnLoadAsync.pending, (state) => {
-        state.isLoading = true;
+        state.currentUserIsLoading = true;
       })
       .addCase(getUserOnLoadAsync.fulfilled, (state, action) => {
-        state.isLoading = false;
+        state.currentUserIsLoading = false;
         state.currentUser = action.payload;
-        state.error = null;
+        state.currentUserError = null;
         const { schoolCode } = state.currentUser;
-        state.environmentVariables = setEnvironmentVariables(schoolCode);
+        state.currentUserEnvironmentVariables =
+          setEnvironmentVariables(schoolCode);
       })
       .addCase(getUserOnLoadAsync.rejected, (state, action) => {
-        state.isLoading = false;
-        state.error = action.payload;
+        state.currentUserIsLoading = false;
+        state.currentUserError = action.payload;
       })
       .addCase(signInAsync.pending, (state) => {
-        state.isLoading = true;
+        state.currentUserIsLoading = true;
       })
       .addCase(signInAsync.fulfilled, (state, action) => {
-        state.isLoading = false;
+        state.currentUserIsLoading = false;
         state.currentUser = action.payload;
-        state.error = null;
+        state.currentUserError = null;
         const { schoolCode } = state.currentUser;
-        state.environmentVariables = setEnvironmentVariables(schoolCode);
+        state.currentUserEnvironmentVariables =
+          setEnvironmentVariables(schoolCode);
       })
       .addCase(signInAsync.rejected, (state, action) => {
-        state.isLoading = false;
-        state.error = action.payload;
+        state.currentUserIsLoading = false;
+        state.currentUserError = action.payload;
       })
       .addCase(signUpAsync.pending, (state) => {
-        state.isLoading = true;
+        state.currentUserIsLoading = true;
       })
       .addCase(signUpAsync.fulfilled, (state, action) => {
-        state.isLoading = false;
+        state.currentUserIsLoading = false;
         state.currentUser = action.payload;
-        state.error = null;
+        state.currentUserError = null;
         const { schoolCode } = state.currentUser;
-        state.environmentVariables = setEnvironmentVariables(schoolCode);
+        state.currentUserEnvironmentVariables =
+          setEnvironmentVariables(schoolCode);
       })
       .addCase(signUpAsync.rejected, (state, action) => {
-        state.isLoading = false;
-        state.error = action.payload;
+        state.currentUserIsLoading = false;
+        state.currentUserError = action.payload;
       })
       .addCase(signOutAsync.pending, (state) => {
-        state.isLoading = true;
+        state.currentUserIsLoading = true;
       })
       .addCase(signOutAsync.fulfilled, (state) => {
-        state.isLoading = false;
+        state.currentUserIsLoading = false;
         state.currentUser = null;
-        state.error = null;
-        state.environmentVariables = {};
+        state.currentUserError = null;
+        state.currentUserEnvironmentVariables = {};
       })
       .addCase(signOutAsync.rejected, (state, action) => {
-        state.isLoading = false;
-        state.error = action.payload;
+        state.currentUserIsLoading = false;
+        state.currentUserError = action.payload;
       })
       .addCase(getUsersWalletBalanceAsync.pending, (state) => {
-        state.isLoading = true;
+        state.currentUserIsLoading = true;
       })
       .addCase(getUsersWalletBalanceAsync.fulfilled, (state, action) => {
-        state.isLoading = false;
+        state.currentUserIsLoading = false;
         state.currentUser.walletBalance = action.payload;
-        state.walletBalanceResult = "success";
+        state.currentUserWalletBalanceResult = "success";
       })
       .addCase(getUsersWalletBalanceAsync.rejected, (state, action) => {
-        state.isLoading = false;
-        state.walletBalanceResult = "rejected";
-        state.walletBalanceError = action.payload;
+        state.currentUserIsLoading = false;
+        state.currentUserWalletBalanceResult = "rejected";
+        state.currentUserWalletBalanceError = action.payload;
       });
   },
 });
 
 export const {
-  resetUserErrorMessage,
-  resetWalletBalanceResult,
-  resetWalletBalanceError,
+  resetCurrentUserErrorMessage,
+  resetCurrentUserWalletBalanceResult,
+  resetCurrentUserWalletBalanceError,
 } = userSlice.actions;
+export const { selectCurrentUserSelectors } = userSlice.selectors;
 
 export const userReducer = userSlice.reducer;

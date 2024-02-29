@@ -7,7 +7,7 @@ import useSendResetSessionSpacesErrorEmail from "../emails/use-send-reset-sessio
 import useHamburgerHandlerNavigate from "../../../../hooks/use-hamburger-handler-navigate";
 
 import { selectBookSessionSelectors } from "../../../../store/book-session/book-session.slice";
-import { selectEnvironmentVariables } from "../../../../store/user/user.selector";
+import { selectCurrentUserSelectors } from "../../../../store/user/user.slice";
 import { resetSessionDocAsync } from "../../../../store/book-session/book-session.thunks";
 
 import {
@@ -26,10 +26,13 @@ const useUpdateBalanceErrorResetSessionDocSwal = () => {
   const { date } = useConditionalLogic();
   const { sessionType, childrenSelectedForBooking, updateUserDocBalance } =
     useSelector(selectBookSessionSelectors);
-  const envVariables = useSelector(selectEnvironmentVariables);
+  const { currentUserEnvironmentVariables } = useSelector(
+    selectCurrentUserSelectors
+  );
 
   const updateBalanceError = updateUserDocBalance.error;
-  const { databaseId, termDatesCollectionId: collectionId } = envVariables;
+  const { databaseId, termDatesCollectionId: collectionId } =
+    currentUserEnvironmentVariables;
 
   const [swalConfirmed, setSwalConfirmed] = useState(false);
   const dispatch = useDispatch();

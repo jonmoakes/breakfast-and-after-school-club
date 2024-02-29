@@ -5,10 +5,7 @@ import useFireSwal from "../../../../hooks/use-fire-swal";
 import useHamburgerHandlerNavigate from "../../../../hooks/use-hamburger-handler-navigate";
 
 import { sendEmailBalanceNotUpdatedErrorAsync } from "../../../../store/send-email/send-email.thunks";
-import {
-  selectCurrentUser,
-  selectEnvironmentVariables,
-} from "../../../../store/user/user.selector";
+import { selectCurrentUserSelectors } from "../../../../store/user/user.slice";
 
 import {
   contactRoute,
@@ -22,13 +19,13 @@ const useSendBalanceNotUpdatedErrorEmail = () => {
   const { hamburgerHandlerNavigate } = useHamburgerHandlerNavigate();
   const { fireSwal } = useFireSwal();
 
-  const currentUser = useSelector(selectCurrentUser);
-  const envVariables = useSelector(selectEnvironmentVariables);
-
+  const { currentUser, currentUserEnvironmentVariables } = useSelector(
+    selectCurrentUserSelectors
+  );
   const dispatch = useDispatch();
 
   const { id } = currentUser;
-  const { appOwnerEmail } = envVariables;
+  const { appOwnerEmail } = currentUserEnvironmentVariables;
 
   const refundAmount =
     numberOfChildrenInBooking > 1 ? totalRefundPrice : refundPrice;

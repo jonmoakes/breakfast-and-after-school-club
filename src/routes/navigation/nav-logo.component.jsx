@@ -4,7 +4,7 @@ import useIsRouteWithNavWarning from "../../hooks/use-is-route-with-nav-warning"
 import useConfirmSwal from "../../hooks/use-confirm-swal";
 import useHamburgerHandlerNavigate from "../../hooks/use-hamburger-handler-navigate";
 
-import { selectCurrentUser } from "../../store/user/user.selector";
+import { selectCurrentUserSelectors } from "../../store/user/user.slice";
 
 import Logo from "../../assets/logo.png";
 import { LogoContainer } from "../../styles/div/div.styles";
@@ -17,10 +17,11 @@ import {
 } from "../../strings/strings";
 
 const NavLogo = () => {
-  const currentUser = useSelector(selectCurrentUser);
   const { isRouteWithNavWarning } = useIsRouteWithNavWarning();
   const { confirmForwardToNewRoute } = useConfirmSwal();
   const { hamburgerHandlerNavigate } = useHamburgerHandlerNavigate();
+
+  const { currentUser } = useSelector(selectCurrentUserSelectors);
 
   const handleClick = () => {
     const route = "/";

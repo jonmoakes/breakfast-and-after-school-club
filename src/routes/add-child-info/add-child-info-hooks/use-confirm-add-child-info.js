@@ -3,10 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import useFireSwal from "../../../hooks/use-fire-swal";
 import useConfirmSwal from "../../../hooks/use-confirm-swal";
 
-import {
-  selectCurrentUser,
-  selectEnvironmentVariables,
-} from "../../../store/user/user.selector";
+import { selectCurrentUserSelectors } from "../../../store/user/user.slice";
 import { selectGetUsersChildrenSelectors } from "../../../store/get-users-children/get-users-children.slice";
 import { addChildInfoAsync } from "../../../store/add-child-info/add-child-info.thunks";
 import { selectAddChildInfoSelectors } from "../../../store/add-child-info/add-child-info.slice";
@@ -25,14 +22,17 @@ const useConfirmAddChildInfo = () => {
   const { confirmSwal } = useConfirmSwal();
 
   const { childInfo } = useSelector(selectAddChildInfoSelectors);
-  const currentUser = useSelector(selectCurrentUser);
+  const { currentUser, currentUserEnvironmentVariables } = useSelector(
+    selectCurrentUserSelectors
+  );
   const { usersChildren } = useSelector(selectGetUsersChildrenSelectors);
-  const envVariables = useSelector(selectEnvironmentVariables);
 
   const dispatch = useDispatch();
+
   const { childName, age } = childInfo;
   const { name, email } = currentUser;
-  const { databaseId, childrenCollectionId: collectionId } = envVariables;
+  const { databaseId, childrenCollectionId: collectionId } =
+    currentUserEnvironmentVariables;
 
   const confirmResult = () => {
     dispatch(

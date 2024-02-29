@@ -10,11 +10,13 @@ import * as serviceWorkerRegistration from "./serviceWorkerRegistration";
 import { Elements } from "@stripe/react-stripe-js";
 import "regenerator-runtime";
 import { loadStripe } from "@stripe/stripe-js";
-import { selectEnvironmentVariables } from "./store/user/user.selector";
+import { selectCurrentUserSelectors } from "./store/user/user.slice";
 
 const AppContainer = () => {
-  const envVariables = useSelector(selectEnvironmentVariables);
-  const { stripePublishableKey } = envVariables;
+  const { currentUserEnvironmentVariables } = useSelector(
+    selectCurrentUserSelectors
+  );
+  const { stripePublishableKey } = currentUserEnvironmentVariables;
 
   return (
     <>

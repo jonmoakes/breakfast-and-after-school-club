@@ -4,7 +4,7 @@ import { format } from "date-fns";
 import useGetRefundPrice from "./hooks/use-get-refund-price";
 
 import { selectUserBookingToDelete } from "../../store/user-booking-to-delete/user-booking-to-delete.selector";
-import { selectCurrentUser } from "../../store/user/user.selector";
+import { selectCurrentUserSelectors } from "../../store/user/user.slice";
 
 import { ParentDiv } from "../../styles/div/div.styles";
 import { RedText, Text } from "../../styles/p/p.styles";
@@ -18,7 +18,7 @@ const WalletUpdateInfo = () => {
     useGetRefundPrice();
 
   const userBookingToDelete = useSelector(selectUserBookingToDelete);
-  const currentUser = useSelector(selectCurrentUser);
+  const { currentUser } = useSelector(selectCurrentUserSelectors);
 
   const { walletBalance } = currentUser;
   const { date, sessionType, childrensName } = userBookingToDelete || {};

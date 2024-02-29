@@ -5,10 +5,7 @@ import useGetRefundPrice from "./use-get-refund-price";
 
 import { selectUserBookingToDelete } from "../../../store/user-booking-to-delete/user-booking-to-delete.selector";
 import { selectGetUsersChildrenSelectors } from "../../../store/get-users-children/get-users-children.slice";
-import {
-  selectCurrentUser,
-  selectEnvironmentVariables,
-} from "../../../store/user/user.selector";
+import { selectCurrentUserSelectors } from "../../../store/user/user.slice";
 import {
   deleteUserBookingAsync,
   refundUserAsync,
@@ -26,10 +23,11 @@ const useConfirmDeleteChildInfo = () => {
   let { refundPrice, totalRefundPrice, numberOfChildrenInBooking } =
     useGetRefundPrice();
 
-  const currentUser = useSelector(selectCurrentUser);
+  const { currentUser, currentUserEnvironmentVariables } = useSelector(
+    selectCurrentUserSelectors
+  );
   const userBookingToDelete = useSelector(selectUserBookingToDelete);
   const { usersChildren } = useSelector(selectGetUsersChildrenSelectors);
-  const envVariables = useSelector(selectEnvironmentVariables);
 
   const dispatch = useDispatch();
   const { id } = currentUser;
@@ -39,7 +37,7 @@ const useConfirmDeleteChildInfo = () => {
     userCollectionId: collectionId,
     bookedSessionsCollectionId,
     termDatesCollectionId,
-  } = envVariables;
+  } = currentUserEnvironmentVariables;
 
   refundPrice = usersChildren.length === 1 ? refundPrice : totalRefundPrice;
 

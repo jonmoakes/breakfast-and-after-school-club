@@ -5,16 +5,14 @@ import { useLocation } from "react-router-dom";
 import { getUsersChildrenAsync } from "../store/get-users-children/get-users-children.thunks";
 import { getUserBookingsAsync } from "../store/user-bookings/user-bookings.slice";
 import { getSessionPricesAsync } from "../store/session-types-and-prices/session-types-and-prices.thunks";
-import {
-  selectCurrentUser,
-  selectEnvironmentVariables,
-} from "../store/user/user.selector";
+import { selectCurrentUserSelectors } from "../store/user/user.slice";
 
 import { bookSessionRoute, childInfoRoute } from "../strings/strings";
 
 const useGetUsersChildrenAndConditionallyUserBookingsAndSessionPrices = () => {
-  const currentUser = useSelector(selectCurrentUser);
-  const envVariables = useSelector(selectEnvironmentVariables);
+  const { currentUser, currentUserEnvironmentVariables } = useSelector(
+    selectCurrentUserSelectors
+  );
 
   const { email } = currentUser;
   const {
@@ -23,7 +21,7 @@ const useGetUsersChildrenAndConditionallyUserBookingsAndSessionPrices = () => {
     bookedSessionsCollectionId,
     sessionPricesCollectionId,
     sessionPricesDocumentId,
-  } = envVariables;
+  } = currentUserEnvironmentVariables;
 
   const location = useLocation();
   const dispatch = useDispatch();

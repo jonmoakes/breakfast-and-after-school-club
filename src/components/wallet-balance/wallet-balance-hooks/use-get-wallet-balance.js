@@ -5,16 +5,11 @@ import useConfirmSwal from "../../../hooks/use-confirm-swal";
 import useFireSwal from "../../../hooks/use-fire-swal";
 
 import {
-  selectCurrentUser,
-  selectEnvironmentVariables,
-  selectWalletBalanceError,
-  selectWalletBalanceResult,
-} from "../../../store/user/user.selector";
-import { getUsersWalletBalanceAsync } from "../../../store/user/user.thunks";
-import {
-  resetWalletBalanceError,
-  resetWalletBalanceResult,
+  selectCurrentUserSelectors,
+  resetCurrentUserWalletBalanceResult,
+  resetCurrentUserWalletBalanceError,
 } from "../../../store/user/user.slice";
+import { getUsersWalletBalanceAsync } from "../../../store/user/user.thunks";
 
 import {
   balanceSuccessfullyReceivedMessage,
@@ -27,20 +22,24 @@ const useGetWalletBalance = () => {
   const { confirmSwal } = useConfirmSwal();
   const { fireSwal } = useFireSwal();
 
-  const currentUser = useSelector(selectCurrentUser);
-  const walletBalanceResult = useSelector(selectWalletBalanceResult);
-  const walletBalanceError = useSelector(selectWalletBalanceError);
-  const envVariables = useSelector(selectEnvironmentVariables);
+  const {
+    currentUser,
+    currentUserWalletBalanceResult,
+    currentUserWalletBalanceError,
+    currentUserEnvironmentVariables,
+  } = useSelector(selectCurrentUserSelectors);
 
   const { id } = currentUser;
   //userCollectionId is being renamed to collectionId
-  const { databaseId, userCollectionId: collectionId } = envVariables;
+  const { databaseId, userCollectionId: collectionId } =
+    currentUserEnvironmentVariables;
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (!walletBalanceResult && !walletBalanceError) return;
+    if (!currentUserWalletBalanceResult && !currentUserWalletBalanceError)
+      return;
 
-    const error = walletBalanceError;
+    const error = currentUserWalletBalanceError;
     fireSwal(
       "error",
       errorFetchingBalanceMessage,
@@ -50,11 +49,16 @@ const useGetWalletBalance = () => {
       false
     ).then((isConfirmed) => {
       if (isConfirmed) {
-        dispatch(resetWalletBalanceResult());
-        dispatch(resetWalletBalanceError());
+        dispatch(resetCurrentUserWalletBalanceResult());
+        dispatch(resetCurrentUserWalletBalanceError());
       }
     });
-  }, [dispatch, walletBalanceResult, walletBalanceError, fireSwal]);
+  }, [
+    dispatch,
+    currentUserWalletBalanceResult,
+    currentUserWalletBalanceError,
+    fireSwal,
+  ]);
 
   const confirmResult = () => {
     dispatch(getUsersWalletBalanceAsync({ id, databaseId, collectionId })).then(
@@ -69,7 +73,7 @@ const useGetWalletBalance = () => {
             false
           ).then((isConfirmed) => {
             if (isConfirmed) {
-              dispatch(resetWalletBalanceResult());
+              dispatch(resetCurrentUserWalletBalanceResult());
             }
           });
         }

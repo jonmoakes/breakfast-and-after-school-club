@@ -4,10 +4,7 @@ import { Navigate } from "react-router-dom";
 import useHandleSignInFormChange from "./sign-in-form-hooks/use-handle-sign-in-form-change";
 import useHandleSignInFormError from "./sign-in-form-hooks/use-handle-sign-in-form-error";
 
-import {
-  selectIsUserLoading,
-  selectCurrentUser,
-} from "../../store/user/user.selector";
+import { selectCurrentUserSelectors } from "../../store/user/user.slice";
 
 import Loader from "../../components/loader/loader.component";
 import Email from "./sections/sign-in-email.component";
@@ -28,13 +25,14 @@ const SignIn = () => {
   useHandleSignInFormError();
   const { handleSignInFormChange } = useHandleSignInFormChange();
 
-  const isUserLoading = useSelector(selectIsUserLoading);
-  const currentUser = useSelector(selectCurrentUser);
+  const { currentUser, currentUserIsLoading } = useSelector(
+    selectCurrentUserSelectors
+  );
 
   return (
     <Container>
       {currentUser !== null && <Navigate replace to={accountRoute} />}
-      {isUserLoading ? <Loader /> : null}
+      {currentUserIsLoading ? <Loader /> : null}
 
       <ParentDiv>
         <BlackTitle>sign in</BlackTitle>

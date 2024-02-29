@@ -2,10 +2,7 @@ import { useCallback } from "react";
 import { useSelector } from "react-redux";
 
 import { selectBookSessionSelectors } from "../../../store/book-session/book-session.slice";
-import {
-  selectWalletBalanceResult,
-  selectWalletBalanceError,
-} from "../../../store/user/user.selector";
+import { selectCurrentUserSelectors } from "../../../store/user/user.slice";
 
 const useReturnLogic = () => {
   const {
@@ -14,6 +11,8 @@ const useReturnLogic = () => {
     resetSessionDoc,
     addSessionBookingInfo,
   } = useSelector(selectBookSessionSelectors);
+  const { currentUserWalletBalanceResult, currentUserWalletBalanceError } =
+    useSelector(selectCurrentUserSelectors);
 
   const updateSessionResult = updateSessionDoc.result;
   const updateSessionError = updateSessionDoc.error;
@@ -27,9 +26,6 @@ const useReturnLogic = () => {
   const addSessionBookingInfoResult = addSessionBookingInfo.result;
   const addSessionBookingInfoError = addSessionBookingInfo.error;
 
-  const walletBalanceResult = useSelector(selectWalletBalanceResult);
-  const walletBalanceError = useSelector(selectWalletBalanceError);
-
   const noActionsFiredYet = useCallback(() => {
     return !updateSessionResult &&
       !updateSessionError &&
@@ -39,8 +35,8 @@ const useReturnLogic = () => {
       !resetSessionError &&
       !addSessionBookingInfoResult &&
       !addSessionBookingInfoError &&
-      !walletBalanceResult &&
-      !walletBalanceError
+      !currentUserWalletBalanceResult &&
+      !currentUserWalletBalanceError
       ? true
       : false;
   }, [
@@ -52,8 +48,8 @@ const useReturnLogic = () => {
     updateSessionResult,
     addSessionBookingInfoResult,
     addSessionBookingInfoError,
-    walletBalanceResult,
-    walletBalanceError,
+    currentUserWalletBalanceResult,
+    currentUserWalletBalanceError,
   ]);
 
   return { noActionsFiredYet };

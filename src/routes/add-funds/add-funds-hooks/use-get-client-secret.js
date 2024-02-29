@@ -2,15 +2,17 @@ import { useSelector, useDispatch } from "react-redux";
 import { useStripe, useElements } from "@stripe/react-stripe-js";
 
 import { selectWalletFundsToAdd } from "../../../store/wallet-funds-to-add/wallet-funds-to-add.selector";
-import { selectEnvironmentVariables } from "../../../store/user/user.selector";
+import { selectCurrentUserSelectors } from "../../../store/user/user.slice";
 
 import { getClientSecretAsync } from "../../../store/handle-payment/handle-payment.thunks";
 
 const useGetClientSecret = () => {
-  const envVariables = useSelector(selectEnvironmentVariables);
+  const { currentUserEnvironmentVariables } = useSelector(
+    selectCurrentUserSelectors
+  );
   const walletFundsToAdd = useSelector(selectWalletFundsToAdd);
 
-  const { stripeSecretKey } = envVariables;
+  const { stripeSecretKey } = currentUserEnvironmentVariables;
 
   const dispatch = useDispatch();
   const stripe = useStripe();

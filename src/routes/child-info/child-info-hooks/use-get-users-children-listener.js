@@ -2,22 +2,21 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { client } from "../../../utils/appwrite/appwrite-config";
 
-import {
-  selectCurrentUser,
-  selectEnvironmentVariables,
-} from "../../../store/user/user.selector";
+import { selectCurrentUserSelectors } from "../../../store/user/user.slice";
 import {
   selectGetUsersChildrenSelectors,
   setUsersChildren,
 } from "../../../store/get-users-children/get-users-children.slice";
 
 const useGetUsersChildrenListener = () => {
-  const currentUser = useSelector(selectCurrentUser);
+  const { currentUser, currentUserEnvironmentVariables } = useSelector(
+    selectCurrentUserSelectors
+  );
   const { usersChildren } = useSelector(selectGetUsersChildrenSelectors);
-  const envVariables = useSelector(selectEnvironmentVariables);
   const dispatch = useDispatch();
 
-  const { databaseId, childrenCollectionId: collectionId } = envVariables;
+  const { databaseId, childrenCollectionId: collectionId } =
+    currentUserEnvironmentVariables;
 
   useEffect(() => {
     if (!currentUser) return;

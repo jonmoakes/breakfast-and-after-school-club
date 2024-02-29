@@ -3,10 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import useConfirmSwal from "../../../hooks/use-confirm-swal";
 import useFireSwal from "../../../hooks/use-fire-swal";
 
-import {
-  selectCurrentUser,
-  selectEnvironmentVariables,
-} from "../../../store/user/user.selector";
+import { selectCurrentUserSelectors } from "../../../store/user/user.slice";
 import { sendEmailToAdminCloseAccountRequestAsync } from "../../../store/send-email/send-email.thunks";
 
 import {
@@ -20,12 +17,13 @@ const useConfirmCloseAccount = () => {
   const { confirmSwal } = useConfirmSwal();
   const { fireSwal } = useFireSwal();
 
-  const currentUser = useSelector(selectCurrentUser);
-  const envVariables = useSelector(selectEnvironmentVariables);
+  const { currentUser, currentUserEnvironmentVariables } = useSelector(
+    selectCurrentUserSelectors
+  );
 
   const dispatch = useDispatch();
   const { walletBalance, id, email } = currentUser;
-  const { appOwnerEmail } = envVariables;
+  const { appOwnerEmail } = currentUserEnvironmentVariables;
 
   const confirmResult = () => {
     dispatch(

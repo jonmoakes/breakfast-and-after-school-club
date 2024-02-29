@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 
 import { selectRequestDateDataSelectors } from "../../../store/request-date-data/request-date-data.slice";
 import { selectCurrentDateAndTime } from "../../../store/date-and-time/date-and-time.slice";
-import { selectCurrentUser } from "../../../store/user/user.selector";
+import { selectCurrentUserSelectors } from "../../../store/user/user.slice";
 import { selectSessionTypesAndPricesSelectors } from "../../../store/session-types-and-prices/session-types-and-prices.slice";
 import { selectGetUsersChildrenSelectors } from "../../../store/get-users-children/get-users-children.slice";
 import { selectBookSessionSelectors } from "../../../store/book-session/book-session.slice";
@@ -20,7 +20,7 @@ const useConditionalLogic = () => {
     earlyFinishDates,
     bookingClosingTimes,
   } = useSelector(selectRequestDateDataSelectors);
-  const currentUser = useSelector(selectCurrentUser);
+  const { currentUser } = useSelector(selectCurrentUserSelectors);
   const { usersChildren, getUsersChildrenError } = useSelector(
     selectGetUsersChildrenSelectors
   );

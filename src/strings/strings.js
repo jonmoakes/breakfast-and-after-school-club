@@ -170,6 +170,8 @@ export const childDeletedMessage =
   "the child has been deleted from the database!";
 
 // infos
+export const logoutSoCanSignInWithNewPasswordMessage =
+  "we will now log you out so that you can sign in with your new password.";
 export const sessionBookedBalanceUpdateFailedMessage = `<span style="font-size: 20px;">your session was booked! However, we couldn't fetch your latest balance due to an error on our end. please tap on the 'not correct?' button on your 'account' page underneath your wallet balance. This will update your balance to the correct amount. please contact us if the issue persists!</span>`;
 export const emailResponseTimeMessage = "Your Message Has Been Sent!";
 export const loseAllDataMessage =

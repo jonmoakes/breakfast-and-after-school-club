@@ -6,15 +6,17 @@ import {
   setDateData,
   selectRequestDateDataSelectors,
 } from "../../../store/request-date-data/request-date-data.slice";
-import { selectEnvironmentVariables } from "../../../store/user/user.selector";
+import { selectCurrentUserSelectors } from "../../../store/user/user.slice";
 
 const useSessionSpacesListener = () => {
   const { dateData } = useSelector(selectRequestDateDataSelectors); // gets the dateData object from the slice
-  const envVariables = useSelector(selectEnvironmentVariables);
+  const { currentUserEnvironmentVariables } = useSelector(
+    selectCurrentUserSelectors
+  );
 
   const dispatch = useDispatch();
 
-  const { databaseId, termDatesCollectionId } = envVariables;
+  const { databaseId, termDatesCollectionId } = currentUserEnvironmentVariables;
   const documentId = dateData ? dateData.$id : "";
 
   useEffect(() => {

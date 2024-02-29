@@ -3,16 +3,15 @@ import { useDispatch, useSelector } from "react-redux";
 
 import { getBookedSessionsAsync } from "../../../store/booked-sessions/booked-sessions.thunks";
 
-import {
-  selectCurrentUser,
-  selectEnvironmentVariables,
-} from "../../../store/user/user.selector";
+import { selectCurrentUserSelectors } from "../../../store/user/user.slice";
 
 const useGetBookedSessions = () => {
-  const currentUser = useSelector(selectCurrentUser);
-  const envVariables = useSelector(selectEnvironmentVariables);
+  const { currentUser, currentUserEnvironmentVariables } = useSelector(
+    selectCurrentUserSelectors
+  );
 
-  const { databaseId, bookedSessionsCollectionId: collectionId } = envVariables;
+  const { databaseId, bookedSessionsCollectionId: collectionId } =
+    currentUserEnvironmentVariables;
 
   const dispatch = useDispatch();
 

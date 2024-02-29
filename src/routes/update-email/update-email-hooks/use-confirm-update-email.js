@@ -3,10 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import useFireSwal from "../../../hooks/use-fire-swal";
 import useConfirmSwal from "../../../hooks/use-confirm-swal";
 
-import {
-  selectCurrentUser,
-  selectEnvironmentVariables,
-} from "../../../store/user/user.selector";
+import { selectCurrentUserSelectors } from "../../../store/user/user.slice";
 import { selectUpdateEmailSelectors } from "../../../store/update-email/update-email.slice";
 import { updateEmailAsync } from "../../../store/update-email/update-email.thunks";
 
@@ -25,14 +22,16 @@ const useConfirmUpdateEmail = () => {
   const { confirmSwal } = useConfirmSwal();
 
   const { updateEmailDetails } = useSelector(selectUpdateEmailSelectors);
-  const currentUser = useSelector(selectCurrentUser);
-  const envVariables = useSelector(selectEnvironmentVariables);
+  const { currentUser, currentUserEnvironmentVariables } = useSelector(
+    selectCurrentUserSelectors
+  );
 
   const dispatch = useDispatch();
 
   const { id, email } = currentUser;
   const { newEmail, confirmNewEmail, password } = updateEmailDetails;
-  const { databaseId, userCollectionId: collectionId } = envVariables;
+  const { databaseId, userCollectionId: collectionId } =
+    currentUserEnvironmentVariables;
 
   const confirmResult = () => {
     dispatch(

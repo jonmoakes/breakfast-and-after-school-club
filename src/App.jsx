@@ -7,10 +7,7 @@ import "./App.css";
 
 import useGetUserOnLoad from "./hooks/use-get-user-on-load";
 
-import {
-  selectCurrentUser,
-  selectEnvironmentVariables,
-} from "./store/user/user.selector";
+import { selectCurrentUserSelectors } from "./store/user/user.slice";
 
 import PrivateRoutes from "./components/private-routes/private-routes.component";
 import ErrorFallback from "./components/errors/error-fallback.component";
@@ -102,9 +99,10 @@ const ChooseNewPassword = lazy(() =>
 const App = () => {
   useGetUserOnLoad();
 
-  const currentUser = useSelector(selectCurrentUser);
-  const envVariables = useSelector(selectEnvironmentVariables);
-  const { appOwnerId } = envVariables;
+  const { currentUser, currentUserEnvironmentVariables } = useSelector(
+    selectCurrentUserSelectors
+  );
+  const { appOwnerId } = currentUserEnvironmentVariables;
 
   return (
     <>

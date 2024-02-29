@@ -7,7 +7,7 @@ import useIsOnline from "../../hooks/use-is-online";
 import useResetAllStoreOnSignOut from "../../hooks/use-reset-all-store-on-sign-out";
 
 import { signOutAsync } from "../../store/user/user.thunks";
-import { selectCurrentUser } from "../../store/user/user.selector";
+import { selectCurrentUserSelectors } from "../../store/user/user.slice";
 import {
   hideHamburgerMenu,
   selectHamburgerMenuSelectors,
@@ -30,7 +30,7 @@ const NavSignOut = () => {
   const { isOnline } = useIsOnline();
   const { resetAllStoreOnSignOut } = useResetAllStoreOnSignOut();
 
-  const currentUser = useSelector(selectCurrentUser);
+  const { currentUser } = useSelector(selectCurrentUserSelectors);
   const { showHamburgerMenu } = useSelector(selectHamburgerMenuSelectors);
 
   const dispatch = useDispatch();

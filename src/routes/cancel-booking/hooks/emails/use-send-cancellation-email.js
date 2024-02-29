@@ -4,7 +4,7 @@ import useFireSwal from "../../../../hooks/use-fire-swal";
 import useHamburgerHandlerNavigate from "../../../../hooks/use-hamburger-handler-navigate";
 import useGetRefundPrice from "../use-get-refund-price";
 
-import { selectCurrentUser } from "../../../../store/user/user.selector";
+import { selectCurrentUserSelectors } from "../../../../store/user/user.slice";
 import { selectUserBookingToDelete } from "../../../../store/user-booking-to-delete/user-booking-to-delete.selector";
 import { sendEmailBookingCancellationConfirmationAsync } from "../../../../store/send-email/send-email.thunks";
 import { selectGetUsersChildrenSelectors } from "../../../../store/get-users-children/get-users-children.slice";
@@ -19,7 +19,7 @@ const useSendCancellationEmail = () => {
   const { hamburgerHandlerNavigate } = useHamburgerHandlerNavigate();
   let { refundPrice, totalRefundPrice } = useGetRefundPrice();
 
-  const currentUser = useSelector(selectCurrentUser);
+  const { currentUser } = useSelector(selectCurrentUserSelectors);
   const userBookingToDelete = useSelector(selectUserBookingToDelete);
   const { usersChildren } = useSelector(selectGetUsersChildrenSelectors);
 

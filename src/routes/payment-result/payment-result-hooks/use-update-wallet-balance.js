@@ -6,9 +6,10 @@ import useSendUpdateBalanceErrorEmail from "./use-send-update-balance-error-emai
 
 import { selectWalletFundsToAdd } from "../../../store/wallet-funds-to-add/wallet-funds-to-add.selector";
 import {
-  selectCurrentUser,
-  selectEnvironmentVariables,
-} from "../../../store/user/user.selector";
+  selectCurrentUserSelectors,
+  resetCurrentUserWalletBalanceResult,
+  resetCurrentUserWalletBalanceError,
+} from "../../../store/user/user.slice";
 import { addWalletFundsToDatabaseAsync } from "../../../store/handle-payment/handle-payment.thunks";
 import { getUsersWalletBalanceAsync } from "../../../store/user/user.thunks";
 
@@ -18,21 +19,19 @@ import {
   fundsAddedBalanceUpdateFailedMessage,
   fundsAddedMessage,
 } from "../../../strings/strings";
-import {
-  resetWalletBalanceError,
-  resetWalletBalanceResult,
-} from "../../../store/user/user.slice";
 
 const useUpdateWalletBalance = () => {
   const { fireSwal } = useFireSwal();
   const { hamburgerHandlerNavigate } = useHamburgerHandlerNavigate();
   const { sendUpdateBalanceErrorEmail } = useSendUpdateBalanceErrorEmail();
 
-  const currentUser = useSelector(selectCurrentUser);
+  const { currentUser, currentUserEnvironmentVariables } = useSelector(
+    selectCurrentUserSelectors
+  );
   const walletFundsToAdd = useSelector(selectWalletFundsToAdd);
-  const envVariables = useSelector(selectEnvironmentVariables);
 
-  const { databaseId, userCollectionId: collectionId } = envVariables;
+  const { databaseId, userCollectionId: collectionId } =
+    currentUserEnvironmentVariables;
 
   const dispatch = useDispatch();
   const { id, email } = currentUser;
@@ -60,7 +59,7 @@ const useUpdateWalletBalance = () => {
               false
             ).then((isConfirmed) => {
               if (isConfirmed) {
-                dispatch(resetWalletBalanceResult());
+                dispatch(resetCurrentUserWalletBalanceResult());
                 hamburgerHandlerNavigate(bookSessionRoute);
               }
             });
@@ -74,8 +73,8 @@ const useUpdateWalletBalance = () => {
               false
             ).then((isConfirmed) => {
               if (isConfirmed) {
-                dispatch(resetWalletBalanceResult());
-                dispatch(resetWalletBalanceError());
+                dispatch(resetCurrentUserWalletBalanceResult());
+                dispatch(resetCurrentUserWalletBalanceError());
                 hamburgerHandlerNavigate(bookSessionRoute);
               }
             });

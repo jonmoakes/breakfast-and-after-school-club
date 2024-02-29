@@ -1,10 +1,7 @@
 import { useSelector } from "react-redux";
 import useNavigateToRoute from "./account-hooks/use-navigate-to-route";
 
-import {
-  selectCurrentUser,
-  selectEnvironmentVariables,
-} from "../../store/user/user.selector";
+import { selectCurrentUserSelectors } from "../../store/user/user.slice";
 
 import { YellowGreenButton } from "../../styles/buttons/buttons.styles";
 import { ParentDiv } from "../../styles/div/div.styles";
@@ -12,11 +9,12 @@ import { BlueH2 } from "../../styles/h2/h2.styles";
 import { BlackHr } from "../../styles/hr/hr.styles";
 
 const AccountButtonLinks = () => {
-  const currentUser = useSelector(selectCurrentUser);
-  const envVariables = useSelector(selectEnvironmentVariables);
-  const { appOwnerId } = envVariables;
-
   const { notAppOwnerButtons, appOwnerButtons } = useNavigateToRoute();
+
+  const { currentUser, currentUserEnvironmentVariables } = useSelector(
+    selectCurrentUserSelectors
+  );
+  const { appOwnerId } = currentUserEnvironmentVariables;
 
   return (
     <ParentDiv>

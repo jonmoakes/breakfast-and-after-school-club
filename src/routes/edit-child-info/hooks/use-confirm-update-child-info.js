@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import useConfirmSwal from "../../../hooks/use-confirm-swal";
 import useFireSwal from "../../../hooks/use-fire-swal";
 
-import { selectEnvironmentVariables } from "../../../store/user/user.selector";
+import { selectCurrentUserSelectors } from "../../../store/user/user.slice";
 import { selectEditChildInfoSelectors } from "../../../store/edit-child-info/edit-child-info.slice";
 import { editChildInfoAsync } from "../../../store/edit-child-info/edit-child-info.thunks";
 
@@ -20,9 +20,12 @@ const useConfirmUpdateChildInfo = () => {
   const { fireSwal } = useFireSwal();
 
   const { childToEditInfo } = useSelector(selectEditChildInfoSelectors);
-  const envVariables = useSelector(selectEnvironmentVariables);
+  const { currentUserEnvironmentVariables } = useSelector(
+    selectCurrentUserSelectors
+  );
 
-  const { databaseId, childrenCollectionId: collectionId } = envVariables;
+  const { databaseId, childrenCollectionId: collectionId } =
+    currentUserEnvironmentVariables;
 
   const {
     $id,

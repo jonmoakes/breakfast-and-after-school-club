@@ -9,10 +9,8 @@ import {
   resetSignUpFormState,
   selectSignUpFormSelectors,
 } from "../../../store/sign-up-form/sign-up-form.slice";
-import { selectUserError } from "../../../store/user/user.selector";
 
 const useCheckForAndClearFormDetails = () => {
-  const error = useSelector(selectUserError);
   const { signInFormDetails } = useSelector(selectSignInFormSelectors);
   const { signUpFormDetails } = useSelector(selectSignUpFormSelectors);
 
@@ -49,7 +47,7 @@ const useCheckForAndClearFormDetails = () => {
   useEffect(() => {
     checkForSignInDetails();
     checkForSignUpDetails();
-  }, [checkForSignInDetails, checkForSignUpDetails, error, dispatch]);
+  }, [checkForSignInDetails, checkForSignUpDetails, dispatch]);
 };
 
 export default useCheckForAndClearFormDetails;

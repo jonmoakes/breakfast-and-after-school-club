@@ -4,7 +4,7 @@ import useFireSwal from "../../../../hooks/use-fire-swal";
 import useHamburgerHandlerNavigate from "../../../../hooks/use-hamburger-handler-navigate";
 
 import { selectGetUsersChildrenSelectors } from "../../../../store/get-users-children/get-users-children.slice";
-import { selectEnvironmentVariables } from "../../../../store/user/user.selector";
+import { selectCurrentUserSelectors } from "../../../../store/user/user.slice";
 import { sendEmailBookingNotAddedToDatabaseAsync } from "../../../../store/send-email/send-email.thunks";
 import { selectBookSessionSelectors } from "../../../../store/book-session/book-session.slice";
 
@@ -24,7 +24,9 @@ const useSendAddBookingInfoErrorEmail = (date) => {
     selectBookSessionSelectors
   );
   const { usersChildren } = useSelector(selectGetUsersChildrenSelectors);
-  const envVariables = useSelector(selectEnvironmentVariables);
+  const { currentUserEnvironmentVariables } = useSelector(
+    selectCurrentUserSelectors
+  );
   const dispatch = useDispatch();
 
   const childName =
@@ -42,7 +44,7 @@ const useSendAddBookingInfoErrorEmail = (date) => {
 
   const oneChildChosen = childrenSelectedForBooking.join(" ");
   const namesToAddToBooking = childrenSelectedForBooking.join(", ");
-  const { appOwnerEmail } = envVariables;
+  const { appOwnerEmail } = currentUserEnvironmentVariables;
 
   const childrenInBooking = createChildrenToAddToBooking(
     childrenSelectedForBooking,

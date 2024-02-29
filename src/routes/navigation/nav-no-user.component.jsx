@@ -3,7 +3,7 @@ import { useLocation } from "react-router-dom";
 
 import useHamburgerHandlerNavigate from "../../hooks/use-hamburger-handler-navigate";
 
-import { selectCurrentUser } from "../../store/user/user.selector";
+import { selectCurrentUserSelectors } from "../../store/user/user.slice";
 
 import { NavLink } from "../../styles/p/p.styles";
 import { BorderLink } from "../../styles/span/span.styles";
@@ -13,7 +13,7 @@ import { signedOutRoutes } from "./routes";
 const NavNoUser = () => {
   const { hamburgerHandlerNavigate } = useHamburgerHandlerNavigate();
 
-  const currentUser = useSelector(selectCurrentUser);
+  const { currentUser } = useSelector(selectCurrentUserSelectors);
   const location = useLocation();
 
   return (

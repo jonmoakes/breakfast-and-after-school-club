@@ -4,7 +4,7 @@ import useConfirmSession from "../../book-a-session-hooks/use-confirm-session";
 import useConditionalLogic from "../../book-a-session-hooks/use-conditional-logic";
 import useGetPriceOfBooking from "../../../../hooks/use-get-price-of-booking";
 
-import { selectCurrentUser } from "../../../../store/user/user.selector";
+import { selectCurrentUserSelectors } from "../../../../store/user/user.slice";
 
 import { YellowGreenButton } from "../../../../styles/buttons/buttons.styles";
 import { BlackHr } from "../../../../styles/hr/hr.styles";
@@ -19,7 +19,7 @@ const MorningSessionButton = () => {
   const { confirmSession } = useConfirmSession();
   const { getPriceOfBooking } = useGetPriceOfBooking();
 
-  const currentUser = useSelector(selectCurrentUser);
+  const { currentUser } = useSelector(selectCurrentUserSelectors);
 
   const { walletBalance } = currentUser;
   const price = getPriceOfBooking(sessionPrice);

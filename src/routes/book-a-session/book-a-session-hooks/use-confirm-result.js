@@ -8,10 +8,7 @@ import {
   updateSessionDocAsync,
   updateUserDocBalanceAsync,
 } from "../../../store/book-session/book-session.thunks";
-import {
-  selectCurrentUser,
-  selectEnvironmentVariables,
-} from "../../../store/user/user.selector";
+import { selectCurrentUserSelectors } from "../../../store/user/user.slice";
 import { selectBookSessionSelectors } from "../../../store/book-session/book-session.slice";
 import { getUsersWalletBalanceAsync } from "../../../store/user/user.thunks";
 
@@ -22,8 +19,9 @@ const useConfirmResult = () => {
   const { childrenSelectedForBooking } = useSelector(
     selectBookSessionSelectors
   );
-  const currentUser = useSelector(selectCurrentUser);
-  const envVariables = useSelector(selectEnvironmentVariables);
+  const { currentUser, currentUserEnvironmentVariables } = useSelector(
+    selectCurrentUserSelectors
+  );
   const dispatch = useDispatch();
 
   const { id } = currentUser;
@@ -32,7 +30,7 @@ const useConfirmResult = () => {
     termDatesCollectionId,
     userCollectionId: collectionId,
     bookedSessionsCollectionId,
-  } = envVariables;
+  } = currentUserEnvironmentVariables;
 
   const confirmResult = (sessionType, price) => {
     dispatch(

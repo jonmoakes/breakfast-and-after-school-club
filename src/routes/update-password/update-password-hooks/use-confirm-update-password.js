@@ -2,7 +2,7 @@ import { useSelector, useDispatch } from "react-redux";
 
 import useConfirmSwal from "../../../hooks/use-confirm-swal";
 
-import { selectCurrentUser } from "../../../store/user/user.selector";
+import { selectCurrentUserSelectors } from "../../../store/user/user.slice";
 import { generateNewPasswordRequestAsync } from "../../../store/generate-new-password-request/generate-new-password-request.thunks";
 
 import {
@@ -13,10 +13,11 @@ import {
 const useConfirmUpdatePassword = () => {
   const { confirmSwal } = useConfirmSwal();
 
-  const currentUser = useSelector(selectCurrentUser);
+  const { currentUser } = useSelector(selectCurrentUserSelectors);
 
   const dispatch = useDispatch();
   const { email } = currentUser;
+
   const confirmResult = () => {
     const generateNewPasswordRequestEmail = email;
     dispatch(

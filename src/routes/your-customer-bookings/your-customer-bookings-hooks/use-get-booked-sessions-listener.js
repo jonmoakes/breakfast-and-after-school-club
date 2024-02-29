@@ -2,19 +2,18 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { client } from "../../../utils/appwrite/appwrite-config";
 
-import {
-  selectCurrentUser,
-  selectEnvironmentVariables,
-} from "../../../store/user/user.selector";
+import { selectCurrentUserSelectors } from "../../../store/user/user.slice";
 import { selectBookedSessionsSelectors } from "../../../store/booked-sessions/booked-sessions.slice";
 import { setBookedSessions } from "../../../store/booked-sessions/booked-sessions.slice";
 
 const useGetBookedSessionsListener = () => {
-  const currentUser = useSelector(selectCurrentUser);
+  const { currentUser, currentUserEnvironmentVariables } = useSelector(
+    selectCurrentUserSelectors
+  );
   const { bookedSessions } = useSelector(selectBookedSessionsSelectors);
-  const envVariables = useSelector(selectEnvironmentVariables);
 
-  const { databaseId, bookedSessionsCollectionId } = envVariables;
+  const { databaseId, bookedSessionsCollectionId } =
+    currentUserEnvironmentVariables;
   const dispatch = useDispatch();
 
   useEffect(() => {

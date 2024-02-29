@@ -3,8 +3,11 @@ import { useDispatch, useSelector } from "react-redux";
 
 import useFireSwal from "../../../hooks/use-fire-swal";
 
-import { resetUserErrorMessage } from "../../../store/user/user.slice";
-import { selectUserError } from "../../../store/user/user.selector";
+import {
+  resetCurrentUserErrorMessage,
+  selectCurrentUserSelectors,
+} from "../../../store/user/user.slice";
+
 import {
   appwriteNoUserError,
   errorSigningInMessage,
@@ -14,11 +17,15 @@ import {
 const useHandleSignInFormError = () => {
   const { fireSwal } = useFireSwal();
 
-  const error = useSelector(selectUserError);
+  const { currentUserError } = useSelector(selectCurrentUserSelectors);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (!error || (error && error === appwriteNoUserError)) return;
+    if (
+      !currentUserError ||
+      (currentUserError && currentUserError === appwriteNoUserError)
+    )
+      return;
 
     fireSwal(
       "error",
@@ -28,8 +35,8 @@ const useHandleSignInFormError = () => {
       true,
       false
     );
-    dispatch(resetUserErrorMessage());
-  }, [fireSwal, error, dispatch]);
+    dispatch(resetCurrentUserErrorMessage());
+  }, [fireSwal, currentUserError, dispatch]);
 };
 
 export default useHandleSignInFormError;

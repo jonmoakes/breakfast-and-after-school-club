@@ -3,10 +3,7 @@ import { useLocation } from "react-router-dom";
 
 import useHamburgerHandlerNavigate from "../../hooks/use-hamburger-handler-navigate";
 
-import {
-  selectCurrentUser,
-  selectEnvironmentVariables,
-} from "../../store/user/user.selector";
+import { selectCurrentUserSelectors } from "../../store/user/user.slice";
 
 import { NavLink } from "../../styles/p/p.styles";
 import { BorderLink } from "../../styles/span/span.styles";
@@ -16,10 +13,11 @@ import { ownerSignedInRoutes } from "./routes";
 const NavAppOwner = () => {
   const { hamburgerHandlerNavigate } = useHamburgerHandlerNavigate();
 
-  const currentUser = useSelector(selectCurrentUser);
-  const envVariables = useSelector(selectEnvironmentVariables);
+  const { currentUser, currentUserEnvironmentVariables } = useSelector(
+    selectCurrentUserSelectors
+  );
 
-  const { appOwnerId } = envVariables;
+  const { appOwnerId } = currentUserEnvironmentVariables;
   const location = useLocation();
 
   return (

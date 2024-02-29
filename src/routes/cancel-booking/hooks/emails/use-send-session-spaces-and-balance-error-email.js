@@ -4,10 +4,7 @@ import useFireSwal from "../../../../hooks/use-fire-swal";
 import useHamburgerHandlerNavigate from "../../../../hooks/use-hamburger-handler-navigate";
 import useGetRefundPrice from "../use-get-refund-price";
 
-import {
-  selectCurrentUser,
-  selectEnvironmentVariables,
-} from "../../../../store/user/user.selector";
+import { selectCurrentUserSelectors } from "../../../../store/user/user.slice";
 import { selectUserBookingToDelete } from "../../../../store/user-booking-to-delete/user-booking-to-delete.selector";
 import { sendEmailResetSessionSpacesAndBalanceErrorAsync } from "../../../../store/send-email/send-email.thunks";
 
@@ -23,14 +20,15 @@ const useSendSessionSpacesAndBalanceErrorEmail = () => {
   let { refundPrice, numberOfChildrenInBooking, totalRefundPrice } =
     useGetRefundPrice();
 
-  const currentUser = useSelector(selectCurrentUser);
+  const { currentUser, currentUserEnvironmentVariables } = useSelector(
+    selectCurrentUserSelectors
+  );
   const userBookingToDelete = useSelector(selectUserBookingToDelete);
-  const envVariables = useSelector(selectEnvironmentVariables);
 
   const dispatch = useDispatch();
 
   const { id } = currentUser;
-  const { appOwnerEmail } = envVariables;
+  const { appOwnerEmail } = currentUserEnvironmentVariables;
 
   const { date, sessionType } = userBookingToDelete || {};
 

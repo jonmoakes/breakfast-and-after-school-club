@@ -5,7 +5,7 @@ import useHamburgerHandlerNavigate from "../../../../hooks/use-hamburger-handler
 import useFireSwal from "../../../../hooks/use-fire-swal";
 
 import { selectBookSessionSelectors } from "../../../../store/book-session/book-session.slice";
-import { selectEnvironmentVariables } from "../../../../store/user/user.selector";
+import { selectCurrentUserSelectors } from "../../../../store/user/user.slice";
 import { sendEmailResetSessionSpacesErrorAsync } from "../../../../store/send-email/send-email.thunks";
 
 import {
@@ -22,13 +22,15 @@ const useSendResetSessionSpacesErrorEmail = () => {
   const { sessionType, childrenSelectedForBooking } = useSelector(
     selectBookSessionSelectors
   );
-  const envVariables = useSelector(selectEnvironmentVariables);
+  const { currentUserEnvironmentVariables } = useSelector(
+    selectCurrentUserSelectors
+  );
   const dispatch = useDispatch();
 
   const numberOfSpacesToAdd = childrenSelectedForBooking.length
     ? childrenSelectedForBooking.length
     : 1;
-  const { appOwnerEmail } = envVariables;
+  const { appOwnerEmail } = currentUserEnvironmentVariables;
 
   const sendResetSessionSpacesErrorEmail = () => {
     dispatch(

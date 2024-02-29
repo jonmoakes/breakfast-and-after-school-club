@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import useFireSwal from "../../../../hooks/use-fire-swal";
 import useHamburgerHandlerNavigate from "../../../../hooks/use-hamburger-handler-navigate";
 
-import { selectCurrentUser } from "../../../../store/user/user.selector";
+import { selectCurrentUserSelectors } from "../../../../store/user/user.slice";
 import { selectRequestDateDataSelectors } from "../../../../store/request-date-data/request-date-data.slice";
 import { selectBookSessionSelectors } from "../../../../store/book-session/book-session.slice";
 import { selectGetUsersChildrenSelectors } from "../../../../store/get-users-children/get-users-children.slice";
@@ -21,7 +21,7 @@ const useSendEmailBookingConfirmation = () => {
   const { fireSwal } = useFireSwal();
   const { hamburgerHandlerNavigate } = useHamburgerHandlerNavigate();
 
-  const currentUser = useSelector(selectCurrentUser);
+  const { currentUser } = useSelector(selectCurrentUserSelectors);
   const { dateData } = useSelector(selectRequestDateDataSelectors);
   const { sessionType, sessionPrice, childrenSelectedForBooking } = useSelector(
     selectBookSessionSelectors

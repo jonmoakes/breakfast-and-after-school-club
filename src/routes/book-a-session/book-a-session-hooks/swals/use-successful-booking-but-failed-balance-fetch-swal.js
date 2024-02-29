@@ -4,8 +4,8 @@ import useFireSwal from "../../../../hooks/use-fire-swal";
 import useSendEmailBookingConfirmation from "../emails/use-send-email-booking-confirmation";
 
 import {
-  resetWalletBalanceError,
-  resetWalletBalanceResult,
+  resetCurrentUserWalletBalanceResult,
+  resetCurrentUserWalletBalanceError,
 } from "../../../../store/user/user.slice";
 
 import { sessionBookedBalanceUpdateFailedMessage } from "../../../../strings/strings";
@@ -26,8 +26,8 @@ const useSuccessfulBookingButFailedBalanceFetchSwal = () => {
       false
     ).then((isConfirmed) => {
       if (isConfirmed) {
-        dispatch(resetWalletBalanceResult());
-        dispatch(resetWalletBalanceError());
+        dispatch(resetCurrentUserWalletBalanceResult());
+        dispatch(resetCurrentUserWalletBalanceError());
         sendEmailBookingConfirmation();
       }
     });

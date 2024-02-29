@@ -4,10 +4,9 @@ import { useSelector, useDispatch } from "react-redux";
 import useFireSwal from "../../../hooks/use-fire-swal";
 
 import {
-  selectCurrentUser,
-  selectUserError,
-} from "../../../store/user/user.selector";
-import { resetUserErrorMessage } from "../../../store/user/user.slice";
+  resetCurrentUserErrorMessage,
+  selectCurrentUserSelectors,
+} from "../../../store/user/user.slice";
 
 import {
   appwriteNoUserError,
@@ -17,28 +16,29 @@ import {
 const useGetSignOutError = () => {
   const { fireSwal } = useFireSwal();
 
-  const currentUser = useSelector(selectCurrentUser);
-  const signOutError = useSelector(selectUserError);
+  const { currentUser, currentUserError } = useSelector(
+    selectCurrentUserSelectors
+  );
 
   const dispatch = useDispatch();
 
   useEffect(() => {
     if (
-      signOutError === appwriteNoUserError ||
-      signOutError === appwriteIdAlreadyExistsError
+      currentUserError === appwriteNoUserError ||
+      currentUserError === appwriteIdAlreadyExistsError
     )
       return;
 
-    if (signOutError && signOutError !== appwriteNoUserError) {
-      fireSwal("error", signOutError, "", 0, true, false).then(
+    if (currentUserError && currentUserError !== appwriteNoUserError) {
+      fireSwal("error", currentUserError, "", 0, true, false).then(
         (isConfirmed) => {
           if (isConfirmed) {
-            dispatch(resetUserErrorMessage());
+            dispatch(resetCurrentUserErrorMessage());
           }
         }
       );
     }
-  }, [fireSwal, currentUser, dispatch, signOutError]);
+  }, [fireSwal, currentUser, dispatch, currentUserError]);
 };
 
 export default useGetSignOutError;
