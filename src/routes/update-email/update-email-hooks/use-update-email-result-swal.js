@@ -4,14 +4,14 @@ import { useDispatch, useSelector } from "react-redux";
 import useFireSwal from "../../../hooks/use-fire-swal";
 
 import {
-  selectUpdateEmailResult,
-  selectUpdateEmailError,
-} from "../../../store/update-email/update-email.selector";
-import { resetError } from "../../../store/update-email/update-email.slice";
+  resetUpdateEmailError,
+  selectUpdateEmailSelectors,
+} from "../../../store/update-email/update-email.slice";
 
 import {
   appwritePasswordError,
   emailChangedMessage,
+  errorReceivedMessage,
   errorUpdatingEmailMessage,
   passwordErrorInstructions,
   passwordErrorMessage,
@@ -21,15 +21,16 @@ import {
 const useUpdateEmailResultResultSwal = () => {
   const { fireSwal } = useFireSwal();
 
-  const result = useSelector(selectUpdateEmailResult);
-  const error = useSelector(selectUpdateEmailError);
+  const { updateEmailResult, updateEmailError } = useSelector(
+    selectUpdateEmailSelectors
+  );
 
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (!result && !error) return;
+    if (!updateEmailResult && !updateEmailError) return;
 
-    if (result === "succeeded") {
+    if (updateEmailResult === "succeeded") {
       fireSwal(
         "success",
         emailChangedMessage,
@@ -42,9 +43,9 @@ const useUpdateEmailResultResultSwal = () => {
         window.location.reload();
       }, 5000);
     } else if (
-      result === "failure" &&
-      error &&
-      error === appwritePasswordError
+      updateEmailResult === "failure" &&
+      updateEmailError &&
+      updateEmailError === appwritePasswordError
     ) {
       fireSwal(
         "error",
@@ -55,28 +56,29 @@ const useUpdateEmailResultResultSwal = () => {
         false
       ).then((isConfirmed) => {
         if (isConfirmed) {
-          dispatch(resetError());
+          dispatch(resetUpdateEmailError());
         }
       });
     } else if (
-      result === "failure" &&
-      error &&
-      error !== appwritePasswordError
+      updateEmailResult === "failure" &&
+      updateEmailError &&
+      updateEmailError !== appwritePasswordError
     ) {
+      const error = updateEmailError;
       fireSwal(
         "error",
         errorUpdatingEmailMessage,
-        `The error received was: ${error}`,
+        errorReceivedMessage(error),
         0,
         true,
         false
       ).then((isConfirmed) => {
         if (isConfirmed) {
-          dispatch(resetError());
+          dispatch(resetUpdateEmailError());
         }
       });
     }
-  }, [result, error, fireSwal, dispatch]);
+  }, [updateEmailResult, updateEmailError, fireSwal, dispatch]);
 };
 
 export default useUpdateEmailResultResultSwal;

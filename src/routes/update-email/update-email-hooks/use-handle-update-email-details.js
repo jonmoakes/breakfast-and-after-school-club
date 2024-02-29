@@ -1,10 +1,12 @@
 import { useDispatch, useSelector } from "react-redux";
 
-import { selectUpdateEmailDetails } from "../../../store/update-email/update-email.selector";
-import { setUpdateEmailDetails } from "../../../store/update-email/update-email.slice";
+import {
+  setUpdateEmailDetails,
+  selectUpdateEmailSelectors,
+} from "../../../store/update-email/update-email.slice";
 
 const useHandleUpdateEmailDetails = () => {
-  const updateEmailDetails = useSelector(selectUpdateEmailDetails);
+  const { updateEmailDetails } = useSelector(selectUpdateEmailSelectors);
   const dispatch = useDispatch();
 
   const handleUpdateEmailDetailsChange = (event) => {

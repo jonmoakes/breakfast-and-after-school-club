@@ -44,8 +44,8 @@ const Info = () => {
               "update email" button.
             </Text>
             <Text>
-              again, for security reasons, you will then signed out of your
-              account and will then be able to sign in with your new email
+              again for security reasons, you will then be signed out of your
+              account. you will then be able to sign in with your new email
               address.
             </Text>
 

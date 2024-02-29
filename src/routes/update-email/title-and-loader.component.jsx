@@ -1,7 +1,7 @@
 import { useSelector } from "react-redux";
 import Balancer from "react-wrap-balancer";
 
-import { selectUpdateEmailIsLoading } from "../../store/update-email/update-email.selector";
+import { selectUpdateEmailSelectors } from "../../store/update-email/update-email.slice";
 
 import Loader from "../../components/loader/loader.component";
 
@@ -9,11 +9,11 @@ import { ParentDiv } from "../../styles/div/div.styles";
 import { BlackTitle } from "../../styles/h1/h1.styles";
 
 const TitleAndLoader = () => {
-  const isLoading = useSelector(selectUpdateEmailIsLoading);
+  const { updateEmailIsLoading } = useSelector(selectUpdateEmailSelectors);
 
   return (
     <>
-      {isLoading ? <Loader /> : null}
+      {updateEmailIsLoading ? <Loader /> : null}
       <ParentDiv>
         <BlackTitle>
           <Balancer>update your email address</Balancer>

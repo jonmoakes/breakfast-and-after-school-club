@@ -5,7 +5,7 @@ import useHideUpdateEmailPasswordOnEmpty from "./update-email-hooks/use-hide-upd
 import useConfirmUpdateEmail from "./update-email-hooks/use-confirm-update-email";
 import useIsOnline from "../../hooks/use-is-online";
 
-import { selectUpdateEmailDetails } from "../../store/update-email/update-email.selector";
+import { selectUpdateEmailSelectors } from "../../store/update-email/update-email.slice";
 import {
   toggleUpdateEmailPasswordIsVisible,
   selectPasswordIsVisibleSelectors,
@@ -33,13 +33,13 @@ const NewEmail = () => {
   const { handleUpdateEmailDetailsChange } = useHandleUpdateEmailDetails();
   const { isOnline } = useIsOnline();
 
-  const updateEmailDetails = useSelector(selectUpdateEmailDetails);
+  const { updateEmailDetails } = useSelector(selectUpdateEmailSelectors);
   const { updateEmailPasswordIsVisible } = useSelector(
     selectPasswordIsVisibleSelectors
   );
   const dispatch = useDispatch();
 
-  const { newEmail, password } = updateEmailDetails;
+  const { newEmail, confirmNewEmail, password } = updateEmailDetails;
 
   return (
     <>
@@ -50,6 +50,15 @@ const NewEmail = () => {
           type="email"
           value={newEmail || ""}
           placeholder={enterEmailAddress}
+          required
+          onChange={handleUpdateEmailDetailsChange}
+        />
+
+        <LowercasedInput
+          name="confirmNewEmail"
+          type="email"
+          value={confirmNewEmail || ""}
+          placeholder="confirm new email address"
           required
           onChange={handleUpdateEmailDetailsChange}
         />
@@ -75,7 +84,7 @@ const NewEmail = () => {
 
         {!isOnline ? (
           <NetworkError />
-        ) : newEmail && password ? (
+        ) : newEmail && confirmNewEmail && password ? (
           <YellowGreenButton type="button" onClick={confirmUpdateEmail}>
             update email
           </YellowGreenButton>

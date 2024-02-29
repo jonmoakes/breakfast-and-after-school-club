@@ -3,12 +3,12 @@ import { useDispatch, useSelector } from "react-redux";
 import useFireSwal from "../../../hooks/use-fire-swal";
 import useConfirmSwal from "../../../hooks/use-confirm-swal";
 
-import { selectUpdateEmailDetails } from "../../../store/update-email/update-email.selector";
 import {
   selectCurrentUser,
   selectEnvironmentVariables,
 } from "../../../store/user/user.selector";
-import { updateEmailAsync } from "../../../store/update-email/update-email.slice";
+import { selectUpdateEmailSelectors } from "../../../store/update-email/update-email.slice";
+import { updateEmailAsync } from "../../../store/update-email/update-email.thunks";
 
 import { validateEmail } from "../../../functions/validate-email";
 
@@ -24,14 +24,14 @@ const useConfirmUpdateEmail = () => {
   const { fireSwal } = useFireSwal();
   const { confirmSwal } = useConfirmSwal();
 
-  const updateEmailDetails = useSelector(selectUpdateEmailDetails);
+  const { updateEmailDetails } = useSelector(selectUpdateEmailSelectors);
   const currentUser = useSelector(selectCurrentUser);
   const envVariables = useSelector(selectEnvironmentVariables);
 
   const dispatch = useDispatch();
 
   const { id, email } = currentUser;
-  const { newEmail, password } = updateEmailDetails;
+  const { newEmail, confirmNewEmail, password } = updateEmailDetails;
   const { databaseId, userCollectionId: collectionId } = envVariables;
 
   const confirmResult = () => {
@@ -52,6 +52,8 @@ const useConfirmUpdateEmail = () => {
         true,
         false
       );
+    } else if (newEmail !== confirmNewEmail) {
+      fireSwal("error", "emails dont match", "", 0, true, false);
     } else {
       confirmSwal(
         confirmUpdateEmailMessage(newEmail),

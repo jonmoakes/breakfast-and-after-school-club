@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
-import { selectUpdateEmailDetails } from "../../../store/update-email/update-email.selector";
+import { selectUpdateEmailSelectors } from "../../../store/update-email/update-email.slice";
 import {
   hideUpdateEmailPasswordIsVisible,
   selectPasswordIsVisibleSelectors,
@@ -11,7 +11,7 @@ const useHideUpdateEmailPasswordOnEmpty = () => {
   const { updateEmailPasswordIsVisible } = useSelector(
     selectPasswordIsVisibleSelectors
   );
-  const updateEmailDetails = useSelector(selectUpdateEmailDetails);
+  const { updateEmailDetails } = useSelector(selectUpdateEmailSelectors);
 
   const dispatch = useDispatch();
   const { password } = updateEmailDetails;

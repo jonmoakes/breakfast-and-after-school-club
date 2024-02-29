@@ -39,6 +39,13 @@ const useGetBookSessionResultSwal = () => {
       walletBalanceResult === "success"
     ) {
       successSwal();
+    } else if (
+      updateSessionResult === "fulfilled" &&
+      updateBalanceResult === "fulfilled" &&
+      addSessionBookingInfoResult === "fulfilled" &&
+      walletBalanceResult === "rejected"
+    ) {
+      successfulBookingButFailedBalanceFetchSwal();
     } else if (updateSessionResult === "rejected") {
       updateSessionDocErrorSwal();
     } else if (
@@ -52,13 +59,6 @@ const useGetBookSessionResultSwal = () => {
       addSessionBookingInfoResult === "rejected"
     ) {
       addSessionBookingInfoErrorSwal();
-    } else if (
-      updateSessionResult === "fulfilled" &&
-      updateBalanceResult === "fulfilled" &&
-      addSessionBookingInfoResult === "fulfilled" &&
-      walletBalanceResult === "rejected"
-    ) {
-      successfulBookingButFailedBalanceFetchSwal();
     }
   }, [
     noActionsFiredYet,

@@ -1,37 +1,16 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { account } from "../../utils/appwrite/appwrite-config";
-import { manageDatabaseDocument } from "../../utils/appwrite/appwrite-functions";
-
-export const updateEmailAsync = createAsyncThunk(
-  "updateEmail",
-  async ({ id, newEmail, password, databaseId, collectionId }, thunkAPI) => {
-    try {
-      const documentId = id;
-      const dataToUpdate = { email: newEmail };
-      await account.updateEmail(newEmail, password);
-      await manageDatabaseDocument(
-        "update",
-        databaseId,
-        collectionId,
-        documentId,
-        dataToUpdate
-      );
-      await account.deleteSessions();
-    } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
-    }
-  }
-);
+import { createSelector, createSlice } from "@reduxjs/toolkit";
+import { updateEmailAsync } from "./update-email.thunks";
 
 const defaultUpdateEmailDetails = {
   newEmail: "",
+  confirmNewEmail: "",
   password: "",
 };
 const INITIAL_STATE = {
-  isLoading: false,
+  updateEmailIsLoading: false,
   updateEmailDetails: defaultUpdateEmailDetails,
-  result: "",
-  error: null,
+  updateEmailResult: "",
+  updateEmailError: null,
 };
 
 export const updateEmailSlice = createSlice({
@@ -41,33 +20,58 @@ export const updateEmailSlice = createSlice({
     setUpdateEmailDetails(state, action) {
       state.updateEmailDetails = action.payload;
     },
-    resetError(state) {
-      state.error = null;
+    resetUpdateEmailError(state) {
+      state.updateEmailError = null;
     },
     resetUpdateEmailState: () => {
       return INITIAL_STATE;
     },
   },
+  selectors: {
+    selectUpdateEmailSelectors: createSelector(
+      (state) => state.updateEmailIsLoading,
+      (state) => state.updateEmailDetails,
+      (state) => state.updateEmailResult,
+      (state) => state.updateEmailError,
+      (
+        updateEmailIsLoading,
+        updateEmailDetails,
+        updateEmailResult,
+        updateEmailError
+      ) => {
+        return {
+          updateEmailIsLoading,
+          updateEmailDetails,
+          updateEmailResult,
+          updateEmailError,
+        };
+      }
+    ),
+  },
   extraReducers: (builder) => {
     builder
       .addCase(updateEmailAsync.pending, (state) => {
-        state.isLoading = true;
+        state.updateEmailIsLoading = true;
       })
       .addCase(updateEmailAsync.fulfilled, (state) => {
-        state.isLoading = false;
-        state.result = "succeeded";
+        state.updateEmailIsLoading = false;
+        state.updateEmailResult = "succeeded";
         state.updateEmailDetails = defaultUpdateEmailDetails;
-        state.error = null;
+        state.updateEmailError = null;
       })
       .addCase(updateEmailAsync.rejected, (state, action) => {
-        state.isLoading = false;
-        state.result = "failure";
-        state.error = action.payload;
+        state.updateEmailIsLoading = false;
+        state.updateEmailResult = "failure";
+        state.updateEmailError = action.payload;
       });
   },
 });
 
-export const { setUpdateEmailDetails, resetUpdateEmailState, resetError } =
-  updateEmailSlice.actions;
+export const {
+  setUpdateEmailDetails,
+  resetUpdateEmailState,
+  resetUpdateEmailError,
+} = updateEmailSlice.actions;
+export const { selectUpdateEmailSelectors } = updateEmailSlice.selectors;
 
 export const updateEmailReducer = updateEmailSlice.reducer;
