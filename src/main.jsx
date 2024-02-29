@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import ReactDOM from "react-dom/client";
 import { BrowserRouter } from "react-router-dom";
 import { Provider, useSelector } from "react-redux";
@@ -18,11 +18,23 @@ const AppContainer = () => {
   );
   const { stripePublishableKey } = currentUserEnvironmentVariables;
 
+  const [stripePromise, setStripePromise] = useState(() =>
+    stripePublishableKey ? loadStripe(stripePublishableKey) : null
+  );
+
+  useEffect(() => {
+    if (stripePublishableKey) {
+      setStripePromise(loadStripe(stripePublishableKey));
+    } else {
+      setStripePromise(null);
+    }
+  }, [stripePublishableKey]);
+
   return (
     <>
-      {stripePublishableKey ? (
+      {stripePromise ? (
         <>
-          <Elements stripe={loadStripe(stripePublishableKey)}>
+          <Elements stripe={stripePromise}>
             <App />
           </Elements>
         </>
