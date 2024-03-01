@@ -16,6 +16,7 @@ const initialState = {
   currentUserEnvironmentVariables: {},
   currentUserWalletBalanceResult: "",
   currentUserWalletBalanceError: null,
+  loadStripeKey: null,
 };
 
 const userSlice = createSlice({
@@ -31,6 +32,9 @@ const userSlice = createSlice({
     resetCurrentUserWalletBalanceError(state) {
       state.currentUserWalletBalanceError = null;
     },
+    setLoadStripeKey(state, action) {
+      state.loadStripeKey = action.payload;
+    },
   },
   selectors: {
     selectCurrentUserSelectors: createSelector(
@@ -40,13 +44,15 @@ const userSlice = createSlice({
       (state) => state.currentUserEnvironmentVariables,
       (state) => state.currentUserWalletBalanceResult,
       (state) => state.currentUserWalletBalanceError,
+      (state) => state.loadStripeKey,
       (
         currentUser,
         currentUserIsLoading,
         currentUserError,
         currentUserEnvironmentVariables,
         currentUserWalletBalanceResult,
-        currentUserWalletBalanceError
+        currentUserWalletBalanceError,
+        loadStripeKey
       ) => {
         return {
           currentUser,
@@ -55,6 +61,7 @@ const userSlice = createSlice({
           currentUserEnvironmentVariables,
           currentUserWalletBalanceResult,
           currentUserWalletBalanceError,
+          loadStripeKey,
         };
       }
     ),
@@ -114,6 +121,7 @@ const userSlice = createSlice({
         state.currentUser = null;
         state.currentUserError = null;
         state.currentUserEnvironmentVariables = {};
+        state.loadStripeKey = null;
       })
       .addCase(signOutAsync.rejected, (state, action) => {
         state.currentUserIsLoading = false;
@@ -139,6 +147,7 @@ export const {
   resetCurrentUserErrorMessage,
   resetCurrentUserWalletBalanceResult,
   resetCurrentUserWalletBalanceError,
+  setLoadStripeKey,
 } = userSlice.actions;
 export const { selectCurrentUserSelectors } = userSlice.selectors;
 

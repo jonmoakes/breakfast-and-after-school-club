@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import ReactDOM from "react-dom/client";
 import { BrowserRouter } from "react-router-dom";
-import { Provider, useSelector } from "react-redux";
+import { Provider, useSelector, useDispatch } from "react-redux";
 import { store } from "./store/store";
 import { StyleSheetManager } from "styled-components";
 import App from "./App";
@@ -10,30 +10,30 @@ import * as serviceWorkerRegistration from "./serviceWorkerRegistration";
 import { Elements } from "@stripe/react-stripe-js";
 import "regenerator-runtime";
 import { loadStripe } from "@stripe/stripe-js";
-import { selectCurrentUserSelectors } from "./store/user/user.slice";
+import {
+  selectCurrentUserSelectors,
+  setLoadStripeKey,
+} from "./store/user/user.slice";
 
 const AppContainer = () => {
-  const { currentUserEnvironmentVariables } = useSelector(
+  const { currentUserEnvironmentVariables, loadStripeKey } = useSelector(
     selectCurrentUserSelectors
   );
 
-  const [stripePubKey, setStripePubKey] = useState(null);
+  const dispatch = useDispatch();
 
   const { stripePublishableKey } = currentUserEnvironmentVariables;
 
   useEffect(() => {
-    if (stripePublishableKey) {
-      setStripePubKey(loadStripe(stripePublishableKey));
-    } else {
-      setStripePubKey(null);
-    }
-  }, [stripePublishableKey]);
+    if (!stripePublishableKey) return;
+    dispatch(setLoadStripeKey(loadStripe(stripePublishableKey)));
+  }, [stripePublishableKey, dispatch]);
 
   return (
     <>
-      {stripePubKey ? (
+      {loadStripeKey ? (
         <>
-          <Elements stripe={stripePubKey}>
+          <Elements stripe={loadStripeKey}>
             <App />
           </Elements>
         </>
