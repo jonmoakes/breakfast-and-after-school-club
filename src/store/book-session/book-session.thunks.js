@@ -148,6 +148,9 @@ export const addSessionBookingInfoAsync = createAsyncThunk(
       date,
       sessionType,
       childrenSelectedForBooking,
+      email,
+      name,
+      phoneNumber,
       bookedSessionsCollectionId,
       databaseId,
     },
@@ -157,7 +160,7 @@ export const addSessionBookingInfoAsync = createAsyncThunk(
     const oneChildChosen = childrenSelectedForBooking.join(" ");
     const namesToAddToBooking = childrenSelectedForBooking.join(", ");
 
-    const { childName, parentEmail, parentName } = usersChildren[0];
+    const { childName } = usersChildren[0];
 
     try {
       const sessionBooking = {
@@ -169,8 +172,9 @@ export const addSessionBookingInfoAsync = createAsyncThunk(
           oneChildChosen,
           namesToAddToBooking
         ),
-        parentEmail,
-        parentName,
+        parentEmail: email,
+        parentName: name,
+        parentPhoneNumber: phoneNumber,
       };
 
       const collectionId = bookedSessionsCollectionId;

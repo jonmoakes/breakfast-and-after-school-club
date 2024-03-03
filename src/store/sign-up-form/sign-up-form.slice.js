@@ -4,6 +4,7 @@ const defaultSignUpFormDetails = {
   name: "",
   email: "",
   schoolCode: "",
+  phoneNumber: "",
   password: "",
   confirmPassword: "",
 };

@@ -15,6 +15,7 @@ import {
   invalidSchoolCodeHelpMessage,
   missingFieldsMessage,
   passwordsDontMatchMessage,
+  phoneNumberLengthErrorMessage,
 } from "../../../strings/strings";
 
 const useHandleSignUpFormSubmit = () => {
@@ -23,7 +24,7 @@ const useHandleSignUpFormSubmit = () => {
   const { signUpFormDetails } = useSelector(selectSignUpFormSelectors);
 
   const dispatch = useDispatch();
-  const { name, email, schoolCode, password, confirmPassword } =
+  const { name, email, phoneNumber, schoolCode, password, confirmPassword } =
     signUpFormDetails;
 
   const handleSignUpFormSubmit = () => {
@@ -31,6 +32,8 @@ const useHandleSignUpFormSubmit = () => {
       fireSwal("error", missingFieldsMessage, "", 0, true, false);
     } else if (!validateEmail(email)) {
       fireSwal("error", invalidEmailErrorMessage, "", 0, true, false);
+    } else if (phoneNumber.length !== 11) {
+      fireSwal("error", phoneNumberLengthErrorMessage, "", 0, true, false);
     } else if (password !== confirmPassword) {
       fireSwal("error", passwordsDontMatchMessage, "", 0, true, false);
     } else if (isNotValidSchoolCode(schoolCode)) {
@@ -44,7 +47,7 @@ const useHandleSignUpFormSubmit = () => {
       );
     } else {
       setProjectId(schoolCode);
-      dispatch(signUpAsync({ email, password, name, schoolCode }));
+      dispatch(signUpAsync({ email, password, name, schoolCode, phoneNumber }));
     }
   };
 

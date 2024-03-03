@@ -1,4 +1,4 @@
-import { EmailLink } from "../../styles/p/p.styles";
+import { StyledLink } from "../../styles/link/link.styles";
 
 export const TABLE_COLUMNS = [
   {
@@ -31,19 +31,29 @@ export const TABLE_COLUMNS = [
     accessor: "childrensName",
   },
   {
+    Header: "parent name",
+    accessor: "parentName",
+  },
+  {
     Header: "parent email",
     accessor: "parentEmail",
     Cell: ({ value }) => {
+      console.log(value);
       const onEmailClick = () => {
         window.open(
           `mailto:${value}?Subject=Message From Breakfast & After School Club`
         );
       };
-      return <EmailLink onClick={onEmailClick}>{value}</EmailLink>;
+      return <StyledLink onClick={onEmailClick}>tap to email</StyledLink>;
     },
   },
+
   {
-    Header: "parent name",
-    accessor: "parentName",
+    Header: "Parent Phone",
+    accessor: "parentPhoneNumber",
+    Cell: ({ value }) => {
+      console.log(value);
+      return <a href={`tel:${value}`}>Tap to call</a>;
+    },
   },
 ];

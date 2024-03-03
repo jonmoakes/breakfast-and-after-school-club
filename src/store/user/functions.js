@@ -113,14 +113,22 @@ export const getRetrievedUserFromDocument = async (schoolCode) => {
   const { total, documents } = userDocument;
 
   if (total && documents.length) {
-    const { id, name, email, createdAt, walletBalance, schoolCode } =
-      documents[0];
+    const {
+      id,
+      name,
+      email,
+      phoneNumber,
+      createdAt,
+      walletBalance,
+      schoolCode,
+    } = documents[0];
 
     return {
       id,
       createdAt,
       name,
       email,
+      phoneNumber,
       walletBalance,
       schoolCode,
     };
@@ -129,7 +137,7 @@ export const getRetrievedUserFromDocument = async (schoolCode) => {
   }
 };
 
-export const createDocumentAndSetUser = async (schoolCode) => {
+export const createDocumentAndSetUser = async (schoolCode, phoneNumber) => {
   const user = await account.get();
   const { databaseId, collectionId } =
     getSchoolDatabaseAndUserCollectionIds(schoolCode);
@@ -153,6 +161,7 @@ export const createDocumentAndSetUser = async (schoolCode) => {
       createdAt: user.$createdAt,
       name: user.name,
       email: user.email,
+      phoneNumber,
       walletBalance: 0,
       schoolCode,
     };

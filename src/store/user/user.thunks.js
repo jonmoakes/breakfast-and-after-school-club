@@ -45,12 +45,12 @@ export const signInAsync = createAsyncThunk(
 
 export const signUpAsync = createAsyncThunk(
   "user/signUp",
-  async ({ email, password, name, schoolCode }, thunkAPI) => {
+  async ({ email, password, name, schoolCode, phoneNumber }, thunkAPI) => {
     try {
       await account.create(ID.unique(), email, password, name);
       await account.createEmailSession(email, password);
       localStorage.setItem("schoolCode", schoolCode);
-      return await createDocumentAndSetUser(schoolCode);
+      return await createDocumentAndSetUser(schoolCode, phoneNumber);
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }

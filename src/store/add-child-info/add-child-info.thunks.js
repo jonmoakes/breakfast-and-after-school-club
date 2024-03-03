@@ -4,7 +4,7 @@ import { manageDatabaseDocument } from "../../utils/appwrite/appwrite-functions"
 
 export const addChildInfoAsync = createAsyncThunk(
   "addChildInfo",
-  async ({ childInfo, name, email, databaseId, collectionId }, thunkAPI) => {
+  async ({ childInfo, email, databaseId, collectionId }, thunkAPI) => {
     try {
       const {
         childName,
@@ -17,7 +17,6 @@ export const addChildInfoAsync = createAsyncThunk(
       const documentId = ID.unique();
 
       const dataToAdd = {
-        parentName: name,
         parentEmail: email,
         childName,
         age,

@@ -24,7 +24,7 @@ const useConfirmResult = () => {
   );
   const dispatch = useDispatch();
 
-  const { id } = currentUser;
+  const { id, name, email, phoneNumber } = currentUser;
   const {
     databaseId,
     termDatesCollectionId,
@@ -58,6 +58,9 @@ const useConfirmResult = () => {
                 date,
                 sessionType,
                 childrenSelectedForBooking,
+                email,
+                name,
+                phoneNumber,
                 bookedSessionsCollectionId,
                 databaseId,
               })
