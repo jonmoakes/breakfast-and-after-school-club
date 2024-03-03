@@ -38,11 +38,11 @@ export const TABLE_COLUMNS = [
     Header: "parent email",
     accessor: "parentEmail",
     Cell: ({ value }) => {
-      console.log(value);
       const onEmailClick = () => {
-        window.open(
-          `mailto:${value}?Subject=Message From Breakfast & After School Club`
+        const subject = encodeURIComponent(
+          "Message From Breakfast & After School Club"
         );
+        window.open(`mailto:${value}?Subject=${subject}`);
       };
       return <StyledLink onClick={onEmailClick}>tap to email</StyledLink>;
     },
@@ -52,7 +52,6 @@ export const TABLE_COLUMNS = [
     Header: "Parent Phone",
     accessor: "parentPhoneNumber",
     Cell: ({ value }) => {
-      console.log(value);
       return <a href={`tel:${value}`}>Tap to call</a>;
     },
   },
