@@ -5,7 +5,7 @@ import {
   selectHandlePaymentSelectors,
   resetClientSecret,
 } from "../../../store/handle-payment/handle-payment.slice";
-import { selectWalletFundsToAdd } from "../../../store/wallet-funds-to-add/wallet-funds-to-add.selector";
+import { selectWalletFundsToAddSelectors } from "../../../store/wallet-funds-to-add/wallet-funds-to-add.slice";
 import {
   selectCardInputResult,
   resetCardInputState,
@@ -13,7 +13,7 @@ import {
 
 const useClearCardInputOnZeroWalletFunds = () => {
   const { client_secret } = useSelector(selectHandlePaymentSelectors);
-  const walletFundsToAdd = useSelector(selectWalletFundsToAdd);
+  const { walletFundsToAdd } = useSelector(selectWalletFundsToAddSelectors);
   const { cardInputResult } = useSelector(selectCardInputResult);
 
   const dispatch = useDispatch();

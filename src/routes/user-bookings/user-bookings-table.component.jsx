@@ -11,7 +11,7 @@ import {
 
 import useIsOnline from "../../hooks/use-is-online";
 
-import { selectUserBookingsWithFormattedDate } from "../../store/user-bookings/user-bookings.selector";
+import { selectBookedSessionsUserSelectors } from "../../store/booked-sessions-user/booked-sessions-user.slice";
 
 import { TABLE_COLUMNS } from "./table-columns";
 import NetworkError from "../../components/errors/network-error.component";
@@ -26,10 +26,14 @@ import ShowFetchErrors from "../../components/errors/show-fetch-errors.component
 const UserBookingsTable = () => {
   const { isOnline } = useIsOnline();
 
-  let userBookings = useSelector(selectUserBookingsWithFormattedDate);
+  const { bookedSessionsUserError } = useSelector(
+    selectBookedSessionsUserSelectors
+  );
+
+  let { sortedUserBookings } = useSelector(selectBookedSessionsUserSelectors);
 
   const columns = useMemo(() => TABLE_COLUMNS, []);
-  const data = useMemo(() => userBookings, [userBookings]);
+  const data = useMemo(() => sortedUserBookings, [sortedUserBookings]);
 
   const initialState = useMemo(
     () => ({ sortBy: [{ id: "date", desc: true }], pageSize: 30 }),
@@ -92,57 +96,62 @@ const UserBookingsTable = () => {
   const { globalFilter, pageIndex, pageSize } = state;
 
   const chosenEntry = selectedFlatRows.map((row) => row.original);
-  userBookings = chosenEntry;
+  sortedUserBookings = chosenEntry;
 
   return (
     <>
-      {!isOnline ? <NetworkError /> : null}
-
-      <ShowFetchErrors />
-      <NoBookingsFound {...{ data }} />
-
-      <TableSearchBox
-        {...{
-          chosenEntry,
-          rows,
-          data,
-          globalFilter,
-          setGlobalFilter,
-        }}
-      />
-
-      <CancelBookingButton {...{ chosenEntry }} />
-
-      {data.length ? (
+      {!isOnline ? (
+        <NetworkError />
+      ) : bookedSessionsUserError ? (
+        <ShowFetchErrors />
+      ) : (
         <>
-          <BookingsTableRenderTable
+          <NoBookingsFound {...{ data }} />
+
+          <TableSearchBox
             {...{
-              headerGroups,
-              getTableProps,
-              getTableBodyProps,
-              page,
-              prepareRow,
+              chosenEntry,
+              rows,
+              data,
+              globalFilter,
+              setGlobalFilter,
             }}
           />
 
-          <BookingsTablePagination
-            {...{
-              data,
-              rows,
-              pageIndex,
-              pageOptions,
-              gotoPage,
-              canPreviousPage,
-              previousPage,
-              nextPage,
-              canNextPage,
-              pageCount,
-              pageSize,
-              setPageSize,
-            }}
-          />
+          <CancelBookingButton {...{ chosenEntry }} />
+
+          {data.length ? (
+            <>
+              <BookingsTableRenderTable
+                {...{
+                  headerGroups,
+                  getTableProps,
+                  getTableBodyProps,
+                  page,
+                  prepareRow,
+                }}
+              />
+
+              <BookingsTablePagination
+                {...{
+                  data,
+                  rows,
+                  pageIndex,
+                  pageOptions,
+                  gotoPage,
+                  canPreviousPage,
+                  previousPage,
+                  nextPage,
+                  canNextPage,
+                  pageCount,
+                  pageSize,
+                  setPageSize,
+                }}
+              />
+            </>
+          ) : null}
         </>
-      ) : null}
+      )}
     </>
   );
 };

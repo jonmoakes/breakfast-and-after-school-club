@@ -4,7 +4,7 @@ import useFireSwal from "../../../hooks/use-fire-swal";
 import useHamburgerHandlerNavigate from "../../../hooks/use-hamburger-handler-navigate";
 import useSendUpdateBalanceErrorEmail from "./use-send-update-balance-error-email";
 
-import { selectWalletFundsToAdd } from "../../../store/wallet-funds-to-add/wallet-funds-to-add.selector";
+import { selectWalletFundsToAddSelectors } from "../../../store/wallet-funds-to-add/wallet-funds-to-add.slice";
 import {
   selectCurrentUserSelectors,
   resetCurrentUserWalletBalanceResult,
@@ -28,7 +28,7 @@ const useUpdateWalletBalance = () => {
   const { currentUser, currentUserEnvironmentVariables } = useSelector(
     selectCurrentUserSelectors
   );
-  const walletFundsToAdd = useSelector(selectWalletFundsToAdd);
+  const { walletFundsToAdd } = useSelector(selectWalletFundsToAddSelectors);
 
   const { databaseId, userCollectionId: collectionId } =
     currentUserEnvironmentVariables;

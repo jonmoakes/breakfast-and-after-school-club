@@ -1,8 +1,8 @@
 import { useSelector } from "react-redux";
 
-import useGetUserBookings from "./user-bookings-hooks/use-get-user-bookings";
+import useFetchBookedSessionsUser from "./user-bookings-hooks/use-fetch-booked-sessions-user";
 
-import { selectIsLoading } from "../../store/user-bookings/user-bookings.selector";
+import { selectBookedSessionsUserSelectors } from "../../store/booked-sessions-user/booked-sessions-user.slice";
 
 import Loader from "../../components/loader/loader.component";
 import TableHelp from "../../components/tables/table-help.component";
@@ -13,13 +13,15 @@ import { ParentDiv } from "../../styles/div/div.styles";
 import { BlackTitle } from "../../styles/h1/h1.styles";
 
 const UserBookings = () => {
-  useGetUserBookings();
+  useFetchBookedSessionsUser();
 
-  const isLoading = useSelector(selectIsLoading);
+  const { bookedSessionsUserIsLoading } = useSelector(
+    selectBookedSessionsUserSelectors
+  );
 
   return (
     <Container>
-      {isLoading ? <Loader /> : null}
+      {bookedSessionsUserIsLoading ? <Loader /> : null}
 
       <ParentDiv>
         <BlackTitle>booked sessions</BlackTitle>

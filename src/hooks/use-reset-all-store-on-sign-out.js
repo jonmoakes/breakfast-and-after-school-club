@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 
 import { resetAllChildInfoState } from "../store/add-child-info/add-child-info.slice";
 import { resetBookSessionState } from "../store/book-session/book-session.slice";
-import { resetBookedSessionsState } from "../store/booked-sessions/booked-sessions.slice";
+import { resetBookedSessionsOwnerState } from "../store/booked-sessions-owner/booked-sessions-owner.slice";
 import { resetCardInputState } from "../store/card-input-result/card-input-result.slice";
 import { resetChosenEntryChildDetailsState } from "../store/chosen-entry-child-details/chosen-entry-child-details.slice";
 import { resetContactFormState } from "../store/contact-form/contact-form.slice";
@@ -22,7 +22,7 @@ import { resetSignInFormState } from "../store/sign-in-form/sign-in-form.slice";
 import { resetSignUpFormState } from "../store/sign-up-form/sign-up-form.slice";
 import { resetUpdateEmailState } from "../store/update-email/update-email.slice";
 import { resetUserBookingToDeleteState } from "../store/user-booking-to-delete/user-booking-to-delete.slice";
-import { resetUserBookingsState } from "../store/user-bookings/user-bookings.slice";
+import { resetBookedSessionsUserState } from "../store/booked-sessions-user/booked-sessions-user.slice";
 import { resetWalletFundsToAddState } from "../store/wallet-funds-to-add/wallet-funds-to-add.slice";
 import { resetGenerateNewPasswordRequestState } from "../store/generate-new-password-request/generate-new-password-request.slice";
 import { resetChooseNewPasswordState } from "../store/choose-new-password/choose-new-password.slice";
@@ -35,7 +35,7 @@ const useResetAllStoreOnSignOut = () => {
   const resetAllStoreOnSignOut = () => {
     dispatch(resetAllChildInfoState());
     dispatch(resetBookSessionState());
-    dispatch(resetBookedSessionsState());
+    dispatch(resetBookedSessionsOwnerState());
     dispatch(resetCardInputState());
     dispatch(resetChosenEntryChildDetailsState());
     dispatch(resetContactFormState());
@@ -55,7 +55,7 @@ const useResetAllStoreOnSignOut = () => {
     dispatch(resetSignUpFormState());
     dispatch(resetUpdateEmailState());
     dispatch(resetUserBookingToDeleteState());
-    dispatch(resetUserBookingsState());
+    dispatch(resetBookedSessionsUserState());
     dispatch(resetWalletFundsToAddState());
     dispatch(resetChooseNewPasswordState());
     navigate(signInRoute);

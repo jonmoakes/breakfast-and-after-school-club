@@ -4,8 +4,8 @@ import { useLocation } from "react-router-dom";
 import { selectGetUsersChildrenSelectors } from "../../../store/get-users-children/get-users-children.slice";
 import { selectRequestDateDataSelectors } from "../../../store/request-date-data/request-date-data.slice";
 import { selectSessionTypesAndPricesSelectors } from "../../../store/session-types-and-prices/session-types-and-prices.slice";
-import { selectGetUserBookingsError } from "../../../store/user-bookings/user-bookings.selector";
-import { selectBookedSessionsSelectors } from "../../../store/booked-sessions/booked-sessions.slice";
+import { selectBookedSessionsUserSelectors } from "../../../store/booked-sessions-user/booked-sessions-user.slice";
+import { selectBookedSessionsOwnerSelectors } from "../../../store/booked-sessions-owner/booked-sessions-owner.slice";
 import { selectHandlePaymentSelectors } from "../../../store/handle-payment/handle-payment.slice";
 import {
   addFundsRoute,
@@ -19,12 +19,16 @@ const useHandleShowError = () => {
   const { getUsersChildrenError } = useSelector(
     selectGetUsersChildrenSelectors
   );
-  const getUsersBookingsError = useSelector(selectGetUserBookingsError);
+  const { bookedSessionsUserError } = useSelector(
+    selectBookedSessionsUserSelectors
+  );
   const { sessionTypesAndPricesError } = useSelector(
     selectSessionTypesAndPricesSelectors
   );
   const { requestDateDataError } = useSelector(selectRequestDateDataSelectors);
-  const { bookedSessionsError } = useSelector(selectBookedSessionsSelectors);
+  const { bookedSessionsOwnerError } = useSelector(
+    selectBookedSessionsOwnerSelectors
+  );
   const { handlePaymentError } = useSelector(selectHandlePaymentSelectors);
 
   const location = useLocation();
@@ -32,22 +36,23 @@ const useHandleShowError = () => {
 
   const showErrorHeading = () => {
     if (getUsersChildrenError) return "failed to fetch users children.";
-    if (getUsersBookingsError) return "failed to fetch your bookings.";
+    if (bookedSessionsUserError) return "failed to fetch your bookings.";
     if (sessionTypesAndPricesError) return "failed to fetch session prices.";
     if (requestDateDataError) return "failed to fetch request date data.";
-    if (bookedSessionsError) return "failed to fetch your customer bookings.";
+    if (bookedSessionsOwnerError)
+      return "failed to fetch your customer bookings.";
     if (handlePaymentError) return "failed to contact payment processor.";
   };
 
   const errorToDisplay = () => {
     const errors = [
       getUsersChildrenError,
-      getUsersBookingsError,
+      bookedSessionsUserError,
       sessionTypesAndPricesError,
       requestDateDataError,
-      bookedSessionsError,
+      bookedSessionsOwnerError,
       handlePaymentError,
-      getUsersBookingsError,
+      bookedSessionsUserError,
     ];
 
     return errors.find((error) => error !== null);

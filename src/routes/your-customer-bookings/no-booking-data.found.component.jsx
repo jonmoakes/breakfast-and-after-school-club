@@ -2,8 +2,8 @@ import { useSelector, useDispatch } from "react-redux";
 
 import {
   setShowAllDates,
-  selectBookedSessionsSelectors,
-} from "../../store/booked-sessions/booked-sessions.slice";
+  selectBookedSessionsOwnerSelectors,
+} from "../../store/booked-sessions-owner/booked-sessions-owner.slice";
 
 import { contactRoute } from "../../strings/strings";
 import {
@@ -16,15 +16,17 @@ import { Text } from "../../styles/p/p.styles";
 import { StyledLink } from "../../styles/link/link.styles";
 
 const NoBookingDataFound = ({ data }) => {
-  const { bookedSessions } = useSelector(selectBookedSessionsSelectors);
+  const { bookedSessionsOwner } = useSelector(
+    selectBookedSessionsOwnerSelectors
+  );
   const dispatch = useDispatch();
 
   const noBookingDataFound = () => {
-    return !bookedSessions.length && !data.length ? true : false;
+    return !bookedSessionsOwner.length && !data.length ? true : false;
   };
 
   const noBookingDataFoundForCurrentDate = () => {
-    return bookedSessions.length && !data.length ? true : false;
+    return bookedSessionsOwner.length && !data.length ? true : false;
   };
 
   return (

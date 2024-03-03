@@ -7,7 +7,7 @@ import { selectCurrentUserSelectors } from "../../../store/user/user.slice";
 import { selectSessionTypesAndPricesSelectors } from "../../../store/session-types-and-prices/session-types-and-prices.slice";
 import { selectGetUsersChildrenSelectors } from "../../../store/get-users-children/get-users-children.slice";
 import { selectBookSessionSelectors } from "../../../store/book-session/book-session.slice";
-import { selectGetUserBookingsError } from "../../../store/user-bookings/user-bookings.selector";
+import { selectBookedSessionsUserSelectors } from "../../../store/booked-sessions-user/booked-sessions-user.slice";
 
 import { priceMultipliedBy100 } from "../../../functions/price-multiplied-by-100";
 
@@ -27,7 +27,9 @@ const useConditionalLogic = () => {
   const { childrenSelectedForBooking } = useSelector(
     selectBookSessionSelectors
   );
-  const getUsersBookingsError = useSelector(selectGetUserBookingsError);
+  const { bookedSessionsUserError } = useSelector(
+    selectBookedSessionsUserSelectors
+  );
   const {
     sessionTypesAndPricesError,
     morningSessionType,
@@ -59,7 +61,7 @@ const useConditionalLogic = () => {
 
   const errorFetchingData = () => {
     return getUsersChildrenError ||
-      getUsersBookingsError ||
+      bookedSessionsUserError ||
       sessionTypesAndPricesError ||
       (requestDateDataError && requestDateDataError !== "is not available")
       ? true

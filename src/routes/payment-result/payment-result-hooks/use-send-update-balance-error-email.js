@@ -4,7 +4,7 @@ import useHamburgerHandlerNavigate from "../../../hooks/use-hamburger-handler-na
 import useFireSwal from "../../../hooks/use-fire-swal";
 
 import { selectCurrentUserSelectors } from "../../../store/user/user.slice";
-import { selectWalletFundsToAdd } from "../../../store/wallet-funds-to-add/wallet-funds-to-add.selector";
+import { selectWalletFundsToAddSelectors } from "../../../store/wallet-funds-to-add/wallet-funds-to-add.slice";
 import { sendEmailWalletFundsNotAddedErrorAsync } from "../../../store/send-email/send-email.thunks";
 
 import {
@@ -20,7 +20,7 @@ const useSendUpdateBalanceErrorEmail = () => {
   const { currentUser, currentUserEnvironmentVariables } = useSelector(
     selectCurrentUserSelectors
   );
-  const walletFundsToAdd = useSelector(selectWalletFundsToAdd);
+  const { walletFundsToAdd } = useSelector(selectWalletFundsToAddSelectors);
 
   const dispatch = useDispatch();
   const { id } = currentUser;

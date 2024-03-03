@@ -2,7 +2,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
 
 import { selectGetUsersChildrenSelectors } from "../store/get-users-children/get-users-children.slice";
-import { selectGetUserBookingsError } from "../store/user-bookings/user-bookings.selector";
 import { resetCardInputState } from "../store/card-input-result/card-input-result.slice";
 import { resetContactFormState } from "../store/contact-form/contact-form.slice";
 import { resetGenerateNewPasswordRequestState } from "../store/generate-new-password-request/generate-new-password-request.slice";
@@ -29,8 +28,16 @@ import {
   selectSessionTypesAndPricesSelectors,
 } from "../store/session-types-and-prices/session-types-and-prices.slice";
 import { resetUsersChildrenError } from "../store/get-users-children/get-users-children.slice";
-import { resetGetUserBookingsError } from "../store/user-bookings/user-bookings.slice";
-import { resetBookedSessionsState } from "../store/booked-sessions/booked-sessions.slice";
+import {
+  resetBookSessionUserError,
+  resetBookedSessionsUserState,
+  selectBookedSessionsUserSelectors,
+} from "../store/booked-sessions-user/booked-sessions-user.slice";
+import {
+  resetBookedSessionsOwnerError,
+  resetBookedSessionsOwnerState,
+  selectBookedSessionsOwnerSelectors,
+} from "../store/booked-sessions-owner/booked-sessions-owner.slice";
 
 import {
   addFundsRoute,
@@ -48,6 +55,7 @@ import {
   cancelBookingRoute,
   yourCustomerBookingsRoute,
   localhostChooseNewPasswordRoute,
+  userBookingsRoute,
 } from "../strings/strings";
 
 const useResetStore = () => {
@@ -57,7 +65,13 @@ const useResetStore = () => {
   const { getUsersChildrenError } = useSelector(
     selectGetUsersChildrenSelectors
   );
-  const getUserBookingsError = useSelector(selectGetUserBookingsError);
+  const { bookedSessionsUserError } = useSelector(
+    selectBookedSessionsUserSelectors
+  );
+  const { bookedSessionsOwnerError } = useSelector(
+    selectBookedSessionsOwnerSelectors
+  );
+
   const dispatch = useDispatch();
   const location = useLocation();
   const path = location.pathname;
@@ -104,8 +118,8 @@ const useResetStore = () => {
           dispatch(resetSessionPricesError());
         } else if (getUsersChildrenError) {
           dispatch(resetUsersChildrenError());
-        } else if (getUserBookingsError) {
-          dispatch(resetGetUserBookingsError());
+        } else if (bookedSessionsUserError) {
+          dispatch(resetBookSessionUserError());
         }
         break;
       case updateEmailRoute:
@@ -125,7 +139,18 @@ const useResetStore = () => {
         dispatch(resetUserBookingToDeleteState());
         break;
       case yourCustomerBookingsRoute:
-        dispatch(resetBookedSessionsState());
+        if (bookedSessionsOwnerError) {
+          dispatch(resetBookedSessionsOwnerError());
+        } else {
+          dispatch(resetBookedSessionsOwnerState());
+        }
+        break;
+      case userBookingsRoute:
+        if (bookedSessionsUserError) {
+          dispatch(resetBookSessionUserError());
+        } else {
+          dispatch(resetBookedSessionsUserState());
+        }
         break;
       default:
         return;

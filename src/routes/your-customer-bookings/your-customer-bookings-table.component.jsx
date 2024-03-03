@@ -8,12 +8,12 @@ import {
   useRowSelect,
   useColumnOrder,
 } from "react-table";
-import { format, parseISO } from "date-fns";
+import { format } from "date-fns";
 
 import useIsOnline from "../../hooks/use-is-online";
-import useGetBookedSessionsListener from "./your-customer-bookings-hooks/use-get-booked-sessions-listener";
+import useBookedSessionsOwnerListener from "./your-customer-bookings-hooks/use-booked-sessions-owner-listener";
 
-import { selectBookedSessionsSelectors } from "../../store/booked-sessions/booked-sessions.slice";
+import { selectBookedSessionsOwnerSelectors } from "../../store/booked-sessions-owner/booked-sessions-owner.slice";
 
 import { TABLE_COLUMNS } from "./table-columns";
 import NetworkError from "../../components/errors/network-error.component";
@@ -27,41 +27,27 @@ import ToggleBookingsShownButton from "./toggle-bookings-show-button.component";
 import BookingsTablePagination from "../../components/tables/bookings-table-pagination.component";
 
 const YourCustomerBookingsTable = () => {
-  useGetBookedSessionsListener();
+  useBookedSessionsOwnerListener();
+
   const { isOnline } = useIsOnline();
 
-  const { showAllDates, bookedSessionsError, bookedSessions } = useSelector(
-    selectBookedSessionsSelectors
+  const { showAllDates, bookedSessionsOwnerError } = useSelector(
+    selectBookedSessionsOwnerSelectors
   );
-
-  let sortedBookings = useMemo(
-    () =>
-      bookedSessions
-        .map((booking) => ({
-          ...booking,
-          formattedDate: format(parseISO(booking.date), "EEEE dd MMMM yyyy"),
-        }))
-        .sort((bookingA, bookingB) => {
-          const dateA = new Date(bookingA.date);
-          const dateB = new Date(bookingB.date);
-
-          return dateA - dateB;
-        }),
-    [bookedSessions]
-  );
+  let { sortedOwnerBookings } = useSelector(selectBookedSessionsOwnerSelectors);
 
   const columns = useMemo(() => TABLE_COLUMNS, []);
 
   const data = useMemo(
     () =>
       !showAllDates
-        ? sortedBookings.filter((row) => {
+        ? sortedOwnerBookings.filter((row) => {
             const rowDate = row.date;
             const formattedTodaysDate = format(new Date(), "yyyy-MM-dd");
             return rowDate === formattedTodaysDate;
           })
-        : sortedBookings,
-    [sortedBookings, showAllDates]
+        : sortedOwnerBookings,
+    [sortedOwnerBookings, showAllDates]
   );
 
   const initialState = useMemo(
@@ -125,13 +111,13 @@ const YourCustomerBookingsTable = () => {
   const { globalFilter, pageIndex, pageSize } = state;
 
   const chosenEntry = selectedFlatRows.map((row) => row.original);
-  sortedBookings = chosenEntry;
+  sortedOwnerBookings = chosenEntry;
 
   return (
     <>
       {!isOnline ? (
         <NetworkError />
-      ) : bookedSessionsError ? (
+      ) : bookedSessionsOwnerError ? (
         <ShowFetchErrors />
       ) : (
         <>
@@ -147,7 +133,7 @@ const YourCustomerBookingsTable = () => {
             }}
           />
 
-          <ToggleBookingsShownButton {...{ sortedBookings, data }} />
+          <ToggleBookingsShownButton {...{ sortedOwnerBookings, data }} />
 
           <GetChildDetailsButton {...{ chosenEntry }} />
 

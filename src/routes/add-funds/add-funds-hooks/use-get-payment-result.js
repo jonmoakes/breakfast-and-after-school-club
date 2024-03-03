@@ -5,7 +5,7 @@ import { useStripe, CardElement, useElements } from "@stripe/react-stripe-js";
 import useConfirmSwal from "../../../hooks/use-confirm-swal";
 import useGetClientSecret from "./use-get-client-secret";
 
-import { selectWalletFundsToAdd } from "../../../store/wallet-funds-to-add/wallet-funds-to-add.selector";
+import { selectWalletFundsToAddSelectors } from "../../../store/wallet-funds-to-add/wallet-funds-to-add.slice";
 import { selectCurrentUserSelectors } from "../../../store/user/user.slice";
 import {
   selectHandlePaymentSelectors,
@@ -27,7 +27,7 @@ const useGetPaymentResult = () => {
   const { confirmSwal } = useConfirmSwal();
   const { getClientSecret } = useGetClientSecret();
 
-  const walletFundsToAdd = useSelector(selectWalletFundsToAdd);
+  const { walletFundsToAdd } = useSelector(selectWalletFundsToAddSelectors);
   const { currentUser } = useSelector(selectCurrentUserSelectors);
   const { client_secret, showConfirmButton, userHasConfirmedPayment } =
     useSelector(selectHandlePaymentSelectors);

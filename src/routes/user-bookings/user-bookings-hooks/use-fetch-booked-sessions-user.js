@@ -1,11 +1,11 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-import { getUserBookingsAsync } from "../../../store/user-bookings/user-bookings.slice";
+import { fetchBookedSessionsUserAsync } from "../../../store/booked-sessions-user/booked-sessions-user.thunks";
 
 import { selectCurrentUserSelectors } from "../../../store/user/user.slice";
 
-const useGetUserBookings = () => {
+const useFetchBookedSessionsUser = () => {
   const { currentUser, currentUserEnvironmentVariables } = useSelector(
     selectCurrentUserSelectors
   );
@@ -19,9 +19,13 @@ const useGetUserBookings = () => {
   useEffect(() => {
     if (!currentUser) return;
     dispatch(
-      getUserBookingsAsync({ email, databaseId, bookedSessionsCollectionId })
+      fetchBookedSessionsUserAsync({
+        email,
+        databaseId,
+        bookedSessionsCollectionId,
+      })
     );
   }, [dispatch, currentUser, email, databaseId, bookedSessionsCollectionId]);
 };
 
-export default useGetUserBookings;
+export default useFetchBookedSessionsUser;

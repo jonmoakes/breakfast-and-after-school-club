@@ -8,13 +8,16 @@ import { ParentDiv } from "../../styles/div/div.styles";
 import { Text } from "../../styles/p/p.styles";
 
 const Intro = () => {
-  const { currentUser } = useSelector(selectCurrentUserSelectors);
-  const { name } = currentUser;
+  const { currentUser, currentUserEnvironmentVariables } = useSelector(
+    selectCurrentUserSelectors
+  );
+  const { name, email } = currentUser;
+  const { appOwnerEmail } = currentUserEnvironmentVariables;
 
   return (
     <ParentDiv>
       <Text>welcome{name ? ` ${name}!` : "!"}</Text>
-      <WalletBalance />
+      {email === appOwnerEmail ? null : <WalletBalance />}
     </ParentDiv>
   );
 };

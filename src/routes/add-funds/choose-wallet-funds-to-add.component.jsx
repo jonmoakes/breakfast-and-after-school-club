@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import useClearCardInputOnZeroWalletFunds from "./add-funds-hooks/use-clear-card-input-on-zero-wallet-funds";
 import useHandleWalletFundsChange from "./add-funds-hooks/use-handle-wallet-funds-change";
 
-import { selectWalletFundsToAdd } from "../../store/wallet-funds-to-add/wallet-funds-to-add.selector";
+import { selectWalletFundsToAddSelectors } from "../../store/wallet-funds-to-add/wallet-funds-to-add.slice";
 
 import { Form, StyledInput } from "../../styles/form/form.styles";
 import { Text } from "../../styles/p/p.styles";
@@ -15,7 +15,7 @@ const ChooseWalletFundsToAdd = () => {
   useClearCardInputOnZeroWalletFunds();
   const { handleWalletFundsChange } = useHandleWalletFundsChange();
 
-  const walletFundsToAdd = useSelector(selectWalletFundsToAdd);
+  const { walletFundsToAdd } = useSelector(selectWalletFundsToAddSelectors);
 
   return (
     <>

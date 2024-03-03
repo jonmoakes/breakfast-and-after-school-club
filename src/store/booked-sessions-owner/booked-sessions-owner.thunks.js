@@ -1,8 +1,8 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { listDocumentsInACollection } from "../../utils/appwrite/appwrite-functions";
 
-export const getBookedSessionsAsync = createAsyncThunk(
-  "getBookings",
+export const fetchBookedSessionsOwnerAsync = createAsyncThunk(
+  "fetchBookedSessionsOwner",
   async ({ databaseId, collectionId }, thunkAPI) => {
     try {
       const getBookingDocuments = await listDocumentsInACollection(

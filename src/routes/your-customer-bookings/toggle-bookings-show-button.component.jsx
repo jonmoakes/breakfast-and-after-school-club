@@ -1,30 +1,32 @@
 import { useDispatch, useSelector } from "react-redux";
 
 import {
-  selectBookedSessionsSelectors,
+  selectBookedSessionsOwnerSelectors,
   setShowAllDates,
-} from "../../store/booked-sessions/booked-sessions.slice";
+} from "../../store/booked-sessions-owner/booked-sessions-owner.slice";
 
 import { FilterEntriesButtonDiv } from "../../styles/div/div.styles";
 import { GreyButton } from "../../styles/buttons/buttons.styles";
 
-const ToggleBookingsShownButton = ({ sortedBookings, data }) => {
-  const { showAllDates } = useSelector(selectBookedSessionsSelectors);
+const ToggleBookingsShownButton = ({ sortedOwnerBookings, data }) => {
+  const { showAllDates } = useSelector(selectBookedSessionsOwnerSelectors);
 
   const dispatch = useDispatch();
 
   const showingTodaysDateBookings = () => {
-    return !sortedBookings.length && data.length && !showAllDates
+    return !sortedOwnerBookings.length && data.length && !showAllDates
       ? true
       : false;
   };
 
   const showingAllBookings = () => {
-    return !sortedBookings.length && data.length && showAllDates ? true : false;
+    return !sortedOwnerBookings.length && data.length && showAllDates
+      ? true
+      : false;
   };
 
   const showNothing = () => {
-    return !sortedBookings.length && !data.length && !showAllDates
+    return !sortedOwnerBookings.length && !data.length && !showAllDates
       ? true
       : false;
   };

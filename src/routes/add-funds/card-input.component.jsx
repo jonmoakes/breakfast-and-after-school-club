@@ -4,7 +4,7 @@ import { CardElement } from "@stripe/react-stripe-js";
 import useHandleCardInputChange from "./add-funds-hooks/use-handle-card-input-change";
 import useIsOnline from "../../hooks/use-is-online";
 
-import { selectWalletFundsToAdd } from "../../store/wallet-funds-to-add/wallet-funds-to-add.selector";
+import { selectWalletFundsToAddSelectors } from "../../store/wallet-funds-to-add/wallet-funds-to-add.slice";
 import { selectHandlePaymentSelectors } from "../../store/handle-payment/handle-payment.slice";
 
 import NetworkError from "../../components/errors/network-error.component";
@@ -19,7 +19,7 @@ const CardInput = () => {
   const { isOnline } = useIsOnline();
   const { handleCardInputChange } = useHandleCardInputChange();
 
-  const walletFundsToAdd = useSelector(selectWalletFundsToAdd);
+  const { walletFundsToAdd } = useSelector(selectWalletFundsToAddSelectors);
   const { handlePaymentError } = useSelector(selectHandlePaymentSelectors);
 
   return (

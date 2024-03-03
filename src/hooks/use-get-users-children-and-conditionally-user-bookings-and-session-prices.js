@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
 
 import { getUsersChildrenAsync } from "../store/get-users-children/get-users-children.thunks";
-import { getUserBookingsAsync } from "../store/user-bookings/user-bookings.slice";
+import { fetchBookedSessionsUserAsync } from "../store/booked-sessions-user/booked-sessions-user.thunks";
 import { getSessionPricesAsync } from "../store/session-types-and-prices/session-types-and-prices.thunks";
 import { selectCurrentUserSelectors } from "../store/user/user.slice";
 
@@ -42,13 +42,13 @@ const useGetUsersChildrenAndConditionallyUserBookingsAndSessionPrices = () => {
         (resultAction) => {
           if (getUsersChildrenAsync.fulfilled.match(resultAction)) {
             dispatch(
-              getUserBookingsAsync({
+              fetchBookedSessionsUserAsync({
                 email,
                 databaseId,
                 bookedSessionsCollectionId,
               })
             ).then((resultAction) => {
-              if (getUserBookingsAsync.fulfilled.match(resultAction)) {
+              if (fetchBookedSessionsUserAsync.fulfilled.match(resultAction)) {
                 const collectionId = sessionPricesCollectionId;
                 const documentId = sessionPricesDocumentId;
                 dispatch(

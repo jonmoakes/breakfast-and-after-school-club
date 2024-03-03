@@ -22,9 +22,9 @@ import { addChildInfoReducer } from "./add-child-info/add-child-info.slice";
 import { getUsersChildrenReducer } from "./get-users-children/get-users-children.slice";
 import { editChildInfoReducer } from "./edit-child-info/edit-child-info.slice";
 import { deleteChildInfoReducer } from "./delete-child-info/delete-child-info.slice";
-import { getBookedSessionsReducer } from "./booked-sessions/booked-sessions.slice";
+import { bookedSessionsOwnerReducer } from "./booked-sessions-owner/booked-sessions-owner.slice";
 import { chosenEntryChildDetailsReducer } from "./chosen-entry-child-details/chosen-entry-child-details.slice";
-import { userBookingsReducer } from "./user-bookings/user-bookings.slice";
+import { bookedSessionsUserReducer } from "./booked-sessions-user/booked-sessions-user.slice";
 import { userBookingToDeleteReducer } from "./user-booking-to-delete/user-booking-to-delete.slice";
 import { sendEmailReducer } from "./send-email/send-email.slice";
 import { generateNewPasswordRequestReducer } from "./generate-new-password-request/generate-new-password-request.slice";
@@ -53,9 +53,9 @@ export const rootReducer = combineReducers({
   getUsersChildren: getUsersChildrenReducer,
   editChildInfo: editChildInfoReducer,
   deleteChildInfo: deleteChildInfoReducer,
-  getBookedSessions: getBookedSessionsReducer,
+  bookedSessionsOwner: bookedSessionsOwnerReducer,
   chosenEntryChildDetails: chosenEntryChildDetailsReducer,
-  userBookings: userBookingsReducer,
+  bookedSessionsUser: bookedSessionsUserReducer,
   userBookingToDelete: userBookingToDeleteReducer,
   sendEmail: sendEmailReducer,
   generateNewPasswordRequest: generateNewPasswordRequestReducer,

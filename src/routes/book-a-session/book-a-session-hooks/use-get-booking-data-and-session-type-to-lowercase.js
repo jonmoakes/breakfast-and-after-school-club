@@ -1,11 +1,11 @@
 import { useSelector } from "react-redux";
 
-import { selectUserBookings } from "../../../store/user-bookings/user-bookings.selector";
+import { selectBookedSessionsUserSelectors } from "../../../store/booked-sessions-user/booked-sessions-user.slice";
 
 const useGetBookingDataAndSessionTypeToLowercase = () => {
-  const userBookings = useSelector(selectUserBookings);
+  const { bookedSessionsUser } = useSelector(selectBookedSessionsUserSelectors);
 
-  const userBookingsDatesAndNamesAndSessionType = userBookings.map(
+  const userBookingsDatesAndNamesAndSessionType = bookedSessionsUser.map(
     (userBooking) => {
       const bookingDate = userBooking.date;
       const childrensName = userBooking.childrensName;

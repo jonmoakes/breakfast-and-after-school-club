@@ -1,8 +1,8 @@
 import { useSelector } from "react-redux";
 
-import useGetBookedSessions from "./your-customer-bookings-hooks/use-get-booked-sessions";
+import useFetchBookedSessionsOwner from "./your-customer-bookings-hooks/use-fetch-booked-sessions-owner";
 
-import { selectBookedSessionsSelectors } from "../../store/booked-sessions/booked-sessions.slice";
+import { selectBookedSessionsOwnerSelectors } from "../../store/booked-sessions-owner/booked-sessions-owner.slice";
 
 import Loader from "../../components/loader/loader.component";
 import TableHelp from "../../components/tables/table-help.component";
@@ -13,15 +13,15 @@ import { ParentDiv } from "../../styles/div/div.styles";
 import { BlackTitle } from "../../styles/h1/h1.styles";
 
 const YourCustomerBookings = () => {
-  useGetBookedSessions();
+  useFetchBookedSessionsOwner();
 
-  const { bookedSessionsIsLoading } = useSelector(
-    selectBookedSessionsSelectors
+  const { bookedSessionsOwnerIsLoading } = useSelector(
+    selectBookedSessionsOwnerSelectors
   );
 
   return (
     <Container>
-      {bookedSessionsIsLoading ? <Loader /> : null}
+      {bookedSessionsOwnerIsLoading ? <Loader /> : null}
 
       <ParentDiv>
         <BlackTitle>session bookings</BlackTitle>
