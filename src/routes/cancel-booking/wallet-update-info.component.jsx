@@ -3,7 +3,7 @@ import { format } from "date-fns";
 
 import useGetRefundPrice from "./hooks/use-get-refund-price";
 
-import { selectUserBookingToDelete } from "../../store/user-booking-to-delete/user-booking-to-delete.selector";
+import { selectUserBookingToDeleteSelectors } from "../../store/user-booking-to-delete/user-booking-to-delete.slice";
 import { selectCurrentUserSelectors } from "../../store/user/user.slice";
 
 import { ParentDiv } from "../../styles/div/div.styles";
@@ -17,7 +17,9 @@ const WalletUpdateInfo = () => {
   const { refundPrice, totalRefundPrice, numberOfChildrenInBooking } =
     useGetRefundPrice();
 
-  const userBookingToDelete = useSelector(selectUserBookingToDelete);
+  const { userBookingToDelete } = useSelector(
+    selectUserBookingToDeleteSelectors
+  );
   const { currentUser } = useSelector(selectCurrentUserSelectors);
 
   const { walletBalance } = currentUser;

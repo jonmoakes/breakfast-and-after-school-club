@@ -3,14 +3,14 @@ import { useSelector, useDispatch } from "react-redux";
 import useConfirmSwal from "../../../hooks/use-confirm-swal";
 import useGetRefundPrice from "./use-get-refund-price";
 
-import { selectUserBookingToDelete } from "../../../store/user-booking-to-delete/user-booking-to-delete.selector";
+import { selectUserBookingToDeleteSelectors } from "../../../store/user-booking-to-delete/user-booking-to-delete.slice";
 import { selectGetUsersChildrenSelectors } from "../../../store/get-users-children/get-users-children.slice";
 import { selectCurrentUserSelectors } from "../../../store/user/user.slice";
 import {
   deleteUserBookingAsync,
   refundUserAsync,
   updateSessionSpacesDocAsync,
-} from "../../../store/user-booking-to-delete/user-booking-to-delete.slice";
+} from "../../../store/user-booking-to-delete/user-booking-to-delete.thunks";
 import { getUsersWalletBalanceAsync } from "../../../store/user/user.thunks";
 import {
   confirmCancelBookingMessage,
@@ -26,7 +26,10 @@ const useConfirmDeleteChildInfo = () => {
   const { currentUser, currentUserEnvironmentVariables } = useSelector(
     selectCurrentUserSelectors
   );
-  const userBookingToDelete = useSelector(selectUserBookingToDelete);
+  const { userBookingToDelete } = useSelector(
+    selectUserBookingToDeleteSelectors
+  );
+
   const { usersChildren } = useSelector(selectGetUsersChildrenSelectors);
 
   const dispatch = useDispatch();

@@ -10,6 +10,7 @@ import { selectHandlePaymentSelectors } from "../../../store/handle-payment/hand
 import {
   addFundsRoute,
   bookSessionRoute,
+  cancelBookingRoute,
   userBookingsRoute,
   yourCustomerBookingsRoute,
 } from "../../../strings/strings";
@@ -61,6 +62,8 @@ const useHandleShowError = () => {
       case userBookingsRoute:
       case yourCustomerBookingsRoute:
         return "show your bookings";
+      case cancelBookingRoute:
+        return "cancel your booking";
       default:
         return "";
     }

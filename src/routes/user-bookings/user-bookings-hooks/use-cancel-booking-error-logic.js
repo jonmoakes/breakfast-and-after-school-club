@@ -17,7 +17,7 @@ const useCancelBookingErrorLogic = (chosenEntry) => {
       (sessionType === "morning" ||
         sessionType === "morningAndAfternoonShort" ||
         sessionType === "morningAndAfternoonLong") &&
-      currentHour >= 7
+      currentHour >= 6
     );
   };
 
@@ -28,7 +28,7 @@ const useCancelBookingErrorLogic = (chosenEntry) => {
         sessionType === "afternoonLong" ||
         sessionType === "morningAndAfternoonShort" ||
         sessionType === "morningAndAfternoonLong") &&
-      currentHour >= 15
+      currentHour >= 14
     );
   };
 

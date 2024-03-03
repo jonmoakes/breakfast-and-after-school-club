@@ -7,11 +7,9 @@ import useUpdateBookingsResultErrorSwal from "./use-update-bookings-result-error
 import useUpdateBalanceErrorSwal from "./use-update-balance-error-swal";
 import useUpdateSessionSpacesAndBalanceErrorSwal from "./use-update-session-spaces-and-balance-error-swal";
 
-import {
-  selectUpdateBookingsDoc,
-  selectUpdateSessionSpacesDoc,
-  selectUpdateUserDocBalance,
-} from "../../../../store/user-booking-to-delete/user-booking-to-delete.selector";
+import { selectUserBookingToDeleteSelectors } from "../../../../store/user-booking-to-delete/user-booking-to-delete.slice";
+import { selectCurrentUserSelectors } from "../../../../store/user/user.slice";
+import useBookingCancelledButFailedBalanceFetchSwal from "./use-booking-cancelled-but-failed-balance-fetch-swal";
 
 const useCancelBookingResultSwal = () => {
   const { noActionsFiredYet } = useReturnLogic();
@@ -20,10 +18,14 @@ const useCancelBookingResultSwal = () => {
   const { updateBalanceErrorSwal } = useUpdateBalanceErrorSwal();
   const { updateSessionSpacesAndBalanceErrorSwal } =
     useUpdateSessionSpacesAndBalanceErrorSwal();
+  const { bookingCancelledButFailedBalanceFetchSwal } =
+    useBookingCancelledButFailedBalanceFetchSwal();
 
-  const updateBookingsDoc = useSelector(selectUpdateBookingsDoc);
-  const updateUserDocBalance = useSelector(selectUpdateUserDocBalance);
-  const updateSessionSpacesDoc = useSelector(selectUpdateSessionSpacesDoc);
+  const { updateBookingsDoc, updateUserDocBalance, updateSessionSpacesDoc } =
+    useSelector(selectUserBookingToDeleteSelectors);
+  const { currentUserWalletBalanceResult } = useSelector(
+    selectCurrentUserSelectors
+  );
 
   const updateBookingsResult = updateBookingsDoc.result;
   const updateBalanceResult = updateUserDocBalance.result;
@@ -34,9 +36,17 @@ const useCancelBookingResultSwal = () => {
     if (
       updateBookingsResult === "fulfilled" &&
       updateSessionSpacesResult === "fulfilled" &&
-      updateBalanceResult === "fulfilled"
+      updateBalanceResult === "fulfilled" &&
+      currentUserWalletBalanceResult === "success"
     ) {
       successSwal();
+    } else if (
+      updateBookingsResult === "fulfilled" &&
+      updateSessionSpacesResult === "fulfilled" &&
+      updateBalanceResult === "fulfilled" &&
+      currentUserWalletBalanceResult === "rejected"
+    ) {
+      bookingCancelledButFailedBalanceFetchSwal();
     } else if (updateBookingsResult === "rejected") {
       updateBookingsResultErrorSwal();
     } else if (
@@ -60,6 +70,8 @@ const useCancelBookingResultSwal = () => {
     updateBalanceErrorSwal,
     updateSessionSpacesResult,
     updateSessionSpacesAndBalanceErrorSwal,
+    currentUserWalletBalanceResult,
+    bookingCancelledButFailedBalanceFetchSwal,
   ]);
 };
 

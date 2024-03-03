@@ -1,5 +1,9 @@
+import { useDispatch } from "react-redux";
+
 import useFireSwal from "../../../../hooks/use-fire-swal";
 import useSendCancellationEmail from "../emails/use-send-cancellation-email";
+
+import { resetCurrentUserWalletBalanceResult } from "../../../../store/user/user.slice";
 
 import {
   bookingCancelledMessage,
@@ -9,6 +13,8 @@ import {
 const useSuccessSwal = () => {
   const { fireSwal } = useFireSwal();
   const { sendCancellationEmail } = useSendCancellationEmail();
+
+  const dispatch = useDispatch();
 
   const successSwal = () => {
     fireSwal(
@@ -20,6 +26,7 @@ const useSuccessSwal = () => {
       false
     ).then((isConfirmed) => {
       if (isConfirmed) {
+        dispatch(resetCurrentUserWalletBalanceResult());
         sendCancellationEmail();
       }
     });

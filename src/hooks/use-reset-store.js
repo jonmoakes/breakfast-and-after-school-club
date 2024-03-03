@@ -23,7 +23,7 @@ import { resetEditChildInfoState } from "../store/edit-child-info/edit-child-inf
 import { resetDeleteChildInfoState } from "../store/delete-child-info/delete-child-info.slice";
 import { resetBookSessionState } from "../store/book-session/book-session.slice";
 import { resetSendEmailState } from "../store/send-email/send-email.slice";
-import { resetBookingToDeleteState } from "../store/user-booking-to-delete/user-booking-to-delete.slice";
+import { resetUserBookingToDeleteState } from "../store/user-booking-to-delete/user-booking-to-delete.slice";
 import {
   resetSessionPricesError,
   selectSessionTypesAndPricesSelectors,
@@ -122,7 +122,7 @@ const useResetStore = () => {
         dispatch(resetDeleteChildInfoState());
         break;
       case cancelBookingRoute:
-        dispatch(resetBookingToDeleteState());
+        dispatch(resetUserBookingToDeleteState());
         break;
       case yourCustomerBookingsRoute:
         dispatch(resetBookedSessionsState());

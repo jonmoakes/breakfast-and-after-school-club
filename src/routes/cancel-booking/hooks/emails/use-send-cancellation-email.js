@@ -5,7 +5,7 @@ import useHamburgerHandlerNavigate from "../../../../hooks/use-hamburger-handler
 import useGetRefundPrice from "../use-get-refund-price";
 
 import { selectCurrentUserSelectors } from "../../../../store/user/user.slice";
-import { selectUserBookingToDelete } from "../../../../store/user-booking-to-delete/user-booking-to-delete.selector";
+import { selectUserBookingToDeleteSelectors } from "../../../../store/user-booking-to-delete/user-booking-to-delete.slice";
 import { sendEmailBookingCancellationConfirmationAsync } from "../../../../store/send-email/send-email.thunks";
 import { selectGetUsersChildrenSelectors } from "../../../../store/get-users-children/get-users-children.slice";
 
@@ -20,7 +20,9 @@ const useSendCancellationEmail = () => {
   let { refundPrice, totalRefundPrice } = useGetRefundPrice();
 
   const { currentUser } = useSelector(selectCurrentUserSelectors);
-  const userBookingToDelete = useSelector(selectUserBookingToDelete);
+  const { userBookingToDelete } = useSelector(
+    selectUserBookingToDeleteSelectors
+  );
   const { usersChildren } = useSelector(selectGetUsersChildrenSelectors);
 
   const dispatch = useDispatch();

@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import useFireSwal from "../../../../hooks/use-fire-swal";
 import useHamburgerHandlerNavigate from "../../../../hooks/use-hamburger-handler-navigate";
 
-import { selectUpdateBookingsDoc } from "../../../../store/user-booking-to-delete/user-booking-to-delete.selector";
+import { selectUserBookingToDeleteSelectors } from "../../../../store/user-booking-to-delete/user-booking-to-delete.slice";
 
 import {
   errorCancellingBookingMessage,
@@ -15,7 +15,7 @@ const useUpdateBookingsResultErrorSwal = () => {
   const { fireSwal } = useFireSwal();
   const { hamburgerHandlerNavigate } = useHamburgerHandlerNavigate();
 
-  const updateBookingsDoc = useSelector(selectUpdateBookingsDoc);
+  const { updateBookingsDoc } = useSelector(selectUserBookingToDeleteSelectors);
 
   const error = updateBookingsDoc.error;
 

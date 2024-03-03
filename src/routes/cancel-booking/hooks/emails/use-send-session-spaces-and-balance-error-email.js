@@ -5,7 +5,7 @@ import useHamburgerHandlerNavigate from "../../../../hooks/use-hamburger-handler
 import useGetRefundPrice from "../use-get-refund-price";
 
 import { selectCurrentUserSelectors } from "../../../../store/user/user.slice";
-import { selectUserBookingToDelete } from "../../../../store/user-booking-to-delete/user-booking-to-delete.selector";
+import { selectUserBookingToDeleteSelectors } from "../../../../store/user-booking-to-delete/user-booking-to-delete.slice";
 import { sendEmailResetSessionSpacesAndBalanceErrorAsync } from "../../../../store/send-email/send-email.thunks";
 
 import {
@@ -23,7 +23,9 @@ const useSendSessionSpacesAndBalanceErrorEmail = () => {
   const { currentUser, currentUserEnvironmentVariables } = useSelector(
     selectCurrentUserSelectors
   );
-  const userBookingToDelete = useSelector(selectUserBookingToDelete);
+  const { userBookingToDelete } = useSelector(
+    selectUserBookingToDeleteSelectors
+  );
 
   const dispatch = useDispatch();
 

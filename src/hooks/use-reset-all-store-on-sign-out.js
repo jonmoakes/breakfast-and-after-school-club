@@ -21,7 +21,7 @@ import { resetShouldShowElementState } from "../store/should-show-element/should
 import { resetSignInFormState } from "../store/sign-in-form/sign-in-form.slice";
 import { resetSignUpFormState } from "../store/sign-up-form/sign-up-form.slice";
 import { resetUpdateEmailState } from "../store/update-email/update-email.slice";
-import { resetBookingToDeleteState } from "../store/user-booking-to-delete/user-booking-to-delete.slice";
+import { resetUserBookingToDeleteState } from "../store/user-booking-to-delete/user-booking-to-delete.slice";
 import { resetUserBookingsState } from "../store/user-bookings/user-bookings.slice";
 import { resetWalletFundsToAddState } from "../store/wallet-funds-to-add/wallet-funds-to-add.slice";
 import { resetGenerateNewPasswordRequestState } from "../store/generate-new-password-request/generate-new-password-request.slice";
@@ -54,7 +54,7 @@ const useResetAllStoreOnSignOut = () => {
     dispatch(resetSignInFormState());
     dispatch(resetSignUpFormState());
     dispatch(resetUpdateEmailState());
-    dispatch(resetBookingToDeleteState());
+    dispatch(resetUserBookingToDeleteState());
     dispatch(resetUserBookingsState());
     dispatch(resetWalletFundsToAddState());
     dispatch(resetChooseNewPasswordState());

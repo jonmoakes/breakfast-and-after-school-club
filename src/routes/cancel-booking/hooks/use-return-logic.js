@@ -1,16 +1,14 @@
 import { useCallback } from "react";
 import { useSelector } from "react-redux";
 
-import {
-  selectUpdateBookingsDoc,
-  selectUpdateSessionSpacesDoc,
-  selectUpdateUserDocBalance,
-} from "../../../store/user-booking-to-delete/user-booking-to-delete.selector";
+import { selectUserBookingToDeleteSelectors } from "../../../store/user-booking-to-delete/user-booking-to-delete.slice";
+import { selectCurrentUserSelectors } from "../../../store/user/user.slice";
 
 const useReturnLogic = () => {
-  const updateBookingsDoc = useSelector(selectUpdateBookingsDoc);
-  const updateUserDocBalance = useSelector(selectUpdateUserDocBalance);
-  const updateSessionSpacesDoc = useSelector(selectUpdateSessionSpacesDoc);
+  const { updateBookingsDoc, updateUserDocBalance, updateSessionSpacesDoc } =
+    useSelector(selectUserBookingToDeleteSelectors);
+  const { currentUserWalletBalanceResult, currentUserWalletBalanceError } =
+    useSelector(selectCurrentUserSelectors);
 
   const updateBookingsResult = updateBookingsDoc.result;
   const updateBookingsError = updateBookingsDoc.error;
@@ -27,7 +25,9 @@ const useReturnLogic = () => {
       !updateBalanceResult &&
       !updateBalanceError &&
       !updateSessionSpacesResult &&
-      !updateSessionSpacesError
+      !updateSessionSpacesError &&
+      !currentUserWalletBalanceResult &&
+      !currentUserWalletBalanceError
       ? true
       : false;
   }, [
@@ -37,6 +37,8 @@ const useReturnLogic = () => {
     updateBalanceResult,
     updateSessionSpacesResult,
     updateSessionSpacesError,
+    currentUserWalletBalanceResult,
+    currentUserWalletBalanceError,
   ]);
 
   return { noActionsFiredYet };

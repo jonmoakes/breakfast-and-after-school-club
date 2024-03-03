@@ -3,24 +3,26 @@ import { useSelector } from "react-redux";
 import useConfirmCancelBooking from "./hooks/use-confirm-cancel-booking";
 import useCancelAndReturn from "../../hooks/use-cancel-and-return";
 
-import { selectIsLoading } from "../../store/user-booking-to-delete/user-booking-to-delete.selector";
+import { selectUserBookingToDeleteSelectors } from "../../store/user-booking-to-delete/user-booking-to-delete.slice";
 import { selectSessionTypesAndPricesSelectors } from "../../store/session-types-and-prices/session-types-and-prices.slice";
 
 import Loader from "../../components/loader/loader.component";
 import WalletUpdateInfo from "./wallet-update-info.component";
-import GetSessionPricesError from "../../components/errors/get-session-prices-error.component";
 
 import { ParentDiv } from "../../styles/div/div.styles";
 import { BlackTitle } from "../../styles/h1/h1.styles";
 import { Text } from "../../styles/p/p.styles";
 import { YellowGreenButton } from "../../styles/buttons/buttons.styles";
 import { selectSendEmailSelectors } from "../../store/send-email/send-email.slice";
+import ShowFetchErrors from "../../components/errors/show-fetch-errors.component";
 
 const LoaderTitleButtons = () => {
   const { confirmCancelBooking } = useConfirmCancelBooking();
   const { cancelAndReturn } = useCancelAndReturn();
 
-  const isLoading = useSelector(selectIsLoading);
+  const { userBookingToDeleteIsLoading } = useSelector(
+    selectUserBookingToDeleteSelectors
+  );
   const { sendEmailIsLoading } = useSelector(selectSendEmailSelectors);
   const { sessionTypesAndPricesError } = useSelector(
     selectSessionTypesAndPricesSelectors
@@ -28,7 +30,7 @@ const LoaderTitleButtons = () => {
 
   return (
     <>
-      {isLoading || sendEmailIsLoading ? <Loader /> : null}
+      {userBookingToDeleteIsLoading || sendEmailIsLoading ? <Loader /> : null}
 
       <ParentDiv>
         <BlackTitle>cancel booking</BlackTitle>
@@ -50,7 +52,7 @@ const LoaderTitleButtons = () => {
           </ParentDiv>
         </>
       ) : (
-        <GetSessionPricesError />
+        <ShowFetchErrors />
       )}
     </>
   );
