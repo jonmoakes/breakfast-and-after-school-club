@@ -34,6 +34,10 @@ export const Form = styled.form`
 
   input {
     accent-color: ${customLightGreen};
+
+    &.red {
+      accent-color: ${customRed};
+    }
   }
 
   input[type="radio"] {
@@ -42,7 +46,6 @@ export const Form = styled.form`
     justify-content: center;
     width: 20px;
     height: 20px;
-    /* Additional styles as needed */
   }
 
   @media screen and (max-width: 1366px) {

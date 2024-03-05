@@ -49,8 +49,8 @@ const WalletUpdateInfo = () => {
       <BlackHr />
 
       <Text>
-        <RedSpan>£{refundAmount / 100}</RedSpan> will be added to your wallet on
-        completion of the cancellation.
+        <RedSpan>£{(refundAmount / 100).toFixed(2)}</RedSpan> will be added to
+        your wallet on completion of the cancellation.
       </Text>
 
       <BlackHr />

@@ -36,10 +36,12 @@ const AddFundsHelp = () => {
               pounds ) that would like to add.
             </Text>
             <Text>
-              please enter a whole number - no decimals are permitted.
+              you can enter a whole number or a decimal number ( ie 4.50 for
+              £4.50 ). please note that if you add more places after the decimal
+              by mistake, the amount will be rounded to 2 decimal places.
             </Text>
             <Text>the minimum that you can add is £1.</Text>
-            <Text>the maximum value you can add is £100</Text>
+            <Text>the maximum value you can add at a time is £200</Text>
             <Text>
               then enter in your card details in the box that appears below the
               input and then tap the "add funds" button which will appear when

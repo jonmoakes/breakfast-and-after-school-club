@@ -82,6 +82,7 @@ const AddChildInfoForm = () => {
           <Label>
             no
             <input
+              className="red"
               type="radio"
               name="consent"
               value="no"

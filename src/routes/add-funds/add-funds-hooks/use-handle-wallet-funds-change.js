@@ -7,13 +7,8 @@ const useHandleWalletFundsChange = () => {
   const handleWalletFundsChange = (event) => {
     const enteredValue = event.target.value;
 
-    const pattern = /^\d*$/;
-    if (!pattern.test(enteredValue)) {
-      return; // Invalid pattern (non-digit characters)
-    }
-
     const value = Number(enteredValue, 10);
-    if (value > 100) {
+    if (value > 200) {
       return;
     }
 

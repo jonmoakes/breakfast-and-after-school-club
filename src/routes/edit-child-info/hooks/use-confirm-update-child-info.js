@@ -31,6 +31,7 @@ const useConfirmUpdateChildInfo = () => {
     $id,
     childName = "",
     age = "",
+    consent = "",
     medicalInfo = "",
     dietryRequirements = "",
     additionalInfo = "",
@@ -52,6 +53,7 @@ const useConfirmUpdateChildInfo = () => {
   const entriesAreTheSame = (updatedChildInfo) => {
     return childName === updatedChildInfo.childName &&
       age === updatedChildInfo.age &&
+      consent === updatedChildInfo.consent &&
       medicalInfo === updatedChildInfo.medicalInfo &&
       dietryRequirements === updatedChildInfo.dietryRequirements &&
       additionalInfo === updatedChildInfo.additionalInfo

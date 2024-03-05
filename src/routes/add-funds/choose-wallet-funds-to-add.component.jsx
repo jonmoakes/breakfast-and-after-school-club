@@ -25,11 +25,10 @@ const ChooseWalletFundsToAdd = () => {
         <StyledInput
           onWheel={(e) => e.target.blur()}
           type="number"
-          pattern="[0-9]*"
           name="walletFunds"
           value={walletFundsToAdd || ""}
           min={1}
-          max={100}
+          max={200}
           placeholder={addFundsPlaceholder}
           onChange={handleWalletFundsChange}
           required

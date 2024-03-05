@@ -14,7 +14,7 @@ export const getClientSecretAsync = createAsyncThunk(
         },
         body: JSON.stringify({
           stripeSecretKey,
-          amount: Math.round(walletFundsToAdd * 100),
+          amount: Math.round(walletFundsToAdd.toFixed(2) * 100),
         }),
       }).then((res) => res.json());
 

@@ -9,6 +9,7 @@ const useHandleUpdatedChildInfoChange = () => {
   const [updatedChildInfo, setUpdatedChildInfo] = useState({
     $id: childToEditInfo ? childToEditInfo.$id : "",
     childName: childToEditInfo ? childToEditInfo.childName : "",
+    consent: childToEditInfo ? childToEditInfo.consent : "",
     age: childToEditInfo ? childToEditInfo.age : "",
     medicalInfo: childToEditInfo ? childToEditInfo.medicalInfo : "",
     dietryRequirements: childToEditInfo

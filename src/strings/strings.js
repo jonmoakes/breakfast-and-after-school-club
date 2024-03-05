@@ -37,12 +37,7 @@ export const errorUploadingDatesToDatabaseMessage =
   "sorry, there was an error uploading the dates to the database..";
 export const paymentSucceededButDatabaseUpdateErrorMessage =
   "your payment succeeded but the database had an error updating your wallet.";
-export const uploadFundsDatabaseErrorInstructions = (
-  error,
-  walletFundsToAdd
-) => {
-  return `the error received was: '${error.message}'. please contact the app owner quoting the error message and the amount you tried to add to your wallet ( £${walletFundsToAdd} ). We apologise for the error!`;
-};
+
 export const emailAddressNotInDatabase =
   "the email address you entered does not match any email in our database.";
 export const appwriteNoUserError =
@@ -227,7 +222,7 @@ export const confirmAddFundsMessage = (walletFunds) => {
 };
 
 export const fundsReaddedToAccountMessage = (refundPrice) => {
-  return `£${refundPrice}  will be added to your wallet.`;
+  return `£${refundPrice.toFixed(2)}  will be added to your wallet.`;
 };
 export const confirmSureBookSession = (sessionType, date) => {
   return `are you sure you want to book the ${getSessionTypeString(
@@ -235,7 +230,9 @@ export const confirmSureBookSession = (sessionType, date) => {
   )} session for ${format(new Date(date), "dd MMMM yyyy")}?`;
 };
 export const fundsDeductedFromBalance = (price) => {
-  return `£${price / 100} will be deducted from your wallet balance.`;
+  return `£${(price / 100).toFixed(
+    2
+  )} will be deducted from your wallet balance.`;
 };
 export const sureCloseAccountQuestion =
   "are you sure you wish to close your account with us?";

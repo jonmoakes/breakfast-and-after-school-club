@@ -37,6 +37,7 @@ const TimesAndPricesAccordion = () => {
     afternoonLongSessionTime,
   } = useSelector(selectRequestDateDataSelectors);
 
+  console.log(morningSessionPrice.toFixed(2));
   const dispatch = useDispatch();
 
   // SecondAccordion is for if there are 2 accordions on a page as they have separate states.
@@ -60,25 +61,25 @@ const TimesAndPricesAccordion = () => {
               morning session:
               <br />
               {morningSessionTime}
-              <br /> cost: <BlueSpan>£{morningSessionPrice}</BlueSpan> per
-              child.
+              <br /> cost:{" "}
+              <BlueSpan>£{morningSessionPrice.toFixed(2)}</BlueSpan> per child.
             </Text>
             <BlackHr />
             <Text>
               afternoon session ( short ):
               <br />
               {afternoonShortSessionTime}
-              <br /> cost: <BlueSpan>
-                £{afternoonShortSessionPrice}
-              </BlueSpan>{" "}
-              per child.
+              <br /> cost:{" "}
+              <BlueSpan>£{afternoonShortSessionPrice.toFixed(2)}</BlueSpan> per
+              child.
             </Text>
             <BlackHr />
             <Text>
               afternoon session ( long ):
               <br />
               {afternoonLongSessionTime}
-              <br /> cost: <BlueSpan>£{afternoonLongSessionPrice}</BlueSpan> per
+              <br /> cost:{" "}
+              <BlueSpan>£{afternoonLongSessionPrice.toFixed(2)}</BlueSpan> per
               child.
             </Text>
             <BlackHr />
@@ -86,16 +87,20 @@ const TimesAndPricesAccordion = () => {
               morning and afternoon sessions
               <br />( short ):
               <br /> cost:{" "}
-              <BlueSpan>£{morningAndAfternoonShortSessionPrice}</BlueSpan> per
-              child.
+              <BlueSpan>
+                £{morningAndAfternoonShortSessionPrice.toFixed(2)}
+              </BlueSpan>{" "}
+              per child.
             </Text>
             <BlackHr />
             <Text>
               morning and afternoon sessions
               <br />( long ):
               <br /> cost:{" "}
-              <BlueSpan>£{morningAndAfternoonLongSessionPrice}</BlueSpan> per
-              child.
+              <BlueSpan>
+                £{morningAndAfternoonLongSessionPrice.toFixed(2)}
+              </BlueSpan>{" "}
+              per child.
             </Text>
             <BlackHr />
             <Text>

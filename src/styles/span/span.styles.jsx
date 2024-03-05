@@ -1,5 +1,10 @@
 import styled from "styled-components";
-import { customBlack, customRed, customBlue } from "../colors";
+import {
+  customBlack,
+  customRed,
+  customBlue,
+  customLightGreen,
+} from "../colors";
 
 import eyeIcon from "../../assets/eye.png";
 import eyeIconHide from "../../assets/hide-eye.png";
@@ -25,6 +30,15 @@ export const BorderLink = styled.span`
 
 export const RedSpan = styled.span`
   color: ${customRed};
+
+  &.capitalised {
+    text-transform: capitalize;
+  }
+`;
+
+export const LightGreenSpan = styled.span`
+  color: ${customLightGreen};
+  text-transform: capitalize;
 `;
 
 export const BlackSpan = styled.span`
