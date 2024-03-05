@@ -54,10 +54,10 @@ const useConfirmResult = () => {
           if (updateUserDocBalanceAsync.fulfilled.match(resultAction)) {
             dispatch(
               addSessionBookingInfoAsync({
-                usersChildren,
                 date,
                 sessionType,
                 childrenSelectedForBooking,
+                usersChildren,
                 email,
                 name,
                 phoneNumber,

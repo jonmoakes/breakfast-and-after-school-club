@@ -33,21 +33,6 @@ const useSendEmailBookingConfirmation = () => {
   const { name, email } = currentUser;
   const date = dateData ? dateData.date : "";
 
-  const childName =
-    usersChildren && usersChildren[0] !== undefined
-      ? usersChildren[0].childName
-      : "";
-
-  const oneChildChosen = childrenSelectedForBooking.join(" ");
-  const namesToAddToBooking = childrenSelectedForBooking.join(", ");
-
-  const childrenInBooking = createChildrenToAddToBooking(
-    childrenSelectedForBooking,
-    childName,
-    oneChildChosen,
-    namesToAddToBooking
-  );
-
   const sendEmailBookingConfirmation = () => {
     dispatch(
       sendEmailBookingConfirmationAsync({
@@ -55,7 +40,10 @@ const useSendEmailBookingConfirmation = () => {
         name,
         date,
         sessionType,
-        childrenInBooking,
+        childrenInBooking: createChildrenToAddToBooking(
+          childrenSelectedForBooking,
+          usersChildren
+        ),
         sessionPrice,
       })
     ).then((resultAction) => {

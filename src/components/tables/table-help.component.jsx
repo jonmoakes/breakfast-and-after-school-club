@@ -122,12 +122,32 @@ const UserBookingsHelp = () => {
             </Text>
 
             {isYourCustomerBookingsRoute() ? (
-              <Text>
-                if you tap the button to change the table filtering, please note
-                that if you have a search term already entered as you swap, you
-                will have to re enter the search term in order to trigger the
-                search.
-              </Text>
+              <>
+                <Text>
+                  if you tap the button to change the table filtering, please
+                  note that if you have a search term already entered as you
+                  swap, you will have to re enter the search term in order to
+                  trigger the search.
+                </Text>
+
+                <BlueH2>child consents:</BlueH2>
+                <Text>
+                  on the 'consents given' section, this tells you whether the
+                  parent has given permission for you to use the childs name or
+                  image in any correspondence you may have ( like newsletters or
+                  social media etc ).
+                </Text>
+                <Text>
+                  if there is more than one child in the booking, they are in
+                  the same order as the 'children in booking' section.
+                </Text>
+                <Text>
+                  for example, if in the 'children in booking' section you have
+                  'jo' and 'sam' and in the 'consents given' section, you have
+                  'yes' and 'no', 'yes corresponds to 'jo' and 'no' corresponds
+                  to sam.
+                </Text>
+              </>
             ) : null}
 
             <BlueH2>color coding:</BlueH2>

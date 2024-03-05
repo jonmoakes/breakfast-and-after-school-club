@@ -7,6 +7,7 @@ import {
   customRed,
   customWhite,
   customYellow,
+  customLightGreen,
 } from "../colors";
 
 const bounceInDownAnimation = keyframes`${bounceInDown}`;
@@ -29,6 +30,19 @@ export const Form = styled.form`
 
   &.book-session {
     margin: 20px auto 20px auto;
+  }
+
+  input {
+    accent-color: ${customLightGreen};
+  }
+
+  input[type="radio"] {
+    display: flex;
+    margin: 10px auto;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+    /* Additional styles as needed */
   }
 
   @media screen and (max-width: 1366px) {

@@ -7,6 +7,7 @@ import {
 
 import { lastMinuteNoSessionsMessage } from "../../strings/strings";
 import { createChildrenToAddToBooking } from "../../functions/create-children-to-add-to-booking";
+import { createConsentChoiceForEachChildInBooking } from "./book-session-functions";
 
 //decrease the no of sessions in the database
 export const updateSessionDocAsync = createAsyncThunk(
@@ -144,10 +145,10 @@ export const addSessionBookingInfoAsync = createAsyncThunk(
   "addSessionBookingInfo",
   async (
     {
-      usersChildren,
       date,
       sessionType,
       childrenSelectedForBooking,
+      usersChildren,
       email,
       name,
       phoneNumber,
@@ -156,25 +157,22 @@ export const addSessionBookingInfoAsync = createAsyncThunk(
     },
     thunkAPI
   ) => {
-    // gets the child name if user has only one child;
-    const oneChildChosen = childrenSelectedForBooking.join(" ");
-    const namesToAddToBooking = childrenSelectedForBooking.join(", ");
-
-    const { childName } = usersChildren[0];
-
     try {
       const sessionBooking = {
         date,
         sessionType,
         childrensName: createChildrenToAddToBooking(
           childrenSelectedForBooking,
-          childName,
-          oneChildChosen,
-          namesToAddToBooking
+          usersChildren
         ),
         parentEmail: email,
         parentName: name,
         parentPhoneNumber: phoneNumber,
+        consentChoiceForEachChildInBooking:
+          createConsentChoiceForEachChildInBooking(
+            usersChildren,
+            childrenSelectedForBooking
+          ),
       };
 
       const collectionId = bookedSessionsCollectionId;

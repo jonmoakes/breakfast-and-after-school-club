@@ -15,6 +15,7 @@ import {
   enterChildsAge,
   enterChildsName,
   yesAddChild,
+  consentOptionErrorMessage,
 } from "../../../strings/strings";
 
 const useConfirmAddChildInfo = () => {
@@ -29,7 +30,7 @@ const useConfirmAddChildInfo = () => {
 
   const dispatch = useDispatch();
 
-  const { childName, age } = childInfo;
+  const { childName, age, consent } = childInfo;
   const { email } = currentUser;
   const { databaseId, childrenCollectionId: collectionId } =
     currentUserEnvironmentVariables;
@@ -62,6 +63,8 @@ const useConfirmAddChildInfo = () => {
     } else if (!age) {
       fireSwal("error", enterChildsAge, "", 0, true, false);
       return;
+    } else if (!consent) {
+      fireSwal("error", consentOptionErrorMessage, "", 0, true, false);
     } else if (childName && childName.includes(",")) {
       fireSwal("error", cantIncludeCommaMessage, "", 0, true, false);
       return;

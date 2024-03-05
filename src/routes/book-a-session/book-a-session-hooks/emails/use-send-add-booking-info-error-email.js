@@ -29,29 +29,17 @@ const useSendAddBookingInfoErrorEmail = (date) => {
   );
   const dispatch = useDispatch();
 
-  const childName =
-    usersChildren && usersChildren[0] !== undefined
-      ? usersChildren[0].childName
-      : "";
   const parentEmail =
     usersChildren && usersChildren[0] !== undefined
       ? usersChildren[0].parentEmail
       : "";
+
   const parentName =
     usersChildren && usersChildren[0] !== undefined
       ? usersChildren[0].parentName
       : "";
 
-  const oneChildChosen = childrenSelectedForBooking.join(" ");
-  const namesToAddToBooking = childrenSelectedForBooking.join(", ");
   const { appOwnerEmail } = currentUserEnvironmentVariables;
-
-  const childrenInBooking = createChildrenToAddToBooking(
-    childrenSelectedForBooking,
-    childName,
-    oneChildChosen,
-    namesToAddToBooking
-  );
 
   const sendAddBookingInfoErrorEmail = () => {
     dispatch(
@@ -59,7 +47,10 @@ const useSendAddBookingInfoErrorEmail = (date) => {
         appOwnerEmail,
         date,
         sessionType,
-        childrenInBooking,
+        childrenInBooking: createChildrenToAddToBooking(
+          childrenSelectedForBooking,
+          usersChildren
+        ),
         parentEmail,
         parentName,
       })

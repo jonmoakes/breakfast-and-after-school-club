@@ -362,8 +362,10 @@ export const TableEditsButtonDiv = styled.div`
 `;
 
 export const RadioDiv = styled.div`
-  width: 100%;
+  width: 90%;
   display: flex;
+  margin: 0 auto;
+
   flex-direction: column;
   padding: 10px 0px;
 `;

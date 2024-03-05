@@ -146,6 +146,8 @@ export const passwordLengthErrorMessage =
   "password must be at least 8 characters in length. please try again";
 export const phoneNumberLengthErrorMessage =
   "your phone number must be 11 digits long";
+export const consentOptionErrorMessage =
+  "please 'yes' or 'no' for the consent option";
 
 // success
 export const successMessage = "success!";

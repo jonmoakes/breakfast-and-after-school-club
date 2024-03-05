@@ -1,4 +1,5 @@
 import { useSelector } from "react-redux";
+import Balancer from "react-wrap-balancer";
 
 import useHandleAddChildInfoChange from "./add-child-info-hooks/use-handle-add-child-info-change";
 
@@ -14,10 +15,11 @@ import {
   Label,
 } from "../../styles/form/form.styles";
 import { RedSpan } from "../../styles/span/span.styles";
-import { ParentDiv } from "../../styles/div/div.styles";
-import { Text } from "../../styles/p/p.styles";
+import { ParentDiv, RadioDiv } from "../../styles/div/div.styles";
+import { Text, WhiteShadowText } from "../../styles/p/p.styles";
 
 import { leaveBlankIfNothingToAdd, anyOtherInfo } from "../../strings/strings";
+import { BlackHr } from "../../styles/hr/hr.styles";
 
 const AddChildInfoForm = () => {
   const { handleAddChildInfoChange } = useHandleAddChildInfoChange();
@@ -53,6 +55,41 @@ const AddChildInfoForm = () => {
           onChange={handleAddChildInfoChange}
           value={age || ""}
         />
+
+        <BlackHr />
+        <RadioDiv>
+          <WhiteShadowText>
+            <Balancer>
+              <RedSpan>*</RedSpan> do you give us consent to use this childs
+              name and / or image for use in our newsletters / social media etc?
+            </Balancer>
+          </WhiteShadowText>
+
+          <BlackHr />
+
+          <Label>
+            yes
+            <input
+              type="radio"
+              name="consent"
+              value="yes"
+              onChange={handleAddChildInfoChange}
+            />
+          </Label>
+
+          <BlackHr />
+
+          <Label>
+            no
+            <input
+              type="radio"
+              name="consent"
+              value="no"
+              onChange={handleAddChildInfoChange}
+            />
+          </Label>
+          <BlackHr />
+        </RadioDiv>
 
         <Label>medical info:</Label>
         <StyledTextArea

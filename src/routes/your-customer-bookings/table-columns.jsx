@@ -31,6 +31,10 @@ export const TABLE_COLUMNS = [
     accessor: "childrensName",
   },
   {
+    Header: "consents given",
+    accessor: "consentChoiceForEachChildInBooking",
+  },
+  {
     Header: "parent name",
     accessor: "parentName",
   },
@@ -47,7 +51,6 @@ export const TABLE_COLUMNS = [
       return <StyledLink onClick={onEmailClick}>tap to email</StyledLink>;
     },
   },
-
   {
     Header: "Parent Phone",
     accessor: "parentPhoneNumber",

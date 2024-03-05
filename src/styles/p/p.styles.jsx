@@ -14,6 +14,11 @@ export const WhiteText = styled(Text)`
   color: ${customWhite};
 `;
 
+export const WhiteShadowText = styled(Text)`
+  color: ${customWhite};
+  text-shadow: 1px 1px 1px ${customBlack};
+`;
+
 export const RedText = styled(Text)`
   color: ${customRed};
 `;

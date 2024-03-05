@@ -4,6 +4,7 @@ import { addChildInfoAsync } from "./add-child-info.thunks";
 const defaultChildInfo = {
   childName: "",
   age: "",
+  consent: "",
   medicalInfo: "",
   dietryRequirements: "",
   additionalInfo: "",
