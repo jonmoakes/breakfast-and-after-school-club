@@ -72,16 +72,19 @@ export const TABLE_COLUMNS = [
   {
     Header: "parent email",
     Cell: ({ row }) => {
+      const subject = encodeURIComponent(
+        "Message From Breakfast & After School Club"
+      );
+
       const onEmailClick = async () => {
         const email = await getUsersEmail(row);
-
-        const subject = encodeURIComponent(
-          "Message From Breakfast & After School Club"
-        );
-        window.open(`mailto:${email}?Subject=${subject}`);
+        window.location.href = `mailto:${email}?Subject=${subject}`;
       };
+
       return (
-        <TableEmailButton onClick={onEmailClick}>tap to email</TableEmailButton>
+        <TableEmailButton type="button" onClick={onEmailClick}>
+          tap to email
+        </TableEmailButton>
       );
     },
   },
