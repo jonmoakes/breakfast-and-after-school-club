@@ -25,7 +25,7 @@ export const sendEmailBookingConfirmationAsync = createAsyncThunk(
       const formattedDate = date ? format(new Date(date), "dd MMMM yyyy") : "";
       const sessionBooked = getSessionTypeString(sessionType);
       const kidsInBooking = childrenInBooking;
-      const fundsToDeduct = sessionPrice / 100;
+      const fundsToDeduct = (sessionPrice / 100).toFixed(2);
 
       const response = await axios.post(
         SEND_EMAIL_BOOKING_CONFIRMATION_ENDPOINT,
@@ -115,7 +115,7 @@ export const sendEmailBookingCancellationConfirmationAsync = createAsyncThunk(
     try {
       const formattedDate = date ? format(new Date(date), "dd MMMM yyyy") : "";
       const sessionBooked = getSessionTypeString(sessionType);
-      const fundsAddedToWallet = refundPrice / 100;
+      const fundsAddedToWallet = (refundPrice / 100).toFixed(2);
 
       const response = await axios.post(
         SEND_EMAIL_BOOKING_CANCELLATION_CONFIRMATION_ENDPOINT,
