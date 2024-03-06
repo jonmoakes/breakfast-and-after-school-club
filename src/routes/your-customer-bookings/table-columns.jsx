@@ -1,6 +1,8 @@
 import { manageDatabaseDocument } from "../../utils/appwrite/appwrite-functions";
 import { getUserCollectionId } from "../../school-codes-list/get-ids-from-school-code/get-user-collection-id.js";
 
+import { TableEmailButton } from "../../styles/buttons/buttons.styles.jsx";
+
 const getUsersEmail = async (row) => {
   try {
     const { userId, $databaseId } = row.original;
@@ -70,22 +72,20 @@ export const TABLE_COLUMNS = [
   {
     Header: "parent email",
     Cell: ({ row }) => {
-      let email, subject;
-
       const onEmailClick = async () => {
-        email = await getUsersEmail(row);
+        const email = await getUsersEmail(row);
         if (!email) {
           return;
         }
 
-        subject = encodeURIComponent(
+        const subject = encodeURIComponent(
           "Message From Breakfast & After School Club"
         );
+        window.open(`mailto:${email}?Subject=${subject}`);
       };
-
-      onEmailClick();
-
-      return <a href={`mailto:${email}?subject=${subject}`}>tap to email</a>;
+      return (
+        <TableEmailButton onClick={onEmailClick}>tap to email</TableEmailButton>
+      );
     },
   },
   {

@@ -1,5 +1,5 @@
 import { createGlobalStyle } from "styled-components";
-import { customBlue, customRed } from "./styles/colors";
+import { customBlack, customBlue } from "./styles/colors";
 
 import BackgroundImage from "./assets/crayons.svg";
 
@@ -58,17 +58,8 @@ export const GlobalStyle = createGlobalStyle`
         }
 
         a {
-            color:${customBlue};
+            color:${customBlack};
             text-decoration:none;
-
-        }
-
-        a:hover {
-            color:${customRed};
-
-            @media screen and (max-width:1366px) {
-                color:${customBlue};
-            }
-        }
+        }  
     }
 `;

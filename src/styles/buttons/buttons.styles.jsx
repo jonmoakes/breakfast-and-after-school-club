@@ -297,3 +297,23 @@ export const BalanceCheckButton = styled.button`
   border-radius: 2px;
   color: ${customBlack};
 `;
+
+export const TableEmailButton = styled.button`
+  border: none;
+  padding: 0;
+  margin: 0;
+  background: none;
+  cursor: pointer;
+  font-family: inherit;
+  text-transform: capitalize;
+  font-weight: bold;
+  font-size: 16px;
+
+  @media screen and (max-width: 600px) {
+    font-size: 14px;
+  }
+
+  @media screen and (max-width: 320px) {
+    font-size: 12px;
+  }
+`;
