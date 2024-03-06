@@ -1,7 +1,7 @@
 import { manageDatabaseDocument } from "../../utils/appwrite/appwrite-functions";
-import { getUserCollectionId } from "../../school-codes-list/get-ids-from-school-code/get-user-collection-id.js";
+import { getUserCollectionId } from "../../school-codes-list/get-ids-from-school-code/get-user-collection-id";
 
-import { TableEmailButton } from "../../styles/buttons/buttons.styles.jsx";
+import { TableEmailButton } from "../../styles/buttons/buttons.styles";
 
 const getUsersEmail = async (row) => {
   try {
@@ -74,9 +74,6 @@ export const TABLE_COLUMNS = [
     Cell: ({ row }) => {
       const onEmailClick = async () => {
         const email = await getUsersEmail(row);
-        if (!email) {
-          return;
-        }
 
         const subject = encodeURIComponent(
           "Message From Breakfast & After School Club"

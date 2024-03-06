@@ -308,6 +308,7 @@ export const TableEmailButton = styled.button`
   text-transform: capitalize;
   font-weight: bold;
   font-size: 16px;
+  color: ${customBlack};
 
   @media screen and (max-width: 600px) {
     font-size: 14px;
