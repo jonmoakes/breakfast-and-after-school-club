@@ -1,8 +1,6 @@
 import { manageDatabaseDocument } from "../../utils/appwrite/appwrite-functions";
 import { getUserCollectionId } from "../../school-codes-list/get-ids-from-school-code/get-user-collection-id.js";
 
-import { StyledLink } from "../../styles/link/link.styles";
-
 const getUsersEmail = async (row) => {
   try {
     const { userId, $databaseId } = row.original;
@@ -72,18 +70,22 @@ export const TABLE_COLUMNS = [
   {
     Header: "parent email",
     Cell: ({ row }) => {
-      const onEmailClick = async () => {
-        // const email = await getUsersEmail(row);
-        // if (!email) {
-        //   return;
-        // }
+      let email, subject;
 
-        const subject = encodeURIComponent(
+      const onEmailClick = async () => {
+        email = await getUsersEmail(row);
+        if (!email) {
+          return;
+        }
+
+        subject = encodeURIComponent(
           "Message From Breakfast & After School Club"
         );
-        window.open(`mailto:"test@email.com?Subject=${subject}`);
       };
-      return <StyledLink onClick={onEmailClick}>tap to email</StyledLink>;
+
+      onEmailClick();
+
+      return <a href={`mailto:${email}?subject=${subject}`}>tap to email</a>;
     },
   },
   {

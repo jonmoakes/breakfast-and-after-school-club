@@ -60,10 +60,15 @@ export const GlobalStyle = createGlobalStyle`
         a {
             color:${customBlue};
             text-decoration:none;
+
         }
 
         a:hover {
             color:${customRed};
+
+            @media screen and (max-width:1366px) {
+                color:${customBlue};
+            }
         }
     }
 `;
