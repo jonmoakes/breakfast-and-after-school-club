@@ -90,7 +90,9 @@ const userSlice = createSlice({
         state.currentUserIsLoading = false;
         state.currentUser = action.payload;
         state.currentUserError = null;
-        const { schoolCode } = state.currentUser;
+        const schoolCode = state.currentUser
+          ? state.currentUser.schoolCode
+          : "";
         state.currentUserEnvironmentVariables =
           setEnvironmentVariables(schoolCode);
       })

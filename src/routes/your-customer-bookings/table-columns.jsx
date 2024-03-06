@@ -73,15 +73,15 @@ export const TABLE_COLUMNS = [
     Header: "parent email",
     Cell: ({ row }) => {
       const onEmailClick = async () => {
-        const email = await getUsersEmail(row);
-        if (!email) {
-          return;
-        }
+        // const email = await getUsersEmail(row);
+        // if (!email) {
+        //   return;
+        // }
 
         const subject = encodeURIComponent(
           "Message From Breakfast & After School Club"
         );
-        window.open(`mailto:${email}?Subject=${subject}`);
+        window.open(`mailto:"test@email.com?Subject=${subject}`);
       };
       return <StyledLink onClick={onEmailClick}>tap to email</StyledLink>;
     },
