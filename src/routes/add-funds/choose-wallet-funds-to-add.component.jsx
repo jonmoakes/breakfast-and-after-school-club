@@ -29,7 +29,7 @@ const ChooseWalletFundsToAdd = () => {
           inputMode="decimal" // Set input mode to decimal for number pad
           name="walletFunds"
           value={walletFundsToAdd || ""}
-          min={1}
+          min={0.5}
           max={200}
           placeholder={addFundsPlaceholder}
           onChange={handleWalletFundsChange}

@@ -7,7 +7,7 @@ import {
   signOutAsync,
   getUsersWalletBalanceAsync,
 } from "./user.thunks";
-import { setEnvironmentVariables } from "./functions";
+import { setEnvironmentVariables } from "../../school-codes-list/get-ids-from-school-code/set-environment-variables";
 
 const initialState = {
   currentUser: null,

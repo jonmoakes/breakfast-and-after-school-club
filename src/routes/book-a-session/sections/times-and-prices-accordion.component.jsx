@@ -37,7 +37,6 @@ const TimesAndPricesAccordion = () => {
     afternoonLongSessionTime,
   } = useSelector(selectRequestDateDataSelectors);
 
-  console.log(morningSessionPrice.toFixed(2));
   const dispatch = useDispatch();
 
   // SecondAccordion is for if there are 2 accordions on a page as they have separate states.

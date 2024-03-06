@@ -26,6 +26,10 @@ const SessionHelpAccordion = () => {
 
   const dispatch = useDispatch();
 
+  const priceToFixed = morningSessionPrice
+    ? morningSessionPrice.toFixed(2)
+    : null;
+
   return (
     <Accordion {...{ shouldShowElement }}>
       <>
@@ -55,10 +59,10 @@ const SessionHelpAccordion = () => {
               what spaces we have available on your chosen day.
             </Text>
             <Text>
-              for example, if you have £{morningSessionPrice} in your wallet,
-              you would not see the options to select the afternoon long
-              session, or the combined morning and afternoon sessions as their
-              price is greater that £{morningSessionPrice}.
+              for example, if you have £{priceToFixed} in your wallet, you would
+              not see the options to select the afternoon long session, or the
+              combined morning and afternoon sessions as their price is greater
+              that £{priceToFixed}.
             </Text>
             <Text>
               also if we have no spaces for a particular session, you will not

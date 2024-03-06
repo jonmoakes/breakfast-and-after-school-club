@@ -14,7 +14,7 @@ const useGetUsersChildrenAndConditionallyUserBookingsAndSessionPrices = () => {
     selectCurrentUserSelectors
   );
 
-  const { email } = currentUser;
+  const { id, email } = currentUser;
   const {
     databaseId,
     childrenCollectionId: collectionId,
@@ -43,7 +43,7 @@ const useGetUsersChildrenAndConditionallyUserBookingsAndSessionPrices = () => {
           if (getUsersChildrenAsync.fulfilled.match(resultAction)) {
             dispatch(
               fetchBookedSessionsUserAsync({
-                email,
+                id,
                 databaseId,
                 bookedSessionsCollectionId,
               })
@@ -66,6 +66,7 @@ const useGetUsersChildrenAndConditionallyUserBookingsAndSessionPrices = () => {
     }
   }, [
     dispatch,
+    id,
     email,
     path,
     databaseId,

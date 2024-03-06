@@ -84,8 +84,17 @@ const UserBookingsHelp = () => {
                   will be added back to your virtual wallet.
                 </Text>
                 <Text>
-                  please note that you can only cancel a booking up to 15mins
-                  before it is due to start.
+                  please note that you can only cancel a morning session booking
+                  on the day up to 6AM latest.
+                </Text>
+                <Text>
+                  to cancel an afternoon session session booking on the same
+                  day, you need to cancel before 2PM latest.
+                </Text>
+                <Text>
+                  if you've booked a combined morning and afternoon session,
+                  once it is past 6AM, you wont be able to cancel the afternoon
+                  session.
                 </Text>
               </>
             ) : null}

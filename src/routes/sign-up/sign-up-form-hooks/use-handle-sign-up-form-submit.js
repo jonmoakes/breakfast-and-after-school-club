@@ -6,7 +6,7 @@ import { selectSignUpFormSelectors } from "../../../store/sign-up-form/sign-up-f
 import { signUpAsync } from "../../../store/user/user.thunks";
 
 import { validateEmail } from "../../../functions/validate-email";
-import { setProjectId } from "../../../functions/set-project-id";
+import { setProjectId } from "../../../school-codes-list/get-ids-from-school-code/set-project-id";
 import { isNotValidSchoolCode } from "../../../functions/is-not-valid-school-code";
 
 import {

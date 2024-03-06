@@ -1,9 +1,12 @@
-import { client } from "../utils/appwrite/appwrite-config";
+import { client } from "../../utils/appwrite/appwrite-config";
 
-import { schoolCodesList } from "../school-codes-list/school-codes-list";
+import { schoolCodesList } from "../school-codes-list";
 
-export const setProjectId = (schoolCode) => {
+export const setProjectId = () => {
   const { cleveleysPrimary } = schoolCodesList;
+
+  const schoolCode = localStorage.getItem("schoolCode");
+
   switch (schoolCode) {
     case cleveleysPrimary:
       client.setProject(import.meta.env.VITE_CLEVELEYS_PRIMARY_PROJECT_ID);

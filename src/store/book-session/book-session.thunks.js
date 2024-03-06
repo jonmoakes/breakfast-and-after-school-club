@@ -145,11 +145,11 @@ export const addSessionBookingInfoAsync = createAsyncThunk(
   "addSessionBookingInfo",
   async (
     {
+      id,
       date,
       sessionType,
       childrenSelectedForBooking,
       usersChildren,
-      email,
       name,
       phoneNumber,
       bookedSessionsCollectionId,
@@ -159,13 +159,13 @@ export const addSessionBookingInfoAsync = createAsyncThunk(
   ) => {
     try {
       const sessionBooking = {
+        userId: id,
         date,
         sessionType,
         childrensName: createChildrenToAddToBooking(
           childrenSelectedForBooking,
           usersChildren
         ),
-        parentEmail: email,
         parentName: name,
         parentPhoneNumber: phoneNumber,
         consentChoiceForEachChildInBooking:

@@ -14,7 +14,7 @@ import {
   invalidSchoolCodeHelpMessage,
 } from "../../../strings/strings";
 
-import { setProjectId } from "../../../functions/set-project-id";
+import { setProjectId } from "../../../school-codes-list/get-ids-from-school-code/set-project-id";
 import { isNotValidSchoolCode } from "../../../functions/is-not-valid-school-code";
 
 const useHandleSignInFormSubmit = () => {

@@ -12,7 +12,7 @@ const useFetchBookedSessionsUser = () => {
 
   const dispatch = useDispatch();
 
-  const { email } = currentUser;
+  const { id } = currentUser;
   const { databaseId, bookedSessionsCollectionId } =
     currentUserEnvironmentVariables;
 
@@ -20,12 +20,12 @@ const useFetchBookedSessionsUser = () => {
     if (!currentUser) return;
     dispatch(
       fetchBookedSessionsUserAsync({
-        email,
+        id,
         databaseId,
         bookedSessionsCollectionId,
       })
     );
-  }, [dispatch, currentUser, email, databaseId, bookedSessionsCollectionId]);
+  }, [dispatch, currentUser, id, databaseId, bookedSessionsCollectionId]);
 };
 
 export default useFetchBookedSessionsUser;

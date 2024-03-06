@@ -40,7 +40,7 @@ const AddFundsHelp = () => {
               £4.50 ). please note that if you add more places after the decimal
               by mistake, the amount will be rounded to 2 decimal places.
             </Text>
-            <Text>the minimum that you can add is £1.</Text>
+            <Text>the minimum that you can add is £0.50.</Text>
             <Text>the maximum value you can add at a time is £200</Text>
             <Text>
               then enter in your card details in the box that appears below the

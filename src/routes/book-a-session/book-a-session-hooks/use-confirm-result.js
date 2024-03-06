@@ -24,7 +24,7 @@ const useConfirmResult = () => {
   );
   const dispatch = useDispatch();
 
-  const { id, name, email, phoneNumber } = currentUser;
+  const { id, name, phoneNumber } = currentUser;
   const {
     databaseId,
     termDatesCollectionId,
@@ -54,11 +54,11 @@ const useConfirmResult = () => {
           if (updateUserDocBalanceAsync.fulfilled.match(resultAction)) {
             dispatch(
               addSessionBookingInfoAsync({
+                id,
                 date,
                 sessionType,
                 childrenSelectedForBooking,
                 usersChildren,
-                email,
                 name,
                 phoneNumber,
                 bookedSessionsCollectionId,

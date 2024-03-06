@@ -3,10 +3,10 @@ import { listDocumentsByQueryOrSearch } from "../../utils/appwrite/appwrite-func
 
 export const fetchBookedSessionsUserAsync = createAsyncThunk(
   "fetchBookedSessionsUser",
-  async ({ email, databaseId, bookedSessionsCollectionId }, thunkAPI) => {
+  async ({ id, databaseId, bookedSessionsCollectionId }, thunkAPI) => {
     try {
-      const queryIndex = "parentEmail";
-      const queryValue = email;
+      const queryIndex = "userId";
+      const queryValue = id;
 
       const collectionId = bookedSessionsCollectionId;
 
