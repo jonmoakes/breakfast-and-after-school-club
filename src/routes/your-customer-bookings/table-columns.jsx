@@ -78,9 +78,8 @@ export const TABLE_COLUMNS = [
           return;
         }
 
-        const subject = encodeURIComponent(
-          "Message From Breakfast & After School Club"
-        );
+        const subject = "Message From Breakfast & After School Club";
+
         window.open(`mailto:${email}?Subject=${subject}`);
       };
       return <StyledLink onClick={onEmailClick}>tap to email</StyledLink>;
