@@ -59,14 +59,16 @@ const UserBookingsHelp = () => {
                 </Text>
                 <BlueH2>viewing a childs info:</BlueH2>
                 <Text>
-                  to view the childs age, medical info, dietry requirements and
-                  additional info, tap the small checkbox next to the date of
-                  the booking that you wish to view.
+                  to view the childs name, age, consents choice, medical info,
+                  dietry requirements and additional info, tap the small
+                  checkbox next to the date of the booking that you wish to
+                  view.
                 </Text>
                 <Text>a button will appear that says 'view child info'.</Text>
                 <Text>
                   tapping on it will allow you to see data that the parents have
-                  entered in about their child for your reference.
+                  entered in about their child ( or children ) for your
+                  reference.
                 </Text>
               </>
             ) : null}
@@ -141,20 +143,13 @@ const UserBookingsHelp = () => {
 
                 <BlueH2>child consents:</BlueH2>
                 <Text>
-                  on the 'consents given' section, this tells you whether the
-                  parent has given permission for you to use the childs name or
-                  image in any correspondence you may have ( like newsletters or
-                  social media etc ).
+                  to view whether a consent has been given for a child or
+                  children in a booking, follow the process for 'viewing a
+                  childs info' above.'
                 </Text>
                 <Text>
-                  if there is more than one child in the booking, they are in
-                  the same order as the 'children in booking' section.
-                </Text>
-                <Text>
-                  for example, if in the 'children in booking' section you have
-                  'jo' and 'sam' and in the 'consents given' section, you have
-                  'yes' and 'no', 'yes corresponds to 'jo' and 'no' corresponds
-                  to sam.
+                  you will see the consent choice given by the parent for each
+                  child in the booking there.
                 </Text>
               </>
             ) : null}

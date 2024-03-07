@@ -12,7 +12,6 @@ export const fetchBookedSessionsOwnerAsync = createAsyncThunk(
 
       const { documents, total } = getBookingDocuments;
       if (!total) return;
-
       return documents;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);

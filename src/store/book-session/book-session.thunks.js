@@ -7,7 +7,6 @@ import {
 
 import { lastMinuteNoSessionsMessage } from "../../strings/strings";
 import { createChildrenToAddToBooking } from "../../functions/create-children-to-add-to-booking";
-import { createConsentChoiceForEachChildInBooking } from "./book-session-functions";
 
 //decrease the no of sessions in the database
 export const updateSessionDocAsync = createAsyncThunk(
@@ -168,11 +167,6 @@ export const addSessionBookingInfoAsync = createAsyncThunk(
         ),
         parentName: name,
         parentPhoneNumber: phoneNumber,
-        consentChoiceForEachChildInBooking:
-          createConsentChoiceForEachChildInBooking(
-            usersChildren,
-            childrenSelectedForBooking
-          ),
       };
 
       const collectionId = bookedSessionsCollectionId;

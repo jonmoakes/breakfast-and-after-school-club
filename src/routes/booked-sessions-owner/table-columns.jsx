@@ -3,6 +3,8 @@ import { getUserCollectionId } from "../../school-codes-list/get-ids-from-school
 
 import { TableEmailButton } from "../../styles/buttons/buttons.styles";
 
+import { getFormattedSessionType } from "../../functions/get-formatted-session-type";
+
 const getUsersEmail = async (row) => {
   try {
     const { userId, $databaseId } = row.original;
@@ -40,30 +42,12 @@ export const TABLE_COLUMNS = [
     Header: "session",
     accessor: "sessionType",
     Cell: ({ value }) => {
-      const formattedSessionType = () => {
-        switch (value) {
-          case "afternoonShort":
-            return "afternoon short";
-          case "afternoonLong":
-            return "afternoon long";
-          case "morningAndAfternoonShort":
-            return "morning and afternoon short";
-          case "morningAndAfternoonLong":
-            return "morning and afternoon long";
-          default:
-            return value;
-        }
-      };
-      return formattedSessionType();
+      return getFormattedSessionType(value);
     },
   },
   {
     Header: "children in booking",
     accessor: "childrensName",
-  },
-  {
-    Header: "consents given",
-    accessor: "consentChoiceForEachChildInBooking",
   },
   {
     Header: "parent name",

@@ -35,10 +35,12 @@ const ChosenEntryChildDetailsAccordion = () => {
             <AccordionContent>
               <Text>
                 these details are what parents have entered for their child.
-                note that as only the name and age are required, medical info,
-                dietry requirements and additional info may not be visible if
-                the parent has not entered anything for those fields when
-                creating the child.
+              </Text>
+              <Text>
+                note that as only the name, age and consent choice are required,
+                medical info, dietry requirements and additional info may not be
+                visible if the parent has not entered anything for those fields
+                when creating the child.
               </Text>
             </AccordionContent>
           )}
