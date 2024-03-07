@@ -8,7 +8,7 @@ import { selectUserBookingToDeleteSelectors } from "../../../../store/user-booki
 import {
   errorCancellingBookingMessage,
   errorReceivedMessage,
-  userBookingsRoute,
+  bookedSessionsUserRoute,
 } from "../../../../strings/strings";
 
 const useUpdateBookingsResultErrorSwal = () => {
@@ -29,7 +29,7 @@ const useUpdateBookingsResultErrorSwal = () => {
       false
     ).then((isConfirmed) => {
       if (isConfirmed) {
-        hamburgerHandlerNavigate(userBookingsRoute);
+        hamburgerHandlerNavigate(bookedSessionsUserRoute);
       }
     });
   };

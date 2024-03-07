@@ -11,7 +11,7 @@ import { selectBookSessionSelectors } from "../../../../store/book-session/book-
 import {
   contactRoute,
   failedToSendEmailInstructions,
-  userBookingsRoute,
+  bookedSessionsUserRoute,
 } from "../../../../strings/strings";
 
 import { createChildrenToAddToBooking } from "../../../../functions/create-children-to-add-to-booking";
@@ -58,7 +58,7 @@ const useSendAddBookingInfoErrorEmail = (date) => {
       if (
         sendEmailBookingNotAddedToDatabaseAsync.fulfilled.match(resultAction)
       ) {
-        hamburgerHandlerNavigate(userBookingsRoute);
+        hamburgerHandlerNavigate(bookedSessionsUserRoute);
       } else {
         fireSwal(
           "error",

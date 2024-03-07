@@ -12,7 +12,7 @@ import { sendEmailBookingConfirmationAsync } from "../../../../store/send-email/
 import {
   errorSendingBookingConfirmationEmail,
   getBookingInfoEmailInstructions,
-  userBookingsRoute,
+  bookedSessionsUserRoute,
 } from "../../../../strings/strings";
 
 import { createChildrenToAddToBooking } from "../../../../functions/create-children-to-add-to-booking";
@@ -48,7 +48,7 @@ const useSendEmailBookingConfirmation = () => {
       })
     ).then((resultAction) => {
       if (sendEmailBookingConfirmationAsync.fulfilled.match(resultAction)) {
-        hamburgerHandlerNavigate(userBookingsRoute);
+        hamburgerHandlerNavigate(bookedSessionsUserRoute);
       } else {
         fireSwal(
           "error",
@@ -60,7 +60,7 @@ const useSendEmailBookingConfirmation = () => {
         ).then((isConfirmed) => {
           if (isConfirmed) {
             //don't need to do anything else as swal tells user to contact if they need the confirmation email.
-            hamburgerHandlerNavigate(userBookingsRoute);
+            hamburgerHandlerNavigate(bookedSessionsUserRoute);
           }
         });
       }

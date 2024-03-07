@@ -1,7 +1,8 @@
+import useCheckDateAndGoToCancelBookingRoute from "./booked-sessions-user-hooks/use-check-date-and-go-to-cancel-booking-route";
+
 import { ParentDiv, TableEditsButtonDiv } from "../../styles/div/div.styles";
 import { RemoveEntryButton } from "../../styles/buttons/buttons.styles";
 import { Text } from "../../styles/p/p.styles";
-import useCheckDateAndGoToCancelBookingRoute from "./user-bookings-hooks/use-check-date-and-go-to-cancel-booking-route";
 
 const CancelBookingButton = ({ chosenEntry }) => {
   const { checkDateAndGoToCancelBookingRoute } =

@@ -8,7 +8,7 @@ import {
   bookedSessionsOwnerRoute,
   updateEmailRoute,
   updatePasswordRoute,
-  userBookingsRoute,
+  bookedSessionsUserRoute,
 } from "../../../strings/strings";
 
 const useNavigateToRoute = () => {
@@ -36,7 +36,7 @@ const useNavigateToRoute = () => {
     {
       id: 1,
       text: "view your bookings",
-      onClick: () => navigate(userBookingsRoute),
+      onClick: () => navigate(bookedSessionsUserRoute),
     },
     {
       id: 2,

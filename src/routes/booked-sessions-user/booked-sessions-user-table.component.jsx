@@ -23,7 +23,7 @@ import BookingsTablePagination from "../../components/tables/bookings-table-pagi
 import CancelBookingButton from "./cancel-booking-button.component";
 import ShowFetchErrors from "../../components/errors/show-fetch-errors.component";
 
-const UserBookingsTable = () => {
+const BookedSessionsUserTable = () => {
   const { isOnline } = useIsOnline();
 
   const { bookedSessionsUserError } = useSelector(
@@ -156,4 +156,4 @@ const UserBookingsTable = () => {
   );
 };
 
-export default UserBookingsTable;
+export default BookedSessionsUserTable;

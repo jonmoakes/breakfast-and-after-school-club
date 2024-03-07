@@ -11,7 +11,7 @@ import {
   addFundsRoute,
   bookSessionRoute,
   cancelBookingRoute,
-  userBookingsRoute,
+  bookedSessionsUserRoute,
   bookedSessionsOwnerRoute,
 } from "../../../strings/strings";
 
@@ -64,7 +64,7 @@ const useHandleShowError = () => {
         return "book a session";
       case addFundsRoute:
         return "complete a payment";
-      case userBookingsRoute:
+      case bookedSessionsUserRoute:
       case bookedSessionsOwnerRoute:
         return "show your bookings";
       case cancelBookingRoute:

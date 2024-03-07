@@ -11,7 +11,7 @@ import { selectGetUsersChildrenSelectors } from "../../../../store/get-users-chi
 
 import {
   errorSendCancellationConfirmationEmailMessage,
-  userBookingsRoute,
+  bookedSessionsUserRoute,
 } from "../../../../strings/strings";
 
 const useSendCancellationEmail = () => {
@@ -47,7 +47,7 @@ const useSendCancellationEmail = () => {
           resultAction
         )
       ) {
-        hamburgerHandlerNavigate(userBookingsRoute);
+        hamburgerHandlerNavigate(bookedSessionsUserRoute);
       } else {
         fireSwal(
           "error",
@@ -59,7 +59,7 @@ const useSendCancellationEmail = () => {
         ).then((isConfirmed) => {
           if (isConfirmed) {
             //don't need to do anything else as swal tells user to contact if they need the confirmation email.
-            hamburgerHandlerNavigate(userBookingsRoute);
+            hamburgerHandlerNavigate(bookedSessionsUserRoute);
           }
         });
       }

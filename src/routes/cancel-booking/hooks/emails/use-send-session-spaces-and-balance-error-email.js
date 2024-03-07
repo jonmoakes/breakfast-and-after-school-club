@@ -11,7 +11,7 @@ import { sendEmailResetSessionSpacesAndBalanceErrorAsync } from "../../../../sto
 import {
   contactRoute,
   failedToSendEmailInstructions,
-  userBookingsRoute,
+  bookedSessionsUserRoute,
 } from "../../../../strings/strings";
 
 const useSendSessionSpacesAndBalanceErrorEmail = () => {
@@ -53,7 +53,7 @@ const useSendSessionSpacesAndBalanceErrorEmail = () => {
           resultAction
         )
       ) {
-        hamburgerHandlerNavigate(userBookingsRoute);
+        hamburgerHandlerNavigate(bookedSessionsUserRoute);
       } else {
         fireSwal(
           "error",

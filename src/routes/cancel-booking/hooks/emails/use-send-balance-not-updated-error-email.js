@@ -10,7 +10,7 @@ import { selectCurrentUserSelectors } from "../../../../store/user/user.slice";
 import {
   contactRoute,
   failedToSendEmailInstructions,
-  userBookingsRoute,
+  bookedSessionsUserRoute,
 } from "../../../../strings/strings";
 
 const useSendBalanceNotUpdatedErrorEmail = () => {
@@ -35,7 +35,7 @@ const useSendBalanceNotUpdatedErrorEmail = () => {
       sendEmailBalanceNotUpdatedErrorAsync({ appOwnerEmail, id, refundAmount })
     ).then((resultAction) => {
       if (sendEmailBalanceNotUpdatedErrorAsync.fulfilled.match(resultAction)) {
-        hamburgerHandlerNavigate(userBookingsRoute);
+        hamburgerHandlerNavigate(bookedSessionsUserRoute);
       } else {
         fireSwal(
           "error",

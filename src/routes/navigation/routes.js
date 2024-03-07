@@ -1,5 +1,5 @@
 import {
-  userBookingsRoute,
+  bookedSessionsUserRoute,
   bookSessionRoute,
   contactRoute,
   accountRoute,
@@ -12,7 +12,7 @@ import {
 } from "../../strings/strings";
 
 export const signedInRoutes = [
-  userBookingsRoute,
+  bookedSessionsUserRoute,
   bookSessionRoute,
   addFundsRoute,
   accountRoute,

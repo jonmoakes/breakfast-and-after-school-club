@@ -33,7 +33,7 @@ import {
   editChildInfoRoute,
   deleteChildInfoRoute,
   chosenEntryChildDetailsRoute,
-  userBookingsRoute,
+  bookedSessionsUserRoute,
   cancelBookingRoute,
   bookedSessionsOwnerRoute,
 } from "./strings/strings";
@@ -48,8 +48,8 @@ const SignIn = lazy(() => import("./routes/sign-in/sign-in.component"));
 const BookedSessionsOwner = lazy(() =>
   import("./routes/booked-sessions-owner/booked-sessions-owner.component.jsx")
 );
-const UserBookings = lazy(() =>
-  import("./routes/user-bookings/users-bookings.component")
+const BookedSessionsUser = lazy(() =>
+  import("./routes/booked-sessions-user/booked-sessions-user.component")
 );
 const CancelBooking = lazy(() =>
   import("./routes/cancel-booking/cancel-booking.component")
@@ -148,8 +148,8 @@ const App = () => {
               />
 
               <Route
-                path={userBookingsRoute}
-                element={currentUser ? <UserBookings /> : <SignIn />}
+                path={bookedSessionsUserRoute}
+                element={currentUser ? <BookedSessionsUser /> : <SignIn />}
               />
 
               <Route path={cancelBookingRoute} element={<CancelBooking />} />

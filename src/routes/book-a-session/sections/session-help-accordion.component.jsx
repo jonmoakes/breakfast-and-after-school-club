@@ -17,7 +17,7 @@ import { Text } from "../../../styles/p/p.styles";
 import { YellowGreenButton } from "../../../styles/buttons/buttons.styles";
 import { StyledLink } from "../../../styles/link/link.styles";
 
-import { userBookingsRoute } from "../../../strings/strings";
+import { bookedSessionsUserRoute } from "../../../strings/strings";
 
 const SessionHelpAccordion = () => {
   const { morningSessionPrice } = useConditionalLogic();
@@ -94,8 +94,10 @@ const SessionHelpAccordion = () => {
             </Text>
             <Text>
               you can then see all of your bookings on your{" "}
-              <StyledLink to={userBookingsRoute}>bookings page</StyledLink>,
-              where you will be able to view the details of your booking, or
+              <StyledLink to={bookedSessionsUserRoute}>
+                bookings page
+              </StyledLink>
+              , where you will be able to view the details of your booking, or
               cancel it.
             </Text>
             <Text>

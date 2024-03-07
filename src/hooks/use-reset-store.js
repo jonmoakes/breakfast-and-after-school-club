@@ -55,7 +55,7 @@ import {
   cancelBookingRoute,
   bookedSessionsOwnerRoute,
   localhostChooseNewPasswordRoute,
-  userBookingsRoute,
+  bookedSessionsUserRoute,
 } from "../strings/strings";
 
 const useResetStore = () => {
@@ -145,7 +145,7 @@ const useResetStore = () => {
           dispatch(resetBookedSessionsOwnerState());
         }
         break;
-      case userBookingsRoute:
+      case bookedSessionsUserRoute:
         if (bookedSessionsUserError) {
           dispatch(resetBookSessionUserError());
         } else {
