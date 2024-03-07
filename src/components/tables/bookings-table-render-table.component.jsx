@@ -11,7 +11,7 @@ import {
   FridayCell,
 } from "../../styles/tables/tables.styles";
 
-import { BookingsOwnerRoute } from "../../strings/strings";
+import { bookedSessionsOwnerRoute } from "../../strings/strings";
 
 const BookingsTableRenderTable = ({
   headerGroups,
@@ -23,7 +23,7 @@ const BookingsTableRenderTable = ({
   const location = useLocation();
 
   const tableClassName =
-    location.pathname === BookingsOwnerRoute ? "" : "user-bookings";
+    location.pathname === bookedSessionsOwnerRoute ? "" : "user-bookings";
 
   return (
     <>

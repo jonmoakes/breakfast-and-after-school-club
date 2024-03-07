@@ -12,7 +12,7 @@ import {
   bookSessionRoute,
   cancelBookingRoute,
   userBookingsRoute,
-  BookingsOwnerRoute,
+  bookedSessionsOwnerRoute,
 } from "../../../strings/strings";
 
 const useHandleShowError = () => {
@@ -65,7 +65,7 @@ const useHandleShowError = () => {
       case addFundsRoute:
         return "complete a payment";
       case userBookingsRoute:
-      case BookingsOwnerRoute:
+      case bookedSessionsOwnerRoute:
         return "show your bookings";
       case cancelBookingRoute:
         return "cancel your booking";

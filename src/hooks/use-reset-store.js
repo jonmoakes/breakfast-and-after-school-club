@@ -53,7 +53,7 @@ import {
   deleteChildInfoRoute,
   paymentResultRoute,
   cancelBookingRoute,
-  BookingsOwnerRoute,
+  bookedSessionsOwnerRoute,
   localhostChooseNewPasswordRoute,
   userBookingsRoute,
 } from "../strings/strings";
@@ -138,7 +138,7 @@ const useResetStore = () => {
       case cancelBookingRoute:
         dispatch(resetUserBookingToDeleteState());
         break;
-      case BookingsOwnerRoute:
+      case bookedSessionsOwnerRoute:
         if (bookedSessionsOwnerError) {
           dispatch(resetBookedSessionsOwnerError());
         } else {

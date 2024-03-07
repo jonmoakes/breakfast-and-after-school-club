@@ -11,7 +11,7 @@ import {
 import { format } from "date-fns";
 
 import useIsOnline from "../../hooks/use-is-online";
-import useBookedSessionsOwnerListener from "./your-customer-bookings-hooks/use-booked-sessions-owner-listener";
+import useBookedSessionsOwnerListener from "./booked-sessions-owner-hooks/use-booked-sessions-owner-listener";
 
 import { selectBookedSessionsOwnerSelectors } from "../../store/booked-sessions-owner/booked-sessions-owner.slice";
 
@@ -26,7 +26,7 @@ import TableSearchBox from "../../components/tables/table-search-box.component";
 import ToggleBookingsShownButton from "./toggle-bookings-show-button.component";
 import BookingsTablePagination from "../../components/tables/bookings-table-pagination.component";
 
-const YourCustomerBookingsTable = () => {
+const BookedSessionsOwnerTable = () => {
   useBookedSessionsOwnerListener();
 
   const { isOnline } = useIsOnline();
@@ -173,4 +173,4 @@ const YourCustomerBookingsTable = () => {
   );
 };
 
-export default YourCustomerBookingsTable;
+export default BookedSessionsOwnerTable;

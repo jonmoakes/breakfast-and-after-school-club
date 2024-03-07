@@ -17,15 +17,15 @@ import { Text } from "../../styles/p/p.styles";
 import { BlueH2 } from "../../styles/h2/h2.styles";
 import { BlackSpan } from "../../styles/span/span.styles";
 
-import { BookingsOwnerRoute } from "../../strings/strings";
+import { bookedSessionsOwnerRoute } from "../../strings/strings";
 
 const UserBookingsHelp = () => {
   const { shouldShowElement } = useSelector(selectShouldShowElementSelectors);
   const dispatch = useDispatch();
   const location = useLocation();
 
-  const isBookingsOwnerRoute = () => {
-    return location.pathname === BookingsOwnerRoute ? true : false;
+  const isBookedSessionsOwnerRoute = () => {
+    return location.pathname === bookedSessionsOwnerRoute ? true : false;
   };
 
   return (
@@ -40,7 +40,7 @@ const UserBookingsHelp = () => {
         </AccordionTitle>
         {shouldShowElement && (
           <AccordionContent>
-            {isBookingsOwnerRoute() ? (
+            {isBookedSessionsOwnerRoute() ? (
               <>
                 <BlueH2>toggling current day or all time bookings:</BlueH2>
                 <Text>
@@ -71,7 +71,7 @@ const UserBookingsHelp = () => {
               </>
             ) : null}
 
-            {!isBookingsOwnerRoute() ? (
+            {!isBookedSessionsOwnerRoute() ? (
               <>
                 <BlueH2>cancelling a booking:</BlueH2>
                 <Text>
@@ -130,7 +130,7 @@ const UserBookingsHelp = () => {
               2022.
             </Text>
 
-            {isBookingsOwnerRoute() ? (
+            {isBookedSessionsOwnerRoute() ? (
               <>
                 <Text>
                   if you tap the button to change the table filtering, please

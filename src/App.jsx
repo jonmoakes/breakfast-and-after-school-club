@@ -35,7 +35,7 @@ import {
   chosenEntryChildDetailsRoute,
   userBookingsRoute,
   cancelBookingRoute,
-  BookingsOwnerRoute,
+  bookedSessionsOwnerRoute,
 } from "./strings/strings";
 
 const Navigation = lazy(() =>
@@ -45,8 +45,8 @@ const Home = lazy(() => import("./routes/home/home.component"));
 const Contact = lazy(() => import("./routes/contact/contact.component"));
 const SignUp = lazy(() => import("./routes/sign-up/sign-up.component"));
 const SignIn = lazy(() => import("./routes/sign-in/sign-in.component"));
-const YourCustomerBookings = lazy(() =>
-  import("./routes/your-customer-bookings/your-customer-bookings.component")
+const BookedSessionsOwner = lazy(() =>
+  import("./routes/booked-sessions-owner/booked-sessions-owner.component.jsx")
 );
 const UserBookings = lazy(() =>
   import("./routes/user-bookings/users-bookings.component")
@@ -137,10 +137,10 @@ const App = () => {
                 element={<DeleteChildInfo />}
               />
               <Route
-                path={BookingsOwnerRoute}
+                path={bookedSessionsOwnerRoute}
                 element={
                   currentUser && currentUser.id === appOwnerId ? (
-                    <YourCustomerBookings />
+                    <BookedSessionsOwner />
                   ) : (
                     <Account />
                   )
