@@ -35,7 +35,7 @@ import {
   chosenEntryChildDetailsRoute,
   userBookingsRoute,
   cancelBookingRoute,
-  yourCustomerBookingsRoute,
+  BookingsOwnerRoute,
 } from "./strings/strings";
 
 const Navigation = lazy(() =>
@@ -137,7 +137,7 @@ const App = () => {
                 element={<DeleteChildInfo />}
               />
               <Route
-                path={yourCustomerBookingsRoute}
+                path={BookingsOwnerRoute}
                 element={
                   currentUser && currentUser.id === appOwnerId ? (
                     <YourCustomerBookings />

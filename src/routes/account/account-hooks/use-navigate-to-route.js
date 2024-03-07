@@ -5,7 +5,7 @@ import {
   bookSessionRoute,
   childInfoRoute,
   closeAccountRoute,
-  yourCustomerBookingsRoute,
+  BookingsOwnerRoute,
   updateEmailRoute,
   updatePasswordRoute,
   userBookingsRoute,
@@ -18,7 +18,7 @@ const useNavigateToRoute = () => {
     {
       id: 1,
       text: "view bookings",
-      onClick: () => navigate(yourCustomerBookingsRoute),
+      onClick: () => navigate(BookingsOwnerRoute),
     },
     {
       id: 2,
