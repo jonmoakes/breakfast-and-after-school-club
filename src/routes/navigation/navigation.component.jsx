@@ -17,7 +17,7 @@ import {
   chosenEntryChildDetailsRoute,
   deleteChildInfoRoute,
   editChildInfoRoute,
-} from "../../strings/strings";
+} from "../../strings/routes/routes-strings";
 
 const Navigation = () => {
   const { showHamburgerMenu } = useSelector(selectHamburgerMenuSelectors);

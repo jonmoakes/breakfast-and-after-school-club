@@ -1,7 +1,8 @@
 import { useDispatch } from "react-redux";
 
 import { setCardInputResult } from "../../../store/card-input-result/card-input-result.slice";
-import { formNotCompleteWarning } from "../../../strings/strings";
+
+import { formNotCompleteWarning } from "../../../strings/errors/errors-strings";
 
 const useHandleCardInputChange = () => {
   const dispatch = useDispatch();

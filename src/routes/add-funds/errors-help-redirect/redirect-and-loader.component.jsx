@@ -5,7 +5,7 @@ import { selectHandlePaymentSelectors } from "../../../store/handle-payment/hand
 
 import Loader from "../../../components/loader/loader.component";
 
-import { paymentResultRoute } from "../../../strings/strings";
+import { paymentResultRoute } from "../../../strings/routes/routes-strings";
 
 const RedirectAndLoader = () => {
   const { handlePaymentIsLoading, paymentResult } = useSelector(

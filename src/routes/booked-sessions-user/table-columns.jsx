@@ -1,4 +1,4 @@
-import { getFormattedSessionType } from "../../functions/get-formatted-session-type";
+import { getSessionTypeString } from "../../functions/get-session-type-string";
 
 export const TABLE_COLUMNS = [
   {
@@ -9,7 +9,8 @@ export const TABLE_COLUMNS = [
     Header: "session",
     accessor: "sessionType",
     Cell: ({ value }) => {
-      return getFormattedSessionType(value);
+      const sessionType = value;
+      return getSessionTypeString(sessionType);
     },
   },
   {

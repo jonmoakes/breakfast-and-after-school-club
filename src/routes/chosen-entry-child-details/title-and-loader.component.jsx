@@ -1,11 +1,13 @@
 import { useSelector } from "react-redux";
+
+import Balancer from "react-wrap-balancer";
+
 import { selectChosenEntryChildDetailsSelectors } from "../../store/chosen-entry-child-details/chosen-entry-child-details.slice";
 
 import Loader from "../../components/loader/loader.component";
 
 import { ParentDiv } from "../../styles/div/div.styles";
 import { BlackTitle } from "../../styles/h1/h1.styles";
-import Balancer from "react-wrap-balancer";
 
 const TitleAndLoader = () => {
   const { chosenEntryChildDetailsIsLoading, chosenEntryChildDetails } =

@@ -11,7 +11,7 @@ import {
   chosenEntryChildDetailsRoute,
   deleteChildInfoRoute,
   editChildInfoRoute,
-} from "../strings/strings";
+} from "../strings/routes/routes-strings";
 
 const useCancelAndReturn = () => {
   const navigate = useNavigate();

@@ -14,8 +14,8 @@ import {
   errorUpdatingBalanceMessage,
   errorInstructions,
   resetSessionErrorMessage,
-  bookSessionRoute,
-} from "../../../../strings/strings";
+} from "../../../../strings/errors/errors-strings";
+import { bookSessionRoute } from "../../../../strings/routes/routes-strings";
 
 const useUpdateBalanceErrorResetSessionDocSwal = () => {
   const { fireSwal } = useFireSwal();

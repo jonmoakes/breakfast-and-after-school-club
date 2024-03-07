@@ -15,11 +15,11 @@ import {
 import {
   errorReceivedMessage,
   errorResettingPassword,
-  logoutSoCanSignInWithNewPasswordMessage,
-  passwordResetSuccessMessage,
-  signInRoute,
   signInWithNewPasswordMessage,
-} from "../../../strings/strings";
+} from "../../../strings/errors/errors-strings";
+import { logoutSoCanSignInWithNewPasswordMessage } from "../../../strings/infos/infos-strings";
+import { passwordResetSuccessMessage } from "../../../strings/successes/successes-strings";
+import { signInRoute } from "../../../strings/routes/routes-strings";
 
 const useChooseNewPasswordResultSwal = () => {
   const { fireSwal } = useFireSwal();

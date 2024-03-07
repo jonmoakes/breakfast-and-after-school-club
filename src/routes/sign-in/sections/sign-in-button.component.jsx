@@ -6,9 +6,9 @@ import NetworkError from "../../../components/errors/network-error.component";
 import { YellowGreenButton } from "../../../styles/buttons/buttons.styles";
 import { BlackHr } from "../../../styles/hr/hr.styles";
 import { TopMarginDiv } from "../../../styles/div/div.styles";
-
-import { forgotPasswordRequestRoute } from "../../../strings/strings";
 import { WhiteStyledLink } from "../../../styles/link/link.styles";
+
+import { forgotPasswordRequestRoute } from "../../../strings/routes/routes-strings";
 
 const SignInButton = () => {
   const { handleSignInFormSubmit } = useHandleSignInFormSubmit();

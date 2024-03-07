@@ -17,7 +17,7 @@ import { Text } from "../../../styles/p/p.styles";
 import { YellowGreenButton } from "../../../styles/buttons/buttons.styles";
 import { StyledLink } from "../../../styles/link/link.styles";
 
-import { bookedSessionsUserRoute } from "../../../strings/strings";
+import { bookedSessionsUserRoute } from "../../../strings/routes/routes-strings";
 
 const SessionHelpAccordion = () => {
   const { morningSessionPrice } = useConditionalLogic();

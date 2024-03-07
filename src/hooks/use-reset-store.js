@@ -56,7 +56,7 @@ import {
   bookedSessionsOwnerRoute,
   localhostChooseNewPasswordRoute,
   bookedSessionsUserRoute,
-} from "../strings/strings";
+} from "../strings/routes/routes-strings";
 
 const useResetStore = () => {
   const { sessionTypesAndPricesError } = useSelector(

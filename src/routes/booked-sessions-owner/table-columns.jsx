@@ -3,7 +3,7 @@ import { getUserCollectionId } from "../../school-codes-list/get-ids-from-school
 
 import { TableEmailButton } from "../../styles/buttons/buttons.styles";
 
-import { getFormattedSessionType } from "../../functions/get-formatted-session-type";
+import { getSessionTypeString } from "../../functions/get-session-type-string";
 
 const getUsersEmail = async (row) => {
   try {
@@ -42,7 +42,8 @@ export const TABLE_COLUMNS = [
     Header: "session",
     accessor: "sessionType",
     Cell: ({ value }) => {
-      return getFormattedSessionType(value);
+      const sessiontype = value;
+      return getSessionTypeString(sessiontype);
     },
   },
   {

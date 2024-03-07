@@ -11,7 +11,7 @@ import {
 import {
   appwriteNoUserError,
   errorSigningUpMessage,
-} from "../../../strings/strings";
+} from "../../../strings/errors/errors-strings";
 
 const useHandleSignUpFormError = () => {
   const { fireSwal } = useFireSwal();

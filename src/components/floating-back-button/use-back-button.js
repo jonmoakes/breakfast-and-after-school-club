@@ -4,9 +4,9 @@ import useConfirmSwal from "../../hooks/use-confirm-swal";
 
 import {
   areYouSureMessage,
-  loseAllDataMessage,
   imSureMessage,
-} from "../../strings/strings";
+} from "../../strings/confirms/confirms-strings";
+import { loseAllDataMessage } from "../../strings/infos/infos-strings";
 
 const useBackButton = () => {
   const { confirmSwal } = useConfirmSwal();

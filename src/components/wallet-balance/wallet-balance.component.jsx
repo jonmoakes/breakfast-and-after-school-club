@@ -13,7 +13,10 @@ import { RedSpan } from "../../styles/span/span.styles";
 import { StyledLink } from "../../styles/link/link.styles";
 import { BalanceCheckButton } from "../../styles/buttons/buttons.styles";
 
-import { addChildInfoRoute, bookSessionRoute } from "../../strings/strings";
+import {
+  addChildInfoRoute,
+  bookSessionRoute,
+} from "../../strings/routes/routes-strings";
 
 const WalletBalance = () => {
   useGetWalletBalance();

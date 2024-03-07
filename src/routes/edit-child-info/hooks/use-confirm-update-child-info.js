@@ -9,11 +9,13 @@ import { editChildInfoAsync } from "../../../store/edit-child-info/edit-child-in
 
 import {
   confirmUpdateChildMessage,
+  imSureMessage,
+} from "../../../strings/confirms/confirms-strings";
+import {
   enterChildsAge,
   enterChildsName,
-  entriesAreTheSameMessage,
-  imSureMessage,
-} from "../../../strings/strings";
+} from "../../../strings/errors/errors-strings";
+import { entriesAreTheSameMessage } from "../../../strings/infos/infos-strings";
 
 const useConfirmUpdateChildInfo = () => {
   const { confirmSwal } = useConfirmSwal();

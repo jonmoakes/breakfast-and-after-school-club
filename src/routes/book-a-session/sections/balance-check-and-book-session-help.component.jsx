@@ -6,9 +6,9 @@ import SessionHelpAccordion from "./session-help-accordion.component";
 import { ParentDiv } from "../../../styles/div/div.styles";
 import { Text } from "../../../styles/p/p.styles";
 import { StyledLink } from "../../../styles/link/link.styles";
-
-import { addFundsRoute } from "../../../strings/strings";
 import { RedSpan } from "../../../styles/span/span.styles";
+
+import { addFundsRoute } from "../../../strings/routes/routes-strings";
 
 const BalanceCheckAndBookSessionHelp = () => {
   const { hasInsufficientFunds, noChildrenAddedYet, morningSessionPrice } =

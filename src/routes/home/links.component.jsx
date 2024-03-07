@@ -4,7 +4,11 @@ import CustomButton from "../../components/custom-button/custom-button.component
 import { ParentDiv } from "../../styles/div/div.styles";
 import { Text } from "../../styles/p/p.styles";
 
-import { contactRoute, signInRoute, signUpRoute } from "../../strings/strings";
+import {
+  contactRoute,
+  signInRoute,
+  signUpRoute,
+} from "../../strings/routes/routes-strings";
 
 const Links = () => (
   <>

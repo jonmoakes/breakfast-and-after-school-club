@@ -7,11 +7,13 @@ import { selectCurrentUserSelectors } from "../../../store/user/user.slice";
 import { sendEmailToAdminCloseAccountRequestAsync } from "../../../store/send-email/send-email.thunks";
 
 import {
-  imSureMessage,
   loseAllAccountDataMessage,
-  sureCloseAccountQuestion,
   walletHasPositiveBalanceMessage,
-} from "../../../strings/strings";
+} from "../../../strings/infos/infos-strings";
+import {
+  sureCloseAccountQuestion,
+  imSureMessage,
+} from "../../../strings/confirms/confirms-strings";
 
 const useConfirmCloseAccount = () => {
   const { confirmSwal } = useConfirmSwal();

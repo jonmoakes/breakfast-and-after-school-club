@@ -19,7 +19,7 @@ import { StyledLink } from "../../styles/link/link.styles";
 import { BlackTitle } from "../../styles/h1/h1.styles";
 import { Text } from "../../styles/p/p.styles";
 
-import { accountRoute, signUpRoute } from "../../strings/strings";
+import { accountRoute, signUpRoute } from "../../strings/routes/routes-strings";
 
 const SignIn = () => {
   useHandleSignInFormError();

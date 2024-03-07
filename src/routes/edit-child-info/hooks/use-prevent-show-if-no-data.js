@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 
 import { selectEditChildInfoSelectors } from "../../../store/edit-child-info/edit-child-info.slice";
 
-import { childInfoRoute } from "../../../strings/strings";
+import { childInfoRoute } from "../../../strings/routes/routes-strings";
 
 const usePreventShowIfNoData = () => {
   const { childToEditInfo } = useSelector(selectEditChildInfoSelectors);

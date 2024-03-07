@@ -20,9 +20,9 @@ import { Form } from "../../styles/form/form.styles";
 import { StyledLink } from "../../styles/link/link.styles";
 import { BlackTitle } from "../../styles/h1/h1.styles";
 import { Text } from "../../styles/p/p.styles";
-
-import { signInRoute, accountRoute } from "../../strings/strings";
 import { RedSpan } from "../../styles/span/span.styles";
+
+import { signInRoute, accountRoute } from "../../strings/routes/routes-strings";
 
 const SignUp = () => {
   useHandleSignUpFormError();

@@ -10,7 +10,7 @@ import {
   afternoonSpacesRemainingMessage,
   morningSessionSpacesErrorMessage,
   morningSpacesRemainingMessage,
-} from "../../../../strings/strings";
+} from "../../../../strings/errors/errors-strings";
 
 const useSessionSpacesErrorSwals = () => {
   const { fireSwal } = useFireSwal();

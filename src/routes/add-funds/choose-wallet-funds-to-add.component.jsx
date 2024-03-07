@@ -9,7 +9,7 @@ import { Form, StyledInput } from "../../styles/form/form.styles";
 import { Text } from "../../styles/p/p.styles";
 import { BlackHr } from "../../styles/hr/hr.styles";
 
-import { addFundsPlaceholder } from "../../strings/strings";
+import { addFundsPlaceholder } from "../../strings/placeholders/placeholders-strings";
 
 const ChooseWalletFundsToAdd = () => {
   useClearCardInputOnZeroWalletFunds();

@@ -16,7 +16,7 @@ import {
   missingFieldsMessage,
   passwordsDontMatchMessage,
   phoneNumberLengthErrorMessage,
-} from "../../../strings/strings";
+} from "../../../strings/errors/errors-strings";
 
 const useHandleSignUpFormSubmit = () => {
   const { fireSwal } = useFireSwal();

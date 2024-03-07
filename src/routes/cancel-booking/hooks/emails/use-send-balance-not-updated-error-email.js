@@ -9,9 +9,9 @@ import { selectCurrentUserSelectors } from "../../../../store/user/user.slice";
 
 import {
   contactRoute,
-  failedToSendEmailInstructions,
   bookedSessionsUserRoute,
-} from "../../../../strings/strings";
+} from "../../../../strings/routes/routes-strings";
+import { failedToSendEmailInstructions } from "../../../../strings/errors/errors-strings";
 
 const useSendBalanceNotUpdatedErrorEmail = () => {
   const { refundPrice, totalRefundPrice, numberOfChildrenInBooking } =

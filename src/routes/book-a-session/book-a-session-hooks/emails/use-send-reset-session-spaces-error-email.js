@@ -8,11 +8,11 @@ import { selectBookSessionSelectors } from "../../../../store/book-session/book-
 import { selectCurrentUserSelectors } from "../../../../store/user/user.slice";
 import { sendEmailResetSessionSpacesErrorAsync } from "../../../../store/send-email/send-email.thunks";
 
+import { failedToSendEmailInstructions } from "../../../../strings/errors/errors-strings";
 import {
   bookSessionRoute,
   contactRoute,
-  failedToSendEmailInstructions,
-} from "../../../../strings/strings";
+} from "../../../../strings/routes/routes-strings";
 
 const useSendResetSessionSpacesErrorEmail = () => {
   const { date } = useConditionalLogic();

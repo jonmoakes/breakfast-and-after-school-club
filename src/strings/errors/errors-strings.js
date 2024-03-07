@@ -1,7 +1,5 @@
-import { format } from "date-fns";
-import { getSessionTypeString } from "../functions/get-session-type-string";
+import { getSessionTypeString } from "../../functions/get-session-type-string";
 
-//errors
 export const errorSigningInInstructions =
   "please check your email, password and school code and try again.";
 export const errorSendingMessage =
@@ -37,7 +35,6 @@ export const errorUploadingDatesToDatabaseMessage =
   "sorry, there was an error uploading the dates to the database..";
 export const paymentSucceededButDatabaseUpdateErrorMessage =
   "your payment succeeded but the database had an error updating your wallet.";
-
 export const emailAddressNotInDatabase =
   "the email address you entered does not match any email in our database.";
 export const appwriteNoUserError =
@@ -66,12 +63,9 @@ export const sessionAlreadyBookedMessage = (childrenSelectedForBooking) => {
     ? "you have children booked into this session already."
     : "you have already booked this session for this day.";
 };
-
 export const fundsAddedBalanceUpdateFailedMessage = `<span style="font-size: 20px;">your payment was successful! however, although your funds were successfully added to our database, we couldn't update the balance in the app due to an error on our end. please tap on the button that says 'not correct' in your account page to try updating your balance again. if the issue persists, please contact us!</span>`;
-
 export const sessionAlreadyBookedInstructions =
   "please check your bookings for this day to prevent double bookings.";
-
 export const mutipleChildBookingChildAlreadyBookedMessage = (sessionType) =>
   ` has already been booked for the ${getSessionTypeString(
     sessionType
@@ -91,7 +85,6 @@ export const errorFetchingChildDetails =
 export const errorReceivedMessage = (error) => {
   return `the error received was: '${error}'. please contact us if the error persists.`;
 };
-
 export const morningSessionSpacesErrorMessage = (childrenSelectedLength) => {
   return `sorry, we don't have enough morning session spaces remaining to cover ${childrenSelectedLength} children.`;
 };
@@ -106,13 +99,12 @@ export const afternoonSpacesRemainingMessage = (afternoonSessionSpaces) => {
 };
 export const errorSendingBookingConfirmationEmail =
   "there was an error sending your booking confirmation email.";
-export const getBookingInfoEmailInstructions =
-  "if you require this email, please contact us using the contact form on our website. Rest assured however, your booking has been successfully made!";
 export const errorUpdatingChild =
   "sorry, there was an error updating your childs information. please try again.";
 export const errorDeletingChildMessage =
   "sorry, there was an error deleting your child. please try again.";
-export const appwriteAgeAttributeError = 'Attribute "age" has invalid format';
+export const appwriteAgeAttributeErrorMessage =
+  'Attribute "age" has invalid format';
 export const cantIncludeCommaMessage = "names can't include a comma";
 export const alreadyHaveChildNameMessage =
   "you can't add a child with the same name.";
@@ -145,156 +137,4 @@ export const consentOptionErrorMessage =
   "please 'yes' or 'no' for the consent option";
 export const errorSigningOutMessage =
   "sorry, there was an error signing you out.";
-// success
-
-export const successMessage = "success!";
-export const checkEmailMessage = "please check your email!";
-export const fundsAddedMessage = (email) => {
-  return `Success! The funds have been added to your wallet and a confirmation Email Has Been Sent To<br/><span style="text-transform: lowercase; font-size: 20px; color: hsl(60, 100%, 50%);">${email}</span>`;
-};
-export const successSendingCloseAccountEmailMessage =
-  "request successfuly sent!";
-
-export const balanceSuccessfullyReceivedMessage = `<span style="font-size: 20px;">balance successfully received! you will now see your latest balance. if you still think your balance is incorrect, please contact us using our contact form so that we can help!</span>`;
-export const passwordResetSuccessMessage =
-  "your password has been successfuly reset!";
-export const closeAccountSuccess =
-  "the closure of your account is now being processed!";
-export const datesUploadedToDatabaseSuccessMessage =
-  "the dates have been successfully uploaded to the database!";
-export const viewBookingsMessage =
-  "you can view your sessions in the 'bookings' page.";
-export const sessionBookedMessage = "session booked!";
-export const childAddedMessage = "child added!";
-export const childUpdatedMessage = "child details updated!";
-export const childDeletedMessage =
-  "the child has been deleted from the database!";
-
-// infos
-export const logoutSoCanSignInWithNewPasswordMessage =
-  "we will now log you out so that you can sign in with your new password.";
-export const sessionBookedBalanceUpdateFailedMessage = `<span style="font-size: 20px;">your session was booked! However, we couldn't fetch your latest balance due to an error on our end. please tap on the 'not correct?' button on your 'account' page underneath your wallet balance. This will update your balance to the correct amount. please contact us if the issue persists!</span>`;
-export const sessionCancelledBalanceUpdateFailedMessage = `<span style="font-size: 20px;">your session was cancelled! However, we couldn't fetch your latest balance due to an error on our end. please tap on the 'not correct?' button on your 'account' page underneath your wallet balance. This will update your balance to the correct amount. please contact us if the issue persists!</span>`;
-export const emailResponseTimeMessage = "Your Message Has Been Sent!";
-export const loseAllDataMessage =
-  "you will lose any data that you have currently entered into this form.";
-export const signInWithNewPasswordMessage =
-  "you can now sign in with your new password.";
-export const emailChangedMessage = "email changed!";
-export const signInWithNewEmailMessage =
-  "for security reasons, we will now sign you out of all sessions. please wait until you are redirected to the sign in page, where you can then sign in with your new email address.";
-export const signOutThenSignInWithNewPasswordMessage =
-  "for security reasons, we will now sign you out of all sessions. please wait until you are redirected to the sign in page, where you can then sign in with your new password.";
 export const passwordErrorMessage = "password error";
-export const passwordErrorInstructions =
-  "please check your password and try again";
-export const errorUpdatingEmailMessage =
-  "sorry, there was an error updating your email address.";
-export const passwordUpdateMustBeSignedInMessage =
-  "you must be signed in in order update your password";
-export const receiveEmailWhenCompleteMessage =
-  "you will receive an email when the process is complete.";
-export const walletHasPositiveBalanceMessage =
-  "please either spend or request a refund for this amount before proceeding";
-export const loseAllAccountDataMessage = "you will permanently lose all data";
-export const contactOwnerQuotingError =
-  "your wallet balance will not be showing correctly. please contact the owner quoting the following error: ";
-export const clickedOnInvalidLinkMessage = `you may have clicked on a sign in link in your email that has already been used. please request another link from the sign in page.`;
-export const chooseAnotherEmailMessage =
-  "please choose a different email address.";
-export const sameEmailMessage = "that's the email you currently use.";
-export const alreadyClickedOnUpdatePasswordLink =
-  "you may have clicked on a sign in link in your email that has already been used. please sign in and request another link from the 'update password' page which you can find in your account page.";
-export const checkBackRegularlyMessage =
-  "if a session becomes available again, it will appear here in realtime so please check back often!";
-export const entriesAreTheSameMessage = "you haven't changed any data yet.";
-export const bookingCancelledMessage = "booking cancelled.";
-export const walletBeenUpdatedMessage = "your wallet balance has been updated.";
-//confirms
-export const confirmCancelBookingMessage =
-  "do you want to cancel this booking?";
-export const confirmSignOutMessage = "are you sure you wish to sign out?";
-export const redirectMessage = "this will redirect you to the home page.";
-export const yesSignOutMessage = "yes, sign me out!";
-export const areYouSureMessage = "are you sure?";
-export const confirmAddFundsMessage = (walletFunds) => {
-  return `are you sure you wish to add £${walletFunds.toFixed(
-    2
-  )} to your wallet?`;
-};
-
-export const fundsReaddedToAccountMessage = (refundPrice) => {
-  return `£${refundPrice.toFixed(2)}  will be added to your wallet.`;
-};
-export const confirmSureBookSession = (sessionType, date) => {
-  return `are you sure you want to book the ${getSessionTypeString(
-    sessionType
-  )} session for ${format(new Date(date), "dd MMMM yyyy")}?`;
-};
-export const fundsDeductedFromBalance = (price) => {
-  return `£${(price / 100).toFixed(
-    2
-  )} will be deducted from your wallet balance.`;
-};
-export const sureCloseAccountQuestion =
-  "are you sure you wish to close your account with us?";
-export const sureSendContactFormMessage =
-  "are you sure you want to send this message?";
-export const sureSendUpdatePasswordLinkMessage =
-  "are you sure you wish to send a link to your email to update your password?";
-export const sureResetPasswordMessage =
-  "are you sure you wish to reset your password?";
-export const sureUpdatePasswordMessage =
-  "are you sure you wish to update your password?";
-export const imSureMessage = "i'm sure";
-export const addFundsMessage = "yes, add funds!";
-export const yesSendIt = "yes, send it!";
-export const yesAddChild = "yes, add child";
-export const confirmUpdateEmailMessage = (newEmail) => {
-  return `are you sure you wish to update your email to be <span style="text-transform: lowercase;  color: hsl(60, 100%, 50%);">${newEmail}</span>?`;
-};
-export const confirmRequestWalletBalance = `<span style="font-size: 20px;">when you tap 'get balance' below,  we will contact our servers to check for your latest wallet balance. if different to what is currently here,  it will updated automatically. if there is no change and you still think that your balance is incorrect, please contact us using our contact form.</span>`;
-export const confirmAddChildMessage =
-  "are you sure you want to add this child?";
-export const confirmUpdateChildMessage =
-  "are you sure you want to update your childs details?";
-export const confirmDeleteChildMessage =
-  "are you sure you want to delete your child?";
-
-//placeholders
-export const enterEmailAddress = "enter your email address";
-export const minEightCharacters = "min 8 characters";
-export const maxEightCharacters = "max 8 characters";
-export const confirmYourPassword = "confirm your password";
-export const addFundsPlaceholder = "ie 10 for £10";
-export const enterYourPasswordPlaceholder = "enter your password";
-export const leaveBlankIfNothingToAdd = "leave blank if nothing to add";
-export const anyOtherInfo = "anything else you need to tell us? Enter it here!";
-
-//routes
-export const bookSessionRoute = "/book-session";
-export const contactRoute = "/contact";
-export const bookedSessionsUserRoute = "/your-bookings";
-export const bookedSessionsOwnerRoute = "/customer-bookings";
-export const accountRoute = "/account";
-export const childInfoRoute = "/child-info";
-export const addChildInfoRoute = "/add-child-info";
-export const signInRoute = "/sign-in";
-export const signUpRoute = "/sign-up";
-export const forgotPasswordRequestRoute = "/forgot-password-request";
-export const updatePasswordRoute = "/update-password";
-export const chooseNewPasswordRoute = "/choose-new-password";
-export const localhostChooseNewPasswordRoute =
-  "http://localhost:8888/choose-new-password";
-export const payNowRoute = "/pay-now";
-export const updateEmailRoute = "/update-email";
-export const closeAccountRoute = "/close-account";
-export const cookiesRoute = "/cookie-policy";
-export const privacyRoute = "/privacy-policy";
-export const addFundsRoute = "/add-funds";
-export const paymentResultRoute = "/payment-result";
-export const editChildInfoRoute = "/edit-child";
-export const deleteChildInfoRoute = "/delete-child";
-export const chosenEntryChildDetailsRoute = "/child-details";
-export const cancelBookingRoute = "/cancel-booking";
-export const aboutRoute = "/about";

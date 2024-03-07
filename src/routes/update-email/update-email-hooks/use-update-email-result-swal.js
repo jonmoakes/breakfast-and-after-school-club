@@ -10,13 +10,15 @@ import {
 
 import {
   appwritePasswordError,
-  emailChangedMessage,
   errorReceivedMessage,
   errorUpdatingEmailMessage,
-  passwordErrorInstructions,
   passwordErrorMessage,
+} from "../../../strings/errors/errors-strings";
+import {
+  emailChangedMessage,
+  passwordErrorInstructions,
   signInWithNewEmailMessage,
-} from "../../../strings/strings";
+} from "../../../strings/infos/infos-strings";
 
 const useUpdateEmailResultResultSwal = () => {
   const { fireSwal } = useFireSwal();

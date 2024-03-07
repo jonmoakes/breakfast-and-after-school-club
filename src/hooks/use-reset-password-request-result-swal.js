@@ -7,14 +7,14 @@ import {
   resetGenerateNewPasswordRequestState,
 } from "../store/generate-new-password-request/generate-new-password-request.slice";
 
+import { successMessage } from "../strings/successes";
 import {
-  appwriteUserNotFoundMessage,
-  checkEmailMessage,
-  emailAddressNotInDatabase,
   errorReceivedMessage,
   errorRequestResetPasswordLinkMessage,
-  successMessage,
-} from "../strings/strings";
+  emailAddressNotInDatabase,
+  appwriteUserNotFoundMessage,
+} from "../strings/errors/errors-strings";
+import { checkEmailMessage } from "../strings/infos/infos-strings";
 
 const useResetPasswordRequestResultSwal = () => {
   const { fireSwal } = useFireSwal();

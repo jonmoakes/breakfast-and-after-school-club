@@ -7,7 +7,10 @@ import { fetchBookedSessionsUserAsync } from "../store/booked-sessions-user/book
 import { getSessionPricesAsync } from "../store/session-types-and-prices/session-types-and-prices.thunks";
 import { selectCurrentUserSelectors } from "../store/user/user.slice";
 
-import { bookSessionRoute, childInfoRoute } from "../strings/strings";
+import {
+  bookSessionRoute,
+  childInfoRoute,
+} from "../strings/routes/routes-strings";
 
 const useGetUsersChildrenAndConditionallyUserBookingsAndSessionPrices = () => {
   const { currentUser, currentUserEnvironmentVariables } = useSelector(

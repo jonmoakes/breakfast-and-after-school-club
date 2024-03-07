@@ -14,7 +14,7 @@ import {
   chosenEntryChildDetailsRoute,
   deleteChildInfoRoute,
   editChildInfoRoute,
-} from "../../strings/strings";
+} from "../../strings/routes/routes-strings";
 
 const FloatingBackButton = () => {
   const { confirmGoBack } = useBackButton();

@@ -9,11 +9,9 @@ import { selectBookSessionSelectors } from "../../../../store/book-session/book-
 import { selectGetUsersChildrenSelectors } from "../../../../store/get-users-children/get-users-children.slice";
 import { sendEmailBookingConfirmationAsync } from "../../../../store/send-email/send-email.thunks";
 
-import {
-  errorSendingBookingConfirmationEmail,
-  getBookingInfoEmailInstructions,
-  bookedSessionsUserRoute,
-} from "../../../../strings/strings";
+import { errorSendingBookingConfirmationEmail } from "../../../../strings/errors/errors-strings";
+import { getBookingInfoEmailInstructions } from "../../../../strings/infos/infos-strings";
+import { bookedSessionsUserRoute } from "../../../../strings/routes/routes-strings";
 
 import { createChildrenToAddToBooking } from "../../../../functions/create-children-to-add-to-booking";
 

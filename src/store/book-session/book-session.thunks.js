@@ -5,7 +5,7 @@ import {
   manageDatabaseDocument,
 } from "../../utils/appwrite/appwrite-functions";
 
-import { lastMinuteNoSessionsMessage } from "../../strings/strings";
+import { lastMinuteNoSessionsMessage } from "../../strings/errors/errors-strings";
 import { createChildrenToAddToBooking } from "../../functions/create-children-to-add-to-booking";
 
 //decrease the no of sessions in the database

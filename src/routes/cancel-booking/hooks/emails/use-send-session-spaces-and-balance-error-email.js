@@ -10,9 +10,9 @@ import { sendEmailResetSessionSpacesAndBalanceErrorAsync } from "../../../../sto
 
 import {
   contactRoute,
-  failedToSendEmailInstructions,
   bookedSessionsUserRoute,
-} from "../../../../strings/strings";
+} from "../../../../strings/routes/routes-strings";
+import { failedToSendEmailInstructions } from "../../../../strings/errors/errors-strings";
 
 const useSendSessionSpacesAndBalanceErrorEmail = () => {
   const { fireSwal } = useFireSwal();

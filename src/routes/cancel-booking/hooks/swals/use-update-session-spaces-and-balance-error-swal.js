@@ -1,7 +1,7 @@
 import useFireSwal from "../../../../hooks/use-fire-swal";
 import useSendSessionSpacesAndBalanceErrorEmail from "../emails/use-send-session-spaces-and-balance-error-email";
 
-import { failedToUpdateBalanceOnCancellationMessage } from "../../../../strings/strings";
+import { failedToUpdateBalanceOnCancellationMessage } from "../../../../strings/errors/errors-strings";
 
 const useUpdateSessionSpacesAndBalanceErrorSwal = () => {
   const { fireSwal } = useFireSwal();

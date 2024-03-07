@@ -11,7 +11,7 @@ import {
 import {
   errorFetchingChildren,
   errorReceivedMessage,
-} from "../../../strings/strings";
+} from "../../../strings/errors/errors-strings";
 
 const useGetUsersChildrenErrorSwal = () => {
   const { fireSwal } = useFireSwal();

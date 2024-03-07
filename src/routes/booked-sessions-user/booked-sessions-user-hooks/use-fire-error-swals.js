@@ -4,7 +4,7 @@ import {
   tooLateToCancelAfternoonMessage,
   cantCancelPastBookingMessage,
   tooLateToCancelMorningMessage,
-} from "../../../strings/strings";
+} from "../../../strings/errors/errors-strings";
 
 const useFireErrorSwals = () => {
   const { fireSwal } = useFireSwal();

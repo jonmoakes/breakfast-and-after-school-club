@@ -4,7 +4,7 @@ import { ParentDiv, TableEditsButtonDiv } from "../../styles/div/div.styles";
 import { EditEntryButton } from "../../styles/buttons/buttons.styles";
 import { Text } from "../../styles/p/p.styles";
 
-import { chosenEntryChildDetailsRoute } from "../../strings/strings";
+import { chosenEntryChildDetailsRoute } from "../../strings/routes/routes-strings";
 
 const GetChildDetailsButton = ({ chosenEntry }) => {
   const navigate = useNavigate();

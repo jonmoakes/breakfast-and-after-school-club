@@ -1,5 +1,4 @@
 import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
 
 import { resetAllChildInfoState } from "../store/add-child-info/add-child-info.slice";
 import { resetBookSessionState } from "../store/book-session/book-session.slice";
@@ -26,11 +25,9 @@ import { resetBookedSessionsUserState } from "../store/booked-sessions-user/book
 import { resetWalletFundsToAddState } from "../store/wallet-funds-to-add/wallet-funds-to-add.slice";
 import { resetGenerateNewPasswordRequestState } from "../store/generate-new-password-request/generate-new-password-request.slice";
 import { resetChooseNewPasswordState } from "../store/choose-new-password/choose-new-password.slice";
-import { signInRoute } from "../strings/strings";
 
 const useResetAllStoreOnSignOut = () => {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
 
   const resetAllStoreOnSignOut = () => {
     dispatch(resetAllChildInfoState());
@@ -58,7 +55,6 @@ const useResetAllStoreOnSignOut = () => {
     dispatch(resetBookedSessionsUserState());
     dispatch(resetWalletFundsToAddState());
     dispatch(resetChooseNewPasswordState());
-    navigate(signInRoute);
   };
 
   return { resetAllStoreOnSignOut };

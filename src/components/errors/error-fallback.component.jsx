@@ -5,7 +5,7 @@ import { ErrorFallbackButton } from "../../styles/buttons/buttons.styles";
 import { ErrorImageText } from "../../styles/p/p.styles";
 import { StyledLink } from "../../styles/link/link.styles";
 
-import { contactRoute } from "../../strings/strings";
+import { contactRoute } from "../../strings/routes/routes-strings";
 
 import Image from "../../assets/sad-face-emoji.png";
 import PlaceholderImage from "../../assets/placeholder-image.jpeg";

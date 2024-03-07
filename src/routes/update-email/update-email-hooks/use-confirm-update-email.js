@@ -9,13 +9,15 @@ import { updateEmailAsync } from "../../../store/update-email/update-email.thunk
 
 import { validateEmail } from "../../../functions/validate-email";
 
+import { invalidEmailErrorMessage } from "../../../strings/errors/errors-strings";
 import {
-  invalidEmailErrorMessage,
   imSureMessage,
   confirmUpdateEmailMessage,
+} from "../../../strings/confirms/confirms-strings";
+import {
   sameEmailMessage,
   chooseAnotherEmailMessage,
-} from "../../../strings/strings";
+} from "../../../strings/infos/infos-strings";
 
 const useConfirmUpdateEmail = () => {
   const { fireSwal } = useFireSwal();

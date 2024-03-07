@@ -13,7 +13,7 @@ import { Text } from "../../styles/p/p.styles";
 import { StyledLink } from "../../styles/link/link.styles";
 import { YellowGreenButton } from "../../styles/buttons/buttons.styles";
 
-import { contactRoute } from "../../strings/strings";
+import { contactRoute } from "../../strings/routes/routes-strings";
 
 const CloseAccount = () => {
   useCloseAccountSwal();

@@ -4,7 +4,7 @@ import { account } from "../../utils/appwrite/appwrite-config";
 import {
   localhostChooseNewPasswordRoute,
   chooseNewPasswordRoute,
-} from "../../strings/strings";
+} from "../../strings/routes/routes-strings";
 
 export const generateNewPasswordRequestAsync = createAsyncThunk(
   "generateNewPasswordRequest",

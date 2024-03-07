@@ -7,7 +7,7 @@ import { selectBookSessionSelectors } from "../../../../store/book-session/book-
 import {
   sessionAlreadyBookedInstructions,
   sessionAlreadyBookedMessage,
-} from "../../../../strings/strings";
+} from "../../../../strings/errors/errors-strings";
 
 const useSessionAlreadyBookedSwal = () => {
   const { fireSwal } = useFireSwal();

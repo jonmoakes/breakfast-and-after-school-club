@@ -7,7 +7,7 @@ import { BlueH2 } from "../../styles/h2/h2.styles";
 import { StyledLink } from "../../styles/link/link.styles";
 import { Text } from "../../styles/p/p.styles";
 
-import { bookSessionRoute } from "../../strings/strings";
+import { bookSessionRoute } from "../../strings/routes/routes-strings";
 
 const NoBookingsFound = ({ data }) => {
   const { bookedSessionsUser } = useSelector(selectBookedSessionsUserSelectors);

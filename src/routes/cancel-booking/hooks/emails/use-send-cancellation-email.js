@@ -9,10 +9,8 @@ import { selectUserBookingToDeleteSelectors } from "../../../../store/user-booki
 import { sendEmailBookingCancellationConfirmationAsync } from "../../../../store/send-email/send-email.thunks";
 import { selectGetUsersChildrenSelectors } from "../../../../store/get-users-children/get-users-children.slice";
 
-import {
-  errorSendCancellationConfirmationEmailMessage,
-  bookedSessionsUserRoute,
-} from "../../../../strings/strings";
+import { errorSendCancellationConfirmationEmailMessage } from "../../../../strings/errors/errors-strings";
+import { bookedSessionsUserRoute } from "../../../../strings/routes/routes-strings";
 
 const useSendCancellationEmail = () => {
   const { fireSwal } = useFireSwal();

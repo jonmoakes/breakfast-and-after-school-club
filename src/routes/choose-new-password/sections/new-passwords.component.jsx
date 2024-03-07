@@ -20,7 +20,7 @@ import { RelativePositionDiv } from "../../../styles/div/div.styles";
 import {
   confirmYourPassword,
   minEightCharacters,
-} from "../../../strings/strings";
+} from "../../../strings/placeholders/placeholders-strings";
 
 const NewPasswords = () => {
   const { handleChooseNewPasswordFormChange } =

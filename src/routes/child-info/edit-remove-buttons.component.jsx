@@ -14,7 +14,7 @@ import { Text } from "../../styles/p/p.styles";
 import {
   editChildInfoRoute,
   deleteChildInfoRoute,
-} from "../../strings/strings";
+} from "../../strings/routes/routes-strings";
 
 const EditRemoveButtons = ({ chosenEntry }) => {
   const dispatch = useDispatch();

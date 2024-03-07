@@ -22,10 +22,11 @@ import {
 import { RelativePositionDiv } from "../../styles/div/div.styles";
 import { ToggleUpdateEmailPassword } from "../../styles/span/span.styles";
 import { YellowGreenButton } from "../../styles/buttons/buttons.styles";
+
 import {
   enterEmailAddress,
   enterYourPasswordPlaceholder,
-} from "../../strings/strings";
+} from "../../strings/placeholders/placeholders-strings";
 
 const NewEmail = () => {
   useHideUpdateEmailPasswordOnEmpty();

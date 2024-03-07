@@ -12,7 +12,7 @@ import {
   appwriteNoUserError,
   errorSigningInMessage,
   errorSigningInInstructions,
-} from "../../../strings/strings";
+} from "../../../strings/errors/errors-strings";
 
 const useHandleSignInFormError = () => {
   const { fireSwal } = useFireSwal();

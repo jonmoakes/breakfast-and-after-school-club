@@ -12,7 +12,7 @@ import {
   missingFieldsMessage,
   invalidSchoolCode,
   invalidSchoolCodeHelpMessage,
-} from "../../../strings/strings";
+} from "../../../strings/errors/errors-strings";
 
 import { setProjectId } from "../../../school-codes-list/get-ids-from-school-code/set-project-id";
 import { isNotValidSchoolCode } from "../../../functions/is-not-valid-school-code";

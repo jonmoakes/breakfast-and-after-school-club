@@ -8,7 +8,7 @@ import { generateNewPasswordRequestAsync } from "../../../store/generate-new-pas
 import {
   imSureMessage,
   sureResetPasswordMessage,
-} from "../../../strings/strings";
+} from "../../../strings/confirms/confirms-strings";
 
 const useConfirmUpdatePassword = () => {
   const { confirmSwal } = useConfirmSwal();

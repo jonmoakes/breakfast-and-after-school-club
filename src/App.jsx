@@ -36,7 +36,7 @@ import {
   bookedSessionsUserRoute,
   cancelBookingRoute,
   bookedSessionsOwnerRoute,
-} from "./strings/strings";
+} from "./strings/routes/routes-strings";
 
 const Navigation = lazy(() =>
   import("./routes/navigation/navigation.component")
@@ -46,7 +46,7 @@ const Contact = lazy(() => import("./routes/contact/contact.component"));
 const SignUp = lazy(() => import("./routes/sign-up/sign-up.component"));
 const SignIn = lazy(() => import("./routes/sign-in/sign-in.component"));
 const BookedSessionsOwner = lazy(() =>
-  import("./routes/booked-sessions-owner/booked-sessions-owner.component.jsx")
+  import("./routes/booked-sessions-owner/booked-sessions-owner.component")
 );
 const BookedSessionsUser = lazy(() =>
   import("./routes/booked-sessions-user/booked-sessions-user.component")

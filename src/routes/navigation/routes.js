@@ -9,7 +9,7 @@ import {
   addFundsRoute,
   childInfoRoute,
   aboutRoute,
-} from "../../strings/strings";
+} from "../../strings/routes/routes-strings";
 
 export const signedInRoutes = [
   bookedSessionsUserRoute,

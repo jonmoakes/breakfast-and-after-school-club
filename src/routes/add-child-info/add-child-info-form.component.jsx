@@ -17,9 +17,12 @@ import {
 import { RedSpan } from "../../styles/span/span.styles";
 import { ParentDiv, RadioDiv } from "../../styles/div/div.styles";
 import { Text, WhiteShadowText } from "../../styles/p/p.styles";
-
-import { leaveBlankIfNothingToAdd, anyOtherInfo } from "../../strings/strings";
 import { BlackHr } from "../../styles/hr/hr.styles";
+
+import {
+  leaveBlankIfNothingToAdd,
+  anyOtherInfo,
+} from "../../strings/placeholders/placeholders-strings";
 
 const AddChildInfoForm = () => {
   const { handleAddChildInfoChange } = useHandleAddChildInfoChange();

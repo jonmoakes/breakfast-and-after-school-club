@@ -21,7 +21,7 @@ import { resetWalletFundsToAddState } from "../../../store/wallet-funds-to-add/w
 import {
   addFundsMessage,
   confirmAddFundsMessage,
-} from "../../../strings/strings";
+} from "../../../strings/confirms/confirms-strings";
 
 const useGetPaymentResult = () => {
   const { confirmSwal } = useConfirmSwal();

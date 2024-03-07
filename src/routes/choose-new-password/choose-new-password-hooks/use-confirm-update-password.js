@@ -7,11 +7,13 @@ import { selectChooseNewPasswordSelectors } from "../../../store/choose-new-pass
 import { getChooseNewPasswordResultAsync } from "../../../store/choose-new-password/choose-new-password.thunks";
 
 import {
-  imSureMessage,
   passwordLengthErrorMessage,
   passwordsDontMatchMessage,
+} from "../../../strings/errors/errors-strings";
+import {
   sureResetPasswordMessage,
-} from "../../../strings/strings";
+  imSureMessage,
+} from "../../../strings/confirms/confirms-strings";
 
 const useConfirmUpdatePassword = () => {
   const { confirmSwal } = useConfirmSwal();

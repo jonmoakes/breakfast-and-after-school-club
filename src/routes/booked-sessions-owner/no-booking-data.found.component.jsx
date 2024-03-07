@@ -5,7 +5,6 @@ import {
   selectBookedSessionsOwnerSelectors,
 } from "../../store/booked-sessions-owner/booked-sessions-owner.slice";
 
-import { contactRoute } from "../../strings/strings";
 import {
   GreyButton,
   YellowGreenButton,
@@ -14,6 +13,8 @@ import { ParentDiv } from "../../styles/div/div.styles";
 import { BlueH2 } from "../../styles/h2/h2.styles";
 import { Text } from "../../styles/p/p.styles";
 import { StyledLink } from "../../styles/link/link.styles";
+
+import { contactRoute } from "../../strings/routes/routes-strings";
 
 const NoBookingDataFound = ({ data }) => {
   const { bookedSessionsOwner } = useSelector(

@@ -6,7 +6,7 @@ import useCancelBookingErrorLogic from "./use-cancel-booking-error-logic";
 
 import { addUserBookingToDelete } from "../../../store/user-booking-to-delete/user-booking-to-delete.slice";
 
-import { cancelBookingRoute } from "../../../strings/strings";
+import { cancelBookingRoute } from "../../../strings/routes/routes-strings";
 
 const useCheckDateAndGoToCancelBookingRoute = (chosenEntry) => {
   const {

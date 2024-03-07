@@ -11,12 +11,14 @@ import { selectAddChildInfoSelectors } from "../../../store/add-child-info/add-c
 import {
   alreadyHaveChildNameMessage,
   cantIncludeCommaMessage,
-  confirmAddChildMessage,
   enterChildsAge,
   enterChildsName,
-  yesAddChild,
   consentOptionErrorMessage,
-} from "../../../strings/strings";
+} from "../../../strings/errors/errors-strings";
+import {
+  confirmAddChildMessage,
+  yesAddChild,
+} from "../../../strings/confirms/confirms-strings";
 
 const useConfirmAddChildInfo = () => {
   const { fireSwal } = useFireSwal();

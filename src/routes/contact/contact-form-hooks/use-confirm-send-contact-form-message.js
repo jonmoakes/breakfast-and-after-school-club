@@ -10,11 +10,13 @@ import { sendContactFormMessageAsync } from "../../../store/contact-form/contact
 import { validateEmail } from "../../../functions/validate-email";
 
 import {
-  missingEmailFieldsErrorMessage,
-  invalidEmailErrorMessage,
   sureSendContactFormMessage,
   yesSendIt,
-} from "../../../strings/strings";
+} from "../../../strings/confirms/confirms-strings";
+import {
+  missingEmailFieldsErrorMessage,
+  invalidEmailErrorMessage,
+} from "../../../strings/errors/errors-strings";
 
 const useConfirmSendContactFormMessage = () => {
   const { fireSwal } = useFireSwal();

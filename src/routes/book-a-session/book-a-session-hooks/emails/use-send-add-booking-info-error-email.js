@@ -10,9 +10,9 @@ import { selectBookSessionSelectors } from "../../../../store/book-session/book-
 
 import {
   contactRoute,
-  failedToSendEmailInstructions,
   bookedSessionsUserRoute,
-} from "../../../../strings/strings";
+} from "../../../../strings/routes/routes-strings";
+import { failedToSendEmailInstructions } from "../../../../strings/errors/errors-strings";
 
 import { createChildrenToAddToBooking } from "../../../../functions/create-children-to-add-to-booking";
 

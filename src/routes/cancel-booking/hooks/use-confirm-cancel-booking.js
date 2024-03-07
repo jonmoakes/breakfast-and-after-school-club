@@ -12,11 +12,12 @@ import {
   updateSessionSpacesDocAsync,
 } from "../../../store/user-booking-to-delete/user-booking-to-delete.thunks";
 import { getUsersWalletBalanceAsync } from "../../../store/user/user.thunks";
+
 import {
   confirmCancelBookingMessage,
   fundsReaddedToAccountMessage,
   imSureMessage,
-} from "../../../strings/strings";
+} from "../../../strings/confirms/confirms-strings";
 
 const useConfirmDeleteChildInfo = () => {
   const { confirmSwal } = useConfirmSwal();

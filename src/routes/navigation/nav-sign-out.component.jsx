@@ -17,14 +17,16 @@ import { NavLink } from "../../styles/p/p.styles";
 import { BorderLink } from "../../styles/span/span.styles";
 
 import {
-  confirmSignOutMessage,
-  yesSignOutMessage,
   noNetworkMessage,
-  redirectMessage,
   errorReceivedMessage,
   errorSigningOutMessage,
-  successMessage,
-} from "../../strings/strings";
+} from "../../strings/errors/errors-strings";
+import { successMessage } from "../../strings/successes/successes-strings";
+import {
+  redirectMessage,
+  confirmSignOutMessage,
+  yesSignOutMessage,
+} from "../../strings/confirms/confirms-strings";
 
 const NavSignOut = () => {
   const { confirmSwal } = useConfirmSwal();

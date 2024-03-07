@@ -5,7 +5,8 @@ import useConfirmSwal from "../../../hooks/use-confirm-swal";
 import { selectCurrentUserSelectors } from "../../../store/user/user.slice";
 import { uploadDatesToDatabaseAsync } from "../../../store/upload-dates-to-database/upload-dates-to-database.slice";
 
-import { imSureMessage } from "../../../strings/strings";
+import { imSureMessage } from "../../../strings/confirms/confirms-strings";
+
 import { termDates2023And2024 } from "../2023-24-dates/23-24-dates";
 
 const useConfirmUploadDatesToDatabase = () => {

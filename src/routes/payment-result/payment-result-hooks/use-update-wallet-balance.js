@@ -13,12 +13,12 @@ import {
 import { addWalletFundsToDatabaseAsync } from "../../../store/handle-payment/handle-payment.thunks";
 import { getUsersWalletBalanceAsync } from "../../../store/user/user.thunks";
 
+import { bookSessionRoute } from "../../../strings/routes/routes-strings";
 import {
-  bookSessionRoute,
   failedToUpdateBalanceMessage,
   fundsAddedBalanceUpdateFailedMessage,
-  fundsAddedMessage,
-} from "../../../strings/strings";
+} from "../../../strings/errors/errors-strings";
+import { fundsAddedMessage } from "../../../strings/successes/successes-strings";
 
 const useUpdateWalletBalance = () => {
   const { fireSwal } = useFireSwal();

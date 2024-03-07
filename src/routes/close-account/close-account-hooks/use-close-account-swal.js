@@ -9,12 +9,10 @@ import {
   selectSendEmailSelectors,
 } from "../../../store/send-email/send-email.slice";
 
-import {
-  accountRoute,
-  errorSendingAccountClosureRequest,
-  receiveEmailWhenCompleteMessage,
-  successSendingCloseAccountEmailMessage,
-} from "../../../strings/strings";
+import { successSendingCloseAccountEmailMessage } from "../../../strings/successes/successes-strings";
+import { receiveEmailWhenCompleteMessage } from "../../../strings/infos/infos-strings";
+import { errorSendingAccountClosureRequest } from "../../../strings/errors/errors-strings";
+import { accountRoute } from "../../../strings/routes/routes-strings";
 
 const useCloseAccountSwal = () => {
   const { fireSwal } = useFireSwal();

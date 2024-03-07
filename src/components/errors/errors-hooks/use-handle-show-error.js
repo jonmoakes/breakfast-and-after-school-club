@@ -13,7 +13,7 @@ import {
   cancelBookingRoute,
   bookedSessionsUserRoute,
   bookedSessionsOwnerRoute,
-} from "../../../strings/strings";
+} from "../../../strings/routes/routes-strings";
 
 const useHandleShowError = () => {
   const { getUsersChildrenError } = useSelector(

@@ -2,7 +2,7 @@ import useFireSwal from "../../../../hooks/use-fire-swal";
 import useConditionalLogic from "../use-conditional-logic";
 import useSendAddBookingInfoErrorEmail from "../emails/use-send-add-booking-info-error-email";
 
-import { addSessionBookingInfoErrorMessage } from "../../../../strings/strings";
+import { addSessionBookingInfoErrorMessage } from "../../../../strings/errors/errors-strings";
 
 const useAddSessionBookingInfoErrorSwal = () => {
   const { fireSwal } = useFireSwal();

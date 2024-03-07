@@ -5,7 +5,7 @@ import {
   addFundsRoute,
   bookSessionRoute,
   cancelBookingRoute,
-} from "../strings/strings";
+} from "../strings/routes/routes-strings";
 
 const useIsRouteWithNavWarning = () => {
   const location = useLocation();

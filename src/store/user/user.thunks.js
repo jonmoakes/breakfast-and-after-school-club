@@ -7,6 +7,7 @@ import {
   getRetrievedUserFromDocument,
   createDocumentAndSetUser,
 } from "./functions";
+
 export const getUserOnLoadAsync = createAsyncThunk(
   "user/getUserOnLoad",
   async (_, thunkAPI) => {

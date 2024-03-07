@@ -12,7 +12,7 @@ import {
   confirmSureBookSession,
   fundsDeductedFromBalance,
   imSureMessage,
-} from "../../../strings/strings";
+} from "../../../strings/confirms/confirms-strings";
 
 const useCheckForPreviousBookingAndConfirmSession = () => {
   const { confirmSwal } = useConfirmSwal();

@@ -1,7 +1,7 @@
 import useFireSwal from "../../../../hooks/use-fire-swal";
 import useSendBalanceNotUpdatedErrorEmail from "../emails/use-send-balance-not-updated-error-email";
 
-import { failedToUpdateBalanceOnCancellationMessage } from "../../../../strings/strings";
+import { failedToUpdateBalanceOnCancellationMessage } from "../../../../strings/errors/errors-strings";
 
 const useUpdateBalanceErrorSwal = () => {
   const { fireSwal } = useFireSwal();

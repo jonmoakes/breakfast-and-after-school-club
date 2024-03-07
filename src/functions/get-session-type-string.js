@@ -7,7 +7,7 @@ export const getSessionTypeString = (sessionType) => {
     case "morningAndAfternoonShort":
       return "morning and afternoon short";
     case "morningAndAfternoonLong":
-      return "morning and afternoon Long";
+      return "morning and afternoon long";
     default:
       return "morning";
   }

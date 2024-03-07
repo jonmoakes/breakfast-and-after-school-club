@@ -20,7 +20,7 @@ import {
 import {
   minEightCharacters,
   confirmYourPassword,
-} from "../../../strings/strings";
+} from "../../../strings/placeholders/placeholders-strings";
 
 const SignUpPasswords = ({ handleSignUpFormChange }) => {
   useHideSignUpPasswordOnEmpty();

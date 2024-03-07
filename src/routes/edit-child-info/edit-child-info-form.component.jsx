@@ -1,6 +1,9 @@
+import { useSelector } from "react-redux";
 import Balancer from "react-wrap-balancer";
 
 import useHandleUpdatedChildInfoChange from "./hooks/use-handle-updated-child-info-change";
+
+import { selectEditChildInfoSelectors } from "../../store/edit-child-info/edit-child-info.slice";
 
 import EditAndReturnButtons from "./edit-and-return-buttons.component";
 
@@ -15,8 +18,6 @@ import { RedSpan, LightGreenSpan } from "../../styles/span/span.styles";
 import { ParentDiv, RadioDiv } from "../../styles/div/div.styles";
 import { Text, WhiteShadowText } from "../../styles/p/p.styles";
 import { BlackHr } from "../../styles/hr/hr.styles";
-import { useSelector } from "react-redux";
-import { selectEditChildInfoSelectors } from "../../store/edit-child-info/edit-child-info.slice";
 
 const EditChildInfoForm = () => {
   const { updatedChildInfo, handleUpdatedChildInfoChange } =

@@ -8,7 +8,7 @@ import { resetCurrentUserWalletBalanceResult } from "../../../../store/user/user
 import {
   bookingCancelledMessage,
   walletBeenUpdatedMessage,
-} from "../../../../strings/strings";
+} from "../../../../strings/infos/infos-strings";
 
 const useSuccessSwal = () => {
   const { fireSwal } = useFireSwal();

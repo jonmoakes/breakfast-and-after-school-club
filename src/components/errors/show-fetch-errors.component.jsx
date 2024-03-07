@@ -7,7 +7,7 @@ import { RedSpan } from "../../styles/span/span.styles";
 import { ErrorDiv, ParentDiv } from "../../styles/div/div.styles";
 import { StyledLink } from "../../styles/link/link.styles";
 
-import { contactRoute } from "../../strings/strings";
+import { contactRoute } from "../../strings/routes/routes-strings";
 
 const ShowFetchErrors = () => {
   const { showErrorHeading, errorToDisplay, showTailInfoToUser } =

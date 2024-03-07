@@ -12,7 +12,7 @@ import {
 import {
   errorFetchingChildDetails,
   errorReceivedMessage,
-} from "../../../strings/strings";
+} from "../../../strings/errors/errors-strings";
 
 const useGetChildrenEntryChildDetailsErrorSwal = () => {
   const { fireSwal } = useFireSwal();

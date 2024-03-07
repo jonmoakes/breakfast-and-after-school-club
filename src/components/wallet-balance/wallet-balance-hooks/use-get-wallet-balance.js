@@ -11,12 +11,12 @@ import {
 } from "../../../store/user/user.slice";
 import { getUsersWalletBalanceAsync } from "../../../store/user/user.thunks";
 
+import { balanceSuccessfullyReceivedMessage } from "../../../strings/successes/successes-strings";
+import { confirmRequestWalletBalance } from "../../../strings/confirms/confirms-strings";
 import {
-  balanceSuccessfullyReceivedMessage,
-  confirmRequestWalletBalance,
   errorFetchingBalanceMessage,
   errorReceivedMessage,
-} from "../../../strings/strings";
+} from "../../../strings/errors/errors-strings";
 
 const useGetWalletBalance = () => {
   const { confirmSwal } = useConfirmSwal();

@@ -12,11 +12,11 @@ import {
 } from "../../../store/delete-child-info/delete-child-info.slice";
 
 import {
-  childDeletedMessage,
-  childInfoRoute,
   errorDeletingChildMessage,
   errorReceivedMessage,
-} from "../../../strings/strings";
+} from "../../../strings/errors/errors-strings";
+import { childDeletedMessage } from "../../../strings/successes/successes-strings";
+import { childInfoRoute } from "../../../strings/routes/routes-strings";
 
 const useDeleteChildInfoResultSwal = () => {
   const { fireSwal } = useFireSwal();

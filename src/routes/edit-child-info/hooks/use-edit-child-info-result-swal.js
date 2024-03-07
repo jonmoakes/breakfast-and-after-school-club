@@ -12,11 +12,11 @@ import {
 } from "../../../store/edit-child-info/edit-child-info.slice";
 
 import {
-  childInfoRoute,
-  childUpdatedMessage,
   errorReceivedMessage,
   errorUpdatingChild,
-} from "../../../strings/strings";
+} from "../../../strings/errors/errors-strings";
+import { childInfoRoute } from "../../../strings/routes/routes-strings";
+import { childUpdatedMessage } from "../../../strings/successes/successes-strings";
 
 const useEditChildInfoResultSwal = () => {
   const { fireSwal } = useFireSwal();

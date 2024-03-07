@@ -8,7 +8,7 @@ import {
   resetCurrentUserWalletBalanceResult,
 } from "../../../../store/user/user.slice";
 
-import { sessionCancelledBalanceUpdateFailedMessage } from "../../../../strings/strings";
+import { sessionCancelledBalanceUpdateFailedMessage } from "../../../../strings/infos/infos-strings";
 
 const useBookingCancelledButFailedBalanceFetchSwal = () => {
   const { fireSwal } = useFireSwal();

@@ -17,7 +17,7 @@ import { Text } from "../../styles/p/p.styles";
 import { BlueH2 } from "../../styles/h2/h2.styles";
 import { BlackSpan } from "../../styles/span/span.styles";
 
-import { bookedSessionsOwnerRoute } from "../../strings/strings";
+import { bookedSessionsOwnerRoute } from "../../strings/routes/routes-strings";
 
 const UserBookingsHelp = () => {
   const { shouldShowElement } = useSelector(selectShouldShowElementSelectors);

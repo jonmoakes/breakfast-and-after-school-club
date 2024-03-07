@@ -11,7 +11,6 @@ import {
   AccordionTitle,
   ParentDiv,
 } from "../../styles/div/div.styles";
-
 import { Text } from "../../styles/p/p.styles";
 
 const ChosenEntryChildDetailsAccordion = () => {

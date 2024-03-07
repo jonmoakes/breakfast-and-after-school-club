@@ -2,7 +2,7 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { databases } from "../../utils/appwrite/appwrite-config";
 import { ID } from "appwrite";
 
-import { datesUploadedToDatabaseSuccessMessage } from "../../strings/strings";
+import { datesUploadedToDatabaseSuccessMessage } from "../../strings/successes/successes-strings";
 
 export const uploadDatesToDatabaseAsync = createAsyncThunk(
   "uploadDatesToDatabase",

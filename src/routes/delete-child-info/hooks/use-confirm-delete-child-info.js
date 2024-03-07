@@ -9,7 +9,7 @@ import { selectCurrentUserSelectors } from "../../../store/user/user.slice";
 import {
   confirmDeleteChildMessage,
   imSureMessage,
-} from "../../../strings/strings";
+} from "../../../strings/confirms/confirms-strings";
 
 const useConfirmDeleteChildInfo = () => {
   const { confirmSwal } = useConfirmSwal();

@@ -10,8 +10,8 @@ import { sendEmailWalletFundsNotAddedErrorAsync } from "../../../store/send-emai
 import {
   accountRoute,
   contactRoute,
-  failedToSendEmailInstructions,
-} from "../../../strings/strings";
+} from "../../../strings/routes/routes-strings";
+import { failedToSendEmailInstructions } from "../../../strings/errors/errors-strings";
 
 const useSendUpdateBalanceErrorEmail = () => {
   const { hamburgerHandlerNavigate } = useHamburgerHandlerNavigate();

@@ -12,7 +12,7 @@ import {
   resetSuccessMessage,
 } from "../../../store/upload-dates-to-database/upload-dates-to-database.slice";
 
-import { errorUploadingDatesToDatabaseMessage } from "../../../strings/strings";
+import { errorUploadingDatesToDatabaseMessage } from "../../../strings/errors/errors-strings";
 
 const useUploadDatesToDatabaseSwal = () => {
   const { fireSwal } = useFireSwal();

@@ -11,7 +11,7 @@ import {
   FridayCell,
 } from "../../styles/tables/tables.styles";
 
-import { bookedSessionsOwnerRoute } from "../../strings/strings";
+import { bookedSessionsOwnerRoute } from "../../strings/routes/routes-strings";
 
 const BookingsTableRenderTable = ({
   headerGroups,

@@ -9,7 +9,7 @@ import {
   updateEmailRoute,
   updatePasswordRoute,
   bookedSessionsUserRoute,
-} from "../../../strings/strings";
+} from "../../../strings/routes/routes-strings";
 
 const useNavigateToRoute = () => {
   const navigate = useNavigate();

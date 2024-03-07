@@ -15,7 +15,7 @@ import { BlackTitle } from "../../styles/h1/h1.styles";
 import { Text } from "../../styles/p/p.styles";
 import { YellowGreenButton } from "../../styles/buttons/buttons.styles";
 
-import { enterEmailAddress } from "../../strings/strings";
+import { enterEmailAddress } from "../../strings/placeholders/placeholders-strings";
 
 const ForgotPasswordRequest = () => {
   useResetPasswordRequestResultSwal();

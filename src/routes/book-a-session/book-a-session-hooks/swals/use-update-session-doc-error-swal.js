@@ -6,11 +6,11 @@ import useHamburgerHandlerNavigate from "../../../../hooks/use-hamburger-handler
 import { selectBookSessionSelectors } from "../../../../store/book-session/book-session.slice";
 
 import {
-  bookSessionRoute,
-  checkBackRegularlyMessage,
   lastMinuteNoSessionsMessage,
   updateSessionDocErrorMessage,
-} from "../../../../strings/strings";
+} from "../../../../strings/errors/errors-strings";
+import { checkBackRegularlyMessage } from "../../../../strings/infos/infos-strings";
+import { bookSessionRoute } from "../../../../strings/routes/routes-strings";
 
 const useUpdateSessionDocErrorSwal = () => {
   const { fireSwal } = useFireSwal();

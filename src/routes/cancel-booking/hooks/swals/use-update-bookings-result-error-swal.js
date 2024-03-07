@@ -8,8 +8,8 @@ import { selectUserBookingToDeleteSelectors } from "../../../../store/user-booki
 import {
   errorCancellingBookingMessage,
   errorReceivedMessage,
-  bookedSessionsUserRoute,
-} from "../../../../strings/strings";
+} from "../../../../strings/errors/errors-strings";
+import { bookedSessionsUserRoute } from "../../../../strings/routes/routes-strings";
 
 const useUpdateBookingsResultErrorSwal = () => {
   const { fireSwal } = useFireSwal();

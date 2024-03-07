@@ -5,10 +5,8 @@ import useHamburgerHandlerNavigate from "../../../hooks/use-hamburger-handler-na
 
 import { selectHandlePaymentSelectors } from "../../../store/handle-payment/handle-payment.slice";
 
-import {
-  accountRoute,
-  errorSubmittingPaymentMessage,
-} from "../../../strings/strings";
+import { errorSubmittingPaymentMessage } from "../../../strings/errors/errors-strings";
+import { accountRoute } from "../../../strings/routes/routes-strings";
 
 const useHandlePaymentSucceeded = () => {
   const { fireSwal } = useFireSwal();

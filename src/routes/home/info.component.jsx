@@ -6,7 +6,8 @@ import { FeatureDiv, ParentDiv } from "../../styles/div/div.styles";
 import { BlueH2 } from "../../styles/h2/h2.styles";
 import { Text } from "../../styles/p/p.styles";
 import { BlackHr } from "../../styles/hr/hr.styles";
-import { aboutRoute } from "../../strings/strings";
+
+import { aboutRoute } from "../../strings/routes/routes-strings";
 
 const Info = () => (
   <ParentDiv>

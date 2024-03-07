@@ -13,8 +13,8 @@ import { LogoImage } from "../../styles/image/image.styles";
 import {
   areYouSureMessage,
   imSureMessage,
-  loseAllDataMessage,
-} from "../../strings/strings";
+} from "../../strings/confirms/confirms-strings";
+import { loseAllDataMessage } from "../../strings/infos/infos-strings";
 
 const NavLogo = () => {
   const { isRouteWithNavWarning } = useIsRouteWithNavWarning();

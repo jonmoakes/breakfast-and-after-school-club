@@ -11,13 +11,13 @@ import {
   selectAddChildInfoSelectors,
 } from "../../../store/add-child-info/add-child-info.slice";
 
+import { childAddedMessage } from "../../../strings/successes/successes-strings";
+import { childInfoRoute } from "../../../strings/routes/routes-strings";
 import {
-  appwriteAgeAttributeError,
-  childAddedMessage,
-  childInfoRoute,
   errorAddingChild,
   errorReceivedMessage,
-} from "../../../strings/strings";
+  appwriteAgeAttributeErrorMessage,
+} from "../../../strings/errors/errors-strings";
 
 const useAddChildInfoResultSwal = () => {
   const { fireSwal } = useFireSwal();
@@ -55,7 +55,7 @@ const useAddChildInfoResultSwal = () => {
         }
       );
     } else if (addChildInfoResult === "rejected") {
-      if (addChildInfoError.includes(appwriteAgeAttributeError)) {
+      if (addChildInfoError.includes(appwriteAgeAttributeErrorMessage)) {
         fireSwal(
           "error",
           errorAddingChild,

@@ -8,12 +8,12 @@ import {
   selectContactFormSelectors,
 } from "../../../store/contact-form/contact-form.slice";
 
+import { emailResponseTimeMessage } from "../../../strings/infos/infos-strings";
 import {
-  emailResponseTimeMessage,
   errorReceivedMessage,
   errorSendingMessage,
-  successMessage,
-} from "../../../strings/strings";
+} from "../../../strings/errors/errors-strings";
+import { successMessage } from "../../../strings/successes/successes-strings";
 
 const useSendContactFormMessageResultSwal = () => {
   const { fireSwal } = useFireSwal();
