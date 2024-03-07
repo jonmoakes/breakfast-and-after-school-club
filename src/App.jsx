@@ -149,7 +149,7 @@ const App = () => {
 
               <Route
                 path={bookedSessionsUserRoute}
-                element={currentUser ? <BookedSessionsUser /> : <SignIn />}
+                element={<BookedSessionsUser />}
               />
 
               <Route path={cancelBookingRoute} element={<CancelBooking />} />
@@ -159,10 +159,7 @@ const App = () => {
                 element={<ChosenEntryChildDetails />}
               />
 
-              <Route
-                path={accountRoute}
-                element={currentUser ? <Account /> : null}
-              />
+              <Route path={accountRoute} element={<Account />} />
               <Route path={bookSessionRoute} element={<BookASession />} />
               <Route path={addFundsRoute} element={<AddFunds />} />
               <Route path={paymentResultRoute} element={<PaymentResult />} />

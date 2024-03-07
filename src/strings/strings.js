@@ -272,8 +272,8 @@ export const anyOtherInfo = "anything else you need to tell us? Enter it here!";
 //routes
 export const bookSessionRoute = "/book-session";
 export const contactRoute = "/contact";
-export const bookedSessionsUserRoute = "/booked-sessions-user";
-export const bookedSessionsOwnerRoute = "/booked-sessions-owner";
+export const bookedSessionsUserRoute = "/your-bookings";
+export const bookedSessionsOwnerRoute = "/customer-bookings";
 export const accountRoute = "/account";
 export const childInfoRoute = "/child-info";
 export const addChildInfoRoute = "/add-child-info";
