@@ -3,9 +3,9 @@ import useConditionalLogic from "../book-a-session-hooks/use-conditional-logic";
 import { ErrorDiv, WarningDiv } from "../../../styles/div/div.styles";
 import { Text } from "../../../styles/p/p.styles";
 import { StyledLink } from "../../../styles/link/link.styles";
-import { contactRoute } from "../../../strings/strings";
 import { RedSpan } from "../../../styles/span/span.styles";
 
+import { contactRoute } from "../../../strings/routes/routes-strings";
 const DateErrors = () => {
   const {
     dateUnavailable,

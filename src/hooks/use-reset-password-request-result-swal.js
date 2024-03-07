@@ -7,7 +7,7 @@ import {
   resetGenerateNewPasswordRequestState,
 } from "../store/generate-new-password-request/generate-new-password-request.slice";
 
-import { successMessage } from "../strings/successes";
+import { successMessage } from "../strings/successes/successes-strings";
 import {
   errorReceivedMessage,
   errorRequestResetPasswordLinkMessage,

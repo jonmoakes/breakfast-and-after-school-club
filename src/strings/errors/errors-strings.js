@@ -138,3 +138,5 @@ export const consentOptionErrorMessage =
 export const errorSigningOutMessage =
   "sorry, there was an error signing you out.";
 export const passwordErrorMessage = "password error";
+export const errorUpdatingEmailMessage =
+  "sorry, there was an error updating your email address.";

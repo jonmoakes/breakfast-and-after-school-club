@@ -15,8 +15,7 @@ export const signOutThenSignInWithNewPasswordMessage =
 
 export const passwordErrorInstructions =
   "please check your password and try again";
-export const errorUpdatingEmailMessage =
-  "sorry, there was an error updating your email address.";
+
 export const passwordUpdateMustBeSignedInMessage =
   "you must be signed in in order update your password";
 export const receiveEmailWhenCompleteMessage =
