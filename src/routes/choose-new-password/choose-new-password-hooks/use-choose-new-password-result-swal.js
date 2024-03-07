@@ -15,9 +15,11 @@ import {
 import {
   errorReceivedMessage,
   errorResettingPassword,
-  signInWithNewPasswordMessage,
 } from "../../../strings/errors/errors-strings";
-import { logoutSoCanSignInWithNewPasswordMessage } from "../../../strings/infos/infos-strings";
+import {
+  logoutSoCanSignInWithNewPasswordMessage,
+  signInWithNewPasswordMessage,
+} from "../../../strings/infos/infos-strings";
 import { passwordResetSuccessMessage } from "../../../strings/successes/successes-strings";
 import { signInRoute } from "../../../strings/routes/routes-strings";
 
