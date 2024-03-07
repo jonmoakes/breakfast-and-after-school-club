@@ -7,10 +7,10 @@ import { getFormattedSessionType } from "../../functions/get-formatted-session-t
 
 const getUsersEmail = async (row) => {
   try {
-    const { userId, $databaseId } = row.original;
     // UserId is added when we add the sessionBookingData when a user makes a booking.
     // It is the same Id as the user who book the sessions currentUser.id
     // Therefore, we can use this to search in that particular users document and extract their email from it below.
+    const { userId, $databaseId } = row.original;
 
     const databaseId = $databaseId;
     //App owner will be logged in, so they will have a school code. From this we can get their usersCollectionId.
