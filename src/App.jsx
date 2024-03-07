@@ -141,9 +141,7 @@ const App = () => {
                 element={
                   currentUser && currentUser.id === appOwnerId ? (
                     <BookedSessionsOwner />
-                  ) : (
-                    <Account />
-                  )
+                  ) : null
                 }
               />
 
@@ -159,7 +157,6 @@ const App = () => {
                 element={<ChosenEntryChildDetails />}
               />
 
-              <Route path={accountRoute} element={<Account />} />
               <Route path={bookSessionRoute} element={<BookASession />} />
               <Route path={addFundsRoute} element={<AddFunds />} />
               <Route path={paymentResultRoute} element={<PaymentResult />} />

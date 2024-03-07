@@ -1,6 +1,6 @@
 import { useSelector, useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
-import useGetSignOutError from "./navigation-hooks/use-get-sign-out-error";
 import useConfirmSwal from "../../hooks/use-confirm-swal";
 import useFireSwal from "../../hooks/use-fire-swal";
 import useIsOnline from "../../hooks/use-is-online";
@@ -21,26 +21,51 @@ import {
   yesSignOutMessage,
   noNetworkMessage,
   redirectMessage,
+  errorReceivedMessage,
+  errorSigningOutMessage,
+  successMessage,
 } from "../../strings/strings";
 
 const NavSignOut = () => {
-  useGetSignOutError();
   const { confirmSwal } = useConfirmSwal();
   const { fireSwal } = useFireSwal();
   const { isOnline } = useIsOnline();
   const { resetAllStoreOnSignOut } = useResetAllStoreOnSignOut();
 
   const { currentUser } = useSelector(selectCurrentUserSelectors);
+
   const { showHamburgerMenu } = useSelector(selectHamburgerMenuSelectors);
 
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const confirmResult = () => {
-    dispatch(signOutAsync());
-    resetAllStoreOnSignOut();
-    if (showHamburgerMenu) {
-      dispatch(hideHamburgerMenu());
-    }
+    dispatch(signOutAsync()).then((resultAction) => {
+      if (signOutAsync.fulfilled.match(resultAction)) {
+        fireSwal("success", successMessage, "", 2000, false, true);
+        resetAllStoreOnSignOut();
+        if (showHamburgerMenu) {
+          dispatch(hideHamburgerMenu());
+        }
+        navigate("/");
+      } else if (signOutAsync.rejected.match(resultAction)) {
+        if (resultAction.error.message === "Rejected") {
+          const error = resultAction.payload;
+          fireSwal(
+            "error",
+            errorSigningOutMessage,
+            errorReceivedMessage(error),
+            0,
+            true,
+            false
+          ).then((isConfirmed) => {
+            if (isConfirmed) {
+              window.location.reload();
+            }
+          });
+        }
+      }
+    });
   };
 
   const confirmSignOut = () => {

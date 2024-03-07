@@ -143,8 +143,10 @@ export const phoneNumberLengthErrorMessage =
   "your phone number must be 11 digits long";
 export const consentOptionErrorMessage =
   "please 'yes' or 'no' for the consent option";
-
+export const errorSigningOutMessage =
+  "sorry, there was an error signing you out.";
 // success
+
 export const successMessage = "success!";
 export const checkEmailMessage = "please check your email!";
 export const fundsAddedMessage = (email) => {
@@ -212,7 +214,7 @@ export const walletBeenUpdatedMessage = "your wallet balance has been updated.";
 export const confirmCancelBookingMessage =
   "do you want to cancel this booking?";
 export const confirmSignOutMessage = "are you sure you wish to sign out?";
-export const redirectMessage = "this will redirect you to the sign in page.";
+export const redirectMessage = "this will redirect you to the home page.";
 export const yesSignOutMessage = "yes, sign me out!";
 export const areYouSureMessage = "are you sure?";
 export const confirmAddFundsMessage = (walletFunds) => {
