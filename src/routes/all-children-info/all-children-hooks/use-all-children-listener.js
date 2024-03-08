@@ -24,7 +24,6 @@ const useAllChildrenListener = () => {
       `databases.${databaseId}.collections.${childrenCollectionId}.documents`,
 
       (response) => {
-        console.log(response);
         const updatedEntry = response.payload;
 
         if (response.events.some((event) => event.includes(".delete"))) {
