@@ -9,7 +9,6 @@ export const signInRoute = "/sign-in";
 export const signUpRoute = "/sign-up";
 export const forgotPasswordRequestRoute = "/forgot-password-request";
 export const updatePasswordRoute = "/update-password";
-export const chooseNewPasswordRoute = "/choose-new-password";
 export const localhostChooseNewPasswordRoute =
   "http://localhost:8888/choose-new-password";
 export const productionChooseNewPasswordRoute =

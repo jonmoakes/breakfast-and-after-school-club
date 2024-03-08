@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 import useFireSwal from "../../../hooks/use-fire-swal";
 
@@ -28,6 +29,7 @@ const useUpdateEmailResultResultSwal = () => {
   );
 
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (!updateEmailResult && !updateEmailError) return;
@@ -42,6 +44,7 @@ const useUpdateEmailResultResultSwal = () => {
         false
       );
       setTimeout(function () {
+        navigate("/");
         window.location.reload();
       }, 5000);
     } else if (
@@ -80,7 +83,7 @@ const useUpdateEmailResultResultSwal = () => {
         }
       });
     }
-  }, [updateEmailResult, updateEmailError, fireSwal, dispatch]);
+  }, [updateEmailResult, updateEmailError, fireSwal, dispatch, navigate]);
 };
 
 export default useUpdateEmailResultResultSwal;

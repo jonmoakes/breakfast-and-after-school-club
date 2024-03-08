@@ -9,7 +9,7 @@ export const signInWithNewPasswordMessage =
   "you can now sign in with your new password.";
 export const emailChangedMessage = "email changed!";
 export const signInWithNewEmailMessage =
-  "for security reasons, we will now sign you out of all sessions. please wait until you are redirected to the sign in page, where you can then sign in with your new email address.";
+  "for security reasons, we will now sign you out of all sessions. please wait until you are signed out. you will then be able to sign in with your new email address.";
 export const signOutThenSignInWithNewPasswordMessage =
   "for security reasons, we will now sign you out of all sessions. please wait until you are redirected to the sign in page, where you can then sign in with your new password.";
 

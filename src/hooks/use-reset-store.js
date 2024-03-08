@@ -44,7 +44,6 @@ import {
   bookSessionRoute,
   contactRoute,
   forgotPasswordRequestRoute,
-  chooseNewPasswordRoute,
   signInRoute,
   signUpRoute,
   updateEmailRoute,
@@ -54,6 +53,7 @@ import {
   paymentResultRoute,
   cancelBookingRoute,
   bookedSessionsOwnerRoute,
+  productionChooseNewPasswordRoute,
   localhostChooseNewPasswordRoute,
   bookedSessionsUserRoute,
 } from "../strings/routes/routes-strings";
@@ -89,7 +89,7 @@ const useResetStore = () => {
       case forgotPasswordRequestRoute:
         dispatch(resetGenerateNewPasswordRequestState());
         break;
-      case chooseNewPasswordRoute:
+      case productionChooseNewPasswordRoute:
       case localhostChooseNewPasswordRoute:
         dispatch(resetChooseNewPasswordState());
         break;
