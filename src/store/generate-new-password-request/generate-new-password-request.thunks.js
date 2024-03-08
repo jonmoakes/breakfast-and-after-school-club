@@ -18,7 +18,7 @@ export const generateNewPasswordRequestAsync = createAsyncThunk(
       } else if (import.meta.env.MODE === "production") {
         await account.createRecovery(
           generateNewPasswordRequestEmail,
-          `https://www.breakfast-and-after-school-club.co.uk${chooseNewPasswordRoute}`
+          `breakfast-and-after-school-club.co.uk${chooseNewPasswordRoute}`
         );
       }
     } catch (error) {
