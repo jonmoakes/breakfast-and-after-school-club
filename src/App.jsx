@@ -35,7 +35,7 @@ import {
   bookedSessionsUserRoute,
   cancelBookingRoute,
   bookedSessionsOwnerRoute,
-  productionChooseNewPasswordRoute,
+  chooseNewPasswordRoute,
 } from "./strings/routes/routes-strings";
 
 const Navigation = lazy(() =>
@@ -122,10 +122,7 @@ const App = () => {
             />
 
             <Route
-              path={
-                productionChooseNewPasswordRoute ||
-                localhostChooseNewPasswordRoute
-              }
+              path={chooseNewPasswordRoute || localhostChooseNewPasswordRoute}
               element={<ChooseNewPassword />}
             />
 

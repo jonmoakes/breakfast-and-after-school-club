@@ -18,8 +18,8 @@ const useHandleSignInFormError = () => {
   const { fireSwal } = useFireSwal();
 
   const { currentUserError } = useSelector(selectCurrentUserSelectors);
-  const dispatch = useDispatch();
 
+  const dispatch = useDispatch();
   useEffect(() => {
     if (
       !currentUserError ||
@@ -34,8 +34,11 @@ const useHandleSignInFormError = () => {
       0,
       true,
       false
-    );
-    dispatch(resetCurrentUserErrorMessage());
+    ).then((isConfirmed) => {
+      if (isConfirmed) {
+        dispatch(resetCurrentUserErrorMessage());
+      }
+    });
   }, [fireSwal, currentUserError, dispatch]);
 };
 

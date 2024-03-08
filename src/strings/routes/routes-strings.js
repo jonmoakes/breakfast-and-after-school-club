@@ -9,10 +9,9 @@ export const signInRoute = "/sign-in";
 export const signUpRoute = "/sign-up";
 export const forgotPasswordRequestRoute = "/forgot-password-request";
 export const updatePasswordRoute = "/update-password";
+export const chooseNewPasswordRoute = "/choose-new-password";
 export const localhostChooseNewPasswordRoute =
   "http://localhost:8888/choose-new-password";
-export const productionChooseNewPasswordRoute =
-  "https://www.breakfast-and-after-school-club.co.uk/choose-new-password";
 export const payNowRoute = "/pay-now";
 export const updateEmailRoute = "/update-email";
 export const closeAccountRoute = "/close-account";
