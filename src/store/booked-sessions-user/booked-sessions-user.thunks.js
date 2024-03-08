@@ -5,7 +5,7 @@ export const fetchBookedSessionsUserAsync = createAsyncThunk(
   "fetchBookedSessionsUser",
   async ({ id, databaseId, bookedSessionsCollectionId }, thunkAPI) => {
     try {
-      const queryIndex = "userId";
+      const queryIndex = "parentsUserId";
       const queryValue = id;
 
       const collectionId = bookedSessionsCollectionId;
