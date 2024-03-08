@@ -9,42 +9,35 @@ import {
   useColumnOrder,
 } from "react-table";
 
+import useAllChildrenListener from "./all-children-hooks/use-all-children-listener";
 import useIsOnline from "../../hooks/use-is-online";
 
-import { selectBookedSessionsUserSelectors } from "../../store/booked-sessions-user/booked-sessions-user.slice";
+import { selectGetAllChildrenSelectors } from "../../store/get-all-children/get-all-children.slice";
 
 import { TABLE_COLUMNS } from "./table-columns";
-import NetworkError from "../../components/errors/network-error.component";
-import TableCheckBox from "../../components/tables/table-checkbox";
-import NoBookingsFound from "./no-bookings-found.component";
-import BookingsTableRenderTable from "../../components/tables/bookings-table-render-table.component";
-import TableSearchBox from "../../components/tables/table-search-box.component";
-import TablePagination from "../../components/tables/table-pagination.component";
-import CancelBookingButton from "./cancel-booking-button.component";
 import ShowFetchErrors from "../../components/errors/show-fetch-errors.component";
+import NoChildrenFound from "./no-children-found.component";
+import DefaultTable from "../../components/tables/default-table.component";
+import NetworkError from "../../components/errors/network-error.component";
+import AllChildrenSearchBox from "./all-children-search-box";
+import TablePagination from "../../components/tables/table-pagination.component";
 
-const BookedSessionsUserTable = () => {
+const AllChildrenTable = () => {
+  useAllChildrenListener();
   const { isOnline } = useIsOnline();
 
-  const { bookedSessionsUserError } = useSelector(
-    selectBookedSessionsUserSelectors
-  );
-
-  let { sortedUserBookings } = useSelector(selectBookedSessionsUserSelectors);
+  let { allChildren } = useSelector(selectGetAllChildrenSelectors);
+  const { getAllChildrenError } = useSelector(selectGetAllChildrenSelectors);
 
   const columns = useMemo(() => TABLE_COLUMNS, []);
-  const data = useMemo(() => sortedUserBookings, [sortedUserBookings]);
-
+  const data = useMemo(
+    () => (allChildren !== undefined ? allChildren : []),
+    [allChildren]
+  );
   const initialState = useMemo(
-    () => ({ sortBy: [{ id: "date", desc: true }], pageSize: 30 }),
+    () => ({ sortBy: [{ id: "childName", desc: false }], pageSize: 30 }),
     []
   );
-
-  const scrollToTop = () => {
-    document.body.scrollTop = 0;
-    document.documentElement.scrollTop = 0;
-  };
-
   const {
     getTableProps,
     getTableBodyProps,
@@ -62,7 +55,6 @@ const BookedSessionsUserTable = () => {
     prepareRow,
     state,
     setGlobalFilter,
-    selectedFlatRows,
   } = useTable(
     {
       columns,
@@ -76,41 +68,24 @@ const BookedSessionsUserTable = () => {
     useColumnOrder,
     (hooks) => {
       hooks.visibleColumns.push((columns) => {
-        return [
-          {
-            Cell: ({ row }) => {
-              return (
-                <TableCheckBox
-                  onClick={() => scrollToTop()}
-                  {...row.getToggleRowSelectedProps()}
-                />
-              );
-            },
-          },
-          ...columns,
-        ];
+        return [...columns];
       });
     }
   );
-
   const { globalFilter, pageIndex, pageSize } = state;
-
-  const chosenEntry = selectedFlatRows.map((row) => row.original);
-  sortedUserBookings = chosenEntry;
 
   return (
     <>
       {!isOnline ? (
         <NetworkError />
-      ) : bookedSessionsUserError ? (
+      ) : getAllChildrenError ? (
         <ShowFetchErrors />
       ) : (
         <>
-          <NoBookingsFound {...{ data }} />
+          <NoChildrenFound {...{ data }} />
 
-          <TableSearchBox
+          <AllChildrenSearchBox
             {...{
-              chosenEntry,
               rows,
               data,
               globalFilter,
@@ -118,12 +93,11 @@ const BookedSessionsUserTable = () => {
             }}
           />
 
-          <CancelBookingButton {...{ chosenEntry }} />
-
           {data.length ? (
             <>
-              <BookingsTableRenderTable
+              <DefaultTable
                 {...{
+                  initialState,
                   headerGroups,
                   getTableProps,
                   getTableBodyProps,
@@ -156,4 +130,4 @@ const BookedSessionsUserTable = () => {
   );
 };
 
-export default BookedSessionsUserTable;
+export default AllChildrenTable;

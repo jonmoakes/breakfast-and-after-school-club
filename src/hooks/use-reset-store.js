@@ -38,6 +38,11 @@ import {
   resetBookedSessionsOwnerState,
   selectBookedSessionsOwnerSelectors,
 } from "../store/booked-sessions-owner/booked-sessions-owner.slice";
+import {
+  selectGetAllChildrenSelectors,
+  resetGetAllChildrenError,
+  resetGetAllChildrenState,
+} from "../store/get-all-children/get-all-children.slice";
 
 import {
   addFundsRoute,
@@ -56,6 +61,7 @@ import {
   chooseNewPasswordRoute,
   localhostChooseNewPasswordRoute,
   bookedSessionsUserRoute,
+  allChildrenRoute,
 } from "../strings/routes/routes-strings";
 
 const useResetStore = () => {
@@ -71,6 +77,7 @@ const useResetStore = () => {
   const { bookedSessionsOwnerError } = useSelector(
     selectBookedSessionsOwnerSelectors
   );
+  const { getAllChildrenError } = useSelector(selectGetAllChildrenSelectors);
 
   const dispatch = useDispatch();
   const location = useLocation();
@@ -150,6 +157,13 @@ const useResetStore = () => {
           dispatch(resetBookSessionUserError());
         } else {
           dispatch(resetBookedSessionsUserState());
+        }
+        break;
+      case allChildrenRoute:
+        if (getAllChildrenError) {
+          dispatch(resetGetAllChildrenError());
+        } else {
+          dispatch(resetGetAllChildrenState());
         }
         break;
       default:

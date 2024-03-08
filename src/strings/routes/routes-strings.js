@@ -24,3 +24,4 @@ export const deleteChildInfoRoute = "/delete-child";
 export const chosenEntryChildDetailsRoute = "/child-details";
 export const cancelBookingRoute = "/cancel-booking";
 export const aboutRoute = "/about";
+export const allChildrenRoute = "/children-list";

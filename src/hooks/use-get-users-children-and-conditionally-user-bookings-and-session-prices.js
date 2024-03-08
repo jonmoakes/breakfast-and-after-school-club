@@ -17,7 +17,7 @@ const useGetUsersChildrenAndConditionallyUserBookingsAndSessionPrices = () => {
     selectCurrentUserSelectors
   );
 
-  const { id, email } = currentUser;
+  const { id } = currentUser;
   const {
     databaseId,
     childrenCollectionId: collectionId,
@@ -35,13 +35,13 @@ const useGetUsersChildrenAndConditionallyUserBookingsAndSessionPrices = () => {
     if (path === childInfoRoute) {
       dispatch(
         getUsersChildrenAsync({
-          email,
+          id,
           databaseId,
           collectionId,
         })
       );
     } else if (path === bookSessionRoute) {
-      dispatch(getUsersChildrenAsync({ email, databaseId, collectionId })).then(
+      dispatch(getUsersChildrenAsync({ id, databaseId, collectionId })).then(
         (resultAction) => {
           if (getUsersChildrenAsync.fulfilled.match(resultAction)) {
             dispatch(
@@ -70,7 +70,6 @@ const useGetUsersChildrenAndConditionallyUserBookingsAndSessionPrices = () => {
   }, [
     dispatch,
     id,
-    email,
     path,
     databaseId,
     collectionId,

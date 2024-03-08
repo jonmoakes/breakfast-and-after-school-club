@@ -29,6 +29,7 @@ import { userBookingToDeleteReducer } from "./user-booking-to-delete/user-bookin
 import { sendEmailReducer } from "./send-email/send-email.slice";
 import { generateNewPasswordRequestReducer } from "./generate-new-password-request/generate-new-password-request.slice";
 import { chooseNewPasswordReducer } from "./choose-new-password/choose-new-password.slice";
+import { getAllChildrenReducer } from "./get-all-children/get-all-children.slice";
 
 export const rootReducer = combineReducers({
   hamburgerMenu: hamburgerMenuReducer,
@@ -60,4 +61,5 @@ export const rootReducer = combineReducers({
   sendEmail: sendEmailReducer,
   generateNewPasswordRequest: generateNewPasswordRequestReducer,
   chooseNewPassword: chooseNewPasswordReducer,
+  getAllChildren: getAllChildrenReducer,
 });

@@ -441,6 +441,14 @@ export const TableSearchDiv = styled.div`
   margin: 0px auto -30px auto;
   animation: 1s ${slideInLeftAnimation};
 
+  &.all-children {
+    margin: 0px auto 0px auto;
+
+    @media screen and (max-width: 450px) {
+      margin: 0px auto 40px auto;
+    }
+  }
+
   @media screen and (max-width: 1366px) {
     width: 70%;
   }

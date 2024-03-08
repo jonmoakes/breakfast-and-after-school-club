@@ -55,7 +55,6 @@ const ChildTable = () => {
       data,
       initialState,
     },
-
     useGlobalFilter,
     useSortBy,
     usePagination,

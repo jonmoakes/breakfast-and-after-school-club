@@ -3,10 +3,10 @@ import { listDocumentsByQueryOrSearch } from "../../utils/appwrite/appwrite-func
 
 export const getUsersChildrenAsync = createAsyncThunk(
   "getChildren",
-  async ({ email, databaseId, collectionId }, thunkAPI) => {
+  async ({ id, databaseId, collectionId }, thunkAPI) => {
     try {
-      const queryIndex = "parentEmail";
-      const queryValue = email;
+      const queryIndex = "parentsUserId";
+      const queryValue = id;
 
       const getChildrenDocuments = await listDocumentsByQueryOrSearch(
         databaseId,

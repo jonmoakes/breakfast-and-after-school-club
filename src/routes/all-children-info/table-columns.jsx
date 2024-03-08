@@ -1,31 +1,30 @@
-import { TableEmailButton } from "../../styles/buttons/buttons.styles";
-
-import { getSessionTypeString } from "../../functions/get-session-type-string";
 import { getUsersEmailOnClick } from "../../functions/get-users-email-on-click";
+import { TableEmailButton } from "../../styles/buttons/buttons.styles";
 
 export const TABLE_COLUMNS = [
   {
-    Header: "date",
-    accessor: "formattedDate",
+    Header: "child name",
+    accessor: "childName",
   },
   {
-    Header: "session",
-    accessor: "sessionType",
-    Cell: ({ value }) => {
-      const sessiontype = value;
-      return getSessionTypeString(sessiontype);
-    },
+    Header: "age",
+    accessor: "age",
   },
   {
-    Header: "children in booking",
-    accessor: "childrensName",
+    Header: "medical info",
+    accessor: "medicalInfo",
   },
   {
-    Header: "parent name",
-    accessor: "parentName",
+    Header: "dietry requirements",
+    accessor: "dietryRequirements",
+  },
+  {
+    Header: "additional info",
+    accessor: "additionalInfo",
   },
   {
     Header: "parent email",
+    accessor: "parentEmail",
     Cell: ({ row }) => {
       const subject = encodeURIComponent(
         "Message From Breakfast & After School Club"
@@ -45,10 +44,7 @@ export const TABLE_COLUMNS = [
     },
   },
   {
-    Header: "Parent Phone",
-    accessor: "parentPhoneNumber",
-    Cell: ({ value }) => {
-      return <a href={`tel:${value}`}>Tap to call</a>;
-    },
+    Header: "consent choice",
+    accessor: "consent",
   },
 ];

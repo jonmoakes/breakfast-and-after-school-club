@@ -6,7 +6,7 @@ import {
   PaginationSelect,
 } from "../../styles/form/form.styles";
 
-const BookingsTablePagination = ({
+const TablePagination = ({
   pageIndex,
   pageOptions,
   gotoPage,
@@ -100,4 +100,4 @@ const BookingsTablePagination = ({
   );
 };
 
-export default BookingsTablePagination;
+export default TablePagination;

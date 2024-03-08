@@ -9,6 +9,7 @@ import {
   addFundsRoute,
   childInfoRoute,
   aboutRoute,
+  allChildrenRoute,
 } from "../../strings/routes/routes-strings";
 
 export const signedInRoutes = [
@@ -20,7 +21,11 @@ export const signedInRoutes = [
   contactRoute,
 ];
 
-export const ownerSignedInRoutes = [bookedSessionsOwnerRoute, accountRoute];
+export const ownerSignedInRoutes = [
+  bookedSessionsOwnerRoute,
+  allChildrenRoute,
+  accountRoute,
+];
 
 export const signedOutRoutes = [
   signInRoute,

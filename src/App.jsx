@@ -36,6 +36,7 @@ import {
   cancelBookingRoute,
   bookedSessionsOwnerRoute,
   chooseNewPasswordRoute,
+  allChildrenRoute,
 } from "./strings/routes/routes-strings";
 
 const Navigation = lazy(() =>
@@ -62,6 +63,9 @@ const ChosenEntryChildDetails = lazy(() =>
 const Account = lazy(() => import("./routes/account/account.component"));
 const ChildInfo = lazy(() =>
   import("./routes/child-info/child-info.component")
+);
+const AllChildrenInfo = lazy(() =>
+  import("./routes/all-children-info/all-children-info.component")
 );
 const AddChildInfo = lazy(() =>
   import("./routes/add-child-info/add-child-info.component")
@@ -129,6 +133,14 @@ const App = () => {
             {/*private routes - if no user, redirect to sign in route */}
             <Route element={<PrivateRoutes />}>
               <Route path={accountRoute} element={<Account />} />
+              <Route
+                path={allChildrenRoute}
+                element={
+                  currentUser && currentUser.id === appOwnerId ? (
+                    <AllChildrenInfo />
+                  ) : null
+                }
+              />
               <Route path={childInfoRoute} element={<ChildInfo />} />
               <Route path={addChildInfoRoute} element={<AddChildInfo />} />
               <Route path={editChildInfoRoute} element={<EditChildInfo />} />

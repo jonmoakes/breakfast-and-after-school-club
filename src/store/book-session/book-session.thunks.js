@@ -158,7 +158,7 @@ export const addSessionBookingInfoAsync = createAsyncThunk(
   ) => {
     try {
       const sessionBooking = {
-        userId: id,
+        parentsUserId: id,
         date,
         sessionType,
         childrensName: createChildrenToAddToBooking(

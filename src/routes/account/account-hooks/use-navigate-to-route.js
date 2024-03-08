@@ -9,6 +9,7 @@ import {
   updateEmailRoute,
   updatePasswordRoute,
   bookedSessionsUserRoute,
+  allChildrenRoute,
 } from "../../../strings/routes/routes-strings";
 
 const useNavigateToRoute = () => {
@@ -22,11 +23,16 @@ const useNavigateToRoute = () => {
     },
     {
       id: 2,
+      text: "view all children",
+      onClick: () => navigate(allChildrenRoute),
+    },
+    {
+      id: 3,
       text: " update email",
       onClick: () => navigate(updateEmailRoute),
     },
     {
-      id: 3,
+      id: 4,
       text: " update password",
       onClick: () => navigate(updatePasswordRoute),
     },

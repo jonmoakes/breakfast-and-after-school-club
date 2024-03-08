@@ -25,6 +25,7 @@ import { resetBookedSessionsUserState } from "../store/booked-sessions-user/book
 import { resetWalletFundsToAddState } from "../store/wallet-funds-to-add/wallet-funds-to-add.slice";
 import { resetGenerateNewPasswordRequestState } from "../store/generate-new-password-request/generate-new-password-request.slice";
 import { resetChooseNewPasswordState } from "../store/choose-new-password/choose-new-password.slice";
+import { resetGetAllChildrenState } from "../store/get-all-children/get-all-children.slice";
 
 const useResetAllStoreOnSignOut = () => {
   const dispatch = useDispatch();
@@ -55,6 +56,7 @@ const useResetAllStoreOnSignOut = () => {
     dispatch(resetBookedSessionsUserState());
     dispatch(resetWalletFundsToAddState());
     dispatch(resetChooseNewPasswordState());
+    dispatch(resetGetAllChildrenState());
   };
 
   return { resetAllStoreOnSignOut };

@@ -140,3 +140,5 @@ export const errorSigningOutMessage =
 export const passwordErrorMessage = "password error";
 export const errorUpdatingEmailMessage =
   "sorry, there was an error updating your email address.";
+export const errorFetchingAllChildrenMessage =
+  "there was an error fetching the list of children from the database.";
