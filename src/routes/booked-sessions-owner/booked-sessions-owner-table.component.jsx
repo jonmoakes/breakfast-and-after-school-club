@@ -24,7 +24,7 @@ import NoBookingDataFound from "./no-booking-data.found.component";
 import BookingsTableRenderTable from "../../components/tables/bookings-table-render-table.component";
 import TableSearchBox from "../../components/tables/table-search-box.component";
 import ToggleBookingsShownButton from "./toggle-bookings-show-button.component";
-import TablePagination from "../../components/tables/bookings-table-pagination.component";
+import TablePagination from "../../components/tables/table-pagination.component";
 
 const BookedSessionsOwnerTable = () => {
   useBookedSessionsOwnerListener();
