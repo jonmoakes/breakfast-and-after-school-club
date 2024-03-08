@@ -1,6 +1,6 @@
 import { lazy, Suspense } from "react";
 import { useSelector } from "react-redux";
-import { Routes, Route, useLocation } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import { ErrorBoundary } from "react-error-boundary";
 import { GlobalStyle } from "./global-styles";
 import "./App.css";
@@ -99,8 +99,6 @@ const ChooseNewPassword = lazy(() =>
 const App = () => {
   useGetUserOnLoad();
 
-  const l = useLocation();
-  console.log(l);
   const { currentUser, currentUserEnvironmentVariables } = useSelector(
     selectCurrentUserSelectors
   );
