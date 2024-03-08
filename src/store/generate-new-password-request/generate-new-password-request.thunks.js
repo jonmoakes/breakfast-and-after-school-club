@@ -10,21 +10,17 @@ export const generateNewPasswordRequestAsync = createAsyncThunk(
   "generateNewPasswordRequest",
   async ({ generateNewPasswordRequestEmail }, thunkAPI) => {
     try {
-      await account.createRecovery(
-        generateNewPasswordRequestEmail,
-        `https://www.breakfast-and-after-school-club.co.uk${chooseNewPasswordRoute}`
-      );
-      // if (import.meta.env.MODE === "development") {
-      //   await account.createRecovery(
-      //     generateNewPasswordRequestEmail,
-      //     localhostChooseNewPasswordRoute
-      //   );
-      // } else if (import.meta.env.MODE === "production") {
-      //   await account.createRecovery(
-      //     generateNewPasswordRequestEmail,
-      //     `https://www.breakfast-and-after-school-club.co.uk${chooseNewPasswordRoute}`
-      //   );
-      // }
+      if (import.meta.env.MODE === "development") {
+        await account.createRecovery(
+          generateNewPasswordRequestEmail,
+          localhostChooseNewPasswordRoute
+        );
+      } else if (import.meta.env.MODE === "production") {
+        await account.createRecovery(
+          generateNewPasswordRequestEmail,
+          `https://www.breakfast-and-after-school-club.co.uk${chooseNewPasswordRoute}`
+        );
+      }
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }
