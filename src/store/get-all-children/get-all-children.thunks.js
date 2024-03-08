@@ -5,7 +5,6 @@ export const getAllChildrenAsync = createAsyncThunk(
   "getAllChildrenInChildrenCollection",
   async ({ databaseId, collectionId }, thunkAPI) => {
     try {
-      throw new Error("argghh");
       const getChildrenDocuments = await listDocumentsInACollection(
         databaseId,
         collectionId
