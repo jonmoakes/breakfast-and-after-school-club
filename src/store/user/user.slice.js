@@ -75,9 +75,13 @@ const userSlice = createSlice({
         state.currentUserIsLoading = false;
         state.currentUser = action.payload;
         state.currentUserError = null;
-        const { schoolCode } = state.currentUser;
-        state.currentUserEnvironmentVariables =
-          setEnvironmentVariables(schoolCode);
+        if (state.currentUser !== undefined) {
+          const { schoolCode } = state.currentUser;
+          state.currentUserEnvironmentVariables =
+            setEnvironmentVariables(schoolCode);
+        } else {
+          return;
+        }
       })
       .addCase(getUserOnLoadAsync.rejected, (state, action) => {
         state.currentUserIsLoading = false;

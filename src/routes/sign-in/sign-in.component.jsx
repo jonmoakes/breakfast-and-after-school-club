@@ -31,7 +31,9 @@ const SignIn = () => {
 
   return (
     <Container>
-      {currentUser !== null && <Navigate replace to={accountRoute} />}
+      {currentUser !== null && currentUser !== undefined && (
+        <Navigate replace to={accountRoute} />
+      )}
       {currentUserIsLoading ? <Loader /> : null}
 
       <ParentDiv>
