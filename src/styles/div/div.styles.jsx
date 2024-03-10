@@ -482,6 +482,14 @@ export const NoSearchResultDiv = styled.div`
   animation: 1s ${bounceInDownAnimation};
   border: 2px solid ${customBlack};
 
+  &.no-search {
+    margin: -10px auto 40px auto;
+
+    @media screen and (max-width: 850px) {
+      margin: 40px auto;
+    }
+  }
+
   @media screen and (max-width: 1366px) {
     width: 80%;
   }
