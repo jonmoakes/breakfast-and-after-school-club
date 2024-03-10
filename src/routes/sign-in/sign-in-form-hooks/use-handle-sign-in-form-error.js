@@ -22,23 +22,24 @@ const useHandleSignInFormError = () => {
   const { currentUserError } = useSelector(selectCurrentUserSelectors);
 
   const dispatch = useDispatch();
+
   useEffect(() => {
     if (
       !currentUserError ||
       (currentUserError && currentUserError === appwriteNoUserError)
     )
       return;
-    const error = currentUserError;
-    const errorDetails =
-      currentUserError && currentUserError === appwriteCredentialsError
-        ? errorSigningInInstructions
-        : errorReceivedMessage(error);
 
-    fireSwal("error", errorSigningInMessage, errorDetails, 0, true, false).then(
-      (isConfirmed) => {
-        if (isConfirmed) {
-          dispatch(resetCurrentUserErrorMessage());
-        }
+    fireSwal(
+      "error",
+      errorSigningInMessage,
+      errorSigningInInstructions,
+      0,
+      true,
+      false
+    ).then((isConfirmed) => {
+      if (isConfirmed) {
+        dispatch(resetCurrentUserErrorMessage());
       }
     );
   }, [fireSwal, currentUserError, dispatch]);
