@@ -58,7 +58,7 @@ import {
   paymentResultRoute,
   cancelBookingRoute,
   bookedSessionsOwnerRoute,
-  chooseNewPasswordRoute,
+  productionChooseNewPasswordRoute,
   localhostChooseNewPasswordRoute,
   bookedSessionsUserRoute,
   allChildrenRoute,
@@ -96,7 +96,7 @@ const useResetStore = () => {
       case forgotPasswordRequestRoute:
         dispatch(resetGenerateNewPasswordRequestState());
         break;
-      case chooseNewPasswordRoute:
+      case productionChooseNewPasswordRoute:
       case localhostChooseNewPasswordRoute:
         dispatch(resetChooseNewPasswordState());
         break;

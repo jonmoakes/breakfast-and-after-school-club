@@ -142,3 +142,5 @@ export const errorUpdatingEmailMessage =
   "sorry, there was an error updating your email address.";
 export const errorFetchingAllChildrenMessage =
   "there was an error fetching the list of children from the database.";
+export const appwriteCredentialsError =
+  "Invalid credentials. Please check the email and password.";

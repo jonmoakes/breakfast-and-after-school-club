@@ -12,6 +12,8 @@ import {
   appwriteNoUserError,
   errorSigningInMessage,
   errorSigningInInstructions,
+  appwriteCredentialsError,
+  errorReceivedMessage,
 } from "../../../strings/errors/errors-strings";
 
 const useHandleSignInFormError = () => {
@@ -20,6 +22,7 @@ const useHandleSignInFormError = () => {
   const { currentUserError } = useSelector(selectCurrentUserSelectors);
 
   const dispatch = useDispatch();
+
   useEffect(() => {
     if (
       !currentUserError ||
@@ -27,18 +30,19 @@ const useHandleSignInFormError = () => {
     )
       return;
 
-    fireSwal(
-      "error",
-      errorSigningInMessage,
-      errorSigningInInstructions,
-      0,
-      true,
-      false
-    ).then((isConfirmed) => {
-      if (isConfirmed) {
-        dispatch(resetCurrentUserErrorMessage());
+    const error = currentUserError;
+    const errorDetails =
+      currentUserError && currentUserError === appwriteCredentialsError
+        ? errorSigningInInstructions
+        : errorReceivedMessage(error);
+
+    fireSwal("error", errorSigningInMessage, errorDetails, 0, true, false).then(
+      (isConfirmed) => {
+        if (isConfirmed) {
+          dispatch(resetCurrentUserErrorMessage());
+        }
       }
-    });
+    );
   }, [fireSwal, currentUserError, dispatch]);
 };
 

@@ -35,7 +35,7 @@ import {
   bookedSessionsUserRoute,
   cancelBookingRoute,
   bookedSessionsOwnerRoute,
-  chooseNewPasswordRoute,
+  productionChooseNewPasswordRoute,
   allChildrenRoute,
 } from "./strings/routes/routes-strings";
 
@@ -126,7 +126,10 @@ const App = () => {
             />
 
             <Route
-              path={chooseNewPasswordRoute || localhostChooseNewPasswordRoute}
+              path={
+                productionChooseNewPasswordRoute ||
+                localhostChooseNewPasswordRoute
+              }
               element={<ChooseNewPassword />}
             />
 
