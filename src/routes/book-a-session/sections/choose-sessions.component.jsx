@@ -26,7 +26,7 @@ const ChooseSessions = () => {
     atLeastOneChildHasBeenSelected,
     hasOneChild,
     hasMoreThanOneChild,
-    afternoonCloseTime,
+    latestTimeToBookAfternoonSession,
   } = useConditionalLogic();
 
   return (
@@ -37,7 +37,7 @@ const ChooseSessions = () => {
         <ParentDiv>
           <Text>
             sorry, the latest time for booking the afternoon session on the
-            current day is {afternoonCloseTime}
+            current day is {latestTimeToBookAfternoonSession}
           </Text>
         </ParentDiv>
       ) : (hasOneChild() && notTodaysOrIsTodayAndBeforeMorningCloseTime()) ||

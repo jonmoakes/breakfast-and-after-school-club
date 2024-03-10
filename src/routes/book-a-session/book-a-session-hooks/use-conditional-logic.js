@@ -51,11 +51,13 @@ const useConditionalLogic = () => {
   const afternoonSessionSpaces = dateData
     ? dateData.afternoonSessionSpaces
     : "";
-  const morningCloseTime = bookingClosingTimes
+
+  // below two are the latest times a user can book a session.
+  const latestTimeToBookMorningSession = bookingClosingTimes
     ? bookingClosingTimes.morningSessionClosingTime
     : "";
 
-  const afternoonCloseTime = bookingClosingTimes
+  const latestTimeToBookAfternoonSession = bookingClosingTimes
     ? bookingClosingTimes.afternoonSessionClosingTime
     : "";
 
@@ -161,23 +163,38 @@ const useConditionalLogic = () => {
 
   const isTodayAndIsBetweenOpenAndCloseTime = () => {
     return date === formattedTodaysDate &&
-      currentTimeAsString() > morningCloseTime &&
+      currentTimeAsString() > latestTimeToBookMorningSession &&
       date === formattedTodaysDate &&
-      currentTimeAsString() < afternoonCloseTime
+      currentTimeAsString() < latestTimeToBookAfternoonSession
       ? true
       : false;
   };
 
   const notTodaysOrIsTodayAndBeforeMorningCloseTime = () => {
     return date !== formattedTodaysDate ||
-      (date === formattedTodaysDate && currentTimeAsString() < morningCloseTime)
+      (date === formattedTodaysDate &&
+        currentTimeAsString() < latestTimeToBookMorningSession)
+      ? true
+      : false;
+  };
+
+  const isTodayAndAfterMorningCloseTime = () => {
+    return date === formattedTodaysDate &&
+      currentTimeAsString() > latestTimeToBookMorningSession
       ? true
       : false;
   };
 
   const isTodayAndAfterCloseTime = () => {
     return date === formattedTodaysDate &&
-      currentTimeAsString() > afternoonCloseTime
+      currentTimeAsString() > latestTimeToBookMorningSession
+      ? true
+      : false;
+  };
+
+  const test = () => {
+    return currentTimeAsString() > latestTimeToBookMorningSession &&
+      currentTimeAsString() < latestTimeToBookAfternoonSession
       ? true
       : false;
   };
@@ -248,6 +265,7 @@ const useConditionalLogic = () => {
     isTodayAndAfterCloseTime,
     isTodayAndIsBetweenOpenAndCloseTime,
     isToday,
+    isTodayAndAfterMorningCloseTime,
     atLeastOneChildHasBeenSelected,
     dateInPastOrNotChosenOrChosenAndBalanceTooLowOrNoSpacesAvailable,
     hasOneChild,
@@ -261,7 +279,7 @@ const useConditionalLogic = () => {
     dateHasEarlyFinishTime,
     formattedTodaysDate,
     requestDateDataError,
-    afternoonCloseTime,
+    latestTimeToBookAfternoonSession,
     morningSessionType,
     morningSessionPrice,
     afternoonShortSessionType,
@@ -272,6 +290,7 @@ const useConditionalLogic = () => {
     morningAndAfternoonShortSessionPrice,
     morningAndAfternoonLongSessionType,
     morningAndAfternoonLongSessionPrice,
+    test,
   };
 };
 

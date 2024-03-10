@@ -7,10 +7,6 @@ export const TABLE_COLUMNS = [
     accessor: "childName",
   },
   {
-    Header: "age",
-    accessor: "age",
-  },
-  {
     Header: "medical info",
     accessor: "medicalInfo",
   },
@@ -21,6 +17,10 @@ export const TABLE_COLUMNS = [
   {
     Header: "additional info",
     accessor: "additionalInfo",
+  },
+  {
+    Header: "age",
+    accessor: "age",
   },
   {
     Header: "parent email",

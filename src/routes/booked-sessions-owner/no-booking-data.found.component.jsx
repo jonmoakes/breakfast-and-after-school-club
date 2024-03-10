@@ -47,7 +47,7 @@ const NoBookingDataFound = ({ data }) => {
         </ParentDiv>
       ) : noBookingDataFoundForCurrentDate() ? (
         <ParentDiv>
-          <BlueH2>no data found for today</BlueH2>
+          <BlueH2>no bookings found for today</BlueH2>
           <Text>
             tap the button below to show bookings for all other dates.
           </Text>

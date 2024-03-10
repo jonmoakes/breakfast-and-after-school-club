@@ -2,7 +2,7 @@ import useConditionalLogic from "../book-a-session-hooks/use-conditional-logic";
 
 import { Text } from "../../../styles/p/p.styles";
 
-const SpacesAvailableInfo = () => {
+const NoSpacesAvailableInfo = () => {
   const { noSpacesAvailableOnChosenDate } = useConditionalLogic();
 
   return (
@@ -20,4 +20,4 @@ const SpacesAvailableInfo = () => {
   );
 };
 
-export default SpacesAvailableInfo;
+export default NoSpacesAvailableInfo;

@@ -137,31 +137,14 @@ const UserBookingsHelp = () => {
               you can sort the table into ascending, descending or unsorted
               orders by tapping on any of the yellow headers.
             </Text>
-            <Text>
-              for example, tapping on the 'sessionName' heading would sort the
-              table into alphabetical order.
-            </Text>
 
             {isBookedSessionsOwnerRoute() ? (
-              <>
-                <Text>
-                  if you tap the button to change the table filtering, please
-                  note that if you have a search term already entered as you
-                  swap, you will have to re enter the search term in order to
-                  trigger the search.
-                </Text>
-
-                <BlueH2>child consents:</BlueH2>
-                <Text>
-                  to view whether a consent has been given for a child or
-                  children in a booking, follow the process for 'viewing a
-                  childs info' above.
-                </Text>
-                <Text>
-                  you will see the consent choice given by the parent for each
-                  child in the booking there.
-                </Text>
-              </>
+              <Text>
+                if you tap the button to change the table filtering, please note
+                that if you have a search term already entered as you swap, you
+                will have to re enter the search term in order to trigger the
+                search.
+              </Text>
             ) : null}
 
             <BlueH2>color coding:</BlueH2>

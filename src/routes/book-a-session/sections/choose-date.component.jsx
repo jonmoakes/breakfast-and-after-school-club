@@ -3,7 +3,7 @@ import useConditionalLogic from "../book-a-session-hooks/use-conditional-logic";
 import useGetDateDataEarlyFinishDatesAndBookingClosingTimes from "../book-a-session-hooks/use-get-date-data-early-finish-dates-and-booking-closing-times";
 
 import DateErrors from "./date-errors.component";
-import SpacesAvailableInfo from "./spaces-available-info.component";
+import NoSpacesAvailableInfo from "./no-spaces-available-info.component";
 
 import { Form, StyledInput, Label } from "../../../styles/form/form.styles";
 import { ParentDiv } from "../../../styles/div/div.styles";
@@ -27,7 +27,7 @@ const ChooseDate = () => {
             />
           </Form>
           <DateErrors />
-          <SpacesAvailableInfo />
+          <NoSpacesAvailableInfo />
         </ParentDiv>
       ) : null}
     </>

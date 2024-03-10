@@ -10,22 +10,35 @@ const OptionsAvailableInfo = () => {
     formattedTodaysDate,
     morningSessionSpaces,
     afternoonSessionSpaces,
+    isTodayAndAfterMorningCloseTime,
+    isTodayAndAfterCloseTime,
   } = useConditionalLogic();
 
   return (
     <>
-      <Text>
-        morning session spaces available:
-        <br />
-        <RedSpan>{morningSessionSpaces}</RedSpan>
-      </Text>
-      <BlackHr />
-      <Text>
-        afternoon session spaces available:
-        <br />
-        <RedSpan>{afternoonSessionSpaces}</RedSpan>
-      </Text>
-      <BlackHr />
+      {!isTodayAndAfterMorningCloseTime() ? (
+        <>
+          {" "}
+          <Text>
+            morning session spaces available:
+            <br />
+            <RedSpan>{morningSessionSpaces}</RedSpan>
+          </Text>
+          <BlackHr />
+        </>
+      ) : null}
+
+      {!isTodayAndAfterCloseTime() ? (
+        <>
+          <Text>
+            afternoon session spaces available:
+            <br />
+            <RedSpan>{afternoonSessionSpaces}</RedSpan>
+          </Text>
+          <BlackHr />
+        </>
+      ) : null}
+
       <Text>
         based on your wallet balance,{" "}
         {date === formattedTodaysDate
