@@ -15,7 +15,7 @@ import {
 } from "../../styles/div/div.styles";
 import { Text } from "../../styles/p/p.styles";
 import { BlueH2 } from "../../styles/h2/h2.styles";
-import { BlackSpan } from "../../styles/span/span.styles";
+import { BlackSpan, RedSpan } from "../../styles/span/span.styles";
 
 import { bookedSessionsOwnerRoute } from "../../strings/routes/routes-strings";
 
@@ -57,6 +57,7 @@ const UserBookingsHelp = () => {
                   please switch to viewing all bookings in order to search for
                   past or future bookings.
                 </Text>
+
                 <BlueH2>viewing a childs info:</BlueH2>
                 <Text>
                   to view the childs name, age, consents choice, medical info,
@@ -69,6 +70,16 @@ const UserBookingsHelp = () => {
                   tapping on it will allow you to see data that the parents have
                   entered in about their child ( or children ) for your
                   reference.
+                </Text>
+
+                <BlueH2>emailing and calling:</BlueH2>
+                <Text>
+                  you can email or call the parent by simply tapping on the
+                  email or phone number you wish to contact.
+                </Text>
+                <Text>
+                  note however, that the calling option my not be available on a
+                  desktop PC / laptop depending on your hardware.
                 </Text>
               </>
             ) : null}
@@ -111,11 +122,18 @@ const UserBookingsHelp = () => {
               of the table headers ( ie a date, a child name, a session type etc
               ).
             </Text>
+            <Text>
+              please note however that{" "}
+              <RedSpan>the email value is not searchable</RedSpan> ( as it is
+              pulled into the app separately from other table data ).
+            </Text>
+
             <BlueH2>searching for a month:</BlueH2>
             <Text>
               please search for the months name - ie 'november' as opposed to
               its numerical value ( 11 ).
             </Text>
+
             <BlueH2>searching for a date and month:</BlueH2>
             <Text>
               if you're searching for a date and month, for example August 12th,
@@ -126,6 +144,7 @@ const UserBookingsHelp = () => {
               you don't need to type the 'th' ie the 20th as this will not show
               up any results, even though you may have a booking on that date.
             </Text>
+
             <BlueH2>searching for a full date:</BlueH2>
             <Text>
               a full date would be for example '03 april 2024' or 12 december

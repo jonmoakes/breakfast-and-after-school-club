@@ -3,7 +3,7 @@ import { account } from "../../utils/appwrite/appwrite-config";
 
 import {
   localhostChooseNewPasswordRoute,
-  chooseNewPasswordRoute,
+  productionChooseNewPasswordRoute,
 } from "../../strings/routes/routes-strings";
 
 export const generateNewPasswordRequestAsync = createAsyncThunk(
@@ -18,7 +18,7 @@ export const generateNewPasswordRequestAsync = createAsyncThunk(
       } else if (import.meta.env.MODE === "production") {
         await account.createRecovery(
           generateNewPasswordRequestEmail,
-          `https://www.breakfast-and-after-school-club.co.uk${chooseNewPasswordRoute}`
+          productionChooseNewPasswordRoute
         );
       }
     } catch (error) {

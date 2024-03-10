@@ -18,7 +18,6 @@ const OptionsAvailableInfo = () => {
     <>
       {!isTodayAndAfterMorningCloseTime() ? (
         <>
-          {" "}
           <Text>
             morning session spaces available:
             <br />

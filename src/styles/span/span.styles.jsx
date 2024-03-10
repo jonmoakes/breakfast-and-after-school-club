@@ -1,4 +1,5 @@
 import styled from "styled-components";
+
 import {
   customBlack,
   customRed,
@@ -171,6 +172,10 @@ export const HorizLine = styled.span`
 
 export const LowercasedSpan = styled.span`
   text-transform: lowercase;
+
+  &.test {
+    text-transform: lowercase;
+  }
 `;
 
 export const BlueLowercasedSpan = styled(LowercasedSpan)`

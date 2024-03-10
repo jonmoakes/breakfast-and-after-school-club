@@ -1,5 +1,4 @@
-import { getUsersEmailOnClick } from "../../functions/get-users-email-on-click";
-import { TableEmailButton } from "../../styles/buttons/buttons.styles";
+import EmailButtonWithTooltip from "../../components/email-button-with-tooltip/email-button-wth-tooltip.component";
 
 export const TABLE_COLUMNS = [
   {
@@ -23,24 +22,10 @@ export const TABLE_COLUMNS = [
     accessor: "age",
   },
   {
-    Header: "parent email",
-    accessor: "parentEmail",
+    Header: `parent email
+    ( tap to email )`,
     Cell: ({ row }) => {
-      const subject = encodeURIComponent(
-        "Message From Breakfast & After School Club"
-      );
-
-      const onEmailClick = async () => {
-        const email = await getUsersEmailOnClick(row);
-        if (!email) return;
-        window.location.href = `mailto:${email}?Subject=${subject}`;
-      };
-
-      return (
-        <TableEmailButton type="button" onClick={onEmailClick}>
-          tap to email
-        </TableEmailButton>
-      );
+      return <EmailButtonWithTooltip {...{ row }} />;
     },
   },
   {

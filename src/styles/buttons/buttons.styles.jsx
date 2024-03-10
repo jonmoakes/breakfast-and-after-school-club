@@ -305,7 +305,7 @@ export const TableEmailButton = styled.button`
   background: none;
   cursor: pointer;
   font-family: inherit;
-  text-transform: capitalize;
+  text-transform: lowercase;
   font-weight: bold;
   font-size: 16px;
   color: ${customBlack};
