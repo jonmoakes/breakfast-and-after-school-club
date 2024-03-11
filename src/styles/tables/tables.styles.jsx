@@ -1,4 +1,5 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
+import { fadeInLeft, fadeInRight } from "react-animations";
 
 import {
   customBlack,
@@ -10,6 +11,9 @@ import {
   customWhite,
   customYellow,
 } from "../colors";
+
+const fadeInLeftAnimation = keyframes`${fadeInLeft}`;
+const fadeInRightAnimation = keyframes`${fadeInRight}`;
 
 export const TableWithStyle = styled.table`
   border-collapse: collapse;
@@ -26,12 +30,15 @@ export const TableWithStyle = styled.table`
     width: auto;
     color: ${customBlack};
     background-color: ${customYellow};
+    animation: 1s ${fadeInLeftAnimation};
   }
 
   tr {
     background-color: ${customGrey};
+    animation: 1s ${fadeInRightAnimation};
     &:nth-child(even) {
       background-color: ${customLightGreen};
+      animation: 1s ${fadeInLeftAnimation};
     }
   }
 
