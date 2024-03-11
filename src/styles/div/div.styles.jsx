@@ -1,5 +1,5 @@
 import styled, { keyframes } from "styled-components";
-import { slideInLeft, bounceInDown } from "react-animations";
+import { slideInLeft, bounceInDown, rollIn } from "react-animations";
 
 import {
   customBlack,
@@ -13,7 +13,7 @@ import {
 
 const slideInLeftAnimation = keyframes`${slideInLeft}`;
 const bounceInDownAnimation = keyframes`${bounceInDown}`;
-
+const rollInAnimation = keyframes`${rollIn}`;
 // Navigation
 export const Nav = styled.div`
   background-color: ${customYellow};
@@ -334,6 +334,7 @@ export const AccordionContent = styled.div`
   padding: 1rem;
   background-color: ${customGrey};
   border-radius: 0px 0px 15px 15px;
+  animation: 1s ${rollInAnimation};
 `;
 
 export const ColumnDiv = styled.div`
