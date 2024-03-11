@@ -26,6 +26,7 @@ import {
   bookedSessionsOwnerRoute,
   bookedSessionsUserRoute,
 } from "../../strings/routes/routes-strings";
+import DownloadPdfTableHelp from "./table-helps/download-pdf-table-help.component";
 
 const UserBookingsHelp = () => {
   const { shouldShowElement } = useSelector(selectShouldShowElementSelectors);
@@ -78,7 +79,12 @@ const UserBookingsHelp = () => {
               <IsBookedSessionsOwnerRouteTableHelp />
             ) : null}
 
-            {isBookedSessionsUserRoute ? <CancelBookingTableHelp /> : null}
+            {isBookedSessionsUserRoute ? (
+              <>
+                <CancelBookingTableHelp />
+                <DownloadPdfTableHelp />
+              </>
+            ) : null}
 
             {!isAllChildrenRoute ? <IsAllChildrenRouteTableHelp /> : null}
 

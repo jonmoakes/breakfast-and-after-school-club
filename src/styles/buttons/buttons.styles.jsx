@@ -144,10 +144,19 @@ export const EditEntryButton = styled(Button)`
 
 export const RemoveEntryButton = styled(EditEntryButton)`
   background-color: ${customRed};
-  animation: 1s ${zoomInRightAnimation};
+  animation: 1s ${zoomInLeftAnimation};
 
   &:hover {
     background-color: ${customRed};
+  }
+`;
+
+export const DownloadPdfButton = styled(EditEntryButton)`
+  background-color: ${customLightGreen};
+  animation: 1s ${zoomInRightAnimation};
+
+  &:hover {
+    background-color: ${customLightGreen};
   }
 `;
 

@@ -20,7 +20,7 @@ import NoBookingsFound from "./no-bookings-found.component";
 import BookingsTableRenderTable from "../../components/tables/bookings-table-render-table.component";
 import TableSearchBox from "../../components/tables/table-search-box.component";
 import TablePagination from "../../components/tables/table-pagination.component";
-import CancelBookingButton from "./cancel-booking-button.component";
+import CancelBookingAndDownloadPdfButtons from "./cancel-booking-and-download-pdf-buttons.component";
 import ShowFetchErrors from "../../components/errors/show-fetch-errors.component";
 
 const BookedSessionsUserTable = () => {
@@ -118,7 +118,7 @@ const BookedSessionsUserTable = () => {
             }}
           />
 
-          <CancelBookingButton {...{ chosenEntry }} />
+          <CancelBookingAndDownloadPdfButtons {...{ chosenEntry }} />
 
           {data.length ? (
             <>
