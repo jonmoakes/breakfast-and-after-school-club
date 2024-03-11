@@ -35,6 +35,7 @@ export const bookedSessionsOwnerSlice = createSlice({
       (state) => state.bookedSessionsOwner || [],
       (state) => state.showAllDates,
       (state) => state.bookedSessionsOwnerError,
+
       (
         bookedSessionsOwnerIsLoading,
         bookedSessionsOwner,

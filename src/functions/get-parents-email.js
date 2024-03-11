@@ -1,7 +1,7 @@
 import { getUserCollectionId } from "../school-codes-list/get-ids-from-school-code/get-user-collection-id";
 import { manageDatabaseDocument } from "../utils/appwrite/appwrite-functions";
 
-export const getUsersEmailOnClick = async (row) => {
+export const getParentsEmail = async (row) => {
   try {
     // parentsUerId is added when we add the sessionBookingData when a user makes a booking.
     // It is the same Id as the user who book the sessions currentUser.id
