@@ -7,22 +7,32 @@ import {
   getRetrievedUserFromDocument,
   createDocumentAndSetUser,
 } from "./functions";
+import {
+  localhostSocialSignInResultRedirectRoute,
+  productionSocialSignInResultRedirectRoute,
+} from "../../strings/routes/routes-strings";
 
 export const getUserOnLoadAsync = createAsyncThunk(
   "user/getUserOnLoad",
   async (_, thunkAPI) => {
     try {
       const schoolCode = localStorage.getItem("schoolCode");
+      const phoneNumber = "";
       const user = await account.get();
       const session = await account.getSession("current");
+
       if (!user || !session || !schoolCode) return;
 
       const retrievedUser = await getRetrievedUserFromDocument(schoolCode);
+      const createdUser = await createDocumentAndSetUser(
+        schoolCode,
+        phoneNumber
+      );
 
       if (retrievedUser) {
         return retrievedUser;
       } else {
-        return null;
+        return createdUser;
       }
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
@@ -90,6 +100,52 @@ export const getUsersWalletBalanceAsync = createAsyncThunk(
       const { walletBalance } = documents[0];
 
       return walletBalance;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
+export const requestFacebookSignInAsync = createAsyncThunk(
+  "user/facebookSignIn",
+  async (_, thunkAPI) => {
+    try {
+      if (import.meta.env.MODE === "development") {
+        account.createOAuth2Session(
+          "facebook",
+          localhostSocialSignInResultRedirectRoute,
+          localhostSocialSignInResultRedirectRoute
+        );
+      } else if (import.meta.env.MODE === "production") {
+        account.createOAuth2Session(
+          "facebook",
+          productionSocialSignInResultRedirectRoute,
+          productionSocialSignInResultRedirectRoute
+        );
+      }
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
+export const requestGoogleSignInAsync = createAsyncThunk(
+  "user/googleSignIn",
+  async (_, thunkAPI) => {
+    try {
+      if (import.meta.env.MODE === "development") {
+        account.createOAuth2Session(
+          "google",
+          localhostSocialSignInResultRedirectRoute,
+          localhostSocialSignInResultRedirectRoute
+        );
+      } else if (import.meta.env.MODE === "production") {
+        account.createOAuth2Session(
+          "google",
+          productionSocialSignInResultRedirectRoute,
+          productionSocialSignInResultRedirectRoute
+        );
+      }
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }

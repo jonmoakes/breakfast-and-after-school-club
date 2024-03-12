@@ -5,10 +5,17 @@ import NetworkError from "../../../components/errors/network-error.component";
 
 import { YellowGreenButton } from "../../../styles/buttons/buttons.styles";
 import { BlackHr } from "../../../styles/hr/hr.styles";
-import { TopMarginDiv } from "../../../styles/div/div.styles";
+import {
+  ForgotPasswordDiv,
+  TopMarginDiv,
+} from "../../../styles/div/div.styles";
 import { WhiteStyledLink } from "../../../styles/link/link.styles";
+import { Text } from "../../../styles/p/p.styles";
 
-import { forgotPasswordRequestRoute } from "../../../strings/routes/routes-strings";
+import {
+  forgotPasswordRequestRoute,
+  socialSignInRoute,
+} from "../../../strings/routes/routes-strings";
 
 const SignInButton = () => {
   const { handleSignInFormSubmit } = useHandleSignInFormSubmit();
@@ -22,10 +29,15 @@ const SignInButton = () => {
           <YellowGreenButton type="button" onClick={handleSignInFormSubmit}>
             Sign In
           </YellowGreenButton>
-
-          <WhiteStyledLink to={forgotPasswordRequestRoute}>
-            forgot password?
+          <Text>or:</Text>
+          <WhiteStyledLink to={socialSignInRoute}>
+            <YellowGreenButton>sign in with social</YellowGreenButton>
           </WhiteStyledLink>
+          <ForgotPasswordDiv>
+            <WhiteStyledLink to={forgotPasswordRequestRoute}>
+              forgot password?
+            </WhiteStyledLink>
+          </ForgotPasswordDiv>
         </TopMarginDiv>
       ) : (
         <NetworkError />

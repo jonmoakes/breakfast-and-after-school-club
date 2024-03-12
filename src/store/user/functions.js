@@ -4,9 +4,11 @@ import {
   manageDatabaseDocument,
 } from "../../utils/appwrite/appwrite-functions/";
 import { getSchoolDatabaseAndUserCollectionId } from "../../school-codes-list/get-ids-from-school-code/get-school-database-and-user-collection-id";
+import { setEnvironmentVariables } from "../../school-codes-list/get-ids-from-school-code/set-environment-variables";
 
 export const getRetrievedUserFromDocument = async (schoolCode) => {
   const user = await account.get();
+
   const { databaseId, collectionId } =
     getSchoolDatabaseAndUserCollectionId(schoolCode);
 
@@ -23,7 +25,6 @@ export const getRetrievedUserFromDocument = async (schoolCode) => {
   // number of documents found in database and the document.
   //Should only be 1 as only 1 should match the user.$id
   const { total, documents } = userDocument;
-
   if (total && documents.length) {
     const {
       id,
@@ -90,4 +91,9 @@ export const createDocumentAndSetUser = async (schoolCode, phoneNumber) => {
   } else {
     return null;
   }
+};
+
+export const getSchoolCodeAndSetEnvVariables = (state) => {
+  const schoolCode = localStorage.getItem("schoolCode");
+  state.currentUserEnvironmentVariables = setEnvironmentVariables(schoolCode);
 };

@@ -507,3 +507,21 @@ export const NoSearchResultDiv = styled.div`
     margin: 30px auto -10px auto;
   }
 `;
+
+export const ForgotPasswordDiv = styled.div`
+  margin-top: 20px;
+`;
+
+export const SocialLoginsDiv = styled.div`
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin: -20px auto 40px auto;
+
+  @media screen and (max-width: 280px) {
+    flex-direction: column;
+  }
+`;

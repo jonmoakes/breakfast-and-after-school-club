@@ -23,6 +23,7 @@ export const signInFormSlice = createSlice({
   selectors: {
     selectSignInFormSelectors: createSelector(
       (state) => state.signInFormDetails,
+
       (signInFormDetails) => {
         return {
           signInFormDetails,

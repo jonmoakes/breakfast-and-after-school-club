@@ -36,6 +36,11 @@ const IsBookedSessionsOwnerRouteTableHelp = () => (
       number you wish to contact.
     </Text>
     <Text>
+      in the phone number column, if it says 'not available', this means that
+      the user will have signed up through either google or facebook and would
+      not have had to enter in their phone number.
+    </Text>
+    <Text>
       note however, that the calling option my not be available on a desktop PC
       / laptop depending on your hardware.
     </Text>
