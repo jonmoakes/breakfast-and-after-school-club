@@ -38,8 +38,8 @@ import {
   productionChooseNewPasswordRoute,
   allChildrenRoute,
   socialSignInRoute,
+  localhostSocialSignInResultRoute,
   socialSignInResultRoute,
-  localhostSocialSignInResultRedirectRoute,
 } from "./strings/routes/routes-strings";
 
 const Navigation = lazy(() =>
@@ -129,10 +129,7 @@ const App = () => {
             <Route path={signInRoute} element={<SignIn />} />
             <Route path={socialSignInRoute} element={<SocialSignIn />} />
             <Route
-              path={
-                socialSignInResultRoute ||
-                localhostSocialSignInResultRedirectRoute
-              }
+              path={socialSignInResultRoute || localhostSocialSignInResultRoute}
               element={<SocialSignInResult />}
             />
             <Route path={contactRoute} element={<Contact />} />

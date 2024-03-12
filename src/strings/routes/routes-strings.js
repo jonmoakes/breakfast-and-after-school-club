@@ -27,8 +27,12 @@ export const cancelBookingRoute = "/cancel-booking";
 export const aboutRoute = "/about";
 export const allChildrenRoute = "/children-list";
 export const socialSignInRoute = "/social-sign-in";
-export const localhostSocialSignInResultRedirectRoute =
+// export const localhostSocialSignInResultRedirectRoute =
+//   "http://localhost:8888/social-sign-in-result";
+// export const productionSocialSignInResultRedirectRoute =
+//   "https://www.breakfast-and-after-school-club.co.uk/social-sign-in-result";
+// export const socialSignInResultRoute = "/social-sign-in-result";
+
+export const localhostSocialSignInResultRoute =
   "http://localhost:8888/social-sign-in-result";
-export const productionSocialSignInResultRedirectRoute =
-  "https://www.breakfast-and-after-school-club.co.uk/social-sign-in-result";
 export const socialSignInResultRoute = "/social-sign-in-result";

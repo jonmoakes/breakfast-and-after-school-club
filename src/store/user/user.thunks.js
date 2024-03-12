@@ -8,8 +8,8 @@ import {
   createDocumentAndSetUser,
 } from "./functions";
 import {
-  localhostSocialSignInResultRedirectRoute,
-  productionSocialSignInResultRedirectRoute,
+  localhostSocialSignInResultRoute,
+  socialSignInResultRoute,
 } from "../../strings/routes/routes-strings";
 
 export const getUserOnLoadAsync = createAsyncThunk(
@@ -113,14 +113,14 @@ export const requestFacebookSignInAsync = createAsyncThunk(
       if (import.meta.env.MODE === "development") {
         account.createOAuth2Session(
           "facebook",
-          localhostSocialSignInResultRedirectRoute,
-          localhostSocialSignInResultRedirectRoute
+          localhostSocialSignInResultRoute,
+          localhostSocialSignInResultRoute
         );
       } else if (import.meta.env.MODE === "production") {
         account.createOAuth2Session(
           "facebook",
-          productionSocialSignInResultRedirectRoute,
-          productionSocialSignInResultRedirectRoute
+          `https://www.breakfast-and-after-school-club.co.uk${socialSignInResultRoute}`,
+          `https://www.breakfast-and-after-school-club.co.uk${socialSignInResultRoute}`
         );
       }
     } catch (error) {
@@ -136,14 +136,14 @@ export const requestGoogleSignInAsync = createAsyncThunk(
       if (import.meta.env.MODE === "development") {
         account.createOAuth2Session(
           "google",
-          localhostSocialSignInResultRedirectRoute,
-          localhostSocialSignInResultRedirectRoute
+          localhostSocialSignInResultRoute,
+          localhostSocialSignInResultRoute
         );
       } else if (import.meta.env.MODE === "production") {
         account.createOAuth2Session(
           "google",
-          productionSocialSignInResultRedirectRoute,
-          productionSocialSignInResultRedirectRoute
+          `https://www.breakfast-and-after-school-club.co.uk${socialSignInResultRoute}`,
+          `https://www.breakfast-and-after-school-club.co.uk${socialSignInResultRoute}`
         );
       }
     } catch (error) {
