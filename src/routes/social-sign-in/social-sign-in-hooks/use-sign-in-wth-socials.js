@@ -61,13 +61,7 @@ const useSignInWithSocials = () => {
       );
     } else {
       localStorage.setItem("schoolCode", schoolCode);
-      const retrievedSchoolCode = localStorage.getItem("schoolCode");
-
-      if (retrievedSchoolCode) {
-        dispatch(requestGoogleSignInAsync());
-      } else {
-        alert("no school code");
-      }
+      dispatch(requestGoogleSignInAsync());
     }
   };
 
