@@ -2,14 +2,14 @@ import { getUserCollectionId } from "../school-codes-list/get-ids-from-school-co
 import { manageDatabaseDocument } from "../utils/appwrite/appwrite-functions";
 
 const getUserPhoneOrEmail = async (row, propertyToExtract) => {
-  // parentsUerId is added when we add the sessionBookingData when a user makes a booking.
+  // parentsUserId is added when we add the sessionBookingData when a user makes a booking.
   // It is the same Id as the user who book the sessions currentUser.id
   // Therefore, we can use this to search in that particular users document and extract their email
 
   const { parentsUserId, $databaseId } = row.original;
 
   const databaseId = $databaseId;
-  //App owner will be logged in, so they will have a school code. From this we can get their usersCollectionId.
+  //App user will be logged in, so they will have a school code. From this we can get their usersCollectionId.
   const collectionId = getUserCollectionId();
   const documentId = parentsUserId;
 

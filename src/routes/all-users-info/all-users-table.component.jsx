@@ -9,33 +9,33 @@ import {
   useColumnOrder,
 } from "react-table";
 
-import useAllChildrenListener from "./all-children-hooks/use-all-children-listener";
+import useAllUsersListener from "./all-users-hooks/use-all-users-listener";
 import useIsOnline from "../../hooks/use-is-online";
 
-import { selectGetAllChildrenSelectors } from "../../store/get-all-children/get-all-children.slice";
+import { selectGetAllUsersSelectors } from "../../store/get-all-users/get-all-users.slice";
 
 import { TABLE_COLUMNS } from "./table-columns";
 import ShowFetchErrors from "../../components/errors/show-fetch-errors.component";
-import NoChildrenFound from "./no-children-found.component";
+import NoUsersFound from "./no-users-found.component";
 import DefaultTable from "../../components/tables/default-table.component";
 import NetworkError from "../../components/errors/network-error.component";
 import TablePagination from "../../components/tables/table-pagination.component";
 import AllUsersAllChildrenSearchBox from "../../components/tables/all-users-all-children-search-box.component";
 
-const AllChildrenTable = () => {
-  useAllChildrenListener();
+const AllUsersTable = () => {
+  useAllUsersListener();
   const { isOnline } = useIsOnline();
 
-  let { allChildren } = useSelector(selectGetAllChildrenSelectors);
-  const { getAllChildrenError } = useSelector(selectGetAllChildrenSelectors);
+  let { allUsers } = useSelector(selectGetAllUsersSelectors);
+  const { getAllUsersError } = useSelector(selectGetAllUsersSelectors);
 
   const columns = useMemo(() => TABLE_COLUMNS, []);
   const data = useMemo(
-    () => (allChildren !== undefined ? allChildren : []),
-    [allChildren]
+    () => (allUsers !== undefined ? allUsers : []),
+    [allUsers]
   );
   const initialState = useMemo(
-    () => ({ sortBy: [{ id: "childName", desc: false }], pageSize: 30 }),
+    () => ({ sortBy: [{ id: "name", desc: false }], pageSize: 30 }),
     []
   );
   const {
@@ -78,11 +78,11 @@ const AllChildrenTable = () => {
     <>
       {!isOnline ? (
         <NetworkError />
-      ) : getAllChildrenError ? (
+      ) : getAllUsersError ? (
         <ShowFetchErrors />
       ) : (
         <>
-          <NoChildrenFound {...{ data }} />
+          <NoUsersFound {...{ data }} />
 
           <AllUsersAllChildrenSearchBox
             {...{
@@ -130,4 +130,4 @@ const AllChildrenTable = () => {
   );
 };
 
-export default AllChildrenTable;
+export default AllUsersTable;

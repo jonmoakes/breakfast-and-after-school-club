@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useAsyncDebounce } from "react-table";
+import { useLocation } from "react-router-dom";
 
 import Loader from "../../components/loader/loader.component";
 import NoSearchResult from "../../components/tables/no-search-result.component";
@@ -7,8 +8,9 @@ import NoSearchResult from "../../components/tables/no-search-result.component";
 import { ClearSearchButton } from "../../styles/buttons/buttons.styles";
 import { TableSearchDiv } from "../../styles/div/div.styles";
 import { SearchInput } from "../../styles/form/form.styles";
+import { allUsersRoute } from "../../strings/routes/routes-strings";
 
-const AllChildrenSearchBox = ({
+const AllUsersAllChildrenSearchBox = ({
   rows,
   data,
   globalFilter,
@@ -16,6 +18,9 @@ const AllChildrenSearchBox = ({
 }) => {
   const [value, setValue] = useState(globalFilter);
   const [isSearching, setIsSearching] = useState(false);
+
+  const location = useLocation();
+  const path = location.pathname;
 
   const onChange = useAsyncDebounce((value) => {
     setGlobalFilter(value || undefined);
@@ -31,10 +36,12 @@ const AllChildrenSearchBox = ({
     <>
       {isSearching && <Loader />}
       {data.length ? (
-        <TableSearchDiv className="all-children">
+        <TableSearchDiv className="all-users-all-children">
           <SearchInput
             type="search"
-            placeholder="Search Children..."
+            placeholder={
+              path === allUsersRoute ? "Search Users" : "Search Children"
+            }
             onChange={(e) => {
               setIsSearching(true);
               setValue(e.target.value);
@@ -54,4 +61,4 @@ const AllChildrenSearchBox = ({
   );
 };
 
-export default AllChildrenSearchBox;
+export default AllUsersAllChildrenSearchBox;

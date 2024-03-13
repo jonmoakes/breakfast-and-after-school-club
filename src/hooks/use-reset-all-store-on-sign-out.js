@@ -26,6 +26,7 @@ import { resetWalletFundsToAddState } from "../store/wallet-funds-to-add/wallet-
 import { resetGenerateNewPasswordRequestState } from "../store/generate-new-password-request/generate-new-password-request.slice";
 import { resetChooseNewPasswordState } from "../store/choose-new-password/choose-new-password.slice";
 import { resetGetAllChildrenState } from "../store/get-all-children/get-all-children.slice";
+import { resetGetAllUsersState } from "../store/get-all-users/get-all-users.slice";
 
 const useResetAllStoreOnSignOut = () => {
   const dispatch = useDispatch();
@@ -57,6 +58,7 @@ const useResetAllStoreOnSignOut = () => {
     dispatch(resetWalletFundsToAddState());
     dispatch(resetChooseNewPasswordState());
     dispatch(resetGetAllChildrenState());
+    dispatch(resetGetAllUsersState());
   };
 
   return { resetAllStoreOnSignOut };

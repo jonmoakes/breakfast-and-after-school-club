@@ -5,6 +5,14 @@ export const Text = styled.p`
   font-size: 18px;
   color: ${customBlack};
 
+  &.right-margin {
+    margin-right: 10px;
+  }
+
+  &.lowercased {
+    text-transform: lowercase;
+  }
+
   @media screen and (max-width: 450px) {
     font-size: 16px;
   }

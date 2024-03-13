@@ -187,6 +187,10 @@ export const ErrorDiv = styled.div`
   box-shadow: 6px 6px 15px ${customBlack};
   padding: 0px 10px;
 
+  &.fetch-error {
+    margin: 20px auto;
+  }
+
   @media screen and (max-width: 1366px) {
     box-shadow: none;
   }
@@ -449,7 +453,7 @@ export const TableSearchDiv = styled.div`
   margin: 0px auto -30px auto;
   animation: 1s ${slideInLeftAnimation};
 
-  &.all-children {
+  &.all-users-all-children {
     margin: 0px auto 0px auto;
 
     @media screen and (max-width: 450px) {
@@ -538,4 +542,10 @@ export const TableCellErrorDiv = styled.div`
   height: auto;
   margin: 0 auto;
   animation: 1s ${rotateInDownRightAnimation};
+`;
+
+export const InLineDiv = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;

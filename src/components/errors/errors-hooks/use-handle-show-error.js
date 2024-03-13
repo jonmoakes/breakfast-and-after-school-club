@@ -8,6 +8,7 @@ import { selectBookedSessionsUserSelectors } from "../../../store/booked-session
 import { selectBookedSessionsOwnerSelectors } from "../../../store/booked-sessions-owner/booked-sessions-owner.slice";
 import { selectHandlePaymentSelectors } from "../../../store/handle-payment/handle-payment.slice";
 import { selectGetAllChildrenSelectors } from "../../../store/get-all-children/get-all-children.slice";
+import { selectGetAllUsersSelectors } from "../../../store/get-all-users/get-all-users.slice";
 
 import {
   addFundsRoute,
@@ -16,6 +17,7 @@ import {
   bookedSessionsUserRoute,
   bookedSessionsOwnerRoute,
   allChildrenRoute,
+  allUsersRoute,
 } from "../../../strings/routes/routes-strings";
 
 const useHandleShowError = () => {
@@ -34,6 +36,7 @@ const useHandleShowError = () => {
   );
   const { handlePaymentError } = useSelector(selectHandlePaymentSelectors);
   const { getAllChildrenError } = useSelector(selectGetAllChildrenSelectors);
+  const { getAllUsersError } = useSelector(selectGetAllUsersSelectors);
 
   const location = useLocation();
   const path = location.pathname;
@@ -47,6 +50,7 @@ const useHandleShowError = () => {
       return "failed to fetch your customer bookings.";
     if (handlePaymentError) return "failed to contact payment processor.";
     if (getAllChildrenError) return "failed to fetch all children";
+    if (getAllUsersError) return "failed to fetch users";
   };
 
   const errorToDisplay = () => {
@@ -59,6 +63,7 @@ const useHandleShowError = () => {
       handlePaymentError,
       bookedSessionsUserError,
       getAllChildrenError,
+      getAllUsersError,
     ];
 
     return errors.find((error) => error !== null);
@@ -77,6 +82,8 @@ const useHandleShowError = () => {
         return "cancel your booking";
       case allChildrenRoute:
         return "display the list of children";
+      case allUsersRoute:
+        return "display the list of users";
       default:
         return "";
     }

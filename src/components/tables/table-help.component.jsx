@@ -25,6 +25,7 @@ import { RedSpan } from "../../styles/span/span.styles";
 
 import {
   allChildrenRoute,
+  allUsersRoute,
   bookedSessionsOwnerRoute,
   bookedSessionsUserRoute,
 } from "../../strings/routes/routes-strings";
@@ -40,6 +41,7 @@ const UserBookingsHelp = () => {
 
   const isAllChildrenRoute = path === allChildrenRoute && true;
   const isBookedSessionsUserRoute = path === bookedSessionsUserRoute && true;
+  const isAllUsersRoute = path === allUsersRoute && true;
 
   return (
     <Accordion className="table">
@@ -62,7 +64,7 @@ const UserBookingsHelp = () => {
               you can search for anything that will have been entered into any
               of the table headers ( ie child name etc ).
             </Text>
-            {!isBookedSessionsUserRoute ? (
+            {!isBookedSessionsUserRoute && !isAllUsersRoute ? (
               <>
                 <Text>
                   please note however that the{" "}
@@ -87,6 +89,22 @@ const UserBookingsHelp = () => {
               you can sort the table into ascending, descending or unsorted
               order by tapping on any of the yellow headers.
             </Text>
+
+            {isAllUsersRoute ? (
+              <>
+                <BlueH2>viewing entire email address:</BlueH2>
+                <Text>
+                  some email addresses are long. To keep the table cells as
+                  small as possible, the email address is truncated after 10
+                  letters. if you're on a desktop / laptop, hover over the text
+                  to display the full email address.
+                </Text>
+                <Text>
+                  on mobiles / tablets, tap on the email icon to open your email
+                  client, which will then display the full email address.
+                </Text>
+              </>
+            ) : null}
 
             {isBookedSessionsOwnerRoute ? (
               <IsBookedSessionsOwnerRouteTableHelp />

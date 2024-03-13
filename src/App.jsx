@@ -40,6 +40,7 @@ import {
   socialSignInRoute,
   localhostSocialSignInResultRoute,
   socialSignInResultRoute,
+  allUsersRoute,
 } from "./strings/routes/routes-strings";
 
 const Navigation = lazy(() =>
@@ -75,6 +76,9 @@ const ChildInfo = lazy(() =>
 );
 const AllChildrenInfo = lazy(() =>
   import("./routes/all-children-info/all-children-info.component")
+);
+const AllUsersInfo = lazy(() =>
+  import("./routes/all-users-info/all-users-info.component")
 );
 const AddChildInfo = lazy(() =>
   import("./routes/add-child-info/add-child-info.component")
@@ -155,6 +159,14 @@ const App = () => {
                 element={
                   currentUser && currentUser.id === appOwnerId ? (
                     <AllChildrenInfo />
+                  ) : null
+                }
+              />
+              <Route
+                path={allUsersRoute}
+                element={
+                  currentUser && currentUser.id === appOwnerId ? (
+                    <AllUsersInfo />
                   ) : null
                 }
               />

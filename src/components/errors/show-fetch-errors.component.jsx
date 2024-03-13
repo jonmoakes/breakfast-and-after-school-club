@@ -22,7 +22,7 @@ const ShowFetchErrors = () => {
             order to <BlackSpan>{showTailInfoToUser()}</BlackSpan>
             ...
           </Text>
-          <ErrorDiv>
+          <ErrorDiv className="fetch-error">
             <Text>{showErrorHeading()}</Text>
             <Text>
               error received:
