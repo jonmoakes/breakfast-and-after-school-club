@@ -21,7 +21,7 @@ const ChooseSessions = () => {
     dateInPastOrNotChosenOrChosenAndBalanceTooLowOrNoSpacesAvailable,
     onlyMorningSessionsAvailable,
     notTodaysOrIsTodayAndBeforeMorningCloseTime,
-    isTodayAndAfterCloseTime,
+    isTodayAndAfterAfternoonSessionCloseTime,
     isTodayAndIsBetweenOpenAndCloseTime,
     atLeastOneChildHasBeenSelected,
     hasOneChild,
@@ -33,7 +33,7 @@ const ChooseSessions = () => {
     <>
       <ChildCheckbox />
 
-      {dateInPastOrNotChosenOrChosenAndBalanceTooLowOrNoSpacesAvailable() ? null : isTodayAndAfterCloseTime() ? (
+      {dateInPastOrNotChosenOrChosenAndBalanceTooLowOrNoSpacesAvailable() ? null : isTodayAndAfterAfternoonSessionCloseTime() ? (
         <ParentDiv>
           <Text>
             sorry, the latest time for booking the afternoon session on the

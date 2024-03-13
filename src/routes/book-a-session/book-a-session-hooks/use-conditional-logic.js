@@ -157,10 +157,6 @@ const useConditionalLogic = () => {
         : false;
     };
 
-  const isToday = () => {
-    return formattedTodaysDate === chosenDate ? true : false;
-  };
-
   const isTodayAndIsBetweenOpenAndCloseTime = () => {
     return date === formattedTodaysDate &&
       currentTimeAsString() > latestTimeToBookMorningSession &&
@@ -185,16 +181,9 @@ const useConditionalLogic = () => {
       : false;
   };
 
-  const isTodayAndAfterCloseTime = () => {
+  const isTodayAndAfterAfternoonSessionCloseTime = () => {
     return date === formattedTodaysDate &&
-      currentTimeAsString() > latestTimeToBookMorningSession
-      ? true
-      : false;
-  };
-
-  const test = () => {
-    return currentTimeAsString() > latestTimeToBookMorningSession &&
-      currentTimeAsString() < latestTimeToBookAfternoonSession
+      currentTimeAsString() > latestTimeToBookAfternoonSession
       ? true
       : false;
   };
@@ -262,9 +251,8 @@ const useConditionalLogic = () => {
     noChildrenAddedYet,
     hasInsufficientFunds,
     notTodaysOrIsTodayAndBeforeMorningCloseTime,
-    isTodayAndAfterCloseTime,
+    isTodayAndAfterAfternoonSessionCloseTime,
     isTodayAndIsBetweenOpenAndCloseTime,
-    isToday,
     isTodayAndAfterMorningCloseTime,
     atLeastOneChildHasBeenSelected,
     dateInPastOrNotChosenOrChosenAndBalanceTooLowOrNoSpacesAvailable,
@@ -290,7 +278,6 @@ const useConditionalLogic = () => {
     morningAndAfternoonShortSessionPrice,
     morningAndAfternoonLongSessionType,
     morningAndAfternoonLongSessionPrice,
-    test,
   };
 };
 

@@ -11,7 +11,7 @@ const OptionsAvailableInfo = () => {
     morningSessionSpaces,
     afternoonSessionSpaces,
     isTodayAndAfterMorningCloseTime,
-    isTodayAndAfterCloseTime,
+    isTodayAndAfterAfternoonSessionCloseTime,
   } = useConditionalLogic();
 
   return (
@@ -27,7 +27,7 @@ const OptionsAvailableInfo = () => {
         </>
       ) : null}
 
-      {!isTodayAndAfterCloseTime() ? (
+      {!isTodayAndAfterAfternoonSessionCloseTime() ? (
         <>
           <Text>
             afternoon session spaces available:

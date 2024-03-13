@@ -12,7 +12,7 @@ import { OptionsForm } from "../../../styles/form/form.styles";
 const ChildCheckbox = () => {
   const {
     dateInPastOrNotChosenOrChosenAndBalanceTooLowOrNoSpacesAvailable,
-    isTodayAndAfterCloseTime,
+    isTodayAndAfterAfternoonSessionCloseTime,
     hasOneChild,
   } = useConditionalLogic();
 
@@ -27,7 +27,7 @@ const ChildCheckbox = () => {
   return (
     <>
       {dateInPastOrNotChosenOrChosenAndBalanceTooLowOrNoSpacesAvailable() ||
-      isTodayAndAfterCloseTime() ||
+      isTodayAndAfterAfternoonSessionCloseTime() ||
       hasOneChild() ? null : (
         <>
           <ParentDiv>
