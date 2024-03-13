@@ -34,6 +34,7 @@ export const getRetrievedUserFromDocument = async (schoolCode) => {
       createdAt,
       walletBalance,
       schoolCode,
+      provider,
     } = documents[0];
 
     return {
@@ -44,6 +45,7 @@ export const getRetrievedUserFromDocument = async (schoolCode) => {
       phoneNumber,
       walletBalance,
       schoolCode,
+      provider,
     };
   } else {
     return null;
@@ -52,6 +54,8 @@ export const getRetrievedUserFromDocument = async (schoolCode) => {
 
 export const createDocumentAndSetUser = async (schoolCode, phoneNumber) => {
   const user = await account.get();
+  const session = await account.getSession("current");
+
   const { databaseId, collectionId } =
     getSchoolDatabaseAndUserCollectionId(schoolCode);
 
@@ -77,6 +81,7 @@ export const createDocumentAndSetUser = async (schoolCode, phoneNumber) => {
       phoneNumber,
       walletBalance: 0,
       schoolCode,
+      provider: session.provider,
     };
 
     await manageDatabaseDocument(

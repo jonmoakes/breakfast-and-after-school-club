@@ -28,17 +28,12 @@ const useNavigateToRoute = () => {
     },
     {
       id: 3,
-      text: " update email",
-      onClick: () => navigate(updateEmailRoute),
-    },
-    {
-      id: 4,
       text: " update password",
       onClick: () => navigate(updatePasswordRoute),
     },
   ];
 
-  const notAppOwnerButtons = [
+  const notAppOwnerEmailProviderButtons = [
     {
       id: 1,
       text: "view your bookings",
@@ -76,9 +71,38 @@ const useNavigateToRoute = () => {
     },
   ];
 
+  const notAppOwnerAuthProviderButtons = [
+    {
+      id: 1,
+      text: "view your bookings",
+      onClick: () => navigate(bookedSessionsUserRoute),
+    },
+    {
+      id: 2,
+      text: "book a session",
+      onClick: () => navigate(bookSessionRoute),
+    },
+    {
+      id: 3,
+      text: "add funds",
+      onClick: () => navigate(addFundsRoute),
+    },
+    {
+      id: 4,
+      text: "child info",
+      onClick: () => navigate(childInfoRoute),
+    },
+    {
+      id: 5,
+      text: " close account",
+      onClick: () => navigate(closeAccountRoute),
+    },
+  ];
+
   return {
-    notAppOwnerButtons,
     appOwnerButtons,
+    notAppOwnerEmailProviderButtons,
+    notAppOwnerAuthProviderButtons,
   };
 };
 
