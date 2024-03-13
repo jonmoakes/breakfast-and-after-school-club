@@ -8,6 +8,10 @@ export const TABLE_COLUMNS = [
     accessor: "age",
   },
   {
+    Header: "consent given",
+    accessor: "consent",
+  },
+  {
     Header: "medical info",
     accessor: "medicalInfo",
   },

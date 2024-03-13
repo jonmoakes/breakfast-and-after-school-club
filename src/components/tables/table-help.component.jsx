@@ -63,12 +63,23 @@ const UserBookingsHelp = () => {
               of the table headers ( ie child name etc ).
             </Text>
             {!isBookedSessionsUserRoute ? (
-              <Text>
-                please note however that the{" "}
-                <RedSpan>email And phone number</RedSpan> values are not
-                searchable ( as they are pulled into the app separately from
-                other table data for data protection reasons ).
-              </Text>
+              <>
+                <Text>
+                  please note however that the{" "}
+                  <RedSpan>email And phone number</RedSpan> values are not
+                  searchable ( as they are pulled into the app separately from
+                  other table data for data protection reasons ).
+                </Text>
+                <Text>
+                  instead, please search for the parent name or child name and
+                  then the table will give you a list of matching documents.
+                </Text>
+                <Text>
+                  you can then get the email or phone numbers from there. Please
+                  see the 'emailing a user' and 'calling a user' help sections
+                  below for more information.
+                </Text>
+              </>
             ) : null}
 
             <BlueH2>sorting:</BlueH2>

@@ -5,13 +5,13 @@ const EmailAndCallTableHelp = () => (
   <>
     <BlueH2>emailing a user:</BlueH2>
     <Text>
-      you can email the parent by simply tapping on 'tap to email' in whichever
-      row you wish
+      you can email the parent by simply tapping on the envelope icon in
+      whichever row you wish.
     </Text>
 
     <BlueH2>calling a user:</BlueH2>
     <Text>
-      in the phone number column, you can tap on the phone number to initiate a
+      in the phone number column, you can tap on the phone icon to initiate a
       call.
     </Text>
     <Text>
@@ -28,7 +28,7 @@ const EmailAndCallTableHelp = () => (
       parent for it.
     </Text>
     <Text>
-      once you have the number, sign in to your databse and navigate to the
+      once you have the number, sign in to your database and navigate to the
       'users' collection.
     </Text>
     <Text>find the name of the parent and tap on their row.</Text>
@@ -39,8 +39,9 @@ const EmailAndCallTableHelp = () => (
     <Text>then tap 'update'.</Text>
     <Text>
       now when you next load the table and tap 'request number', the app will
-      pull in the parents number from the database and initiate a call to it.
+      pull in the parents number from the database and show the phone icon.
     </Text>
+    <Text>you can then tap on the phone icon to initiate the call.</Text>
     <Text>
       please note however, that the calling option my not be available on a
       desktop PC / laptop depending on your hardware.

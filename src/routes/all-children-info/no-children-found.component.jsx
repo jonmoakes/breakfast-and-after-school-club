@@ -10,12 +10,14 @@ const NoChildrenFound = ({ data }) => {
   const { allChildren } = useSelector(selectGetAllChildrenSelectors);
 
   const noChildrenFound = () => {
-    return !allChildren.length && !data.length ? true : false;
+    return allChildren !== undefined && !allChildren.length && !data.length
+      ? true
+      : false;
   };
 
   return (
     <>
-      {noChildrenFound() ? (
+      {noChildrenFound() || allChildren === undefined ? (
         <ParentDiv>
           <BlueH2>no children found.</BlueH2>
           <Text>no users have added any children yet.</Text>
