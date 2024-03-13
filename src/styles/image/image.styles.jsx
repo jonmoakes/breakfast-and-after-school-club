@@ -1,10 +1,11 @@
 import styled, { keyframes } from "styled-components";
-import { rotateInDownLeft, rotateInDownRight } from "react-animations";
+import { rotateInDownLeft, rotateInDownRight, pulse } from "react-animations";
 
-import { customBlack } from "../colors";
+import { customBlack, customWhite } from "../colors";
 
 const rotateInLeftAnimation = keyframes`${rotateInDownLeft}`;
 const rotateInRightAnimation = keyframes`${rotateInDownRight}`;
+const PulseAnimation = keyframes`${pulse}`;
 
 export const StyledImage = styled.img`
   width: 90%;
@@ -81,5 +82,31 @@ export const SocialImage = styled.img`
 
   @media screen and (max-width: 280px) {
     margin: 10px auto;
+  }
+`;
+
+export const IconImage = styled.img`
+  height: 40px;
+  width: 40px;
+  transition: all 1s ease-in-out;
+  animation: infinite 1s ${PulseAnimation};
+
+  &:hover {
+    cursor: pointer;
+  }
+
+  &.email {
+    height: 38px;
+    width: 38px;
+
+    @media screen and (max-width: 450px) {
+      height: 28px;
+      width: 28px;
+    }
+  }
+
+  @media screen and (max-width: 450px) {
+    height: 30px;
+    width: 30px;
   }
 `;

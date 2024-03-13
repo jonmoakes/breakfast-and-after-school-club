@@ -1,5 +1,6 @@
 import { TableDiv } from "../../styles/div/div.styles";
 import { TableWithStyle } from "../../styles/tables/tables.styles";
+import { BlackSpan } from "../../styles/span/span.styles";
 
 const DefaultTable = ({
   headerGroups,
@@ -17,13 +18,13 @@ const DefaultTable = ({
               {headerGroup.headers.map((column) => (
                 <th {...column.getHeaderProps(column.getSortByToggleProps())}>
                   {column.render("Header")}
-                  <span>
+                  <BlackSpan>
                     {column.isSorted
                       ? column.isSortedDesc
                         ? " ⬇️"
                         : " ⬆️"
                       : ""}
-                  </span>
+                  </BlackSpan>
                 </th>
               ))}
             </tr>

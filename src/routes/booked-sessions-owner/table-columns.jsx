@@ -1,7 +1,7 @@
-import { TableEmailButton } from "../../styles/buttons/buttons.styles";
+import UsersPhoneNumberCell from "../../components/tables/users-phone-number-cell.component";
+import UsersEmailCell from "../../components/tables/user-email-cell.component";
 
 import { getSessionTypeString } from "../../functions/get-session-type-string";
-import { getParentsEmail } from "../../functions/get-parents-email";
 
 export const TABLE_COLUMNS = [
   {
@@ -27,29 +27,14 @@ export const TABLE_COLUMNS = [
   {
     Header: "parent email",
     Cell: ({ row }) => {
-      const subject = encodeURIComponent(
-        "Message From Breakfast & After School Club"
-      );
-
-      const onEmailClick = async () => {
-        const email = await getParentsEmail(row);
-        if (!email) return;
-        window.location.href = `mailto:${email}?Subject=${subject}`;
-      };
-
-      return (
-        <TableEmailButton type="button" onClick={onEmailClick}>
-          tap to email
-        </TableEmailButton>
-      );
+      return <UsersEmailCell {...{ row }} />;
     },
   },
   {
-    Header: `Parent Phone
-    ( tap to call )`,
+    Header: "Parent Phone",
     accessor: "parentPhoneNumber",
-    Cell: ({ value }) => {
-      return <a href={`tel:${value}`}>{value}</a>;
+    Cell: ({ value, row }) => {
+      return <UsersPhoneNumberCell {...{ value, row }} />;
     },
   },
 ];

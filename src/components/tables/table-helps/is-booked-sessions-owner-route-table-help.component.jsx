@@ -3,6 +3,11 @@ import { Text } from "../../../styles/p/p.styles";
 
 const IsBookedSessionsOwnerRouteTableHelp = () => (
   <>
+    <Text>
+      if you tap the button to change the table filtering, please note that if
+      you have a search term already entered as you swap, you will have to re
+      enter the search term in order to trigger the search.
+    </Text>
     <BlueH2>toggling current day or all time bookings:</BlueH2>
     <Text>
       tap the grey 'show all bookings' or 'show todays bookings' button to
@@ -28,21 +33,6 @@ const IsBookedSessionsOwnerRouteTableHelp = () => (
     <Text>
       tapping on it will allow you to see data that the parents have entered in
       about their child ( or children ) for your reference.
-    </Text>
-
-    <BlueH2>emailing and calling:</BlueH2>
-    <Text>
-      you can email or call the parent by simply tapping on the email or phone
-      number you wish to contact.
-    </Text>
-    <Text>
-      in the phone number column, if it says 'not available', this means that
-      the user will have signed up through either google or facebook and would
-      not have had to enter in their phone number.
-    </Text>
-    <Text>
-      note however, that the calling option my not be available on a desktop PC
-      / laptop depending on your hardware.
     </Text>
   </>
 );

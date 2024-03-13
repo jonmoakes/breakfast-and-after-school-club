@@ -3,7 +3,7 @@ import useHandleShowError from "./errors-hooks/use-handle-show-error";
 import CustomButton from "../custom-button/custom-button.component";
 
 import { Text } from "../../styles/p/p.styles";
-import { RedSpan } from "../../styles/span/span.styles";
+import { RedSpan, BlackSpan } from "../../styles/span/span.styles";
 import { ErrorDiv, ParentDiv } from "../../styles/div/div.styles";
 import { StyledLink } from "../../styles/link/link.styles";
 
@@ -19,7 +19,7 @@ const ShowFetchErrors = () => {
         <ParentDiv>
           <Text>
             sorry, there was an error fetching data on our end that we need in
-            order to <span>{showTailInfoToUser()}</span>
+            order to <BlackSpan>{showTailInfoToUser()}</BlackSpan>
             ...
           </Text>
           <ErrorDiv>

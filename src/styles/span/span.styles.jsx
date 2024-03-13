@@ -46,6 +46,12 @@ export const BlackSpan = styled.span`
   color: ${customBlack};
 `;
 
+export const BlackSpanHover = styled(BlackSpan)`
+  &:hover {
+    cursor: pointer;
+  }
+`;
+
 export const BlueSpan = styled.span`
   color: ${customBlue};
 `;

@@ -10,6 +10,7 @@ import {
   ThursdayCell,
   FridayCell,
 } from "../../styles/tables/tables.styles";
+import { BlackSpan } from "../../styles/span/span.styles";
 
 import { bookedSessionsOwnerRoute } from "../../strings/routes/routes-strings";
 
@@ -35,13 +36,13 @@ const BookingsTableRenderTable = ({
                 {headerGroup.headers.map((column) => (
                   <th {...column.getHeaderProps(column.getSortByToggleProps())}>
                     {column.render("Header")}
-                    <span>
+                    <BlackSpan>
                       {column.isSorted
                         ? column.isSortedDesc
                           ? " ⬇️"
                           : " ⬆️"
                         : ""}
-                    </span>
+                    </BlackSpan>
                   </th>
                 ))}
               </tr>

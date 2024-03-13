@@ -11,6 +11,8 @@ import CancelBookingTableHelp from "./table-helps/cancel-booking-table-help.comp
 import IsBookedSessionsOwnerRouteTableHelp from "./table-helps/is-booked-sessions-owner-route-table-help.component";
 import IsAllChildrenRouteTableHelp from "./table-helps/is-all-children-route-table-help.component";
 import ColourCodingTableHelp from "./table-helps/colour-coding-table-help.component";
+import DownloadPdfTableHelp from "./table-helps/download-pdf-table-help.component";
+
 import { YellowGreenButton } from "../../styles/buttons/buttons.styles";
 import {
   Accordion,
@@ -26,7 +28,6 @@ import {
   bookedSessionsOwnerRoute,
   bookedSessionsUserRoute,
 } from "../../strings/routes/routes-strings";
-import DownloadPdfTableHelp from "./table-helps/download-pdf-table-help.component";
 
 const UserBookingsHelp = () => {
   const { shouldShowElement } = useSelector(selectShouldShowElementSelectors);
@@ -63,9 +64,10 @@ const UserBookingsHelp = () => {
             </Text>
             {!isBookedSessionsUserRoute ? (
               <Text>
-                please note however that{" "}
-                <RedSpan>the email value is not searchable</RedSpan> ( as it is
-                pulled into the app separately from other table data ).
+                please note however that the{" "}
+                <RedSpan>email And phone number</RedSpan> values are not
+                searchable ( as they are pulled into the app separately from
+                other table data for data protection reasons ).
               </Text>
             ) : null}
 
@@ -86,16 +88,7 @@ const UserBookingsHelp = () => {
               </>
             ) : null}
 
-            {!isAllChildrenRoute ? <IsAllChildrenRouteTableHelp /> : null}
-
-            {isBookedSessionsOwnerRoute ? (
-              <Text>
-                if you tap the button to change the table filtering, please note
-                that if you have a search term already entered as you swap, you
-                will have to re enter the search term in order to trigger the
-                search.
-              </Text>
-            ) : null}
+            {isAllChildrenRoute ? <IsAllChildrenRouteTableHelp /> : null}
 
             {!isAllChildrenRoute ? <ColourCodingTableHelp /> : null}
 

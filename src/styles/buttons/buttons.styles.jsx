@@ -307,23 +307,16 @@ export const BalanceCheckButton = styled.button`
   color: ${customBlack};
 `;
 
-export const TableEmailButton = styled.button`
-  border: none;
-  padding: 0;
-  margin: 0;
-  background: none;
-  cursor: pointer;
+export const ReloadInTableCellButton = styled.button`
   font-family: inherit;
   text-transform: capitalize;
-  font-weight: bold;
-  font-size: 16px;
+  border: 1px solid ${customBlack};
+  border-radius: 2px;
+  outline: none;
   color: ${customBlack};
+  margin-top: 10px;
 
-  @media screen and (max-width: 600px) {
-    font-size: 14px;
-  }
-
-  @media screen and (max-width: 320px) {
-    font-size: 12px;
+  &:hover {
+    cursor: pointer;
   }
 `;

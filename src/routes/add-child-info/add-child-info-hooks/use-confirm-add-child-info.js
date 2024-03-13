@@ -33,7 +33,7 @@ const useConfirmAddChildInfo = () => {
   const dispatch = useDispatch();
 
   const { childName, age, consent } = childInfo;
-  const { id } = currentUser;
+  const { id, name } = currentUser;
   const { databaseId, childrenCollectionId: collectionId } =
     currentUserEnvironmentVariables;
 
@@ -42,6 +42,7 @@ const useConfirmAddChildInfo = () => {
       addChildInfoAsync({
         childInfo,
         id,
+        name,
         databaseId,
         collectionId,
       })

@@ -1,5 +1,10 @@
 import styled, { keyframes } from "styled-components";
-import { slideInLeft, bounceInDown, rollIn } from "react-animations";
+import {
+  slideInLeft,
+  bounceInDown,
+  rollIn,
+  rotateInDownRight,
+} from "react-animations";
 
 import {
   customBlack,
@@ -14,6 +19,8 @@ import {
 const slideInLeftAnimation = keyframes`${slideInLeft}`;
 const bounceInDownAnimation = keyframes`${bounceInDown}`;
 const rollInAnimation = keyframes`${rollIn}`;
+const rotateInDownRightAnimation = keyframes`${rotateInDownRight}`;
+
 // Navigation
 export const Nav = styled.div`
   background-color: ${customYellow};
@@ -524,4 +531,11 @@ export const SocialLoginsDiv = styled.div`
   @media screen and (max-width: 280px) {
     flex-direction: column;
   }
+`;
+
+export const TableCellErrorDiv = styled.div`
+  width: 100%;
+  height: auto;
+  margin: 0 auto;
+  animation: 1s ${rotateInDownRightAnimation};
 `;

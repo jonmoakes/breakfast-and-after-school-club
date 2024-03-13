@@ -1,5 +1,5 @@
-import { getParentsEmail } from "../../functions/get-parents-email";
-import { TableEmailButton } from "../../styles/buttons/buttons.styles";
+import UsersPhoneNumberCell from "../../components/tables/users-phone-number-cell.component";
+import UsersEmailCell from "../../components/tables/user-email-cell.component";
 
 export const TABLE_COLUMNS = [
   {
@@ -23,27 +23,24 @@ export const TABLE_COLUMNS = [
     accessor: "age",
   },
   {
+    Header: "consent choice",
+    accessor: "consent",
+  },
+  {
+    Header: "parent name",
+    accessor: "parentName",
+  },
+  {
     Header: "parent email",
     Cell: ({ row }) => {
-      const subject = encodeURIComponent(
-        "Message From Breakfast & After School Club"
-      );
-
-      const onEmailClick = async () => {
-        const email = await getParentsEmail(row);
-        if (!email) return;
-        window.location.href = `mailto:${email}?Subject=${subject}`;
-      };
-
-      return (
-        <TableEmailButton type="button" onClick={onEmailClick}>
-          tap to email
-        </TableEmailButton>
-      );
+      return <UsersEmailCell {...{ row }} />;
     },
   },
   {
-    Header: "consent choice",
-    accessor: "consent",
+    Header: "Parent Phone",
+    accessor: "parentPhoneNumber",
+    Cell: ({ value, row }) => {
+      return <UsersPhoneNumberCell {...{ value, row }} />;
+    },
   },
 ];
