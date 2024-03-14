@@ -24,7 +24,7 @@ const ColourCodingTableHelp = () => (
       <li>
         wednesday:
         <br />
-        <BlackSpan>violet</BlackSpan>
+        <BlackSpan>pink</BlackSpan>
       </li>
       <li>
         thursday:

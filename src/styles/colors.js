@@ -9,7 +9,6 @@ export const customPurple = "	hsl(280, 100%, 50%)";
 export const customBlack = "hsl(0, 100%, 0%)";
 export const customBlackTrans = "hsla(0, 100%, 0%, 0.55)";
 export const customRed = "hsl(0, 100%, 50%)";
-export const customPink = "hsl(349, 76%, 52%)";
 export const customLightPink = "	hsl(350, 100%, 88%)";
 export const customSalmon = "hsl(6, 93%, 71%)";
 export const customTomato = "	hsl(9, 100%, 64%)";

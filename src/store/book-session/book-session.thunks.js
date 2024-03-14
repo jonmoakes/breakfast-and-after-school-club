@@ -157,29 +157,69 @@ export const addSessionBookingInfoAsync = createAsyncThunk(
     thunkAPI
   ) => {
     try {
-      const sessionBooking = {
-        parentsUserId: id,
-        date,
-        sessionType,
-        childrensName: createChildrenToAddToBooking(
-          childrenSelectedForBooking,
-          usersChildren
-        ),
-        parentName: name,
-        parentPhoneNumber: phoneNumber,
-      };
+      let sessionBookings = [];
 
+      if (
+        sessionType === "morningAndAfternoonShort" ||
+        sessionType === "morningAndAfternoonLong"
+      ) {
+        // Create separate session bookings for morning and afternoon - for easier searching in table.
+        const morningBooking = {
+          parentsUserId: id,
+          date,
+          sessionType: "morning",
+          childrensName: createChildrenToAddToBooking(
+            childrenSelectedForBooking,
+            usersChildren
+          ),
+          parentName: name,
+          parentPhoneNumber: phoneNumber,
+        };
+        const afternoonBooking = {
+          parentsUserId: id,
+          date,
+          sessionType:
+            sessionType === "morningAndAfternoonShort"
+              ? "afternoonShort"
+              : "afternoonLong",
+          childrensName: createChildrenToAddToBooking(
+            childrenSelectedForBooking,
+            usersChildren
+          ),
+          parentName: name,
+          parentPhoneNumber: phoneNumber,
+        };
+
+        sessionBookings = [morningBooking, afternoonBooking];
+      } else {
+        // For other session types, create a single session booking
+        const sessionBooking = {
+          parentsUserId: id,
+          date,
+          sessionType,
+          childrensName: createChildrenToAddToBooking(
+            childrenSelectedForBooking,
+            usersChildren
+          ),
+          parentName: name,
+          parentPhoneNumber: phoneNumber,
+        };
+
+        sessionBookings = [sessionBooking];
+      }
+
+      // Create documents for each session booking
       const collectionId = bookedSessionsCollectionId;
-      const documentId = ID.unique();
-      const data = sessionBooking;
-
-      await manageDatabaseDocument(
-        "create",
-        databaseId,
-        collectionId,
-        documentId,
-        data
-      );
+      for (const booking of sessionBookings) {
+        const documentId = ID.unique();
+        await manageDatabaseDocument(
+          "create",
+          databaseId,
+          collectionId,
+          documentId,
+          booking
+        );
+      }
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }

@@ -6,8 +6,8 @@ import {
   customCyan,
   customGrey,
   customLightGreen,
+  customLightPink,
   customOrange,
-  customViolet,
   customWhite,
   customYellow,
 } from "../colors";
@@ -70,7 +70,7 @@ export const TuesdayCell = styled.td`
 `;
 
 export const WednesdayCell = styled.td`
-  background-color: ${customViolet};
+  background-color: ${customLightPink};
 `;
 
 export const ThursdayCell = styled.td`

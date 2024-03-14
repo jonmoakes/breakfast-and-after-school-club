@@ -65,7 +65,7 @@ export const TABLE_COLUMNS = [
     },
   },
   {
-    Header: "provider",
+    Header: "Signed Up Via",
     accessor: "provider",
   },
   {
@@ -73,7 +73,7 @@ export const TABLE_COLUMNS = [
     accessor: "id",
   },
   {
-    Header: "created On",
+    Header: "joined On",
     accessor: "createdAt",
     Cell: ({ value }) => {
       const formattedCreatedOn = format(

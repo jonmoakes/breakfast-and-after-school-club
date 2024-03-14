@@ -14,7 +14,6 @@ import { priceMultipliedBy100 } from "../../../functions/price-multiplied-by-100
 const useConditionalLogic = () => {
   const { currentDateAndTime } = useSelector(selectCurrentDateAndTime);
   const {
-    chosenDate,
     dateData,
     requestDateDataError,
     earlyFinishDates,
