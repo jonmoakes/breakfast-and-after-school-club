@@ -1,16 +1,10 @@
-import useDatesLogic from "../dates-logic/use-dates-logic";
-import useGetRequestDateDataSelectors from "../../../../hooks/get-selectors/use-get-request-date-data-selectors";
-import useSelectBookSessionSelectors from "../select-book-session-selectors/use-select-book-session-selectors";
+import useDatesLogic from "../logic/use-dates-logic";
+import useGetBookSessionSelectors from "../../../../hooks/get-selectors/use-get-book-session-selectors";
 
 const useSessionLogic = () => {
-  const { date } = useDatesLogic();
-  const { dateData } = useGetRequestDateDataSelectors();
-  const { childrenSelectedForBooking } = useSelectBookSessionSelectors();
-
-  const morningSessionSpaces = dateData ? dateData.morningSessionSpaces : "";
-  const afternoonSessionSpaces = dateData
-    ? dateData.afternoonSessionSpaces
-    : "";
+  const { date, morningSessionSpaces, afternoonSessionSpaces } =
+    useDatesLogic();
+  const { childrenSelectedForBooking } = useGetBookSessionSelectors();
 
   const onlyMorningSessionsAvailable = () => {
     return date && morningSessionSpaces && !afternoonSessionSpaces

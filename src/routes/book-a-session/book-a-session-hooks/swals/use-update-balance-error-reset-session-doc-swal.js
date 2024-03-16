@@ -4,9 +4,9 @@ import { useDispatch } from "react-redux";
 import useFireSwal from "../../../../hooks/use-fire-swal";
 import useSendResetSessionSpacesErrorEmail from "../emails/use-send-reset-session-spaces-error-email";
 import useHamburgerHandlerNavigate from "../../../../hooks/use-hamburger-handler-navigate";
-import useDatesLogic from "../dates-logic/use-dates-logic";
-import useSelectBookSessionSelectors from "../select-book-session-selectors/use-select-book-session-selectors";
-import useCurrentUserSelectors from "../../../../hooks/get-selectors/use-current-user-selectors";
+import useDatesLogic from "../logic/use-dates-logic";
+import useGetBookSessionSelectors from "../../../../hooks/get-selectors/use-get-book-session-selectors";
+import useGetCurrentUserSelectors from "../../../../hooks/get-selectors/use-get-current-user-selectors";
 
 import { resetSessionDocAsync } from "../../../../store/book-session/book-session.thunks";
 
@@ -24,8 +24,9 @@ const useUpdateBalanceErrorResetSessionDocSwal = () => {
   const { hamburgerHandlerNavigate } = useHamburgerHandlerNavigate();
   const { date } = useDatesLogic();
   const { sessionType, childrenSelectedForBooking, updateBalanceError } =
-    useSelectBookSessionSelectors();
-  const { databaseId, termDatesCollectionId } = useCurrentUserSelectors();
+    useGetBookSessionSelectors();
+  const { databaseId, termDatesCollectionId: collectionId } =
+    useGetCurrentUserSelectors();
 
   const [swalConfirmed, setSwalConfirmed] = useState(false);
   const dispatch = useDispatch();
@@ -45,8 +46,6 @@ const useUpdateBalanceErrorResetSessionDocSwal = () => {
       false
     ).then((isConfirmed) => {
       if (isConfirmed) {
-        const collectionId = termDatesCollectionId;
-        console.log("collection ", collectionId);
         setSwalConfirmed(true);
         dispatch(
           resetSessionDocAsync({

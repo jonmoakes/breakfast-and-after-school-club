@@ -2,7 +2,7 @@ import useGetBookSessionResultSwal from "./book-a-session-hooks/swals/use-get-bo
 import useIsOnline from "../../hooks/use-is-online";
 import useSessionSpacesListener from "./book-a-session-hooks/use-session-spaces-listener";
 import useGetUsersChildrenAndConditionallyUserBookingsAndSessionPrices from "../../hooks/use-get-users-children-and-conditionally-user-bookings-and-session-prices";
-import useErrorFetchingData from "./book-a-session-hooks/error-fetching-data/use-error-fetching-data";
+import useErrorFetchingData from "./book-a-session-hooks/use-error-fetching-data";
 
 import Loaders from "./sections/loaders.component";
 import NetworkError from "../../components/errors/network-error.component";

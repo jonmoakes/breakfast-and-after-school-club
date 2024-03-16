@@ -1,11 +1,8 @@
-import { useSelector } from "react-redux";
-
-import useGetSessionTypesAndPrices from "../../book-a-session-hooks/get-session-types-and-prices/use-get-session-types-and-prices";
-import useSessionLogic from "../../book-a-session-hooks/session-logic/use-session-logic";
+import useGetSessionTypesAndPricesSelectors from "../../../../hooks/get-selectors/use-get-session-types-and-prices-selectors";
+import useSessionLogic from "../../book-a-session-hooks/logic/use-session-logic";
 import useConfirmSession from "../../book-a-session-hooks/use-confirm-session";
-import useGetPriceOfBooking from "../../book-a-session-hooks/use-get-price-of-booking";
-
-import { selectCurrentUserSelectors } from "../../../../store/user/user.slice";
+import useGetPriceOfBooking from "../../book-a-session-hooks/logic/use-get-price-of-booking";
+import useGetCurrentUserSelectors from "../../../../hooks/get-selectors/use-get-current-user-selectors";
 
 import { YellowGreenButton } from "../../../../styles/buttons/buttons.styles";
 import { BlackHr } from "../../../../styles/hr/hr.styles";
@@ -14,14 +11,13 @@ const MorningAndAfternoonShortSessionButton = () => {
   const {
     morningAndAfternoonShortSessionType: sessionType,
     morningAndAfternoonShortSessionPrice: sessionPrice,
-  } = useGetSessionTypesAndPrices();
+  } = useGetSessionTypesAndPricesSelectors();
   const { allSessionsAvailable } = useSessionLogic();
   const { confirmSession } = useConfirmSession();
+
+  const { walletBalance } = useGetCurrentUserSelectors();
   const { getPriceOfBooking } = useGetPriceOfBooking();
 
-  const { currentUser } = useSelector(selectCurrentUserSelectors);
-
-  const { walletBalance } = currentUser;
   const price = getPriceOfBooking(sessionPrice);
 
   return (

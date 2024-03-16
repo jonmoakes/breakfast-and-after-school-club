@@ -1,13 +1,7 @@
-import { useDispatch } from "react-redux";
-
 import useSessionSpacesErrorSwals from "./swals/use-session-spaces-error-swals";
 import useCheckForPreviousBookingAndConfirmSession from "./use-check-for-previous-booking-and-confirm-session";
-
-import {
-  setSessionType,
-  setSessionPrice,
-} from "../../../store/book-session/book-session.slice";
-import useSessionLogic from "./session-logic/use-session-logic";
+import useSessionLogic from "./logic/use-session-logic";
+import useBookSessionActions from "../../../hooks/get-actions/use-book-session-actions";
 
 const useConfirmSession = () => {
   const {
@@ -25,12 +19,12 @@ const useConfirmSession = () => {
   } = useSessionSpacesErrorSwals();
   const { checkForPreviousBookingAndConfirmSession } =
     useCheckForPreviousBookingAndConfirmSession();
-
-  const dispatch = useDispatch();
+  const { dispatchSetSessionPrice, dispatchSetSessionType } =
+    useBookSessionActions();
 
   const confirmSession = (sessionType, price) => {
-    dispatch(setSessionType(sessionType));
-    dispatch(setSessionPrice(price));
+    dispatchSetSessionType(sessionType);
+    dispatchSetSessionPrice(price);
 
     if (notEnoughMorningSpacesForMultipleChildren(sessionType)) {
       morningSessionErrorSwal();

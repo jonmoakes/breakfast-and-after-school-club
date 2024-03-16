@@ -1,10 +1,10 @@
-import useDatesLogic from "../book-a-session-hooks/dates-logic/use-dates-logic";
-import useTimesLogic from "../book-a-session-hooks/times-logic/use-times-logic";
+import useDatesLogic from "../book-a-session-hooks/logic/use-dates-logic";
+import useTimesLogic from "../book-a-session-hooks/logic/use-times-logic";
+import useGetChildrenLogic from "../book-a-session-hooks/logic/use-get-children-logic";
 
 import { Text } from "../../../styles/p/p.styles";
 import { RedSpan } from "../../../styles/span/span.styles";
 import { BlackHr } from "../../../styles/hr/hr.styles";
-import useGetChildrenLogic from "../book-a-session-hooks/get-children-logic/use-get-children-logic";
 
 const OptionsAvailableInfo = () => {
   const { morningSessionSpaces, afternoonSessionSpaces } = useDatesLogic();

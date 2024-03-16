@@ -1,14 +1,14 @@
 import { useSelector } from "react-redux";
 import { selectCurrentUserSelectors } from "../../store/user/user.slice";
 
-const useCurrentUserSelectors = () => {
+const useGetCurrentUserSelectors = () => {
   const {
     currentUserEnvironmentVariables,
     currentUser,
     currentUserWalletBalanceResult,
   } = useSelector(selectCurrentUserSelectors);
 
-  const { walletBalance, email, name } = currentUser;
+  const { walletBalance, email, id, name, phoneNumber } = currentUser;
 
   const {
     appOwnerEmail,
@@ -51,8 +51,10 @@ const useCurrentUserSelectors = () => {
     walletBalance,
     name,
     email,
+    id,
+    phoneNumber,
     currentUserWalletBalanceResult,
   };
 };
 
-export default useCurrentUserSelectors;
+export default useGetCurrentUserSelectors;

@@ -1,4 +1,4 @@
-import useDatesLogic from "../book-a-session-hooks/dates-logic/use-dates-logic";
+import useDatesLogic from "../book-a-session-hooks/logic/use-dates-logic";
 
 import { Text } from "../../../styles/p/p.styles";
 

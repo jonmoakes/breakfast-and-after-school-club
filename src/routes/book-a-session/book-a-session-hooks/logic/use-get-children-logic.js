@@ -1,8 +1,8 @@
-import useSelectBookSessionSelectors from "../select-book-session-selectors/use-select-book-session-selectors";
+import useGetBookSessionSelectors from "../../../../hooks/get-selectors/use-get-book-session-selectors";
 import useGetUsersChildrenSelectors from "../../../../hooks/get-selectors/use-get-users-children-selectors";
 
 const useGetChildrenLogic = () => {
-  const { childrenSelectedForBooking } = useSelectBookSessionSelectors();
+  const { childrenSelectedForBooking } = useGetBookSessionSelectors();
   const { usersChildren } = useGetUsersChildrenSelectors();
 
   const noChildrenAddedYet = () => {

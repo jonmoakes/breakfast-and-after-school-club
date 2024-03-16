@@ -1,8 +1,8 @@
-import useSetDateAndTime from "../book-a-session-hooks/use-set-date-and-time";
-import useDatesLogic from "../book-a-session-hooks/dates-logic/use-dates-logic";
-import useTimesLogic from "../book-a-session-hooks/times-logic/use-times-logic";
-import useGetChildrenLogic from "../book-a-session-hooks/get-children-logic/use-get-children-logic";
-import useSessionLogic from "../book-a-session-hooks/session-logic/use-session-logic";
+import useSetDateAndTime from "../book-a-session-hooks/actions/use-set-date-and-time";
+import useDatesLogic from "../book-a-session-hooks/logic/use-dates-logic";
+import useTimesLogic from "../book-a-session-hooks/logic/use-times-logic";
+import useGetChildrenLogic from "../book-a-session-hooks/logic/use-get-children-logic";
+import useSessionLogic from "../book-a-session-hooks/logic/use-session-logic";
 
 import ChildCheckbox from "./child-checkbox.component";
 import HeadingTimesAndPricesWalletBalanceOptionsInfo from "./heading-times-and-prices-wallet-balance-options-info.component";

@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 
-import useCurrentDateAndTimeActions from "../../../hooks/get-actions/use-current-date-and-time-actions";
+import useCurrentDateAndTimeActions from "../../../../hooks/get-actions/use-current-date-and-time-actions";
 
 const useSetDateAndTime = () => {
   const { dispatchSetCurrentDateAndTime } = useCurrentDateAndTimeActions();

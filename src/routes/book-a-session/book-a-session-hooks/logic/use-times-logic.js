@@ -2,9 +2,9 @@ import { useSelector } from "react-redux";
 import { isAfter, isBefore, parse } from "date-fns";
 
 import useGetRequestDateDataSelectors from "../../../../hooks/get-selectors/use-get-request-date-data-selectors";
+import useDatesLogic from "../logic/use-dates-logic";
 
 import { selectCurrentDateAndTimeSelectors } from "../../../../store/date-and-time/date-and-time.slice";
-import useDatesLogic from "../dates-logic/use-dates-logic";
 
 const useTimesLogic = () => {
   const { bookingClosingTimes } = useGetRequestDateDataSelectors();

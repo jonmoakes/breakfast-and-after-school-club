@@ -1,10 +1,11 @@
+import useDatesLogic from "../book-a-session-hooks/logic/use-dates-logic";
+
 import { ErrorDiv, WarningDiv } from "../../../styles/div/div.styles";
 import { Text } from "../../../styles/p/p.styles";
 import { StyledLink } from "../../../styles/link/link.styles";
 import { RedSpan } from "../../../styles/span/span.styles";
 
 import { contactRoute } from "../../../strings/routes/routes-strings";
-import useDatesLogic from "../book-a-session-hooks/dates-logic/use-dates-logic";
 
 const DateErrors = () => {
   const {

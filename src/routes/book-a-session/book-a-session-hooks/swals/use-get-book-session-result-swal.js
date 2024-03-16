@@ -1,13 +1,13 @@
 import { useEffect } from "react";
 
-import useReturnLogic from "../use-return-logic";
+import useReturnLogic from "../logic/use-return-logic";
 import useSuccessSwal from "./use-success-swal";
 import useUpdateSessionDocErrorSwal from "./use-update-session-doc-error-swal";
 import useUpdateBalanceErrorResetSessionDocSwal from "./use-update-balance-error-reset-session-doc-swal";
 import useAddSessionBookingInfoErrorSwal from "./use-add-session-booking-info-error-swal";
 import useSuccessfulBookingButFailedBalanceFetchSwal from "./use-successful-booking-but-failed-balance-fetch-swal";
-import useSelectBookSessionSelectors from "../select-book-session-selectors/use-select-book-session-selectors";
-import useCurrentUserSelectors from "../../../../hooks/get-selectors/use-current-user-selectors";
+import useGetBookSessionSelectors from "../../../../hooks/get-selectors/use-get-book-session-selectors";
+import useGetCurrentUserSelectors from "../../../../hooks/get-selectors/use-get-current-user-selectors";
 
 const useGetBookSessionResultSwal = () => {
   const { noActionsFiredYet } = useReturnLogic();
@@ -20,8 +20,8 @@ const useGetBookSessionResultSwal = () => {
   const { successfulBookingButFailedBalanceFetchSwal } =
     useSuccessfulBookingButFailedBalanceFetchSwal();
   const { updateSessionDoc, updateUserDocBalance, addSessionBookingInfo } =
-    useSelectBookSessionSelectors();
-  const { currentUserWalletBalanceResult } = useCurrentUserSelectors();
+    useGetBookSessionSelectors();
+  const { currentUserWalletBalanceResult } = useGetCurrentUserSelectors();
 
   const updateSessionResult = updateSessionDoc.result;
   const updateBalanceResult = updateUserDocBalance.result;

@@ -1,8 +1,7 @@
-import useGetSessionTypesAndPrices from "../book-a-session-hooks/get-session-types-and-prices/use-get-session-types-and-prices";
+import useGetSessionTypesAndPricesSelectors from "../../../hooks/get-selectors/use-get-session-types-and-prices-selectors";
 import useGetRequestDateDataSelectors from "../../../hooks/get-selectors/use-get-request-date-data-selectors";
-
-import useShouldShowElementActions from "../../../hooks/get-actions/use-should-show-element-actions";
 import useShouldShowElementSelectors from "../../../hooks/get-selectors/use-should-show-element-selectors";
+import useShouldShowElementActions from "../../../hooks/get-actions/use-should-show-element-actions";
 
 import {
   SecondAccordion,
@@ -21,7 +20,7 @@ const TimesAndPricesAccordion = () => {
     afternoonLongSessionPriceToFixed,
     morningAndAfternoonShortSessionPriceToFixed,
     morningAndAfternoonLongSessionPriceToFixed,
-  } = useGetSessionTypesAndPrices();
+  } = useGetSessionTypesAndPricesSelectors();
   const {
     morningSessionTime,
     afternoonShortSessionTime,

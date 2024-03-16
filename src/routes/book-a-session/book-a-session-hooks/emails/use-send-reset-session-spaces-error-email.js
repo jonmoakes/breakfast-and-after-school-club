@@ -1,10 +1,10 @@
 import { useDispatch } from "react-redux";
 
-import useDatesLogic from "../dates-logic/use-dates-logic";
+import useDatesLogic from "../logic/use-dates-logic";
 import useHamburgerHandlerNavigate from "../../../../hooks/use-hamburger-handler-navigate";
 import useFireSwal from "../../../../hooks/use-fire-swal";
-import useCurrentUserSelectors from "../../../../hooks/get-selectors/use-current-user-selectors";
-import useSelectBookSessionSelectors from "../select-book-session-selectors/use-select-book-session-selectors";
+import useGetCurrentUserSelectors from "../../../../hooks/get-selectors/use-get-current-user-selectors";
+import useGetBookSessionSelectors from "../../../../hooks/get-selectors/use-get-book-session-selectors";
 
 import { sendEmailResetSessionSpacesErrorAsync } from "../../../../store/send-email/send-email.thunks";
 
@@ -19,8 +19,8 @@ const useSendResetSessionSpacesErrorEmail = () => {
 
   const { hamburgerHandlerNavigate } = useHamburgerHandlerNavigate();
   const { fireSwal } = useFireSwal();
-  const { sessionType, numberOfSpacesToAdd } = useSelectBookSessionSelectors();
-  const { appOwnerEmail } = useCurrentUserSelectors();
+  const { sessionType, numberOfSpacesToAdd } = useGetBookSessionSelectors();
+  const { appOwnerEmail } = useGetCurrentUserSelectors();
 
   const dispatch = useDispatch();
 

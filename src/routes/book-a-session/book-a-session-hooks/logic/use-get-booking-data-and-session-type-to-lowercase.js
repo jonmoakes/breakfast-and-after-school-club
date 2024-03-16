@@ -1,6 +1,6 @@
 import { useSelector } from "react-redux";
 
-import { selectBookedSessionsUserSelectors } from "../../../store/booked-sessions-user/booked-sessions-user.slice";
+import { selectBookedSessionsUserSelectors } from "../../../../store/booked-sessions-user/booked-sessions-user.slice";
 
 const useGetBookingDataAndSessionTypeToLowercase = () => {
   const { bookedSessionsUser } = useSelector(selectBookedSessionsUserSelectors);

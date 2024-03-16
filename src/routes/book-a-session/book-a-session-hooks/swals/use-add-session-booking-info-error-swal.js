@@ -1,5 +1,5 @@
 import useFireSwal from "../../../../hooks/use-fire-swal";
-import useDatesLogic from "../dates-logic/use-dates-logic";
+import useDatesLogic from "../logic/use-dates-logic";
 
 import useSendAddBookingInfoErrorEmail from "../emails/use-send-add-booking-info-error-email";
 

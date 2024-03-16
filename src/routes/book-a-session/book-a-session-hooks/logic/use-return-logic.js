@@ -1,9 +1,9 @@
 import { useCallback } from "react";
 import { useSelector } from "react-redux";
 
-import useSelectBookSessionSelectors from "./select-book-session-selectors/use-select-book-session-selectors";
+import useGetBookSessionSelectors from "../../../../hooks/get-selectors/use-get-book-session-selectors";
 
-import { selectCurrentUserSelectors } from "../../../store/user/user.slice";
+import { selectCurrentUserSelectors } from "../../../../store/user/user.slice";
 
 const useReturnLogic = () => {
   const {
@@ -11,7 +11,7 @@ const useReturnLogic = () => {
     updateUserDocBalance,
     resetSessionDoc,
     addSessionBookingInfo,
-  } = useSelectBookSessionSelectors();
+  } = useGetBookSessionSelectors();
 
   const { currentUserWalletBalanceResult, currentUserWalletBalanceError } =
     useSelector(selectCurrentUserSelectors);

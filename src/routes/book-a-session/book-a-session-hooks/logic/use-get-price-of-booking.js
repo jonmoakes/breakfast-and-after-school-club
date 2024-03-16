@@ -1,6 +1,6 @@
-import useSelectBookSessionSelectors from "./select-book-session-selectors/use-select-book-session-selectors";
+import useSelectBookSessionSelectors from "../../../../hooks/get-selectors/use-get-book-session-selectors";
 
-import { priceMultipliedBy100 } from "../../../functions/price-multiplied-by-100";
+import { priceMultipliedBy100 } from "../../../../functions/price-multiplied-by-100";
 
 const useGetPriceOfBooking = () => {
   const { childrenSelectedForBooking } = useSelectBookSessionSelectors();

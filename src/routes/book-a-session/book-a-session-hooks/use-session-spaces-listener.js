@@ -1,23 +1,15 @@
 import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+
 import { client } from "../../../utils/appwrite/appwrite-config";
 
 import useGetRequestDateDataSelectors from "../../../hooks/get-selectors/use-get-request-date-data-selectors";
-
-import { setDateData } from "../../../store/request-date-data/request-date-data.slice";
-import { selectCurrentUserSelectors } from "../../../store/user/user.slice";
+import useGetCurrentUserSelectors from "../../../hooks/get-selectors/use-get-current-user-selectors";
+import useRequestDateDataActions from "../../../hooks/get-actions/use-request-date-data-actions";
 
 const useSessionSpacesListener = () => {
-  const { dateData } = useGetRequestDateDataSelectors();
-
-  const { currentUserEnvironmentVariables } = useSelector(
-    selectCurrentUserSelectors
-  );
-
-  const dispatch = useDispatch();
-
-  const { databaseId, termDatesCollectionId } = currentUserEnvironmentVariables;
-  const documentId = dateData ? dateData.$id : "";
+  const { dateData, documentId } = useGetRequestDateDataSelectors();
+  const { dispatchSetDateData } = useRequestDateDataActions();
+  const { databaseId, termDatesCollectionId } = useGetCurrentUserSelectors();
 
   useEffect(() => {
     const unsubscribe = client.subscribe(
@@ -33,14 +25,20 @@ const useSessionSpacesListener = () => {
           afternoonSessionSpaces,
         };
 
-        dispatch(setDateData(updatedDateData));
+        dispatchSetDateData(updatedDateData);
       }
     );
 
     return () => {
       unsubscribe();
     };
-  }, [dispatch, documentId, dateData, databaseId, termDatesCollectionId]);
+  }, [
+    documentId,
+    dateData,
+    databaseId,
+    termDatesCollectionId,
+    dispatchSetDateData,
+  ]);
 };
 
 export default useSessionSpacesListener;

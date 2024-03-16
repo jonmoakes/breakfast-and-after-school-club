@@ -1,16 +1,16 @@
 import { format } from "date-fns";
 
-import useCurrentUserSelectors from "../../../../hooks/get-selectors/use-current-user-selectors";
-import useGetChildrenLogic from "../get-children-logic/use-get-children-logic";
-import useGetSessionTypesAndPrices from "../get-session-types-and-prices/use-get-session-types-and-prices";
+import useGetCurrentUserSelectors from "../../../../hooks/get-selectors/use-get-current-user-selectors";
+import useGetChildrenLogic from "./use-get-children-logic";
+import useGetSessionTypesAndPricesSelectors from "../../../../hooks/get-selectors/use-get-session-types-and-prices-selectors";
 import useGetRequestDateDataSelectors from "../../../../hooks/get-selectors/use-get-request-date-data-selectors";
 
 import { priceMultipliedBy100 } from "../../../../functions/price-multiplied-by-100";
 
 const useDatesLogic = () => {
-  const { walletBalance } = useCurrentUserSelectors();
+  const { walletBalance } = useGetCurrentUserSelectors();
   const { noChildrenAddedYet } = useGetChildrenLogic();
-  const { morningSessionPrice } = useGetSessionTypesAndPrices();
+  const { morningSessionPrice } = useGetSessionTypesAndPricesSelectors();
   const { dateData, requestDateDataError, earlyFinishDates } =
     useGetRequestDateDataSelectors();
 

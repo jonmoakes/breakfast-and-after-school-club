@@ -1,11 +1,10 @@
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 
 import useFireSwal from "../../../../hooks/use-fire-swal";
 import useHamburgerHandlerNavigate from "../../../../hooks/use-hamburger-handler-navigate";
-import useSelectBookSessionSelectors from "../select-book-session-selectors/use-select-book-session-selectors";
-import useCurrentUserSelectors from "../../../../hooks/get-selectors/use-current-user-selectors";
+import useGetBookSessionSelectors from "../../../../hooks/get-selectors/use-get-book-session-selectors";
+import useGetCurrentUserSelectors from "../../../../hooks/get-selectors/use-get-current-user-selectors";
 
-import { selectGetUsersChildrenSelectors } from "../../../../store/get-users-children/get-users-children.slice";
 import { sendEmailBookingNotAddedToDatabaseAsync } from "../../../../store/send-email/send-email.thunks";
 
 import {
@@ -15,15 +14,15 @@ import {
 import { failedToSendEmailInstructions } from "../../../../strings/errors/errors-strings";
 
 import { createChildrenToAddToBooking } from "../../../../functions/create-children-to-add-to-booking";
+import useGetUsersChildrenSelectors from "../../../../hooks/get-selectors/use-get-users-children-selectors";
 
 const useSendAddBookingInfoErrorEmail = (date) => {
   const { fireSwal } = useFireSwal();
   const { hamburgerHandlerNavigate } = useHamburgerHandlerNavigate();
   const { sessionType, childrenSelectedForBooking } =
-    useSelectBookSessionSelectors();
-  const { name, email, appOwnerEmail } = useCurrentUserSelectors();
-
-  const { usersChildren } = useSelector(selectGetUsersChildrenSelectors);
+    useGetBookSessionSelectors();
+  const { name, email, appOwnerEmail } = useGetCurrentUserSelectors();
+  const { usersChildren } = useGetUsersChildrenSelectors();
 
   const dispatch = useDispatch();
 

@@ -1,9 +1,9 @@
-import useChildSessionAlreadyBooked from "./use-child-session-already-booked";
+import useChildSessionAlreadyBooked from "./logic/use-child-session-already-booked";
 import useConfirmSwal from "../../../hooks/use-confirm-swal";
 import useSessionAlreadyBookedSwal from "./swals/use-session-already-booked-swal";
 import useConfirmResult from "./use-confirm-result";
-import useSelectBookSessionSelectors from "./select-book-session-selectors/use-select-book-session-selectors";
-import useDatesLogic from "./dates-logic/use-dates-logic";
+import useGetBookSessionSelectors from "../../../hooks/get-selectors/use-get-book-session-selectors";
+import useDatesLogic from "./logic/use-dates-logic";
 
 import {
   confirmSureBookSession,
@@ -18,16 +18,13 @@ const useCheckForPreviousBookingAndConfirmSession = () => {
   const { singleChildSessionAlreadyBooked, multipleChildSessionAlreadyBooked } =
     useChildSessionAlreadyBooked();
   const { sessionAlreadyBookedSwal } = useSessionAlreadyBookedSwal();
-  const { childrenSelectedForBooking } = useSelectBookSessionSelectors();
-
-  const childrenSelectedViaCheckbox = childrenSelectedForBooking.length;
+  const { childrenSelectedLength } = useGetBookSessionSelectors();
 
   const checkForPreviousBookingAndConfirmSession = (sessionType, price) => {
     if (
-      (!childrenSelectedViaCheckbox &&
+      (!childrenSelectedLength &&
         singleChildSessionAlreadyBooked(sessionType)) ||
-      (childrenSelectedViaCheckbox &&
-        multipleChildSessionAlreadyBooked(sessionType))
+      (childrenSelectedLength && multipleChildSessionAlreadyBooked(sessionType))
     ) {
       sessionAlreadyBookedSwal();
     } else {

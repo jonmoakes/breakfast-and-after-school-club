@@ -1,8 +1,8 @@
 import { useSelector } from "react-redux";
 
-import { selectBookSessionSelectors } from "../../../../store/book-session/book-session.slice";
+import { selectBookSessionSelectors } from "../../store/book-session/book-session.slice";
 
-const useSelectBookSessionSelectors = () => {
+const useGetBookSessionSelectors = () => {
   const {
     sessionType,
     sessionPrice,
@@ -38,4 +38,4 @@ const useSelectBookSessionSelectors = () => {
   };
 };
 
-export default useSelectBookSessionSelectors;
+export default useGetBookSessionSelectors;

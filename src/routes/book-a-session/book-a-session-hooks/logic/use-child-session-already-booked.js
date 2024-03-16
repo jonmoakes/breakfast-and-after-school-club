@@ -1,10 +1,7 @@
-import { useSelector } from "react-redux";
-
-import useDatesLogic from "./dates-logic/use-dates-logic";
+import useDatesLogic from "./use-dates-logic";
 import useGetBookingDataAndSessionTypeToLowercase from "./use-get-booking-data-and-session-type-to-lowercase";
-import useSelectBookSessionSelectors from "./select-book-session-selectors/use-select-book-session-selectors";
-
-import { selectGetUsersChildrenSelectors } from "../../../store/get-users-children/get-users-children.slice";
+import useGetBookSessionSelectors from "../../../../hooks/get-selectors/use-get-book-session-selectors";
+import useGetUsersChildrenSelectors from "../../../../hooks/get-selectors/use-get-users-children-selectors";
 
 const useChildSessionAlreadyBooked = () => {
   const { date } = useDatesLogic();
@@ -16,11 +13,8 @@ const useChildSessionAlreadyBooked = () => {
     isMorningAndAfternoonShortSession,
     isMorningAndAfternoonLongSession,
   } = useGetBookingDataAndSessionTypeToLowercase();
-  const { childrenSelectedForBooking } = useSelectBookSessionSelectors();
-
-  const { usersChildren } = useSelector(selectGetUsersChildrenSelectors);
-
-  const { childName } = usersChildren[0];
+  const { childrenSelectedForBooking } = useGetBookSessionSelectors();
+  const { childName } = useGetUsersChildrenSelectors();
 
   // if user only has one child in database
   const singleChildSessionAlreadyBooked = (sessionType) => {

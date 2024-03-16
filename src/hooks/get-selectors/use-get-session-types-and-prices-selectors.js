@@ -1,9 +1,12 @@
 import { useSelector } from "react-redux";
 
-import { selectSessionTypesAndPricesSelectors } from "../../../../store/session-types-and-prices/session-types-and-prices.slice";
+import { selectSessionTypesAndPricesSelectors } from "../../store/session-types-and-prices/session-types-and-prices.slice";
 
-const useGetSessionTypesAndPrices = () => {
+const useGetSessionTypesAndPricesSelectors = () => {
   const {
+    sessionTypesAndPricesIsLoading,
+    sessionTypesAndPrices,
+    sessionTypesAndPricesError,
     morningSessionType,
     morningSessionPrice,
     afternoonShortSessionType,
@@ -39,6 +42,9 @@ const useGetSessionTypesAndPrices = () => {
       : null;
 
   return {
+    sessionTypesAndPricesIsLoading,
+    sessionTypesAndPrices,
+    sessionTypesAndPricesError,
     morningSessionType,
     morningSessionPrice,
     afternoonShortSessionType,
@@ -57,4 +63,4 @@ const useGetSessionTypesAndPrices = () => {
   };
 };
 
-export default useGetSessionTypesAndPrices;
+export default useGetSessionTypesAndPricesSelectors;

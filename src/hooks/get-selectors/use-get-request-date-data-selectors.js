@@ -15,6 +15,8 @@ const useGetRequestDateDataSelectors = () => {
     afternoonLongSessionTime,
   } = useSelector(selectRequestDateDataSelectors);
 
+  const documentId = dateData ? dateData.$id : "";
+
   return {
     chosenDate,
     requestDateDataIsLoading,
@@ -26,6 +28,7 @@ const useGetRequestDateDataSelectors = () => {
     morningSessionTime,
     afternoonShortSessionTime,
     afternoonLongSessionTime,
+    documentId,
   };
 };
 

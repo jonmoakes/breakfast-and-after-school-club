@@ -1,6 +1,6 @@
-import useGetChildrenLogic from "../book-a-session-hooks/get-children-logic/use-get-children-logic";
-import useHasInsufficientFunds from "../book-a-session-hooks/has-insufficient-funds-logic/use-has-insufficient-funds";
-import useGetSessionTypesAndPrices from "../book-a-session-hooks/get-session-types-and-prices/use-get-session-types-and-prices";
+import useGetChildrenLogic from "../book-a-session-hooks/logic/use-get-children-logic";
+import useHasInsufficientFunds from "../book-a-session-hooks/logic/use-has-insufficient-funds";
+import useGetSessionTypesAndPricesSelectors from "../../../hooks/get-selectors/use-get-session-types-and-prices-selectors";
 
 import WalletBalance from "../../../components/wallet-balance/wallet-balance.component";
 import SessionHelpAccordion from "./session-help-accordion.component";
@@ -15,7 +15,7 @@ import { addFundsRoute } from "../../../strings/routes/routes-strings";
 const BalanceCheckAndBookSessionHelp = () => {
   const { noChildrenAddedYet } = useGetChildrenLogic();
   const { hasInsufficientFunds } = useHasInsufficientFunds();
-  const { morningSessionPriceToFixed } = useGetSessionTypesAndPrices();
+  const { morningSessionPriceToFixed } = useGetSessionTypesAndPricesSelectors();
 
   return (
     <ParentDiv>
