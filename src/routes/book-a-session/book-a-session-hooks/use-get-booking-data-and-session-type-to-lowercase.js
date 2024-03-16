@@ -8,7 +8,7 @@ const useGetBookingDataAndSessionTypeToLowercase = () => {
   const userBookingsDatesAndNamesAndSessionType = bookedSessionsUser.map(
     (userBooking) => {
       const bookingDate = userBooking.date;
-      const childrensName = userBooking.childrensName;
+      const childrensName = userBooking.childrensName.toLowerCase();
       const bookingSessionType = userBooking.sessionType;
 
       return {

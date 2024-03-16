@@ -1,9 +1,5 @@
-import { useSelector } from "react-redux";
-
 import useFireSwal from "../../../../hooks/use-fire-swal";
-import useConditionalLogic from "../use-conditional-logic";
-
-import { selectBookSessionSelectors } from "../../../../store/book-session/book-session.slice";
+import useDatesLogic from "../dates-logic/use-dates-logic";
 
 import {
   afternoonSessionSpacesErrorMessage,
@@ -11,17 +7,12 @@ import {
   morningSessionSpacesErrorMessage,
   morningSpacesRemainingMessage,
 } from "../../../../strings/errors/errors-strings";
+import useSelectBookSessionSelectors from "../select-book-session-selectors/use-select-book-session-selectors";
 
 const useSessionSpacesErrorSwals = () => {
   const { fireSwal } = useFireSwal();
-  const { morningSessionSpaces, afternoonSessionSpaces } =
-    useConditionalLogic();
-
-  const { childrenSelectedForBooking } = useSelector(
-    selectBookSessionSelectors
-  );
-
-  const childrenSelectedLength = childrenSelectedForBooking.length;
+  const { morningSessionSpaces, afternoonSessionSpaces } = useDatesLogic();
+  const { childrenSelectedLength } = useSelectBookSessionSelectors();
 
   const morningSessionErrorSwal = () => {
     fireSwal(

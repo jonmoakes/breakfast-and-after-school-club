@@ -1,12 +1,10 @@
-import { useDispatch } from "react-redux";
-
-import { setChosenDate } from "../../../store/request-date-data/request-date-data.slice";
+import useRequestDateDataActions from "../../../hooks/get-actions/use-request-date-data-actions";
 
 const useChooseDateHandleChange = () => {
-  const dispatch = useDispatch();
+  const { dispatchSetChosenDate } = useRequestDateDataActions();
 
   const chooseDateHandleChange = (event) => {
-    dispatch(setChosenDate(event.target.value));
+    dispatchSetChosenDate(event);
   };
 
   return { chooseDateHandleChange };

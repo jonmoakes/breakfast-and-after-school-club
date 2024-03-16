@@ -1,18 +1,16 @@
 import { useSelector } from "react-redux";
 
-import { selectRequestDateDataSelectors } from "../../../store/request-date-data/request-date-data.slice";
-import { selectBookSessionSelectors } from "../../../store/book-session/book-session.slice";
+import useSelectBookSessionSelectors from "../book-a-session-hooks/select-book-session-selectors/use-select-book-session-selectors";
+import useGetRequestDateDataSelectors from "../../../hooks/get-selectors/use-get-request-date-data-selectors";
 import { selectSendEmailSelectors } from "../../../store/send-email/send-email.slice";
 import { selectSessionTypesAndPricesSelectors } from "../../../store/session-types-and-prices/session-types-and-prices.slice";
 
 import Loader from "../../../components/loader/loader.component";
 
 const Loaders = () => {
-  const { requestDateDataIsLoading } = useSelector(
-    selectRequestDateDataSelectors
-  );
+  const { requestDateDataIsLoading } = useGetRequestDateDataSelectors();
+  const { bookSessionIsLoading } = useSelectBookSessionSelectors();
 
-  const { bookSessionIsLoading } = useSelector(selectBookSessionSelectors);
   const { sessionTypesAndPricesIsLoading } = useSelector(
     selectSessionTypesAndPricesSelectors
   );

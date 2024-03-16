@@ -1,8 +1,9 @@
 import { useSelector } from "react-redux";
 
-import useConditionalLogic from "../../book-a-session-hooks/use-conditional-logic";
 import useConfirmSession from "../../book-a-session-hooks/use-confirm-session";
-import useGetPriceOfBooking from "../../../../hooks/use-get-price-of-booking";
+import useGetPriceOfBooking from "../../book-a-session-hooks/use-get-price-of-booking";
+import useGetSessionTypesAndPrices from "../../book-a-session-hooks/get-session-types-and-prices/use-get-session-types-and-prices";
+import useSessionLogic from "../../book-a-session-hooks/session-logic/use-session-logic";
 
 import { selectCurrentUserSelectors } from "../../../../store/user/user.slice";
 
@@ -11,11 +12,11 @@ import { BlackHr } from "../../../../styles/hr/hr.styles";
 
 const AfternoonSessionShortButton = () => {
   const {
-    onlyAfternoonSessionsAvailable,
-    allSessionsAvailable,
     afternoonShortSessionType: sessionType,
     afternoonShortSessionPrice: sessionPrice,
-  } = useConditionalLogic();
+  } = useGetSessionTypesAndPrices();
+  const { onlyAfternoonSessionsAvailable, allSessionsAvailable } =
+    useSessionLogic();
   const { confirmSession } = useConfirmSession();
   const { getPriceOfBooking } = useGetPriceOfBooking();
 

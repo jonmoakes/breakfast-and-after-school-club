@@ -1,4 +1,6 @@
-import useConditionalLogic from "../book-a-session-hooks/use-conditional-logic";
+import useGetChildrenLogic from "../book-a-session-hooks/get-children-logic/use-get-children-logic";
+import useHasInsufficientFunds from "../book-a-session-hooks/has-insufficient-funds-logic/use-has-insufficient-funds";
+import useGetSessionTypesAndPrices from "../book-a-session-hooks/get-session-types-and-prices/use-get-session-types-and-prices";
 
 import WalletBalance from "../../../components/wallet-balance/wallet-balance.component";
 import SessionHelpAccordion from "./session-help-accordion.component";
@@ -11,8 +13,9 @@ import { RedSpan } from "../../../styles/span/span.styles";
 import { addFundsRoute } from "../../../strings/routes/routes-strings";
 
 const BalanceCheckAndBookSessionHelp = () => {
-  const { hasInsufficientFunds, noChildrenAddedYet, morningSessionPrice } =
-    useConditionalLogic();
+  const { noChildrenAddedYet } = useGetChildrenLogic();
+  const { hasInsufficientFunds } = useHasInsufficientFunds();
+  const { morningSessionPriceToFixed } = useGetSessionTypesAndPrices();
 
   return (
     <ParentDiv>
@@ -20,8 +23,8 @@ const BalanceCheckAndBookSessionHelp = () => {
       {noChildrenAddedYet() ? null : !noChildrenAddedYet() &&
         hasInsufficientFunds() ? (
         <Text>
-          you need at least <RedSpan>£{morningSessionPrice.toFixed(2)}</RedSpan>{" "}
-          in your wallet to book a session. please{" "}
+          you need at least <RedSpan>£{morningSessionPriceToFixed}</RedSpan> in
+          your wallet to book a session. please{" "}
           <StyledLink to={addFundsRoute}>Add funds</StyledLink> to your account
           in order to continue.
         </Text>

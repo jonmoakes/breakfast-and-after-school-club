@@ -76,7 +76,7 @@ export const createDocumentAndSetUser = async (schoolCode, phoneNumber) => {
     const dataToAdd = {
       id: user.$id,
       createdAt: user.$createdAt,
-      name: user.name,
+      name: user.name.toLowerCase(),
       email: user.email,
       phoneNumber,
       walletBalance: 0,

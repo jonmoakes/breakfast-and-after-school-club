@@ -1,6 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 
-import useConditionalLogic from "./use-conditional-logic";
+import useDatesLogic from "./dates-logic/use-dates-logic";
+import useSelectBookSessionSelectors from "./select-book-session-selectors/use-select-book-session-selectors";
 
 import { selectGetUsersChildrenSelectors } from "../../../store/get-users-children/get-users-children.slice";
 import {
@@ -9,16 +10,15 @@ import {
   updateUserDocBalanceAsync,
 } from "../../../store/book-session/book-session.thunks";
 import { selectCurrentUserSelectors } from "../../../store/user/user.slice";
-import { selectBookSessionSelectors } from "../../../store/book-session/book-session.slice";
+
 import { getUsersWalletBalanceAsync } from "../../../store/user/user.thunks";
 
 const useConfirmResult = () => {
-  const { date } = useConditionalLogic();
+  const { date } = useDatesLogic();
 
   const { usersChildren } = useSelector(selectGetUsersChildrenSelectors);
-  const { childrenSelectedForBooking } = useSelector(
-    selectBookSessionSelectors
-  );
+  const { childrenSelectedForBooking } = useSelectBookSessionSelectors();
+
   const { currentUser, currentUserEnvironmentVariables } = useSelector(
     selectCurrentUserSelectors
   );

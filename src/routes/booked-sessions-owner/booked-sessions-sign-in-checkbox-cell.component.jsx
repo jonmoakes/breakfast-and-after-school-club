@@ -17,7 +17,7 @@ const BookedSessionsSignInCheckboxCell = ({ row }) => {
     const today = new Date();
     const rowsDate = new Date(date);
 
-    return isSameDay(rowsDate, today) && true;
+    return isSameDay(rowsDate, today) ? true : false;
   };
 
   const showMorningRegistrationCheckbox = () => {

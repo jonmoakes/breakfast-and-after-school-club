@@ -1,11 +1,11 @@
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 
-import useConditionalLogic from "../use-conditional-logic";
+import useDatesLogic from "../dates-logic/use-dates-logic";
 import useHamburgerHandlerNavigate from "../../../../hooks/use-hamburger-handler-navigate";
 import useFireSwal from "../../../../hooks/use-fire-swal";
+import useCurrentUserSelectors from "../../../../hooks/get-selectors/use-current-user-selectors";
+import useSelectBookSessionSelectors from "../select-book-session-selectors/use-select-book-session-selectors";
 
-import { selectBookSessionSelectors } from "../../../../store/book-session/book-session.slice";
-import { selectCurrentUserSelectors } from "../../../../store/user/user.slice";
 import { sendEmailResetSessionSpacesErrorAsync } from "../../../../store/send-email/send-email.thunks";
 
 import { failedToSendEmailInstructions } from "../../../../strings/errors/errors-strings";
@@ -15,22 +15,14 @@ import {
 } from "../../../../strings/routes/routes-strings";
 
 const useSendResetSessionSpacesErrorEmail = () => {
-  const { date } = useConditionalLogic();
+  const { date } = useDatesLogic();
+
   const { hamburgerHandlerNavigate } = useHamburgerHandlerNavigate();
   const { fireSwal } = useFireSwal();
+  const { sessionType, numberOfSpacesToAdd } = useSelectBookSessionSelectors();
+  const { appOwnerEmail } = useCurrentUserSelectors();
 
-  const { sessionType, childrenSelectedForBooking } = useSelector(
-    selectBookSessionSelectors
-  );
-  const { currentUserEnvironmentVariables } = useSelector(
-    selectCurrentUserSelectors
-  );
   const dispatch = useDispatch();
-
-  const numberOfSpacesToAdd = childrenSelectedForBooking.length
-    ? childrenSelectedForBooking.length
-    : 1;
-  const { appOwnerEmail } = currentUserEnvironmentVariables;
 
   const sendResetSessionSpacesErrorEmail = () => {
     dispatch(

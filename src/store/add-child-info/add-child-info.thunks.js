@@ -19,7 +19,7 @@ export const addChildInfoAsync = createAsyncThunk(
 
       const dataToAdd = {
         parentsUserId: id,
-        childName,
+        childName: childName.toLowerCase(),
         age,
         consent,
         medicalInfo,

@@ -1,13 +1,13 @@
 import { useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 
 import useFireSwal from "../../../../hooks/use-fire-swal";
-import useConditionalLogic from "../use-conditional-logic";
 import useSendResetSessionSpacesErrorEmail from "../emails/use-send-reset-session-spaces-error-email";
 import useHamburgerHandlerNavigate from "../../../../hooks/use-hamburger-handler-navigate";
+import useDatesLogic from "../dates-logic/use-dates-logic";
+import useSelectBookSessionSelectors from "../select-book-session-selectors/use-select-book-session-selectors";
+import useCurrentUserSelectors from "../../../../hooks/get-selectors/use-current-user-selectors";
 
-import { selectBookSessionSelectors } from "../../../../store/book-session/book-session.slice";
-import { selectCurrentUserSelectors } from "../../../../store/user/user.slice";
 import { resetSessionDocAsync } from "../../../../store/book-session/book-session.thunks";
 
 import {
@@ -21,18 +21,11 @@ const useUpdateBalanceErrorResetSessionDocSwal = () => {
   const { fireSwal } = useFireSwal();
   const { sendResetSessionSpacesErrorEmail } =
     useSendResetSessionSpacesErrorEmail();
-
   const { hamburgerHandlerNavigate } = useHamburgerHandlerNavigate();
-  const { date } = useConditionalLogic();
-  const { sessionType, childrenSelectedForBooking, updateUserDocBalance } =
-    useSelector(selectBookSessionSelectors);
-  const { currentUserEnvironmentVariables } = useSelector(
-    selectCurrentUserSelectors
-  );
-
-  const updateBalanceError = updateUserDocBalance.error;
-  const { databaseId, termDatesCollectionId: collectionId } =
-    currentUserEnvironmentVariables;
+  const { date } = useDatesLogic();
+  const { sessionType, childrenSelectedForBooking, updateBalanceError } =
+    useSelectBookSessionSelectors();
+  const { databaseId, termDatesCollectionId } = useCurrentUserSelectors();
 
   const [swalConfirmed, setSwalConfirmed] = useState(false);
   const dispatch = useDispatch();
@@ -52,6 +45,8 @@ const useUpdateBalanceErrorResetSessionDocSwal = () => {
       false
     ).then((isConfirmed) => {
       if (isConfirmed) {
+        const collectionId = termDatesCollectionId;
+        console.log("collection ", collectionId);
         setSwalConfirmed(true);
         dispatch(
           resetSessionDocAsync({

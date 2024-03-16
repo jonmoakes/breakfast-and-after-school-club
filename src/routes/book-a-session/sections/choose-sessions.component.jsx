@@ -1,8 +1,10 @@
-import useConditionalLogic from "../book-a-session-hooks/use-conditional-logic";
 import useSetDateAndTime from "../book-a-session-hooks/use-set-date-and-time";
+import useDatesLogic from "../book-a-session-hooks/dates-logic/use-dates-logic";
+import useTimesLogic from "../book-a-session-hooks/times-logic/use-times-logic";
+import useGetChildrenLogic from "../book-a-session-hooks/get-children-logic/use-get-children-logic";
+import useSessionLogic from "../book-a-session-hooks/session-logic/use-session-logic";
 
 import ChildCheckbox from "./child-checkbox.component";
-
 import HeadingTimesAndPricesWalletBalanceOptionsInfo from "./heading-times-and-prices-wallet-balance-options-info.component";
 import MorningSessionButton from "./buttons/morning-session-button.component";
 import AfternoonSessionShortButton from "./buttons/afternoon-session-short-button.component";
@@ -16,18 +18,17 @@ import { Text } from "../../../styles/p/p.styles";
 
 const ChooseSessions = () => {
   useSetDateAndTime();
-
+  const { dateInPastOrNotChosenOrChosenAndBalanceTooLowOrNoSpacesAvailable } =
+    useDatesLogic();
   const {
-    dateInPastOrNotChosenOrChosenAndBalanceTooLowOrNoSpacesAvailable,
-    onlyMorningSessionsAvailable,
-    notTodaysOrIsTodayAndBeforeMorningCloseTime,
     isTodayAndAfterAfternoonSessionCloseTime,
-    isTodayAndIsBetweenOpenAndCloseTime,
-    atLeastOneChildHasBeenSelected,
-    hasOneChild,
-    hasMoreThanOneChild,
     latestTimeToBookAfternoonSession,
-  } = useConditionalLogic();
+    notTodaysOrIsTodayAndBeforeMorningCloseTime,
+    isTodayAndIsBetweenOpenAndCloseTime,
+  } = useTimesLogic();
+  const { hasOneChild, hasMoreThanOneChild, atLeastOneChildHasBeenSelected } =
+    useGetChildrenLogic();
+  const { onlyMorningSessionsAvailable } = useSessionLogic();
 
   return (
     <>

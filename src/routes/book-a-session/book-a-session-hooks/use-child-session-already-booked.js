@@ -1,13 +1,13 @@
 import { useSelector } from "react-redux";
 
-import useConditionalLogic from "./use-conditional-logic";
+import useDatesLogic from "./dates-logic/use-dates-logic";
 import useGetBookingDataAndSessionTypeToLowercase from "./use-get-booking-data-and-session-type-to-lowercase";
+import useSelectBookSessionSelectors from "./select-book-session-selectors/use-select-book-session-selectors";
 
 import { selectGetUsersChildrenSelectors } from "../../../store/get-users-children/get-users-children.slice";
-import { selectBookSessionSelectors } from "../../../store/book-session/book-session.slice";
 
 const useChildSessionAlreadyBooked = () => {
-  const { date } = useConditionalLogic();
+  const { date } = useDatesLogic();
   const {
     userBookingsDatesAndNamesAndSessionType,
     isMorningSession,
@@ -16,11 +16,10 @@ const useChildSessionAlreadyBooked = () => {
     isMorningAndAfternoonShortSession,
     isMorningAndAfternoonLongSession,
   } = useGetBookingDataAndSessionTypeToLowercase();
+  const { childrenSelectedForBooking } = useSelectBookSessionSelectors();
 
   const { usersChildren } = useSelector(selectGetUsersChildrenSelectors);
-  const { childrenSelectedForBooking } = useSelector(
-    selectBookSessionSelectors
-  );
+
   const { childName } = usersChildren[0];
 
   // if user only has one child in database
@@ -41,6 +40,7 @@ const useChildSessionAlreadyBooked = () => {
   const multipleChildSessionAlreadyBooked = (sessionType) => {
     return !!userBookingsDatesAndNamesAndSessionType.find((userBooking) => {
       const sortedNames = [...childrenSelectedForBooking].sort();
+
       const selectedChildrensNames = sortedNames.join(" ");
 
       const userBookingsChildrensNamesAsArray = userBooking.childrensName

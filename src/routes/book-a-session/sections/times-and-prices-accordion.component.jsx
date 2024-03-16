@@ -1,13 +1,8 @@
-import { useSelector, useDispatch } from "react-redux";
+import useGetSessionTypesAndPrices from "../book-a-session-hooks/get-session-types-and-prices/use-get-session-types-and-prices";
+import useGetRequestDateDataSelectors from "../../../hooks/get-selectors/use-get-request-date-data-selectors";
 
-import useConditionalLogic from "../book-a-session-hooks/use-conditional-logic";
-
-import { selectRequestDateDataSelectors } from "../../../store/request-date-data/request-date-data.slice";
-import {
-  hideSecondElement,
-  toggleShowSecondElement,
-  selectShouldShowElementSelectors,
-} from "../../../store/should-show-element/should-show-element.slice";
+import useShouldShowElementActions from "../../../hooks/get-actions/use-should-show-element-actions";
+import useShouldShowElementSelectors from "../../../hooks/get-selectors/use-should-show-element-selectors";
 
 import {
   SecondAccordion,
@@ -21,23 +16,20 @@ import { BlackHr } from "../../../styles/hr/hr.styles";
 
 const TimesAndPricesAccordion = () => {
   const {
-    morningSessionPrice,
-    afternoonShortSessionPrice,
-    afternoonLongSessionPrice,
-    morningAndAfternoonShortSessionPrice,
-    morningAndAfternoonLongSessionPrice,
-  } = useConditionalLogic();
-
-  const { shouldShowSecondElement } = useSelector(
-    selectShouldShowElementSelectors
-  );
+    morningSessionPriceToFixed,
+    afternoonShortSessionPriceToFixed,
+    afternoonLongSessionPriceToFixed,
+    morningAndAfternoonShortSessionPriceToFixed,
+    morningAndAfternoonLongSessionPriceToFixed,
+  } = useGetSessionTypesAndPrices();
   const {
     morningSessionTime,
     afternoonShortSessionTime,
     afternoonLongSessionTime,
-  } = useSelector(selectRequestDateDataSelectors);
-
-  const dispatch = useDispatch();
+  } = useGetRequestDateDataSelectors();
+  const { showOppositeShowSecondElement, hideShownSecondElement } =
+    useShouldShowElementActions();
+  const { shouldShowSecondElement } = useShouldShowElementSelectors();
 
   // SecondAccordion is for if there are 2 accordions on a page as they have separate states.
   return (
@@ -45,7 +37,7 @@ const TimesAndPricesAccordion = () => {
       <>
         <SecondAccordionTitle
           {...{ shouldShowSecondElement }}
-          onClick={() => dispatch(toggleShowSecondElement())}
+          onClick={showOppositeShowSecondElement}
         >
           <div>
             {shouldShowSecondElement ? "ok, close" : "view times & prices"}
@@ -60,8 +52,10 @@ const TimesAndPricesAccordion = () => {
               morning session:
               <br />
               {morningSessionTime}
-              <br /> cost:{" "}
-              <BlueSpan>£{morningSessionPrice.toFixed(2)}</BlueSpan> per child.
+              <br /> cost: <BlueSpan>
+                £{morningSessionPriceToFixed}
+              </BlueSpan>{" "}
+              per child.
             </Text>
             <BlackHr />
             <Text>
@@ -69,7 +63,7 @@ const TimesAndPricesAccordion = () => {
               <br />
               {afternoonShortSessionTime}
               <br /> cost:{" "}
-              <BlueSpan>£{afternoonShortSessionPrice.toFixed(2)}</BlueSpan> per
+              <BlueSpan>£{afternoonShortSessionPriceToFixed}</BlueSpan> per
               child.
             </Text>
             <BlackHr />
@@ -78,7 +72,7 @@ const TimesAndPricesAccordion = () => {
               <br />
               {afternoonLongSessionTime}
               <br /> cost:{" "}
-              <BlueSpan>£{afternoonLongSessionPrice.toFixed(2)}</BlueSpan> per
+              <BlueSpan>£{afternoonLongSessionPriceToFixed}</BlueSpan> per
               child.
             </Text>
             <BlackHr />
@@ -87,7 +81,7 @@ const TimesAndPricesAccordion = () => {
               <br />( short ):
               <br /> cost:{" "}
               <BlueSpan>
-                £{morningAndAfternoonShortSessionPrice.toFixed(2)}
+                £{morningAndAfternoonShortSessionPriceToFixed}
               </BlueSpan>{" "}
               per child.
             </Text>
@@ -97,7 +91,7 @@ const TimesAndPricesAccordion = () => {
               <br />( long ):
               <br /> cost:{" "}
               <BlueSpan>
-                £{morningAndAfternoonLongSessionPrice.toFixed(2)}
+                £{morningAndAfternoonLongSessionPriceToFixed}
               </BlueSpan>{" "}
               per child.
             </Text>
@@ -108,7 +102,7 @@ const TimesAndPricesAccordion = () => {
             </Text>
             <BlackHr />
 
-            <YellowGreenButton onClick={() => dispatch(hideSecondElement())}>
+            <YellowGreenButton onClick={hideShownSecondElement}>
               Ok, Close
             </YellowGreenButton>
           </AccordionContent>

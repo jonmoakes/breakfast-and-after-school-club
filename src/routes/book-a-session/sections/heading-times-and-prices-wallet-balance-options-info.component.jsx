@@ -7,7 +7,7 @@ import { BlueH2 } from "../../../styles/h2/h2.styles";
 
 const HeadingTimesAndPricesWalletBalanceOptionsInfo = () => (
   <>
-    <BlueH2>choose sessions:</BlueH2>
+    <BlueH2>choose session:</BlueH2>
     <TimesAndPricesAccordion />
     <InnerDiv>
       <BlackHr />

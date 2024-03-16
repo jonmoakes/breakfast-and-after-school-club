@@ -1,6 +1,5 @@
 import { useDispatch } from "react-redux";
 
-import useConditionalLogic from "./use-conditional-logic";
 import useSessionSpacesErrorSwals from "./swals/use-session-spaces-error-swals";
 import useCheckForPreviousBookingAndConfirmSession from "./use-check-for-previous-booking-and-confirm-session";
 
@@ -8,6 +7,7 @@ import {
   setSessionType,
   setSessionPrice,
 } from "../../../store/book-session/book-session.slice";
+import useSessionLogic from "./session-logic/use-session-logic";
 
 const useConfirmSession = () => {
   const {
@@ -15,7 +15,8 @@ const useConfirmSession = () => {
     notEnoughAfternoonSpacesForMultipleChildren,
     notEnoughMorningSpacesForMultipleChildrenInMorningAndAfternoonSession,
     notEnoughAfternoonSpacesForMultipleChildrenInMorningAndAfternoonSession,
-  } = useConditionalLogic();
+  } = useSessionLogic();
+
   const {
     morningSessionErrorSwal,
     afternoonSessionErrorSwal,

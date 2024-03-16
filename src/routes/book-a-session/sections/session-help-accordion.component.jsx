@@ -1,12 +1,6 @@
-import { useSelector, useDispatch } from "react-redux";
-
-import useConditionalLogic from "../book-a-session-hooks/use-conditional-logic";
-
-import {
-  hideElement,
-  toggleShowElement,
-  selectShouldShowElementSelectors,
-} from "../../../store/should-show-element/should-show-element.slice";
+import useGetSessionTypesAndPrices from "../book-a-session-hooks/get-session-types-and-prices/use-get-session-types-and-prices";
+import useShouldShowElementActions from "../../../hooks/get-actions/use-should-show-element-actions";
+import useShouldShowElementSelectors from "../../../hooks/get-selectors/use-should-show-element-selectors";
 
 import {
   Accordion,
@@ -20,22 +14,17 @@ import { StyledLink } from "../../../styles/link/link.styles";
 import { bookedSessionsUserRoute } from "../../../strings/routes/routes-strings";
 
 const SessionHelpAccordion = () => {
-  const { morningSessionPrice } = useConditionalLogic();
-
-  const { shouldShowElement } = useSelector(selectShouldShowElementSelectors);
-
-  const dispatch = useDispatch();
-
-  const priceToFixed = morningSessionPrice
-    ? morningSessionPrice.toFixed(2)
-    : null;
+  const { showOppositeShowElement, hideShownElement } =
+    useShouldShowElementActions();
+  const { morningSessionPriceToFixed } = useGetSessionTypesAndPrices();
+  const { shouldShowElement } = useShouldShowElementSelectors();
 
   return (
     <Accordion {...{ shouldShowElement }}>
       <>
         <AccordionTitle
           {...{ shouldShowElement }}
-          onClick={() => dispatch(toggleShowElement())}
+          onClick={showOppositeShowElement}
         >
           <div>{shouldShowElement ? "ok, close" : "booking sessions help"}</div>
           <>{shouldShowElement ? "-" : "+"}</>
@@ -59,10 +48,10 @@ const SessionHelpAccordion = () => {
               what spaces we have available on your chosen day.
             </Text>
             <Text>
-              for example, if you have £{priceToFixed} in your wallet, you would
-              not see the options to select the afternoon long session, or the
-              combined morning and afternoon sessions as their price is greater
-              that £{priceToFixed}.
+              for example, if you have £{morningSessionPriceToFixed} in your
+              wallet, you would not see the options to select the afternoon long
+              session, or the combined morning and afternoon sessions as their
+              price is greater that £{morningSessionPriceToFixed}.
             </Text>
             <Text>
               also if we have no spaces for a particular session, you will not
@@ -103,7 +92,7 @@ const SessionHelpAccordion = () => {
             <Text>
               you will also be emailed a confirmation of what you have booked.
             </Text>
-            <YellowGreenButton onClick={() => dispatch(hideElement())}>
+            <YellowGreenButton onClick={hideShownElement}>
               Ok, Close
             </YellowGreenButton>
           </AccordionContent>

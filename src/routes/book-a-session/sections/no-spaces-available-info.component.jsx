@@ -1,9 +1,9 @@
-import useConditionalLogic from "../book-a-session-hooks/use-conditional-logic";
+import useDatesLogic from "../book-a-session-hooks/dates-logic/use-dates-logic";
 
 import { Text } from "../../../styles/p/p.styles";
 
 const NoSpacesAvailableInfo = () => {
-  const { noSpacesAvailableOnChosenDate } = useConditionalLogic();
+  const { noSpacesAvailableOnChosenDate } = useDatesLogic();
 
   return (
     <>

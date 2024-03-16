@@ -1,18 +1,17 @@
 import { useEffect } from "react";
-import { useDispatch } from "react-redux";
 
-import { setCurrentDateAndTime } from "../../../store/date-and-time/date-and-time.slice";
+import useCurrentDateAndTimeActions from "../../../hooks/get-actions/use-current-date-and-time-actions";
 
 const useSetDateAndTime = () => {
-  const dispatch = useDispatch();
+  const { dispatchSetCurrentDateAndTime } = useCurrentDateAndTimeActions();
 
   useEffect(() => {
     const interval = setInterval(() => {
-      dispatch(setCurrentDateAndTime(new Date()));
+      dispatchSetCurrentDateAndTime();
     }, 60000);
 
     return () => clearInterval(interval);
-  }, [dispatch]);
+  }, [dispatchSetCurrentDateAndTime]);
 };
 
 export default useSetDateAndTime;

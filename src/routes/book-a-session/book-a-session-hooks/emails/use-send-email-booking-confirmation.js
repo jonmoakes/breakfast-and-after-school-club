@@ -1,12 +1,10 @@
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 
 import useFireSwal from "../../../../hooks/use-fire-swal";
 import useHamburgerHandlerNavigate from "../../../../hooks/use-hamburger-handler-navigate";
+import useCurrentUserSelectors from "../../../../hooks/get-selectors/use-current-user-selectors";
+import useDatesLogic from "../dates-logic/use-dates-logic";
 
-import { selectCurrentUserSelectors } from "../../../../store/user/user.slice";
-import { selectRequestDateDataSelectors } from "../../../../store/request-date-data/request-date-data.slice";
-import { selectBookSessionSelectors } from "../../../../store/book-session/book-session.slice";
-import { selectGetUsersChildrenSelectors } from "../../../../store/get-users-children/get-users-children.slice";
 import { sendEmailBookingConfirmationAsync } from "../../../../store/send-email/send-email.thunks";
 
 import { errorSendingBookingConfirmationEmail } from "../../../../strings/errors/errors-strings";
@@ -14,22 +12,19 @@ import { getBookingInfoEmailInstructions } from "../../../../strings/infos/infos
 import { bookedSessionsUserRoute } from "../../../../strings/routes/routes-strings";
 
 import { createChildrenToAddToBooking } from "../../../../functions/create-children-to-add-to-booking";
+import useSelectBookSessionSelectors from "../select-book-session-selectors/use-select-book-session-selectors";
+import useGetChildrenLogic from "../get-children-logic/use-get-children-logic";
 
 const useSendEmailBookingConfirmation = () => {
   const { fireSwal } = useFireSwal();
   const { hamburgerHandlerNavigate } = useHamburgerHandlerNavigate();
-
-  const { currentUser } = useSelector(selectCurrentUserSelectors);
-  const { dateData } = useSelector(selectRequestDateDataSelectors);
-  const { sessionType, sessionPrice, childrenSelectedForBooking } = useSelector(
-    selectBookSessionSelectors
-  );
-  const { usersChildren } = useSelector(selectGetUsersChildrenSelectors);
+  const { name, email } = useCurrentUserSelectors();
+  const { date } = useDatesLogic();
+  const { sessionType, sessionPrice, childrenSelectedForBooking } =
+    useSelectBookSessionSelectors();
+  const { usersChildren } = useGetChildrenLogic();
 
   const dispatch = useDispatch();
-
-  const { name, email } = currentUser;
-  const date = dateData ? dateData.date : "";
 
   const sendEmailBookingConfirmation = () => {
     dispatch(

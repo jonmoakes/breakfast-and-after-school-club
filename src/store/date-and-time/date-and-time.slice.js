@@ -16,7 +16,7 @@ export const dateAndTimeSlice = createSlice({
     },
   },
   selectors: {
-    selectCurrentDateAndTime: createSelector(
+    selectCurrentDateAndTimeSelectors: createSelector(
       (state) => state.currentDateAndTime,
       (currentDateAndTime) => {
         return {
@@ -30,6 +30,6 @@ export const dateAndTimeSlice = createSlice({
 export const { setCurrentDateAndTime, resetDateAndTimeState } =
   dateAndTimeSlice.actions;
 
-export const { selectCurrentDateAndTime } = dateAndTimeSlice.selectors;
+export const { selectCurrentDateAndTimeSelectors } = dateAndTimeSlice.selectors;
 
 export const dateAndTimeReducer = dateAndTimeSlice.reducer;

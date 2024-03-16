@@ -1,8 +1,9 @@
 import { useSelector } from "react-redux";
 
 import useConfirmSession from "../../book-a-session-hooks/use-confirm-session";
-import useConditionalLogic from "../../book-a-session-hooks/use-conditional-logic";
-import useGetPriceOfBooking from "../../../../hooks/use-get-price-of-booking";
+import useGetSessionTypesAndPrices from "../../book-a-session-hooks/get-session-types-and-prices/use-get-session-types-and-prices";
+import useSessionLogic from "../../book-a-session-hooks/session-logic/use-session-logic";
+import useGetPriceOfBooking from "../../book-a-session-hooks/use-get-price-of-booking";
 
 import { selectCurrentUserSelectors } from "../../../../store/user/user.slice";
 
@@ -10,12 +11,10 @@ import { YellowGreenButton } from "../../../../styles/buttons/buttons.styles";
 import { BlackHr } from "../../../../styles/hr/hr.styles";
 
 const MorningSessionButton = () => {
-  const {
-    onlyMorningSessionsAvailable,
-    allSessionsAvailable,
-    morningSessionType: sessionType,
-    morningSessionPrice: sessionPrice,
-  } = useConditionalLogic();
+  const { morningSessionType: sessionType, morningSessionPrice: sessionPrice } =
+    useGetSessionTypesAndPrices();
+  const { onlyMorningSessionsAvailable, allSessionsAvailable } =
+    useSessionLogic();
   const { confirmSession } = useConfirmSession();
   const { getPriceOfBooking } = useGetPriceOfBooking();
 

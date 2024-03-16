@@ -1,9 +1,6 @@
-import { useSelector } from "react-redux";
-
 import useFireSwal from "../../../../hooks/use-fire-swal";
 import useHamburgerHandlerNavigate from "../../../../hooks/use-hamburger-handler-navigate";
-
-import { selectBookSessionSelectors } from "../../../../store/book-session/book-session.slice";
+import useSelectBookSessionSelectors from "../select-book-session-selectors/use-select-book-session-selectors";
 
 import {
   lastMinuteNoSessionsMessage,
@@ -15,9 +12,7 @@ import { bookSessionRoute } from "../../../../strings/routes/routes-strings";
 const useUpdateSessionDocErrorSwal = () => {
   const { fireSwal } = useFireSwal();
   const { hamburgerHandlerNavigate } = useHamburgerHandlerNavigate();
-
-  const { updateSessionDoc } = useSelector(selectBookSessionSelectors);
-  const updateSessionError = updateSessionDoc.error;
+  const { updateSessionError } = useSelectBookSessionSelectors();
 
   const updateSessionDocErrorSwal = () => {
     if (updateSessionError === lastMinuteNoSessionsMessage) {

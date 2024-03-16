@@ -10,7 +10,7 @@ import {
   updatePasswordRoute,
   bookedSessionsUserRoute,
   allChildrenRoute,
-  allUsersRoute
+  allUsersRoute,
 } from "../../../strings/routes/routes-strings";
 
 const useNavigateToRoute = () => {
@@ -33,7 +33,7 @@ const useNavigateToRoute = () => {
       onClick: () => navigate(allUsersRoute),
     },
     {
-      id: 3,
+      id: 4,
       text: " update password",
       onClick: () => navigate(updatePasswordRoute),
     },

@@ -1,12 +1,9 @@
-import { useSelector } from "react-redux";
-
-import useConditionalLogic from "./use-conditional-logic";
 import useChildSessionAlreadyBooked from "./use-child-session-already-booked";
 import useConfirmSwal from "../../../hooks/use-confirm-swal";
 import useSessionAlreadyBookedSwal from "./swals/use-session-already-booked-swal";
 import useConfirmResult from "./use-confirm-result";
-
-import { selectBookSessionSelectors } from "../../../store/book-session/book-session.slice";
+import useSelectBookSessionSelectors from "./select-book-session-selectors/use-select-book-session-selectors";
+import useDatesLogic from "./dates-logic/use-dates-logic";
 
 import {
   confirmSureBookSession,
@@ -16,15 +13,12 @@ import {
 
 const useCheckForPreviousBookingAndConfirmSession = () => {
   const { confirmSwal } = useConfirmSwal();
-  const { date } = useConditionalLogic();
+  const { date } = useDatesLogic();
   const { confirmResult } = useConfirmResult();
   const { singleChildSessionAlreadyBooked, multipleChildSessionAlreadyBooked } =
     useChildSessionAlreadyBooked();
   const { sessionAlreadyBookedSwal } = useSessionAlreadyBookedSwal();
-
-  const { childrenSelectedForBooking } = useSelector(
-    selectBookSessionSelectors
-  );
+  const { childrenSelectedForBooking } = useSelectBookSessionSelectors();
 
   const childrenSelectedViaCheckbox = childrenSelectedForBooking.length;
 

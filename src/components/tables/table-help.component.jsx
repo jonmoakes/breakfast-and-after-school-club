@@ -39,9 +39,10 @@ const UserBookingsHelp = () => {
   const isBookedSessionsOwnerRoute =
     path === bookedSessionsOwnerRoute ? true : false;
 
-  const isAllChildrenRoute = path === allChildrenRoute && true;
-  const isBookedSessionsUserRoute = path === bookedSessionsUserRoute && true;
-  const isAllUsersRoute = path === allUsersRoute && true;
+  const isAllChildrenRoute = path === allChildrenRoute ? true : false;
+  const isBookedSessionsUserRoute =
+    path === bookedSessionsUserRoute ? true : false;
+  const isAllUsersRoute = path === allUsersRoute ? true : false;
 
   return (
     <Accordion className="table">

@@ -1,36 +1,33 @@
 import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 
-import { selectCurrentUserSelectors } from "../../../store/user/user.slice";
-import { selectRequestDateDataSelectors } from "../../../store/request-date-data/request-date-data.slice";
+import useGetRequestDateDataSelectors from "../../../hooks/get-selectors/use-get-request-date-data-selectors";
 import {
   requestDateDataAsync,
   requestEarlyFinishDatesAsync,
   requestBookingClosingTimesAsync,
   requestSessionTimesAsync,
 } from "../../../store/request-date-data/request-date-data.thunks";
+import useCurrentUserSelectors from "../../../hooks/get-selectors/use-current-user-selectors";
 
 const useGetDateDataEarlyFinishDatesAndBookingClosingTimes = () => {
   const { chosenDate, earlyFinishDates, bookingClosingTimes, sessionTimes } =
-    useSelector(selectRequestDateDataSelectors);
-  const { currentUserEnvironmentVariables } = useSelector(
-    selectCurrentUserSelectors
-  );
-
-  const dispatch = useDispatch();
-
+    useGetRequestDateDataSelectors();
   const {
     databaseId,
-    termDatesCollectionId: collectionId,
+    termDatesCollectionId,
     earlyFinishDatesCollectionId,
     bookingClosingTimesCollectionId,
     bookingClosingTimesDocumentId,
     sessionTimesCollectionId,
     sessionTimesDocumentId,
-  } = currentUserEnvironmentVariables;
+  } = useCurrentUserSelectors();
+
+  const dispatch = useDispatch();
 
   useEffect(() => {
     if (!chosenDate) return;
+    const collectionId = termDatesCollectionId;
 
     dispatch(
       requestDateDataAsync({ databaseId, collectionId, chosenDate })
@@ -42,11 +39,13 @@ const useGetDateDataEarlyFinishDatesAndBookingClosingTimes = () => {
         !sessionTimes
       ) {
         const collectionId = earlyFinishDatesCollectionId;
+
         dispatch(
           requestEarlyFinishDatesAsync({ databaseId, collectionId })
         ).then((resultAction) => {
           if (requestEarlyFinishDatesAsync.fulfilled.match(resultAction)) {
             const collectionId = bookingClosingTimesCollectionId;
+
             const documentId = bookingClosingTimesDocumentId;
             dispatch(
               requestBookingClosingTimesAsync({
@@ -59,6 +58,7 @@ const useGetDateDataEarlyFinishDatesAndBookingClosingTimes = () => {
                 requestBookingClosingTimesAsync.fulfilled.match(resultAction)
               ) {
                 const collectionId = sessionTimesCollectionId;
+
                 const documentId = sessionTimesDocumentId;
                 dispatch(
                   requestSessionTimesAsync({
@@ -78,7 +78,7 @@ const useGetDateDataEarlyFinishDatesAndBookingClosingTimes = () => {
   }, [
     chosenDate,
     databaseId,
-    collectionId,
+    termDatesCollectionId,
     dispatch,
     earlyFinishDatesCollectionId,
     bookingClosingTimesCollectionId,

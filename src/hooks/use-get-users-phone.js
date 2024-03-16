@@ -18,28 +18,22 @@ const useGetUsersPhone = (value, row) => {
   const { isLoading, parentPhoneNumber, error } = phoneState;
 
   const hasPhoneNumber = (value) => {
-    return value && !parentPhoneNumber && true;
+    return value && !parentPhoneNumber ? true : false;
   };
 
   const noPhoneNumber = (value) => {
-    return !value && !parentPhoneNumber && true;
+    return !value && !parentPhoneNumber ? true : false;
   };
 
   const foundPhoneNumberOnRequest = (value) => {
-    return (
-      !value && parentPhoneNumber && parentPhoneNumber !== "not found" && true
-    );
+    return !value && parentPhoneNumber && parentPhoneNumber !== "not found"
+      ? true
+      : false;
   };
 
   const noPhoneNumberAfterRequest = (value) => {
-    return !value && parentPhoneNumber === "not found" && true;
+    return !value && parentPhoneNumber === "not found" ? true : false;
   };
-
-  // const noPhoneNumber = !value && !parentPhoneNumber && true;
-  // const foundPhoneNumberOnRequest =
-  //   !value && parentPhoneNumber && parentPhoneNumber !== "not found" && true;
-  // const noPhoneNumberAfterRequest =
-  //   !value && parentPhoneNumber === "not found" && true;
 
   const getUsersPhone = async () => {
     try {
