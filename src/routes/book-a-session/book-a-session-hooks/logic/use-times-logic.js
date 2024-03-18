@@ -94,7 +94,6 @@ const useTimesLogic = () => {
       : false;
   };
 
-  // **** test
   const isTodayAndAfterAfternoonSessionCloseTime = () => {
     return isToday() && isCurrentTimeAfterLatestTimeToBookAfternoonSession()
       ? true

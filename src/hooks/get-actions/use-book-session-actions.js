@@ -5,7 +5,6 @@ import {
   setSessionPrice,
   setSessionType,
 } from "../../store/book-session/book-session.slice";
-import { resetSessionDocAsync } from "../../store/book-session/book-session.thunks";
 
 const useBookSessionActions = () => {
   const dispatch = useDispatch();
@@ -23,29 +22,10 @@ const useBookSessionActions = () => {
     dispatch(setSessionType(sessionType));
   };
 
-  const dispatchResetSessionDocAsync = (
-    childrenSelectedForBooking,
-    date,
-    databaseId,
-    collectionId,
-    sessionType
-  ) => {
-    dispatch(
-      resetSessionDocAsync({
-        childrenSelectedForBooking,
-        date,
-        databaseId,
-        collectionId,
-        sessionType,
-      })
-    );
-  };
-
   return {
     handleSetChildrenSelectedForBookingChange,
     dispatchSetSessionPrice,
     dispatchSetSessionType,
-    dispatchResetSessionDocAsync,
   };
 };
 
