@@ -1,6 +1,5 @@
 import useFireSwal from "../../../../hooks/use-fire-swal";
-
-import useGetBookSessionSelectors from "../../../../hooks/get-selectors/use-get-book-session-selectors";
+import useGetChildrenLogic from "../logic/use-get-children-logic";
 
 import {
   sessionAlreadyBookedInstructions,
@@ -9,7 +8,7 @@ import {
 
 const useSessionAlreadyBookedSwal = () => {
   const { fireSwal } = useFireSwal();
-  const { childrenSelectedForBooking } = useGetBookSessionSelectors();
+  const { childrenSelectedForBooking } = useGetChildrenLogic();
 
   const sessionAlreadyBookedSwal = () => {
     fireSwal(

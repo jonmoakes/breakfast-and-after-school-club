@@ -1,21 +1,21 @@
 import { useDispatch } from "react-redux";
 
 import useDatesLogic from "./logic/use-dates-logic";
-import useGetBookSessionSelectors from "../../../hooks/get-selectors/use-get-book-session-selectors";
+import useGetCurrentUserSelectors from "../../../hooks/get-selectors/use-get-current-user-selectors";
+import useGetChildrenLogic from "./logic/use-get-children-logic";
 import useGetUsersChildrenSelectors from "../../../hooks/get-selectors/use-get-users-children-selectors";
+
 import {
   addSessionBookingInfoAsync,
   updateSessionDocAsync,
   updateUserDocBalanceAsync,
 } from "../../../store/book-session/book-session.thunks";
-
 import { getUsersWalletBalanceAsync } from "../../../store/user/user.thunks";
-import useGetCurrentUserSelectors from "../../../hooks/get-selectors/use-get-current-user-selectors";
 
 const useConfirmResult = () => {
   const { date } = useDatesLogic();
   const { usersChildren } = useGetUsersChildrenSelectors();
-  const { childrenSelectedForBooking } = useGetBookSessionSelectors();
+  const { childrenSelectedForBooking } = useGetChildrenLogic();
 
   const dispatch = useDispatch();
 

@@ -8,7 +8,7 @@ const useGetCurrentUserSelectors = () => {
     currentUserWalletBalanceResult,
   } = useSelector(selectCurrentUserSelectors);
 
-  const { walletBalance, email, id, name, phoneNumber } = currentUser;
+  const { walletBalance, email, id, name, phoneNumber } = currentUser ?? {};
 
   const {
     appOwnerEmail,
@@ -28,7 +28,7 @@ const useGetCurrentUserSelectors = () => {
     stripeSecretKey,
     termDatesCollectionId,
     userCollectionId,
-  } = currentUserEnvironmentVariables;
+  } = currentUserEnvironmentVariables ?? {};
 
   return {
     appOwnerEmail,

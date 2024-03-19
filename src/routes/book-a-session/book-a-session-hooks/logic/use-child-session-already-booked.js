@@ -1,7 +1,7 @@
 import useDatesLogic from "./use-dates-logic";
 import useGetBookingDataAndSessionTypeToLowercase from "./use-get-booking-data-and-session-type-to-lowercase";
-import useGetBookSessionSelectors from "../../../../hooks/get-selectors/use-get-book-session-selectors";
 import useGetUsersChildrenSelectors from "../../../../hooks/get-selectors/use-get-users-children-selectors";
+import useGetChildrenLogic from "./use-get-children-logic";
 
 const useChildSessionAlreadyBooked = () => {
   const { date } = useDatesLogic();
@@ -13,7 +13,7 @@ const useChildSessionAlreadyBooked = () => {
     isMorningAndAfternoonShortSession,
     isMorningAndAfternoonLongSession,
   } = useGetBookingDataAndSessionTypeToLowercase();
-  const { childrenSelectedForBooking } = useGetBookSessionSelectors();
+  const { childrenSelectedForBooking } = useGetChildrenLogic();
   const { childName } = useGetUsersChildrenSelectors();
 
   // if user only has one child in database

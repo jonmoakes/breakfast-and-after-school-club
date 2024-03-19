@@ -1,10 +1,10 @@
 import useDatesLogic from "../logic/use-dates-logic";
-import useGetBookSessionSelectors from "../../../../hooks/get-selectors/use-get-book-session-selectors";
+import useGetChildrenLogic from "./use-get-children-logic";
 
 const useSessionLogic = () => {
   const { date, morningSessionSpaces, afternoonSessionSpaces } =
     useDatesLogic();
-  const { childrenSelectedForBooking } = useGetBookSessionSelectors();
+  const { childrenSelectedForBooking } = useGetChildrenLogic();
 
   const numberOfSpacesToAdd = childrenSelectedForBooking.length
     ? childrenSelectedForBooking.length
