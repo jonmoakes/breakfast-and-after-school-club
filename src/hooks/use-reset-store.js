@@ -1,6 +1,9 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
 
+import useAddChildInfoActions from "./get-actions/use-add-child-info-actions";
+import useBookSessionActions from "../hooks/get-actions/use-book-session-actions";
+
 import { selectGetUsersChildrenSelectors } from "../store/get-users-children/get-users-children.slice";
 import { resetCardInputState } from "../store/card-input-result/card-input-result.slice";
 import { resetContactFormState } from "../store/contact-form/contact-form.slice";
@@ -17,10 +20,8 @@ import {
   resetPreResultHandlePaymentState,
 } from "../store/handle-payment/handle-payment.slice";
 import { setCurrentDateAndTime } from "../store/date-and-time/date-and-time.slice";
-import { resetAllChildInfoState } from "../store/add-child-info/add-child-info.slice";
 import { resetEditChildInfoState } from "../store/edit-child-info/edit-child-info.slice";
 import { resetDeleteChildInfoState } from "../store/delete-child-info/delete-child-info.slice";
-import { resetBookSessionState } from "../store/book-session/book-session.slice";
 import { resetSendEmailState } from "../store/send-email/send-email.slice";
 import { resetUserBookingToDeleteState } from "../store/user-booking-to-delete/user-booking-to-delete.slice";
 import {
@@ -71,6 +72,9 @@ import {
 } from "../strings/routes/routes-strings";
 
 const useResetStore = () => {
+  const { dispatchResetAllAddChildInfoState } = useAddChildInfoActions();
+  const { dispatchResetBookSessionState } = useBookSessionActions();
+
   const { sessionTypesAndPricesError } = useSelector(
     selectSessionTypesAndPricesSelectors
   );
@@ -126,7 +130,7 @@ const useResetStore = () => {
         dispatch(resetRequestDateDataState());
         dispatch(resetShouldShowElementState());
         dispatch(setCurrentDateAndTime(new Date()));
-        dispatch(resetBookSessionState());
+        dispatchResetBookSessionState();
         dispatch(resetSendEmailState());
         if (sessionTypesAndPricesError) {
           dispatch(resetSessionPricesError());
@@ -141,7 +145,7 @@ const useResetStore = () => {
         dispatch(resetUpdateEmailState());
         break;
       case addChildInfoRoute:
-        dispatch(resetAllChildInfoState());
+        dispatchResetAllAddChildInfoState();
         break;
       case editChildInfoRoute:
         dispatch(resetEditChildInfoState());

@@ -1,6 +1,7 @@
 import { useDispatch } from "react-redux";
 
 import {
+  resetBookSessionState,
   setChildrenSelectedForBooking,
   setSessionPrice,
   setSessionType,
@@ -22,10 +23,15 @@ const useBookSessionActions = () => {
     dispatch(setSessionType(sessionType));
   };
 
+  const dispatchResetBookSessionState = () => {
+    dispatch(resetBookSessionState());
+  };
+
   return {
     handleSetChildrenSelectedForBookingChange,
     dispatchSetSessionPrice,
     dispatchSetSessionType,
+    dispatchResetBookSessionState,
   };
 };
 

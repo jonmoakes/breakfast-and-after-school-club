@@ -6,7 +6,7 @@ import "../styles/confirm.css";
 const useFireSwal = () => {
   const swal = withReactContent(Swal);
 
-  const fireSwal = (
+  const fireSwal = async (
     icon,
     title,
     text,
@@ -14,7 +14,7 @@ const useFireSwal = () => {
     showConfirmButton,
     allowOutsideClick
   ) => {
-    return swal
+    return await swal
       .fire({
         icon,
         title,

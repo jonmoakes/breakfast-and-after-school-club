@@ -7,11 +7,17 @@ const useGetUsersChildrenSelectors = () => {
 
   const childName = usersChildren ? usersChildren[0] : "";
 
+  const usersChildrensNames =
+    usersChildren !== undefined
+      ? usersChildren.map((child) => child.childName)
+      : [];
+
   return {
     getUsersChildrenIsLoading,
     usersChildren,
     getUsersChildrenError,
     childName,
+    usersChildrensNames,
   };
 };
 

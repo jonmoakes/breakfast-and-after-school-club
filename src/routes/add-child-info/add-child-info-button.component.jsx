@@ -1,9 +1,6 @@
-import { useSelector } from "react-redux";
-
 import useConfirmAddChildInfo from "./add-child-info-hooks/use-confirm-add-child-info";
 import useIsOnline from "../../hooks/use-is-online";
-
-import { selectAddChildInfoSelectors } from "../../store/add-child-info/add-child-info.slice";
+import useAddChildInfoLogic from "./add-child-info-hooks/use-add-child-info-logic.js";
 
 import NetworkError from "../../components/errors/network-error.component";
 
@@ -16,8 +13,7 @@ import { BlackHr } from "../../styles/hr/hr.styles";
 const AddChildInfoButton = () => {
   const { isOnline } = useIsOnline();
   const { confirmAddChildInfo } = useConfirmAddChildInfo();
-
-  const { addChildInfoIsLoading } = useSelector(selectAddChildInfoSelectors);
+  const { addChildInfoIsLoading } = useAddChildInfoLogic();
 
   return (
     <>

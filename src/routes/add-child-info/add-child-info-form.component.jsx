@@ -1,9 +1,6 @@
-import { useSelector } from "react-redux";
 import Balancer from "react-wrap-balancer";
 
-import useHandleAddChildInfoChange from "./add-child-info-hooks/use-handle-add-child-info-change";
-
-import { selectAddChildInfoSelectors } from "../../store/add-child-info/add-child-info.slice";
+import useAddChildInfoActions from "../../hooks/get-actions/use-add-child-info-actions";
 
 import AddChildInfoButton from "./add-child-info-button.component";
 
@@ -23,13 +20,12 @@ import {
   leaveBlankIfNothingToAdd,
   anyOtherInfo,
 } from "../../strings/placeholders/placeholders-strings";
+import useAddChildInfoLogic from "./add-child-info-hooks/use-add-child-info-logic";
 
 const AddChildInfoForm = () => {
-  const { handleAddChildInfoChange } = useHandleAddChildInfoChange();
-
-  const { childInfo } = useSelector(selectAddChildInfoSelectors);
+  const { handleAddChildInfoChange } = useAddChildInfoActions();
   const { childName, age, medicalInfo, dietryRequirements, additionalInfo } =
-    childInfo;
+    useAddChildInfoLogic();
 
   return (
     <ParentDiv>

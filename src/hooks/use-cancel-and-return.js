@@ -20,26 +20,30 @@ const useCancelAndReturn = () => {
 
   const path = location.pathname;
 
+  const goBackMinusOne = () => {
+    navigate(-1);
+  };
+
   const cancelAndReturn = () => {
     switch (path) {
       case deleteChildInfoRoute:
         dispatch(resetChildToDeleteInfo());
-        navigate(-1);
+        goBackMinusOne();
         break;
       case editChildInfoRoute:
         dispatch(resetChildToEditInfo());
-        navigate(-1);
+        goBackMinusOne();
         break;
       case chosenEntryChildDetailsRoute:
         dispatch(resetChosenEntryChildDetailsState());
-        navigate(-1);
+        goBackMinusOne();
         break;
       case cancelBookingRoute:
         dispatch(resetUserBookingToDeleteState());
-        navigate(-1);
+        goBackMinusOne();
         break;
       default:
-        navigate(-1);
+        goBackMinusOne();
     }
   };
 

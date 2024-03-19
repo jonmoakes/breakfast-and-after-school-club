@@ -1,15 +1,9 @@
 import { useCallback, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
 import useFireSwal from "../../../hooks/use-fire-swal";
-
-import {
-  resetAllChildInfoState,
-  resetAddChildInfoError,
-  resetAddChildInfoResult,
-  selectAddChildInfoSelectors,
-} from "../../../store/add-child-info/add-child-info.slice";
+import useAddChildInfoLogic from "./use-add-child-info-logic";
+import useAddChildInfoActions from "../../../hooks/get-actions/use-add-child-info-actions";
 
 import { childAddedMessage } from "../../../strings/successes/successes-strings";
 import { childInfoRoute } from "../../../strings/routes/routes-strings";
@@ -21,26 +15,20 @@ import {
 
 const useAddChildInfoResultSwal = () => {
   const { fireSwal } = useFireSwal();
-
-  const { addChildInfoResult, addChildInfoError } = useSelector(
-    selectAddChildInfoSelectors
-  );
+  const { addChildInfoResult, addChildInfoError, ageErrorForUser } =
+    useAddChildInfoLogic();
+  const {
+    dispatchResetAddChildInfoResult,
+    dispatchResetAddChildInfoError,
+    dispatchResetAllAddChildInfoState,
+  } = useAddChildInfoActions();
 
   const navigate = useNavigate();
-  const dispatch = useDispatch();
-
-  // removes part of the error message for user readability.
-  const errorTextToRemove = addChildInfoError
-    ? addChildInfoError.indexOf("must be")
-    : null;
-  const ageErrorForUser = errorTextToRemove
-    ? `the childs age ${addChildInfoError.slice(errorTextToRemove)}`
-    : null;
 
   const resetResultAndError = useCallback(() => {
-    dispatch(resetAddChildInfoResult());
-    dispatch(resetAddChildInfoError());
-  }, [dispatch]);
+    dispatchResetAddChildInfoResult();
+    dispatchResetAddChildInfoError();
+  }, [dispatchResetAddChildInfoResult, dispatchResetAddChildInfoError]);
 
   useEffect(() => {
     if (!addChildInfoResult) return;
@@ -49,7 +37,7 @@ const useAddChildInfoResultSwal = () => {
       fireSwal("success", childAddedMessage, "", 0, true, false).then(
         (isConfirmed) => {
           if (isConfirmed) {
-            dispatch(resetAllChildInfoState());
+            dispatchResetAllAddChildInfoState();
             navigate(childInfoRoute);
           }
         }
@@ -88,9 +76,9 @@ const useAddChildInfoResultSwal = () => {
     addChildInfoError,
     fireSwal,
     navigate,
-    dispatch,
     ageErrorForUser,
     resetResultAndError,
+    dispatchResetAllAddChildInfoState,
   ]);
 };
 
