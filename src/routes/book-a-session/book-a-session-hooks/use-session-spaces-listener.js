@@ -7,7 +7,7 @@ import useGetCurrentUserSelectors from "../../../hooks/get-selectors/use-get-cur
 import useRequestDateDataActions from "../../../hooks/get-actions-and-thunks/use-request-date-data-actions";
 
 const useSessionSpacesListener = () => {
-  const { dateData, documentId } = useDatesLogic();
+  const { documentId } = useDatesLogic();
   const { dispatchSetDateData } = useRequestDateDataActions();
   const { databaseId, termDatesCollectionId } = useGetCurrentUserSelectors();
 
@@ -33,13 +33,7 @@ const useSessionSpacesListener = () => {
     return () => {
       unsubscribe();
     };
-  }, [
-    documentId,
-    dateData,
-    databaseId,
-    termDatesCollectionId,
-    dispatchSetDateData,
-  ]);
+  }, [documentId, databaseId, termDatesCollectionId, dispatchSetDateData]);
 };
 
 export default useSessionSpacesListener;
