@@ -5,6 +5,8 @@ const useGetChildrenLogic = () => {
   const { childrenSelectedForBooking } = useGetBookSessionSelectors();
   const { usersChildren } = useGetUsersChildrenSelectors();
 
+  const childrenSelectedLength = childrenSelectedForBooking.length;
+
   const noChildrenAddedYet = () => {
     return usersChildren === undefined ? true : false;
   };
@@ -22,6 +24,7 @@ const useGetChildrenLogic = () => {
   };
 
   return {
+    childrenSelectedLength,
     noChildrenAddedYet,
     hasOneChild,
     hasMoreThanOneChild,

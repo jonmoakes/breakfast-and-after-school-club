@@ -16,6 +16,7 @@ import {
   resetSessionErrorMessage,
 } from "../../../../strings/errors/errors-strings";
 import { bookSessionRoute } from "../../../../strings/routes/routes-strings";
+import useSessionLogic from "../logic/use-session-logic";
 
 const useUpdateBalanceErrorResetSessionDocSwal = () => {
   const { fireSwal } = useFireSwal();
@@ -23,8 +24,8 @@ const useUpdateBalanceErrorResetSessionDocSwal = () => {
     useSendResetSessionSpacesErrorEmail();
   const { hamburgerHandlerNavigate } = useHamburgerHandlerNavigate();
   const { date } = useDatesLogic();
-  const { sessionType, childrenSelectedForBooking, updateBalanceError } =
-    useGetBookSessionSelectors();
+  const { numberOfSpacesToAdd } = useSessionLogic();
+  const { sessionType, updateBalanceError } = useGetBookSessionSelectors();
   const { databaseId, termDatesCollectionId: collectionId } =
     useGetCurrentUserSelectors();
 
@@ -49,11 +50,11 @@ const useUpdateBalanceErrorResetSessionDocSwal = () => {
         setSwalConfirmed(true);
         dispatch(
           resetSessionDocAsync({
-            childrenSelectedForBooking,
             date,
             databaseId,
             collectionId,
             sessionType,
+            numberOfSpacesToAdd,
           })
         ).then((action) => {
           if (resetSessionDocAsync.fulfilled.match(action)) {

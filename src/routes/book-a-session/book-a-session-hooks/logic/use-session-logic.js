@@ -6,6 +6,10 @@ const useSessionLogic = () => {
     useDatesLogic();
   const { childrenSelectedForBooking } = useGetBookSessionSelectors();
 
+  const numberOfSpacesToAdd = childrenSelectedForBooking.length
+    ? childrenSelectedForBooking.length
+    : 1;
+
   const onlyMorningSessionsAvailable = () => {
     return date && morningSessionSpaces && !afternoonSessionSpaces
       ? true
@@ -69,6 +73,7 @@ const useSessionLogic = () => {
     notEnoughAfternoonSpacesForMultipleChildren,
     notEnoughMorningSpacesForMultipleChildrenInMorningAndAfternoonSession,
     notEnoughAfternoonSpacesForMultipleChildrenInMorningAndAfternoonSession,
+    numberOfSpacesToAdd,
   };
 };
 

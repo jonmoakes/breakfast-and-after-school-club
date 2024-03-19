@@ -2,8 +2,8 @@ import useChildSessionAlreadyBooked from "./logic/use-child-session-already-book
 import useConfirmSwal from "../../../hooks/use-confirm-swal";
 import useSessionAlreadyBookedSwal from "./swals/use-session-already-booked-swal";
 import useConfirmResult from "./use-confirm-result";
-import useGetBookSessionSelectors from "../../../hooks/get-selectors/use-get-book-session-selectors";
 import useDatesLogic from "./logic/use-dates-logic";
+import useGetChildrenLogic from "./logic/use-get-children-logic";
 
 import {
   confirmSureBookSession,
@@ -18,7 +18,7 @@ const useCheckForPreviousBookingAndConfirmSession = () => {
   const { singleChildSessionAlreadyBooked, multipleChildSessionAlreadyBooked } =
     useChildSessionAlreadyBooked();
   const { sessionAlreadyBookedSwal } = useSessionAlreadyBookedSwal();
-  const { childrenSelectedLength } = useGetBookSessionSelectors();
+  const { childrenSelectedLength } = useGetChildrenLogic();
 
   const checkForPreviousBookingAndConfirmSession = (sessionType, price) => {
     if (

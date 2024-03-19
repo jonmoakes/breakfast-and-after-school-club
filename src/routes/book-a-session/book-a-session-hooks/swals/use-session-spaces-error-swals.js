@@ -1,6 +1,6 @@
 import useFireSwal from "../../../../hooks/use-fire-swal";
 import useDatesLogic from "../logic/use-dates-logic";
-import useGetBookSessionSelectors from "../../../../hooks/get-selectors/use-get-book-session-selectors";
+import useGetChildrenLogic from "../logic/use-get-children-logic";
 
 import {
   afternoonSessionSpacesErrorMessage,
@@ -12,7 +12,7 @@ import {
 const useSessionSpacesErrorSwals = () => {
   const { fireSwal } = useFireSwal();
   const { morningSessionSpaces, afternoonSessionSpaces } = useDatesLogic();
-  const { childrenSelectedLength } = useGetBookSessionSelectors();
+  const { childrenSelectedLength } = useGetChildrenLogic();
 
   const morningSessionErrorSwal = () => {
     fireSwal(

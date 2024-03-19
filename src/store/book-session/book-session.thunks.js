@@ -230,13 +230,9 @@ export const addSessionBookingInfoAsync = createAsyncThunk(
 export const resetSessionDocAsync = createAsyncThunk(
   "resetSessionDoc",
   async (
-    { childrenSelectedForBooking, date, databaseId, collectionId, sessionType },
+    { date, databaseId, collectionId, sessionType, numberOfSpacesToAdd },
     thunkAPI
   ) => {
-    const numberOfSpacesToAdd = childrenSelectedForBooking.length
-      ? childrenSelectedForBooking.length
-      : 1;
-
     try {
       const queryIndex = "date";
       const queryValue = date;

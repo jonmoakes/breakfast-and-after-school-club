@@ -14,11 +14,6 @@ const useGetBookSessionSelectors = () => {
     childrenSelectedForBooking,
   } = useSelector(selectBookSessionSelectors);
 
-  const numberOfSpacesToAdd = childrenSelectedForBooking.length
-    ? childrenSelectedForBooking.length
-    : 1;
-
-  const childrenSelectedLength = childrenSelectedForBooking.length;
   const updateBalanceError = updateUserDocBalance.error;
   const updateSessionError = updateSessionDoc.error;
 
@@ -31,8 +26,6 @@ const useGetBookSessionSelectors = () => {
     resetSessionDoc,
     addSessionBookingInfo,
     childrenSelectedForBooking,
-    numberOfSpacesToAdd,
-    childrenSelectedLength,
     updateBalanceError,
     updateSessionError,
   };
