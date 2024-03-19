@@ -1,9 +1,9 @@
 import { useDispatch } from "react-redux";
 
-import useDatesLogic from "./logic/use-dates-logic";
-import useGetCurrentUserSelectors from "../../../hooks/get-selectors/use-get-current-user-selectors";
-import useGetChildrenLogic from "./logic/use-get-children-logic";
-import useGetUsersChildrenSelectors from "../../../hooks/get-selectors/use-get-users-children-selectors";
+import useGetBookSessionSelectors from "../../get-selectors/use-get-book-session-selectors";
+import useGetCurrentUserSelectors from "../../get-selectors/use-get-current-user-selectors";
+import useGetRequestDateDataSelectors from "../../get-selectors/use-get-request-date-data-selectors";
+import useGetUsersChildrenSelectors from "../../get-selectors/use-get-users-children-selectors";
 
 import {
   addSessionBookingInfoAsync,
@@ -12,13 +12,7 @@ import {
 } from "../../../store/book-session/book-session.thunks";
 import { getUsersWalletBalanceAsync } from "../../../store/user/user.thunks";
 
-const useConfirmResult = () => {
-  const { date } = useDatesLogic();
-  const { usersChildren } = useGetUsersChildrenSelectors();
-  const { childrenSelectedForBooking } = useGetChildrenLogic();
-
-  const dispatch = useDispatch();
-
+const useBookSessionThunks = () => {
   const {
     id,
     name,
@@ -29,7 +23,17 @@ const useConfirmResult = () => {
     bookedSessionsCollectionId,
   } = useGetCurrentUserSelectors();
 
-  const confirmResult = (sessionType, price) => {
+  const { date } = useGetRequestDateDataSelectors();
+  const { usersChildren } = useGetUsersChildrenSelectors();
+  const { childrenSelectedForBooking } = useGetBookSessionSelectors();
+
+  const dispatch = useDispatch();
+
+  // Updates the session document, reducing the available spaces by whatever the childrenSelectedForBooking length is.
+  // Then updates the users balance in the databse.
+  // Then adds the sessionBookingInfo to the database
+  // Then fetches the latest balance from the database
+  const bookSessionAsync = (sessionType, price) => {
     dispatch(
       updateSessionDocAsync({
         date,
@@ -38,8 +42,8 @@ const useConfirmResult = () => {
         childrenSelectedForBooking,
         sessionType,
       })
-    ).then((resultAction) => {
-      if (updateSessionDocAsync.fulfilled.match(resultAction)) {
+    ).then((action) => {
+      if (action.type === updateSessionDocAsync.fulfilled.type) {
         dispatch(
           updateUserDocBalanceAsync({
             id,
@@ -47,8 +51,8 @@ const useConfirmResult = () => {
             collectionId,
             price,
           })
-        ).then((resultAction) => {
-          if (updateUserDocBalanceAsync.fulfilled.match(resultAction)) {
+        ).then((action) => {
+          if (action.type === updateUserDocBalanceAsync.fulfilled.type) {
             dispatch(
               addSessionBookingInfoAsync({
                 id,
@@ -61,8 +65,8 @@ const useConfirmResult = () => {
                 bookedSessionsCollectionId,
                 databaseId,
               })
-            ).then((resultAction) => {
-              if (addSessionBookingInfoAsync.fulfilled.match(resultAction)) {
+            ).then((action) => {
+              if (action.type === addSessionBookingInfoAsync.fulfilled.type) {
                 dispatch(
                   getUsersWalletBalanceAsync({ id, databaseId, collectionId })
                 );
@@ -74,7 +78,7 @@ const useConfirmResult = () => {
     });
   };
 
-  return { confirmResult };
+  return { bookSessionAsync };
 };
 
-export default useConfirmResult;
+export default useBookSessionThunks;

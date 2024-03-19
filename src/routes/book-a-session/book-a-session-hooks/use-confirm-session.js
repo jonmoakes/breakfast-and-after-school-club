@@ -1,7 +1,7 @@
 import useSessionSpacesErrorSwals from "./swals/use-session-spaces-error-swals";
 import useCheckForPreviousBookingAndConfirmSession from "./use-check-for-previous-booking-and-confirm-session";
 import useSessionLogic from "./logic/use-session-logic";
-import useBookSessionActions from "../../../hooks/get-actions/use-book-session-actions";
+import useBookSessionActions from "../../../hooks/get-actions-and-thunks/book-session-actions-and-thunks/use-book-session-actions";
 
 const useConfirmSession = () => {
   const {

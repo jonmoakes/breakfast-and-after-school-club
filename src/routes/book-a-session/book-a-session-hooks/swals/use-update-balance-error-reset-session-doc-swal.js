@@ -48,6 +48,7 @@ const useUpdateBalanceErrorResetSessionDocSwal = () => {
     ).then((isConfirmed) => {
       if (isConfirmed) {
         setSwalConfirmed(true);
+
         dispatch(
           resetSessionDocAsync({
             date,

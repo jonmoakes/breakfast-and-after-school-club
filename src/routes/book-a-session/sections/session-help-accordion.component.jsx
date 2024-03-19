@@ -1,6 +1,6 @@
 import useGetSessionTypesAndPricesSelectors from "../../../hooks/get-selectors/use-get-session-types-and-prices-selectors";
 import useShouldShowElementSelectors from "../../../hooks/get-selectors/use-should-show-element-selectors";
-import useShouldShowElementActions from "../../../hooks/get-actions/use-should-show-element-actions";
+import useShouldShowElementActions from "../../../hooks/get-actions-and-thunks/use-should-show-element-actions";
 
 import {
   Accordion,

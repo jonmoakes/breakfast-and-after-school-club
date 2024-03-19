@@ -1,24 +1,16 @@
 import { useDispatch } from "react-redux";
 
-import useGetAddChildInfoSelectors from "../get-selectors/use-get-add-child-info-selectors";
+import useGetAddChildInfoSelectors from "../../get-selectors/use-get-add-child-info-selectors";
 
 import {
   resetAddChildInfoError,
   resetAddChildInfoResult,
   resetAllChildInfoState,
   setChildInfo,
-} from "../../store/add-child-info/add-child-info.slice";
-import { addChildInfoAsync } from "../../store/add-child-info/add-child-info.thunks";
-import useGetCurrentUserSelectors from "../get-selectors/use-get-current-user-selectors";
+} from "../../../store/add-child-info/add-child-info.slice";
 
 const useAddChildInfoActions = () => {
   const { childInfo } = useGetAddChildInfoSelectors();
-  const {
-    id,
-    name,
-    databaseId,
-    childrenCollectionId: collectionId,
-  } = useGetCurrentUserSelectors();
 
   const dispatch = useDispatch();
 
@@ -39,24 +31,11 @@ const useAddChildInfoActions = () => {
     dispatch(resetAllChildInfoState());
   };
 
-  const dispatchAddChildInfoAsync = () => {
-    dispatch(
-      addChildInfoAsync({
-        childInfo,
-        id,
-        name,
-        databaseId,
-        collectionId,
-      })
-    );
-  };
-
   return {
     handleAddChildInfoChange,
     dispatchResetAddChildInfoResult,
     dispatchResetAddChildInfoError,
     dispatchResetAllAddChildInfoState,
-    dispatchAddChildInfoAsync,
   };
 };
 

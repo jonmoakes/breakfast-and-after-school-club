@@ -14,6 +14,7 @@ const useDatesLogic = () => {
   const { dateData, requestDateDataError, earlyFinishDates } =
     useGetRequestDateDataSelectors();
 
+  const documentId = dateData ? dateData.$id : "";
   const date = dateData ? dateData.date : "";
   const morningSessionSpaces = dateData ? dateData.morningSessionSpaces : "";
   const afternoonSessionSpaces = dateData
@@ -80,6 +81,7 @@ const useDatesLogic = () => {
     };
 
   return {
+    documentId,
     date,
     isToday,
     formattedTodaysDate,

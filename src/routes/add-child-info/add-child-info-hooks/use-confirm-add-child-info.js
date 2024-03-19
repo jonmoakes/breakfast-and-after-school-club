@@ -1,7 +1,7 @@
 import useFireSwal from "../../../hooks/use-fire-swal";
 import useConfirmSwal from "../../../hooks/use-confirm-swal";
 import useAddChildInfoLogic from "./use-add-child-info-logic";
-import useAddChildInfoActions from "../../../hooks/get-actions/use-add-child-info-actions";
+import useAddChildInfoThunks from "../../../hooks/get-actions-and-thunks/add-child-info-actions-and-thunks/use-add-child-info-thunks";
 
 import {
   alreadyHaveChildNameMessage,
@@ -20,7 +20,7 @@ const useConfirmAddChildInfo = () => {
   const { confirmSwal } = useConfirmSwal();
   const { childNameAlreadyExists, childName, age, consent } =
     useAddChildInfoLogic();
-  const { dispatchAddChildInfoAsync } = useAddChildInfoActions();
+  const { dispatchAddChildInfoAsync } = useAddChildInfoThunks();
 
   const confirmResult = () => {
     dispatchAddChildInfoAsync();

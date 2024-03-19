@@ -2,12 +2,12 @@ import { useEffect } from "react";
 
 import { client } from "../../../utils/appwrite/appwrite-config";
 
-import useGetRequestDateDataSelectors from "../../../hooks/get-selectors/use-get-request-date-data-selectors";
+import useDatesLogic from "./logic/use-dates-logic";
 import useGetCurrentUserSelectors from "../../../hooks/get-selectors/use-get-current-user-selectors";
-import useRequestDateDataActions from "../../../hooks/get-actions/use-request-date-data-actions";
+import useRequestDateDataActions from "../../../hooks/get-actions-and-thunks/use-request-date-data-actions";
 
 const useSessionSpacesListener = () => {
-  const { dateData, documentId } = useGetRequestDateDataSelectors();
+  const { dateData, documentId } = useDatesLogic();
   const { dispatchSetDateData } = useRequestDateDataActions();
   const { databaseId, termDatesCollectionId } = useGetCurrentUserSelectors();
 
@@ -16,11 +16,12 @@ const useSessionSpacesListener = () => {
       `databases.${databaseId}.collections.${termDatesCollectionId}.documents.${documentId}`,
 
       (response) => {
-        const { morningSessionSpaces, afternoonSessionSpaces } =
+        const { $id, date, morningSessionSpaces, afternoonSessionSpaces } =
           response.payload;
 
         const updatedDateData = {
-          ...dateData,
+          $id,
+          date,
           morningSessionSpaces,
           afternoonSessionSpaces,
         };

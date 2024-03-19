@@ -1,7 +1,7 @@
 import { useDispatch } from "react-redux";
 
-import useAddChildInfoActions from "../hooks/get-actions/use-add-child-info-actions";
-import useBookSessionActions from "../hooks/get-actions/use-book-session-actions";
+import useAddChildInfoActions from "../hooks/get-actions-and-thunks/add-child-info-actions-and-thunks/use-add-child-info-actions";
+import useBookSessionActions from "../hooks/get-actions-and-thunks/book-session-actions-and-thunks/use-book-session-actions";
 
 import { resetBookedSessionsOwnerState } from "../store/booked-sessions-owner/booked-sessions-owner.slice";
 import { resetCardInputState } from "../store/card-input-result/card-input-result.slice";

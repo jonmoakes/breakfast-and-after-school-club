@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 
 import useFireSwal from "../../../hooks/use-fire-swal";
 import useAddChildInfoLogic from "./use-add-child-info-logic";
-import useAddChildInfoActions from "../../../hooks/get-actions/use-add-child-info-actions";
+import useAddChildInfoActions from "../../../hooks/get-actions-and-thunks/add-child-info-actions-and-thunks/use-add-child-info-actions";
 
 import { childAddedMessage } from "../../../strings/successes/successes-strings";
 import { childInfoRoute } from "../../../strings/routes/routes-strings";

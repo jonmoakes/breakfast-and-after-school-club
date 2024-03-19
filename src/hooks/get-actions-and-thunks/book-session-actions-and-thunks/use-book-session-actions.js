@@ -5,7 +5,7 @@ import {
   setChildrenSelectedForBooking,
   setSessionPrice,
   setSessionType,
-} from "../../store/book-session/book-session.slice";
+} from "../../../store/book-session/book-session.slice";
 
 const useBookSessionActions = () => {
   const dispatch = useDispatch();

@@ -1,8 +1,7 @@
-import useBookSessionActions from "../../../hooks/get-actions/use-book-session-actions";
+import useBookSessionActions from "../../../hooks/get-actions-and-thunks/book-session-actions-and-thunks/use-book-session-actions";
 import useDatesLogic from "../book-a-session-hooks/logic/use-dates-logic";
 import useTimesLogic from "../book-a-session-hooks/logic/use-times-logic";
 import useGetChildrenLogic from "../book-a-session-hooks/logic/use-get-children-logic";
-import useGetUsersChildrenSelectors from "../../../hooks/get-selectors/use-get-users-children-selectors";
 
 import { OptionsForm } from "../../../styles/form/form.styles";
 import { Text } from "../../../styles/p/p.styles";
@@ -12,9 +11,8 @@ const ChildCheckbox = () => {
   const { dateInPastOrNotChosenOrChosenAndBalanceTooLowOrNoSpacesAvailable } =
     useDatesLogic();
   const { isTodayAndAfterAfternoonSessionCloseTime } = useTimesLogic();
-  const { hasOneChild } = useGetChildrenLogic();
+  const { hasOneChild, usersChildren } = useGetChildrenLogic();
   const { handleSetChildrenSelectedForBookingChange } = useBookSessionActions();
-  const { usersChildren } = useGetUsersChildrenSelectors();
 
   return (
     <>

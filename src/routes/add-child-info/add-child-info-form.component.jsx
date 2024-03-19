@@ -1,7 +1,7 @@
 import Balancer from "react-wrap-balancer";
 
-import useAddChildInfoActions from "../../hooks/get-actions/use-add-child-info-actions";
-
+import useAddChildInfoActions from "../../hooks/get-actions-and-thunks/add-child-info-actions-and-thunks/use-add-child-info-actions";
+import useAddChildInfoLogic from "./add-child-info-hooks/use-add-child-info-logic";
 import AddChildInfoButton from "./add-child-info-button.component";
 
 import {
@@ -20,7 +20,6 @@ import {
   leaveBlankIfNothingToAdd,
   anyOtherInfo,
 } from "../../strings/placeholders/placeholders-strings";
-import useAddChildInfoLogic from "./add-child-info-hooks/use-add-child-info-logic";
 
 const AddChildInfoForm = () => {
   const { handleAddChildInfoChange } = useAddChildInfoActions();

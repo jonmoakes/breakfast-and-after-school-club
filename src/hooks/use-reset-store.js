@@ -1,8 +1,8 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
 
-import useAddChildInfoActions from "./get-actions/use-add-child-info-actions";
-import useBookSessionActions from "../hooks/get-actions/use-book-session-actions";
+import useAddChildInfoActions from "./get-actions-and-thunks/add-child-info-actions-and-thunks/use-add-child-info-actions";
+import useBookSessionActions from "./get-actions-and-thunks/book-session-actions-and-thunks/use-book-session-actions";
 
 import { selectGetUsersChildrenSelectors } from "../store/get-users-children/get-users-children.slice";
 import { resetCardInputState } from "../store/card-input-result/card-input-result.slice";
