@@ -1,32 +1,23 @@
 import { useCallback } from "react";
 import { useSelector } from "react-redux";
 
-import useGetBookSessionSelectors from "../../../../hooks/get-selectors/use-get-book-session-selectors";
+import useSessionLogic from "./use-session-logic";
 
 import { selectCurrentUserSelectors } from "../../../../store/user/user.slice";
 
 const useReturnLogic = () => {
   const {
-    updateSessionDoc,
-    updateUserDocBalance,
-    resetSessionDoc,
-    addSessionBookingInfo,
-  } = useGetBookSessionSelectors();
-
+    updateBalanceResult,
+    updateBalanceError,
+    updateSessionError,
+    updateSessionResult,
+    resetSessionResult,
+    resetSessionError,
+    addSessionBookingInfoResult,
+    addSessionBookingInfoError,
+  } = useSessionLogic();
   const { currentUserWalletBalanceResult, currentUserWalletBalanceError } =
     useSelector(selectCurrentUserSelectors);
-
-  const updateSessionResult = updateSessionDoc.result;
-  const updateSessionError = updateSessionDoc.error;
-
-  const updateBalanceResult = updateUserDocBalance.result;
-  const updateBalanceError = updateUserDocBalance.error;
-
-  const resetSessionResult = resetSessionDoc.result;
-  const resetSessionError = resetSessionDoc.error;
-
-  const addSessionBookingInfoResult = addSessionBookingInfo.result;
-  const addSessionBookingInfoError = addSessionBookingInfo.error;
 
   const noActionsFiredYet = useCallback(() => {
     return !updateSessionResult &&

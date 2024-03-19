@@ -4,7 +4,7 @@ import useSessionSpacesListener from "./book-a-session-hooks/use-session-spaces-
 import useGetUsersChildrenAndConditionallyUserBookingsAndSessionPrices from "../../hooks/use-get-users-children-and-conditionally-user-bookings-and-session-prices";
 import useErrorFetchingData from "./book-a-session-hooks/use-error-fetching-data";
 
-import Loaders from "./sections/loaders.component";
+import BookSessionLoaders from "./sections/book-session-loaders.component";
 import NetworkError from "../../components/errors/network-error.component";
 import BalanceCheckAndBookSessionHelp from "./sections/balance-check-and-book-session-help.component";
 import ChooseDate from "./sections/choose-date.component";
@@ -25,7 +25,7 @@ const BookASession = () => {
 
   return (
     <Container>
-      <Loaders />
+      <BookSessionLoaders />
 
       <ParentDiv>
         <BlackTitle>book a session</BlackTitle>

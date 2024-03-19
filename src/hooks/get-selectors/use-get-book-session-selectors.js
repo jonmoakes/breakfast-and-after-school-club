@@ -14,9 +14,6 @@ const useGetBookSessionSelectors = () => {
     childrenSelectedForBooking,
   } = useSelector(selectBookSessionSelectors);
 
-  const updateBalanceError = updateUserDocBalance.error;
-  const updateSessionError = updateSessionDoc.error;
-
   return {
     sessionType,
     sessionPrice,
@@ -26,8 +23,6 @@ const useGetBookSessionSelectors = () => {
     resetSessionDoc,
     addSessionBookingInfo,
     childrenSelectedForBooking,
-    updateBalanceError,
-    updateSessionError,
   };
 };
 

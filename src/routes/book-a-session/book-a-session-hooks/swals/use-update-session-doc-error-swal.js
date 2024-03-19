@@ -1,6 +1,5 @@
 import useFireSwal from "../../../../hooks/use-fire-swal";
 import useHamburgerHandlerNavigate from "../../../../hooks/use-hamburger-handler-navigate";
-import useGetBookSessionSelectors from "../../../../hooks/get-selectors/use-get-book-session-selectors";
 
 import {
   lastMinuteNoSessionsMessage,
@@ -8,11 +7,12 @@ import {
 } from "../../../../strings/errors/errors-strings";
 import { checkBackRegularlyMessage } from "../../../../strings/infos/infos-strings";
 import { bookSessionRoute } from "../../../../strings/routes/routes-strings";
+import useSessionLogic from "../logic/use-session-logic";
 
 const useUpdateSessionDocErrorSwal = () => {
   const { fireSwal } = useFireSwal();
   const { hamburgerHandlerNavigate } = useHamburgerHandlerNavigate();
-  const { updateSessionError } = useGetBookSessionSelectors();
+  const { updateSessionError } = useSessionLogic();
 
   const updateSessionDocErrorSwal = () => {
     if (updateSessionError === lastMinuteNoSessionsMessage) {

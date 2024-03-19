@@ -5,7 +5,7 @@ import useFireSwal from "../../../../hooks/use-fire-swal";
 import useSendResetSessionSpacesErrorEmail from "../emails/use-send-reset-session-spaces-error-email";
 import useHamburgerHandlerNavigate from "../../../../hooks/use-hamburger-handler-navigate";
 import useDatesLogic from "../logic/use-dates-logic";
-import useGetBookSessionSelectors from "../../../../hooks/get-selectors/use-get-book-session-selectors";
+import useSessionLogic from "../logic/use-session-logic";
 import useGetCurrentUserSelectors from "../../../../hooks/get-selectors/use-get-current-user-selectors";
 
 import { resetSessionDocAsync } from "../../../../store/book-session/book-session.thunks";
@@ -16,7 +16,6 @@ import {
   resetSessionErrorMessage,
 } from "../../../../strings/errors/errors-strings";
 import { bookSessionRoute } from "../../../../strings/routes/routes-strings";
-import useSessionLogic from "../logic/use-session-logic";
 
 const useUpdateBalanceErrorResetSessionDocSwal = () => {
   const { fireSwal } = useFireSwal();
@@ -24,8 +23,9 @@ const useUpdateBalanceErrorResetSessionDocSwal = () => {
     useSendResetSessionSpacesErrorEmail();
   const { hamburgerHandlerNavigate } = useHamburgerHandlerNavigate();
   const { date } = useDatesLogic();
-  const { numberOfSpacesToAdd } = useSessionLogic();
-  const { sessionType, updateBalanceError } = useGetBookSessionSelectors();
+  const { numberOfSpacesToAdd, updateBalanceError, sessionType } =
+    useSessionLogic();
+
   const { databaseId, termDatesCollectionId: collectionId } =
     useGetCurrentUserSelectors();
 

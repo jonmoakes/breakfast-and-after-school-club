@@ -20,6 +20,7 @@ const useCheckForPreviousBookingAndConfirmSession = () => {
   const { sessionAlreadyBookedSwal } = useSessionAlreadyBookedSwal();
   const { childrenSelectedLength } = useGetChildrenLogic();
 
+  // received from confrimSession to avoid closure issue where if tried to use the selector for sessionType and price,  the selector doesn't pick up the latest value.
   const checkForPreviousBookingAndConfirmSession = (sessionType, price) => {
     if (
       (!childrenSelectedLength &&

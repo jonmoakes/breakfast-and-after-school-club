@@ -22,24 +22,21 @@ const useConfirmSession = () => {
   const { dispatchSetSessionPrice, dispatchSetSessionType } =
     useBookSessionActions();
 
+  // receives sessionType And Price from whichever button is clicked. Need to be passed to checkForPreviousBookingAndConfirmSession(sessionType, price) to avoid closure issue where if tried to use the selector for the value, it  doesn't pick up the latest value.
   const confirmSession = (sessionType, price) => {
     dispatchSetSessionType(sessionType);
     dispatchSetSessionPrice(price);
 
-    if (notEnoughMorningSpacesForMultipleChildren(sessionType)) {
+    if (notEnoughMorningSpacesForMultipleChildren()) {
       morningSessionErrorSwal();
-    } else if (notEnoughAfternoonSpacesForMultipleChildren(sessionType)) {
+    } else if (notEnoughAfternoonSpacesForMultipleChildren()) {
       afternoonSessionErrorSwal();
     } else if (
-      notEnoughMorningSpacesForMultipleChildrenInMorningAndAfternoonSession(
-        sessionType
-      )
+      notEnoughMorningSpacesForMultipleChildrenInMorningAndAfternoonSession()
     ) {
       morningAndAfternoonSessionMorningErrorSwal();
     } else if (
-      notEnoughAfternoonSpacesForMultipleChildrenInMorningAndAfternoonSession(
-        sessionType
-      )
+      notEnoughAfternoonSpacesForMultipleChildrenInMorningAndAfternoonSession()
     ) {
       morningAndAfternoonSessionAfternoonErrorSwal();
     } else {

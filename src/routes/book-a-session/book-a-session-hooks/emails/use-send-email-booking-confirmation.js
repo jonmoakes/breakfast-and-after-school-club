@@ -3,7 +3,6 @@ import { useDispatch } from "react-redux";
 import useFireSwal from "../../../../hooks/use-fire-swal";
 import useHamburgerHandlerNavigate from "../../../../hooks/use-hamburger-handler-navigate";
 import useGetCurrentUserSelectors from "../../../../hooks/get-selectors/use-get-current-user-selectors";
-import useGetBookSessionSelectors from "../../../../hooks/get-selectors/use-get-book-session-selectors";
 import useDatesLogic from "../logic/use-dates-logic";
 import useGetChildrenLogic from "../logic/use-get-children-logic";
 
@@ -14,15 +13,15 @@ import { getBookingInfoEmailInstructions } from "../../../../strings/infos/infos
 import { bookedSessionsUserRoute } from "../../../../strings/routes/routes-strings";
 
 import { createChildrenToAddToBooking } from "../../../../functions/create-children-to-add-to-booking";
+import useSessionLogic from "../logic/use-session-logic";
 
 const useSendEmailBookingConfirmation = () => {
   const { fireSwal } = useFireSwal();
   const { hamburgerHandlerNavigate } = useHamburgerHandlerNavigate();
   const { name, email } = useGetCurrentUserSelectors();
   const { date } = useDatesLogic();
-  const { sessionType, sessionPrice, childrenSelectedForBooking } =
-    useGetBookSessionSelectors();
-  const { usersChildren } = useGetChildrenLogic();
+  const { sessionType, sessionPrice } = useSessionLogic();
+  const { usersChildren, childrenSelectedForBooking } = useGetChildrenLogic();
 
   const dispatch = useDispatch();
 

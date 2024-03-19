@@ -1,10 +1,28 @@
+import useGetBookSessionSelectors from "../../../../hooks/get-selectors/use-get-book-session-selectors";
 import useDatesLogic from "../logic/use-dates-logic";
 import useGetChildrenLogic from "./use-get-children-logic";
 
 const useSessionLogic = () => {
+  const {
+    updateUserDocBalance,
+    updateSessionDoc,
+    resetSessionDoc,
+    sessionType,
+    sessionPrice,
+    addSessionBookingInfo,
+  } = useGetBookSessionSelectors();
   const { date, morningSessionSpaces, afternoonSessionSpaces } =
     useDatesLogic();
   const { childrenSelectedForBooking } = useGetChildrenLogic();
+
+  const updateBalanceResult = updateUserDocBalance.result;
+  const updateBalanceError = updateUserDocBalance.error;
+  const updateSessionResult = updateSessionDoc.result;
+  const updateSessionError = updateSessionDoc.error;
+  const resetSessionResult = resetSessionDoc.result;
+  const resetSessionError = resetSessionDoc.error;
+  const addSessionBookingInfoResult = addSessionBookingInfo.result;
+  const addSessionBookingInfoError = addSessionBookingInfo.error;
 
   const numberOfSpacesToAdd = childrenSelectedForBooking.length
     ? childrenSelectedForBooking.length
@@ -28,7 +46,7 @@ const useSessionLogic = () => {
       : false;
   };
 
-  const notEnoughMorningSpacesForMultipleChildren = (sessionType) => {
+  const notEnoughMorningSpacesForMultipleChildren = () => {
     return sessionType === "morning" &&
       childrenSelectedForBooking.length > 1 &&
       morningSessionSpaces < childrenSelectedForBooking.length
@@ -36,7 +54,7 @@ const useSessionLogic = () => {
       : false;
   };
 
-  const notEnoughAfternoonSpacesForMultipleChildren = (sessionType) => {
+  const notEnoughAfternoonSpacesForMultipleChildren = () => {
     return (sessionType === "afternoonShort" ||
       sessionType === "afternoonLong") &&
       childrenSelectedForBooking.length > 1 &&
@@ -46,7 +64,7 @@ const useSessionLogic = () => {
   };
 
   const notEnoughMorningSpacesForMultipleChildrenInMorningAndAfternoonSession =
-    (sessionType) => {
+    () => {
       return (sessionType === "morningAndAfternoonShort" ||
         sessionType === "morningAndAfternoonLong") &&
         childrenSelectedForBooking.length > 1 &&
@@ -56,7 +74,7 @@ const useSessionLogic = () => {
     };
 
   const notEnoughAfternoonSpacesForMultipleChildrenInMorningAndAfternoonSession =
-    (sessionType) => {
+    () => {
       return (sessionType === "morningAndAfternoonShort" ||
         sessionType === "morningAndAfternoonLong") &&
         childrenSelectedForBooking.length > 1 &&
@@ -74,6 +92,16 @@ const useSessionLogic = () => {
     notEnoughMorningSpacesForMultipleChildrenInMorningAndAfternoonSession,
     notEnoughAfternoonSpacesForMultipleChildrenInMorningAndAfternoonSession,
     numberOfSpacesToAdd,
+    updateBalanceResult,
+    updateBalanceError,
+    updateSessionError,
+    sessionType,
+    sessionPrice,
+    updateSessionResult,
+    resetSessionResult,
+    resetSessionError,
+    addSessionBookingInfoResult,
+    addSessionBookingInfoError,
   };
 };
 

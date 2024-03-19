@@ -22,8 +22,8 @@ export const confirmSureBookSession = (sessionType, date) => {
     sessionType
   )} session for ${format(new Date(date), "dd MMMM yyyy")}?`;
 };
-export const fundsDeductedFromBalance = (price) => {
-  return `£${(price / 100).toFixed(
+export const fundsDeductedFromBalance = (sessionPrice) => {
+  return `£${(sessionPrice / 100).toFixed(
     2
   )} will be deducted from your wallet balance.`;
 };
