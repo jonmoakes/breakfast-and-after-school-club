@@ -16,7 +16,7 @@ const defaultRequestDateData = {
 const INITIAL_STATE = {
   requestDateData: defaultRequestDateData,
   earlyFinishDates: null,
-  bookingClosingTimes: null,
+  bookingClosingTimes: {},
   sessionTimes: null,
 };
 

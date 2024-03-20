@@ -54,6 +54,7 @@ const useGetCurrentUserSelectors = () => {
     id,
     phoneNumber,
     currentUserWalletBalanceResult,
+    currentUser,
   };
 };
 

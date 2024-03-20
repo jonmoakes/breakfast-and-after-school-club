@@ -2,8 +2,8 @@ import { useDispatch } from "react-redux";
 
 import useAddChildInfoActions from "../hooks/get-actions-and-thunks/add-child-info-actions-and-thunks/use-add-child-info-actions";
 import useBookSessionActions from "../hooks/get-actions-and-thunks/book-session-actions-and-thunks/use-book-session-actions";
+import useBookedSessionsOwnerActions from "../hooks/get-actions-and-thunks/booked-sessions-owner-actions-and-thunks/use-booked-session-owner-actions";
 
-import { resetBookedSessionsOwnerState } from "../store/booked-sessions-owner/booked-sessions-owner.slice";
 import { resetCardInputState } from "../store/card-input-result/card-input-result.slice";
 import { resetChosenEntryChildDetailsState } from "../store/chosen-entry-child-details/chosen-entry-child-details.slice";
 import { resetContactFormState } from "../store/contact-form/contact-form.slice";
@@ -32,14 +32,16 @@ import { resetGetAllUsersState } from "../store/get-all-users/get-all-users.slic
 const useResetAllStoreOnSignOut = () => {
   const { dispatchResetAllAddChildInfoState } = useAddChildInfoActions();
   const { dispatchResetBookSessionState } = useBookSessionActions();
+  const { dispatchResetBookedSessionsOwnerState } =
+    useBookedSessionsOwnerActions();
 
   const dispatch = useDispatch();
 
   const resetAllStoreOnSignOut = () => {
     dispatchResetAllAddChildInfoState();
     dispatchResetBookSessionState();
+    dispatchResetBookedSessionsOwnerState();
 
-    dispatch(resetBookedSessionsOwnerState());
     dispatch(resetCardInputState());
     dispatch(resetChosenEntryChildDetailsState());
     dispatch(resetContactFormState());

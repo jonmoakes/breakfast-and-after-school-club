@@ -3,6 +3,8 @@ import { useLocation } from "react-router-dom";
 
 import useAddChildInfoActions from "./get-actions-and-thunks/add-child-info-actions-and-thunks/use-add-child-info-actions";
 import useBookSessionActions from "./get-actions-and-thunks/book-session-actions-and-thunks/use-book-session-actions";
+import useGetBookedSessionsOwnerSelectors from "./get-selectors/use-get-booked-sessions-owner-selectors";
+import useBookedSessionsOwnerActions from "./get-actions-and-thunks/booked-sessions-owner-actions-and-thunks/use-booked-session-owner-actions";
 
 import { selectGetUsersChildrenSelectors } from "../store/get-users-children/get-users-children.slice";
 import { resetCardInputState } from "../store/card-input-result/card-input-result.slice";
@@ -34,11 +36,6 @@ import {
   resetBookedSessionsUserState,
   selectBookedSessionsUserSelectors,
 } from "../store/booked-sessions-user/booked-sessions-user.slice";
-import {
-  resetBookedSessionsOwnerError,
-  resetBookedSessionsOwnerState,
-  selectBookedSessionsOwnerSelectors,
-} from "../store/booked-sessions-owner/booked-sessions-owner.slice";
 import {
   selectGetAllChildrenSelectors,
   resetGetAllChildrenError,
@@ -74,6 +71,11 @@ import {
 const useResetStore = () => {
   const { dispatchResetAllAddChildInfoState } = useAddChildInfoActions();
   const { dispatchResetBookSessionState } = useBookSessionActions();
+  const { bookedSessionsOwnerError } = useGetBookedSessionsOwnerSelectors();
+  const {
+    dispatchResetBookedSessionsOwnerError,
+    dispatchResetBookedSessionsOwnerState,
+  } = useBookedSessionsOwnerActions();
 
   const { sessionTypesAndPricesError } = useSelector(
     selectSessionTypesAndPricesSelectors
@@ -84,9 +86,7 @@ const useResetStore = () => {
   const { bookedSessionsUserError } = useSelector(
     selectBookedSessionsUserSelectors
   );
-  const { bookedSessionsOwnerError } = useSelector(
-    selectBookedSessionsOwnerSelectors
-  );
+
   const { getAllChildrenError } = useSelector(selectGetAllChildrenSelectors);
   const { getAllUsersError } = useSelector(selectGetAllUsersSelectors);
 
@@ -158,9 +158,9 @@ const useResetStore = () => {
         break;
       case bookedSessionsOwnerRoute:
         if (bookedSessionsOwnerError) {
-          dispatch(resetBookedSessionsOwnerError());
+          dispatchResetBookedSessionsOwnerError();
         } else {
-          dispatch(resetBookedSessionsOwnerState());
+          dispatchResetBookedSessionsOwnerState();
         }
         break;
       case bookedSessionsUserRoute:

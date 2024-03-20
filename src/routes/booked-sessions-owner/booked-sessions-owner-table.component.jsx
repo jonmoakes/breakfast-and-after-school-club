@@ -1,5 +1,4 @@
 import { useMemo } from "react";
-import { useSelector } from "react-redux";
 import {
   useTable,
   useSortBy,
@@ -12,8 +11,7 @@ import { format } from "date-fns";
 
 import useIsOnline from "../../hooks/use-is-online";
 import useBookedSessionsOwnerListener from "./booked-sessions-owner-hooks/use-booked-sessions-owner-listener";
-
-import { selectBookedSessionsOwnerSelectors } from "../../store/booked-sessions-owner/booked-sessions-owner.slice";
+import useGetBookedSessionsOwnerSelectors from "../../hooks/get-selectors/use-get-booked-sessions-owner-selectors";
 
 import { TABLE_COLUMNS } from "./table-columns";
 import NetworkError from "../../components/errors/network-error.component";
@@ -31,10 +29,9 @@ const BookedSessionsOwnerTable = () => {
 
   const { isOnline } = useIsOnline();
 
-  const { showAllDates, bookedSessionsOwnerError } = useSelector(
-    selectBookedSessionsOwnerSelectors
-  );
-  let { sortedOwnerBookings } = useSelector(selectBookedSessionsOwnerSelectors);
+  const { showAllDates, bookedSessionsOwnerError } =
+    useGetBookedSessionsOwnerSelectors();
+  let { sortedOwnerBookings } = useGetBookedSessionsOwnerSelectors();
 
   const columns = useMemo(() => TABLE_COLUMNS, []);
 
@@ -133,7 +130,7 @@ const BookedSessionsOwnerTable = () => {
             }}
           />
 
-          <ToggleBookingsShownButton {...{ sortedOwnerBookings, data }} />
+          <ToggleBookingsShownButton {...{ data }} />
 
           <GetChildDetailsButton {...{ chosenEntry }} />
 

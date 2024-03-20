@@ -1,9 +1,4 @@
-import { useSelector, useDispatch } from "react-redux";
-
-import {
-  setShowAllDates,
-  selectBookedSessionsOwnerSelectors,
-} from "../../store/booked-sessions-owner/booked-sessions-owner.slice";
+import useBookedSessionsOwnerActions from "../../hooks/get-actions-and-thunks/booked-sessions-owner-actions-and-thunks/use-booked-session-owner-actions";
 
 import {
   GreyButton,
@@ -15,24 +10,15 @@ import { Text } from "../../styles/p/p.styles";
 import { StyledLink } from "../../styles/link/link.styles";
 
 import { contactRoute } from "../../strings/routes/routes-strings";
+import useBookedSessionsOwnerLogic from "./logic/use-booked-sessions-owner-logic";
 
 const NoBookingDataFound = ({ data }) => {
-  const { bookedSessionsOwner } = useSelector(
-    selectBookedSessionsOwnerSelectors
-  );
-  const dispatch = useDispatch();
-
-  const noBookingDataFound = () => {
-    return !bookedSessionsOwner.length && !data.length ? true : false;
-  };
-
-  const noBookingDataFoundForCurrentDate = () => {
-    return bookedSessionsOwner.length && !data.length ? true : false;
-  };
+  const { dispatchSetShowAllDates } = useBookedSessionsOwnerActions();
+  const { noSessionsBookedYet, noDataFound } = useBookedSessionsOwnerLogic();
 
   return (
     <>
-      {noBookingDataFound() ? (
+      {noSessionsBookedYet() ? (
         <ParentDiv>
           <BlueH2>no booking data found</BlueH2>
           <Text>
@@ -45,13 +31,13 @@ const NoBookingDataFound = ({ data }) => {
             reload
           </YellowGreenButton>
         </ParentDiv>
-      ) : noBookingDataFoundForCurrentDate() ? (
+      ) : noDataFound(data) ? (
         <ParentDiv>
           <BlueH2>no bookings found for today</BlueH2>
           <Text>
             tap the button below to show bookings for all other dates.
           </Text>
-          <GreyButton onClick={() => dispatch(setShowAllDates(true))}>
+          <GreyButton onClick={() => dispatchSetShowAllDates(true)}>
             show all bookings
           </GreyButton>
         </ParentDiv>

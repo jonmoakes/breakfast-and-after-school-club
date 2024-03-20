@@ -1,24 +1,16 @@
 import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+
 import { client } from "../../../utils/appwrite/appwrite-config";
 
-import { selectCurrentUserSelectors } from "../../../store/user/user.slice";
-import {
-  selectBookedSessionsOwnerSelectors,
-  setBookedSessionsOwner,
-} from "../../../store/booked-sessions-owner/booked-sessions-owner.slice";
+import useGetBookedSessionsOwnerSelectors from "../../../hooks/get-selectors/use-get-booked-sessions-owner-selectors";
+import useBookedSessionsOwnerActions from "../../../hooks/get-actions-and-thunks/booked-sessions-owner-actions-and-thunks/use-booked-session-owner-actions";
+import useGetCurrentUserSelectors from "../../../hooks/get-selectors/use-get-current-user-selectors";
 
 const useBookedSessionsOwnerListener = () => {
-  const { currentUser, currentUserEnvironmentVariables } = useSelector(
-    selectCurrentUserSelectors
-  );
-  const { bookedSessionsOwner } = useSelector(
-    selectBookedSessionsOwnerSelectors
-  );
-
-  const { databaseId, bookedSessionsCollectionId } =
-    currentUserEnvironmentVariables;
-  const dispatch = useDispatch();
+  const { bookedSessionsOwner } = useGetBookedSessionsOwnerSelectors();
+  const { dispatchSetBookedSessionsOwner } = useBookedSessionsOwnerActions();
+  const { currentUser, databaseId, bookedSessionsCollectionId } =
+    useGetCurrentUserSelectors();
 
   useEffect(() => {
     if (!currentUser) return;
@@ -35,10 +27,10 @@ const useBookedSessionsOwnerListener = () => {
           const updatedEntries = bookedSessionsOwner.filter(
             (session) => session.$id !== deletedEntryId
           );
-
-          dispatch(setBookedSessionsOwner(updatedEntries));
+          dispatchSetBookedSessionsOwner(updatedEntries);
         } else {
           // Check if the entry with the matching ID exists in the current state
+
           const existingEntryIndex = bookedSessionsOwner.findIndex(
             (session) => session.$id === updatedEntry.$id
           );
@@ -50,13 +42,11 @@ const useBookedSessionsOwnerListener = () => {
                 ? { ...session, ...updatedEntry }
                 : session
             );
-
-            dispatch(setBookedSessionsOwner(updatedEntries));
+            dispatchSetBookedSessionsOwner(updatedEntries);
           } else {
             // entry does not exist so add new entry to the bookedSessionsArray
-            dispatch(
-              setBookedSessionsOwner([...bookedSessionsOwner, updatedEntry])
-            );
+            const updatedEntries = [...bookedSessionsOwner, updatedEntry];
+            dispatchSetBookedSessionsOwner(updatedEntries);
           }
         }
       }
@@ -66,11 +56,11 @@ const useBookedSessionsOwnerListener = () => {
       unsubscribe();
     };
   }, [
-    dispatch,
     currentUser,
     bookedSessionsOwner,
     bookedSessionsCollectionId,
     databaseId,
+    dispatchSetBookedSessionsOwner,
   ]);
 };
 

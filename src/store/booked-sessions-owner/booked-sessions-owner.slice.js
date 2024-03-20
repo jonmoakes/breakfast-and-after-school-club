@@ -19,9 +19,6 @@ export const bookedSessionsOwnerSlice = createSlice({
     setShowAllDates(state, action) {
       state.showAllDates = action.payload;
     },
-    toggleShowAllDates(state) {
-      state.showAllDates = !state.showAllDates;
-    },
     resetBookedSessionsOwnerError(state) {
       state.bookedSessionsOwnerError = null;
     },

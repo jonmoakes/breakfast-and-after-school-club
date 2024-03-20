@@ -1,8 +1,5 @@
-import { useSelector } from "react-redux";
-
 import useFetchBookedSessionsOwner from "./booked-sessions-owner-hooks/use-fetch-booked-sessions-owner";
-
-import { selectBookedSessionsOwnerSelectors } from "../../store/booked-sessions-owner/booked-sessions-owner.slice";
+import useGetBookedSessionOwnerSelectors from "../../hooks/get-selectors/use-get-booked-sessions-owner-selectors";
 
 import Loader from "../../components/loader/loader.component";
 import TableHelp from "../../components/tables/table-help.component";
@@ -14,10 +11,7 @@ import { BlackTitle } from "../../styles/h1/h1.styles";
 
 const BookedSessionsOwner = () => {
   useFetchBookedSessionsOwner();
-
-  const { bookedSessionsOwnerIsLoading } = useSelector(
-    selectBookedSessionsOwnerSelectors
-  );
+  const { bookedSessionsOwnerIsLoading } = useGetBookedSessionOwnerSelectors();
 
   return (
     <Container>
