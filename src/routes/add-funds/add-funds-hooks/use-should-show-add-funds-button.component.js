@@ -1,15 +1,15 @@
 import { useSelector } from "react-redux";
 
+import useGetCardInputResultSelectors from "../../../hooks/get-selectors/use-get-card-input-result-selectors";
+
 import { selectHandlePaymentSelectors } from "../../../store/handle-payment/handle-payment.slice";
 import { selectWalletFundsToAddSelectors } from "../../../store/wallet-funds-to-add/wallet-funds-to-add.slice";
-import { selectCardInputResult } from "../../../store/card-input-result/card-input-result.slice";
 
 const useShouldShowAddFundsButton = () => {
-  const { client_secret } = useSelector(selectHandlePaymentSelectors);
-  const { cardInputResult } = useSelector(selectCardInputResult);
-  const { walletFundsToAdd } = useSelector(selectWalletFundsToAddSelectors);
+  const { showPrePayButton } = useGetCardInputResultSelectors();
 
-  const { showPrePayButton } = cardInputResult;
+  const { client_secret } = useSelector(selectHandlePaymentSelectors);
+  const { walletFundsToAdd } = useSelector(selectWalletFundsToAddSelectors);
 
   const shouldShowAddFundsButton = () => {
     return showPrePayButton && !client_secret && walletFundsToAdd

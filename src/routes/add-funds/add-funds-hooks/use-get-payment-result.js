@@ -4,6 +4,8 @@ import { useStripe, CardElement, useElements } from "@stripe/react-stripe-js";
 
 import useConfirmSwal from "../../../hooks/use-confirm-swal";
 import useGetClientSecret from "./use-get-client-secret";
+import useGetCardInputResultSelectors from "../../../hooks/get-selectors/use-get-card-input-result-selectors";
+import useCardInputResultActions from "../../../hooks/get-actions-and-thunks/use-card-input-result-actions";
 
 import { selectWalletFundsToAddSelectors } from "../../../store/wallet-funds-to-add/wallet-funds-to-add.slice";
 import { selectCurrentUserSelectors } from "../../../store/user/user.slice";
@@ -11,10 +13,6 @@ import {
   selectHandlePaymentSelectors,
   resetAllHandlePaymentState,
 } from "../../../store/handle-payment/handle-payment.slice";
-import {
-  selectCardInputResult,
-  resetCardInputState,
-} from "../../../store/card-input-result/card-input-result.slice";
 import { getPaymentResultAsync } from "../../../store/handle-payment/handle-payment.thunks";
 import { resetWalletFundsToAddState } from "../../../store/wallet-funds-to-add/wallet-funds-to-add.slice";
 
@@ -26,15 +24,15 @@ import {
 const useGetPaymentResult = () => {
   const { confirmSwal } = useConfirmSwal();
   const { getClientSecret } = useGetClientSecret();
+  const { showPrePayButton } = useGetCardInputResultSelectors();
+  const { dispatchResetCardInputResultState } = useCardInputResultActions();
 
   const { walletFundsToAdd } = useSelector(selectWalletFundsToAddSelectors);
   const { currentUser } = useSelector(selectCurrentUserSelectors);
   const { client_secret, showConfirmButton, userHasConfirmedPayment } =
     useSelector(selectHandlePaymentSelectors);
-  const { cardInputResult } = useSelector(selectCardInputResult);
 
   const { name, email } = currentUser;
-  const { showPrePayButton } = cardInputResult;
 
   const dispatch = useDispatch();
   const stripe = useStripe();
@@ -72,7 +70,7 @@ const useGetPaymentResult = () => {
 
     const cancelResult = () => {
       dispatch(resetAllHandlePaymentState());
-      dispatch(resetCardInputState());
+      dispatchResetCardInputResultState();
       dispatch(resetWalletFundsToAddState());
     };
 
@@ -95,6 +93,7 @@ const useGetPaymentResult = () => {
     showConfirmButton,
     showPrePayButton,
     userHasConfirmedPayment,
+    dispatchResetCardInputResultState,
   ]);
 
   return { getClientSecret };

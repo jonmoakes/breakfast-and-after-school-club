@@ -1,37 +1,29 @@
-import { useDispatch } from "react-redux";
-
-import { setCardInputResult } from "../../../store/card-input-result/card-input-result.slice";
+import useCardInputResultActions from "../../../hooks/get-actions-and-thunks/use-card-input-result-actions";
 
 import { formNotCompleteWarning } from "../../../strings/errors/errors-strings";
 
 const useHandleCardInputChange = () => {
-  const dispatch = useDispatch();
+  const { dispatchSetCardInputResult } = useCardInputResultActions();
 
   const handleCardInputChange = (e) => {
     if (!e.empty && e.error === undefined && e.complete === false) {
-      dispatch(
-        setCardInputResult({
-          error: "",
-          warning: formNotCompleteWarning,
-          showPrePayButton: false,
-        })
-      );
+      dispatchSetCardInputResult({
+        error: "",
+        warning: formNotCompleteWarning,
+        showPrePayButton: false,
+      });
     } else if (e.error !== undefined && e.complete === false) {
-      dispatch(
-        setCardInputResult({
-          error: e.error.message,
-          warning: "",
-          showPrePayButton: false,
-        })
-      );
+      dispatchSetCardInputResult({
+        error: e.error.message,
+        warning: "",
+        showPrePayButton: false,
+      });
     } else if (!e.empty && e.error === undefined && e.complete === true) {
-      dispatch(
-        setCardInputResult({
-          error: "",
-          warning: "",
-          showPrePayButton: true,
-        })
-      );
+      dispatchSetCardInputResult({
+        error: "",
+        warning: "",
+        showPrePayButton: true,
+      });
     }
   };
 

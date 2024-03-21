@@ -29,7 +29,7 @@ const useBookedSessionsUserLogic = (chosenEntry) => {
 
   const { sessionType, date } = (chosenEntry ?? [])[0] ?? {};
 
-  // for use when setting dateAndTime dispatcherl
+  // for use when setting dateAndTime dispatcher
   const milliseconds = 5000;
   // convert yyyy-mm-dd to date object for comparisons. Makes the time of the chosen date 00:00:00 GMT+0000
   const chosenEntryDateAsDateObject = new Date(date);
@@ -51,7 +51,7 @@ const useBookedSessionsUserLogic = (chosenEntry) => {
     new Date()
   );
 
-  // chosenEntryDateAsDateObject shows thedate with a time of 00:00:00 GMT+0000. startOfDay does the same to currentDateAndTime which initially contains whatever time it is when intialised. So if currentDateAndTine had a time value later than 00:00:00 then it would class it as being an earlier date even though the two dates are the same.
+  // chosenEntryDateAsDateObject shows the date with a time of 00:00:00 GMT+0000. startOfDay does the same to currentDateAndTime which initially contains whatever time it is when intialised. So if currentDateAndTine had a time value later than 00:00:00 then it would class it as being an earlier date even though the two dates are the same.
   const bookingIsOnADayInThePast = () => {
     return isBefore(chosenEntryDateAsDateObject, startOfDay(currentDateAndTime))
       ? true
@@ -116,15 +116,9 @@ const useBookedSessionsUserLogic = (chosenEntry) => {
     }
   };
 
-  const scrollToTop = () => {
-    document.body.scrollTop = 0;
-    document.documentElement.scrollTop = 0;
-  };
-
   return {
     noBookingDataFound,
     checkOkToCancelAndGoToCancelBookingRoute,
-    scrollToTop,
     milliseconds,
   };
 };

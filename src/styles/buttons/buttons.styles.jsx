@@ -66,6 +66,7 @@ export const DisabledButton = styled(Button)`
 
 export const YellowGreenButton = styled(Button)`
   &.add-funds {
+    animation: 1s ${bounceInDownAnimation};
     margin: 0px auto 40px auto;
     width: 180px;
   }

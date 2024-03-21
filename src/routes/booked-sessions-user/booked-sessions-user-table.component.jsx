@@ -9,6 +9,9 @@ import {
 } from "react-table";
 
 import useIsOnline from "../../hooks/use-is-online";
+import useGetBookedSessionsUserSelectors from "../../hooks/get-selectors/use-get-booked-sessions-user-selectors";
+import useBookedSessionsUserLogic from "./booked-sessions-user-hooks/logic/use-booked-sessions-user-logic";
+import useSetDateAndTime from "../../hooks/use-set-date-and-time";
 
 import { TABLE_COLUMNS } from "./table-columns";
 import NetworkError from "../../components/errors/network-error.component";
@@ -19,13 +22,12 @@ import TableSearchBox from "../../components/tables/table-search-box.component";
 import TablePagination from "../../components/tables/table-pagination.component";
 import CancelBookingAndDownloadPdfButtons from "./cancel-booking-and-download-pdf-buttons.component";
 import ShowFetchErrors from "../../components/errors/show-fetch-errors.component";
-import useGetBookedSessionsUserSelectors from "../../hooks/get-selectors/use-get-booked-sessions-user-selectors";
-import useBookedSessionsUserLogic from "./booked-sessions-user-hooks/logic/use-booked-sessions-user-logic";
-import useSetDateAndTime from "../../hooks/use-set-date-and-time";
+
+import { scrollToTop } from "../../functions/scroll-top-top";
 
 const BookedSessionsUserTable = () => {
   const { isOnline } = useIsOnline();
-  const { scrollToTop, milliseconds } = useBookedSessionsUserLogic();
+  const { milliseconds } = useBookedSessionsUserLogic();
   const { bookedSessionsUserError } = useGetBookedSessionsUserSelectors();
   let { sortedUserBookings } = useGetBookedSessionsUserSelectors();
   useSetDateAndTime(milliseconds);

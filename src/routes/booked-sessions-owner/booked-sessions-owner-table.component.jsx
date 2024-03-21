@@ -24,6 +24,8 @@ import TableSearchBox from "../../components/tables/table-search-box.component";
 import ToggleBookingsShownButton from "./toggle-bookings-show-button.component";
 import TablePagination from "../../components/tables/table-pagination.component";
 
+import { scrollToTop } from "../../functions/scroll-top-top";
+
 const BookedSessionsOwnerTable = () => {
   useBookedSessionsOwnerListener();
 
@@ -51,11 +53,6 @@ const BookedSessionsOwnerTable = () => {
     () => ({ sortBy: [{ id: "date", desc: true }], pageSize: 30 }),
     []
   );
-
-  const scrollToTop = () => {
-    document.body.scrollTop = 0;
-    document.documentElement.scrollTop = 0;
-  };
 
   const {
     getTableProps,

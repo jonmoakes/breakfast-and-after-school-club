@@ -6,8 +6,8 @@ import useBookedSessionsOwnerActions from "../hooks/get-actions-and-thunks/booke
 import useBookedSessionsUserActions from "../hooks/get-actions-and-thunks/booked-sessions-user-actions-and-thunks/use-booked-session-user-actions";
 import useCurrentDateAndTimeActions from "../hooks/get-actions-and-thunks/use-current-date-and-time-actions";
 import useRequestDateDataActions from "../hooks/get-actions-and-thunks/use-request-date-data-actions";
+import useCardInputResultActions from "../hooks/get-actions-and-thunks/use-card-input-result-actions";
 
-import { resetCardInputState } from "../store/card-input-result/card-input-result.slice";
 import { resetChosenEntryChildDetailsState } from "../store/chosen-entry-child-details/chosen-entry-child-details.slice";
 import { resetContactFormState } from "../store/contact-form/contact-form.slice";
 import { resetDeleteChildInfoState } from "../store/delete-child-info/delete-child-info.slice";
@@ -39,6 +39,7 @@ const useResetAllStoreOnSignOut = () => {
   const { dispatchResetCurrentDateAndTimeState } =
     useCurrentDateAndTimeActions();
   const { dispatchResetRequestDateDataState } = useRequestDateDataActions();
+  const { dispatchResetCardInputResultState } = useCardInputResultActions();
 
   const dispatch = useDispatch();
 
@@ -49,11 +50,10 @@ const useResetAllStoreOnSignOut = () => {
     dispatchResetBookedSessionsUserState();
     dispatchResetCurrentDateAndTimeState();
     dispatchResetRequestDateDataState();
+    dispatchResetCardInputResultState();
 
-    dispatch(resetCardInputState());
     dispatch(resetChosenEntryChildDetailsState());
     dispatch(resetContactFormState());
-
     dispatch(resetDeleteChildInfoState());
     dispatch(resetEditChildInfoState());
     dispatch(resetGenerateNewPasswordRequestState());

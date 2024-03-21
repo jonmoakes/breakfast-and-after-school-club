@@ -239,12 +239,10 @@ export const CardInputDiv = styled.div`
   }
 `;
 
-export const StripeLogoDiv = styled.div.withConfig({
-  shouldForwardProp: (prop) => prop !== "showPrePayButton",
-})`
-  margin: ${(props) =>
-    props.showPrePayButton ? "200px auto 0px auto" : "50px auto 0px auto"};
+export const StripeLogoDiv = styled.div`
+  margin: 0px auto;
   width: 100%;
+  animation: 3s ${rollInAnimation};
 `;
 
 export const TopMarginDiv = styled.div`

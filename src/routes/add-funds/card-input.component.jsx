@@ -10,6 +10,7 @@ import { selectHandlePaymentSelectors } from "../../store/handle-payment/handle-
 import NetworkError from "../../components/errors/network-error.component";
 import CardInputErrors from "./errors-help-redirect/card-input-errors.component";
 import AddFundsButton from "./add-funds-button.component";
+import StripeLogo from "./stripe-logo.component";
 
 import { CardInputDiv, ParentDiv } from "../../styles/div/div.styles";
 import { Text } from "../../styles/p/p.styles";
@@ -35,6 +36,7 @@ const CardInput = () => {
               <CardElement {...{ options }} onChange={handleCardInputChange} />
             </CardInputDiv>
             <AddFundsButton />
+            <StripeLogo />
           </ParentDiv>
         </>
       ) : null}

@@ -10,9 +10,9 @@ import useBookedSessionsUserActions from "./get-actions-and-thunks/booked-sessio
 import useGetRequestDateDataSelectors from "./get-selectors/use-get-request-date-data-selectors";
 import useRequestDateDataActions from "./get-actions-and-thunks/use-request-date-data-actions";
 import useCurrentDateAndTimeActions from "./get-actions-and-thunks/use-current-date-and-time-actions";
+import useCardInputResultActions from "./get-actions-and-thunks/use-card-input-result-actions";
 
 import { selectGetUsersChildrenSelectors } from "../store/get-users-children/get-users-children.slice";
-import { resetCardInputState } from "../store/card-input-result/card-input-result.slice";
 import { resetContactFormState } from "../store/contact-form/contact-form.slice";
 import { resetGenerateNewPasswordRequestState } from "../store/generate-new-password-request/generate-new-password-request.slice";
 import { resetChooseNewPasswordState } from "../store/choose-new-password/choose-new-password.slice";
@@ -85,7 +85,9 @@ const useResetStore = () => {
     dispatchResetRequestDateDataError,
     dispatchResetRequestDateDataState,
   } = useRequestDateDataActions();
-  const { dispatchResetCurrentDateAndTimeState } = useCurrentDateAndTimeActions;
+  const { dispatchResetCurrentDateAndTimeState } =
+    useCurrentDateAndTimeActions();
+  const { dispatchResetCardInputResultState } = useCardInputResultActions();
 
   const { sessionTypesAndPricesError } = useSelector(
     selectSessionTypesAndPricesSelectors
@@ -122,13 +124,13 @@ const useResetStore = () => {
         dispatch(resetContactFormState());
         break;
       case addFundsRoute:
-        dispatch(resetCardInputState());
+        dispatchResetCardInputResultState();
         dispatch(resetShouldShowElementState());
         dispatch(resetWalletFundsToAddState());
         dispatch(resetPreResultHandlePaymentState());
         break;
       case paymentResultRoute:
-        dispatch(resetCardInputState());
+        dispatchResetCardInputResultState();
         dispatch(resetAllHandlePaymentState());
         dispatch(resetWalletFundsToAddState());
         dispatch(resetSendEmailState());
