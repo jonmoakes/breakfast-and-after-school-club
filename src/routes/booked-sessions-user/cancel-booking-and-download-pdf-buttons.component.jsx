@@ -1,7 +1,8 @@
 import { PDFDownloadLink } from "@react-pdf/renderer";
-import BookingPdf from "../../components/booking-pdf/booking-pdf.component";
 
-import useCheckDateAndGoToCancelBookingRoute from "./booked-sessions-user-hooks/use-check-date-and-go-to-cancel-booking-route";
+import useBookedSessionsUserLogic from "./booked-sessions-user-hooks/logic/use-booked-sessions-user-logic";
+
+import BookingPdf from "../../components/booking-pdf/booking-pdf.component";
 
 import { ParentDiv, TableEditsButtonDiv } from "../../styles/div/div.styles";
 import {
@@ -11,29 +12,19 @@ import {
 import { Text } from "../../styles/p/p.styles";
 
 const CancelBookingAndDownloadPdfButtons = ({ chosenEntry }) => {
-  const { checkDateAndGoToCancelBookingRoute } =
-    useCheckDateAndGoToCancelBookingRoute(chosenEntry);
+  const { checkOkToCancelAndGoToCancelBookingRoute } =
+    useBookedSessionsUserLogic(chosenEntry);
 
-  const { $createdAt, $id, childrensName, formattedDate, sessionType } =
-    chosenEntry[0] || {};
-
-  const dataToSend = {
-    $createdAt,
-    $id,
-    childrensName,
-    formattedDate,
-    sessionType,
-  };
   return (
     <>
       {chosenEntry.length === 1 ? (
         <TableEditsButtonDiv>
-          <RemoveEntryButton onClick={checkDateAndGoToCancelBookingRoute}>
+          <RemoveEntryButton onClick={checkOkToCancelAndGoToCancelBookingRoute}>
             cancel booking
           </RemoveEntryButton>
 
           <PDFDownloadLink
-            document={<BookingPdf {...{ dataToSend }} />}
+            document={<BookingPdf {...{ chosenEntry }} />}
             filename="booking"
           >
             <DownloadPdfButton>download PDF</DownloadPdfButton>

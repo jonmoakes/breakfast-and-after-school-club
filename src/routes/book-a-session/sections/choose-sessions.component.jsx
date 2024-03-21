@@ -1,4 +1,4 @@
-import useSetDateAndTime from "../book-a-session-hooks/actions/use-set-date-and-time";
+import useSetDateAndTime from "../../../hooks/use-set-date-and-time";
 import useDatesLogic from "../book-a-session-hooks/logic/use-dates-logic";
 import useTimesLogic from "../book-a-session-hooks/logic/use-times-logic";
 import useGetChildrenLogic from "../book-a-session-hooks/logic/use-get-children-logic";
@@ -17,7 +17,6 @@ import { BlackHr } from "../../../styles/hr/hr.styles";
 import { Text } from "../../../styles/p/p.styles";
 
 const ChooseSessions = () => {
-  useSetDateAndTime();
   const { dateInPastOrNotChosenOrChosenAndBalanceTooLowOrNoSpacesAvailable } =
     useDatesLogic();
   const {
@@ -25,10 +24,12 @@ const ChooseSessions = () => {
     latestTimeToBookAfternoonSession,
     notTodaysOrIsTodayAndBeforeMorningCloseTime,
     isTodayAndIsBetweenOpenAndCloseTime,
+    milliseconds,
   } = useTimesLogic();
   const { hasOneChild, hasMoreThanOneChild, atLeastOneChildHasBeenSelected } =
     useGetChildrenLogic();
   const { onlyMorningSessionsAvailable } = useSessionLogic();
+  useSetDateAndTime(milliseconds);
 
   return (
     <>

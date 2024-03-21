@@ -6,9 +6,13 @@ import Logo from "../../assets/logo.png";
 import { pdfStyles } from "./booking-pdf.styles";
 import { getSessionTypeString } from "../../functions/get-session-type-string";
 
-export const BookingPdf = ({ dataToSend }) => {
+export const BookingPdf = ({ chosenEntry }) => {
+  // checks if chosenEntry is null or undefined. If it is, it provides a default value of an empty array ([]).
+  // Access first element if it exists. Use empty object if first element is undefined.
+  // const { $createdAt, $id, childrensName, formattedDate, sessionType } =
+  //   (chosenEntry ?? [])[0] ?? {};
   const { $createdAt, $id, childrensName, formattedDate, sessionType } =
-    dataToSend;
+    (chosenEntry ?? [])[0] ?? {};
 
   return (
     <Document>

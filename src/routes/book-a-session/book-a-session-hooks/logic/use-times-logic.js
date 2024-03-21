@@ -1,16 +1,17 @@
-import { useSelector } from "react-redux";
 import { isAfter, isBefore, parse } from "date-fns";
 
 import useGetRequestDateDataSelectors from "../../../../hooks/get-selectors/use-get-request-date-data-selectors";
 import useDatesLogic from "../logic/use-dates-logic";
 
-import { selectCurrentDateAndTimeSelectors } from "../../../../store/date-and-time/date-and-time.slice";
+import useGetCurrentDateAndTimeSelectors from "../../../../hooks/get-selectors/use-get-date-and-time-selectors";
 
 const useTimesLogic = () => {
   const { bookingClosingTimes } = useGetRequestDateDataSelectors();
+  const { currentDateAndTime } = useGetCurrentDateAndTimeSelectors();
   const { isToday } = useDatesLogic();
 
-  const { currentDateAndTime } = useSelector(selectCurrentDateAndTimeSelectors);
+  // for use when setting dateAndTime dispatcher;
+  const milliseconds = 10000;
 
   const latestTimeToBookMorningSession = bookingClosingTimes
     ? bookingClosingTimes.morningSessionClosingTime
@@ -101,6 +102,7 @@ const useTimesLogic = () => {
   };
 
   return {
+    milliseconds,
     notTodaysOrIsTodayAndBeforeMorningCloseTime,
     latestTimeToBookAfternoonSession,
     isCurrentTimeBeforeLatestTimeToBookMorningSession,

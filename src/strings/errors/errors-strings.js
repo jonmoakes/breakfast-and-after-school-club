@@ -110,6 +110,11 @@ export const alreadyHaveChildNameMessage =
   "you can't add a child with the same name.";
 export const contactFormDetailsPrePopulatedMessage =
   "please contact us urgently by tapping the ok button. We will populate the contact form with the details we need to fix our error, so you simply need to press the 'send message' button when on the contact form. We apologise for the inconvenience.";
+export const errorTryingToCancelBookingMessage =
+  "sorry, there was an error trying to cancel your booking";
+export const tryingToCancelErrorMessage = (error) => {
+  return `the error received was: ${error}. If the issue persists, please contact the school directly to cancel your booking. We apologise for the inconvenience.`;
+};
 export const errorCancellingBookingMessage =
   "sorry, there was an error cancelling your booking.";
 export const errorInstructions =
@@ -120,8 +125,10 @@ export const tooLateToCancelMorningMessage =
   "it's too late to cancel your morning session.";
 export const tooLateToCancelAfternoonMessage =
   "it's too late to cancel your afternoon session.";
-export const cancelBeforeTimeMessage = (hour) => {
-  return `please cancel before ${hour} if you wish to cancel a session.`;
+export const tooLateToCancelDualSession =
+  "it's too late to cancel your dual session.";
+export const cancelBeforeTimeMessage = (time) => {
+  return `please cancel before ${time} if you wish to cancel the session.`;
 };
 export const errorSendCancellationConfirmationEmailMessage = `<span style="font-size: 20px;">sorry, there was an error sending you the email with confirmation of this cancellation. Rest assured though, your booking has been cancelled and funds have been added to your wallet. if you require this email confirmation, please contact us using our contact form.</span>`;
 export const errorFetchingBalanceMessage =

@@ -3,18 +3,19 @@ import { useDispatch } from "react-redux";
 import useAddChildInfoActions from "../hooks/get-actions-and-thunks/add-child-info-actions-and-thunks/use-add-child-info-actions";
 import useBookSessionActions from "../hooks/get-actions-and-thunks/book-session-actions-and-thunks/use-book-session-actions";
 import useBookedSessionsOwnerActions from "../hooks/get-actions-and-thunks/booked-sessions-owner-actions-and-thunks/use-booked-session-owner-actions";
+import useBookedSessionsUserActions from "../hooks/get-actions-and-thunks/booked-sessions-user-actions-and-thunks/use-booked-session-user-actions";
+import useCurrentDateAndTimeActions from "../hooks/get-actions-and-thunks/use-current-date-and-time-actions";
+import useRequestDateDataActions from "../hooks/get-actions-and-thunks/use-request-date-data-actions";
 
 import { resetCardInputState } from "../store/card-input-result/card-input-result.slice";
 import { resetChosenEntryChildDetailsState } from "../store/chosen-entry-child-details/chosen-entry-child-details.slice";
 import { resetContactFormState } from "../store/contact-form/contact-form.slice";
-import { resetDateAndTimeState } from "../store/date-and-time/date-and-time.slice";
 import { resetDeleteChildInfoState } from "../store/delete-child-info/delete-child-info.slice";
 import { resetEditChildInfoState } from "../store/edit-child-info/edit-child-info.slice";
 import { resetGetUsersChildrenState } from "../store/get-users-children/get-users-children.slice";
 import { resetAllHandlePaymentState } from "../store/handle-payment/handle-payment.slice";
 import { resetIsOnlineState } from "../store/is-online/is-online.slice";
 import { resetPasswordIsVisibleState } from "../store/password-is-visible/password-is-visible.slice";
-import { resetRequestDateDataState } from "../store/request-date-data/request-date-data.slice";
 import { resetSendEmailState } from "../store/send-email/send-email.slice";
 import { resetSessionTypesAndPricesState } from "../store/session-types-and-prices/session-types-and-prices.slice";
 import { resetShouldShowElementState } from "../store/should-show-element/should-show-element.slice";
@@ -22,7 +23,6 @@ import { resetSignInFormState } from "../store/sign-in-form/sign-in-form.slice";
 import { resetSignUpFormState } from "../store/sign-up-form/sign-up-form.slice";
 import { resetUpdateEmailState } from "../store/update-email/update-email.slice";
 import { resetUserBookingToDeleteState } from "../store/user-booking-to-delete/user-booking-to-delete.slice";
-import { resetBookedSessionsUserState } from "../store/booked-sessions-user/booked-sessions-user.slice";
 import { resetWalletFundsToAddState } from "../store/wallet-funds-to-add/wallet-funds-to-add.slice";
 import { resetGenerateNewPasswordRequestState } from "../store/generate-new-password-request/generate-new-password-request.slice";
 import { resetChooseNewPasswordState } from "../store/choose-new-password/choose-new-password.slice";
@@ -34,6 +34,11 @@ const useResetAllStoreOnSignOut = () => {
   const { dispatchResetBookSessionState } = useBookSessionActions();
   const { dispatchResetBookedSessionsOwnerState } =
     useBookedSessionsOwnerActions();
+  const { dispatchResetBookedSessionsUserState } =
+    useBookedSessionsUserActions();
+  const { dispatchResetCurrentDateAndTimeState } =
+    useCurrentDateAndTimeActions();
+  const { dispatchResetRequestDateDataState } = useRequestDateDataActions();
 
   const dispatch = useDispatch();
 
@@ -41,11 +46,14 @@ const useResetAllStoreOnSignOut = () => {
     dispatchResetAllAddChildInfoState();
     dispatchResetBookSessionState();
     dispatchResetBookedSessionsOwnerState();
+    dispatchResetBookedSessionsUserState();
+    dispatchResetCurrentDateAndTimeState();
+    dispatchResetRequestDateDataState();
 
     dispatch(resetCardInputState());
     dispatch(resetChosenEntryChildDetailsState());
     dispatch(resetContactFormState());
-    dispatch(resetDateAndTimeState());
+
     dispatch(resetDeleteChildInfoState());
     dispatch(resetEditChildInfoState());
     dispatch(resetGenerateNewPasswordRequestState());
@@ -53,7 +61,6 @@ const useResetAllStoreOnSignOut = () => {
     dispatch(resetAllHandlePaymentState());
     dispatch(resetIsOnlineState());
     dispatch(resetPasswordIsVisibleState());
-    dispatch(resetRequestDateDataState());
     dispatch(resetSendEmailState());
     dispatch(resetSessionTypesAndPricesState());
     dispatch(resetShouldShowElementState());
@@ -61,7 +68,6 @@ const useResetAllStoreOnSignOut = () => {
     dispatch(resetSignUpFormState());
     dispatch(resetUpdateEmailState());
     dispatch(resetUserBookingToDeleteState());
-    dispatch(resetBookedSessionsUserState());
     dispatch(resetWalletFundsToAddState());
     dispatch(resetChooseNewPasswordState());
     dispatch(resetGetAllChildrenState());

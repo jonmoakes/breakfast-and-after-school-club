@@ -30,6 +30,9 @@ const requestDateDataSlice = createSlice({
     setDateData(state, action) {
       state.requestDateData.dateData = action.payload;
     },
+    resetRequestDataDataError(state) {
+      state.requestDateData.requestDateDataError = null;
+    },
     resetRequestDateDataState: () => {
       return INITIAL_STATE;
     },
@@ -132,8 +135,12 @@ const requestDateDataSlice = createSlice({
   },
 });
 
-export const { setChosenDate, setDateData, resetRequestDateDataState } =
-  requestDateDataSlice.actions;
+export const {
+  setChosenDate,
+  setDateData,
+  resetRequestDataDataError,
+  resetRequestDateDataState,
+} = requestDateDataSlice.actions;
 export const { selectRequestDateDataSelectors } =
   requestDateDataSlice.selectors;
 

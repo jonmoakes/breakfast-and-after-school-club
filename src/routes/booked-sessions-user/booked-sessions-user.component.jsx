@@ -1,8 +1,5 @@
-import { useSelector } from "react-redux";
-
 import useFetchBookedSessionsUser from "./booked-sessions-user-hooks/use-fetch-booked-sessions-user";
-
-import { selectBookedSessionsUserSelectors } from "../../store/booked-sessions-user/booked-sessions-user.slice";
+import useGetBookedSessionsUserSelectors from "../../hooks/get-selectors/use-get-booked-sessions-user-selectors";
 
 import Loader from "../../components/loader/loader.component";
 import TableHelp from "../../components/tables/table-help.component";
@@ -11,17 +8,18 @@ import BookedSessionsUserTable from "./booked-sessions-user-table.component";
 import { Container } from "../../styles/container/container.styles";
 import { ParentDiv } from "../../styles/div/div.styles";
 import { BlackTitle } from "../../styles/h1/h1.styles";
+import useGetRequestDateDataSelectors from "../../hooks/get-selectors/use-get-request-date-data-selectors";
 
 const BookedSessionsUser = () => {
   useFetchBookedSessionsUser();
-
-  const { bookedSessionsUserIsLoading } = useSelector(
-    selectBookedSessionsUserSelectors
-  );
+  const { bookedSessionsUserIsLoading } = useGetBookedSessionsUserSelectors();
+  const { requestDateDataIsLoading } = useGetRequestDateDataSelectors();
 
   return (
     <Container>
-      {bookedSessionsUserIsLoading ? <Loader /> : null}
+      {bookedSessionsUserIsLoading || requestDateDataIsLoading ? (
+        <Loader />
+      ) : null}
 
       <ParentDiv>
         <BlackTitle>booked sessions</BlackTitle>

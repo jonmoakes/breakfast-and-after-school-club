@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchBookedSessionsUserAsync } from "../../../store/booked-sessions-user/booked-sessions-user.thunks";
 
 import { selectCurrentUserSelectors } from "../../../store/user/user.slice";
+import { requestBookingClosingTimesAsync } from "../../../store/request-date-data/request-date-data.thunks";
 
 const useFetchBookedSessionsUser = () => {
   const { currentUser, currentUserEnvironmentVariables } = useSelector(
@@ -13,8 +14,12 @@ const useFetchBookedSessionsUser = () => {
   const dispatch = useDispatch();
 
   const { id } = currentUser;
-  const { databaseId, bookedSessionsCollectionId } =
-    currentUserEnvironmentVariables;
+  const {
+    databaseId,
+    bookedSessionsCollectionId,
+    bookingClosingTimesCollectionId,
+    bookingClosingTimesDocumentId,
+  } = currentUserEnvironmentVariables;
 
   useEffect(() => {
     if (!currentUser) return;
@@ -24,8 +29,28 @@ const useFetchBookedSessionsUser = () => {
         databaseId,
         bookedSessionsCollectionId,
       })
-    );
-  }, [dispatch, currentUser, id, databaseId, bookedSessionsCollectionId]);
+    ).then((resultAction) => {
+      if (fetchBookedSessionsUserAsync.fulfilled.match(resultAction)) {
+        const collectionId = bookingClosingTimesCollectionId;
+        const documentId = bookingClosingTimesDocumentId;
+        dispatch(
+          requestBookingClosingTimesAsync({
+            databaseId,
+            collectionId,
+            documentId,
+          })
+        );
+      }
+    });
+  }, [
+    dispatch,
+    currentUser,
+    id,
+    databaseId,
+    bookedSessionsCollectionId,
+    bookingClosingTimesCollectionId,
+    bookingClosingTimesDocumentId,
+  ]);
 };
 
 export default useFetchBookedSessionsUser;

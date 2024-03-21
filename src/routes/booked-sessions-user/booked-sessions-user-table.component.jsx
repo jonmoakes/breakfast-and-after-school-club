@@ -1,5 +1,4 @@
 import { useMemo } from "react";
-import { useSelector } from "react-redux";
 import {
   useTable,
   useSortBy,
@@ -11,8 +10,6 @@ import {
 
 import useIsOnline from "../../hooks/use-is-online";
 
-import { selectBookedSessionsUserSelectors } from "../../store/booked-sessions-user/booked-sessions-user.slice";
-
 import { TABLE_COLUMNS } from "./table-columns";
 import NetworkError from "../../components/errors/network-error.component";
 import TableCheckBox from "../../components/tables/table-checkbox";
@@ -22,15 +19,16 @@ import TableSearchBox from "../../components/tables/table-search-box.component";
 import TablePagination from "../../components/tables/table-pagination.component";
 import CancelBookingAndDownloadPdfButtons from "./cancel-booking-and-download-pdf-buttons.component";
 import ShowFetchErrors from "../../components/errors/show-fetch-errors.component";
+import useGetBookedSessionsUserSelectors from "../../hooks/get-selectors/use-get-booked-sessions-user-selectors";
+import useBookedSessionsUserLogic from "./booked-sessions-user-hooks/logic/use-booked-sessions-user-logic";
+import useSetDateAndTime from "../../hooks/use-set-date-and-time";
 
 const BookedSessionsUserTable = () => {
   const { isOnline } = useIsOnline();
-
-  const { bookedSessionsUserError } = useSelector(
-    selectBookedSessionsUserSelectors
-  );
-
-  let { sortedUserBookings } = useSelector(selectBookedSessionsUserSelectors);
+  const { scrollToTop, milliseconds } = useBookedSessionsUserLogic();
+  const { bookedSessionsUserError } = useGetBookedSessionsUserSelectors();
+  let { sortedUserBookings } = useGetBookedSessionsUserSelectors();
+  useSetDateAndTime(milliseconds);
 
   const columns = useMemo(() => TABLE_COLUMNS, []);
   const data = useMemo(() => sortedUserBookings, [sortedUserBookings]);
@@ -39,11 +37,6 @@ const BookedSessionsUserTable = () => {
     () => ({ sortBy: [{ id: "date", desc: true }], pageSize: 30 }),
     []
   );
-
-  const scrollToTop = () => {
-    document.body.scrollTop = 0;
-    document.documentElement.scrollTop = 0;
-  };
 
   const {
     getTableProps,
@@ -81,7 +74,7 @@ const BookedSessionsUserTable = () => {
             Cell: ({ row }) => {
               return (
                 <TableCheckBox
-                  onClick={() => scrollToTop()}
+                  onClick={scrollToTop}
                   {...row.getToggleRowSelectedProps()}
                 />
               );

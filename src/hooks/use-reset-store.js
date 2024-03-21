@@ -4,14 +4,19 @@ import { useLocation } from "react-router-dom";
 import useAddChildInfoActions from "./get-actions-and-thunks/add-child-info-actions-and-thunks/use-add-child-info-actions";
 import useBookSessionActions from "./get-actions-and-thunks/book-session-actions-and-thunks/use-book-session-actions";
 import useGetBookedSessionsOwnerSelectors from "./get-selectors/use-get-booked-sessions-owner-selectors";
+import useGetBookedSessionsUserSelectors from "./get-selectors/use-get-booked-sessions-user-selectors";
 import useBookedSessionsOwnerActions from "./get-actions-and-thunks/booked-sessions-owner-actions-and-thunks/use-booked-session-owner-actions";
+import useBookedSessionsUserActions from "./get-actions-and-thunks/booked-sessions-user-actions-and-thunks/use-booked-session-user-actions";
+import useGetRequestDateDataSelectors from "./get-selectors/use-get-request-date-data-selectors";
+import useRequestDateDataActions from "./get-actions-and-thunks/use-request-date-data-actions";
+import useCurrentDateAndTimeActions from "./get-actions-and-thunks/use-current-date-and-time-actions";
 
 import { selectGetUsersChildrenSelectors } from "../store/get-users-children/get-users-children.slice";
 import { resetCardInputState } from "../store/card-input-result/card-input-result.slice";
 import { resetContactFormState } from "../store/contact-form/contact-form.slice";
 import { resetGenerateNewPasswordRequestState } from "../store/generate-new-password-request/generate-new-password-request.slice";
 import { resetChooseNewPasswordState } from "../store/choose-new-password/choose-new-password.slice";
-import { resetRequestDateDataState } from "../store/request-date-data/request-date-data.slice";
+
 import { resetShouldShowElementState } from "../store/should-show-element/should-show-element.slice";
 import { resetSignInFormState } from "../store/sign-in-form/sign-in-form.slice";
 import { resetSignUpFormState } from "../store/sign-up-form/sign-up-form.slice";
@@ -21,7 +26,6 @@ import {
   resetAllHandlePaymentState,
   resetPreResultHandlePaymentState,
 } from "../store/handle-payment/handle-payment.slice";
-import { setCurrentDateAndTime } from "../store/date-and-time/date-and-time.slice";
 import { resetEditChildInfoState } from "../store/edit-child-info/edit-child-info.slice";
 import { resetDeleteChildInfoState } from "../store/delete-child-info/delete-child-info.slice";
 import { resetSendEmailState } from "../store/send-email/send-email.slice";
@@ -31,11 +35,6 @@ import {
   selectSessionTypesAndPricesSelectors,
 } from "../store/session-types-and-prices/session-types-and-prices.slice";
 import { resetUsersChildrenError } from "../store/get-users-children/get-users-children.slice";
-import {
-  resetBookSessionUserError,
-  resetBookedSessionsUserState,
-  selectBookedSessionsUserSelectors,
-} from "../store/booked-sessions-user/booked-sessions-user.slice";
 import {
   selectGetAllChildrenSelectors,
   resetGetAllChildrenError,
@@ -72,19 +71,27 @@ const useResetStore = () => {
   const { dispatchResetAllAddChildInfoState } = useAddChildInfoActions();
   const { dispatchResetBookSessionState } = useBookSessionActions();
   const { bookedSessionsOwnerError } = useGetBookedSessionsOwnerSelectors();
+  const { bookedSessionsUserError } = useGetBookedSessionsUserSelectors();
   const {
     dispatchResetBookedSessionsOwnerError,
     dispatchResetBookedSessionsOwnerState,
   } = useBookedSessionsOwnerActions();
+  const {
+    dispatchResetBookedSessionsUserError,
+    dispatchResetBookedSessionsUserState,
+  } = useBookedSessionsUserActions();
+  const { requestDateDataError } = useGetRequestDateDataSelectors();
+  const {
+    dispatchResetRequestDateDataError,
+    dispatchResetRequestDateDataState,
+  } = useRequestDateDataActions();
+  const { dispatchResetCurrentDateAndTimeState } = useCurrentDateAndTimeActions;
 
   const { sessionTypesAndPricesError } = useSelector(
     selectSessionTypesAndPricesSelectors
   );
   const { getUsersChildrenError } = useSelector(
     selectGetUsersChildrenSelectors
-  );
-  const { bookedSessionsUserError } = useSelector(
-    selectBookedSessionsUserSelectors
   );
 
   const { getAllChildrenError } = useSelector(selectGetAllChildrenSelectors);
@@ -127,9 +134,9 @@ const useResetStore = () => {
         dispatch(resetSendEmailState());
         break;
       case bookSessionRoute:
-        dispatch(resetRequestDateDataState());
+        dispatchResetRequestDateDataState();
         dispatch(resetShouldShowElementState());
-        dispatch(setCurrentDateAndTime(new Date()));
+        dispatchResetCurrentDateAndTimeState();
         dispatchResetBookSessionState();
         dispatch(resetSendEmailState());
         if (sessionTypesAndPricesError) {
@@ -137,7 +144,7 @@ const useResetStore = () => {
         } else if (getUsersChildrenError) {
           dispatch(resetUsersChildrenError());
         } else if (bookedSessionsUserError) {
-          dispatch(resetBookSessionUserError());
+          dispatchResetBookedSessionsUserError();
         }
         break;
       case updateEmailRoute:
@@ -165,9 +172,12 @@ const useResetStore = () => {
         break;
       case bookedSessionsUserRoute:
         if (bookedSessionsUserError) {
-          dispatch(resetBookSessionUserError());
+          dispatchResetBookedSessionsUserError();
+        } else if (requestDateDataError) {
+          dispatchResetRequestDateDataError();
         } else {
-          dispatch(resetBookedSessionsUserState());
+          dispatchResetBookedSessionsUserState();
+          dispatchResetRequestDateDataState();
         }
         break;
       case allChildrenRoute:

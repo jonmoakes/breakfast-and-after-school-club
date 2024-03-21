@@ -1,6 +1,8 @@
 import { useDispatch } from "react-redux";
 
 import {
+  resetRequestDataDataError,
+  resetRequestDateDataState,
   setChosenDate,
   setDateData,
 } from "../../store/request-date-data/request-date-data.slice";
@@ -16,7 +18,20 @@ const useRequestDateDataActions = () => {
     dispatch(setDateData(updatedDateData));
   };
 
-  return { dispatchSetChosenDate, dispatchSetDateData };
+  const dispatchResetRequestDateDataError = () => {
+    dispatch(resetRequestDataDataError());
+  };
+
+  const dispatchResetRequestDateDataState = () => {
+    dispatch(resetRequestDateDataState());
+  };
+
+  return {
+    dispatchSetChosenDate,
+    dispatchSetDateData,
+    dispatchResetRequestDateDataError,
+    dispatchResetRequestDateDataState,
+  };
 };
 
 export default useRequestDateDataActions;
