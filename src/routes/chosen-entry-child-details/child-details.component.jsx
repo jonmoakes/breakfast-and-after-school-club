@@ -1,26 +1,25 @@
-import { useSelector } from "react-redux";
 import Balancer from "react-wrap-balancer";
 
 import useCancelAndReturn from "../../hooks/use-cancel-and-return";
-
-import { selectChosenEntryChildDetailsSelectors } from "../../store/chosen-entry-child-details/chosen-entry-child-details.slice";
+import useGetChosenEntryChildDetailsSelectors from "../../hooks/get-selectors/use-get-chosen-entry-child-details-selectors";
+import useChosenEntryChildDetailsLogic from "./chosen-entry-child-details-hooks/use-chosen-entry-child-details-logic";
 
 import { ParentDiv } from "../../styles/div/div.styles";
 import { Text } from "../../styles/p/p.styles";
 import { YellowGreenButton } from "../../styles/buttons/buttons.styles";
 import { BlueH2 } from "../../styles/h2/h2.styles";
 import { BlackHr } from "../../styles/hr/hr.styles";
+import useGetChosenEntryChildDetails from "./chosen-entry-child-details-hooks/use-get-chosen-entry-child-details";
 
 const ChildDetails = () => {
+  useGetChosenEntryChildDetails();
   const { cancelAndReturn } = useCancelAndReturn();
-
-  const { chosenEntryChildDetails } = useSelector(
-    selectChosenEntryChildDetailsSelectors
-  );
+  const { noChosenEntryFound } = useChosenEntryChildDetailsLogic();
+  const { chosenEntryChildDetails } = useGetChosenEntryChildDetailsSelectors();
 
   return (
     <>
-      {!chosenEntryChildDetails.length
+      {noChosenEntryFound
         ? null
         : chosenEntryChildDetails.map((childDetails) => {
             const {

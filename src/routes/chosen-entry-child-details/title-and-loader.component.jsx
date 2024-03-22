@@ -1,17 +1,17 @@
-import { useSelector } from "react-redux";
-
 import Balancer from "react-wrap-balancer";
 
-import { selectChosenEntryChildDetailsSelectors } from "../../store/chosen-entry-child-details/chosen-entry-child-details.slice";
+import useGetChosenEntryChildDetailsSelectors from "../../hooks/get-selectors/use-get-chosen-entry-child-details-selectors";
 
 import Loader from "../../components/loader/loader.component";
 
 import { ParentDiv } from "../../styles/div/div.styles";
 import { BlackTitle } from "../../styles/h1/h1.styles";
+import useChosenEntryChildDetailsLogic from "./chosen-entry-child-details-hooks/use-chosen-entry-child-details-logic";
 
 const TitleAndLoader = () => {
-  const { chosenEntryChildDetailsIsLoading, chosenEntryChildDetails } =
-    useSelector(selectChosenEntryChildDetailsSelectors);
+  const { chosenEntryChildDetailsIsLoading } =
+    useGetChosenEntryChildDetailsSelectors();
+  const { childOrChildrenString } = useChosenEntryChildDetailsLogic();
 
   return (
     <>
@@ -20,9 +20,7 @@ const TitleAndLoader = () => {
       <ParentDiv>
         <Balancer>
           <BlackTitle>
-            details of{" "}
-            {chosenEntryChildDetails.length === 1 ? "child" : "children"} in
-            this booking
+            details of {childOrChildrenString} in this booking
           </BlackTitle>
         </Balancer>
       </ParentDiv>

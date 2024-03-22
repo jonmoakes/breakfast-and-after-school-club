@@ -1,28 +1,32 @@
 import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 
-import { selectCurrentUserSelectors } from "../../../store/user/user.slice";
+import useChosenEntryChildDetailsLogic from "./use-chosen-entry-child-details-logic";
+import useGetCurrentUserSelectors from "../../../hooks/get-selectors/use-get-current-user-selectors";
 import { getChosenEntryChildDetailsAsync } from "../../../store/chosen-entry-child-details/chosen-entry-child-details.thunks";
 
-const useGetChosenEntryChildDetails = (chosenEntry) => {
-  const { currentUser, currentUserEnvironmentVariables } = useSelector(
-    selectCurrentUserSelectors
-  );
-
+const useGetChosenEntryChildDetails = () => {
+  const { childrensNamesInChosenEntry } = useChosenEntryChildDetailsLogic();
   const {
+    currentUser,
     appOwnerId,
     databaseId,
     childrenCollectionId: collectionId,
-  } = currentUserEnvironmentVariables;
+  } = useGetCurrentUserSelectors();
+
   const dispatch = useDispatch();
 
   useEffect(() => {
     if (!currentUser || (currentUser && currentUser.id !== appOwnerId)) return;
     dispatch(
-      getChosenEntryChildDetailsAsync({ chosenEntry, databaseId, collectionId })
+      getChosenEntryChildDetailsAsync({
+        childrensNamesInChosenEntry,
+        databaseId,
+        collectionId,
+      })
     );
   }, [
-    chosenEntry,
+    childrensNamesInChosenEntry,
     currentUser,
     dispatch,
     appOwnerId,

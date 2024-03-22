@@ -1,13 +1,9 @@
 import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
 import useFireSwal from "../../../hooks/use-fire-swal";
-
-import {
-  resetChosenEntryChildDetailsError,
-  selectChosenEntryChildDetailsSelectors,
-} from "../../../store/chosen-entry-child-details/chosen-entry-child-details.slice";
+import useGetChosenEntryChildDetailsSelectors from "../../../hooks/get-selectors/use-get-chosen-entry-child-details-selectors";
+import useChosenEntryChildDetailsActions from "../../../hooks/get-actions-and-thunks/chosen-entry-child-details-actions-and-thunks/use-chosen-entry-child-details-actions";
 
 import {
   errorFetchingChildDetails,
@@ -16,12 +12,11 @@ import {
 
 const useGetChildrenEntryChildDetailsErrorSwal = () => {
   const { fireSwal } = useFireSwal();
+  const { chosenEntryChildDetailsError } =
+    useGetChosenEntryChildDetailsSelectors();
+  const { dispatchResetChosenEntryChildDetailsError } =
+    useChosenEntryChildDetailsActions();
 
-  const { chosenEntryChildDetailsError } = useSelector(
-    selectChosenEntryChildDetailsSelectors
-  );
-
-  const dispatch = useDispatch();
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -36,11 +31,16 @@ const useGetChildrenEntryChildDetailsErrorSwal = () => {
       false
     ).then((isConfirmed) => {
       if (isConfirmed) {
-        dispatch(resetChosenEntryChildDetailsError());
+        dispatchResetChosenEntryChildDetailsError();
         navigate(-1);
       }
     });
-  }, [chosenEntryChildDetailsError, fireSwal, dispatch, navigate]);
+  }, [
+    chosenEntryChildDetailsError,
+    fireSwal,
+    navigate,
+    dispatchResetChosenEntryChildDetailsError,
+  ]);
 };
 
 export default useGetChildrenEntryChildDetailsErrorSwal;

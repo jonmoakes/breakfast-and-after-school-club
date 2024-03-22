@@ -8,8 +8,8 @@ import useCurrentDateAndTimeActions from "../hooks/get-actions-and-thunks/use-cu
 import useRequestDateDataActions from "../hooks/get-actions-and-thunks/use-request-date-data-actions";
 import useCardInputResultActions from "../hooks/get-actions-and-thunks/use-card-input-result-actions";
 import useChooseNewPasswordActions from "../hooks/get-actions-and-thunks/choose-new-password-actions-and-thunks/use-choose-new-password-actions";
+import useChosenEntryChildDetailsActions from "../hooks/get-actions-and-thunks/chosen-entry-child-details-actions-and-thunks/use-chosen-entry-child-details-actions";
 
-import { resetChosenEntryChildDetailsState } from "../store/chosen-entry-child-details/chosen-entry-child-details.slice";
 import { resetContactFormState } from "../store/contact-form/contact-form.slice";
 import { resetDeleteChildInfoState } from "../store/delete-child-info/delete-child-info.slice";
 import { resetEditChildInfoState } from "../store/edit-child-info/edit-child-info.slice";
@@ -41,6 +41,8 @@ const useResetAllStoreOnSignOut = () => {
   const { dispatchResetRequestDateDataState } = useRequestDateDataActions();
   const { dispatchResetCardInputResultState } = useCardInputResultActions();
   const { dispatchResetChooseNewPasswordState } = useChooseNewPasswordActions();
+  const { dispatchResetChosenEntryChildDetailsState } =
+    useChosenEntryChildDetailsActions();
 
   const dispatch = useDispatch();
 
@@ -53,8 +55,8 @@ const useResetAllStoreOnSignOut = () => {
     dispatchResetRequestDateDataState();
     dispatchResetCardInputResultState();
     dispatchResetChooseNewPasswordState();
+    dispatchResetChosenEntryChildDetailsState();
 
-    dispatch(resetChosenEntryChildDetailsState());
     dispatch(resetContactFormState());
     dispatch(resetDeleteChildInfoState());
     dispatch(resetEditChildInfoState());
