@@ -1,9 +1,9 @@
 import { useSelector, useDispatch } from "react-redux";
 
 import useHideResetPasswordFieldsOnEmpty from "../choose-new-password-hooks/use-hide-reset-password-fields-on-empty";
-import useHandleChooseNewPasswordFormChange from "../choose-new-password-hooks/use-handle-choose-new-password-form-change";
+import useChooseNewPasswordActions from "../../../hooks/get-actions-and-thunks/choose-new-password-actions-and-thunks/use-choose-new-password-actions";
+import useGetChooseNewPasswordSelectors from "../../../hooks/get-selectors/use-get-choose-new-password-selectors";
 
-import { selectChooseNewPasswordSelectors } from "../../../store/choose-new-password/choose-new-password.slice";
 import {
   toggleResetPasswordIsVisible,
   toggleResetPasswordConfirmPasswordIsVisible,
@@ -23,15 +23,15 @@ import {
 } from "../../../strings/placeholders/placeholders-strings";
 
 const NewPasswords = () => {
-  const { handleChooseNewPasswordFormChange } =
-    useHandleChooseNewPasswordFormChange();
   useHideResetPasswordFieldsOnEmpty();
+  const { dispatchHandleChooseNewPasswordFormChange } =
+    useChooseNewPasswordActions();
+  const { newPassword, confirmNewPassword } =
+    useGetChooseNewPasswordSelectors();
 
-  const { newPasswordDetails } = useSelector(selectChooseNewPasswordSelectors);
   const { resetPasswordIsVisible, resetPasswordConfirmPasswordIsVisible } =
     useSelector(selectPasswordIsVisibleSelectors);
   const dispatch = useDispatch();
-  const { newPassword, confirmNewPassword } = newPasswordDetails;
 
   return (
     <>
@@ -39,7 +39,7 @@ const NewPasswords = () => {
         <Label>new password</Label>
         <PasswordInput
           name="newPassword"
-          onChange={handleChooseNewPasswordFormChange}
+          onChange={dispatchHandleChooseNewPasswordFormChange}
           placeholder={minEightCharacters}
           value={newPassword || ""}
           required
@@ -58,7 +58,7 @@ const NewPasswords = () => {
         <Label>confirm new password</Label>
         <PasswordInput
           name="confirmNewPassword"
-          onChange={handleChooseNewPasswordFormChange}
+          onChange={dispatchHandleChooseNewPasswordFormChange}
           placeholder={confirmYourPassword}
           value={confirmNewPassword || ""}
           required

@@ -13,13 +13,9 @@ const useTimesLogic = () => {
   // for use when setting dateAndTime dispatcher;
   const milliseconds = 10000;
 
-  const latestTimeToBookMorningSession = bookingClosingTimes
-    ? bookingClosingTimes.morningSessionClosingTime
-    : "";
-
-  const latestTimeToBookAfternoonSession = bookingClosingTimes
-    ? bookingClosingTimes.afternoonSessionClosingTime
-    : "";
+  //times return as a string
+  const { morningSessionClosingTime, afternoonSessionClosingTime } =
+    bookingClosingTimes || {};
 
   const currentTimeRelativeToLatestTimeToBookSessionComparison = (
     latestTimeToBookASession,
@@ -42,30 +38,30 @@ const useTimesLogic = () => {
     );
   };
 
+  // these will auto return true or false as the function above does the return
   const isCurrentTimeBeforeLatestTimeToBookMorningSession = () => {
     return currentTimeRelativeToLatestTimeToBookSessionComparison(
-      latestTimeToBookMorningSession,
+      morningSessionClosingTime,
       isBefore
     );
   };
-
   const isCurrentTimeAfterLatestTimeToBookMorningSession = () => {
     return currentTimeRelativeToLatestTimeToBookSessionComparison(
-      latestTimeToBookMorningSession,
+      morningSessionClosingTime,
       isAfter
     );
   };
 
   const isCurrentTimeBeforeLatestTimeToBookAfternoonSession = () => {
     return currentTimeRelativeToLatestTimeToBookSessionComparison(
-      latestTimeToBookAfternoonSession,
+      afternoonSessionClosingTime,
       isBefore
     );
   };
 
   const isCurrentTimeAfterLatestTimeToBookAfternoonSession = () => {
     return currentTimeRelativeToLatestTimeToBookSessionComparison(
-      latestTimeToBookAfternoonSession,
+      afternoonSessionClosingTime,
       isAfter
     );
   };
@@ -104,7 +100,7 @@ const useTimesLogic = () => {
   return {
     milliseconds,
     notTodaysOrIsTodayAndBeforeMorningCloseTime,
-    latestTimeToBookAfternoonSession,
+    afternoonSessionClosingTime,
     isCurrentTimeBeforeLatestTimeToBookMorningSession,
     isCurrentTimeAfterLatestTimeToBookMorningSession,
     isCurrentTimeBeforeLatestTimeToBookAfternoonSession,

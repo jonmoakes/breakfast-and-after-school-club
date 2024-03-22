@@ -7,6 +7,7 @@ import useBookedSessionsUserActions from "../hooks/get-actions-and-thunks/booked
 import useCurrentDateAndTimeActions from "../hooks/get-actions-and-thunks/use-current-date-and-time-actions";
 import useRequestDateDataActions from "../hooks/get-actions-and-thunks/use-request-date-data-actions";
 import useCardInputResultActions from "../hooks/get-actions-and-thunks/use-card-input-result-actions";
+import useChooseNewPasswordActions from "../hooks/get-actions-and-thunks/choose-new-password-actions-and-thunks/use-choose-new-password-actions";
 
 import { resetChosenEntryChildDetailsState } from "../store/chosen-entry-child-details/chosen-entry-child-details.slice";
 import { resetContactFormState } from "../store/contact-form/contact-form.slice";
@@ -25,7 +26,6 @@ import { resetUpdateEmailState } from "../store/update-email/update-email.slice"
 import { resetUserBookingToDeleteState } from "../store/user-booking-to-delete/user-booking-to-delete.slice";
 import { resetWalletFundsToAddState } from "../store/wallet-funds-to-add/wallet-funds-to-add.slice";
 import { resetGenerateNewPasswordRequestState } from "../store/generate-new-password-request/generate-new-password-request.slice";
-import { resetChooseNewPasswordState } from "../store/choose-new-password/choose-new-password.slice";
 import { resetGetAllChildrenState } from "../store/get-all-children/get-all-children.slice";
 import { resetGetAllUsersState } from "../store/get-all-users/get-all-users.slice";
 
@@ -40,6 +40,7 @@ const useResetAllStoreOnSignOut = () => {
     useCurrentDateAndTimeActions();
   const { dispatchResetRequestDateDataState } = useRequestDateDataActions();
   const { dispatchResetCardInputResultState } = useCardInputResultActions();
+  const { dispatchResetChooseNewPasswordState } = useChooseNewPasswordActions();
 
   const dispatch = useDispatch();
 
@@ -51,6 +52,7 @@ const useResetAllStoreOnSignOut = () => {
     dispatchResetCurrentDateAndTimeState();
     dispatchResetRequestDateDataState();
     dispatchResetCardInputResultState();
+    dispatchResetChooseNewPasswordState();
 
     dispatch(resetChosenEntryChildDetailsState());
     dispatch(resetContactFormState());
@@ -69,7 +71,6 @@ const useResetAllStoreOnSignOut = () => {
     dispatch(resetUpdateEmailState());
     dispatch(resetUserBookingToDeleteState());
     dispatch(resetWalletFundsToAddState());
-    dispatch(resetChooseNewPasswordState());
     dispatch(resetGetAllChildrenState());
     dispatch(resetGetAllUsersState());
   };

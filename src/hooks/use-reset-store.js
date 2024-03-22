@@ -11,11 +11,11 @@ import useGetRequestDateDataSelectors from "./get-selectors/use-get-request-date
 import useRequestDateDataActions from "./get-actions-and-thunks/use-request-date-data-actions";
 import useCurrentDateAndTimeActions from "./get-actions-and-thunks/use-current-date-and-time-actions";
 import useCardInputResultActions from "./get-actions-and-thunks/use-card-input-result-actions";
+import useChooseNewPasswordActions from "./get-actions-and-thunks/choose-new-password-actions-and-thunks/use-choose-new-password-actions";
 
 import { selectGetUsersChildrenSelectors } from "../store/get-users-children/get-users-children.slice";
 import { resetContactFormState } from "../store/contact-form/contact-form.slice";
 import { resetGenerateNewPasswordRequestState } from "../store/generate-new-password-request/generate-new-password-request.slice";
-import { resetChooseNewPasswordState } from "../store/choose-new-password/choose-new-password.slice";
 
 import { resetShouldShowElementState } from "../store/should-show-element/should-show-element.slice";
 import { resetSignInFormState } from "../store/sign-in-form/sign-in-form.slice";
@@ -88,6 +88,7 @@ const useResetStore = () => {
   const { dispatchResetCurrentDateAndTimeState } =
     useCurrentDateAndTimeActions();
   const { dispatchResetCardInputResultState } = useCardInputResultActions();
+  const { dispatchResetChooseNewPasswordState } = useChooseNewPasswordActions();
 
   const { sessionTypesAndPricesError } = useSelector(
     selectSessionTypesAndPricesSelectors
@@ -118,7 +119,7 @@ const useResetStore = () => {
         break;
       case productionChooseNewPasswordRoute:
       case localhostChooseNewPasswordRoute:
-        dispatch(resetChooseNewPasswordState());
+        dispatchResetChooseNewPasswordState();
         break;
       case contactRoute:
         dispatch(resetContactFormState());

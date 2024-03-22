@@ -1,8 +1,5 @@
-import { useSelector } from "react-redux";
-
 import useChooseNewPasswordResultSwal from "./choose-new-password-hooks/use-choose-new-password-result-swal";
-
-import { selectChooseNewPasswordSelectors } from "../../store/choose-new-password/choose-new-password.slice";
+import useGetChooseNewPasswordSelectors from "../../hooks/get-selectors/use-get-choose-new-password-selectors";
 
 import Loader from "../../components/loader/loader.component";
 import Intro from "./sections/intro.component";
@@ -15,10 +12,7 @@ import { Form } from "../../styles/form/form.styles";
 
 const ChooseNewPassword = () => {
   useChooseNewPasswordResultSwal();
-
-  const { newPasswordResultIsLoading } = useSelector(
-    selectChooseNewPasswordSelectors
-  );
+  const { newPasswordResultIsLoading } = useGetChooseNewPasswordSelectors();
 
   return (
     <Container>

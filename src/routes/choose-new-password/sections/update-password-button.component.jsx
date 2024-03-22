@@ -1,9 +1,6 @@
-import { useSelector } from "react-redux";
-
 import useIsOnline from "../../../hooks/use-is-online";
 import useConfirmUpdatePassword from "../choose-new-password-hooks/use-confirm-update-password";
-
-import { selectChooseNewPasswordSelectors } from "../../../store/choose-new-password/choose-new-password.slice";
+import useGetChooseNewPasswordSelectors from "../../../hooks/get-selectors/use-get-choose-new-password-selectors";
 
 import NetworkError from "../../../components/errors/network-error.component";
 
@@ -14,9 +11,8 @@ import { YellowGreenButton } from "../../../styles/buttons/buttons.styles";
 const ResetPasswordButton = () => {
   const { isOnline } = useIsOnline();
   const { confirmUpdatePassword } = useConfirmUpdatePassword();
-
-  const { newPasswordDetails } = useSelector(selectChooseNewPasswordSelectors);
-  const { newPassword, confirmNewPassword } = newPasswordDetails;
+  const { newPassword, confirmNewPassword } =
+    useGetChooseNewPasswordSelectors();
 
   return (
     <>

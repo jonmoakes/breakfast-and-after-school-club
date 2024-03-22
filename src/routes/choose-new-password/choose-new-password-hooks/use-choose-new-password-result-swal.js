@@ -4,13 +4,10 @@ import { useNavigate } from "react-router-dom";
 
 import useFireSwal from "../../../hooks/use-fire-swal";
 import useResetAllStoreOnSignOut from "../../../hooks/use-reset-all-store-on-sign-out";
-
+import useGetChooseNewPasswordSelectors from "../../../hooks/get-selectors/use-get-choose-new-password-selectors";
+import useChooseNewPasswordActions from "../../../hooks/get-actions-and-thunks/choose-new-password-actions-and-thunks/use-choose-new-password-actions";
 import { selectCurrentUserSelectors } from "../../../store/user/user.slice";
 import { signOutAsync } from "../../../store/user/user.thunks";
-import {
-  selectChooseNewPasswordSelectors,
-  resetPasswordResultError,
-} from "../../../store/choose-new-password/choose-new-password.slice";
 
 import {
   errorReceivedMessage,
@@ -26,10 +23,10 @@ import { signInRoute } from "../../../strings/routes/routes-strings";
 const useChooseNewPasswordResultSwal = () => {
   const { fireSwal } = useFireSwal();
   const { resetAllStoreOnSignOut } = useResetAllStoreOnSignOut();
+  const { newPasswordResult, newPasswordError } =
+    useGetChooseNewPasswordSelectors();
+  const { dispatchResetPasswordResultError } = useChooseNewPasswordActions();
 
-  const { newPasswordResult, newPasswordError } = useSelector(
-    selectChooseNewPasswordSelectors
-  );
   const { curentUser } = useSelector(selectCurrentUserSelectors);
 
   const dispatch = useDispatch();
@@ -76,7 +73,7 @@ const useChooseNewPasswordResultSwal = () => {
         false
       ).then((isConfirmed) => {
         if (isConfirmed) {
-          dispatch(resetPasswordResultError());
+          dispatchResetPasswordResultError();
         }
       });
     }
@@ -88,6 +85,7 @@ const useChooseNewPasswordResultSwal = () => {
     navigate,
     curentUser,
     resetAllStoreOnSignOut,
+    dispatchResetPasswordResultError,
   ]);
 };
 

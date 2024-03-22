@@ -3,10 +3,8 @@ import { account } from "../../utils/appwrite/appwrite-config";
 
 export const getChooseNewPasswordResultAsync = createAsyncThunk(
   "getChooseNewPasswordResult",
-  async ({ newPasswordDetails }, thunkAPI) => {
+  async ({ newPassword, confirmNewPassword }, thunkAPI) => {
     try {
-      const { newPassword, confirmNewPassword } = newPasswordDetails;
-
       const urlParams = new URLSearchParams(window.location.search);
       const userId = urlParams.get("userId");
       const secret = urlParams.get("secret");

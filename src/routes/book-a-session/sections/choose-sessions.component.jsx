@@ -21,7 +21,7 @@ const ChooseSessions = () => {
     useDatesLogic();
   const {
     isTodayAndAfterAfternoonSessionCloseTime,
-    latestTimeToBookAfternoonSession,
+    afternoonSessionClosingTime,
     notTodaysOrIsTodayAndBeforeMorningCloseTime,
     isTodayAndIsBetweenOpenAndCloseTime,
     milliseconds,
@@ -39,7 +39,7 @@ const ChooseSessions = () => {
         <ParentDiv>
           <Text>
             sorry, the latest time for booking the afternoon session on the
-            current day is {latestTimeToBookAfternoonSession}
+            current day is {afternoonSessionClosingTime}
           </Text>
         </ParentDiv>
       ) : (hasOneChild() && notTodaysOrIsTodayAndBeforeMorningCloseTime()) ||

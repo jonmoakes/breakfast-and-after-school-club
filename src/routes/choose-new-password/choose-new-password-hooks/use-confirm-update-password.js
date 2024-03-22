@@ -1,9 +1,9 @@
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 
 import useConfirmSwal from "../../../hooks/use-confirm-swal";
 import useFireSwal from "../../../hooks/use-fire-swal";
+import useGetChooseNewPasswordSelectors from "../../../hooks/get-selectors/use-get-choose-new-password-selectors";
 
-import { selectChooseNewPasswordSelectors } from "../../../store/choose-new-password/choose-new-password.slice";
 import { getChooseNewPasswordResultAsync } from "../../../store/choose-new-password/choose-new-password.thunks";
 
 import {
@@ -18,15 +18,15 @@ import {
 const useConfirmUpdatePassword = () => {
   const { confirmSwal } = useConfirmSwal();
   const { fireSwal } = useFireSwal();
-
-  const { newPasswordDetails } = useSelector(selectChooseNewPasswordSelectors);
+  const { newPassword, confirmNewPassword } =
+    useGetChooseNewPasswordSelectors();
 
   const dispatch = useDispatch();
 
-  const { newPassword, confirmNewPassword } = newPasswordDetails;
-
   const confirmResult = () => {
-    dispatch(getChooseNewPasswordResultAsync({ newPasswordDetails }));
+    dispatch(
+      getChooseNewPasswordResultAsync({ newPassword, confirmNewPassword })
+    );
   };
 
   const confirmUpdatePassword = () => {
