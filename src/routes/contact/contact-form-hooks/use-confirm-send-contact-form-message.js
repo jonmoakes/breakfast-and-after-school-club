@@ -1,10 +1,9 @@
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 
 import useFireSwal from "../../../hooks/use-fire-swal";
 import useConfirmSwal from "../../../hooks/use-confirm-swal";
-
-import { selectCurrentUserSelectors } from "../../../store/user/user.slice";
-import { selectContactFormSelectors } from "../../../store/contact-form/contact-form.slice";
+import useGetContactFormSelectors from "../../../hooks/get-selectors/use-get-contact-form-selectors";
+import useGetCurrentUserSelectors from "../../../hooks/get-selectors/use-get-current-user-selectors";
 import { sendContactFormMessageAsync } from "../../../store/contact-form/contact-form.thunks";
 
 import { validateEmail } from "../../../functions/validate-email";
@@ -21,23 +20,16 @@ import {
 const useConfirmSendContactFormMessage = () => {
   const { fireSwal } = useFireSwal();
   const { confirmSwal } = useConfirmSwal();
-
-  const { contactFormDetails } = useSelector(selectContactFormSelectors);
-
-  const { currentUser, currentUserEnvironmentVariables } = useSelector(
-    selectCurrentUserSelectors
-  );
-
-  const { name, email, message } = contactFormDetails;
-  const { appOwnerEmail } = currentUserEnvironmentVariables;
-  const currentUserEmail = currentUser ? currentUser.email : "";
+  const { name, email, message } = useGetContactFormSelectors();
+  const { appOwnerEmail, currentUserEmailForContactForm } =
+    useGetCurrentUserSelectors();
 
   const dispatch = useDispatch();
 
   const confirmResult = () => {
     dispatch(
       sendContactFormMessageAsync({
-        currentUserEmail,
+        currentUserEmailForContactForm,
         appOwnerEmail,
         name,
         email,

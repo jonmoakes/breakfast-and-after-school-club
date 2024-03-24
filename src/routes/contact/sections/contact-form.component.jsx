@@ -1,28 +1,20 @@
-import { useSelector } from "react-redux";
+import useContactFormActions from "../../../hooks/get-actions-and-thunks/contact-form-actions-and-thunks/use-contact-form-actions";
+import useGetContactFormSelectors from "../../../hooks/get-selectors/use-get-contact-form-selectors";
+import useSetContactFormNameAndEmailIfSignedIn from "../contact-form-hooks/use-set-contact-form-name-and-email-if-signed-in";
 
-import useHandleContactFormDetailsChange from "../contact-form-hooks/use-handle-contact-form-details-change";
-
-import { selectContactFormSelectors } from "../../../store/contact-form/contact-form.slice";
-
+import NameAndEmail from "./name-and-email.component";
 import SendMessageButton from "./send-message-button.component";
 
-import {
-  Form,
-  LowercasedInput,
-  CapitalizedInput,
-  StyledTextArea,
-  Label,
-} from "../../../styles/form/form.styles";
+import { Form, StyledTextArea, Label } from "../../../styles/form/form.styles";
 import { RedSpan } from "../../../styles/span/span.styles";
 import { ParentDiv } from "../../../styles/div/div.styles";
 import { Text } from "../../../styles/p/p.styles";
+import ContactFormAccordion from "./contact-form-accordion.component";
 
 const ContactForm = () => {
-  const { handleContactFormDetailsChange } =
-    useHandleContactFormDetailsChange();
-
-  const { contactFormDetails } = useSelector(selectContactFormSelectors);
-  const { name, email, message } = contactFormDetails;
+  useSetContactFormNameAndEmailIfSignedIn();
+  const { message } = useGetContactFormSelectors();
+  const { dispatchHandleContactFormDetailsChange } = useContactFormActions();
 
   return (
     <ParentDiv>
@@ -30,37 +22,19 @@ const ContactForm = () => {
         <RedSpan>* </RedSpan> = required field:
       </Text>
 
-      <Form id="contact-form">
-        <Label>
-          <RedSpan>* </RedSpan>Your Name:
-        </Label>
-        <CapitalizedInput
-          type="text"
-          name="name"
-          onChange={handleContactFormDetailsChange}
-          value={name || ""}
-        />
+      <ContactFormAccordion />
 
-        <Label>
-          <RedSpan>* </RedSpan>Your Email:
-        </Label>
-        <LowercasedInput
-          type="email"
-          name="email"
-          onChange={handleContactFormDetailsChange}
-          value={email || ""}
-        />
-
+      <Form>
+        <NameAndEmail />
         <Label>
           <RedSpan>* </RedSpan>Your Message:
         </Label>
         <StyledTextArea
           type="text"
           name="message"
-          onChange={handleContactFormDetailsChange}
+          onChange={dispatchHandleContactFormDetailsChange}
           value={message || ""}
         />
-
         <SendMessageButton />
       </Form>
     </ParentDiv>

@@ -1,12 +1,8 @@
 import { useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
 
 import useFireSwal from "../../../hooks/use-fire-swal";
-
-import {
-  resetContactFormState,
-  selectContactFormSelectors,
-} from "../../../store/contact-form/contact-form.slice";
+import useGetContactFormSelectors from "../../../hooks/get-selectors/use-get-contact-form-selectors";
+import useContactFormActions from "../../../hooks/get-actions-and-thunks/contact-form-actions-and-thunks/use-contact-form-actions";
 
 import { emailResponseTimeMessage } from "../../../strings/infos/infos-strings";
 import {
@@ -17,11 +13,8 @@ import { successMessage } from "../../../strings/successes/successes-strings";
 
 const useSendContactFormMessageResultSwal = () => {
   const { fireSwal } = useFireSwal();
-
-  const { responseStatus, contactFormError } = useSelector(
-    selectContactFormSelectors
-  );
-  const dispatch = useDispatch();
+  const { responseStatus, contactFormError } = useGetContactFormSelectors();
+  const { dispatchResetContactFormState } = useContactFormActions();
 
   useEffect(() => {
     if (!responseStatus && !contactFormError) return;
@@ -35,7 +28,7 @@ const useSendContactFormMessageResultSwal = () => {
         false
       ).then((isConfirmed) => {
         if (isConfirmed) {
-          dispatch(resetContactFormState());
+          dispatchResetContactFormState();
         }
       });
     } else if (contactFormError) {
@@ -49,11 +42,16 @@ const useSendContactFormMessageResultSwal = () => {
         false
       ).then((isConfirmed) => {
         if (isConfirmed) {
-          dispatch(resetContactFormState());
+          dispatchResetContactFormState();
         }
       });
     }
-  }, [dispatch, contactFormError, fireSwal, responseStatus]);
+  }, [
+    dispatchResetContactFormState,
+    contactFormError,
+    fireSwal,
+    responseStatus,
+  ]);
 };
 
 export default useSendContactFormMessageResultSwal;

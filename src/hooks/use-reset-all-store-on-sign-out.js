@@ -1,16 +1,16 @@
 import { useDispatch } from "react-redux";
 
-import useAddChildInfoActions from "../hooks/get-actions-and-thunks/add-child-info-actions-and-thunks/use-add-child-info-actions";
-import useBookSessionActions from "../hooks/get-actions-and-thunks/book-session-actions-and-thunks/use-book-session-actions";
-import useBookedSessionsOwnerActions from "../hooks/get-actions-and-thunks/booked-sessions-owner-actions-and-thunks/use-booked-session-owner-actions";
-import useBookedSessionsUserActions from "../hooks/get-actions-and-thunks/booked-sessions-user-actions-and-thunks/use-booked-session-user-actions";
-import useCurrentDateAndTimeActions from "../hooks/get-actions-and-thunks/use-current-date-and-time-actions";
-import useRequestDateDataActions from "../hooks/get-actions-and-thunks/use-request-date-data-actions";
-import useCardInputResultActions from "../hooks/get-actions-and-thunks/use-card-input-result-actions";
-import useChooseNewPasswordActions from "../hooks/get-actions-and-thunks/choose-new-password-actions-and-thunks/use-choose-new-password-actions";
-import useChosenEntryChildDetailsActions from "../hooks/get-actions-and-thunks/chosen-entry-child-details-actions-and-thunks/use-chosen-entry-child-details-actions";
+import useAddChildInfoActions from "./get-actions-and-thunks/add-child-info-actions-and-thunks/use-add-child-info-actions";
+import useBookSessionActions from "./get-actions-and-thunks/book-session-actions-and-thunks/use-book-session-actions";
+import useBookedSessionsOwnerActions from "./get-actions-and-thunks/booked-sessions-owner-actions-and-thunks/use-booked-session-owner-actions";
+import useBookedSessionsUserActions from "./get-actions-and-thunks/booked-sessions-user-actions-and-thunks/use-booked-session-user-actions";
+import useCurrentDateAndTimeActions from "./get-actions-and-thunks/use-current-date-and-time-actions";
+import useRequestDateDataActions from "./get-actions-and-thunks/use-request-date-data-actions";
+import useCardInputResultActions from "./get-actions-and-thunks/use-card-input-result-actions";
+import useChooseNewPasswordActions from "./get-actions-and-thunks/choose-new-password-actions-and-thunks/use-choose-new-password-actions";
+import useChosenEntryChildDetailsActions from "./get-actions-and-thunks/chosen-entry-child-details-actions-and-thunks/use-chosen-entry-child-details-actions";
+import useContactFormActions from "./get-actions-and-thunks/contact-form-actions-and-thunks/use-contact-form-actions";
 
-import { resetContactFormState } from "../store/contact-form/contact-form.slice";
 import { resetDeleteChildInfoState } from "../store/delete-child-info/delete-child-info.slice";
 import { resetEditChildInfoState } from "../store/edit-child-info/edit-child-info.slice";
 import { resetGetUsersChildrenState } from "../store/get-users-children/get-users-children.slice";
@@ -43,6 +43,7 @@ const useResetAllStoreOnSignOut = () => {
   const { dispatchResetChooseNewPasswordState } = useChooseNewPasswordActions();
   const { dispatchResetChosenEntryChildDetailsState } =
     useChosenEntryChildDetailsActions();
+  const { dispatchResetContactFormState } = useContactFormActions();
 
   const dispatch = useDispatch();
 
@@ -56,8 +57,8 @@ const useResetAllStoreOnSignOut = () => {
     dispatchResetCardInputResultState();
     dispatchResetChooseNewPasswordState();
     dispatchResetChosenEntryChildDetailsState();
+    dispatchResetContactFormState();
 
-    dispatch(resetContactFormState());
     dispatch(resetDeleteChildInfoState());
     dispatch(resetEditChildInfoState());
     dispatch(resetGenerateNewPasswordRequestState());

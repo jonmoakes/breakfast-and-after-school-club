@@ -3,16 +3,19 @@ import axios from "axios";
 import { SEND_CONTACT_FORM_MESSAGE_ENDPOINT } from "../../../netlify/api-endpoints/api-endpoints";
 
 export const sendContactFormMessageAsync = createAsyncThunk(
-  "contactForm",
+  "sendContactFormMessage",
   async (
-    { currentUserEmail, appOwnerEmail, name, email, message },
+    { currentUserEmailForContactForm, appOwnerEmail, name, email, message },
     thunkAPI
   ) => {
     try {
       const getEmailToSendMessageTo = () => {
         let emailToSendMessageTo;
 
-        if (currentUserEmail === appOwnerEmail || appOwnerEmail === undefined) {
+        if (
+          currentUserEmailForContactForm === appOwnerEmail ||
+          appOwnerEmail === undefined
+        ) {
           emailToSendMessageTo = import.meta.env.VITE_APP_ADMIN_EMAIL;
         } else {
           emailToSendMessageTo = appOwnerEmail;

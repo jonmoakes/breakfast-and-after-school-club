@@ -9,6 +9,8 @@ const useGetCurrentUserSelectors = () => {
   } = useSelector(selectCurrentUserSelectors);
 
   const { walletBalance, email, id, name, phoneNumber } = currentUser ?? {};
+  const currentUserEmailForContactForm = email ? email : "";
+  const currentUserNameForContactForm = name ? name : "";
 
   const {
     appOwnerEmail,
@@ -55,6 +57,8 @@ const useGetCurrentUserSelectors = () => {
     phoneNumber,
     currentUserWalletBalanceResult,
     currentUser,
+    currentUserEmailForContactForm,
+    currentUserNameForContactForm,
   };
 };
 

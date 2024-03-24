@@ -35,6 +35,10 @@ export const RedSpan = styled.span`
   &.capitalised {
     text-transform: capitalize;
   }
+
+  &.lowercased {
+    text-transform: lowercase;
+  }
 `;
 
 export const LightGreenSpan = styled.span`

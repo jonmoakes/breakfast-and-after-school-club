@@ -19,6 +19,12 @@ export const contactFormSlice = createSlice({
     setContactFormDetails(state, action) {
       state.contactFormDetails = action.payload;
     },
+    setContactFormDefaultName(state, action) {
+      state.contactFormDetails.name = action.payload;
+    },
+    setContactFormDefaultEmail(state, action) {
+      state.contactFormDetails.email = action.payload;
+    },
     resetContactFormState: () => {
       return INITIAL_STATE;
     },
@@ -61,8 +67,12 @@ export const contactFormSlice = createSlice({
   },
 });
 
-export const { setContactFormDetails, resetContactFormState } =
-  contactFormSlice.actions;
+export const {
+  setContactFormDetails,
+  resetContactFormState,
+  setContactFormDefaultName,
+  setContactFormDefaultEmail,
+} = contactFormSlice.actions;
 export const { selectContactFormSelectors } = contactFormSlice.selectors;
 
 export const contactFormReducer = contactFormSlice.reducer;
