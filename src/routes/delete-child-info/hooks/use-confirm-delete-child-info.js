@@ -1,10 +1,10 @@
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 
 import useConfirmSwal from "../../../hooks/use-confirm-swal";
+import useGetDeleteChildInfoSelectors from "../../../hooks/get-selectors/use-get-delete-child-info-selectors";
+import useGetCurrentUserSelectors from "../../../hooks/get-selectors/use-get-current-user-selectors";
 
-import { selectDeleteChildInfoSelectors } from "../../../store/delete-child-info/delete-child-info.slice";
 import { deleteChildInfoAsync } from "../../../store/delete-child-info/delete-child-info.thunks";
-import { selectCurrentUserSelectors } from "../../../store/user/user.slice";
 
 import {
   confirmDeleteChildMessage,
@@ -13,14 +13,10 @@ import {
 
 const useConfirmDeleteChildInfo = () => {
   const { confirmSwal } = useConfirmSwal();
-
-  const { childToDeleteInfo } = useSelector(selectDeleteChildInfoSelectors);
-  const { currentUserEnvironmentVariables } = useSelector(
-    selectCurrentUserSelectors
-  );
-
+  const { childToDeleteInfo } = useGetDeleteChildInfoSelectors();
   const { databaseId, childrenCollectionId: collectionId } =
-    currentUserEnvironmentVariables;
+    useGetCurrentUserSelectors();
+
   const dispatch = useDispatch();
 
   const confirmResult = () => {

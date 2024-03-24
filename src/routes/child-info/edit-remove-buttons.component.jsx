@@ -1,8 +1,9 @@
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 
+import useDeleteChildInfoActions from "../../hooks/get-actions-and-thunks/delete-child-info-actions-and-thunks/use-delete-child-info-actions";
+
 import { addChildToEdit } from "../../store/edit-child-info/edit-child-info.slice";
-import { addChildToDelete } from "../../store/delete-child-info/delete-child-info.slice";
 
 import { ParentDiv, TableEditsButtonDiv } from "../../styles/div/div.styles";
 import {
@@ -15,13 +16,18 @@ import {
   editChildInfoRoute,
   deleteChildInfoRoute,
 } from "../../strings/routes/routes-strings";
+import useChildInfoLogic from "./child-info-hooks/use-child-info-logic";
 
 const EditRemoveButtons = ({ chosenEntry }) => {
+  const { dispatchAddChildToDelete } = useDeleteChildInfoActions();
+  const { oneEntryHasBeenSelected, moreThanOneEntryHasBeenSelected } =
+    useChildInfoLogic(chosenEntry);
+
   const dispatch = useDispatch();
 
   return (
     <>
-      {chosenEntry.length === 1 ? (
+      {oneEntryHasBeenSelected() ? (
         <TableEditsButtonDiv>
           <>
             <Link
@@ -33,13 +39,13 @@ const EditRemoveButtons = ({ chosenEntry }) => {
 
             <Link
               to={deleteChildInfoRoute}
-              onClick={() => dispatch(addChildToDelete(chosenEntry))}
+              onClick={() => dispatchAddChildToDelete(chosenEntry)}
             >
               <RemoveEntryButton>delete child</RemoveEntryButton>
             </Link>
           </>
         </TableEditsButtonDiv>
-      ) : chosenEntry.length > 1 ? (
+      ) : moreThanOneEntryHasBeenSelected() ? (
         <ParentDiv>
           <Text>please select just one entry in order to make edits.</Text>
           <Text>

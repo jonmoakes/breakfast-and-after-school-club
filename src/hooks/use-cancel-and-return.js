@@ -2,8 +2,8 @@ import { useDispatch } from "react-redux";
 import { useNavigate, useLocation } from "react-router-dom";
 
 import useChosenEntryChildDetailsActions from "../hooks/get-actions-and-thunks/chosen-entry-child-details-actions-and-thunks/use-chosen-entry-child-details-actions";
+import useDeleteChildInfoActions from "../hooks/get-actions-and-thunks/delete-child-info-actions-and-thunks/use-delete-child-info-actions";
 
-import { resetChildToDeleteInfo } from "../store/delete-child-info/delete-child-info.slice";
 import { resetChildToEditInfo } from "../store/edit-child-info/edit-child-info.slice";
 import { resetUserBookingToDeleteState } from "../store/user-booking-to-delete/user-booking-to-delete.slice";
 
@@ -17,6 +17,8 @@ import {
 const useCancelAndReturn = () => {
   const { dispatchResetChosenEntryChildDetailsState } =
     useChosenEntryChildDetailsActions();
+  const { dispatchResetChildToDeleteInfo } = useDeleteChildInfoActions();
+
   const navigate = useNavigate();
   const location = useLocation();
   const dispatch = useDispatch();
@@ -30,7 +32,7 @@ const useCancelAndReturn = () => {
   const cancelAndReturn = () => {
     switch (path) {
       case deleteChildInfoRoute:
-        dispatch(resetChildToDeleteInfo());
+        dispatchResetChildToDeleteInfo();
         goBackMinusOne();
         break;
       case editChildInfoRoute:

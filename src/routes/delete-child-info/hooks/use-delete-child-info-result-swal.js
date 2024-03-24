@@ -1,15 +1,9 @@
 import { useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
 import useFireSwal from "../../../hooks/use-fire-swal";
-
-import {
-  resetDeleteChildInfoState,
-  resetDeleteChildInfoResult,
-  resetDeleteChildInfoError,
-  selectDeleteChildInfoSelectors,
-} from "../../../store/delete-child-info/delete-child-info.slice";
+import useGetDeleteChildInfoSelectors from "../../../hooks/get-selectors/use-get-delete-child-info-selectors";
+import useDeleteChildInfoActions from "../../../hooks/get-actions-and-thunks/delete-child-info-actions-and-thunks/use-delete-child-info-actions";
 
 import {
   errorDeletingChildMessage,
@@ -20,13 +14,15 @@ import { childInfoRoute } from "../../../strings/routes/routes-strings";
 
 const useDeleteChildInfoResultSwal = () => {
   const { fireSwal } = useFireSwal();
-
-  const { deleteChildInfoResult, deleteChildInfoError } = useSelector(
-    selectDeleteChildInfoSelectors
-  );
+  const { deleteChildInfoResult, deleteChildInfoError } =
+    useGetDeleteChildInfoSelectors();
+  const {
+    dispatchResetDeleteChildInfoError,
+    dispatchResetDeleteChildInfoResult,
+    dispatchResetDeleteChildInfoState,
+  } = useDeleteChildInfoActions();
 
   const navigate = useNavigate();
-  const dispatch = useDispatch();
 
   useEffect(() => {
     if (!deleteChildInfoResult) return;
@@ -35,7 +31,7 @@ const useDeleteChildInfoResultSwal = () => {
       fireSwal("success", childDeletedMessage, "", 0, true, false).then(
         (isConfirmed) => {
           if (isConfirmed) {
-            dispatch(resetDeleteChildInfoState());
+            dispatchResetDeleteChildInfoState();
             navigate(childInfoRoute);
           }
         }
@@ -50,8 +46,8 @@ const useDeleteChildInfoResultSwal = () => {
         false
       ).then((isConfirmed) => {
         if (isConfirmed) {
-          dispatch(resetDeleteChildInfoError());
-          dispatch(resetDeleteChildInfoResult());
+          dispatchResetDeleteChildInfoError();
+          dispatchResetDeleteChildInfoResult();
         }
       });
     }
@@ -60,7 +56,9 @@ const useDeleteChildInfoResultSwal = () => {
     deleteChildInfoResult,
     fireSwal,
     navigate,
-    dispatch,
+    dispatchResetDeleteChildInfoError,
+    dispatchResetDeleteChildInfoResult,
+    dispatchResetDeleteChildInfoState,
   ]);
 };
 

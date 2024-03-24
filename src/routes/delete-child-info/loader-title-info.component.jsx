@@ -1,6 +1,4 @@
-import { useSelector } from "react-redux";
-
-import { selectDeleteChildInfoSelectors } from "../../store/delete-child-info/delete-child-info.slice";
+import useGetDeleteChildInfoSelectors from "../../hooks/get-selectors/use-get-delete-child-info-selectors";
 
 import Loader from "../../components/loader/loader.component";
 
@@ -9,11 +7,8 @@ import { BlackTitle } from "../../styles/h1/h1.styles";
 import { Text, RedText } from "../../styles/p/p.styles";
 
 const LoaderTitleInfo = () => {
-  const { deleteChildInfoIsLoading, childToDeleteInfo } = useSelector(
-    selectDeleteChildInfoSelectors
-  );
-
-  const { childName } = childToDeleteInfo || {};
+  const { deleteChildInfoIsLoading, childName } =
+    useGetDeleteChildInfoSelectors();
 
   return (
     <>
