@@ -1,13 +1,12 @@
 import { useEffect } from "react";
-import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
-import { selectEditChildInfoSelectors } from "../../../store/edit-child-info/edit-child-info.slice";
+import useEditChildInfoLogic from "./use-edit-child-info-logic";
 
 import { childInfoRoute } from "../../../strings/routes/routes-strings";
 
 const usePreventShowIfNoData = () => {
-  const { childToEditInfo } = useSelector(selectEditChildInfoSelectors);
+  const { childToEditInfo } = useEditChildInfoLogic();
 
   const navigate = useNavigate();
 

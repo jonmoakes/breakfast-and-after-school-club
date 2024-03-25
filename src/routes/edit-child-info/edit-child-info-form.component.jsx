@@ -1,34 +1,23 @@
-import { useSelector } from "react-redux";
-import Balancer from "react-wrap-balancer";
+import ChildName from "./form-sections/child-name.component";
+import ChildAge from "./form-sections/child-age.component";
+import Consent from "./form-sections/consent.component";
+import MedicalInfo from "./form-sections/medical-info.component";
+import DietryRequirements from "./form-sections/dietry-requirements.component";
+import AdditionalInfo from "./form-sections/additional-info.component";
+import ConfirmAndCancelButtons from "./form-sections/confirm-and-cancel-buttons.component";
 
+import { Form } from "../../styles/form/form.styles";
+import { RedSpan } from "../../styles/span/span.styles";
+import { ParentDiv } from "../../styles/div/div.styles";
+import { Text } from "../../styles/p/p.styles";
 import useHandleUpdatedChildInfoChange from "./hooks/use-handle-updated-child-info-change";
-
-import { selectEditChildInfoSelectors } from "../../store/edit-child-info/edit-child-info.slice";
-
-import EditAndReturnButtons from "./edit-and-return-buttons.component";
-
-import {
-  Form,
-  StyledInput,
-  CapitalizedInput,
-  StyledTextArea,
-  Label,
-} from "../../styles/form/form.styles";
-import { RedSpan, LightGreenSpan } from "../../styles/span/span.styles";
-import { ParentDiv, RadioDiv } from "../../styles/div/div.styles";
-import { Text, WhiteShadowText } from "../../styles/p/p.styles";
-import { BlackHr } from "../../styles/hr/hr.styles";
 
 const EditChildInfoForm = () => {
   const { updatedChildInfo, handleUpdatedChildInfoChange } =
     useHandleUpdatedChildInfoChange();
 
-  const { childToEditInfo } = useSelector(selectEditChildInfoSelectors);
-
   const { childName, age, medicalInfo, dietryRequirements, additionalInfo } =
-    updatedChildInfo;
-
-  const { consent = "" } = childToEditInfo || {};
+    updatedChildInfo || {};
 
   return (
     <ParentDiv>
@@ -37,96 +26,15 @@ const EditChildInfoForm = () => {
       </Text>
 
       <Form>
-        <Label>
-          <RedSpan>* </RedSpan>edit Child Name:
-        </Label>
-        <CapitalizedInput
-          type="text"
-          name="childName"
-          onChange={handleUpdatedChildInfoChange}
-          defaultValue={childName}
+        <ChildName {...{ handleUpdatedChildInfoChange, childName }} />
+        <ChildAge {...{ handleUpdatedChildInfoChange, age }} />
+        <Consent {...{ handleUpdatedChildInfoChange }} />
+        <MedicalInfo {...{ handleUpdatedChildInfoChange, medicalInfo }} />
+        <DietryRequirements
+          {...{ handleUpdatedChildInfoChange, dietryRequirements }}
         />
-
-        <Label>
-          <RedSpan>* </RedSpan>edit Child Age:
-        </Label>
-        <StyledInput
-          type="number"
-          name="age"
-          onChange={handleUpdatedChildInfoChange}
-          defaultValue={age}
-        />
-
-        <BlackHr />
-        <RadioDiv>
-          <WhiteShadowText>
-            <Balancer>
-              <RedSpan>*</RedSpan> consent for name / image use:
-              <br />( current selecton:{" "}
-              {consent === "yes" ? (
-                <LightGreenSpan>{consent}</LightGreenSpan>
-              ) : (
-                <RedSpan className="capitalised">{consent}</RedSpan>
-              )}{" "}
-              )
-            </Balancer>
-          </WhiteShadowText>
-
-          <BlackHr />
-
-          <Label>
-            yes
-            <input
-              type="radio"
-              name="consent"
-              value="yes"
-              onChange={handleUpdatedChildInfoChange}
-            />
-          </Label>
-
-          <BlackHr />
-
-          <Label>
-            no
-            <input
-              className="red"
-              type="radio"
-              name="consent"
-              value="no"
-              onChange={handleUpdatedChildInfoChange}
-            />
-          </Label>
-          <BlackHr />
-        </RadioDiv>
-
-        <Label>edit medical info:</Label>
-        <StyledTextArea
-          className="small-bottom-margin"
-          type="text"
-          name="medicalInfo"
-          onChange={handleUpdatedChildInfoChange}
-          defaultValue={medicalInfo}
-        />
-
-        <Label>edit dietry requirements:</Label>
-        <StyledTextArea
-          className="small-bottom-margin"
-          type="text"
-          name="dietryRequirements"
-          onChange={handleUpdatedChildInfoChange}
-          defaultValue={dietryRequirements}
-        />
-
-        <Label>edit additional info:</Label>
-        <StyledTextArea
-          className="small-bottom-margin"
-          type="text"
-          name="additionalInfo"
-          onChange={handleUpdatedChildInfoChange}
-          defaultValue={additionalInfo}
-        />
-
-        <EditAndReturnButtons {...{ updatedChildInfo }} />
+        <AdditionalInfo {...{ handleUpdatedChildInfoChange, additionalInfo }} />
+        <ConfirmAndCancelButtons {...{ updatedChildInfo }} />
       </Form>
     </ParentDiv>
   );

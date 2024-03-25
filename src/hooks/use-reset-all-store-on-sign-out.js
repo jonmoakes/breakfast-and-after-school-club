@@ -11,8 +11,8 @@ import useChooseNewPasswordActions from "./get-actions-and-thunks/choose-new-pas
 import useChosenEntryChildDetailsActions from "./get-actions-and-thunks/chosen-entry-child-details-actions-and-thunks/use-chosen-entry-child-details-actions";
 import useContactFormActions from "./get-actions-and-thunks/contact-form-actions-and-thunks/use-contact-form-actions";
 import useDeleteChildInfoActions from "./get-actions-and-thunks/delete-child-info-actions-and-thunks/use-delete-child-info-actions";
+import useEditChildInfoActions from "./get-actions-and-thunks/edit-child-info-actions-and-thunks/use-edit-child-info-actions";
 
-import { resetEditChildInfoState } from "../store/edit-child-info/edit-child-info.slice";
 import { resetGetUsersChildrenState } from "../store/get-users-children/get-users-children.slice";
 import { resetAllHandlePaymentState } from "../store/handle-payment/handle-payment.slice";
 import { resetIsOnlineState } from "../store/is-online/is-online.slice";
@@ -45,6 +45,7 @@ const useResetAllStoreOnSignOut = () => {
     useChosenEntryChildDetailsActions();
   const { dispatchResetContactFormState } = useContactFormActions();
   const { dispatchResetDeleteChildInfoState } = useDeleteChildInfoActions();
+  const { dispatchResetEditChildInfoState } = useEditChildInfoActions();
 
   const dispatch = useDispatch();
 
@@ -60,8 +61,8 @@ const useResetAllStoreOnSignOut = () => {
     dispatchResetChosenEntryChildDetailsState();
     dispatchResetContactFormState();
     dispatchResetDeleteChildInfoState();
+    dispatchResetEditChildInfoState();
 
-    dispatch(resetEditChildInfoState());
     dispatch(resetGenerateNewPasswordRequestState());
     dispatch(resetGetUsersChildrenState());
     dispatch(resetAllHandlePaymentState());

@@ -3,8 +3,8 @@ import { useNavigate, useLocation } from "react-router-dom";
 
 import useChosenEntryChildDetailsActions from "../hooks/get-actions-and-thunks/chosen-entry-child-details-actions-and-thunks/use-chosen-entry-child-details-actions";
 import useDeleteChildInfoActions from "../hooks/get-actions-and-thunks/delete-child-info-actions-and-thunks/use-delete-child-info-actions";
+import useEditChildInfoActions from "../hooks/get-actions-and-thunks/edit-child-info-actions-and-thunks/use-edit-child-info-actions";
 
-import { resetChildToEditInfo } from "../store/edit-child-info/edit-child-info.slice";
 import { resetUserBookingToDeleteState } from "../store/user-booking-to-delete/user-booking-to-delete.slice";
 
 import {
@@ -18,6 +18,7 @@ const useCancelAndReturn = () => {
   const { dispatchResetChosenEntryChildDetailsState } =
     useChosenEntryChildDetailsActions();
   const { dispatchResetChildToDeleteInfo } = useDeleteChildInfoActions();
+  const { dispatchResetChildToEditInfo } = useEditChildInfoActions();
 
   const navigate = useNavigate();
   const location = useLocation();
@@ -36,7 +37,7 @@ const useCancelAndReturn = () => {
         goBackMinusOne();
         break;
       case editChildInfoRoute:
-        dispatch(resetChildToEditInfo());
+        dispatchResetChildToEditInfo();
         goBackMinusOne();
         break;
       case chosenEntryChildDetailsRoute:

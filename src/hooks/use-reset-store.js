@@ -14,6 +14,7 @@ import useCardInputResultActions from "./get-actions-and-thunks/use-card-input-r
 import useChooseNewPasswordActions from "./get-actions-and-thunks/choose-new-password-actions-and-thunks/use-choose-new-password-actions";
 import useContactFormActions from "./get-actions-and-thunks/contact-form-actions-and-thunks/use-contact-form-actions";
 import useDeleteChildInfoActions from "./get-actions-and-thunks/delete-child-info-actions-and-thunks/use-delete-child-info-actions";
+import useEditChildInfoActions from "./get-actions-and-thunks/edit-child-info-actions-and-thunks/use-edit-child-info-actions";
 
 import { selectGetUsersChildrenSelectors } from "../store/get-users-children/get-users-children.slice";
 import { resetGenerateNewPasswordRequestState } from "../store/generate-new-password-request/generate-new-password-request.slice";
@@ -26,7 +27,6 @@ import {
   resetAllHandlePaymentState,
   resetPreResultHandlePaymentState,
 } from "../store/handle-payment/handle-payment.slice";
-import { resetEditChildInfoState } from "../store/edit-child-info/edit-child-info.slice";
 import { resetSendEmailState } from "../store/send-email/send-email.slice";
 import { resetUserBookingToDeleteState } from "../store/user-booking-to-delete/user-booking-to-delete.slice";
 import {
@@ -90,6 +90,7 @@ const useResetStore = () => {
   const { dispatchResetChooseNewPasswordState } = useChooseNewPasswordActions();
   const { dispatchResetContactFormState } = useContactFormActions();
   const { dispatchResetDeleteChildInfoState } = useDeleteChildInfoActions();
+  const { dispatchResetEditChildInfoState } = useEditChildInfoActions();
 
   const { sessionTypesAndPricesError } = useSelector(
     selectSessionTypesAndPricesSelectors
@@ -159,7 +160,7 @@ const useResetStore = () => {
         dispatchResetAllAddChildInfoState();
         break;
       case editChildInfoRoute:
-        dispatch(resetEditChildInfoState());
+        dispatchResetEditChildInfoState();
         break;
       case deleteChildInfoRoute:
         dispatchResetDeleteChildInfoState();

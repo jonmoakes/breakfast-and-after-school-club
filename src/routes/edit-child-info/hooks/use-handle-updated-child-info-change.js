@@ -1,21 +1,27 @@
 import { useState } from "react";
-import { useSelector } from "react-redux";
 
-import { selectEditChildInfoSelectors } from "../../../store/edit-child-info/edit-child-info.slice";
+import useEditChildInfoLogic from "./use-edit-child-info-logic";
 
 const useHandleUpdatedChildInfoChange = () => {
-  const { childToEditInfo } = useSelector(selectEditChildInfoSelectors);
+  // the original values form the selector. We are using these to set the default values of updatedChildInfo so that we can show them on screen in the form before they are updated.
+  const {
+    $id,
+    childName,
+    age,
+    consent,
+    medicalInfo,
+    dietryRequirements,
+    additionalInfo,
+  } = useEditChildInfoLogic();
 
   const [updatedChildInfo, setUpdatedChildInfo] = useState({
-    $id: childToEditInfo ? childToEditInfo.$id : "",
-    childName: childToEditInfo ? childToEditInfo.childName : "",
-    consent: childToEditInfo ? childToEditInfo.consent : "",
-    age: childToEditInfo ? childToEditInfo.age : "",
-    medicalInfo: childToEditInfo ? childToEditInfo.medicalInfo : "",
-    dietryRequirements: childToEditInfo
-      ? childToEditInfo.dietryRequirements
-      : "",
-    additionalInfo: childToEditInfo ? childToEditInfo.additionalInfo : "",
+    $id,
+    childName,
+    consent,
+    age,
+    medicalInfo,
+    dietryRequirements,
+    additionalInfo,
   });
 
   const handleUpdatedChildInfoChange = (event) => {
@@ -23,6 +29,7 @@ const useHandleUpdatedChildInfoChange = () => {
     setUpdatedChildInfo({ ...updatedChildInfo, [name]: value });
   };
 
+  //pass the whole updatedChildInfo object to the form components and also to pass to the thunk
   return { handleUpdatedChildInfoChange, updatedChildInfo };
 };
 

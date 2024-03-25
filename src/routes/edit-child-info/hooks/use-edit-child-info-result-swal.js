@@ -1,15 +1,9 @@
 import { useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
 import useFireSwal from "../../../hooks/use-fire-swal";
-
-import {
-  resetEditChildInfoState,
-  resetEditChildInfoResult,
-  resetEditChildInfoError,
-  selectEditChildInfoSelectors,
-} from "../../../store/edit-child-info/edit-child-info.slice";
+import useGetEditChildInfoSelectors from "../../../hooks/get-selectors/use-get-edit-child-info-selectors";
+import useEditChildInfoActions from "../../../hooks/get-actions-and-thunks/edit-child-info-actions-and-thunks/use-edit-child-info-actions";
 
 import {
   errorReceivedMessage,
@@ -20,13 +14,15 @@ import { childUpdatedMessage } from "../../../strings/successes/successes-string
 
 const useEditChildInfoResultSwal = () => {
   const { fireSwal } = useFireSwal();
-
-  const { editChildInfoResult, editChildInfoError } = useSelector(
-    selectEditChildInfoSelectors
-  );
+  const { editChildInfoResult, editChildInfoError } =
+    useGetEditChildInfoSelectors();
+  const {
+    dispatchResetEditChildInfoError,
+    dispatchResetEditChildInfoResult,
+    dispatchResetEditChildInfoState,
+  } = useEditChildInfoActions();
 
   const navigate = useNavigate();
-  const dispatch = useDispatch();
 
   useEffect(() => {
     if (!editChildInfoResult) return;
@@ -35,7 +31,7 @@ const useEditChildInfoResultSwal = () => {
       fireSwal("success", childUpdatedMessage, "", 0, true, false).then(
         (isConfirmed) => {
           if (isConfirmed) {
-            dispatch(resetEditChildInfoState());
+            dispatchResetEditChildInfoState();
             navigate(childInfoRoute);
           }
         }
@@ -50,12 +46,20 @@ const useEditChildInfoResultSwal = () => {
         false
       ).then((isConfirmed) => {
         if (isConfirmed) {
-          dispatch(resetEditChildInfoResult());
-          dispatch(resetEditChildInfoError());
+          dispatchResetEditChildInfoResult();
+          dispatchResetEditChildInfoError();
         }
       });
     }
-  }, [editChildInfoResult, editChildInfoError, fireSwal, navigate, dispatch]);
+  }, [
+    editChildInfoResult,
+    editChildInfoError,
+    fireSwal,
+    navigate,
+    dispatchResetEditChildInfoError,
+    dispatchResetEditChildInfoResult,
+    dispatchResetEditChildInfoState,
+  ]);
 };
 
 export default useEditChildInfoResultSwal;
