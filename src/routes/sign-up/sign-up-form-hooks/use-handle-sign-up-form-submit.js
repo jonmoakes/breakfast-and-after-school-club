@@ -1,6 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 
 import useFireSwal from "../../../hooks/use-fire-swal";
+import useShowInvalidEmailMessageSwal from "../../../hooks/use-show-invalid-email-message-swal";
 
 import { selectSignUpFormSelectors } from "../../../store/sign-up-form/sign-up-form.slice";
 import { signUpAsync } from "../../../store/user/user.thunks";
@@ -10,7 +11,6 @@ import { setProjectId } from "../../../school-codes-list/get-ids-from-school-cod
 import { isNotValidSchoolCode } from "../../../functions/is-not-valid-school-code";
 
 import {
-  invalidEmailErrorMessage,
   invalidSchoolCode,
   invalidSchoolCodeHelpMessage,
   missingFieldsMessage,
@@ -20,7 +20,7 @@ import {
 
 const useHandleSignUpFormSubmit = () => {
   const { fireSwal } = useFireSwal();
-
+  const { showInvalidEmailMessageSwal } = useShowInvalidEmailMessageSwal();
   const { signUpFormDetails } = useSelector(selectSignUpFormSelectors);
 
   const dispatch = useDispatch();
@@ -31,7 +31,7 @@ const useHandleSignUpFormSubmit = () => {
     if (!name || !email || !schoolCode || !password || !confirmPassword) {
       fireSwal("error", missingFieldsMessage, "", 0, true, false);
     } else if (!validateEmail(email)) {
-      fireSwal("error", invalidEmailErrorMessage, "", 0, true, false);
+      showInvalidEmailMessageSwal();
     } else if (phoneNumber.length !== 11) {
       fireSwal("error", phoneNumberLengthErrorMessage, "", 0, true, false);
     } else if (password !== confirmPassword) {

@@ -1,7 +1,6 @@
-import { useSelector } from "react-redux";
 import Balancer from "react-wrap-balancer";
 
-import { selectGenerateNewPasswordRequestSelectors } from "../../store/generate-new-password-request/generate-new-password-request.slice";
+import useGetGenerateNewPasswordRequestSelectors from "../../hooks/get-selectors/use-get-generate-new-password-request-selectors";
 
 import Loader from "../../components/loader/loader.component";
 
@@ -9,9 +8,8 @@ import { BlackTitle } from "../../styles/h1/h1.styles";
 import { ParentDiv } from "../../styles/div/div.styles";
 
 const TitleAndLoader = () => {
-  const { generateNewPasswordRequestIsLoading } = useSelector(
-    selectGenerateNewPasswordRequestSelectors
-  );
+  const { generateNewPasswordRequestIsLoading } =
+    useGetGenerateNewPasswordRequestSelectors();
 
   return (
     <>

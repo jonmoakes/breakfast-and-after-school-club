@@ -1,11 +1,8 @@
 import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
 
+import useGetGenerateNewPasswordRequestSelectors from "./get-selectors/use-get-generate-new-password-request-selectors";
+import useGenerateNewPasswordRequestActions from "./get-actions-and-thunks/generate-new-password-request-actions-and-thunks/use-generate-new-password-request-actions";
 import useFireSwal from "./use-fire-swal";
-import {
-  selectGenerateNewPasswordRequestSelectors,
-  resetGenerateNewPasswordRequestState,
-} from "../store/generate-new-password-request/generate-new-password-request.slice";
 
 import { successMessage } from "../strings/successes/successes-strings";
 import {
@@ -17,12 +14,12 @@ import {
 import { checkEmailMessage } from "../strings/infos/infos-strings";
 
 const useResetPasswordRequestResultSwal = () => {
-  const { fireSwal } = useFireSwal();
-
   const { generateNewPasswordRequestResult, generateNewPasswordRequestError } =
-    useSelector(selectGenerateNewPasswordRequestSelectors);
+    useGetGenerateNewPasswordRequestSelectors();
+  const { dispatchResetGenerateNewPasswordRequestState } =
+    useGenerateNewPasswordRequestActions();
 
-  const dispatch = useDispatch();
+  const { fireSwal } = useFireSwal();
 
   useEffect(() => {
     if (!generateNewPasswordRequestResult && !generateNewPasswordRequestError)
@@ -38,7 +35,7 @@ const useResetPasswordRequestResultSwal = () => {
         false
       ).then((isConfirmed) => {
         if (isConfirmed) {
-          dispatch(resetGenerateNewPasswordRequestState());
+          dispatchResetGenerateNewPasswordRequestState();
         }
       });
     } else if (generateNewPasswordRequestError) {
@@ -55,12 +52,12 @@ const useResetPasswordRequestResultSwal = () => {
         false
       ).then((isConfirmed) => {
         if (isConfirmed) {
-          dispatch(resetGenerateNewPasswordRequestState());
+          dispatchResetGenerateNewPasswordRequestState();
         }
       });
     }
   }, [
-    dispatch,
+    dispatchResetGenerateNewPasswordRequestState,
     generateNewPasswordRequestError,
     fireSwal,
     generateNewPasswordRequestResult,

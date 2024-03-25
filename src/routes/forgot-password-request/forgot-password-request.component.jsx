@@ -1,33 +1,29 @@
-import { useSelector, useDispatch } from "react-redux";
-
-import useHandleForgotPasswordRequestEmailChange from "./forgot-password-request-hooks/use-handle-forgot-password-request-email-change";
 import useResetPasswordRequestResultSwal from "../../hooks/use-reset-password-request-result-swal";
-
-import { selectGenerateNewPasswordRequestSelectors } from "../../store/generate-new-password-request/generate-new-password-request.slice";
-import { generateNewPasswordRequestAsync } from "../../store/generate-new-password-request/generate-new-password-request.thunks";
+import useGetGenerateNewPasswordRequestSelectors from "../../hooks/get-selectors/use-get-generate-new-password-request-selectors";
+import useGenerateNewPasswordRequestActions from "../../hooks/get-actions-and-thunks/generate-new-password-request-actions-and-thunks/use-generate-new-password-request-actions";
+import useCheckForValidEmailAndSendRequest from "./forgot-password-request-hooks/use-check-for-valid-email-and-send-request";
 
 import Loader from "../../components/loader/loader.component";
+import ForgotPasswordRequestAccordion from "./forgot-password-request-accordion.component";
 
 import { Container } from "../../styles/container/container.styles";
 import { ParentDiv } from "../../styles/div/div.styles";
 import { Form, LowercasedInput, Label } from "../../styles/form/form.styles";
 import { BlackTitle } from "../../styles/h1/h1.styles";
-import { Text } from "../../styles/p/p.styles";
 import { YellowGreenButton } from "../../styles/buttons/buttons.styles";
 
 import { enterEmailAddress } from "../../strings/placeholders/placeholders-strings";
 
 const ForgotPasswordRequest = () => {
   useResetPasswordRequestResultSwal();
-  const { handleForgotPasswordRequestEmailChange } =
-    useHandleForgotPasswordRequestEmailChange();
-
   const {
     generateNewPasswordRequestEmail,
     generateNewPasswordRequestIsLoading,
-  } = useSelector(selectGenerateNewPasswordRequestSelectors);
-
-  const dispatch = useDispatch();
+  } = useGetGenerateNewPasswordRequestSelectors();
+  const { dispatchSetGenerateNewPasswordRequestEmailChange } =
+    useGenerateNewPasswordRequestActions();
+  const { checkForValidEmailAndSendRequest } =
+    useCheckForValidEmailAndSendRequest();
 
   return (
     <Container>
@@ -36,13 +32,8 @@ const ForgotPasswordRequest = () => {
       <ParentDiv>
         <BlackTitle>forgot password</BlackTitle>
       </ParentDiv>
-
       <ParentDiv>
-        <Text>forgot your password?</Text>
-        <Text>
-          enter your email address below and tap the "reset password" button and
-          we will send you a link to reset it!
-        </Text>
+        <ForgotPasswordRequestAccordion />
       </ParentDiv>
 
       <ParentDiv>
@@ -51,7 +42,7 @@ const ForgotPasswordRequest = () => {
           <LowercasedInput
             type="email"
             required
-            onChange={handleForgotPasswordRequestEmailChange}
+            onChange={dispatchSetGenerateNewPasswordRequestEmailChange}
             value={generateNewPasswordRequestEmail || ""}
             placeholder={enterEmailAddress}
           />
@@ -59,13 +50,7 @@ const ForgotPasswordRequest = () => {
           {generateNewPasswordRequestEmail ? (
             <YellowGreenButton
               type="button"
-              onClick={() =>
-                dispatch(
-                  generateNewPasswordRequestAsync({
-                    generateNewPasswordRequestEmail,
-                  })
-                )
-              }
+              onClick={checkForValidEmailAndSendRequest}
             >
               reset password
             </YellowGreenButton>

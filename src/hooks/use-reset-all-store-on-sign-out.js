@@ -12,6 +12,7 @@ import useChosenEntryChildDetailsActions from "./get-actions-and-thunks/chosen-e
 import useContactFormActions from "./get-actions-and-thunks/contact-form-actions-and-thunks/use-contact-form-actions";
 import useDeleteChildInfoActions from "./get-actions-and-thunks/delete-child-info-actions-and-thunks/use-delete-child-info-actions";
 import useEditChildInfoActions from "./get-actions-and-thunks/edit-child-info-actions-and-thunks/use-edit-child-info-actions";
+import useGenerateNewPasswordRequestActions from "./get-actions-and-thunks/generate-new-password-request-actions-and-thunks/use-generate-new-password-request-actions";
 
 import { resetGetUsersChildrenState } from "../store/get-users-children/get-users-children.slice";
 import { resetAllHandlePaymentState } from "../store/handle-payment/handle-payment.slice";
@@ -25,7 +26,6 @@ import { resetSignUpFormState } from "../store/sign-up-form/sign-up-form.slice";
 import { resetUpdateEmailState } from "../store/update-email/update-email.slice";
 import { resetUserBookingToDeleteState } from "../store/user-booking-to-delete/user-booking-to-delete.slice";
 import { resetWalletFundsToAddState } from "../store/wallet-funds-to-add/wallet-funds-to-add.slice";
-import { resetGenerateNewPasswordRequestState } from "../store/generate-new-password-request/generate-new-password-request.slice";
 import { resetGetAllChildrenState } from "../store/get-all-children/get-all-children.slice";
 import { resetGetAllUsersState } from "../store/get-all-users/get-all-users.slice";
 
@@ -46,6 +46,8 @@ const useResetAllStoreOnSignOut = () => {
   const { dispatchResetContactFormState } = useContactFormActions();
   const { dispatchResetDeleteChildInfoState } = useDeleteChildInfoActions();
   const { dispatchResetEditChildInfoState } = useEditChildInfoActions();
+  const { dispatchResetGenerateNewPasswordRequestState } =
+    useGenerateNewPasswordRequestActions();
 
   const dispatch = useDispatch();
 
@@ -62,8 +64,8 @@ const useResetAllStoreOnSignOut = () => {
     dispatchResetContactFormState();
     dispatchResetDeleteChildInfoState();
     dispatchResetEditChildInfoState();
+    dispatchResetGenerateNewPasswordRequestState();
 
-    dispatch(resetGenerateNewPasswordRequestState());
     dispatch(resetGetUsersChildrenState());
     dispatch(resetAllHandlePaymentState());
     dispatch(resetIsOnlineState());

@@ -15,9 +15,9 @@ import useChooseNewPasswordActions from "./get-actions-and-thunks/choose-new-pas
 import useContactFormActions from "./get-actions-and-thunks/contact-form-actions-and-thunks/use-contact-form-actions";
 import useDeleteChildInfoActions from "./get-actions-and-thunks/delete-child-info-actions-and-thunks/use-delete-child-info-actions";
 import useEditChildInfoActions from "./get-actions-and-thunks/edit-child-info-actions-and-thunks/use-edit-child-info-actions";
+import useGenerateNewPasswordRequestActions from "./get-actions-and-thunks/generate-new-password-request-actions-and-thunks/use-generate-new-password-request-actions";
 
 import { selectGetUsersChildrenSelectors } from "../store/get-users-children/get-users-children.slice";
-import { resetGenerateNewPasswordRequestState } from "../store/generate-new-password-request/generate-new-password-request.slice";
 import { resetShouldShowElementState } from "../store/should-show-element/should-show-element.slice";
 import { resetSignInFormState } from "../store/sign-in-form/sign-in-form.slice";
 import { resetSignUpFormState } from "../store/sign-up-form/sign-up-form.slice";
@@ -91,6 +91,8 @@ const useResetStore = () => {
   const { dispatchResetContactFormState } = useContactFormActions();
   const { dispatchResetDeleteChildInfoState } = useDeleteChildInfoActions();
   const { dispatchResetEditChildInfoState } = useEditChildInfoActions();
+  const { dispatchResetGenerateNewPasswordRequestState } =
+    useGenerateNewPasswordRequestActions();
 
   const { sessionTypesAndPricesError } = useSelector(
     selectSessionTypesAndPricesSelectors
@@ -117,7 +119,7 @@ const useResetStore = () => {
         dispatch(resetSignUpFormState());
         break;
       case forgotPasswordRequestRoute:
-        dispatch(resetGenerateNewPasswordRequestState());
+        dispatchResetGenerateNewPasswordRequestState();
         break;
       case productionChooseNewPasswordRoute:
       case localhostChooseNewPasswordRoute:

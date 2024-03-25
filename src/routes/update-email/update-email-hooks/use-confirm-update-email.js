@@ -2,14 +2,13 @@ import { useDispatch, useSelector } from "react-redux";
 
 import useFireSwal from "../../../hooks/use-fire-swal";
 import useConfirmSwal from "../../../hooks/use-confirm-swal";
+import useShowInvalidEmailMessageSwal from "../../../hooks/use-show-invalid-email-message-swal";
 
 import { selectCurrentUserSelectors } from "../../../store/user/user.slice";
 import { selectUpdateEmailSelectors } from "../../../store/update-email/update-email.slice";
+
 import { updateEmailAsync } from "../../../store/update-email/update-email.thunks";
 
-import { validateEmail } from "../../../functions/validate-email";
-
-import { invalidEmailErrorMessage } from "../../../strings/errors/errors-strings";
 import {
   imSureMessage,
   confirmUpdateEmailMessage,
@@ -19,9 +18,12 @@ import {
   chooseAnotherEmailMessage,
 } from "../../../strings/infos/infos-strings";
 
+import { validateEmail } from "../../../functions/validate-email";
+
 const useConfirmUpdateEmail = () => {
   const { fireSwal } = useFireSwal();
   const { confirmSwal } = useConfirmSwal();
+  const { showInvalidEmailMessageSwal } = useShowInvalidEmailMessageSwal();
 
   const { updateEmailDetails } = useSelector(selectUpdateEmailSelectors);
   const { currentUser, currentUserEnvironmentVariables } = useSelector(
@@ -43,7 +45,7 @@ const useConfirmUpdateEmail = () => {
 
   const confirmUpdateEmail = () => {
     if (!validateEmail(newEmail)) {
-      fireSwal("error", invalidEmailErrorMessage, "", 0, true, false);
+      showInvalidEmailMessageSwal();
     } else if (newEmail === email) {
       fireSwal(
         "error",
