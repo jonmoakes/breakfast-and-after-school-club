@@ -2,10 +2,9 @@ import { useSelector, useDispatch } from "react-redux";
 
 import useConfirmSwal from "../../../hooks/use-confirm-swal";
 import useGetRefundPrice from "./use-get-refund-price";
-
+import useGetUsersChildrenSelectors from "../../../hooks/get-selectors/use-get-users-children-selectors";
+import useGetCurrentUserSelectors from "../../../hooks/get-selectors/use-get-current-user-selectors";
 import { selectUserBookingToDeleteSelectors } from "../../../store/user-booking-to-delete/user-booking-to-delete.slice";
-import { selectGetUsersChildrenSelectors } from "../../../store/get-users-children/get-users-children.slice";
-import { selectCurrentUserSelectors } from "../../../store/user/user.slice";
 import {
   deleteUserBookingAsync,
   refundUserAsync,
@@ -20,29 +19,25 @@ import {
 } from "../../../strings/confirms/confirms-strings";
 
 const useConfirmDeleteChildInfo = () => {
-  const { confirmSwal } = useConfirmSwal();
-  let { refundPrice, totalRefundPrice, numberOfChildrenInBooking } =
-    useGetRefundPrice();
-
-  const { currentUser, currentUserEnvironmentVariables } = useSelector(
-    selectCurrentUserSelectors
-  );
-  const { userBookingToDelete } = useSelector(
-    selectUserBookingToDeleteSelectors
-  );
-
-  const { usersChildren } = useSelector(selectGetUsersChildrenSelectors);
-
-  const dispatch = useDispatch();
-  const { id } = currentUser;
-  const { date, sessionType } = userBookingToDelete || {};
+  const { usersChildren } = useGetUsersChildrenSelectors();
   const {
+    id,
     databaseId,
     userCollectionId: collectionId,
     bookedSessionsCollectionId,
     termDatesCollectionId,
-  } = currentUserEnvironmentVariables;
+  } = useGetCurrentUserSelectors();
+  const { confirmSwal } = useConfirmSwal();
+  let { refundPrice, totalRefundPrice, numberOfChildrenInBooking } =
+    useGetRefundPrice();
 
+  const { userBookingToDelete } = useSelector(
+    selectUserBookingToDeleteSelectors
+  );
+
+  const dispatch = useDispatch();
+
+  const { date, sessionType } = userBookingToDelete || {};
   refundPrice = usersChildren.length === 1 ? refundPrice : totalRefundPrice;
 
   const confirmResult = () => {

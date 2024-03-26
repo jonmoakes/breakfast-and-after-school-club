@@ -1,15 +1,13 @@
-import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
-import useGetUsersChildrenAndConditionallyUserBookingsAndSessionPrices from "../../hooks/use-get-users-children-and-conditionally-user-bookings-and-session-prices";
-import useGetUsersChildrenErrorSwal from "./child-info-hooks/use-get-users-children-error-swal";
-
-import { selectGetUsersChildrenSelectors } from "../../store/get-users-children/get-users-children.slice";
+import useGetUsersChildrenSelectors from "../../hooks/get-selectors/use-get-users-children-selectors";
+import useGetUsersChildrenThunkUseEffect from "../../hooks/get-actions-and-thunks/get-users-children-actions-and-thunks/use-get-users-children-thunk-use-effect";
 
 import Loader from "../../components/loader/loader.component";
 import FloatingAddButton from "../../components/floating-add-button/floating-add-button.component";
 import ChildInfoAccordion from "./child-info-accordion.component";
 import ChildTable from "./child-table.component";
+import ShowFetchErrors from "../../components/errors/show-fetch-errors.component";
 
 import { Container } from "../../styles/container/container.styles";
 import { ParentDiv } from "../../styles/div/div.styles";
@@ -18,27 +16,30 @@ import { BlackTitle } from "../../styles/h1/h1.styles";
 import { addChildInfoRoute } from "../../strings/routes/routes-strings";
 
 const ChildInfo = () => {
-  useGetUsersChildrenAndConditionallyUserBookingsAndSessionPrices();
-  useGetUsersChildrenErrorSwal();
+  useGetUsersChildrenThunkUseEffect();
 
-  const { getUsersChildrenIsLoading } = useSelector(
-    selectGetUsersChildrenSelectors
-  );
+  const { getUsersChildrenIsLoading, getUsersChildrenError } =
+    useGetUsersChildrenSelectors();
 
   return (
     <Container>
       {getUsersChildrenIsLoading ? <Loader /> : null}
 
-      <Link to={addChildInfoRoute}>
-        <FloatingAddButton />
-      </Link>
-
       <ParentDiv>
         <BlackTitle>child info</BlackTitle>
       </ParentDiv>
 
-      <ChildInfoAccordion />
-      <ChildTable />
+      {getUsersChildrenError ? (
+        <ShowFetchErrors />
+      ) : (
+        <>
+          <Link to={addChildInfoRoute}>
+            <FloatingAddButton />
+          </Link>
+          <ChildInfoAccordion />
+          <ChildTable />
+        </>
+      )}
     </Container>
   );
 };

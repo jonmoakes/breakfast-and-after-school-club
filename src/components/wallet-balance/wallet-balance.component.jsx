@@ -1,10 +1,8 @@
-import { useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
 
 import useGetWalletBalance from "./wallet-balance-hooks/use-get-wallet-balance";
-
-import { selectCurrentUserSelectors } from "../../store/user/user.slice";
-import { selectGetUsersChildrenSelectors } from "../../store/get-users-children/get-users-children.slice";
+import useGetUsersChildrenSelectors from "../../hooks/get-selectors/use-get-users-children-selectors";
+import useGetCurrentUserSelectors from "../../hooks/get-selectors/use-get-current-user-selectors";
 
 import Loader from "../loader/loader.component";
 
@@ -21,13 +19,8 @@ import {
 const WalletBalance = () => {
   useGetWalletBalance();
   const { confirmRequestLatestWalletBalance } = useGetWalletBalance();
-
-  const { currentUser, currentUserIsLoading } = useSelector(
-    selectCurrentUserSelectors
-  );
-  const { usersChildren } = useSelector(selectGetUsersChildrenSelectors);
-
-  const { walletBalance } = currentUser;
+  const { usersChildren } = useGetUsersChildrenSelectors();
+  const { walletBalance, currentUserIsLoading } = useGetCurrentUserSelectors();
 
   const location = useLocation();
 

@@ -6,6 +6,11 @@ const useGetCurrentUserSelectors = () => {
     currentUserEnvironmentVariables,
     currentUser,
     currentUserWalletBalanceResult,
+    currentUserIsLoading,
+    currentUserError,
+    currentUserWalletBalanceError,
+    loadStripeKey,
+    schoolCodeForSocialLogin,
   } = useSelector(selectCurrentUserSelectors);
 
   const { walletBalance, email, id, name, phoneNumber } = currentUser ?? {};
@@ -59,6 +64,11 @@ const useGetCurrentUserSelectors = () => {
     currentUser,
     currentUserEmailForContactForm,
     currentUserNameForContactForm,
+    currentUserIsLoading,
+    currentUserError,
+    currentUserWalletBalanceError,
+    loadStripeKey,
+    schoolCodeForSocialLogin,
   };
 };
 

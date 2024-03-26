@@ -5,8 +5,8 @@ import useGetBookedSessionsOwnerSelectors from "../../../hooks/get-selectors/use
 import useGetBookedSessionsUserSelectors from "../../../hooks/get-selectors/use-get-booked-sessions-user-selectors";
 import useGetAllChildrenSelectors from "../../../hooks/get-selectors/use-get-all-children-selectors";
 import useGetAllUsersSelectors from "../../../hooks/get-selectors/use-get-all-users-selectors";
+import useGetUsersChildrenSelectors from "../../../hooks/get-selectors/use-get-users-children-selectors";
 
-import { selectGetUsersChildrenSelectors } from "../../../store/get-users-children/get-users-children.slice";
 import { selectRequestDateDataSelectors } from "../../../store/request-date-data/request-date-data.slice";
 import { selectSessionTypesAndPricesSelectors } from "../../../store/session-types-and-prices/session-types-and-prices.slice";
 import { selectHandlePaymentSelectors } from "../../../store/handle-payment/handle-payment.slice";
@@ -19,6 +19,7 @@ import {
   bookedSessionsOwnerRoute,
   allChildrenRoute,
   allUsersRoute,
+  childInfoRoute,
 } from "../../../strings/routes/routes-strings";
 
 const useHandleShowError = () => {
@@ -26,10 +27,7 @@ const useHandleShowError = () => {
   const { bookedSessionsUserError } = useGetBookedSessionsUserSelectors();
   const { getAllChildrenError } = useGetAllChildrenSelectors();
   const { getAllUsersError } = useGetAllUsersSelectors();
-
-  const { getUsersChildrenError } = useSelector(
-    selectGetUsersChildrenSelectors
-  );
+  const { getUsersChildrenError } = useGetUsersChildrenSelectors();
 
   const { sessionTypesAndPricesError } = useSelector(
     selectSessionTypesAndPricesSelectors
@@ -84,6 +82,8 @@ const useHandleShowError = () => {
         return "display the list of children";
       case allUsersRoute:
         return "display the list of users";
+      case childInfoRoute:
+        return "display the list of your children";
       default:
         return "";
     }

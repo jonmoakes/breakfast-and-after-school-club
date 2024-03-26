@@ -15,8 +15,8 @@ import useEditChildInfoActions from "./get-actions-and-thunks/edit-child-info-ac
 import useGenerateNewPasswordRequestActions from "./get-actions-and-thunks/generate-new-password-request-actions-and-thunks/use-generate-new-password-request-actions";
 import useGetAllChildrenActions from "./get-actions-and-thunks/get-all-children-actions-and-thunks/use-get-all-children-actions";
 import useGetAllUsersActions from "./get-actions-and-thunks/get-all-users-actions-and-thunks/use-get-all-users-actions";
+import useGetUsersChildrenActions from "./get-actions-and-thunks/get-users-children-actions-and-thunks/use-get-users-children-actions";
 
-import { resetGetUsersChildrenState } from "../store/get-users-children/get-users-children.slice";
 import { resetAllHandlePaymentState } from "../store/handle-payment/handle-payment.slice";
 import { resetIsOnlineState } from "../store/is-online/is-online.slice";
 import { resetPasswordIsVisibleState } from "../store/password-is-visible/password-is-visible.slice";
@@ -50,6 +50,7 @@ const useResetAllStoreOnSignOut = () => {
     useGenerateNewPasswordRequestActions();
   const { dispatchResetGetAllChildrenState } = useGetAllChildrenActions();
   const { dispatchResetGetAllUsersState } = useGetAllUsersActions();
+  const { dispatchResetUsersChildrenState } = useGetUsersChildrenActions();
 
   const dispatch = useDispatch();
 
@@ -69,8 +70,8 @@ const useResetAllStoreOnSignOut = () => {
     dispatchResetGenerateNewPasswordRequestState();
     dispatchResetGetAllChildrenState();
     dispatchResetGetAllUsersState();
+    dispatchResetUsersChildrenState();
 
-    dispatch(resetGetUsersChildrenState());
     dispatch(resetAllHandlePaymentState());
     dispatch(resetIsOnlineState());
     dispatch(resetPasswordIsVisibleState());

@@ -1,7 +1,7 @@
 import useGetBookSessionResultSwal from "./book-a-session-hooks/swals/use-get-book-session-result-swal";
 import useIsOnline from "../../hooks/use-is-online";
 import useSessionSpacesListener from "./book-a-session-hooks/use-session-spaces-listener";
-import useGetUsersChildrenAndConditionallyUserBookingsAndSessionPrices from "../../hooks/use-get-users-children-and-conditionally-user-bookings-and-session-prices";
+import useGetUsersChildrenUserBookingsAndSessionPrices from "../../hooks/use-get-users-children-user-bookings-and-session-prices";
 import useErrorFetchingData from "./book-a-session-hooks/use-error-fetching-data";
 
 import BookSessionLoaders from "./sections/book-session-loaders.component";
@@ -17,7 +17,7 @@ import { BlackTitle } from "../../styles/h1/h1.styles";
 
 const BookASession = () => {
   useGetBookSessionResultSwal();
-  useGetUsersChildrenAndConditionallyUserBookingsAndSessionPrices();
+  useGetUsersChildrenUserBookingsAndSessionPrices();
   useSessionSpacesListener();
 
   const { isOnline } = useIsOnline();

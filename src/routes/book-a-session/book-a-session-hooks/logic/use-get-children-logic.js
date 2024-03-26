@@ -23,6 +23,8 @@ const useGetChildrenLogic = () => {
     return childrenSelectedForBooking.length >= 1 ? true : false;
   };
 
+  const childName = usersChildren ? usersChildren[0] : "";
+
   return {
     childrenSelectedLength,
     noChildrenAddedYet,
@@ -31,6 +33,7 @@ const useGetChildrenLogic = () => {
     atLeastOneChildHasBeenSelected,
     childrenSelectedForBooking,
     usersChildren,
+    childName,
   };
 };
 

@@ -1,22 +1,18 @@
 import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
 import { client } from "../../../utils/appwrite/appwrite-config";
 
-import { selectCurrentUserSelectors } from "../../../store/user/user.slice";
-import {
-  selectGetUsersChildrenSelectors,
-  setUsersChildren,
-} from "../../../store/get-users-children/get-users-children.slice";
+import useGetCurrentUserSelectors from "../../../hooks/get-selectors/use-get-current-user-selectors";
+import useGetUsersChildrenSelectors from "../../../hooks/get-selectors/use-get-users-children-selectors";
+import useGetUsersChildrenActions from "../../../hooks/get-actions-and-thunks/get-users-children-actions-and-thunks/use-get-users-children-actions";
 
 const useGetUsersChildrenListener = () => {
-  const { currentUser, currentUserEnvironmentVariables } = useSelector(
-    selectCurrentUserSelectors
-  );
-  const { usersChildren } = useSelector(selectGetUsersChildrenSelectors);
-  const dispatch = useDispatch();
-
-  const { databaseId, childrenCollectionId: collectionId } =
-    currentUserEnvironmentVariables;
+  const {
+    databaseId,
+    childrenCollectionId: collectionId,
+    currentUser,
+  } = useGetCurrentUserSelectors();
+  const { usersChildren } = useGetUsersChildrenSelectors();
+  const { dispatchSetUsersChildren } = useGetUsersChildrenActions();
 
   useEffect(() => {
     if (!currentUser) return;
@@ -30,14 +26,20 @@ const useGetUsersChildrenListener = () => {
         const updatedChildren = usersChildren.map((child) =>
           child.$id === updatedChild.$id ? { ...child, ...updatedChild } : child
         );
-        dispatch(setUsersChildren(updatedChildren));
+        dispatchSetUsersChildren(updatedChildren);
       }
     );
 
     return () => {
       unsubscribe();
     };
-  }, [dispatch, currentUser, usersChildren, databaseId, collectionId]);
+  }, [
+    dispatchSetUsersChildren,
+    currentUser,
+    usersChildren,
+    databaseId,
+    collectionId,
+  ]);
 };
 
 export default useGetUsersChildrenListener;

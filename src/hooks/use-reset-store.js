@@ -20,8 +20,9 @@ import useGetAllChildrenSelectors from "./get-selectors/use-get-all-children-sel
 import useGetAllChildrenActions from "./get-actions-and-thunks/get-all-children-actions-and-thunks/use-get-all-children-actions";
 import useGetAllUsersSelectors from "./get-selectors/use-get-all-users-selectors";
 import useGetAllUsersActions from "./get-actions-and-thunks/get-all-users-actions-and-thunks/use-get-all-users-actions";
+import useGetUsersChildrenSelectors from "./get-selectors/use-get-users-children-selectors";
+import useGetUsersChildrenActions from "./get-actions-and-thunks/get-users-children-actions-and-thunks/use-get-users-children-actions";
 
-import { selectGetUsersChildrenSelectors } from "../store/get-users-children/get-users-children.slice";
 import { resetShouldShowElementState } from "../store/should-show-element/should-show-element.slice";
 import { resetSignInFormState } from "../store/sign-in-form/sign-in-form.slice";
 import { resetSignUpFormState } from "../store/sign-up-form/sign-up-form.slice";
@@ -37,7 +38,6 @@ import {
   resetSessionPricesError,
   selectSessionTypesAndPricesSelectors,
 } from "../store/session-types-and-prices/session-types-and-prices.slice";
-import { resetUsersChildrenError } from "../store/get-users-children/get-users-children.slice";
 
 import {
   addFundsRoute,
@@ -58,6 +58,7 @@ import {
   bookedSessionsUserRoute,
   allChildrenRoute,
   allUsersRoute,
+  childInfoRoute,
 } from "../strings/routes/routes-strings";
 
 const useResetStore = () => {
@@ -93,12 +94,12 @@ const useResetStore = () => {
   const { getAllUsersError } = useGetAllUsersSelectors();
   const { dispatchResetGetAllUsersError, dispatchResetGetAllUsersState } =
     useGetAllUsersActions();
+  const { getUsersChildrenError } = useGetUsersChildrenSelectors();
+  const { dispatchResetUsersChildrenError, dispatchResetUsersChildrenState } =
+    useGetUsersChildrenActions();
 
   const { sessionTypesAndPricesError } = useSelector(
     selectSessionTypesAndPricesSelectors
-  );
-  const { getUsersChildrenError } = useSelector(
-    selectGetUsersChildrenSelectors
   );
 
   const dispatch = useDispatch();
@@ -146,7 +147,7 @@ const useResetStore = () => {
         if (sessionTypesAndPricesError) {
           dispatch(resetSessionPricesError());
         } else if (getUsersChildrenError) {
-          dispatch(resetUsersChildrenError());
+          dispatchResetUsersChildrenError();
         } else if (bookedSessionsUserError) {
           dispatchResetBookedSessionsUserError();
         }
@@ -154,6 +155,13 @@ const useResetStore = () => {
       case updateEmailRoute:
         dispatch(resetShouldShowElementState());
         dispatch(resetUpdateEmailState());
+        break;
+      case childInfoRoute:
+        if (getUsersChildrenError) {
+          dispatchResetUsersChildrenError();
+        } else {
+          dispatchResetUsersChildrenState();
+        }
         break;
       case addChildInfoRoute:
         dispatchResetAllAddChildInfoState();

@@ -22,7 +22,6 @@ const useBookSessionThunks = () => {
     userCollectionId: collectionId,
     bookedSessionsCollectionId,
   } = useGetCurrentUserSelectors();
-
   const { date } = useGetRequestDateDataSelectors();
   const { usersChildren } = useGetUsersChildrenSelectors();
   const { childrenSelectedForBooking } = useGetBookSessionSelectors();

@@ -13,16 +13,14 @@ import {
 import { failedToSendEmailInstructions } from "../../../../strings/errors/errors-strings";
 
 import { createChildrenToAddToBooking } from "../../../../functions/create-children-to-add-to-booking";
-import useGetUsersChildrenSelectors from "../../../../hooks/get-selectors/use-get-users-children-selectors";
 import useSessionLogic from "../logic/use-session-logic";
 import useGetChildrenLogic from "../logic/use-get-children-logic";
 
 const useSendAddBookingInfoErrorEmail = (date) => {
   const { fireSwal } = useFireSwal();
   const { hamburgerHandlerNavigate } = useHamburgerHandlerNavigate();
-  const { childrenSelectedForBooking } = useGetChildrenLogic();
+  const { childrenSelectedForBooking, usersChildren } = useGetChildrenLogic();
   const { name, email, appOwnerEmail } = useGetCurrentUserSelectors();
-  const { usersChildren } = useGetUsersChildrenSelectors();
   const { sessionType } = useSessionLogic();
 
   const dispatch = useDispatch();

@@ -14,7 +14,7 @@ const useAddChildInfoLogic = () => {
     dietryRequirements,
     additionalInfo,
   } = useGetAddChildInfoSelectors();
-  const { usersChildrensNames } = useGetUsersChildrenSelectors();
+  const { usersChildren } = useGetUsersChildrenSelectors();
 
   // removes part of the error message for user readability.
   const errorTextToRemove = addChildInfoError
@@ -24,6 +24,11 @@ const useAddChildInfoLogic = () => {
   const ageErrorForUser = errorTextToRemove
     ? `the childs age ${addChildInfoError.slice(errorTextToRemove)}`
     : null;
+
+  const usersChildrensNames =
+    usersChildren !== undefined
+      ? usersChildren.map((child) => child.childName)
+      : [];
 
   // case sensitive
   const childNameAlreadyExists = () => {
