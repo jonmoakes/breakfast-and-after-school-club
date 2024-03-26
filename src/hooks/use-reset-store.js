@@ -16,6 +16,8 @@ import useContactFormActions from "./get-actions-and-thunks/contact-form-actions
 import useDeleteChildInfoActions from "./get-actions-and-thunks/delete-child-info-actions-and-thunks/use-delete-child-info-actions";
 import useEditChildInfoActions from "./get-actions-and-thunks/edit-child-info-actions-and-thunks/use-edit-child-info-actions";
 import useGenerateNewPasswordRequestActions from "./get-actions-and-thunks/generate-new-password-request-actions-and-thunks/use-generate-new-password-request-actions";
+import useGetAllChildrenSelectors from "./get-selectors/use-get-all-children-selectors";
+import useGetAllChildrenActions from "./get-actions-and-thunks/get-all-children-actions-and-thunks/use-get-all-children-actions";
 
 import { selectGetUsersChildrenSelectors } from "../store/get-users-children/get-users-children.slice";
 import { resetShouldShowElementState } from "../store/should-show-element/should-show-element.slice";
@@ -34,11 +36,6 @@ import {
   selectSessionTypesAndPricesSelectors,
 } from "../store/session-types-and-prices/session-types-and-prices.slice";
 import { resetUsersChildrenError } from "../store/get-users-children/get-users-children.slice";
-import {
-  selectGetAllChildrenSelectors,
-  resetGetAllChildrenError,
-  resetGetAllChildrenState,
-} from "../store/get-all-children/get-all-children.slice";
 import {
   resetGetAllUsersError,
   resetGetAllUsersState,
@@ -93,6 +90,9 @@ const useResetStore = () => {
   const { dispatchResetEditChildInfoState } = useEditChildInfoActions();
   const { dispatchResetGenerateNewPasswordRequestState } =
     useGenerateNewPasswordRequestActions();
+  const { getAllChildrenError } = useGetAllChildrenSelectors();
+  const { dispatchResetGetAllChildrenError, dispatchResetGetAllChildrenState } =
+    useGetAllChildrenActions();
 
   const { sessionTypesAndPricesError } = useSelector(
     selectSessionTypesAndPricesSelectors
@@ -101,7 +101,6 @@ const useResetStore = () => {
     selectGetUsersChildrenSelectors
   );
 
-  const { getAllChildrenError } = useSelector(selectGetAllChildrenSelectors);
   const { getAllUsersError } = useSelector(selectGetAllUsersSelectors);
 
   const dispatch = useDispatch();
@@ -189,9 +188,9 @@ const useResetStore = () => {
         break;
       case allChildrenRoute:
         if (getAllChildrenError) {
-          dispatch(resetGetAllChildrenError());
+          dispatchResetGetAllChildrenError();
         } else {
-          dispatch(resetGetAllChildrenState());
+          dispatchResetGetAllChildrenState();
         }
         break;
       case allUsersRoute:

@@ -13,6 +13,7 @@ import useContactFormActions from "./get-actions-and-thunks/contact-form-actions
 import useDeleteChildInfoActions from "./get-actions-and-thunks/delete-child-info-actions-and-thunks/use-delete-child-info-actions";
 import useEditChildInfoActions from "./get-actions-and-thunks/edit-child-info-actions-and-thunks/use-edit-child-info-actions";
 import useGenerateNewPasswordRequestActions from "./get-actions-and-thunks/generate-new-password-request-actions-and-thunks/use-generate-new-password-request-actions";
+import useGetAllChildrenActions from "./get-actions-and-thunks/get-all-children-actions-and-thunks/use-get-all-children-actions";
 
 import { resetGetUsersChildrenState } from "../store/get-users-children/get-users-children.slice";
 import { resetAllHandlePaymentState } from "../store/handle-payment/handle-payment.slice";
@@ -26,7 +27,6 @@ import { resetSignUpFormState } from "../store/sign-up-form/sign-up-form.slice";
 import { resetUpdateEmailState } from "../store/update-email/update-email.slice";
 import { resetUserBookingToDeleteState } from "../store/user-booking-to-delete/user-booking-to-delete.slice";
 import { resetWalletFundsToAddState } from "../store/wallet-funds-to-add/wallet-funds-to-add.slice";
-import { resetGetAllChildrenState } from "../store/get-all-children/get-all-children.slice";
 import { resetGetAllUsersState } from "../store/get-all-users/get-all-users.slice";
 
 const useResetAllStoreOnSignOut = () => {
@@ -48,6 +48,7 @@ const useResetAllStoreOnSignOut = () => {
   const { dispatchResetEditChildInfoState } = useEditChildInfoActions();
   const { dispatchResetGenerateNewPasswordRequestState } =
     useGenerateNewPasswordRequestActions();
+  const { dispatchResetGetAllChildrenState } = useGetAllChildrenActions();
 
   const dispatch = useDispatch();
 
@@ -65,6 +66,7 @@ const useResetAllStoreOnSignOut = () => {
     dispatchResetDeleteChildInfoState();
     dispatchResetEditChildInfoState();
     dispatchResetGenerateNewPasswordRequestState();
+    dispatchResetGetAllChildrenState();
 
     dispatch(resetGetUsersChildrenState());
     dispatch(resetAllHandlePaymentState());
@@ -78,7 +80,6 @@ const useResetAllStoreOnSignOut = () => {
     dispatch(resetUpdateEmailState());
     dispatch(resetUserBookingToDeleteState());
     dispatch(resetWalletFundsToAddState());
-    dispatch(resetGetAllChildrenState());
     dispatch(resetGetAllUsersState());
   };
 

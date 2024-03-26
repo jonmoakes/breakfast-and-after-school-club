@@ -1,21 +1,15 @@
 import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
 import { client } from "../../../utils/appwrite/appwrite-config";
 
-import { selectCurrentUserSelectors } from "../../../store/user/user.slice";
-import {
-  selectGetAllChildrenSelectors,
-  setAllChildren,
-} from "../../../store/get-all-children/get-all-children.slice";
+import useGetCurrentUserSelectors from "../../../hooks/get-selectors/use-get-current-user-selectors";
+import useGetAllChildrenSelectors from "../../../hooks/get-selectors/use-get-all-children-selectors";
+import useGetAllChildrenActions from "../../../hooks/get-actions-and-thunks/get-all-children-actions-and-thunks/use-get-all-children-actions";
 
 const useAllChildrenListener = () => {
-  const { currentUser, currentUserEnvironmentVariables } = useSelector(
-    selectCurrentUserSelectors
-  );
-  const { allChildren } = useSelector(selectGetAllChildrenSelectors);
-
-  const { databaseId, childrenCollectionId } = currentUserEnvironmentVariables;
-  const dispatch = useDispatch();
+  const { allChildren } = useGetAllChildrenSelectors();
+  const { databaseId, childrenCollectionId, currentUser } =
+    useGetCurrentUserSelectors();
+  const { dispatchSetAllChildren } = useGetAllChildrenActions();
 
   useEffect(() => {
     if (!currentUser) return;
@@ -33,7 +27,7 @@ const useAllChildrenListener = () => {
             (session) => session.$id !== deletedEntryId
           );
 
-          dispatch(setAllChildren(updatedEntries));
+          dispatchSetAllChildren(updatedEntries);
         } else {
           // Check if the entry with the matching ID exists in the current state
           const existingEntryIndex = allChildren.findIndex(
@@ -48,10 +42,11 @@ const useAllChildrenListener = () => {
                 : session
             );
 
-            dispatch(setAllChildren(updatedEntries));
+            dispatchSetAllChildren(updatedEntries);
           } else {
             // entry does not exist so add new entry to the bookedSessionsArray
-            dispatch(setAllChildren([...allChildren, updatedEntry]));
+            const updatedEntries = [...allChildren, updatedEntry];
+            dispatchSetAllChildren(updatedEntries);
           }
         }
       }
@@ -60,7 +55,13 @@ const useAllChildrenListener = () => {
     return () => {
       unsubscribe();
     };
-  }, [dispatch, currentUser, allChildren, childrenCollectionId, databaseId]);
+  }, [
+    dispatchSetAllChildren,
+    currentUser,
+    allChildren,
+    childrenCollectionId,
+    databaseId,
+  ]);
 };
 
 export default useAllChildrenListener;

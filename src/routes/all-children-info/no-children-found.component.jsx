@@ -1,13 +1,11 @@
-import { useSelector } from "react-redux";
-
-import { selectGetAllChildrenSelectors } from "../../store/get-all-children/get-all-children.slice";
+import useGetAllChildrenSelectors from "../../hooks/get-selectors/use-get-all-children-selectors";
 
 import { ParentDiv } from "../../styles/div/div.styles";
 import { BlueH2 } from "../../styles/h2/h2.styles";
 import { Text } from "../../styles/p/p.styles";
 
 const NoChildrenFound = ({ data }) => {
-  const { allChildren } = useSelector(selectGetAllChildrenSelectors);
+  const { allChildren } = useGetAllChildrenSelectors();
 
   const noChildrenFound = () => {
     return allChildren !== undefined && !allChildren.length && !data.length

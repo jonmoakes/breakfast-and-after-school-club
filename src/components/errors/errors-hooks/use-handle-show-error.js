@@ -3,12 +3,12 @@ import { useLocation } from "react-router-dom";
 
 import useGetBookedSessionsOwnerSelectors from "../../../hooks/get-selectors/use-get-booked-sessions-owner-selectors";
 import useGetBookedSessionsUserSelectors from "../../../hooks/get-selectors/use-get-booked-sessions-user-selectors";
+import useGetAllChildrenSelectors from "../../../hooks/get-selectors/use-get-all-children-selectors";
 
 import { selectGetUsersChildrenSelectors } from "../../../store/get-users-children/get-users-children.slice";
 import { selectRequestDateDataSelectors } from "../../../store/request-date-data/request-date-data.slice";
 import { selectSessionTypesAndPricesSelectors } from "../../../store/session-types-and-prices/session-types-and-prices.slice";
 import { selectHandlePaymentSelectors } from "../../../store/handle-payment/handle-payment.slice";
-import { selectGetAllChildrenSelectors } from "../../../store/get-all-children/get-all-children.slice";
 import { selectGetAllUsersSelectors } from "../../../store/get-all-users/get-all-users.slice";
 
 import {
@@ -24,6 +24,7 @@ import {
 const useHandleShowError = () => {
   const { bookedSessionsOwnerError } = useGetBookedSessionsOwnerSelectors();
   const { bookedSessionsUserError } = useGetBookedSessionsUserSelectors();
+  const { getAllChildrenError } = useGetAllChildrenSelectors();
 
   const { getUsersChildrenError } = useSelector(
     selectGetUsersChildrenSelectors
@@ -35,7 +36,7 @@ const useHandleShowError = () => {
   const { requestDateDataError } = useSelector(selectRequestDateDataSelectors);
 
   const { handlePaymentError } = useSelector(selectHandlePaymentSelectors);
-  const { getAllChildrenError } = useSelector(selectGetAllChildrenSelectors);
+
   const { getAllUsersError } = useSelector(selectGetAllUsersSelectors);
 
   const location = useLocation();

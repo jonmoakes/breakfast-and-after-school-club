@@ -1,16 +1,12 @@
 import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 
+import useGetCurrentUserSelectors from "../../get-selectors/use-get-current-user-selectors";
 import { getAllChildrenAsync } from "../../../store/get-all-children/get-all-children.thunks";
-import { selectCurrentUserSelectors } from "../../../store/user/user.slice";
 
-const useGetAllChildren = () => {
-  const { currentUserEnvironmentVariables } = useSelector(
-    selectCurrentUserSelectors
-  );
-
+const useGetAllChildrenThunkUseEffect = () => {
   const { databaseId, childrenCollectionId: collectionId } =
-    currentUserEnvironmentVariables;
+    useGetCurrentUserSelectors();
 
   const dispatch = useDispatch();
 
@@ -24,4 +20,4 @@ const useGetAllChildren = () => {
   }, [databaseId, collectionId, dispatch]);
 };
 
-export default useGetAllChildren;
+export default useGetAllChildrenThunkUseEffect;

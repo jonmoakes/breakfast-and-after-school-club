@@ -1,8 +1,5 @@
-import { useSelector } from "react-redux";
-
-import useGetAllChildren from "./all-children-hooks/use-get-all-children";
-
-import { selectGetAllChildrenSelectors } from "../../store/get-all-children/get-all-children.slice";
+import useGetAllChildrenSelectors from "../../hooks/get-selectors/use-get-all-children-selectors";
+import useGetAllChildrenThunkUseEffect from "../../hooks/get-actions-and-thunks/get-all-children-actions-and-thunks/use-get-all-children-thunk-use-effect";
 
 import Loader from "../../components/loader/loader.component";
 import TableHelp from "../../components/tables/table-help.component";
@@ -13,11 +10,9 @@ import { ParentDiv } from "../../styles/div/div.styles";
 import { BlackTitle } from "../../styles/h1/h1.styles";
 
 const AllChildrenInfo = () => {
-  useGetAllChildren();
+  useGetAllChildrenThunkUseEffect();
 
-  const { getAllChildrenIsLoading } = useSelector(
-    selectGetAllChildrenSelectors
-  );
+  const { getAllChildrenIsLoading } = useGetAllChildrenSelectors();
 
   return (
     <Container>
