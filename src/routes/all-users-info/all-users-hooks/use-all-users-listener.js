@@ -1,21 +1,15 @@
 import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
 import { client } from "../../../utils/appwrite/appwrite-config";
 
-import { selectCurrentUserSelectors } from "../../../store/user/user.slice";
-import {
-  selectGetAllUsersSelectors,
-  setAllUsers,
-} from "../../../store/get-all-users/get-all-users.slice";
+import useGetCurrentUserSelectors from "../../../hooks/get-selectors/use-get-current-user-selectors";
+import useGetAllUsersSelectors from "../../../hooks/get-selectors/use-get-all-users-selectors";
+import useGetAllUsersActions from "../../../hooks/get-actions-and-thunks/get-all-users-actions-and-thunks/use-get-all-users-actions";
 
 const useAllUsersListener = () => {
-  const { currentUser, currentUserEnvironmentVariables } = useSelector(
-    selectCurrentUserSelectors
-  );
-  const { allUsers } = useSelector(selectGetAllUsersSelectors);
-
-  const { databaseId, userCollectionId } = currentUserEnvironmentVariables;
-  const dispatch = useDispatch();
+  const { allUsers } = useGetAllUsersSelectors();
+  const { databaseId, userCollectionId, currentUser } =
+    useGetCurrentUserSelectors();
+  const { dispatchSetAllUsers } = useGetAllUsersActions();
 
   useEffect(() => {
     if (!currentUser) return;
@@ -33,7 +27,7 @@ const useAllUsersListener = () => {
             (session) => session.$id !== deletedEntryId
           );
 
-          dispatch(setAllUsers(updatedEntries));
+          dispatchSetAllUsers(updatedEntries);
         } else {
           // Check if the entry with the matching ID exists in the current state
           const existingEntryIndex = allUsers.findIndex(
@@ -48,10 +42,11 @@ const useAllUsersListener = () => {
                 : session
             );
 
-            dispatch(setAllUsers(updatedEntries));
+            dispatchSetAllUsers(updatedEntries);
           } else {
             // entry does not exist so add new entry to the bookedSessionsArray
-            dispatch(setAllUsers([...allUsers, updatedEntry]));
+            const updatedEntries = [...allUsers, updatedEntry];
+            dispatchSetAllUsers(updatedEntries);
           }
         }
       }
@@ -60,7 +55,13 @@ const useAllUsersListener = () => {
     return () => {
       unsubscribe();
     };
-  }, [dispatch, currentUser, allUsers, userCollectionId, databaseId]);
+  }, [
+    dispatchSetAllUsers,
+    currentUser,
+    allUsers,
+    userCollectionId,
+    databaseId,
+  ]);
 };
 
 export default useAllUsersListener;

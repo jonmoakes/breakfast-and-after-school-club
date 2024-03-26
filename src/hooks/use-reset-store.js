@@ -18,6 +18,8 @@ import useEditChildInfoActions from "./get-actions-and-thunks/edit-child-info-ac
 import useGenerateNewPasswordRequestActions from "./get-actions-and-thunks/generate-new-password-request-actions-and-thunks/use-generate-new-password-request-actions";
 import useGetAllChildrenSelectors from "./get-selectors/use-get-all-children-selectors";
 import useGetAllChildrenActions from "./get-actions-and-thunks/get-all-children-actions-and-thunks/use-get-all-children-actions";
+import useGetAllUsersSelectors from "./get-selectors/use-get-all-users-selectors";
+import useGetAllUsersActions from "./get-actions-and-thunks/get-all-users-actions-and-thunks/use-get-all-users-actions";
 
 import { selectGetUsersChildrenSelectors } from "../store/get-users-children/get-users-children.slice";
 import { resetShouldShowElementState } from "../store/should-show-element/should-show-element.slice";
@@ -36,11 +38,6 @@ import {
   selectSessionTypesAndPricesSelectors,
 } from "../store/session-types-and-prices/session-types-and-prices.slice";
 import { resetUsersChildrenError } from "../store/get-users-children/get-users-children.slice";
-import {
-  resetGetAllUsersError,
-  resetGetAllUsersState,
-  selectGetAllUsersSelectors,
-} from "../store/get-all-users/get-all-users.slice";
 
 import {
   addFundsRoute,
@@ -93,6 +90,9 @@ const useResetStore = () => {
   const { getAllChildrenError } = useGetAllChildrenSelectors();
   const { dispatchResetGetAllChildrenError, dispatchResetGetAllChildrenState } =
     useGetAllChildrenActions();
+  const { getAllUsersError } = useGetAllUsersSelectors();
+  const { dispatchResetGetAllUsersError, dispatchResetGetAllUsersState } =
+    useGetAllUsersActions();
 
   const { sessionTypesAndPricesError } = useSelector(
     selectSessionTypesAndPricesSelectors
@@ -100,8 +100,6 @@ const useResetStore = () => {
   const { getUsersChildrenError } = useSelector(
     selectGetUsersChildrenSelectors
   );
-
-  const { getAllUsersError } = useSelector(selectGetAllUsersSelectors);
 
   const dispatch = useDispatch();
   const location = useLocation();
@@ -195,9 +193,9 @@ const useResetStore = () => {
         break;
       case allUsersRoute:
         if (getAllUsersError) {
-          dispatch(resetGetAllUsersError());
+          dispatchResetGetAllUsersError();
         } else {
-          dispatch(resetGetAllUsersState());
+          dispatchResetGetAllUsersState();
         }
         break;
       default:

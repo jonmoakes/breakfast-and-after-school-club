@@ -1,8 +1,5 @@
-import { useSelector } from "react-redux";
-
-import useGetAllUsers from "./all-users-hooks/use-get-all-users";
-
-import { selectGetAllUsersSelectors } from "../../store/get-all-users/get-all-users.slice";
+import useGetAllUsersSelectors from "../../hooks/get-selectors/use-get-all-users-selectors";
+import useGetAllUsersThunkUseEffect from "../../hooks/get-actions-and-thunks/get-all-users-actions-and-thunks/use-get-all-users-thunk-use-effect";
 
 import Loader from "../../components/loader/loader.component";
 import TableHelp from "../../components/tables/table-help.component";
@@ -13,9 +10,8 @@ import { ParentDiv } from "../../styles/div/div.styles";
 import { BlackTitle } from "../../styles/h1/h1.styles";
 
 const AllUsersInfo = () => {
-  useGetAllUsers();
-
-  const { getAllUsersIsLoading } = useSelector(selectGetAllUsersSelectors);
+  useGetAllUsersThunkUseEffect();
+  const { getAllUsersIsLoading } = useGetAllUsersSelectors();
 
   return (
     <Container>

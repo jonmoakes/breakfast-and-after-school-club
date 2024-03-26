@@ -1,5 +1,4 @@
 import { useMemo } from "react";
-import { useSelector } from "react-redux";
 import {
   useTable,
   useSortBy,
@@ -11,8 +10,7 @@ import {
 
 import useAllUsersListener from "./all-users-hooks/use-all-users-listener";
 import useIsOnline from "../../hooks/use-is-online";
-
-import { selectGetAllUsersSelectors } from "../../store/get-all-users/get-all-users.slice";
+import useGetAllUsersSelectors from "../../hooks/get-selectors/use-get-all-users-selectors";
 
 import { TABLE_COLUMNS } from "./table-columns";
 import ShowFetchErrors from "../../components/errors/show-fetch-errors.component";
@@ -26,8 +24,8 @@ const AllUsersTable = () => {
   useAllUsersListener();
   const { isOnline } = useIsOnline();
 
-  let { allUsers } = useSelector(selectGetAllUsersSelectors);
-  const { getAllUsersError } = useSelector(selectGetAllUsersSelectors);
+  let { allUsers } = useGetAllUsersSelectors();
+  const { getAllUsersError } = useGetAllUsersSelectors();
 
   const columns = useMemo(() => TABLE_COLUMNS, []);
   const data = useMemo(
