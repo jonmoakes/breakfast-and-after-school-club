@@ -20,8 +20,8 @@ import useHandlePaymentActions from "./get-actions-and-thunks/handle-payment-act
 import useIsOnlineActions from "./get-actions-and-thunks/use-is-online-actions";
 import usePasswordIsVisibleActions from "./get-actions-and-thunks/use-password-is-visible-actions";
 import useSendEmailActions from "./get-actions-and-thunks/use-send-email-actions";
+import useSessionTypesAndPricesActions from "./get-actions-and-thunks/session-types-and-prices-actions-and-thunks/use-session-types-and-prices-actions";
 
-import { resetSessionTypesAndPricesState } from "../store/session-types-and-prices/session-types-and-prices.slice";
 import { resetShouldShowElementState } from "../store/should-show-element/should-show-element.slice";
 import { resetSignInFormState } from "../store/sign-in-form/sign-in-form.slice";
 import { resetSignUpFormState } from "../store/sign-up-form/sign-up-form.slice";
@@ -55,6 +55,8 @@ const useResetAllStoreOnSignOut = () => {
   const { dispatchResetIsOnlineState } = useIsOnlineActions();
   const { dispatchResetPasswordIsVisibleState } = usePasswordIsVisibleActions();
   const { dispatchResetSendEmailState } = useSendEmailActions();
+  const { dispatchResetSessionTypesAndPricesState } =
+    useSessionTypesAndPricesActions();
 
   const dispatch = useDispatch();
 
@@ -79,8 +81,8 @@ const useResetAllStoreOnSignOut = () => {
     dispatchResetIsOnlineState();
     dispatchResetPasswordIsVisibleState();
     dispatchResetSendEmailState();
+    dispatchResetSessionTypesAndPricesState();
 
-    dispatch(resetSessionTypesAndPricesState());
     dispatch(resetShouldShowElementState());
     dispatch(resetSignInFormState());
     dispatch(resetSignUpFormState());

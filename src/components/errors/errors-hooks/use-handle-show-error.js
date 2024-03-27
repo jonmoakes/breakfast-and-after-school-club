@@ -7,9 +7,8 @@ import useGetBookedSessionsUserSelectors from "../../../hooks/get-selectors/use-
 import useGetAllChildrenSelectors from "../../../hooks/get-selectors/use-get-all-children-selectors";
 import useGetAllUsersSelectors from "../../../hooks/get-selectors/use-get-all-users-selectors";
 import useGetUsersChildrenSelectors from "../../../hooks/get-selectors/use-get-users-children-selectors";
-
-import { selectRequestDateDataSelectors } from "../../../store/request-date-data/request-date-data.slice";
-import { selectSessionTypesAndPricesSelectors } from "../../../store/session-types-and-prices/session-types-and-prices.slice";
+import useGetSessionTypesAndPricesSelectors from "../../../hooks/get-selectors/use-get-session-types-and-prices-selectors";
+import useGetRequestDateDataSelectors from "../../../hooks/get-selectors/use-get-request-date-data-selectors";
 
 import {
   addFundsRoute,
@@ -29,11 +28,8 @@ const useHandleShowError = () => {
   const { getAllUsersError } = useGetAllUsersSelectors();
   const { getUsersChildrenError } = useGetUsersChildrenSelectors();
   const { handlePaymentError } = useGetHandlePaymentSelectors();
-
-  const { sessionTypesAndPricesError } = useSelector(
-    selectSessionTypesAndPricesSelectors
-  );
-  const { requestDateDataError } = useSelector(selectRequestDateDataSelectors);
+  const { sessionTypesAndPricesError } = useGetSessionTypesAndPricesSelectors();
+  const { requestDateDataError } = useGetRequestDateDataSelectors();
 
   const location = useLocation();
   const path = location.pathname;

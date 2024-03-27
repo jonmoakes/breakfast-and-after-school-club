@@ -1,4 +1,4 @@
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useLocation } from "react-router-dom";
 
 import useAddChildInfoActions from "./get-actions-and-thunks/add-child-info-actions-and-thunks/use-add-child-info-actions";
@@ -24,6 +24,8 @@ import useGetUsersChildrenSelectors from "./get-selectors/use-get-users-children
 import useGetUsersChildrenActions from "./get-actions-and-thunks/get-users-children-actions-and-thunks/use-get-users-children-actions";
 import useHandlePaymentActions from "./get-actions-and-thunks/handle-payment-actions-and-thunks/use-handle-payment-actions";
 import useSendEmailActions from "./get-actions-and-thunks/use-send-email-actions";
+import useGetSessionTypesAndPricesSelectors from "./get-selectors/use-get-session-types-and-prices-selectors";
+import useSessionTypesAndPricesActions from "./get-actions-and-thunks/session-types-and-prices-actions-and-thunks/use-session-types-and-prices-actions";
 
 import { resetShouldShowElementState } from "../store/should-show-element/should-show-element.slice";
 import { resetSignInFormState } from "../store/sign-in-form/sign-in-form.slice";
@@ -31,10 +33,6 @@ import { resetSignUpFormState } from "../store/sign-up-form/sign-up-form.slice";
 import { resetUpdateEmailState } from "../store/update-email/update-email.slice";
 import { resetWalletFundsToAddState } from "../store/wallet-funds-to-add/wallet-funds-to-add.slice";
 import { resetUserBookingToDeleteState } from "../store/user-booking-to-delete/user-booking-to-delete.slice";
-import {
-  resetSessionPricesError,
-  selectSessionTypesAndPricesSelectors,
-} from "../store/session-types-and-prices/session-types-and-prices.slice";
 
 import {
   addFundsRoute,
@@ -99,10 +97,8 @@ const useResetStore = () => {
     dispatchResetAllHandlePaymentState,
   } = useHandlePaymentActions();
   const { dispatchResetSendEmailState } = useSendEmailActions();
-
-  const { sessionTypesAndPricesError } = useSelector(
-    selectSessionTypesAndPricesSelectors
-  );
+  const { sessionTypesAndPricesError } = useGetSessionTypesAndPricesSelectors();
+  const { dispatchResetSessionPricesError } = useSessionTypesAndPricesActions();
 
   const dispatch = useDispatch();
   const location = useLocation();
@@ -147,7 +143,7 @@ const useResetStore = () => {
         dispatchResetBookSessionState();
         dispatchResetSendEmailState();
         if (sessionTypesAndPricesError) {
-          dispatch(resetSessionPricesError());
+          dispatchResetSessionPricesError();
         } else if (getUsersChildrenError) {
           dispatchResetUsersChildrenError();
         } else if (bookedSessionsUserError) {

@@ -1,22 +1,19 @@
 import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 
-import { selectCurrentUserSelectors } from "../../../store/user/user.slice";
-import { selectSessionTypesAndPricesSelectors } from "../../../store/session-types-and-prices/session-types-and-prices.slice";
+import useGetSessionTypesAndPricesSelectors from "../../get-selectors/use-get-session-types-and-prices-selectors";
+import useGetCurrentUserSelectors from "../../get-selectors/use-get-current-user-selectors";
+
 import { getSessionPricesAsync } from "../../../store/session-types-and-prices/session-types-and-prices.thunks";
 
-const useGetSessionPrices = () => {
-  const { sessionTypesAndPrices, sessionTypesAndPricesError } = useSelector(
-    selectSessionTypesAndPricesSelectors
-  );
-  const { currentUserEnvironmentVariables } = useSelector(
-    selectCurrentUserSelectors
-  );
+const useGetSessionPricesThunkUseEffect = () => {
+  const { sessionTypesAndPrices, sessionTypesAndPricesError } =
+    useGetSessionTypesAndPricesSelectors();
   const {
     databaseId,
     sessionPricesCollectionId: collectionId,
     sessionPricesDocumentId: documentId,
-  } = currentUserEnvironmentVariables;
+  } = useGetCurrentUserSelectors();
 
   const dispatch = useDispatch();
 
@@ -34,4 +31,4 @@ const useGetSessionPrices = () => {
   ]);
 };
 
-export default useGetSessionPrices;
+export default useGetSessionPricesThunkUseEffect;

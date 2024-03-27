@@ -1,4 +1,4 @@
-import useGetSessionPrices from "./hooks/use-get-session-prices";
+import useGetSessionPricesThunkUseEffect from "../../hooks/get-actions-and-thunks/session-types-and-prices-actions-and-thunks/use-get-session-prices-thunk-use-effect";
 import useCancelBookingResultSwal from "./hooks/swals/use-cancel-booking-result-swal";
 
 import LoaderTitleButtons from "./loader-title-buttons.component";
@@ -6,7 +6,7 @@ import LoaderTitleButtons from "./loader-title-buttons.component";
 import { NoHeaderFooterContainer } from "../../styles/container/container.styles";
 
 const CancelBooking = () => {
-  useGetSessionPrices();
+  useGetSessionPricesThunkUseEffect();
   useCancelBookingResultSwal();
 
   return (

@@ -19,28 +19,6 @@ const useGetSessionTypesAndPricesSelectors = () => {
     morningAndAfternoonLongSessionPrice,
   } = useSelector(selectSessionTypesAndPricesSelectors);
 
-  const morningSessionPriceToFixed = morningSessionPrice
-    ? morningSessionPrice.toFixed(2)
-    : null;
-
-  const afternoonShortSessionPriceToFixed = afternoonShortSessionPrice
-    ? afternoonShortSessionPrice.toFixed(2)
-    : null;
-
-  const afternoonLongSessionPriceToFixed = afternoonLongSessionPrice
-    ? afternoonShortSessionPrice.toFixed(2)
-    : null;
-
-  const morningAndAfternoonShortSessionPriceToFixed =
-    morningAndAfternoonShortSessionPrice
-      ? morningAndAfternoonShortSessionPrice.toFixed(2)
-      : null;
-
-  const morningAndAfternoonLongSessionPriceToFixed =
-    morningAndAfternoonLongSessionPrice
-      ? morningAndAfternoonLongSessionPrice.toFixed(2)
-      : null;
-
   return {
     sessionTypesAndPricesIsLoading,
     sessionTypesAndPrices,
@@ -55,11 +33,6 @@ const useGetSessionTypesAndPricesSelectors = () => {
     morningAndAfternoonShortSessionPrice,
     morningAndAfternoonLongSessionType,
     morningAndAfternoonLongSessionPrice,
-    morningSessionPriceToFixed,
-    afternoonShortSessionPriceToFixed,
-    afternoonLongSessionPriceToFixed,
-    morningAndAfternoonShortSessionPriceToFixed,
-    morningAndAfternoonLongSessionPriceToFixed,
   };
 };
 
