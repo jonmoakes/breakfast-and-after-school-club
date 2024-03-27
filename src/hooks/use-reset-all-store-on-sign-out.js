@@ -5,7 +5,7 @@ import useBookSessionActions from "./get-actions-and-thunks/book-session-actions
 import useBookedSessionsOwnerActions from "./get-actions-and-thunks/booked-sessions-owner-actions-and-thunks/use-booked-session-owner-actions";
 import useBookedSessionsUserActions from "./get-actions-and-thunks/booked-sessions-user-actions-and-thunks/use-booked-session-user-actions";
 import useCurrentDateAndTimeActions from "./get-actions-and-thunks/use-current-date-and-time-actions";
-import useRequestDateDataActions from "./get-actions-and-thunks/use-request-date-data-actions";
+import useRequestDateDataActions from "./get-actions-and-thunks/request-date-data-actions-and-thunks/use-request-date-data-actions";
 import useCardInputResultActions from "./get-actions-and-thunks/use-card-input-result-actions";
 import useChooseNewPasswordActions from "./get-actions-and-thunks/choose-new-password-actions-and-thunks/use-choose-new-password-actions";
 import useChosenEntryChildDetailsActions from "./get-actions-and-thunks/chosen-entry-child-details-actions-and-thunks/use-chosen-entry-child-details-actions";
@@ -17,9 +17,9 @@ import useGetAllChildrenActions from "./get-actions-and-thunks/get-all-children-
 import useGetAllUsersActions from "./get-actions-and-thunks/get-all-users-actions-and-thunks/use-get-all-users-actions";
 import useGetUsersChildrenActions from "./get-actions-and-thunks/get-users-children-actions-and-thunks/use-get-users-children-actions";
 import useHandlePaymentActions from "./get-actions-and-thunks/handle-payment-actions-and-thunks/use-handle-payment-actions";
+import useIsOnlineActions from "./get-actions-and-thunks/use-is-online-actions";
+import usePasswordIsVisibleActions from "./get-actions-and-thunks/use-password-is-visible-actions";
 
-import { resetIsOnlineState } from "../store/is-online/is-online.slice";
-import { resetPasswordIsVisibleState } from "../store/password-is-visible/password-is-visible.slice";
 import { resetSendEmailState } from "../store/send-email/send-email.slice";
 import { resetSessionTypesAndPricesState } from "../store/session-types-and-prices/session-types-and-prices.slice";
 import { resetShouldShowElementState } from "../store/should-show-element/should-show-element.slice";
@@ -52,6 +52,8 @@ const useResetAllStoreOnSignOut = () => {
   const { dispatchResetGetAllUsersState } = useGetAllUsersActions();
   const { dispatchResetUsersChildrenState } = useGetUsersChildrenActions();
   const { dispatchResetAllHandlePaymentState } = useHandlePaymentActions();
+  const { dispatchResetIsOnlineState } = useIsOnlineActions();
+  const { dispatchResetPasswordIsVisibleState } = usePasswordIsVisibleActions();
 
   const dispatch = useDispatch();
 
@@ -73,9 +75,9 @@ const useResetAllStoreOnSignOut = () => {
     dispatchResetGetAllUsersState();
     dispatchResetUsersChildrenState();
     dispatchResetAllHandlePaymentState();
+    dispatchResetIsOnlineState();
+    dispatchResetPasswordIsVisibleState();
 
-    dispatch(resetIsOnlineState());
-    dispatch(resetPasswordIsVisibleState());
     dispatch(resetSendEmailState());
     dispatch(resetSessionTypesAndPricesState());
     dispatch(resetShouldShowElementState());

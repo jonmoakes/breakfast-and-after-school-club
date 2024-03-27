@@ -2,7 +2,6 @@ import { useDispatch } from "react-redux";
 
 import useGetBookSessionSelectors from "../../get-selectors/use-get-book-session-selectors";
 import useGetCurrentUserSelectors from "../../get-selectors/use-get-current-user-selectors";
-import useGetRequestDateDataSelectors from "../../get-selectors/use-get-request-date-data-selectors";
 import useGetUsersChildrenSelectors from "../../get-selectors/use-get-users-children-selectors";
 
 import {
@@ -12,7 +11,7 @@ import {
 } from "../../../store/book-session/book-session.thunks";
 import { getUsersWalletBalanceAsync } from "../../../store/user/user.thunks";
 
-const useBookSessionThunks = () => {
+const useBookSessionThunks = (date) => {
   const {
     id,
     name,
@@ -22,7 +21,6 @@ const useBookSessionThunks = () => {
     userCollectionId: collectionId,
     bookedSessionsCollectionId,
   } = useGetCurrentUserSelectors();
-  const { date } = useGetRequestDateDataSelectors();
   const { usersChildren } = useGetUsersChildrenSelectors();
   const { childrenSelectedForBooking } = useGetBookSessionSelectors();
 

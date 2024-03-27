@@ -5,7 +5,7 @@ import {
   resetRequestDateDataState,
   setChosenDate,
   setDateData,
-} from "../../store/request-date-data/request-date-data.slice";
+} from "../../../store/request-date-data/request-date-data.slice";
 
 const useRequestDateDataActions = () => {
   const dispatch = useDispatch();
@@ -14,7 +14,7 @@ const useRequestDateDataActions = () => {
     dispatch(setChosenDate(event.target.value));
   };
 
-  const dispatchSetDateData = (updatedDateData) => {
+  const dispatchListenerSetDateData = (updatedDateData) => {
     dispatch(setDateData(updatedDateData));
   };
 
@@ -28,7 +28,7 @@ const useRequestDateDataActions = () => {
 
   return {
     dispatchSetChosenDate,
-    dispatchSetDateData,
+    dispatchListenerSetDateData,
     dispatchResetRequestDateDataError,
     dispatchResetRequestDateDataState,
   };

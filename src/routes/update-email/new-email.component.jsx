@@ -1,15 +1,13 @@
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 
 import useHandleUpdateEmailDetails from "./update-email-hooks/use-handle-update-email-details";
 import useHideUpdateEmailPasswordOnEmpty from "./update-email-hooks/use-hide-update-email-password-on-empty";
 import useConfirmUpdateEmail from "./update-email-hooks/use-confirm-update-email";
 import useIsOnline from "../../hooks/use-is-online";
+import useGetPasswordIsVisibleSelectors from "../../hooks/get-selectors/use-get-password-is-visible-selectors";
+import usePasswordIsVisibleActions from "../../hooks/get-actions-and-thunks/use-password-is-visible-actions";
 
 import { selectUpdateEmailSelectors } from "../../store/update-email/update-email.slice";
-import {
-  toggleUpdateEmailPasswordIsVisible,
-  selectPasswordIsVisibleSelectors,
-} from "../../store/password-is-visible/password-is-visible.slice";
 
 import NetworkError from "../../components/errors/network-error.component";
 
@@ -30,15 +28,13 @@ import {
 
 const NewEmail = () => {
   useHideUpdateEmailPasswordOnEmpty();
+  const { updateEmailDetails } = useSelector(selectUpdateEmailSelectors);
+  const { updateEmailPasswordIsVisible } = useGetPasswordIsVisibleSelectors();
+  const { dispatchToggleUpdateEmailPasswordIsVisible } =
+    usePasswordIsVisibleActions();
   const { confirmUpdateEmail } = useConfirmUpdateEmail();
   const { handleUpdateEmailDetailsChange } = useHandleUpdateEmailDetails();
   const { isOnline } = useIsOnline();
-
-  const { updateEmailDetails } = useSelector(selectUpdateEmailSelectors);
-  const { updateEmailPasswordIsVisible } = useSelector(
-    selectPasswordIsVisibleSelectors
-  );
-  const dispatch = useDispatch();
 
   const { newEmail, confirmNewEmail, password } = updateEmailDetails;
 
@@ -78,7 +74,7 @@ const NewEmail = () => {
           {password.length ? (
             <ToggleUpdateEmailPassword
               {...{ updateEmailPasswordIsVisible }}
-              onClick={() => dispatch(toggleUpdateEmailPasswordIsVisible())}
+              onClick={dispatchToggleUpdateEmailPasswordIsVisible}
             />
           ) : null}
         </RelativePositionDiv>

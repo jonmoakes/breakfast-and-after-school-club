@@ -1,11 +1,9 @@
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 
 import useHideSignInPasswordOnEmpty from "../sign-in-form-hooks/use-hide-sign-in-password-on-empty";
+import useGetPasswordIsVisibleSelectors from "../../../hooks/get-selectors/use-get-password-is-visible-selectors";
+import usePasswordIsVisibleActions from "../../../hooks/get-actions-and-thunks/use-password-is-visible-actions";
 
-import {
-  toggleSignInPasswordIsVisible,
-  selectPasswordIsVisibleSelectors,
-} from "../../../store/password-is-visible/password-is-visible.slice";
 import { selectSignInFormSelectors } from "../../../store/sign-in-form/sign-in-form.slice";
 
 import { RelativePositionDiv } from "../../../styles/div/div.styles";
@@ -14,13 +12,12 @@ import { ToggleSignInPassword } from "../../../styles/span/span.styles";
 
 const SignInPassword = ({ handleSignInFormChange }) => {
   useHideSignInPasswordOnEmpty();
+  const { signInPasswordIsVisible } = useGetPasswordIsVisibleSelectors();
+  const { dispatchToggleSignInPasswordIsVisible } =
+    usePasswordIsVisibleActions();
 
-  const { signInPasswordIsVisible } = useSelector(
-    selectPasswordIsVisibleSelectors
-  );
   const { signInFormDetails } = useSelector(selectSignInFormSelectors);
 
-  const dispatch = useDispatch();
   const { password } = signInFormDetails;
 
   return (
@@ -38,7 +35,7 @@ const SignInPassword = ({ handleSignInFormChange }) => {
         {password.length ? (
           <ToggleSignInPassword
             {...{ signInPasswordIsVisible }}
-            onClick={() => dispatch(toggleSignInPasswordIsVisible())}
+            onClick={dispatchToggleSignInPasswordIsVisible}
           />
         ) : null}
       </RelativePositionDiv>

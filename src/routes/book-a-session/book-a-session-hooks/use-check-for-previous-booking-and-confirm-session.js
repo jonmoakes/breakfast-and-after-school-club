@@ -18,7 +18,7 @@ const useCheckForPreviousBookingAndConfirmSession = () => {
     useChildSessionAlreadyBooked();
   const { sessionAlreadyBookedSwal } = useSessionAlreadyBookedSwal();
   const { childrenSelectedLength } = useGetChildrenLogic();
-  const { bookSessionAsync } = useBookSessionThunks();
+  const { bookSessionAsync } = useBookSessionThunks(date);
 
   // sessionType and price is received from confirmSession -  to avoid closure issue where if we tried to use the selector for sessionType and price,  the selector doesn't pick up the latest value.
   const checkForPreviousBookingAndConfirmSession = (sessionType, price) => {

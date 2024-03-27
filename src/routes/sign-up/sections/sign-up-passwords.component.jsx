@@ -1,12 +1,9 @@
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 
 import useHideSignUpPasswordOnEmpty from "../sign-up-form-hooks/use-hide-sign-up-password-on-empty";
+import useGetPasswordIsVisibleSelectors from "../../../hooks/get-selectors/use-get-password-is-visible-selectors";
+import usePasswordIsVisibleActions from "../../../hooks/get-actions-and-thunks/use-password-is-visible-actions";
 
-import {
-  toggleSignUpPasswordIsVisible,
-  toggleSignUpConfirmPasswordIsVisible,
-  selectPasswordIsVisibleSelectors,
-} from "../../../store/password-is-visible/password-is-visible.slice";
 import { selectSignUpFormSelectors } from "../../../store/sign-up-form/sign-up-form.slice";
 
 import { RelativePositionDiv } from "../../../styles/div/div.styles";
@@ -25,10 +22,14 @@ import {
 const SignUpPasswords = ({ handleSignUpFormChange }) => {
   useHideSignUpPasswordOnEmpty();
   const { signUpPasswordIsVisible, signUpConfirmPasswordIsVisible } =
-    useSelector(selectPasswordIsVisibleSelectors);
+    useGetPasswordIsVisibleSelectors();
+  const {
+    dispatchToggleSignUpPasswordIsVisible,
+    dispatchToggleSignUpConfirmPasswordIsVisible,
+  } = usePasswordIsVisibleActions();
+
   const { signUpFormDetails } = useSelector(selectSignUpFormSelectors);
 
-  const dispatch = useDispatch();
   const { password, confirmPassword } = signUpFormDetails;
 
   return (
@@ -48,7 +49,7 @@ const SignUpPasswords = ({ handleSignUpFormChange }) => {
         {password.length ? (
           <ToggleSignUpPassword
             {...{ signUpPasswordIsVisible }}
-            onClick={() => dispatch(toggleSignUpPasswordIsVisible())}
+            onClick={dispatchToggleSignUpPasswordIsVisible}
           />
         ) : null}
       </RelativePositionDiv>
@@ -68,7 +69,7 @@ const SignUpPasswords = ({ handleSignUpFormChange }) => {
         {confirmPassword.length ? (
           <ToggleSignUpConfirmPassword
             {...{ signUpConfirmPasswordIsVisible }}
-            onClick={() => dispatch(toggleSignUpConfirmPasswordIsVisible())}
+            onClick={dispatchToggleSignUpConfirmPasswordIsVisible}
           />
         ) : null}
       </RelativePositionDiv>

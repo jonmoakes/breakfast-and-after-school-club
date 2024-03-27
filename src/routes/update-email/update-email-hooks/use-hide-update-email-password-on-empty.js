@@ -1,26 +1,27 @@
 import { useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 
+import useGetPasswordIsVisibleSelectors from "../../../hooks/get-selectors/use-get-password-is-visible-selectors";
+import usePasswordIsVisibleActions from "../../../hooks/get-actions-and-thunks/use-password-is-visible-actions";
 import { selectUpdateEmailSelectors } from "../../../store/update-email/update-email.slice";
-import {
-  hideUpdateEmailPasswordIsVisible,
-  selectPasswordIsVisibleSelectors,
-} from "../../../store/password-is-visible/password-is-visible.slice";
 
 const useHideUpdateEmailPasswordOnEmpty = () => {
-  const { updateEmailPasswordIsVisible } = useSelector(
-    selectPasswordIsVisibleSelectors
-  );
+  const { updateEmailPasswordIsVisible } = useGetPasswordIsVisibleSelectors();
   const { updateEmailDetails } = useSelector(selectUpdateEmailSelectors);
+  const { dispatchHideUpdateEmailPasswordIsVisible } =
+    usePasswordIsVisibleActions();
 
-  const dispatch = useDispatch();
   const { password } = updateEmailDetails;
 
   useEffect(() => {
     if (updateEmailPasswordIsVisible && !password.length) {
-      dispatch(hideUpdateEmailPasswordIsVisible());
+      dispatchHideUpdateEmailPasswordIsVisible();
     }
-  }, [password, updateEmailPasswordIsVisible, dispatch]);
+  }, [
+    password,
+    updateEmailPasswordIsVisible,
+    dispatchHideUpdateEmailPasswordIsVisible,
+  ]);
 };
 
 export default useHideUpdateEmailPasswordOnEmpty;

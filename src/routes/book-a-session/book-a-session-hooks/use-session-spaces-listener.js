@@ -4,11 +4,11 @@ import { client } from "../../../utils/appwrite/appwrite-config";
 
 import useDatesLogic from "./logic/use-dates-logic";
 import useGetCurrentUserSelectors from "../../../hooks/get-selectors/use-get-current-user-selectors";
-import useRequestDateDataActions from "../../../hooks/get-actions-and-thunks/use-request-date-data-actions";
+import useRequestDateDataActions from "../../../hooks/get-actions-and-thunks/request-date-data-actions-and-thunks/use-request-date-data-actions";
 
 const useSessionSpacesListener = () => {
   const { documentId } = useDatesLogic();
-  const { dispatchSetDateData } = useRequestDateDataActions();
+  const { dispatchListenerSetDateData } = useRequestDateDataActions();
   const { databaseId, termDatesCollectionId } = useGetCurrentUserSelectors();
 
   useEffect(() => {
@@ -26,14 +26,19 @@ const useSessionSpacesListener = () => {
           afternoonSessionSpaces,
         };
 
-        dispatchSetDateData(updatedDateData);
+        dispatchListenerSetDateData(updatedDateData);
       }
     );
 
     return () => {
       unsubscribe();
     };
-  }, [documentId, databaseId, termDatesCollectionId, dispatchSetDateData]);
+  }, [
+    documentId,
+    databaseId,
+    termDatesCollectionId,
+    dispatchListenerSetDateData,
+  ]);
 };
 
 export default useSessionSpacesListener;

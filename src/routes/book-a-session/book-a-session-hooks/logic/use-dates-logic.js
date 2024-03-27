@@ -11,10 +11,11 @@ const useDatesLogic = () => {
   const { walletBalance } = useGetCurrentUserSelectors();
   const { noChildrenAddedYet } = useGetChildrenLogic();
   const { morningSessionPrice } = useGetSessionTypesAndPricesSelectors();
-  const { dateData, requestDateDataError, earlyFinishDates, date } =
+  const { dateData, requestDateDataError, earlyFinishDates } =
     useGetRequestDateDataSelectors();
 
   const documentId = dateData ? dateData.$id : "";
+  const date = dateData ? dateData.date : "";
   const morningSessionSpaces = dateData ? dateData.morningSessionSpaces : "";
   const afternoonSessionSpaces = dateData
     ? dateData.afternoonSessionSpaces

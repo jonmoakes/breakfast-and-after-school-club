@@ -1,14 +1,8 @@
-import { useSelector, useDispatch } from "react-redux";
-
 import useHideResetPasswordFieldsOnEmpty from "../choose-new-password-hooks/use-hide-reset-password-fields-on-empty";
 import useChooseNewPasswordActions from "../../../hooks/get-actions-and-thunks/choose-new-password-actions-and-thunks/use-choose-new-password-actions";
 import useGetChooseNewPasswordSelectors from "../../../hooks/get-selectors/use-get-choose-new-password-selectors";
-
-import {
-  toggleResetPasswordIsVisible,
-  toggleResetPasswordConfirmPasswordIsVisible,
-  selectPasswordIsVisibleSelectors,
-} from "../../../store/password-is-visible/password-is-visible.slice";
+import useGetPasswordIsVisibleSelectors from "../../../hooks/get-selectors/use-get-password-is-visible-selectors";
+import usePasswordIsVisibleActions from "../../../hooks/get-actions-and-thunks/use-password-is-visible-actions";
 
 import { Label, PasswordInput } from "../../../styles/form/form.styles";
 import {
@@ -24,14 +18,16 @@ import {
 
 const NewPasswords = () => {
   useHideResetPasswordFieldsOnEmpty();
-  const { dispatchHandleChooseNewPasswordFormChange } =
-    useChooseNewPasswordActions();
   const { newPassword, confirmNewPassword } =
     useGetChooseNewPasswordSelectors();
-
   const { resetPasswordIsVisible, resetPasswordConfirmPasswordIsVisible } =
-    useSelector(selectPasswordIsVisibleSelectors);
-  const dispatch = useDispatch();
+    useGetPasswordIsVisibleSelectors();
+  const { dispatchHandleChooseNewPasswordFormChange } =
+    useChooseNewPasswordActions();
+  const {
+    dispatchToggleResetPasswordIsVisible,
+    dispatchToggleResetPasswordConfirmPasswordIsVisible,
+  } = usePasswordIsVisibleActions();
 
   return (
     <>
@@ -49,7 +45,7 @@ const NewPasswords = () => {
         {newPassword.length ? (
           <ToggleResetPassword
             {...{ resetPasswordIsVisible }}
-            onClick={() => dispatch(toggleResetPasswordIsVisible())}
+            onClick={dispatchToggleResetPasswordIsVisible}
           />
         ) : null}
       </RelativePositionDiv>
@@ -68,9 +64,7 @@ const NewPasswords = () => {
         {confirmNewPassword.length ? (
           <ToggleResetPasswordConfirmPassword
             {...{ resetPasswordConfirmPasswordIsVisible }}
-            onClick={() =>
-              dispatch(toggleResetPasswordConfirmPasswordIsVisible())
-            }
+            onClick={dispatchToggleResetPasswordConfirmPasswordIsVisible}
           />
         ) : null}
       </RelativePositionDiv>
