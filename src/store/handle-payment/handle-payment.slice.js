@@ -1,7 +1,7 @@
 import { createSelector, createSlice } from "@reduxjs/toolkit";
 import {
   getClientSecretAsync,
-  getPaymentResultAsync,
+  getPaymentResultObjectAsync,
   addWalletFundsToDatabaseAsync,
 } from "./handle-payment.thunks";
 
@@ -11,7 +11,7 @@ const initialState = {
   handlePaymentError: null,
   showConfirmButton: false,
   userHasConfirmedPayment: false,
-  paymentResult: {},
+  paymentResultObject: {},
   walletFundsAddedResult: "",
 };
 
@@ -39,7 +39,7 @@ const handlePaymentSlice = createSlice({
       (state) => state.client_secret,
       (state) => state.handlePaymentError,
       (state) => state.userHasConfirmedPayment,
-      (state) => state.paymentResult,
+      (state) => state.paymentResultObject,
       (state) => state.walletFundsAddedResult,
       (state) => state.showConfirmButton,
       (
@@ -47,7 +47,7 @@ const handlePaymentSlice = createSlice({
         client_secret,
         handlePaymentError,
         userHasConfirmedPayment,
-        paymentResult,
+        paymentResultObject,
         walletFundsAddedResult,
         showConfirmButton
       ) => {
@@ -56,7 +56,7 @@ const handlePaymentSlice = createSlice({
           client_secret,
           handlePaymentError,
           userHasConfirmedPayment,
-          paymentResult,
+          paymentResultObject,
           walletFundsAddedResult,
           showConfirmButton,
         };
@@ -80,17 +80,17 @@ const handlePaymentSlice = createSlice({
         state.handlePaymentError = action.payload;
         state.showConfirmButton = false;
       })
-      .addCase(getPaymentResultAsync.pending, (state) => {
+      .addCase(getPaymentResultObjectAsync.pending, (state) => {
         state.handlePaymentIsLoading = true;
         state.userHasConfirmedPayment = true;
       })
-      .addCase(getPaymentResultAsync.fulfilled, (state, action) => {
+      .addCase(getPaymentResultObjectAsync.fulfilled, (state, action) => {
         state.handlePaymentIsLoading = false;
         state.client_secret = "";
-        state.paymentResult = action.payload;
+        state.paymentResultObject = action.payload;
         state.showConfirmButton = false;
       })
-      .addCase(getPaymentResultAsync.rejected, (state, action) => {
+      .addCase(getPaymentResultObjectAsync.rejected, (state, action) => {
         state.handlePaymentIsLoading = false;
         state.client_secret = "";
         state.handlePaymentError = action.payload;
@@ -98,7 +98,7 @@ const handlePaymentSlice = createSlice({
       })
       .addCase(addWalletFundsToDatabaseAsync.pending, (state) => {
         state.handlePaymentIsLoading = true;
-        state.paymentResult = {};
+        state.paymentResultObject = {};
       })
       .addCase(addWalletFundsToDatabaseAsync.fulfilled, (state) => {
         state.handlePaymentIsLoading = false;

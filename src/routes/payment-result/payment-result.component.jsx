@@ -1,8 +1,5 @@
-import { useSelector } from "react-redux";
-
-import useGetPaymentResult from "./payment-result-hooks/use-get-payment-result";
-
-import { selectHandlePaymentSelectors } from "../../store/handle-payment/handle-payment.slice";
+import useGetPaymentResultStatus from "./payment-result-hooks/use-get-payment-result-status";
+import useGetHandlePaymentSelectors from "../../hooks/get-selectors/use-get-handle-payment-selectors";
 
 import Loader from "../../components/loader/loader.component";
 
@@ -11,9 +8,8 @@ import { BlackTitle } from "../../styles/h1/h1.styles";
 import { ParentDiv } from "../../styles/div/div.styles";
 
 const PaymentResult = () => {
-  useGetPaymentResult();
-
-  const { handlePaymentIsLoading } = useSelector(selectHandlePaymentSelectors);
+  useGetPaymentResultStatus();
+  const { handlePaymentIsLoading } = useGetHandlePaymentSelectors();
 
   return (
     <Container>

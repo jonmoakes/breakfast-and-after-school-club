@@ -1,6 +1,7 @@
 import { useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
 
+import useGetHandlePaymentSelectors from "../../../hooks/get-selectors/use-get-handle-payment-selectors";
 import useGetBookedSessionsOwnerSelectors from "../../../hooks/get-selectors/use-get-booked-sessions-owner-selectors";
 import useGetBookedSessionsUserSelectors from "../../../hooks/get-selectors/use-get-booked-sessions-user-selectors";
 import useGetAllChildrenSelectors from "../../../hooks/get-selectors/use-get-all-children-selectors";
@@ -9,7 +10,6 @@ import useGetUsersChildrenSelectors from "../../../hooks/get-selectors/use-get-u
 
 import { selectRequestDateDataSelectors } from "../../../store/request-date-data/request-date-data.slice";
 import { selectSessionTypesAndPricesSelectors } from "../../../store/session-types-and-prices/session-types-and-prices.slice";
-import { selectHandlePaymentSelectors } from "../../../store/handle-payment/handle-payment.slice";
 
 import {
   addFundsRoute,
@@ -28,13 +28,12 @@ const useHandleShowError = () => {
   const { getAllChildrenError } = useGetAllChildrenSelectors();
   const { getAllUsersError } = useGetAllUsersSelectors();
   const { getUsersChildrenError } = useGetUsersChildrenSelectors();
+  const { handlePaymentError } = useGetHandlePaymentSelectors();
 
   const { sessionTypesAndPricesError } = useSelector(
     selectSessionTypesAndPricesSelectors
   );
   const { requestDateDataError } = useSelector(selectRequestDateDataSelectors);
-
-  const { handlePaymentError } = useSelector(selectHandlePaymentSelectors);
 
   const location = useLocation();
   const path = location.pathname;

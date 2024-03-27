@@ -22,16 +22,13 @@ import useGetAllUsersSelectors from "./get-selectors/use-get-all-users-selectors
 import useGetAllUsersActions from "./get-actions-and-thunks/get-all-users-actions-and-thunks/use-get-all-users-actions";
 import useGetUsersChildrenSelectors from "./get-selectors/use-get-users-children-selectors";
 import useGetUsersChildrenActions from "./get-actions-and-thunks/get-users-children-actions-and-thunks/use-get-users-children-actions";
+import useHandlePaymentActions from "./get-actions-and-thunks/handle-payment-actions-and-thunks/use-handle-payment-actions";
 
 import { resetShouldShowElementState } from "../store/should-show-element/should-show-element.slice";
 import { resetSignInFormState } from "../store/sign-in-form/sign-in-form.slice";
 import { resetSignUpFormState } from "../store/sign-up-form/sign-up-form.slice";
 import { resetUpdateEmailState } from "../store/update-email/update-email.slice";
 import { resetWalletFundsToAddState } from "../store/wallet-funds-to-add/wallet-funds-to-add.slice";
-import {
-  resetAllHandlePaymentState,
-  resetPreResultHandlePaymentState,
-} from "../store/handle-payment/handle-payment.slice";
 import { resetSendEmailState } from "../store/send-email/send-email.slice";
 import { resetUserBookingToDeleteState } from "../store/user-booking-to-delete/user-booking-to-delete.slice";
 import {
@@ -97,6 +94,10 @@ const useResetStore = () => {
   const { getUsersChildrenError } = useGetUsersChildrenSelectors();
   const { dispatchResetUsersChildrenError, dispatchResetUsersChildrenState } =
     useGetUsersChildrenActions();
+  const {
+    dispatchResetPreResultHandlePaymentState,
+    dispatchResetAllHandlePaymentState,
+  } = useHandlePaymentActions();
 
   const { sessionTypesAndPricesError } = useSelector(
     selectSessionTypesAndPricesSelectors
@@ -130,11 +131,11 @@ const useResetStore = () => {
         dispatchResetCardInputResultState();
         dispatch(resetShouldShowElementState());
         dispatch(resetWalletFundsToAddState());
-        dispatch(resetPreResultHandlePaymentState());
+        dispatchResetPreResultHandlePaymentState();
         break;
       case paymentResultRoute:
         dispatchResetCardInputResultState();
-        dispatch(resetAllHandlePaymentState());
+        dispatchResetAllHandlePaymentState();
         dispatch(resetWalletFundsToAddState());
         dispatch(resetSendEmailState());
         break;

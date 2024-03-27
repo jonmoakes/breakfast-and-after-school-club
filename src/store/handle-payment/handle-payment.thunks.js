@@ -27,20 +27,23 @@ export const getClientSecretAsync = createAsyncThunk(
   }
 );
 
-export const getPaymentResultAsync = createAsyncThunk(
-  "getPaymentResult",
+export const getPaymentResultObjectAsync = createAsyncThunk(
+  "getPaymentResultObject",
   async ({ stripe, client_secret, cardElement, name, email }, thunkAPI) => {
     try {
-      const paymentResult = await stripe.confirmCardPayment(client_secret, {
-        payment_method: {
-          card: cardElement,
-          billing_details: {
-            name,
-            email,
+      const paymentResultObject = await stripe.confirmCardPayment(
+        client_secret,
+        {
+          payment_method: {
+            card: cardElement,
+            billing_details: {
+              name,
+              email,
+            },
           },
-        },
-      });
-      return paymentResult;
+        }
+      );
+      return paymentResultObject;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }
