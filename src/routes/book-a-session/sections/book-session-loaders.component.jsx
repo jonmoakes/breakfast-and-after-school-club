@@ -1,15 +1,11 @@
-import { useSelector } from "react-redux";
-
+import useGetSendEmailSelectors from "../../../hooks/get-selectors/use-get-send-email-selectors";
 import useShowLoadersLogic from "../book-a-session-hooks/logic/use-show-loaders-logic";
-
-import { selectSendEmailSelectors } from "../../../store/send-email/send-email.slice";
 
 import Loader from "../../../components/loader/loader.component";
 
 const BookSessionLoaders = () => {
+  const { sendEmailIsLoading } = useGetSendEmailSelectors();
   const { showLoaders } = useShowLoadersLogic();
-
-  const { sendEmailIsLoading } = useSelector(selectSendEmailSelectors);
 
   return <>{showLoaders() || sendEmailIsLoading ? <Loader /> : null}</>;
 };

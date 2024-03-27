@@ -1,13 +1,9 @@
 import { useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
+import useSendEmailActions from "../../../hooks/get-actions-and-thunks/use-send-email-actions";
+import useGetSendEmailSelectors from "../../../hooks/get-selectors/use-get-send-email-selectors";
 import useFireSwal from "../../../hooks/use-fire-swal";
-
-import {
-  resetSendEmailState,
-  selectSendEmailSelectors,
-} from "../../../store/send-email/send-email.slice";
 
 import { successSendingCloseAccountEmailMessage } from "../../../strings/successes/successes-strings";
 import { receiveEmailWhenCompleteMessage } from "../../../strings/infos/infos-strings";
@@ -15,13 +11,10 @@ import { errorSendingAccountClosureRequest } from "../../../strings/errors/error
 import { accountRoute } from "../../../strings/routes/routes-strings";
 
 const useCloseAccountSwal = () => {
+  const { sendEmailStatusCode, sendEmailError } = useGetSendEmailSelectors();
+  const { dispatchResetSendEmailState } = useSendEmailActions();
   const { fireSwal } = useFireSwal();
 
-  const { sendEmailStatusCode, sendEmailError } = useSelector(
-    selectSendEmailSelectors
-  );
-
-  const dispatch = useDispatch();
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -37,7 +30,7 @@ const useCloseAccountSwal = () => {
         false
       ).then((isConfirmed) => {
         if (isConfirmed) {
-          dispatch(resetSendEmailState());
+          dispatchResetSendEmailState();
           navigate(accountRoute);
         }
       });
@@ -51,11 +44,17 @@ const useCloseAccountSwal = () => {
         false
       ).then((isConfirmed) => {
         if (isConfirmed) {
-          dispatch(resetSendEmailState());
+          dispatchResetSendEmailState();
         }
       });
     }
-  }, [sendEmailStatusCode, sendEmailError, fireSwal, dispatch, navigate]);
+  }, [
+    sendEmailStatusCode,
+    sendEmailError,
+    fireSwal,
+    dispatchResetSendEmailState,
+    navigate,
+  ]);
 };
 
 export default useCloseAccountSwal;

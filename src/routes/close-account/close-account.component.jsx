@@ -1,10 +1,7 @@
-import { useSelector } from "react-redux";
-
+import useGetSendEmailSelectors from "../../hooks/get-selectors/use-get-send-email-selectors";
+import useGetCurrentUserSelectors from "../../hooks/get-selectors/use-get-current-user-selectors";
 import useConfirmCloseAccount from "./close-account-hooks/use-confirm-close-account";
 import useCloseAccountSwal from "./close-account-hooks/use-close-account-swal";
-
-import { selectSendEmailSelectors } from "../../store/send-email/send-email.slice";
-import { selectCurrentUserSelectors } from "../../store/user/user.slice";
 
 import Loader from "../../components/loader/loader.component";
 
@@ -19,16 +16,15 @@ import { contactRoute } from "../../strings/routes/routes-strings";
 
 const CloseAccount = () => {
   useCloseAccountSwal();
+
+  const { provider } = useGetCurrentUserSelectors();
+  const { sendEmailIsLoading } = useGetSendEmailSelectors();
   const { confirmCloseAccount } = useConfirmCloseAccount();
-
-  const { sendEmailIsLoading } = useSelector(selectSendEmailSelectors);
-  const { currentUser } = useSelector(selectCurrentUserSelectors);
-
-  const { provider } = currentUser;
 
   return (
     <Container>
       {sendEmailIsLoading ? <Loader /> : null}
+
       <ParentDiv>
         <BlackTitle>close your account</BlackTitle>
       </ParentDiv>

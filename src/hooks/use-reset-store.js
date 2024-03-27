@@ -23,13 +23,13 @@ import useGetAllUsersActions from "./get-actions-and-thunks/get-all-users-action
 import useGetUsersChildrenSelectors from "./get-selectors/use-get-users-children-selectors";
 import useGetUsersChildrenActions from "./get-actions-and-thunks/get-users-children-actions-and-thunks/use-get-users-children-actions";
 import useHandlePaymentActions from "./get-actions-and-thunks/handle-payment-actions-and-thunks/use-handle-payment-actions";
+import useSendEmailActions from "./get-actions-and-thunks/use-send-email-actions";
 
 import { resetShouldShowElementState } from "../store/should-show-element/should-show-element.slice";
 import { resetSignInFormState } from "../store/sign-in-form/sign-in-form.slice";
 import { resetSignUpFormState } from "../store/sign-up-form/sign-up-form.slice";
 import { resetUpdateEmailState } from "../store/update-email/update-email.slice";
 import { resetWalletFundsToAddState } from "../store/wallet-funds-to-add/wallet-funds-to-add.slice";
-import { resetSendEmailState } from "../store/send-email/send-email.slice";
 import { resetUserBookingToDeleteState } from "../store/user-booking-to-delete/user-booking-to-delete.slice";
 import {
   resetSessionPricesError,
@@ -98,6 +98,7 @@ const useResetStore = () => {
     dispatchResetPreResultHandlePaymentState,
     dispatchResetAllHandlePaymentState,
   } = useHandlePaymentActions();
+  const { dispatchResetSendEmailState } = useSendEmailActions();
 
   const { sessionTypesAndPricesError } = useSelector(
     selectSessionTypesAndPricesSelectors
@@ -137,14 +138,14 @@ const useResetStore = () => {
         dispatchResetCardInputResultState();
         dispatchResetAllHandlePaymentState();
         dispatch(resetWalletFundsToAddState());
-        dispatch(resetSendEmailState());
+        dispatchResetSendEmailState();
         break;
       case bookSessionRoute:
         dispatchResetRequestDateDataState();
         dispatch(resetShouldShowElementState());
         dispatchResetCurrentDateAndTimeState();
         dispatchResetBookSessionState();
-        dispatch(resetSendEmailState());
+        dispatchResetSendEmailState();
         if (sessionTypesAndPricesError) {
           dispatch(resetSessionPricesError());
         } else if (getUsersChildrenError) {

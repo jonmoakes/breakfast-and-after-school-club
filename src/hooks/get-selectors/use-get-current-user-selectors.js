@@ -11,6 +11,7 @@ const useGetCurrentUserSelectors = () => {
     currentUserWalletBalanceError,
     loadStripeKey,
     schoolCodeForSocialLogin,
+    provider,
   } = useSelector(selectCurrentUserSelectors);
 
   const { walletBalance, email, id, name, phoneNumber } = currentUser ?? {};
@@ -69,6 +70,7 @@ const useGetCurrentUserSelectors = () => {
     currentUserWalletBalanceError,
     loadStripeKey,
     schoolCodeForSocialLogin,
+    provider,
   };
 };
 
