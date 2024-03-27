@@ -8,11 +8,11 @@ export const hamburgerMenuSlice = createSlice({
   name: "hamburgerMenu",
   initialState: INITIAL_STATE,
   reducers: {
-    hideHamburgerMenu(state, action) {
-      state.showHamburgerMenu = action.payload;
+    hideHamburgerMenu(state) {
+      state.showHamburgerMenu = false;
     },
-    toggleHamburgerMenu(state, action) {
-      state.showHamburgerMenu = action.payload;
+    toggleHamburgerMenu(state) {
+      state.showHamburgerMenu = !state.showHamburgerMenu;
     },
   },
   selectors: {

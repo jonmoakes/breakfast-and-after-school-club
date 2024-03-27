@@ -1,8 +1,7 @@
-import { useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
 
-import { selectHamburgerMenuSelectors } from "../../store/hamburger-menu/hamburger-menu.slice";
-import { selectCurrentUserSelectors } from "../../store/user/user.slice";
+import useGetHamburgerMenuSelectors from "../../hooks/get-selectors/use-get-hamburger-menu-selectors";
+import useGetCurrentUserSelectors from "../../hooks/get-selectors/use-get-current-user-selectors";
 
 import Loader from "../../components/loader/loader.component";
 import NavLogo from "./nav-logo.component";
@@ -22,8 +21,8 @@ import {
 } from "../../strings/routes/routes-strings";
 
 const Navigation = () => {
-  const { showHamburgerMenu } = useSelector(selectHamburgerMenuSelectors);
-  const { currentUserIsLoading } = useSelector(selectCurrentUserSelectors);
+  const { showHamburgerMenu } = useGetHamburgerMenuSelectors();
+  const { currentUserIsLoading } = useGetCurrentUserSelectors();
 
   const location = useLocation();
   const path = location.pathname;

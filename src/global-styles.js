@@ -38,6 +38,10 @@ export const GlobalStyle = createGlobalStyle`
               opacity:0.5;
         }
 
+        p {
+            font-size: calc(1rem + 0.25vw);
+        }
+
         ul {
             padding-left: unset;
             display: table;

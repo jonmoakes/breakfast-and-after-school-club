@@ -83,6 +83,7 @@ const useResetAllStoreOnSignOut = () => {
     dispatch(resetUpdateEmailState());
     dispatch(resetUserBookingToDeleteState());
     dispatch(resetWalletFundsToAddState());
+    localStorage.clear();
   };
 
   return { resetAllStoreOnSignOut };

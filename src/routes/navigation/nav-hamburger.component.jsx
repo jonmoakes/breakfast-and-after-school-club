@@ -1,9 +1,5 @@
-import { useDispatch, useSelector } from "react-redux";
-
-import {
-  toggleHamburgerMenu,
-  selectHamburgerMenuSelectors,
-} from "../../store/hamburger-menu/hamburger-menu.slice";
+import useGetHamburgerMenuSelectors from "../../hooks/get-selectors/use-get-hamburger-menu-selectors";
+import useHamburgerMenuActions from "../../hooks/get-actions-and-thunks/use-hamburger-menu-actions";
 
 import { HamburgerContainer, Hamburger } from "../../styles/div/div.styles";
 import {
@@ -12,15 +8,13 @@ import {
 } from "../../styles/span/span.styles";
 
 const NavHamburger = () => {
-  const { showHamburgerMenu } = useSelector(selectHamburgerMenuSelectors);
-  const dispatch = useDispatch();
+  const { showHamburgerMenu } = useGetHamburgerMenuSelectors();
+  const { dispatchToggleHamburgerMenu } = useHamburgerMenuActions();
 
   return (
     <>
       <HamburgerContainer>
-        <Hamburger
-          onClick={() => dispatch(toggleHamburgerMenu(!showHamburgerMenu))}
-        >
+        <Hamburger onClick={() => dispatchToggleHamburgerMenu()}>
           {!showHamburgerMenu ? (
             <>
               <HamburgerSpan />
