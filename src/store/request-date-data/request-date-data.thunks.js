@@ -7,10 +7,7 @@ import {
 
 export const requestDateDataAsync = createAsyncThunk(
   "requestDateData",
-  async (
-    { databaseId, termDatesCollectionId: collectionId, chosenDate },
-    thunkAPI
-  ) => {
+  async ({ databaseId, collectionId, chosenDate }, thunkAPI) => {
     try {
       const queryIndex = "date";
       const queryValue = chosenDate;
@@ -45,10 +42,7 @@ export const requestDateDataAsync = createAsyncThunk(
 
 export const requestEarlyFinishDatesAsync = createAsyncThunk(
   "requestEarlyFinishDates",
-  async (
-    { databaseId, earlyFinishDatesCollectionId: collectionId },
-    thunkAPI
-  ) => {
+  async ({ databaseId, collectionId }, thunkAPI) => {
     try {
       const getEarlyFinishDates = await listDocumentsInACollection(
         databaseId,
@@ -71,14 +65,7 @@ export const requestEarlyFinishDatesAsync = createAsyncThunk(
 
 export const requestBookingClosingTimesAsync = createAsyncThunk(
   "requestBookingClosingTimes",
-  async (
-    {
-      databaseId,
-      bookingClosingTimesCollectionId: collectionId,
-      bookingClosingTimesDocumentId: documentId,
-    },
-    thunkAPI
-  ) => {
+  async ({ databaseId, collectionId, documentId }, thunkAPI) => {
     try {
       const getBookingClosingTimes = await manageDatabaseDocument(
         "get",
@@ -102,14 +89,7 @@ export const requestBookingClosingTimesAsync = createAsyncThunk(
 
 export const requestSessionTimesAsync = createAsyncThunk(
   "requestSessionTimes",
-  async (
-    {
-      databaseId,
-      sessionTimesCollectionId: collectionId,
-      sessionTimesDocumentId: documentId,
-    },
-    thunkAPI
-  ) => {
+  async ({ databaseId, collectionId, documentId }, thunkAPI) => {
     try {
       const getSessionTimes = await manageDatabaseDocument(
         "get",

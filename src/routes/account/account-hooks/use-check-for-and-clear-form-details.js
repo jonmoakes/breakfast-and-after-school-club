@@ -1,18 +1,18 @@
 import { useCallback, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-import {
-  selectSignInFormSelectors,
-  resetSignInFormState,
-} from "../../../store/sign-in-form/sign-in-form.slice";
+import useGetSignInFormSelectors from "../../../hooks/get-selectors/use-get-sign-in-form-selectors";
+import useSignInFormActions from "../../../hooks/get-actions-and-thunks/use-sign-in-form-actions";
+
 import {
   resetSignUpFormState,
   selectSignUpFormSelectors,
 } from "../../../store/sign-up-form/sign-up-form.slice";
 
 const useCheckForAndClearFormDetails = () => {
-  const { signInFormDetails } = useSelector(selectSignInFormSelectors);
+  const { signInFormDetails } = useGetSignInFormSelectors();
   const { signUpFormDetails } = useSelector(selectSignUpFormSelectors);
+  const { dispatchResetSignInFormState } = useSignInFormActions();
 
   const dispatch = useDispatch();
 
@@ -24,11 +24,11 @@ const useCheckForAndClearFormDetails = () => {
           Object.values(signUpFormDetails).every((value) => value === "")
       )
     ) {
-      dispatch(resetSignInFormState());
+      dispatchResetSignInFormState();
     } else {
       return;
     }
-  }, [signInFormDetails, signUpFormDetails, dispatch]);
+  }, [signInFormDetails, signUpFormDetails, dispatchResetSignInFormState]);
 
   const checkForSignUpDetails = useCallback(() => {
     if (

@@ -21,9 +21,9 @@ import useIsOnlineActions from "./get-actions-and-thunks/use-is-online-actions";
 import usePasswordIsVisibleActions from "./get-actions-and-thunks/use-password-is-visible-actions";
 import useSendEmailActions from "./get-actions-and-thunks/use-send-email-actions";
 import useSessionTypesAndPricesActions from "./get-actions-and-thunks/session-types-and-prices-actions-and-thunks/use-session-types-and-prices-actions";
+import useSignInFormActions from "./get-actions-and-thunks/use-sign-in-form-actions";
 
 import { resetShouldShowElementState } from "../store/should-show-element/should-show-element.slice";
-import { resetSignInFormState } from "../store/sign-in-form/sign-in-form.slice";
 import { resetSignUpFormState } from "../store/sign-up-form/sign-up-form.slice";
 import { resetUpdateEmailState } from "../store/update-email/update-email.slice";
 import { resetUserBookingToDeleteState } from "../store/user-booking-to-delete/user-booking-to-delete.slice";
@@ -57,6 +57,7 @@ const useResetAllStoreOnSignOut = () => {
   const { dispatchResetSendEmailState } = useSendEmailActions();
   const { dispatchResetSessionTypesAndPricesState } =
     useSessionTypesAndPricesActions();
+  const { dispatchResetSignInFormState } = useSignInFormActions();
 
   const dispatch = useDispatch();
 
@@ -82,9 +83,9 @@ const useResetAllStoreOnSignOut = () => {
     dispatchResetPasswordIsVisibleState();
     dispatchResetSendEmailState();
     dispatchResetSessionTypesAndPricesState();
+    dispatchResetSignInFormState();
 
     dispatch(resetShouldShowElementState());
-    dispatch(resetSignInFormState());
     dispatch(resetSignUpFormState());
     dispatch(resetUpdateEmailState());
     dispatch(resetUserBookingToDeleteState());

@@ -1,5 +1,5 @@
 import useShouldShowElementActions from "../../hooks/get-actions-and-thunks/use-should-show-element-actions";
-import useShouldShowElementSelectors from "../../hooks/get-selectors/use-should-show-element-selectors";
+import useShouldShowElementSelectors from "../../hooks/get-selectors/use-get-should-show-element-selectors";
 import { YellowGreenButton } from "../../styles/buttons/buttons.styles";
 import {
   Accordion,
@@ -9,16 +9,16 @@ import {
 import { Text } from "../../styles/p/p.styles";
 
 const ForgotPasswordRequestAccordion = () => {
-  const { showOppositeShowElement, hideShownElement } =
-    useShouldShowElementActions();
   const { shouldShowElement } = useShouldShowElementSelectors();
+  const { dispatchShowOppositeShowElement, dispatchHideShownElement } =
+    useShouldShowElementActions();
 
   return (
     <Accordion {...{ shouldShowElement }}>
       <>
         <AccordionTitle
           {...{ shouldShowElement }}
-          onClick={showOppositeShowElement}
+          onClick={dispatchShowOppositeShowElement}
         >
           <div>{shouldShowElement ? "ok, close" : "forgot password help"}</div>
           <>{shouldShowElement ? "-" : "+"}</>
@@ -43,7 +43,7 @@ const ForgotPasswordRequestAccordion = () => {
               if you need to reset your password for either of those apps,
               please follow their respective products help pages.
             </Text>
-            <YellowGreenButton onClick={hideShownElement}>
+            <YellowGreenButton onClick={dispatchHideShownElement}>
               Ok, Close
             </YellowGreenButton>
           </AccordionContent>

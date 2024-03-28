@@ -1,11 +1,10 @@
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 
+import useShowInvalidEmailMessageSwal from "../../../hooks/use-show-invalid-email-message-swal";
+import useGetSignInFormSelectors from "../../../hooks/get-selectors/use-get-sign-in-form-selectors";
 import useFireSwal from "../../../hooks/use-fire-swal";
 
-import { selectSignInFormSelectors } from "../../../store/sign-in-form/sign-in-form.slice";
 import { signInAsync } from "../../../store/user/user.thunks";
-
-import { validateEmail } from "../../../functions/validate-email";
 
 import {
   missingFieldsMessage,
@@ -15,15 +14,14 @@ import {
 
 import { setProjectId } from "../../../school-codes-list/get-ids-from-school-code/set-project-id";
 import { isNotValidSchoolCode } from "../../../functions/is-not-valid-school-code";
-import useShowInvalidEmailMessageSwal from "../../../hooks/use-show-invalid-email-message-swal";
+import { validateEmail } from "../../../functions/validate-email";
 
 const useHandleSignInFormSubmit = () => {
+  const { email, password, schoolCode } = useGetSignInFormSelectors();
   const { fireSwal } = useFireSwal();
   const { showInvalidEmailMessageSwal } = useShowInvalidEmailMessageSwal();
-  const { signInFormDetails } = useSelector(selectSignInFormSelectors);
 
   const dispatch = useDispatch();
-  const { email, password, schoolCode } = signInFormDetails;
 
   const handleSignInFormSubmit = () => {
     if (!email || !password || !schoolCode) {

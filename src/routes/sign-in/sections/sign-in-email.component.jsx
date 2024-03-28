@@ -1,12 +1,11 @@
-import { useSelector } from "react-redux";
-
-import { selectSignInFormSelectors } from "../../../store/sign-in-form/sign-in-form.slice";
+import useGetSignInFormSelectors from "../../../hooks/get-selectors/use-get-sign-in-form-selectors";
+import useSignInFormActions from "../../../hooks/get-actions-and-thunks/use-sign-in-form-actions";
 
 import { LowercasedInput, Label } from "../../../styles/form/form.styles";
 
-const SignInEmail = ({ handleSignInFormChange }) => {
-  const { signInFormDetails } = useSelector(selectSignInFormSelectors);
-  const { email } = signInFormDetails;
+const SignInEmail = () => {
+  const { email } = useGetSignInFormSelectors();
+  const { dispatchHandleSignInFormChange } = useSignInFormActions();
 
   return (
     <>
@@ -15,7 +14,7 @@ const SignInEmail = ({ handleSignInFormChange }) => {
         type="email"
         name="email"
         value={email || ""}
-        onChange={handleSignInFormChange}
+        onChange={dispatchHandleSignInFormChange}
         required
       />
     </>

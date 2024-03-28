@@ -31,11 +31,13 @@ const useFetchBookedSessionsUser = () => {
       })
     ).then((resultAction) => {
       if (fetchBookedSessionsUserAsync.fulfilled.match(resultAction)) {
+        const collectionId = bookingClosingTimesCollectionId;
+        const documentId = bookingClosingTimesDocumentId;
         dispatch(
           requestBookingClosingTimesAsync({
             databaseId,
-            bookingClosingTimesCollectionId,
-            bookingClosingTimesDocumentId,
+            collectionId,
+            documentId,
           })
         );
       }

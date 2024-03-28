@@ -26,9 +26,9 @@ import useHandlePaymentActions from "./get-actions-and-thunks/handle-payment-act
 import useSendEmailActions from "./get-actions-and-thunks/use-send-email-actions";
 import useGetSessionTypesAndPricesSelectors from "./get-selectors/use-get-session-types-and-prices-selectors";
 import useSessionTypesAndPricesActions from "./get-actions-and-thunks/session-types-and-prices-actions-and-thunks/use-session-types-and-prices-actions";
+import useSignInFormActions from "./get-actions-and-thunks/use-sign-in-form-actions";
 
 import { resetShouldShowElementState } from "../store/should-show-element/should-show-element.slice";
-import { resetSignInFormState } from "../store/sign-in-form/sign-in-form.slice";
 import { resetSignUpFormState } from "../store/sign-up-form/sign-up-form.slice";
 import { resetUpdateEmailState } from "../store/update-email/update-email.slice";
 import { resetWalletFundsToAddState } from "../store/wallet-funds-to-add/wallet-funds-to-add.slice";
@@ -99,6 +99,7 @@ const useResetStore = () => {
   const { dispatchResetSendEmailState } = useSendEmailActions();
   const { sessionTypesAndPricesError } = useGetSessionTypesAndPricesSelectors();
   const { dispatchResetSessionPricesError } = useSessionTypesAndPricesActions();
+  const { dispatchResetSignInFormState } = useSignInFormActions();
 
   const dispatch = useDispatch();
   const location = useLocation();
@@ -108,7 +109,7 @@ const useResetStore = () => {
     switch (path) {
       case signInRoute:
         dispatch(resetShouldShowElementState());
-        dispatch(resetSignInFormState());
+        dispatchResetSignInFormState();
         break;
       case signUpRoute:
         dispatch(resetShouldShowElementState());

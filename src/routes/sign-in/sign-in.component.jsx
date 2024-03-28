@@ -1,12 +1,6 @@
-import { useSelector } from "react-redux";
-import { Navigate } from "react-router-dom";
-
-import useHandleSignInFormChange from "./sign-in-form-hooks/use-handle-sign-in-form-change";
 import useHandleSignInFormError from "./sign-in-form-hooks/use-handle-sign-in-form-error";
 
-import { selectCurrentUserSelectors } from "../../store/user/user.slice";
-
-import Loader from "../../components/loader/loader.component";
+import HandleNavigateAndLoader from "./sections/handle-navigate-and-loader.component";
 import Email from "./sections/sign-in-email.component";
 import SignInSchoolCode from "./sections/sign-in-school-code.component";
 import Passwords from "./sections/sign-in-password.component";
@@ -19,22 +13,14 @@ import { StyledLink } from "../../styles/link/link.styles";
 import { BlackTitle } from "../../styles/h1/h1.styles";
 import { Text } from "../../styles/p/p.styles";
 
-import { accountRoute, signUpRoute } from "../../strings/routes/routes-strings";
+import { signUpRoute } from "../../strings/routes/routes-strings";
 
 const SignIn = () => {
   useHandleSignInFormError();
-  const { handleSignInFormChange } = useHandleSignInFormChange();
-
-  const { currentUser, currentUserIsLoading } = useSelector(
-    selectCurrentUserSelectors
-  );
 
   return (
     <Container>
-      {currentUser !== null && currentUser !== undefined && (
-        <Navigate replace to={accountRoute} />
-      )}
-      {currentUserIsLoading ? <Loader /> : null}
+      <HandleNavigateAndLoader />
 
       <ParentDiv>
         <BlackTitle>sign in</BlackTitle>
@@ -50,9 +36,9 @@ const SignIn = () => {
 
       <ParentDiv>
         <Form>
-          <Email {...{ handleSignInFormChange }} />
-          <SignInSchoolCode {...{ handleSignInFormChange }} />
-          <Passwords {...{ handleSignInFormChange }} />
+          <Email />
+          <SignInSchoolCode />
+          <Passwords />
           <SignInButton />
         </Form>
       </ParentDiv>

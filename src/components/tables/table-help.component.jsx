@@ -1,11 +1,7 @@
-import { useDispatch, useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
 
-import {
-  hideElement,
-  toggleShowElement,
-  selectShouldShowElementSelectors,
-} from "../../store/should-show-element/should-show-element.slice";
+import useGetShouldShowelementSelectors from "../../hooks/get-selectors/use-get-should-show-element-selectors";
+import useShouldShowElementActions from "../../hooks/get-actions-and-thunks/use-should-show-element-actions";
 
 import CancelBookingTableHelp from "./table-helps/cancel-booking-table-help.component";
 import IsBookedSessionsOwnerRouteTableHelp from "./table-helps/is-booked-sessions-owner-route-table-help.component";
@@ -31,8 +27,10 @@ import {
 } from "../../strings/routes/routes-strings";
 
 const UserBookingsHelp = () => {
-  const { shouldShowElement } = useSelector(selectShouldShowElementSelectors);
-  const dispatch = useDispatch();
+  const { shouldShowElement } = useGetShouldShowelementSelectors();
+  const { dispatchShowOppositeShowElement, dispatchHideShownElement } =
+    useShouldShowElementActions();
+
   const location = useLocation();
   const path = location.pathname;
 
@@ -49,7 +47,7 @@ const UserBookingsHelp = () => {
       <>
         <AccordionTitle
           {...{ shouldShowElement }}
-          onClick={() => dispatch(toggleShowElement())}
+          onClick={dispatchShowOppositeShowElement}
         >
           <div>{shouldShowElement ? "ok, close" : "show help"}</div>
           <>{shouldShowElement ? "-" : "+"}</>
@@ -122,7 +120,7 @@ const UserBookingsHelp = () => {
 
             {!isAllChildrenRoute ? <ColourCodingTableHelp /> : null}
 
-            <YellowGreenButton onClick={() => dispatch(hideElement())}>
+            <YellowGreenButton onClick={dispatchHideShownElement}>
               ok, close
             </YellowGreenButton>
           </AccordionContent>

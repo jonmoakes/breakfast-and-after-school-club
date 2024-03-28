@@ -1,7 +1,9 @@
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 
-import useThunkIdsAndNextRequestLogic from "./logic/use-thunk-ids-and-next-request-logic";
+import useGetCurrentUserSelectors from "../../get-selectors/use-get-current-user-selectors";
+import useGetRequestDateDataSelectors from "../../get-selectors/use-get-request-date-data-selectors";
+
 import {
   requestBookingClosingTimesAsync,
   requestDateDataAsync,
@@ -11,11 +13,9 @@ import {
 
 const useGetDateDataEarlyFinishDatesBookingClosingTimesAndSessionTimesUseEffect =
   () => {
+    const { chosenDate, earlyFinishDates, bookingClosingTimes, sessionTimes } =
+      useGetRequestDateDataSelectors();
     const {
-      chosenDate,
-      canFireRequestEarlyFinishDates,
-      canFireRequestBookingClosingTimes,
-      canFireRequestSessionTimes,
       databaseId,
       termDatesCollectionId,
       earlyFinishDatesCollectionId,
@@ -23,62 +23,70 @@ const useGetDateDataEarlyFinishDatesBookingClosingTimesAndSessionTimesUseEffect 
       bookingClosingTimesDocumentId,
       sessionTimesCollectionId,
       sessionTimesDocumentId,
-    } = useThunkIdsAndNextRequestLogic();
+    } = useGetCurrentUserSelectors();
 
     const dispatch = useDispatch();
 
     useEffect(() => {
       if (!chosenDate) return;
+      const collectionId = termDatesCollectionId;
 
       dispatch(
-        requestDateDataAsync({
-          databaseId,
-          termDatesCollectionId,
-          chosenDate,
-        })
+        requestDateDataAsync({ databaseId, collectionId, chosenDate })
       ).then((resultAction) => {
-        if (canFireRequestEarlyFinishDates(resultAction)) {
+        if (
+          requestDateDataAsync.fulfilled.match(resultAction) &&
+          !earlyFinishDates &&
+          !bookingClosingTimes &&
+          !sessionTimes
+        ) {
+          const collectionId = earlyFinishDatesCollectionId;
           dispatch(
-            requestEarlyFinishDatesAsync({
-              databaseId,
-              earlyFinishDatesCollectionId,
-            })
+            requestEarlyFinishDatesAsync({ databaseId, collectionId })
           ).then((resultAction) => {
-            if (canFireRequestBookingClosingTimes(resultAction)) {
+            if (requestEarlyFinishDatesAsync.fulfilled.match(resultAction)) {
+              const collectionId = bookingClosingTimesCollectionId;
+              const documentId = bookingClosingTimesDocumentId;
               dispatch(
                 requestBookingClosingTimesAsync({
                   databaseId,
-                  bookingClosingTimesCollectionId,
-                  bookingClosingTimesDocumentId,
+                  collectionId,
+                  documentId,
                 })
               ).then((resultAction) => {
-                if (canFireRequestSessionTimes(resultAction)) {
+                if (
+                  requestBookingClosingTimesAsync.fulfilled.match(resultAction)
+                ) {
+                  const collectionId = sessionTimesCollectionId;
+                  const documentId = sessionTimesDocumentId;
                   dispatch(
                     requestSessionTimesAsync({
                       databaseId,
-                      sessionTimesCollectionId,
-                      sessionTimesDocumentId,
+                      collectionId,
+                      documentId,
                     })
                   );
                 }
               });
+            } else {
+              return;
             }
           });
         }
       });
     }, [
-      bookingClosingTimesCollectionId,
-      bookingClosingTimesDocumentId,
-      canFireRequestBookingClosingTimes,
-      canFireRequestEarlyFinishDates,
-      canFireRequestSessionTimes,
       chosenDate,
       databaseId,
+      termDatesCollectionId,
       dispatch,
       earlyFinishDatesCollectionId,
+      bookingClosingTimesCollectionId,
+      bookingClosingTimesDocumentId,
       sessionTimesCollectionId,
       sessionTimesDocumentId,
-      termDatesCollectionId,
+      bookingClosingTimes,
+      sessionTimes,
+      earlyFinishDates,
     ]);
   };
 

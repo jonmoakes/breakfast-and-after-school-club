@@ -1,5 +1,5 @@
 import usePricesToFixedLogic from "../book-a-session-hooks/logic/use-prices-to-fixed-logic";
-import useShouldShowElementSelectors from "../../../hooks/get-selectors/use-should-show-element-selectors";
+import useGetShouldShowElementSelectors from "../../../hooks/get-selectors/use-get-should-show-element-selectors";
 import useShouldShowElementActions from "../../../hooks/get-actions-and-thunks/use-should-show-element-actions";
 
 import {
@@ -14,18 +14,17 @@ import { StyledLink } from "../../../styles/link/link.styles";
 import { bookedSessionsUserRoute } from "../../../strings/routes/routes-strings";
 
 const SessionHelpAccordion = () => {
-  const { showOppositeShowElement, hideShownElement } =
+  const { shouldShowElement } = useGetShouldShowElementSelectors();
+  const { dispatchShowOppositeShowElement, dispatchHideShownElement } =
     useShouldShowElementActions();
   const { morningSessionPriceToFixed } = usePricesToFixedLogic();
-
-  const { shouldShowElement } = useShouldShowElementSelectors();
 
   return (
     <Accordion {...{ shouldShowElement }}>
       <>
         <AccordionTitle
           {...{ shouldShowElement }}
-          onClick={showOppositeShowElement}
+          onClick={dispatchShowOppositeShowElement}
         >
           <div>{shouldShowElement ? "ok, close" : "booking sessions help"}</div>
           <>{shouldShowElement ? "-" : "+"}</>
@@ -93,7 +92,7 @@ const SessionHelpAccordion = () => {
             <Text>
               you will also be emailed a confirmation of what you have booked.
             </Text>
-            <YellowGreenButton onClick={hideShownElement}>
+            <YellowGreenButton onClick={dispatchHideShownElement}>
               Ok, Close
             </YellowGreenButton>
           </AccordionContent>

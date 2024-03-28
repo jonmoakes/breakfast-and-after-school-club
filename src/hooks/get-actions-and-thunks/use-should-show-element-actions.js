@@ -10,27 +10,27 @@ import {
 const useShouldShowElementActions = () => {
   const dispatch = useDispatch();
 
-  const showOppositeShowElement = () => {
+  const dispatchShowOppositeShowElement = () => {
     dispatch(toggleShowElement());
   };
 
-  const hideShownElement = () => {
+  const dispatchHideShownElement = () => {
     dispatch(hideElement());
   };
 
-  const showOppositeShowSecondElement = () => {
+  const dispatchShowOppositeShowSecondElement = () => {
     dispatch(toggleShowSecondElement());
   };
 
-  const hideShownSecondElement = () => {
+  const dispatchHideShownSecondElement = () => {
     dispatch(hideSecondElement());
   };
 
   return {
-    showOppositeShowElement,
-    hideShownElement,
-    showOppositeShowSecondElement,
-    hideShownSecondElement,
+    dispatchShowOppositeShowElement,
+    dispatchHideShownElement,
+    dispatchShowOppositeShowSecondElement,
+    dispatchHideShownSecondElement,
   };
 };
 

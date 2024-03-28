@@ -1,10 +1,5 @@
-import { useSelector, useDispatch } from "react-redux";
-
-import {
-  hideElement,
-  toggleShowElement,
-  selectShouldShowElementSelectors,
-} from "../../store/should-show-element/should-show-element.slice";
+import useGetShouldShowElementSelectors from "../../hooks/get-selectors/use-get-should-show-element-selectors";
+import useShouldShowElementActions from "../../hooks/get-actions-and-thunks/use-should-show-element-actions";
 
 import {
   Accordion,
@@ -15,15 +10,16 @@ import { YellowGreenButton } from "../../styles/buttons/buttons.styles";
 import { Text } from "../../styles/p/p.styles";
 
 const Info = () => {
-  const { shouldShowElement } = useSelector(selectShouldShowElementSelectors);
-  const dispatch = useDispatch();
+  const { shouldShowElement } = useGetShouldShowElementSelectors();
+  const { dispatchShowOppositeShowElement, dispatchHideShownElement } =
+    useShouldShowElementActions();
 
   return (
     <Accordion {...{ shouldShowElement }}>
       <>
         <AccordionTitle
           {...{ shouldShowElement }}
-          onClick={() => dispatch(toggleShowElement())}
+          onClick={dispatchShowOppositeShowElement}
         >
           <div>{shouldShowElement ? "ok, close" : "update email help"}</div>
           <>{shouldShowElement ? "-" : "+"}</>
@@ -49,7 +45,7 @@ const Info = () => {
               address.
             </Text>
 
-            <YellowGreenButton onClick={() => dispatch(hideElement())}>
+            <YellowGreenButton onClick={dispatchHideShownElement}>
               Ok, Close
             </YellowGreenButton>
           </AccordionContent>

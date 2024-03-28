@@ -1,6 +1,6 @@
 import usePricesToFixedLogic from "../book-a-session-hooks/logic/use-prices-to-fixed-logic";
 import useGetRequestDateDataSelectors from "../../../hooks/get-selectors/use-get-request-date-data-selectors";
-import useShouldShowElementSelectors from "../../../hooks/get-selectors/use-should-show-element-selectors";
+import useShouldShowElementSelectors from "../../../hooks/get-selectors/use-get-should-show-element-selectors";
 import useShouldShowElementActions from "../../../hooks/get-actions-and-thunks/use-should-show-element-actions";
 
 import {
@@ -26,8 +26,10 @@ const TimesAndPricesAccordion = () => {
     afternoonShortSessionTime,
     afternoonLongSessionTime,
   } = useGetRequestDateDataSelectors();
-  const { showOppositeShowSecondElement, hideShownSecondElement } =
-    useShouldShowElementActions();
+  const {
+    dispatchShowOppositeShowSecondElement,
+    dispatchHideShownSecondElement,
+  } = useShouldShowElementActions();
   const { shouldShowSecondElement } = useShouldShowElementSelectors();
 
   // SecondAccordion is for if there are 2 accordions on a page as they have separate states.
@@ -36,7 +38,7 @@ const TimesAndPricesAccordion = () => {
       <>
         <SecondAccordionTitle
           {...{ shouldShowSecondElement }}
-          onClick={showOppositeShowSecondElement}
+          onClick={dispatchShowOppositeShowSecondElement}
         >
           <div>
             {shouldShowSecondElement ? "ok, close" : "view times & prices"}
@@ -101,7 +103,7 @@ const TimesAndPricesAccordion = () => {
             </Text>
             <BlackHr />
 
-            <YellowGreenButton onClick={hideShownSecondElement}>
+            <YellowGreenButton onClick={dispatchHideShownSecondElement}>
               Ok, Close
             </YellowGreenButton>
           </AccordionContent>

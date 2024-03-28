@@ -1,9 +1,5 @@
-import { useSelector, useDispatch } from "react-redux";
-
-import {
-  toggleShowElement,
-  selectShouldShowElementSelectors,
-} from "../../store/should-show-element/should-show-element.slice";
+import useShouldShowElementActions from "../../hooks/get-actions-and-thunks/use-should-show-element-actions";
+import useGetShouldShowElementSelectors from "../../hooks/get-selectors/use-get-should-show-element-selectors";
 
 import {
   Accordion,
@@ -14,9 +10,8 @@ import {
 import { Text } from "../../styles/p/p.styles";
 
 const ChosenEntryChildDetailsAccordion = () => {
-  const { shouldShowElement } = useSelector(selectShouldShowElementSelectors);
-
-  const dispatch = useDispatch();
+  const { shouldShowElement } = useGetShouldShowElementSelectors();
+  const { dispatchShowOppositeShowElement } = useShouldShowElementActions();
 
   return (
     <ParentDiv>
@@ -24,7 +19,7 @@ const ChosenEntryChildDetailsAccordion = () => {
         <>
           <AccordionTitle
             {...{ shouldShowElement }}
-            onClick={() => dispatch(toggleShowElement())}
+            onClick={dispatchShowOppositeShowElement}
           >
             <div>{shouldShowElement ? "ok, close" : "child details help"}</div>
             <>{shouldShowElement ? "-" : "+"}</>

@@ -1,10 +1,5 @@
-import { useSelector, useDispatch } from "react-redux";
-
-import {
-  hideElement,
-  toggleShowElement,
-  selectShouldShowElementSelectors,
-} from "../../../store/should-show-element/should-show-element.slice";
+import useGetShouldShowElementSelectors from "../../../hooks/get-selectors/use-get-should-show-element-selectors";
+import useShouldShowElementActions from "../../../hooks/get-actions-and-thunks/use-should-show-element-actions";
 
 import { YellowGreenButton } from "../../../styles/buttons/buttons.styles";
 import {
@@ -26,9 +21,9 @@ const ContactFormAccordion = () => {
     currentUser,
   } = useGetCurrentUserSelectors();
 
-  const { shouldShowElement } = useSelector(selectShouldShowElementSelectors);
-
-  const dispatch = useDispatch();
+  const { shouldShowElement } = useGetShouldShowElementSelectors();
+  const { dispatchShowOppositeShowElement, dispatchHideShownElement } =
+    useShouldShowElementActions();
 
   return (
     <>
@@ -37,7 +32,7 @@ const ContactFormAccordion = () => {
           <>
             <AccordionTitle
               {...{ shouldShowElement }}
-              onClick={() => dispatch(toggleShowElement())}
+              onClick={dispatchShowOppositeShowElement}
             >
               <div>
                 {shouldShowElement ? "ok, close" : "name and email info"}
@@ -68,7 +63,7 @@ const ContactFormAccordion = () => {
                 <Text>
                   <StyledLink to={updateEmailRoute}>tap here</StyledLink>
                 </Text>
-                <YellowGreenButton onClick={() => dispatch(hideElement())}>
+                <YellowGreenButton onClick={dispatchHideShownElement}>
                   Ok, Close
                 </YellowGreenButton>
               </AccordionContent>

@@ -1,13 +1,11 @@
-import { useSelector } from "react-redux";
-
-import { selectSignInFormSelectors } from "../../../store/sign-in-form/sign-in-form.slice";
+import useSignInFormActions from "../../../hooks/get-actions-and-thunks/use-sign-in-form-actions";
+import useGetSignInFormSelectors from "../../../hooks/get-selectors/use-get-sign-in-form-selectors";
 
 import { Label, StyledInput } from "../../../styles/form/form.styles";
 
-const SignInSchoolCode = ({ handleSignInFormChange }) => {
-  const { signInFormDetails } = useSelector(selectSignInFormSelectors);
-
-  const { schoolCode } = signInFormDetails;
+const SignInSchoolCode = () => {
+  const { schoolCode } = useGetSignInFormSelectors();
+  const { dispatchHandleSignInFormChange } = useSignInFormActions();
 
   return (
     <>
@@ -16,7 +14,7 @@ const SignInSchoolCode = ({ handleSignInFormChange }) => {
         type="text"
         name="schoolCode"
         value={schoolCode || ""}
-        onChange={handleSignInFormChange}
+        onChange={dispatchHandleSignInFormChange}
         required
       />
     </>
