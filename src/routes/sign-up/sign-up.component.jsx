@@ -1,10 +1,7 @@
-import { useSelector } from "react-redux";
 import { Navigate } from "react-router-dom";
 
 import useHandleSignUpFormError from "./sign-up-form-hooks/use-handle-sign-up-form-error";
-import useHandleSignUpFormChange from "./sign-up-form-hooks/use-handle-sign-up-form-change";
-
-import { selectCurrentUserSelectors } from "../../store/user/user.slice";
+import useGetCurrentUserSelectors from "../../hooks/get-selectors/use-get-current-user-selectors";
 
 import Loader from "../../components/loader/loader.component";
 import SignUpName from "./sections/sign-up-name.component";
@@ -26,11 +23,7 @@ import { signInRoute, accountRoute } from "../../strings/routes/routes-strings";
 
 const SignUp = () => {
   useHandleSignUpFormError();
-  const { handleSignUpFormChange } = useHandleSignUpFormChange();
-
-  const { currentUser, currentUserIsLoading } = useSelector(
-    selectCurrentUserSelectors
-  );
+  const { currentUser, currentUserIsLoading } = useGetCurrentUserSelectors();
 
   return (
     <Container>
@@ -54,11 +47,11 @@ const SignUp = () => {
           <RedSpan>* </RedSpan> = required field:
         </Text>
         <Form>
-          <SignUpName {...{ handleSignUpFormChange }} />
-          <SignUpEmail {...{ handleSignUpFormChange }} />
-          <SignUpPhoneNumber {...{ handleSignUpFormChange }} />
-          <SignUpSchoolCode {...{ handleSignUpFormChange }} />
-          <SignUpPasswords {...{ handleSignUpFormChange }} />
+          <SignUpName />
+          <SignUpEmail />
+          <SignUpPhoneNumber />
+          <SignUpSchoolCode />
+          <SignUpPasswords />
           <SignUpButton />
         </Form>
       </ParentDiv>

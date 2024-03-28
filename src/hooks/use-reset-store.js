@@ -26,10 +26,10 @@ import useHandlePaymentActions from "./get-actions-and-thunks/handle-payment-act
 import useSendEmailActions from "./get-actions-and-thunks/use-send-email-actions";
 import useGetSessionTypesAndPricesSelectors from "./get-selectors/use-get-session-types-and-prices-selectors";
 import useSessionTypesAndPricesActions from "./get-actions-and-thunks/session-types-and-prices-actions-and-thunks/use-session-types-and-prices-actions";
+import useShouldShowElementActions from "./get-actions-and-thunks/use-should-show-element-actions";
 import useSignInFormActions from "./get-actions-and-thunks/use-sign-in-form-actions";
+import useSignUpFormActions from "./get-actions-and-thunks/use-sign-up-form-actions";
 
-import { resetShouldShowElementState } from "../store/should-show-element/should-show-element.slice";
-import { resetSignUpFormState } from "../store/sign-up-form/sign-up-form.slice";
 import { resetUpdateEmailState } from "../store/update-email/update-email.slice";
 import { resetWalletFundsToAddState } from "../store/wallet-funds-to-add/wallet-funds-to-add.slice";
 import { resetUserBookingToDeleteState } from "../store/user-booking-to-delete/user-booking-to-delete.slice";
@@ -99,7 +99,10 @@ const useResetStore = () => {
   const { dispatchResetSendEmailState } = useSendEmailActions();
   const { sessionTypesAndPricesError } = useGetSessionTypesAndPricesSelectors();
   const { dispatchResetSessionPricesError } = useSessionTypesAndPricesActions();
+  const { dispatchResetShouldShowElementState } = useShouldShowElementActions();
+
   const { dispatchResetSignInFormState } = useSignInFormActions();
+  const { dispatchResetSignUpFormState } = useSignUpFormActions();
 
   const dispatch = useDispatch();
   const location = useLocation();
@@ -108,12 +111,12 @@ const useResetStore = () => {
   const resetStore = () => {
     switch (path) {
       case signInRoute:
-        dispatch(resetShouldShowElementState());
+        dispatchResetShouldShowElementState();
         dispatchResetSignInFormState();
         break;
       case signUpRoute:
-        dispatch(resetShouldShowElementState());
-        dispatch(resetSignUpFormState());
+        dispatchResetShouldShowElementState();
+        dispatchResetSignUpFormState();
         break;
       case forgotPasswordRequestRoute:
         dispatchResetGenerateNewPasswordRequestState();
@@ -127,7 +130,7 @@ const useResetStore = () => {
         break;
       case addFundsRoute:
         dispatchResetCardInputResultState();
-        dispatch(resetShouldShowElementState());
+        dispatchResetShouldShowElementState();
         dispatch(resetWalletFundsToAddState());
         dispatchResetPreResultHandlePaymentState();
         break;
@@ -139,7 +142,7 @@ const useResetStore = () => {
         break;
       case bookSessionRoute:
         dispatchResetRequestDateDataState();
-        dispatch(resetShouldShowElementState());
+        dispatchResetShouldShowElementState();
         dispatchResetCurrentDateAndTimeState();
         dispatchResetBookSessionState();
         dispatchResetSendEmailState();
@@ -152,7 +155,7 @@ const useResetStore = () => {
         }
         break;
       case updateEmailRoute:
-        dispatch(resetShouldShowElementState());
+        dispatchResetShouldShowElementState();
         dispatch(resetUpdateEmailState());
         break;
       case childInfoRoute:

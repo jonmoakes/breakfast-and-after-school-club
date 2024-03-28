@@ -1,10 +1,8 @@
-import { useSelector } from "react-redux";
-
+import useSignUpFormActions from "../../../hooks/get-actions-and-thunks/use-sign-up-form-actions";
 import useHideSignUpPasswordOnEmpty from "../sign-up-form-hooks/use-hide-sign-up-password-on-empty";
 import useGetPasswordIsVisibleSelectors from "../../../hooks/get-selectors/use-get-password-is-visible-selectors";
+import useGetSignUpFormSelectors from "../../../hooks/get-selectors/use-get-sign-up-form-selectors";
 import usePasswordIsVisibleActions from "../../../hooks/get-actions-and-thunks/use-password-is-visible-actions";
-
-import { selectSignUpFormSelectors } from "../../../store/sign-up-form/sign-up-form.slice";
 
 import { RelativePositionDiv } from "../../../styles/div/div.styles";
 import { Label, PasswordInput } from "../../../styles/form/form.styles";
@@ -19,7 +17,7 @@ import {
   confirmYourPassword,
 } from "../../../strings/placeholders/placeholders-strings";
 
-const SignUpPasswords = ({ handleSignUpFormChange }) => {
+const SignUpPasswords = () => {
   useHideSignUpPasswordOnEmpty();
   const { signUpPasswordIsVisible, signUpConfirmPasswordIsVisible } =
     useGetPasswordIsVisibleSelectors();
@@ -27,10 +25,9 @@ const SignUpPasswords = ({ handleSignUpFormChange }) => {
     dispatchToggleSignUpPasswordIsVisible,
     dispatchToggleSignUpConfirmPasswordIsVisible,
   } = usePasswordIsVisibleActions();
+  const { dispatchHandleSignUpFormChange } = useSignUpFormActions();
 
-  const { signUpFormDetails } = useSelector(selectSignUpFormSelectors);
-
-  const { password, confirmPassword } = signUpFormDetails;
+  const { password, confirmPassword } = useGetSignUpFormSelectors();
 
   return (
     <>
@@ -40,7 +37,7 @@ const SignUpPasswords = ({ handleSignUpFormChange }) => {
       <RelativePositionDiv>
         <PasswordInput
           name="password"
-          onChange={handleSignUpFormChange}
+          onChange={dispatchHandleSignUpFormChange}
           placeholder={minEightCharacters}
           required
           type={signUpPasswordIsVisible ? "text" : "password"}
@@ -61,7 +58,7 @@ const SignUpPasswords = ({ handleSignUpFormChange }) => {
         <PasswordInput
           type={signUpConfirmPasswordIsVisible ? "text" : "password"}
           name="confirmPassword"
-          onChange={handleSignUpFormChange}
+          onChange={dispatchHandleSignUpFormChange}
           placeholder={confirmYourPassword}
           required
         />

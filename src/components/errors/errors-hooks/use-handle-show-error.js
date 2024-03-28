@@ -1,4 +1,3 @@
-import { useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
 
 import useGetHandlePaymentSelectors from "../../../hooks/get-selectors/use-get-handle-payment-selectors";

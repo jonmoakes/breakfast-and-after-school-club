@@ -1,9 +1,9 @@
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 
+import useGetSignUpFormSelectors from "../../../hooks/get-selectors/use-get-sign-up-form-selectors";
 import useFireSwal from "../../../hooks/use-fire-swal";
 import useShowInvalidEmailMessageSwal from "../../../hooks/use-show-invalid-email-message-swal";
 
-import { selectSignUpFormSelectors } from "../../../store/sign-up-form/sign-up-form.slice";
 import { signUpAsync } from "../../../store/user/user.thunks";
 
 import { validateEmail } from "../../../functions/validate-email";
@@ -19,13 +19,12 @@ import {
 } from "../../../strings/errors/errors-strings";
 
 const useHandleSignUpFormSubmit = () => {
+  const { name, email, phoneNumber, schoolCode, password, confirmPassword } =
+    useGetSignUpFormSelectors();
   const { fireSwal } = useFireSwal();
   const { showInvalidEmailMessageSwal } = useShowInvalidEmailMessageSwal();
-  const { signUpFormDetails } = useSelector(selectSignUpFormSelectors);
 
   const dispatch = useDispatch();
-  const { name, email, phoneNumber, schoolCode, password, confirmPassword } =
-    signUpFormDetails;
 
   const handleSignUpFormSubmit = () => {
     if (!name || !email || !schoolCode || !password || !confirmPassword) {

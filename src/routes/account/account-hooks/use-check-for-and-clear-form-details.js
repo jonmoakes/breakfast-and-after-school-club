@@ -1,20 +1,15 @@
 import { useCallback, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
 
 import useGetSignInFormSelectors from "../../../hooks/get-selectors/use-get-sign-in-form-selectors";
+import useGetSignUpFormSelectors from "../../../hooks/get-selectors/use-get-sign-up-form-selectors";
 import useSignInFormActions from "../../../hooks/get-actions-and-thunks/use-sign-in-form-actions";
-
-import {
-  resetSignUpFormState,
-  selectSignUpFormSelectors,
-} from "../../../store/sign-up-form/sign-up-form.slice";
+import useSignUpFormActions from "../../../hooks/get-actions-and-thunks/use-sign-up-form-actions";
 
 const useCheckForAndClearFormDetails = () => {
   const { signInFormDetails } = useGetSignInFormSelectors();
-  const { signUpFormDetails } = useSelector(selectSignUpFormSelectors);
+  const { signUpFormDetails } = useGetSignUpFormSelectors();
   const { dispatchResetSignInFormState } = useSignInFormActions();
-
-  const dispatch = useDispatch();
+  const { dispatchResetSignUpFormState } = useSignUpFormActions();
 
   const checkForSignInDetails = useCallback(() => {
     if (
@@ -38,16 +33,16 @@ const useCheckForAndClearFormDetails = () => {
           Object.values(signUpFormDetails).every((value) => value !== "")
       )
     ) {
-      dispatch(resetSignUpFormState());
+      dispatchResetSignUpFormState();
     } else {
       return;
     }
-  }, [signInFormDetails, signUpFormDetails, dispatch]);
+  }, [signInFormDetails, signUpFormDetails, dispatchResetSignUpFormState]);
 
   useEffect(() => {
     checkForSignInDetails();
     checkForSignUpDetails();
-  }, [checkForSignInDetails, checkForSignUpDetails, dispatch]);
+  }, [checkForSignInDetails, checkForSignUpDetails]);
 };
 
 export default useCheckForAndClearFormDetails;

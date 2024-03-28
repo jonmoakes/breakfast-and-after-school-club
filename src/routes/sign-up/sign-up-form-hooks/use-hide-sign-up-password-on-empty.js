@@ -1,21 +1,17 @@
 import { useEffect } from "react";
-import { useSelector } from "react-redux";
 
+import useGetSignUpFormSelectors from "../../../hooks/get-selectors/use-get-sign-up-form-selectors";
 import useGetPasswordIsVisibleSelectors from "../../../hooks/get-selectors/use-get-password-is-visible-selectors";
 import usePasswordIsVisibleActions from "../../../hooks/get-actions-and-thunks/use-password-is-visible-actions";
 
-import { selectSignUpFormSelectors } from "../../../store/sign-up-form/sign-up-form.slice";
-
 const useHideSignUpPasswordOnEmpty = () => {
+  const { password, confirmPassword } = useGetSignUpFormSelectors();
   const { signUpPasswordIsVisible, signUpConfirmPasswordIsVisible } =
     useGetPasswordIsVisibleSelectors();
-  const { signUpFormDetails } = useSelector(selectSignUpFormSelectors);
   const {
     dispatchHideSignUpPasswordIsVisible,
     dispatchHideSignUpConfirmPasswordIsVisible,
   } = usePasswordIsVisibleActions();
-
-  const { password, confirmPassword } = signUpFormDetails;
 
   useEffect(() => {
     if (signUpPasswordIsVisible && !password.length) {

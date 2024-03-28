@@ -5,6 +5,7 @@ import {
   toggleShowElement,
   hideSecondElement,
   toggleShowSecondElement,
+  resetShouldShowElementState,
 } from "../../store/should-show-element/should-show-element.slice";
 
 const useShouldShowElementActions = () => {
@@ -26,11 +27,16 @@ const useShouldShowElementActions = () => {
     dispatch(hideSecondElement());
   };
 
+  const dispatchResetShouldShowElementState = () => {
+    dispatch(resetShouldShowElementState());
+  };
+
   return {
     dispatchShowOppositeShowElement,
     dispatchHideShownElement,
     dispatchShowOppositeShowSecondElement,
     dispatchHideShownSecondElement,
+    dispatchResetShouldShowElementState,
   };
 };
 
