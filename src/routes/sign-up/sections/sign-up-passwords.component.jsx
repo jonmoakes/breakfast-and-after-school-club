@@ -1,4 +1,3 @@
-import useSignUpFormActions from "../../../hooks/get-actions-and-thunks/use-sign-up-form-actions";
 import useHideSignUpPasswordOnEmpty from "../sign-up-form-hooks/use-hide-sign-up-password-on-empty";
 import useGetPasswordIsVisibleSelectors from "../../../hooks/get-selectors/use-get-password-is-visible-selectors";
 import useGetSignUpFormSelectors from "../../../hooks/get-selectors/use-get-sign-up-form-selectors";
@@ -17,17 +16,15 @@ import {
   confirmYourPassword,
 } from "../../../strings/placeholders/placeholders-strings";
 
-const SignUpPasswords = () => {
+const SignUpPasswords = ({ dispatchHandleSignUpFormChange }) => {
   useHideSignUpPasswordOnEmpty();
   const { signUpPasswordIsVisible, signUpConfirmPasswordIsVisible } =
     useGetPasswordIsVisibleSelectors();
+  const { password, confirmPassword } = useGetSignUpFormSelectors();
   const {
     dispatchToggleSignUpPasswordIsVisible,
     dispatchToggleSignUpConfirmPasswordIsVisible,
   } = usePasswordIsVisibleActions();
-  const { dispatchHandleSignUpFormChange } = useSignUpFormActions();
-
-  const { password, confirmPassword } = useGetSignUpFormSelectors();
 
   return (
     <>

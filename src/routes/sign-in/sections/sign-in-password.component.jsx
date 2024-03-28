@@ -2,17 +2,16 @@ import useHideSignInPasswordOnEmpty from "../sign-in-form-hooks/use-hide-sign-in
 import useGetPasswordIsVisibleSelectors from "../../../hooks/get-selectors/use-get-password-is-visible-selectors";
 import usePasswordIsVisibleActions from "../../../hooks/get-actions-and-thunks/use-password-is-visible-actions";
 import useGetSignInFormSelectors from "../../../hooks/get-selectors/use-get-sign-in-form-selectors";
-import useSignInFormActions from "../../../hooks/get-actions-and-thunks/use-sign-in-form-actions";
 
 import { RelativePositionDiv } from "../../../styles/div/div.styles";
 import { Label, PasswordInput } from "../../../styles/form/form.styles";
 import { ToggleSignInPassword } from "../../../styles/span/span.styles";
 
-const SignInPassword = () => {
+const SignInPassword = ({ dispatchHandleSignInFormChange }) => {
   useHideSignInPasswordOnEmpty();
   const { password } = useGetSignInFormSelectors();
   const { signInPasswordIsVisible } = useGetPasswordIsVisibleSelectors();
-  const { dispatchHandleSignInFormChange } = useSignInFormActions();
+
   const { dispatchToggleSignInPasswordIsVisible } =
     usePasswordIsVisibleActions();
 

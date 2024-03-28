@@ -1,11 +1,7 @@
-import useSignUpFormActions from "../../../hooks/get-actions-and-thunks/use-sign-up-form-actions";
-
 import { LowercasedInput, Label } from "../../../styles/form/form.styles";
 import { RedSpan } from "../../../styles/span/span.styles";
 
-const SignUpEmail = () => {
-  const { dispatchHandleSignUpFormChange } = useSignUpFormActions();
-
+const SignUpEmail = ({ dispatchHandleSignUpFormChange }) => {
   return (
     <>
       <Label>

@@ -1,4 +1,5 @@
 import useHandleSignInFormError from "./sign-in-form-hooks/use-handle-sign-in-form-error";
+import useSignInFormActions from "../../hooks/get-actions-and-thunks/use-sign-in-form-actions";
 
 import HandleNavigateAndLoader from "./sections/handle-navigate-and-loader.component";
 import Email from "./sections/sign-in-email.component";
@@ -17,6 +18,7 @@ import { signUpRoute } from "../../strings/routes/routes-strings";
 
 const SignIn = () => {
   useHandleSignInFormError();
+  const { dispatchHandleSignInFormChange } = useSignInFormActions();
 
   return (
     <Container>
@@ -36,9 +38,9 @@ const SignIn = () => {
 
       <ParentDiv>
         <Form>
-          <Email />
-          <SignInSchoolCode />
-          <Passwords />
+          <Email {...{ dispatchHandleSignInFormChange }} />
+          <SignInSchoolCode {...{ dispatchHandleSignInFormChange }} />
+          <Passwords {...{ dispatchHandleSignInFormChange }} />
           <SignInButton />
         </Form>
       </ParentDiv>

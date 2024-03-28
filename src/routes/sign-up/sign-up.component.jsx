@@ -2,6 +2,7 @@ import { Navigate } from "react-router-dom";
 
 import useHandleSignUpFormError from "./sign-up-form-hooks/use-handle-sign-up-form-error";
 import useGetCurrentUserSelectors from "../../hooks/get-selectors/use-get-current-user-selectors";
+import useSignUpFormActions from "../../hooks/get-actions-and-thunks/use-sign-up-form-actions";
 
 import Loader from "../../components/loader/loader.component";
 import SignUpName from "./sections/sign-up-name.component";
@@ -24,6 +25,7 @@ import { signInRoute, accountRoute } from "../../strings/routes/routes-strings";
 const SignUp = () => {
   useHandleSignUpFormError();
   const { currentUser, currentUserIsLoading } = useGetCurrentUserSelectors();
+  const { dispatchHandleSignUpFormChange } = useSignUpFormActions();
 
   return (
     <Container>
@@ -47,11 +49,11 @@ const SignUp = () => {
           <RedSpan>* </RedSpan> = required field:
         </Text>
         <Form>
-          <SignUpName />
-          <SignUpEmail />
-          <SignUpPhoneNumber />
-          <SignUpSchoolCode />
-          <SignUpPasswords />
+          <SignUpName {...{ dispatchHandleSignUpFormChange }} />
+          <SignUpEmail {...{ dispatchHandleSignUpFormChange }} />
+          <SignUpPhoneNumber {...{ dispatchHandleSignUpFormChange }} />
+          <SignUpSchoolCode {...{ dispatchHandleSignUpFormChange }} />
+          <SignUpPasswords {...{ dispatchHandleSignUpFormChange }} />
           <SignUpButton />
         </Form>
       </ParentDiv>
