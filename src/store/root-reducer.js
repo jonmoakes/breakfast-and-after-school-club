@@ -16,7 +16,6 @@ import { requestDateDataReducer } from "./request-date-data/request-date-data.sl
 import { handlePaymentReducer } from "./handle-payment/handle-payment.slice";
 import { bookSessionReducer } from "./book-session/book-session.slice";
 import { sessionTypesAndPricesReducer } from "./session-types-and-prices/session-types-and-prices.slice";
-import { dateAndTimeReducer } from "./date-and-time/date-and-time.slice";
 import { addChildInfoReducer } from "./add-child-info/add-child-info.slice";
 import { getUsersChildrenReducer } from "./get-users-children/get-users-children.slice";
 import { editChildInfoReducer } from "./edit-child-info/edit-child-info.slice";
@@ -48,7 +47,6 @@ export const rootReducer = combineReducers({
   handlePayment: handlePaymentReducer,
   bookSession: bookSessionReducer,
   sessionTypesAndPrices: sessionTypesAndPricesReducer,
-  dateAndTime: dateAndTimeReducer,
   addChildInfo: addChildInfoReducer,
   getUsersChildren: getUsersChildrenReducer,
   editChildInfo: editChildInfoReducer,

@@ -10,8 +10,6 @@ import {
 
 import useIsOnline from "../../hooks/use-is-online";
 import useGetBookedSessionsUserSelectors from "../../hooks/get-selectors/use-get-booked-sessions-user-selectors";
-import useBookedSessionsUserLogic from "./booked-sessions-user-hooks/logic/use-booked-sessions-user-logic";
-import useSetDateAndTime from "../../hooks/use-set-date-and-time";
 
 import { TABLE_COLUMNS } from "./table-columns";
 import NetworkError from "../../components/errors/network-error.component";
@@ -27,10 +25,8 @@ import { scrollToTop } from "../../functions/scroll-top-top";
 
 const BookedSessionsUserTable = () => {
   const { isOnline } = useIsOnline();
-  const { milliseconds } = useBookedSessionsUserLogic();
   const { bookedSessionsUserError } = useGetBookedSessionsUserSelectors();
   let { sortedUserBookings } = useGetBookedSessionsUserSelectors();
-  useSetDateAndTime(milliseconds);
 
   const columns = useMemo(() => TABLE_COLUMNS, []);
   const data = useMemo(() => sortedUserBookings, [sortedUserBookings]);

@@ -9,7 +9,6 @@ import useBookedSessionsOwnerActions from "./get-actions-and-thunks/booked-sessi
 import useBookedSessionsUserActions from "./get-actions-and-thunks/booked-sessions-user-actions-and-thunks/use-booked-session-user-actions";
 import useGetRequestDateDataSelectors from "./get-selectors/use-get-request-date-data-selectors";
 import useRequestDateDataActions from "./get-actions-and-thunks/request-date-data-actions-and-thunks/use-request-date-data-actions";
-import useCurrentDateAndTimeActions from "./get-actions-and-thunks/use-current-date-and-time-actions";
 import useCardInputResultActions from "./get-actions-and-thunks/use-card-input-result-actions";
 import useChooseNewPasswordActions from "./get-actions-and-thunks/choose-new-password-actions-and-thunks/use-choose-new-password-actions";
 import useContactFormActions from "./get-actions-and-thunks/contact-form-actions-and-thunks/use-contact-form-actions";
@@ -74,8 +73,6 @@ const useResetStore = () => {
     dispatchResetRequestDateDataError,
     dispatchResetRequestDateDataState,
   } = useRequestDateDataActions();
-  const { dispatchResetCurrentDateAndTimeState } =
-    useCurrentDateAndTimeActions();
   const { dispatchResetCardInputResultState } = useCardInputResultActions();
   const { dispatchResetChooseNewPasswordState } = useChooseNewPasswordActions();
   const { dispatchResetContactFormState } = useContactFormActions();
@@ -143,7 +140,6 @@ const useResetStore = () => {
       case bookSessionRoute:
         dispatchResetRequestDateDataState();
         dispatchResetShouldShowElementState();
-        dispatchResetCurrentDateAndTimeState();
         dispatchResetBookSessionState();
         dispatchResetSendEmailState();
         if (sessionTypesAndPricesError) {
