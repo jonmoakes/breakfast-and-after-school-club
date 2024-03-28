@@ -23,6 +23,9 @@ export const updateEmailSlice = createSlice({
     resetUpdateEmailError(state) {
       state.updateEmailError = null;
     },
+    resetUpdateEmailResult(state) {
+      state.updateEmailResult = "";
+    },
     resetUpdateEmailState: () => {
       return INITIAL_STATE;
     },
@@ -71,6 +74,7 @@ export const {
   setUpdateEmailDetails,
   resetUpdateEmailState,
   resetUpdateEmailError,
+  resetUpdateEmailResult,
 } = updateEmailSlice.actions;
 export const { selectUpdateEmailSelectors } = updateEmailSlice.selectors;
 

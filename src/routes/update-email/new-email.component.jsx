@@ -1,13 +1,10 @@
-import { useSelector } from "react-redux";
-
-import useHandleUpdateEmailDetails from "./update-email-hooks/use-handle-update-email-details";
+import useGetUpdateEmailSelectors from "../../hooks/get-selectors/use-get-update-email-selectors";
+import useUpdateEmailActions from "../../hooks/get-actions-and-thunks/update-email-actions-and-thunks/use-update-email-actions";
 import useHideUpdateEmailPasswordOnEmpty from "./update-email-hooks/use-hide-update-email-password-on-empty";
 import useConfirmUpdateEmail from "./update-email-hooks/use-confirm-update-email";
 import useIsOnline from "../../hooks/use-is-online";
 import useGetPasswordIsVisibleSelectors from "../../hooks/get-selectors/use-get-password-is-visible-selectors";
 import usePasswordIsVisibleActions from "../../hooks/get-actions-and-thunks/use-password-is-visible-actions";
-
-import { selectUpdateEmailSelectors } from "../../store/update-email/update-email.slice";
 
 import NetworkError from "../../components/errors/network-error.component";
 
@@ -28,15 +25,13 @@ import {
 
 const NewEmail = () => {
   useHideUpdateEmailPasswordOnEmpty();
-  const { updateEmailDetails } = useSelector(selectUpdateEmailSelectors);
+  const { newEmail, confirmNewEmail, password } = useGetUpdateEmailSelectors();
   const { updateEmailPasswordIsVisible } = useGetPasswordIsVisibleSelectors();
   const { dispatchToggleUpdateEmailPasswordIsVisible } =
     usePasswordIsVisibleActions();
   const { confirmUpdateEmail } = useConfirmUpdateEmail();
-  const { handleUpdateEmailDetailsChange } = useHandleUpdateEmailDetails();
+  const { dispatchHandleUpdateEmailDetailsChange } = useUpdateEmailActions();
   const { isOnline } = useIsOnline();
-
-  const { newEmail, confirmNewEmail, password } = updateEmailDetails;
 
   return (
     <>
@@ -48,7 +43,7 @@ const NewEmail = () => {
           value={newEmail || ""}
           placeholder={enterEmailAddress}
           required
-          onChange={handleUpdateEmailDetailsChange}
+          onChange={dispatchHandleUpdateEmailDetailsChange}
         />
 
         <LowercasedInput
@@ -57,7 +52,7 @@ const NewEmail = () => {
           value={confirmNewEmail || ""}
           placeholder="confirm new email address"
           required
-          onChange={handleUpdateEmailDetailsChange}
+          onChange={dispatchHandleUpdateEmailDetailsChange}
         />
 
         <Label>your password:</Label>
@@ -68,7 +63,7 @@ const NewEmail = () => {
             value={password || ""}
             placeholder={enterYourPasswordPlaceholder}
             required
-            onChange={handleUpdateEmailDetailsChange}
+            onChange={dispatchHandleUpdateEmailDetailsChange}
           />
 
           {password.length ? (

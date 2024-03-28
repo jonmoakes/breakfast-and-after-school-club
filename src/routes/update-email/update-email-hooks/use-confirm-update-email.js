@@ -1,11 +1,10 @@
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 
 import useFireSwal from "../../../hooks/use-fire-swal";
 import useConfirmSwal from "../../../hooks/use-confirm-swal";
 import useShowInvalidEmailMessageSwal from "../../../hooks/use-show-invalid-email-message-swal";
-
-import { selectCurrentUserSelectors } from "../../../store/user/user.slice";
-import { selectUpdateEmailSelectors } from "../../../store/update-email/update-email.slice";
+import useGetUpdateEmailSelectors from "../../../hooks/get-selectors/use-get-update-email-selectors";
+import useGetCurrentUserSelectors from "../../../hooks/get-selectors/use-get-current-user-selectors";
 
 import { updateEmailAsync } from "../../../store/update-email/update-email.thunks";
 
@@ -21,21 +20,19 @@ import {
 import { validateEmail } from "../../../functions/validate-email";
 
 const useConfirmUpdateEmail = () => {
+  const { newEmail, confirmNewEmail, password } = useGetUpdateEmailSelectors();
+
+  const {
+    databaseId,
+    userCollectionId: collectionId,
+    id,
+    email,
+  } = useGetCurrentUserSelectors();
   const { fireSwal } = useFireSwal();
   const { confirmSwal } = useConfirmSwal();
   const { showInvalidEmailMessageSwal } = useShowInvalidEmailMessageSwal();
 
-  const { updateEmailDetails } = useSelector(selectUpdateEmailSelectors);
-  const { currentUser, currentUserEnvironmentVariables } = useSelector(
-    selectCurrentUserSelectors
-  );
-
   const dispatch = useDispatch();
-
-  const { id, email } = currentUser;
-  const { newEmail, confirmNewEmail, password } = updateEmailDetails;
-  const { databaseId, userCollectionId: collectionId } =
-    currentUserEnvironmentVariables;
 
   const confirmResult = () => {
     dispatch(

@@ -1,13 +1,10 @@
 import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+
 import { useNavigate } from "react-router-dom";
 
+import useGetUpdateEmailSelectors from "../../../hooks/get-selectors/use-get-update-email-selectors";
+import useUpdateEmailActions from "../../../hooks/get-actions-and-thunks/update-email-actions-and-thunks/use-update-email-actions";
 import useFireSwal from "../../../hooks/use-fire-swal";
-
-import {
-  resetUpdateEmailError,
-  selectUpdateEmailSelectors,
-} from "../../../store/update-email/update-email.slice";
 
 import {
   appwritePasswordError,
@@ -22,13 +19,11 @@ import {
 } from "../../../strings/infos/infos-strings";
 
 const useUpdateEmailResultResultSwal = () => {
+  const { updateEmailResult, updateEmailError } = useGetUpdateEmailSelectors();
+  const { dispatchResetUpdateEmailError, dispatchResetUpdateEmailResult } =
+    useUpdateEmailActions();
   const { fireSwal } = useFireSwal();
 
-  const { updateEmailResult, updateEmailError } = useSelector(
-    selectUpdateEmailSelectors
-  );
-
-  const dispatch = useDispatch();
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -61,7 +56,8 @@ const useUpdateEmailResultResultSwal = () => {
         false
       ).then((isConfirmed) => {
         if (isConfirmed) {
-          dispatch(resetUpdateEmailError());
+          dispatchResetUpdateEmailError();
+          dispatchResetUpdateEmailResult();
         }
       });
     } else if (
@@ -79,11 +75,19 @@ const useUpdateEmailResultResultSwal = () => {
         false
       ).then((isConfirmed) => {
         if (isConfirmed) {
-          dispatch(resetUpdateEmailError());
+          dispatchResetUpdateEmailError();
+          dispatchResetUpdateEmailResult();
         }
       });
     }
-  }, [updateEmailResult, updateEmailError, fireSwal, dispatch, navigate]);
+  }, [
+    updateEmailResult,
+    updateEmailError,
+    fireSwal,
+    dispatchResetUpdateEmailError,
+    dispatchResetUpdateEmailResult,
+    navigate,
+  ]);
 };
 
 export default useUpdateEmailResultResultSwal;

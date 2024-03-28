@@ -29,8 +29,8 @@ import useSessionTypesAndPricesActions from "./get-actions-and-thunks/session-ty
 import useShouldShowElementActions from "./get-actions-and-thunks/use-should-show-element-actions";
 import useSignInFormActions from "./get-actions-and-thunks/use-sign-in-form-actions";
 import useSignUpFormActions from "./get-actions-and-thunks/use-sign-up-form-actions";
+import useUpdateEmailActions from "./get-actions-and-thunks/update-email-actions-and-thunks/use-update-email-actions";
 
-import { resetUpdateEmailState } from "../store/update-email/update-email.slice";
 import { resetWalletFundsToAddState } from "../store/wallet-funds-to-add/wallet-funds-to-add.slice";
 import { resetUserBookingToDeleteState } from "../store/user-booking-to-delete/user-booking-to-delete.slice";
 
@@ -100,9 +100,9 @@ const useResetStore = () => {
   const { sessionTypesAndPricesError } = useGetSessionTypesAndPricesSelectors();
   const { dispatchResetSessionPricesError } = useSessionTypesAndPricesActions();
   const { dispatchResetShouldShowElementState } = useShouldShowElementActions();
-
   const { dispatchResetSignInFormState } = useSignInFormActions();
   const { dispatchResetSignUpFormState } = useSignUpFormActions();
+  const { dispatchResetUpdateEmailState } = useUpdateEmailActions();
 
   const dispatch = useDispatch();
   const location = useLocation();
@@ -156,7 +156,7 @@ const useResetStore = () => {
         break;
       case updateEmailRoute:
         dispatchResetShouldShowElementState();
-        dispatch(resetUpdateEmailState());
+        dispatchResetUpdateEmailState();
         break;
       case childInfoRoute:
         if (getUsersChildrenError) {
