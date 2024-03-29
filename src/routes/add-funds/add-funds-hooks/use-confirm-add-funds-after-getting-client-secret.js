@@ -1,17 +1,14 @@
 import { useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
 import { useStripe, useElements } from "@stripe/react-stripe-js";
 
 import useGetCardInputResultSelectors from "../../../hooks/get-selectors/use-get-card-input-result-selectors";
 import useGetHandlePaymentSelectors from "../../../hooks/get-selectors/use-get-handle-payment-selectors";
+import useGetCurrentUserSelectors from "../../../hooks/get-selectors/use-get-current-user-selectors";
+import useCurrentUserActions from "../../../hooks/get-actions-and-thunks/current-user-actions-and-thunks/use-current-user-actions";
 import useCardInputResultActions from "../../../hooks/get-actions-and-thunks/use-card-input-result-actions";
+import useHandlePaymentActions from "../../../hooks/get-actions-and-thunks/handle-payment-actions-and-thunks/use-handle-payment-actions";
 import useGetPaymentResultObjectThunk from "../../../hooks/get-actions-and-thunks/handle-payment-actions-and-thunks/use-get-payment-result-object-thunk";
 import useConfirmSwal from "../../../hooks/use-confirm-swal";
-
-import { selectWalletFundsToAddSelectors } from "../../../store/wallet-funds-to-add/wallet-funds-to-add.slice";
-import { resetAllHandlePaymentState } from "../../../store/handle-payment/handle-payment.slice";
-
-import { resetWalletFundsToAddState } from "../../../store/wallet-funds-to-add/wallet-funds-to-add.slice";
 
 import {
   addFundsMessage,
@@ -22,13 +19,13 @@ const useConfirmAddFundsAfterGettingClientSecret = () => {
   const { showPrePayButton } = useGetCardInputResultSelectors();
   const { client_secret, showConfirmButton, userHasConfirmedPayment } =
     useGetHandlePaymentSelectors();
+  const { walletFundsToAdd } = useGetCurrentUserSelectors();
+  const { dispatchResetWalletFundsToAdd } = useCurrentUserActions();
   const { dispatchResetCardInputResultState } = useCardInputResultActions();
+  const { dispatchResetAllHandlePaymentState } = useHandlePaymentActions();
   const { getPaymentResultObjectThunk } = useGetPaymentResultObjectThunk();
   const { confirmSwal } = useConfirmSwal();
 
-  const { walletFundsToAdd } = useSelector(selectWalletFundsToAddSelectors);
-
-  const dispatch = useDispatch();
   const stripe = useStripe();
   const elements = useElements();
 
@@ -55,9 +52,9 @@ const useConfirmAddFundsAfterGettingClientSecret = () => {
     };
 
     const cancelResult = () => {
-      dispatch(resetAllHandlePaymentState());
+      dispatchResetAllHandlePaymentState();
       dispatchResetCardInputResultState();
-      dispatch(resetWalletFundsToAddState());
+      dispatchResetWalletFundsToAdd();
     };
 
     confirmSwal(
@@ -70,8 +67,9 @@ const useConfirmAddFundsAfterGettingClientSecret = () => {
   }, [
     client_secret,
     confirmSwal,
-    dispatch,
+    dispatchResetWalletFundsToAdd,
     dispatchResetCardInputResultState,
+    dispatchResetAllHandlePaymentState,
     elements,
     getPaymentResultObjectThunk,
     showConfirmButton,

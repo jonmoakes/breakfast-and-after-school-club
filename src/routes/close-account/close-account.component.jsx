@@ -17,10 +17,11 @@ import { contactRoute } from "../../strings/routes/routes-strings";
 const CloseAccount = () => {
   useCloseAccountSwal();
 
-  const { provider } = useGetCurrentUserSelectors();
+  const { currentUserProvider } = useGetCurrentUserSelectors();
   const { sendEmailIsLoading } = useGetSendEmailSelectors();
   const { confirmCloseAccount } = useConfirmCloseAccount();
 
+  console.log(currentUserProvider);
   return (
     <Container>
       {sendEmailIsLoading ? <Loader /> : null}
@@ -42,13 +43,14 @@ const CloseAccount = () => {
           please allow up to 14 days for all of this data to be deleted.
         </Text>
         <Text>you will receive an email once the process is complete.</Text>
-        {provider !== "email" ? (
+        {currentUserProvider !== "email" ? (
           <>
             <Text>
               you should also remove access to the app in your{" "}
-              {provider === "facebook" ? "facebook" : "google"} account.
+              {currentUserProvider === "facebook" ? "facebook" : "google"}{" "}
+              account.
             </Text>
-            {provider === "facebook" ? (
+            {currentUserProvider === "facebook" ? (
               <>
                 <Text>
                   in facebook, navigate to 'settings', then scroll down until

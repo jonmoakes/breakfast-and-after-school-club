@@ -14,7 +14,7 @@ const AccountButtonLinks = () => {
     notAppOwnerAuthProviderButtons,
   } = useNavigateToRoute();
 
-  const { id, provider, appOwnerId } = useGetCurrentUserSelectors();
+  const { id, currentUserProvider, appOwnerId } = useGetCurrentUserSelectors();
 
   return (
     <ParentDiv>
@@ -22,7 +22,7 @@ const AccountButtonLinks = () => {
 
       {id === appOwnerId ? (
         <RenderButtons {...{ buttons: appOwnerButtons }} />
-      ) : id !== appOwnerId && provider === "email" ? (
+      ) : id !== appOwnerId && currentUserProvider === "email" ? (
         <RenderButtons {...{ buttons: notAppOwnerEmailProviderButtons }} />
       ) : (
         <RenderButtons {...{ buttons: notAppOwnerAuthProviderButtons }} />

@@ -4,7 +4,9 @@ import {
   resetCurrentUserErrorMessage,
   resetCurrentUserWalletBalanceError,
   resetCurrentUserWalletBalanceResult,
+  resetWalletFundsToAdd,
   setSchoolCodeForSocialLogin,
+  setWalletFundsToAdd,
 } from "../../../store/user/user.slice";
 
 const useCurrentUserActions = () => {
@@ -26,11 +28,21 @@ const useCurrentUserActions = () => {
     dispatch(setSchoolCodeForSocialLogin(event.target.value));
   };
 
+  const dispatchSetWalletFundsToAdd = (value) => {
+    dispatch(setWalletFundsToAdd(value));
+  };
+
+  const dispatchResetWalletFundsToAdd = () => {
+    dispatch(resetWalletFundsToAdd());
+  };
+
   return {
     dispatchResetCurrentUserErrorMessage,
     dispatchResetCurrentUserWalletBalanceResult,
     dispatchResetCurrentUserWalletBalanceError,
     dispatchSetSchoolCodeForSocialLogin,
+    dispatchSetWalletFundsToAdd,
+    dispatchResetWalletFundsToAdd,
   };
 };
 

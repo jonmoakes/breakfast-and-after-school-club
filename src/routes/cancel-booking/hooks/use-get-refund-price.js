@@ -1,12 +1,10 @@
 import { useSelector } from "react-redux";
 
-import { selectUserBookingToDeleteSelectors } from "../../../store/user-booking-to-delete/user-booking-to-delete.slice";
+import useGetUserBookingToDeleteSelectors from "../../../hooks/get-selectors/use-get-user-booking-to-delete-selectors";
 import { selectSessionTypesAndPricesSelectors } from "../../../store/session-types-and-prices/session-types-and-prices.slice";
 
 const useGetRefundPrice = () => {
-  const { userBookingToDelete } = useSelector(
-    selectUserBookingToDeleteSelectors
-  );
+  const { userBookingToDelete } = useGetUserBookingToDeleteSelectors();
 
   const {
     morningSessionPrice,

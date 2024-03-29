@@ -1,4 +1,3 @@
-import { useDispatch } from "react-redux";
 import { useLocation } from "react-router-dom";
 
 import useAddChildInfoActions from "./get-actions-and-thunks/add-child-info-actions-and-thunks/use-add-child-info-actions";
@@ -29,9 +28,8 @@ import useShouldShowElementActions from "./get-actions-and-thunks/use-should-sho
 import useSignInFormActions from "./get-actions-and-thunks/use-sign-in-form-actions";
 import useSignUpFormActions from "./get-actions-and-thunks/use-sign-up-form-actions";
 import useUpdateEmailActions from "./get-actions-and-thunks/update-email-actions-and-thunks/use-update-email-actions";
-
-import { resetWalletFundsToAddState } from "../store/wallet-funds-to-add/wallet-funds-to-add.slice";
-import { resetUserBookingToDeleteState } from "../store/user-booking-to-delete/user-booking-to-delete.slice";
+import useUserBookingToDeleteActions from "./get-actions-and-thunks/user-booking-to-delete-actions-and-thunks/use-user-booking-to-delete-actions";
+import useCurrentUserActions from "./get-actions-and-thunks/current-user-actions-and-thunks/use-current-user-actions";
 
 import {
   addFundsRoute,
@@ -100,8 +98,10 @@ const useResetStore = () => {
   const { dispatchResetSignInFormState } = useSignInFormActions();
   const { dispatchResetSignUpFormState } = useSignUpFormActions();
   const { dispatchResetUpdateEmailState } = useUpdateEmailActions();
+  const { dispatchResetUserBookingToDeleteState } =
+    useUserBookingToDeleteActions();
+  const { dispatchResetWalletFundsToAdd } = useCurrentUserActions();
 
-  const dispatch = useDispatch();
   const location = useLocation();
   const path = location.pathname;
 
@@ -128,13 +128,13 @@ const useResetStore = () => {
       case addFundsRoute:
         dispatchResetCardInputResultState();
         dispatchResetShouldShowElementState();
-        dispatch(resetWalletFundsToAddState());
+        dispatchResetWalletFundsToAdd();
         dispatchResetPreResultHandlePaymentState();
         break;
       case paymentResultRoute:
         dispatchResetCardInputResultState();
         dispatchResetAllHandlePaymentState();
-        dispatch(resetWalletFundsToAddState());
+        dispatchResetWalletFundsToAdd();
         dispatchResetSendEmailState();
         break;
       case bookSessionRoute:
@@ -171,7 +171,7 @@ const useResetStore = () => {
         dispatchResetDeleteChildInfoState();
         break;
       case cancelBookingRoute:
-        dispatch(resetUserBookingToDeleteState());
+        dispatchResetUserBookingToDeleteState();
         break;
       case bookedSessionsOwnerRoute:
         if (bookedSessionsOwnerError) {

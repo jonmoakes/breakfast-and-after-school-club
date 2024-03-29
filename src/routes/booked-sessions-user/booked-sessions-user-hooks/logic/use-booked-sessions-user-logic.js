@@ -1,18 +1,17 @@
 import { isBefore, isAfter, isSameDay, parse, startOfDay } from "date-fns";
-import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
 import useGetBookedSessionsUserSelectors from "../../../../hooks/get-selectors/use-get-booked-sessions-user-selectors";
 import useGetRequestDateDataSelectors from "../../../../hooks/get-selectors/use-get-request-date-data-selectors";
+import useUserBookingToDeleteActions from "../../../../hooks/get-actions-and-thunks/user-booking-to-delete-actions-and-thunks/use-user-booking-to-delete-actions";
 import useFireErrorSwals from "../use-fire-error-swals";
-
-import { addUserBookingToDelete } from "../../../../store/user-booking-to-delete/user-booking-to-delete.slice";
 
 import { cancelBookingRoute } from "../../../../strings/routes/routes-strings";
 
 const useBookedSessionsUserLogic = (chosenEntry) => {
   const { bookedSessionsUser } = useGetBookedSessionsUserSelectors();
   const { bookingClosingTimes } = useGetRequestDateDataSelectors();
+  const { dispatchAddUserBookingToDelete } = useUserBookingToDeleteActions();
 
   const {
     cantCancelPastBookingSwal,
@@ -22,7 +21,6 @@ const useBookedSessionsUserLogic = (chosenEntry) => {
     cantCancelDualSessionSwal,
   } = useFireErrorSwals();
 
-  const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const { sessionType, date } = (chosenEntry ?? [])[0] ?? {};
@@ -105,7 +103,7 @@ const useBookedSessionsUserLogic = (chosenEntry) => {
     } else if (sessionIsTodayAndTooLateTooCancelMorningAndAfternoonSession()) {
       cantCancelDualSessionSwal(morningSessionClosingTime);
     } else {
-      dispatch(addUserBookingToDelete(chosenEntry));
+      dispatchAddUserBookingToDelete(chosenEntry);
       navigate(cancelBookingRoute);
     }
   };

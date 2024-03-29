@@ -26,6 +26,7 @@ const initialState = {
   currentUserWalletBalanceError: null,
   loadStripeKey: null,
   schoolCodeForSocialLogin: "",
+  walletFundsToAdd: 0,
 };
 
 const userSlice = createSlice({
@@ -47,6 +48,12 @@ const userSlice = createSlice({
     setSchoolCodeForSocialLogin(state, action) {
       state.schoolCodeForSocialLogin = action.payload;
     },
+    setWalletFundsToAdd(state, action) {
+      state.walletFundsToAdd = action.payload;
+    },
+    resetWalletFundsToAdd: (state) => {
+      state.walletFundsToAdd = 0;
+    },
   },
   selectors: {
     selectCurrentUserSelectors: createSelector(
@@ -58,6 +65,7 @@ const userSlice = createSlice({
       (state) => state.currentUserWalletBalanceError,
       (state) => state.loadStripeKey,
       (state) => state.schoolCodeForSocialLogin,
+      (state) => state.walletFundsToAdd,
       (
         currentUser,
         currentUserIsLoading,
@@ -66,7 +74,8 @@ const userSlice = createSlice({
         currentUserWalletBalanceResult,
         currentUserWalletBalanceError,
         loadStripeKey,
-        schoolCodeForSocialLogin
+        schoolCodeForSocialLogin,
+        walletFundsToAdd
       ) => {
         return {
           currentUser,
@@ -77,6 +86,7 @@ const userSlice = createSlice({
           currentUserWalletBalanceError,
           loadStripeKey,
           schoolCodeForSocialLogin,
+          walletFundsToAdd,
         };
       }
     ),
@@ -180,6 +190,8 @@ export const {
   resetCurrentUserWalletBalanceError,
   setLoadStripeKey,
   setSchoolCodeForSocialLogin,
+  setWalletFundsToAdd,
+  resetWalletFundsToAdd,
 } = userSlice.actions;
 export const { selectCurrentUserSelectors } = userSlice.selectors;
 

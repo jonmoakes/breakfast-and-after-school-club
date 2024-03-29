@@ -1,11 +1,8 @@
-import { useSelector } from "react-redux";
-
 import useGetSessionTypesAndPricesSelectors from "../../hooks/get-selectors/use-get-session-types-and-prices-selectors";
 import useGetSendEmailSelectors from "../../hooks/get-selectors/use-get-send-email-selectors";
+import useGetUserBookingToDeleteSelectors from "../../hooks/get-selectors/use-get-user-booking-to-delete-selectors";
 import useConfirmCancelBooking from "./hooks/use-confirm-cancel-booking";
 import useCancelAndReturn from "../../hooks/use-cancel-and-return";
-
-import { selectUserBookingToDeleteSelectors } from "../../store/user-booking-to-delete/user-booking-to-delete.slice";
 
 import Loader from "../../components/loader/loader.component";
 import WalletUpdateInfo from "./wallet-update-info.component";
@@ -19,12 +16,9 @@ import { YellowGreenButton } from "../../styles/buttons/buttons.styles";
 const LoaderTitleButtons = () => {
   const { sessionTypesAndPricesError } = useGetSessionTypesAndPricesSelectors();
   const { sendEmailIsLoading } = useGetSendEmailSelectors();
+  const { userBookingToDeleteIsLoading } = useGetUserBookingToDeleteSelectors();
   const { confirmCancelBooking } = useConfirmCancelBooking();
   const { cancelAndReturn } = useCancelAndReturn();
-
-  const { userBookingToDeleteIsLoading } = useSelector(
-    selectUserBookingToDeleteSelectors
-  );
 
   return (
     <>

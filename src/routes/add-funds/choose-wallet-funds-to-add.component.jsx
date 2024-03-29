@@ -1,9 +1,6 @@
-import { useSelector } from "react-redux";
-
+import useGetCurrentUserSelectors from "../../hooks/get-selectors/use-get-current-user-selectors";
 import useClearCardInputOnZeroWalletFunds from "./add-funds-hooks/use-clear-card-input-on-zero-wallet-funds";
 import useHandleWalletFundsChange from "./add-funds-hooks/use-handle-wallet-funds-change";
-
-import { selectWalletFundsToAddSelectors } from "../../store/wallet-funds-to-add/wallet-funds-to-add.slice";
 
 import { Form, StyledInput } from "../../styles/form/form.styles";
 import { Text } from "../../styles/p/p.styles";
@@ -13,9 +10,8 @@ import { addFundsPlaceholder } from "../../strings/placeholders/placeholders-str
 
 const ChooseWalletFundsToAdd = () => {
   useClearCardInputOnZeroWalletFunds();
+  const { walletFundsToAdd } = useGetCurrentUserSelectors();
   const { handleWalletFundsChange } = useHandleWalletFundsChange();
-
-  const { walletFundsToAdd } = useSelector(selectWalletFundsToAddSelectors);
 
   return (
     <>

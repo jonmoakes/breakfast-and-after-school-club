@@ -1,5 +1,3 @@
-import { useDispatch } from "react-redux";
-
 import useAddChildInfoActions from "./get-actions-and-thunks/add-child-info-actions-and-thunks/use-add-child-info-actions";
 import useBookSessionActions from "./get-actions-and-thunks/book-session-actions-and-thunks/use-book-session-actions";
 import useBookedSessionsOwnerActions from "./get-actions-and-thunks/booked-sessions-owner-actions-and-thunks/use-booked-session-owner-actions";
@@ -23,9 +21,8 @@ import useShouldShowElementActions from "./get-actions-and-thunks/use-should-sho
 import useSignInFormActions from "./get-actions-and-thunks/use-sign-in-form-actions";
 import useSignUpFormActions from "./get-actions-and-thunks/use-sign-up-form-actions";
 import useUpdateEmailActions from "./get-actions-and-thunks/update-email-actions-and-thunks/use-update-email-actions";
-
-import { resetUserBookingToDeleteState } from "../store/user-booking-to-delete/user-booking-to-delete.slice";
-import { resetWalletFundsToAddState } from "../store/wallet-funds-to-add/wallet-funds-to-add.slice";
+import useUserBookingToDeleteActions from "./get-actions-and-thunks/user-booking-to-delete-actions-and-thunks/use-user-booking-to-delete-actions";
+import useCurrentUserActions from "./get-actions-and-thunks/current-user-actions-and-thunks/use-current-user-actions";
 
 const useResetAllStoreOnSignOut = () => {
   const { dispatchResetAllAddChildInfoState } = useAddChildInfoActions();
@@ -56,8 +53,9 @@ const useResetAllStoreOnSignOut = () => {
   const { dispatchResetSignInFormState } = useSignInFormActions();
   const { dispatchResetSignUpFormState } = useSignUpFormActions();
   const { dispatchResetUpdateEmailState } = useUpdateEmailActions();
-
-  const dispatch = useDispatch();
+  const { dispatchResetUserBookingToDeleteState } =
+    useUserBookingToDeleteActions();
+  const { dispatchResetWalletFundsToAdd } = useCurrentUserActions();
 
   const resetAllStoreOnSignOut = () => {
     dispatchResetAllAddChildInfoState();
@@ -83,9 +81,8 @@ const useResetAllStoreOnSignOut = () => {
     dispatchResetSignUpFormState();
     dispatchResetShouldShowElementState();
     dispatchResetUpdateEmailState();
-
-    dispatch(resetUserBookingToDeleteState());
-    dispatch(resetWalletFundsToAddState());
+    dispatchResetUserBookingToDeleteState();
+    dispatchResetWalletFundsToAdd();
     localStorage.clear();
   };
 

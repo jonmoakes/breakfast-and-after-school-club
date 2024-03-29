@@ -1,20 +1,17 @@
 import { useEffect } from "react";
-import { useSelector } from "react-redux";
 
 import useGetHandlePaymentSelectors from "../../../hooks/get-selectors/use-get-handle-payment-selectors";
 import useGetCardInputResultSelectors from "../../../hooks/get-selectors/use-get-card-input-result-selectors";
+import useGetCurrentUserSelectors from "../../../hooks/get-selectors/use-get-current-user-selectors";
 import useCardInputResultActions from "../../../hooks/get-actions-and-thunks/use-card-input-result-actions";
 import useHandlePaymentActions from "../../../hooks/get-actions-and-thunks/handle-payment-actions-and-thunks/use-handle-payment-actions";
-
-import { selectWalletFundsToAddSelectors } from "../../../store/wallet-funds-to-add/wallet-funds-to-add.slice";
 
 const useClearCardInputOnZeroWalletFunds = () => {
   const { client_secret } = useGetHandlePaymentSelectors();
   const { error, warning, showPrePayButton } = useGetCardInputResultSelectors();
+  const { walletFundsToAdd } = useGetCurrentUserSelectors();
   const { dispatchResetCardInputResultState } = useCardInputResultActions();
   const { dispatchResetClientSecret } = useHandlePaymentActions();
-
-  const { walletFundsToAdd } = useSelector(selectWalletFundsToAddSelectors);
 
   useEffect(() => {
     if (!error && !warning && !showPrePayButton) return;

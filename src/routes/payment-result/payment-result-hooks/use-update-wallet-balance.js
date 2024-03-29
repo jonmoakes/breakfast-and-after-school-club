@@ -1,12 +1,10 @@
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 
 import useGetCurrentUserSelectors from "../../../hooks/get-selectors/use-get-current-user-selectors";
 import useCurrentUserActions from "../../../hooks/get-actions-and-thunks/current-user-actions-and-thunks/use-current-user-actions";
 import useFireSwal from "../../../hooks/use-fire-swal";
 import useHamburgerHandlerNavigate from "../../../hooks/use-hamburger-handler-navigate";
 import useSendUpdateBalanceErrorEmail from "./use-send-update-balance-error-email";
-
-import { selectWalletFundsToAddSelectors } from "../../../store/wallet-funds-to-add/wallet-funds-to-add.slice";
 
 import { addWalletFundsToDatabaseAsync } from "../../../store/handle-payment/handle-payment.thunks";
 import { getUsersWalletBalanceAsync } from "../../../store/user/user.thunks";
@@ -24,6 +22,7 @@ const useUpdateWalletBalance = () => {
     userCollectionId: collectionId,
     id,
     email,
+    walletFundsToAdd,
   } = useGetCurrentUserSelectors();
   const {
     dispatchResetCurrentUserWalletBalanceResult,
@@ -32,8 +31,6 @@ const useUpdateWalletBalance = () => {
   const { fireSwal } = useFireSwal();
   const { hamburgerHandlerNavigate } = useHamburgerHandlerNavigate();
   const { sendUpdateBalanceErrorEmail } = useSendUpdateBalanceErrorEmail();
-
-  const { walletFundsToAdd } = useSelector(selectWalletFundsToAddSelectors);
 
   const dispatch = useDispatch();
 

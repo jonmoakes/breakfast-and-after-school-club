@@ -1,8 +1,7 @@
-import { useDispatch } from "react-redux";
-import { setWalletFundsToAdd } from "../../../store/wallet-funds-to-add/wallet-funds-to-add.slice";
+import useCurrentUserActions from "../../../hooks/get-actions-and-thunks/current-user-actions-and-thunks/use-current-user-actions";
 
 const useHandleWalletFundsChange = () => {
-  const dispatch = useDispatch();
+  const { dispatchSetWalletFundsToAdd } = useCurrentUserActions();
 
   const handleWalletFundsChange = (event) => {
     const enteredValue = event.target.value;
@@ -12,7 +11,7 @@ const useHandleWalletFundsChange = () => {
       return;
     }
 
-    dispatch(setWalletFundsToAdd(value));
+    dispatchSetWalletFundsToAdd(value);
   };
 
   return { handleWalletFundsChange };

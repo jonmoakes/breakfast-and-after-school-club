@@ -1,10 +1,11 @@
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 
-import useConfirmSwal from "../../../hooks/use-confirm-swal";
-import useGetRefundPrice from "./use-get-refund-price";
 import useGetUsersChildrenSelectors from "../../../hooks/get-selectors/use-get-users-children-selectors";
 import useGetCurrentUserSelectors from "../../../hooks/get-selectors/use-get-current-user-selectors";
-import { selectUserBookingToDeleteSelectors } from "../../../store/user-booking-to-delete/user-booking-to-delete.slice";
+import useGetUserBookingToDeleteSelectors from "../../../hooks/get-selectors/use-get-user-booking-to-delete-selectors";
+import useConfirmSwal from "../../../hooks/use-confirm-swal";
+import useGetRefundPrice from "./use-get-refund-price";
+
 import {
   deleteUserBookingAsync,
   refundUserAsync,
@@ -27,13 +28,10 @@ const useConfirmDeleteChildInfo = () => {
     bookedSessionsCollectionId,
     termDatesCollectionId,
   } = useGetCurrentUserSelectors();
+  const { userBookingToDelete } = useGetUserBookingToDeleteSelectors();
   const { confirmSwal } = useConfirmSwal();
   let { refundPrice, totalRefundPrice, numberOfChildrenInBooking } =
     useGetRefundPrice();
-
-  const { userBookingToDelete } = useSelector(
-    selectUserBookingToDeleteSelectors
-  );
 
   const dispatch = useDispatch();
 

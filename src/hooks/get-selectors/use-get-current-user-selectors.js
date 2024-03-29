@@ -11,12 +11,14 @@ const useGetCurrentUserSelectors = () => {
     currentUserWalletBalanceError,
     loadStripeKey,
     schoolCodeForSocialLogin,
-    provider,
+    walletFundsToAdd,
   } = useSelector(selectCurrentUserSelectors);
 
-  const { walletBalance, email, id, name, phoneNumber } = currentUser ?? {};
+  const { walletBalance, email, id, name, phoneNumber, provider } =
+    currentUser ?? {};
   const currentUserEmailForContactForm = email ? email : "";
   const currentUserNameForContactForm = name ? name : "";
+  const currentUserProvider = provider ? provider : "";
 
   const {
     appOwnerEmail,
@@ -39,6 +41,21 @@ const useGetCurrentUserSelectors = () => {
   } = currentUserEnvironmentVariables ?? {};
 
   return {
+    currentUserEnvironmentVariables,
+    currentUser,
+    currentUserWalletBalanceResult,
+    currentUserIsLoading,
+    currentUserError,
+    currentUserWalletBalanceError,
+    loadStripeKey,
+    schoolCodeForSocialLogin,
+    walletFundsToAdd,
+    walletBalance,
+    id,
+    phoneNumber,
+    currentUserEmailForContactForm,
+    currentUserNameForContactForm,
+    currentUserProvider,
     appOwnerEmail,
     appOwnerId,
     bookedSessionsCollectionId,
@@ -56,21 +73,6 @@ const useGetCurrentUserSelectors = () => {
     stripeSecretKey,
     termDatesCollectionId,
     userCollectionId,
-    walletBalance,
-    name,
-    email,
-    id,
-    phoneNumber,
-    currentUserWalletBalanceResult,
-    currentUser,
-    currentUserEmailForContactForm,
-    currentUserNameForContactForm,
-    currentUserIsLoading,
-    currentUserError,
-    currentUserWalletBalanceError,
-    loadStripeKey,
-    schoolCodeForSocialLogin,
-    provider,
   };
 };
 

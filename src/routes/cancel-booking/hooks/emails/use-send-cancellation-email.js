@@ -1,12 +1,12 @@
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 
+import useGetUsersChildrenSelectors from "../../../../hooks/get-selectors/use-get-users-children-selectors";
+import useGetCurrentUserSelectors from "../../../../hooks/get-selectors/use-get-current-user-selectors";
+import useGetUserBookingToDeleteSelectors from "../../../../hooks/get-selectors/use-get-user-booking-to-delete-selectors";
 import useFireSwal from "../../../../hooks/use-fire-swal";
 import useHamburgerHandlerNavigate from "../../../../hooks/use-hamburger-handler-navigate";
 import useGetRefundPrice from "../use-get-refund-price";
-import useGetUsersChildrenSelectors from "../../../../hooks/get-selectors/use-get-users-children-selectors";
-import useGetCurrentUserSelectors from "../../../../hooks/get-selectors/use-get-current-user-selectors";
 
-import { selectUserBookingToDeleteSelectors } from "../../../../store/user-booking-to-delete/user-booking-to-delete.slice";
 import { sendEmailBookingCancellationConfirmationAsync } from "../../../../store/send-email/send-email.thunks";
 
 import { errorSendCancellationConfirmationEmailMessage } from "../../../../strings/errors/errors-strings";
@@ -15,13 +15,10 @@ import { bookedSessionsUserRoute } from "../../../../strings/routes/routes-strin
 const useSendCancellationEmail = () => {
   const { name, email } = useGetCurrentUserSelectors();
   const { usersChildren } = useGetUsersChildrenSelectors();
+  const { userBookingToDelete } = useGetUserBookingToDeleteSelectors();
   const { fireSwal } = useFireSwal();
   const { hamburgerHandlerNavigate } = useHamburgerHandlerNavigate();
   let { refundPrice, totalRefundPrice } = useGetRefundPrice();
-
-  const { userBookingToDelete } = useSelector(
-    selectUserBookingToDeleteSelectors
-  );
 
   const dispatch = useDispatch();
 
