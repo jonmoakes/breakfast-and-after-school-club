@@ -1,4 +1,8 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import {
+  createAsyncThunk,
+  createSelector,
+  createSlice,
+} from "@reduxjs/toolkit";
 import { databases } from "../../utils/appwrite/appwrite-config";
 import { ID } from "appwrite";
 
@@ -27,21 +31,39 @@ export const uploadDatesToDatabaseAsync = createAsyncThunk(
 );
 
 const initialState = {
-  isLoading: false,
-  successMessage: "",
-  error: "",
+  uploadDatesToDatabaseIsLoading: false,
+  uploadDatesToDatabaseSuccessMessage: "",
+  uploadDatesToDatabaseError: null,
 };
 
 const uploadDatesToDatabaseSlice = createSlice({
   name: "uploadDatesToDatabase",
   initialState,
   reducers: {
-    resetSuccessMessage(state) {
-      state.successMessage = "";
+    resetUploadDatesToDatabaseSuccessMessage(state) {
+      state.uploadDatesToDatabaseSuccessMessage = "";
     },
-    resetErrorMessage(state) {
-      state.error = "";
+    resetUploadDatesToDatabaseError(state) {
+      state.uploadDatesToDatabaseError = "";
     },
+  },
+  selectors: {
+    selectUploadDatesToDatabaseSelectors: createSelector(
+      (state) => state.uploadDatesToDatabaseIsLoading,
+      (state) => state.uploadDatesToDatabaseSuccessMessage,
+      (state) => state.uploadDatesToDatabaseError,
+      (
+        uploadDatesToDatabaseIsLoading,
+        uploadDatesToDatabaseSuccessMessage,
+        uploadDatesToDatabaseError
+      ) => {
+        return {
+          uploadDatesToDatabaseIsLoading,
+          uploadDatesToDatabaseSuccessMessage,
+          uploadDatesToDatabaseError,
+        };
+      }
+    ),
   },
   extraReducers: (builder) => {
     builder
@@ -61,7 +83,11 @@ const uploadDatesToDatabaseSlice = createSlice({
   },
 });
 
-export const { resetSuccessMessage, resetErrorMessage } =
-  uploadDatesToDatabaseSlice.actions;
+export const {
+  resetUploadDatesToDatabaseSuccessMessage,
+  resetUploadDatesToDatabaseError,
+} = uploadDatesToDatabaseSlice.actions;
+export const { selectUploadDatesToDatabaseSelectors } =
+  uploadDatesToDatabaseSlice.selectors;
 
 export const uploadDatesToDatabaseReducer = uploadDatesToDatabaseSlice.reducer;

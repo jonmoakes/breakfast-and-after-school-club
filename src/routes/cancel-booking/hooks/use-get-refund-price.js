@@ -1,7 +1,5 @@
-import { useSelector } from "react-redux";
-
 import useGetUserBookingToDeleteSelectors from "../../../hooks/get-selectors/use-get-user-booking-to-delete-selectors";
-import { selectSessionTypesAndPricesSelectors } from "../../../store/session-types-and-prices/session-types-and-prices.slice";
+import useGetSessionTypesAndPricesSelectors from "../../../hooks/get-selectors/use-get-session-types-and-prices-selectors";
 
 const useGetRefundPrice = () => {
   const { userBookingToDelete } = useGetUserBookingToDeleteSelectors();
@@ -12,7 +10,7 @@ const useGetRefundPrice = () => {
     afternoonLongSessionPrice,
     morningAndAfternoonShortSessionPrice,
     morningAndAfternoonLongSessionPrice,
-  } = useSelector(selectSessionTypesAndPricesSelectors);
+  } = useGetSessionTypesAndPricesSelectors();
 
   const { sessionType } = userBookingToDelete || {};
 

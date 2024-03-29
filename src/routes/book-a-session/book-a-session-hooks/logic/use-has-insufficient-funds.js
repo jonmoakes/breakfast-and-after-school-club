@@ -1,14 +1,10 @@
-import { useSelector } from "react-redux";
-
 import useGetCurrentUserSelectors from "../../../../hooks/get-selectors/use-get-current-user-selectors";
-import { selectSessionTypesAndPricesSelectors } from "../../../../store/session-types-and-prices/session-types-and-prices.slice";
+import useGetSessionTypesAndPricesSelectors from "../../../../hooks/get-selectors/use-get-session-types-and-prices-selectors";
 import { priceMultipliedBy100 } from "../../../../functions/price-multiplied-by-100";
 
 const useHasInsufficientFunds = () => {
   const { walletBalance } = useGetCurrentUserSelectors();
-  const { morningSessionPrice } = useSelector(
-    selectSessionTypesAndPricesSelectors
-  );
+  const { morningSessionPrice } = useGetSessionTypesAndPricesSelectors();
 
   const hasInsufficientFunds = () => {
     return walletBalance < priceMultipliedBy100(morningSessionPrice)
