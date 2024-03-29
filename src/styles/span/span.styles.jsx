@@ -182,8 +182,16 @@ export const HorizLine = styled.span`
 
 export const LowercasedSpan = styled.span`
   text-transform: lowercase;
+
+  &.right-margin {
+    margin-right: 10px;
+  }
 `;
 
 export const BlueLowercasedSpan = styled(LowercasedSpan)`
   color: ${customBlue};
+`;
+
+export const RightMarginSpan = styled.span`
+  margin-right: 10px;
 `;

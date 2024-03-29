@@ -3,9 +3,9 @@ import EmailIcon from "../../assets/email-icon.png";
 import ShowCallIcon from "../../components/tables/show-call-icon.component";
 
 import { IconImage } from "../../styles/image/image.styles";
-import { Text } from "../../styles/p/p.styles";
 import { InLineDiv } from "../../styles/div/div.styles";
 import { LowercaseTooltip } from "../../styles/tooltip/tooltip.styles";
+import { LowercasedSpan, RightMarginSpan } from "../../styles/span/span.styles";
 
 export const TABLE_COLUMNS = [
   {
@@ -33,13 +33,13 @@ export const TABLE_COLUMNS = [
       return (
         <InLineDiv>
           <LowercaseTooltip id="email" />
-          <Text
+          <LowercasedSpan
             data-tooltip-id="email"
             data-tooltip-content={value}
-            className="right-margin lowercased"
+            className="right-margin"
           >
             {truncateEmail(value)}
-          </Text>
+          </LowercasedSpan>
           <IconImage className="email" src={EmailIcon} onClick={openEmail} />
         </InLineDiv>
       );
@@ -53,10 +53,10 @@ export const TABLE_COLUMNS = [
       return (
         <InLineDiv>
           {!value ? (
-            <Text>no number found</Text>
+            <span>no number found</span>
           ) : (
             <>
-              <Text className="right-margin">{value}</Text>
+              <RightMarginSpan>{value}</RightMarginSpan>
               <ShowCallIcon {...{ callNumber }} />
             </>
           )}
@@ -81,7 +81,7 @@ export const TABLE_COLUMNS = [
         "EEEE dd MMMM yyyy 'at' HH:mm"
       );
 
-      return <Text>{formattedCreatedOn}</Text>;
+      return <span>{formattedCreatedOn}</span>;
     },
   },
 ];

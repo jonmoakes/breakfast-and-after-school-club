@@ -36,12 +36,10 @@ const CloseAccount = () => {
           "close account" button below.
         </Text>
         <Text>
-          once we have received your request, your account and all of it's data
-          will be deleted.
+          once we have received your request, please allow up to 14 days for all
+          of this data to be deleted.
         </Text>
-        <Text>
-          please allow up to 14 days for all of this data to be deleted.
-        </Text>
+
         <Text>you will receive an email once the process is complete.</Text>
         {currentUserProvider !== "email" ? (
           <>

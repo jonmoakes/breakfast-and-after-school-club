@@ -4,10 +4,6 @@ import { customBlack, customRed, customWhite } from "../colors";
 export const Text = styled.p`
   color: ${customBlack};
 
-  &.right-margin {
-    margin-right: 10px;
-  }
-
   &.lowercased {
     text-transform: lowercase;
   }
