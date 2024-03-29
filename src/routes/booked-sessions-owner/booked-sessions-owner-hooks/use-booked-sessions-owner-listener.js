@@ -1,16 +1,17 @@
 import { useEffect } from "react";
-
 import { client } from "../../../utils/appwrite/appwrite-config";
 
-import useGetBookedSessionsOwnerSelectors from "../../../hooks/get-selectors/use-get-booked-sessions-owner-selectors";
-import useBookedSessionsOwnerActions from "../../../hooks/get-actions-and-thunks/booked-sessions-owner-actions-and-thunks/use-booked-session-owner-actions";
-import useGetCurrentUserSelectors from "../../../hooks/get-selectors/use-get-current-user-selectors";
+import useBookedSessionsOwnerFunctions from "./use-booked-sessions-owner-functions";
+import useBookedSessionsOwnerVariables from "./use-booked-sessions-owner-variables";
 
 const useBookedSessionsOwnerListener = () => {
-  const { bookedSessionsOwner } = useGetBookedSessionsOwnerSelectors();
-  const { dispatchSetBookedSessionsOwner } = useBookedSessionsOwnerActions();
-  const { currentUser, databaseId, bookedSessionsCollectionId } =
-    useGetCurrentUserSelectors();
+  const { dispatchSetBookedSessionsOwner } = useBookedSessionsOwnerFunctions();
+  const {
+    bookedSessionsOwner,
+    currentUser,
+    databaseId,
+    bookedSessionsCollectionId,
+  } = useBookedSessionsOwnerVariables();
 
   useEffect(() => {
     if (!currentUser) return;

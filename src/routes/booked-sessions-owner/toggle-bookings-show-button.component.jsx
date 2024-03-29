@@ -1,24 +1,23 @@
-import useBookedSessionsOwnerActions from "../../hooks/get-actions-and-thunks/booked-sessions-owner-actions-and-thunks/use-booked-session-owner-actions";
-
+import useBookedSessionsOwnerFunctions from "./booked-sessions-owner-hooks/use-booked-sessions-owner-functions";
 import { FilterEntriesButtonDiv } from "../../styles/div/div.styles";
 import { GreyButton } from "../../styles/buttons/buttons.styles";
-import useBookedSessionsOwnerLogic from "./logic/use-booked-sessions-owner-logic";
 
 const ToggleBookingsShownButton = ({ data }) => {
-  const { dispatchSetShowAllDates } = useBookedSessionsOwnerActions();
-  const { noDataFound, allBookingsAreBeingShown } =
-    useBookedSessionsOwnerLogic();
+  const {
+    noDataFound,
+    allBookingsAreBeingShown,
+    showTodaysBookings,
+    showAllBookings,
+  } = useBookedSessionsOwnerFunctions();
 
   return (
     <FilterEntriesButtonDiv>
       {noDataFound(data) ? null : allBookingsAreBeingShown(data) ? (
-        <GreyButton onClick={() => dispatchSetShowAllDates(false)}>
+        <GreyButton onClick={showTodaysBookings}>
           show todays bookings
         </GreyButton>
       ) : (
-        <GreyButton onClick={() => dispatchSetShowAllDates(true)}>
-          show all bookings
-        </GreyButton>
+        <GreyButton onClick={showAllBookings}>show all bookings</GreyButton>
       )}
     </FilterEntriesButtonDiv>
   );

@@ -1,4 +1,4 @@
-import useBookedSessionsOwnerActions from "../../hooks/get-actions-and-thunks/booked-sessions-owner-actions-and-thunks/use-booked-session-owner-actions";
+import useBookedSessionsOwnerFunctions from "./booked-sessions-owner-hooks/use-booked-sessions-owner-functions";
 
 import {
   GreyButton,
@@ -10,11 +10,10 @@ import { Text } from "../../styles/p/p.styles";
 import { StyledLink } from "../../styles/link/link.styles";
 
 import { contactRoute } from "../../strings/routes/routes-strings";
-import useBookedSessionsOwnerLogic from "./logic/use-booked-sessions-owner-logic";
 
 const NoBookingDataFound = ({ data }) => {
-  const { dispatchSetShowAllDates } = useBookedSessionsOwnerActions();
-  const { noSessionsBookedYet, noDataFound } = useBookedSessionsOwnerLogic();
+  const { noSessionsBookedYet, noDataFound, showAllBookings } =
+    useBookedSessionsOwnerFunctions();
 
   return (
     <>
@@ -37,9 +36,7 @@ const NoBookingDataFound = ({ data }) => {
           <Text>
             tap the button below to show bookings for all other dates.
           </Text>
-          <GreyButton onClick={() => dispatchSetShowAllDates(true)}>
-            show all bookings
-          </GreyButton>
+          <GreyButton onClick={showAllBookings}>show all bookings</GreyButton>
         </ParentDiv>
       ) : null}
     </>

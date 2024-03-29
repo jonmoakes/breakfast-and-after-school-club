@@ -1,27 +1,26 @@
-import useFetchBookedSessionsOwner from "./booked-sessions-owner-hooks/use-fetch-booked-sessions-owner";
-import useGetBookedSessionOwnerSelectors from "../../hooks/get-selectors/use-get-booked-sessions-owner-selectors";
+import useFetchBookedSessionsOwnerThunkUseEffect from "../../hooks/get-actions-and-thunks/booked-sessions-owner-actions-and-thunks/use-fetch-booked-sessions-owner-thunk-use-effect";
+import useBookedSessionsOwnerVariables from "./booked-sessions-owner-hooks/use-booked-sessions-owner-variables";
 
 import Loader from "../../components/loader/loader.component";
-import TableHelp from "../../components/tables/table-help.component";
+import BookedSessionsOwnerTitleAndHelp from "./booked-sessions-owner-title-and-help.component";
 import BookedSessionsOwnerTable from "./booked-sessions-owner-table.component";
 
 import { Container } from "../../styles/container/container.styles";
-import { ParentDiv } from "../../styles/div/div.styles";
-import { BlackTitle } from "../../styles/h1/h1.styles";
 
 const BookedSessionsOwner = () => {
-  useFetchBookedSessionsOwner();
-  const { bookedSessionsOwnerIsLoading } = useGetBookedSessionOwnerSelectors();
+  useFetchBookedSessionsOwnerThunkUseEffect();
+  const { bookedSessionsOwnerIsLoading } = useBookedSessionsOwnerVariables();
 
   return (
     <Container>
-      {bookedSessionsOwnerIsLoading ? <Loader /> : null}
-
-      <ParentDiv>
-        <BlackTitle>session bookings</BlackTitle>
-        <TableHelp />
-      </ParentDiv>
-      <BookedSessionsOwnerTable />
+      {bookedSessionsOwnerIsLoading ? (
+        <Loader />
+      ) : (
+        <>
+          <BookedSessionsOwnerTitleAndHelp />
+          <BookedSessionsOwnerTable />
+        </>
+      )}
     </Container>
   );
 };
