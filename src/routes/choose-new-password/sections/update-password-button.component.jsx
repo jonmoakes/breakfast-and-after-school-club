@@ -18,7 +18,7 @@ const ResetPasswordButton = () => {
     <>
       {!isOnline ? (
         <NetworkError />
-      ) : isOnline && newPassword && confirmNewPassword ? (
+      ) : newPassword && confirmNewPassword ? (
         <TopMarginDiv>
           <BlackHr />
           <YellowGreenButton type="button" onClick={confirmUpdatePassword}>

@@ -86,13 +86,11 @@ const NavSignOut = () => {
         <NavLink onClick={showNetworkErrorSwal}>
           <BorderLink>sign out</BorderLink>
         </NavLink>
-      ) : isOnline && currentUser ? (
+      ) : currentUser ? (
         <NavLink onClick={confirmSignOut}>
           <BorderLink>sign out</BorderLink>
         </NavLink>
-      ) : (
-        isOnline && !currentUser && null
-      )}
+      ) : null}
     </>
   );
 };

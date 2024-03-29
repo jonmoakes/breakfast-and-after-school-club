@@ -11,9 +11,9 @@ import {
 import { BlackHr } from "../../../styles/hr/hr.styles";
 
 const SendMessageButton = () => {
+  const { contactFormIsLoading } = useGetContactFormSelectors();
   const { isOnline } = useIsOnline();
   const { confirmSendContactFormMessage } = useConfirmSendContactFormMessage();
-  const { contactFormIsLoading } = useGetContactFormSelectors();
 
   return (
     <>
@@ -21,7 +21,7 @@ const SendMessageButton = () => {
 
       {!isOnline ? (
         <NetworkError />
-      ) : isOnline && !contactFormIsLoading ? (
+      ) : !contactFormIsLoading ? (
         <YellowGreenButton
           type="button"
           onClick={confirmSendContactFormMessage}
@@ -29,7 +29,6 @@ const SendMessageButton = () => {
           Send Message
         </YellowGreenButton>
       ) : (
-        isOnline &&
         contactFormIsLoading && (
           <DisabledButton className="disabled">please wait...</DisabledButton>
         )

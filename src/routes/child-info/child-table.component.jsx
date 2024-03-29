@@ -10,9 +10,9 @@ import {
 
 import useIsOnline from "../../hooks/use-is-online";
 import useGetUsersChildrenListener from "./child-info-hooks/use-get-users-children-listener";
-
 import useGetUsersChildrenSelectors from "../../hooks/get-selectors/use-get-users-children-selectors";
 
+import ShowFetchErrors from "../../components/errors/show-fetch-errors.component";
 import { TABLE_COLUMNS } from "./table-columns";
 import TableNoEntriesInfo from "../../components/tables/table-no-entries-info.component";
 import DefaultTable from "../../components/tables/default-table.component";
@@ -25,6 +25,7 @@ const ChildTable = () => {
   const { isOnline } = useIsOnline();
 
   let { usersChildren } = useGetUsersChildrenSelectors();
+  const { getUsersChildrenError } = useGetUsersChildrenSelectors();
 
   const columns = useMemo(() => TABLE_COLUMNS, []);
   const data = useMemo(
@@ -83,24 +84,29 @@ const ChildTable = () => {
 
   return (
     <>
-      {!isOnline ? <NetworkError /> : null}
+      {!isOnline ? (
+        <NetworkError />
+      ) : getUsersChildrenError ? (
+        <ShowFetchErrors />
+      ) : (
+        <>
+          <TableNoEntriesInfo {...{ data }} />
+          <EditRemoveButtons {...{ chosenEntry }} />
 
-      {<TableNoEntriesInfo {...{ data }} />}
-
-      <EditRemoveButtons {...{ chosenEntry }} />
-
-      {data.length ? (
-        <DefaultTable
-          {...{
-            initialState,
-            headerGroups,
-            getTableProps,
-            getTableBodyProps,
-            page,
-            prepareRow,
-          }}
-        />
-      ) : null}
+          {data.length ? (
+            <DefaultTable
+              {...{
+                initialState,
+                headerGroups,
+                getTableProps,
+                getTableBodyProps,
+                page,
+                prepareRow,
+              }}
+            />
+          ) : null}
+        </>
+      )}
     </>
   );
 };

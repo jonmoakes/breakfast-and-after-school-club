@@ -27,7 +27,7 @@ const CardInput = () => {
     <>
       {!isOnline ? (
         <NetworkError />
-      ) : handlePaymentError ? null : isOnline && walletFundsToAdd ? (
+      ) : handlePaymentError ? null : walletFundsToAdd ? (
         <>
           <CardInputErrors />
           <ParentDiv>

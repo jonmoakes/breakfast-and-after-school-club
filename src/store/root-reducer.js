@@ -7,7 +7,6 @@ import { contactFormReducer } from "./contact-form/contact-form.slice";
 import { userReducer } from "./user/user.slice";
 import { walletFundsToAddReducer } from "./wallet-funds-to-add/wallet-funds-to-add.slice";
 import { cardInputResultReducer } from "./card-input-result/card-input-result.slice";
-import { isOnlineReducer } from "./is-online/is-online.slice";
 import { shouldShowElementReducer } from "./should-show-element/should-show-element.slice";
 import { passwordIsVisibleReducer } from "./password-is-visible/password-is-visible.slice";
 import { updateEmailReducer } from "./update-email/update-email.slice";
@@ -38,7 +37,6 @@ export const rootReducer = combineReducers({
   user: userReducer,
   walletFundsToAdd: walletFundsToAddReducer,
   cardInputResult: cardInputResultReducer,
-  isOnline: isOnlineReducer,
   shouldShowElement: shouldShowElementReducer,
   passwordIsVisible: passwordIsVisibleReducer,
   updateEmail: updateEmailReducer,

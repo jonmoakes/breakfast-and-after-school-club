@@ -21,12 +21,11 @@ const AddChildInfoButton = () => {
 
       {!isOnline ? (
         <NetworkError />
-      ) : isOnline && !addChildInfoIsLoading ? (
+      ) : !addChildInfoIsLoading ? (
         <YellowGreenButton type="button" onClick={confirmAddChildInfo}>
           add child
         </YellowGreenButton>
       ) : (
-        isOnline &&
         addChildInfoIsLoading && (
           <DisabledButton className="disabled">please wait...</DisabledButton>
         )

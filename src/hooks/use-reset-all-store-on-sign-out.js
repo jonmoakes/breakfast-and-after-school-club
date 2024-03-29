@@ -16,7 +16,6 @@ import useGetAllChildrenActions from "./get-actions-and-thunks/get-all-children-
 import useGetAllUsersActions from "./get-actions-and-thunks/get-all-users-actions-and-thunks/use-get-all-users-actions";
 import useGetUsersChildrenActions from "./get-actions-and-thunks/get-users-children-actions-and-thunks/use-get-users-children-actions";
 import useHandlePaymentActions from "./get-actions-and-thunks/handle-payment-actions-and-thunks/use-handle-payment-actions";
-import useIsOnlineActions from "./get-actions-and-thunks/use-is-online-actions";
 import usePasswordIsVisibleActions from "./get-actions-and-thunks/use-password-is-visible-actions";
 import useSendEmailActions from "./get-actions-and-thunks/use-send-email-actions";
 import useSessionTypesAndPricesActions from "./get-actions-and-thunks/session-types-and-prices-actions-and-thunks/use-session-types-and-prices-actions";
@@ -49,7 +48,6 @@ const useResetAllStoreOnSignOut = () => {
   const { dispatchResetGetAllUsersState } = useGetAllUsersActions();
   const { dispatchResetUsersChildrenState } = useGetUsersChildrenActions();
   const { dispatchResetAllHandlePaymentState } = useHandlePaymentActions();
-  const { dispatchResetIsOnlineState } = useIsOnlineActions();
   const { dispatchResetPasswordIsVisibleState } = usePasswordIsVisibleActions();
   const { dispatchResetSendEmailState } = useSendEmailActions();
   const { dispatchResetSessionTypesAndPricesState } =
@@ -78,7 +76,6 @@ const useResetAllStoreOnSignOut = () => {
     dispatchResetGetAllUsersState();
     dispatchResetUsersChildrenState();
     dispatchResetAllHandlePaymentState();
-    dispatchResetIsOnlineState();
     dispatchResetPasswordIsVisibleState();
     dispatchResetSendEmailState();
     dispatchResetSessionTypesAndPricesState();

@@ -1,42 +1,22 @@
-import { useEffect } from "react";
-
-import useGetIsOnlineSelectors from "./get-selectors/use-get-is-online-selectors";
-import useIsOnlineActions from "./get-actions-and-thunks/use-is-online-actions";
-
-const notBrowserError =
-  "checking online status only works in a browser environment.";
-const notABrowserEnv = typeof window === "undefined";
-const navigatorNotPresent = typeof navigator === "undefined";
+import { useState, useEffect } from "react";
 
 const useIsOnline = () => {
-  const { isOnline } = useGetIsOnlineSelectors();
-  const { dispatchSetOnlineStatus } = useIsOnlineActions();
+  const [isOnline, setIsOnline] = useState(navigator.onLine);
 
   useEffect(() => {
-    const toggleOnlineStatus = () =>
-      dispatchSetOnlineStatus(window.navigator.onLine);
+    const handleOnline = () => setIsOnline(true);
+    const handleOffline = () => setIsOnline(false);
 
-    window.addEventListener("online", toggleOnlineStatus);
-    window.addEventListener("offline", toggleOnlineStatus);
-    window.scrollTo(0, 0);
+    window.addEventListener("online", handleOnline);
+    window.addEventListener("offline", handleOffline);
 
     return () => {
-      window.removeEventListener("online", toggleOnlineStatus);
-      window.removeEventListener("offline", toggleOnlineStatus);
+      window.removeEventListener("online", handleOnline);
+      window.removeEventListener("offline", handleOffline);
     };
-  }, [dispatchSetOnlineStatus]);
+  }, []);
 
-  if (notABrowserEnv || navigatorNotPresent) {
-    return {
-      error: notBrowserError,
-      isOnline: false,
-    };
-  }
-
-  return {
-    error: null,
-    isOnline,
-  };
+  return { isOnline };
 };
 
 export default useIsOnline;

@@ -1,5 +1,4 @@
 import useIsOnline from "../../hooks/use-is-online";
-import useFireSwal from "../../hooks/use-fire-swal";
 
 import CustomButton from "../custom-button/custom-button.component";
 
@@ -8,9 +7,7 @@ import { ErrorDiv } from "../../styles/div/div.styles";
 import { Text } from "../../styles/p/p.styles";
 
 const NetworkError = () => {
-  useIsOnline();
-  const { error, isOnline } = useIsOnline();
-  const { fireSwal } = useFireSwal();
+  const { isOnline } = useIsOnline();
 
   const reload = () => {
     window.location.reload();
@@ -18,9 +15,7 @@ const NetworkError = () => {
 
   return (
     <>
-      {isOnline && null}
-      {error && fireSwal("error", error, "", 0, true, true)}
-      {!isOnline ? (
+      {isOnline ? null : (
         <ErrorDiv>
           <BlackTitle>network error</BlackTitle>
           <Text>
@@ -38,7 +33,7 @@ const NetworkError = () => {
 
           <CustomButton onClick={reload}>reload</CustomButton>
         </ErrorDiv>
-      ) : null}
+      )}
     </>
   );
 };
