@@ -1,16 +1,13 @@
-import { useSelector } from "react-redux";
 import { Navigate } from "react-router-dom";
 
-import { selectCurrentUserSelectors } from "../../store/user/user.slice";
+import useGetCurrentUserSelectors from "../../hooks/get-selectors/use-get-current-user-selectors";
 
 import Loader from "../../components/loader/loader.component";
 
 import { accountRoute } from "../../strings/routes/routes-strings";
 
 const SocialSignInNavigateAndLoader = () => {
-  const { currentUser, currentUserIsLoading } = useSelector(
-    selectCurrentUserSelectors
-  );
+  const { currentUser, currentUserIsLoading } = useGetCurrentUserSelectors();
 
   return (
     <>

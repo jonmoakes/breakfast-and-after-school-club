@@ -1,7 +1,6 @@
-import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
-import { resetCurrentUserErrorMessage } from "../../../store/user/user.slice";
+import useCurrentUserActions from "../../../hooks/get-actions-and-thunks/current-user-actions-and-thunks/use-current-user-actions";
 
 import {
   contactRoute,
@@ -9,7 +8,8 @@ import {
 } from "../../../strings/routes/routes-strings";
 
 const useNavAndResetSocialSignInError = () => {
-  const dispatch = useDispatch();
+  const { dispatchResetCurrentUserErrorMessage } = useCurrentUserActions();
+
   const navigate = useNavigate();
 
   const reloadAndResetError = () => {
@@ -18,12 +18,12 @@ const useNavAndResetSocialSignInError = () => {
 
   const returnToSignInAndResetError = () => {
     navigate(signInRoute);
-    dispatch(resetCurrentUserErrorMessage());
+    dispatchResetCurrentUserErrorMessage();
   };
 
   const goToContactUsAndResetError = () => {
     navigate(contactRoute);
-    dispatch(resetCurrentUserErrorMessage());
+    dispatchResetCurrentUserErrorMessage();
   };
 
   return {

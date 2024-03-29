@@ -1,20 +1,16 @@
-import { useDispatch } from "react-redux";
-
+import useCurrentUserActions from "../../../../hooks/get-actions-and-thunks/current-user-actions-and-thunks/use-current-user-actions";
 import useFireSwal from "../../../../hooks/use-fire-swal";
 import useSendCancellationEmail from "../emails/use-send-cancellation-email";
-
-import {
-  resetCurrentUserWalletBalanceError,
-  resetCurrentUserWalletBalanceResult,
-} from "../../../../store/user/user.slice";
 
 import { sessionCancelledBalanceUpdateFailedMessage } from "../../../../strings/infos/infos-strings";
 
 const useBookingCancelledButFailedBalanceFetchSwal = () => {
+  const {
+    dispatchResetCurrentUserWalletBalanceResult,
+    dispatchResetCurrentUserWalletBalanceError,
+  } = useCurrentUserActions();
   const { fireSwal } = useFireSwal();
   const { sendCancellationEmail } = useSendCancellationEmail();
-
-  const dispatch = useDispatch();
 
   const bookingCancelledButFailedBalanceFetchSwal = () => {
     fireSwal(
@@ -26,8 +22,8 @@ const useBookingCancelledButFailedBalanceFetchSwal = () => {
       false
     ).then((isConfirmed) => {
       if (isConfirmed) {
-        dispatch(resetCurrentUserWalletBalanceResult());
-        dispatch(resetCurrentUserWalletBalanceError());
+        dispatchResetCurrentUserWalletBalanceResult();
+        dispatchResetCurrentUserWalletBalanceError();
         sendCancellationEmail();
       }
     });

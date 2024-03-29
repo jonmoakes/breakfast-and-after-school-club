@@ -1,10 +1,10 @@
 import { useSelector } from "react-redux";
 import { format } from "date-fns";
 
+import useGetCurrentUserSelectors from "../../hooks/get-selectors/use-get-current-user-selectors";
 import useGetRefundPrice from "./hooks/use-get-refund-price";
 
 import { selectUserBookingToDeleteSelectors } from "../../store/user-booking-to-delete/user-booking-to-delete.slice";
-import { selectCurrentUserSelectors } from "../../store/user/user.slice";
 
 import { ParentDiv } from "../../styles/div/div.styles";
 import { RedText, Text } from "../../styles/p/p.styles";
@@ -14,15 +14,14 @@ import { BlackHr } from "../../styles/hr/hr.styles";
 import { getSessionTypeString } from "../../functions/get-session-type-string";
 
 const WalletUpdateInfo = () => {
-  const { refundPrice, totalRefundPrice, numberOfChildrenInBooking } =
-    useGetRefundPrice();
-
   const { userBookingToDelete } = useSelector(
     selectUserBookingToDeleteSelectors
   );
-  const { currentUser } = useSelector(selectCurrentUserSelectors);
+  const { walletBalance } = useGetCurrentUserSelectors();
 
-  const { walletBalance } = currentUser;
+  const { refundPrice, totalRefundPrice, numberOfChildrenInBooking } =
+    useGetRefundPrice();
+
   const { date, sessionType, childrensName } = userBookingToDelete || {};
   const refundAmount =
     numberOfChildrenInBooking > 1 ? totalRefundPrice : refundPrice;

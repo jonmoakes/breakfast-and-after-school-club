@@ -2,13 +2,13 @@ import { useCallback } from "react";
 import { useSelector } from "react-redux";
 
 import { selectUserBookingToDeleteSelectors } from "../../../store/user-booking-to-delete/user-booking-to-delete.slice";
-import { selectCurrentUserSelectors } from "../../../store/user/user.slice";
+import useGetCurrentUserSelectors from "../../../hooks/get-selectors/use-get-current-user-selectors";
 
 const useReturnLogic = () => {
   const { updateBookingsDoc, updateUserDocBalance, updateSessionSpacesDoc } =
     useSelector(selectUserBookingToDeleteSelectors);
   const { currentUserWalletBalanceResult, currentUserWalletBalanceError } =
-    useSelector(selectCurrentUserSelectors);
+    useGetCurrentUserSelectors();
 
   const updateBookingsResult = updateBookingsDoc.result;
   const updateBookingsError = updateBookingsDoc.error;

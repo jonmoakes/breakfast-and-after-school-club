@@ -1,16 +1,15 @@
 import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 
+import useGetCardInputResultSelectors from "../../../hooks/get-selectors/use-get-card-input-result-selectors";
 import { fetchBookedSessionsOwnerAsync } from "../../../store/booked-sessions-owner/booked-sessions-owner.thunks";
-import { selectCurrentUserSelectors } from "../../../store/user/user.slice";
 
 const useFetchBookedSessionsOwner = () => {
-  const { currentUser, currentUserEnvironmentVariables } = useSelector(
-    selectCurrentUserSelectors
-  );
-
-  const { databaseId, bookedSessionsCollectionId: collectionId } =
-    currentUserEnvironmentVariables;
+  const {
+    currentUser,
+    databaseId,
+    bookedSessionsCollectionId: collectionId,
+  } = useGetCardInputResultSelectors();
 
   const dispatch = useDispatch();
 

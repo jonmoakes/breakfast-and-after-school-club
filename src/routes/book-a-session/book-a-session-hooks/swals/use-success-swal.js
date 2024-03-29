@@ -1,10 +1,7 @@
-import { useDispatch } from "react-redux";
-
+import useCurrentUserActions from "../../../../hooks/get-actions-and-thunks/current-user-actions-and-thunks/use-current-user-actions";
 import useFireSwal from "../../../../hooks/use-fire-swal";
 
 import useSendEmailBookingConfirmation from "../emails/use-send-email-booking-confirmation";
-
-import { resetCurrentUserWalletBalanceResult } from "../../../../store/user/user.slice";
 
 import {
   sessionBookedMessage,
@@ -12,10 +9,10 @@ import {
 } from "../../../../strings/successes/successes-strings";
 
 const useSuccessSwal = () => {
+  const { dispatchResetCurrentUserWalletBalanceResult } =
+    useCurrentUserActions();
   const { fireSwal } = useFireSwal();
   const { sendEmailBookingConfirmation } = useSendEmailBookingConfirmation();
-
-  const dispatch = useDispatch();
 
   const successSwal = () => {
     fireSwal(
@@ -27,7 +24,7 @@ const useSuccessSwal = () => {
       false
     ).then((isConfirmed) => {
       if (isConfirmed) {
-        dispatch(resetCurrentUserWalletBalanceResult());
+        dispatchResetCurrentUserWalletBalanceResult();
         sendEmailBookingConfirmation();
       }
     });

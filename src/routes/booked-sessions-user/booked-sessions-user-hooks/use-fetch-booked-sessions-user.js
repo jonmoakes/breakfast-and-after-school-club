@@ -1,25 +1,21 @@
 import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 
+import useGetCurrentUserSelectors from "../../../hooks/get-selectors/use-get-current-user-selectors";
 import { fetchBookedSessionsUserAsync } from "../../../store/booked-sessions-user/booked-sessions-user.thunks";
-
-import { selectCurrentUserSelectors } from "../../../store/user/user.slice";
 import { requestBookingClosingTimesAsync } from "../../../store/request-date-data/request-date-data.thunks";
 
 const useFetchBookedSessionsUser = () => {
-  const { currentUser, currentUserEnvironmentVariables } = useSelector(
-    selectCurrentUserSelectors
-  );
-
-  const dispatch = useDispatch();
-
-  const { id } = currentUser;
   const {
+    currentUser,
+    id,
     databaseId,
     bookedSessionsCollectionId,
     bookingClosingTimesCollectionId,
     bookingClosingTimesDocumentId,
-  } = currentUserEnvironmentVariables;
+  } = useGetCurrentUserSelectors();
+
+  const dispatch = useDispatch();
 
   useEffect(() => {
     if (!currentUser) return;

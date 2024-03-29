@@ -1,13 +1,12 @@
 import { lazy, Suspense } from "react";
-import { useSelector } from "react-redux";
+
 import { Routes, Route } from "react-router-dom";
 import { ErrorBoundary } from "react-error-boundary";
 import { GlobalStyle } from "./global-styles";
 import "./App.css";
 
 import useGetUserOnLoad from "./hooks/use-get-user-on-load";
-
-import { selectCurrentUserSelectors } from "./store/user/user.slice";
+import useGetCurrentUserSelectors from "./hooks/get-selectors/use-get-current-user-selectors";
 
 import PrivateRoutes from "./components/private-routes/private-routes.component";
 import ErrorFallback from "./components/errors/error-fallback.component";
@@ -114,12 +113,8 @@ const ChooseNewPassword = lazy(() =>
 );
 
 const App = () => {
+  const { currentUser, appOwnerId } = useGetCurrentUserSelectors();
   useGetUserOnLoad();
-
-  const { currentUser, currentUserEnvironmentVariables } = useSelector(
-    selectCurrentUserSelectors
-  );
-  const { appOwnerId } = currentUserEnvironmentVariables;
 
   return (
     <>

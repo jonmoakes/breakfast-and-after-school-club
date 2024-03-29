@@ -1,13 +1,9 @@
-import { useSelector } from "react-redux";
-
-import { selectCurrentUserSelectors } from "../../../store/user/user.slice";
+import useGetCurrentUserSelectors from "../../../hooks/get-selectors/use-get-current-user-selectors";
 
 import { capitalizeString } from "../../../functions/capitalize-string";
 
 const useAccountClosureEmail = () => {
-  const { currentUser } = useSelector(selectCurrentUserSelectors);
-
-  const { name } = currentUser;
+  const { name } = useGetCurrentUserSelectors();
 
   const accountClosureEmail = `
   

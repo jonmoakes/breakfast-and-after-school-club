@@ -1,14 +1,11 @@
 import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 
 import useConfirmSwal from "../../../hooks/use-confirm-swal";
 import useFireSwal from "../../../hooks/use-fire-swal";
+import useGetCurrentUserSelectors from "../../../hooks/get-selectors/use-get-current-user-selectors";
+import useCurrentUserActions from "../../../hooks/get-actions-and-thunks/current-user-actions-and-thunks/use-current-user-actions";
 
-import {
-  selectCurrentUserSelectors,
-  resetCurrentUserWalletBalanceResult,
-  resetCurrentUserWalletBalanceError,
-} from "../../../store/user/user.slice";
 import { getUsersWalletBalanceAsync } from "../../../store/user/user.thunks";
 
 import { balanceSuccessfullyReceivedMessage } from "../../../strings/successes/successes-strings";
@@ -19,20 +16,20 @@ import {
 } from "../../../strings/errors/errors-strings";
 
 const useGetWalletBalance = () => {
+  const {
+    id,
+    databaseId,
+    userCollectionId: collectionId,
+    currentUserWalletBalanceResult,
+    currentUserWalletBalanceError,
+  } = useGetCurrentUserSelectors();
+  const {
+    dispatchResetCurrentUserWalletBalanceResult,
+    dispatchResetCurrentUserWalletBalanceError,
+  } = useCurrentUserActions();
   const { confirmSwal } = useConfirmSwal();
   const { fireSwal } = useFireSwal();
 
-  const {
-    currentUser,
-    currentUserWalletBalanceResult,
-    currentUserWalletBalanceError,
-    currentUserEnvironmentVariables,
-  } = useSelector(selectCurrentUserSelectors);
-
-  const { id } = currentUser;
-  //userCollectionId is being renamed to collectionId
-  const { databaseId, userCollectionId: collectionId } =
-    currentUserEnvironmentVariables;
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -49,15 +46,16 @@ const useGetWalletBalance = () => {
       false
     ).then((isConfirmed) => {
       if (isConfirmed) {
-        dispatch(resetCurrentUserWalletBalanceResult());
-        dispatch(resetCurrentUserWalletBalanceError());
+        dispatchResetCurrentUserWalletBalanceResult();
+        dispatchResetCurrentUserWalletBalanceError();
       }
     });
   }, [
-    dispatch,
     currentUserWalletBalanceResult,
     currentUserWalletBalanceError,
     fireSwal,
+    dispatchResetCurrentUserWalletBalanceResult,
+    dispatchResetCurrentUserWalletBalanceError,
   ]);
 
   const confirmResult = () => {
@@ -73,7 +71,7 @@ const useGetWalletBalance = () => {
             false
           ).then((isConfirmed) => {
             if (isConfirmed) {
-              dispatch(resetCurrentUserWalletBalanceResult());
+              dispatchResetCurrentUserWalletBalanceResult();
             }
           });
         }

@@ -1,12 +1,12 @@
 import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
+import useGetCurrentUserSelectors from "../../../hooks/get-selectors/use-get-current-user-selectors";
 import useFireSwal from "../../../hooks/use-fire-swal";
 import useResetAllStoreOnSignOut from "../../../hooks/use-reset-all-store-on-sign-out";
 import useGetChooseNewPasswordSelectors from "../../../hooks/get-selectors/use-get-choose-new-password-selectors";
 import useChooseNewPasswordActions from "../../../hooks/get-actions-and-thunks/choose-new-password-actions-and-thunks/use-choose-new-password-actions";
-import { selectCurrentUserSelectors } from "../../../store/user/user.slice";
 import { signOutAsync } from "../../../store/user/user.thunks";
 
 import {
@@ -27,7 +27,7 @@ const useChooseNewPasswordResultSwal = () => {
     useGetChooseNewPasswordSelectors();
   const { dispatchResetPasswordResultError } = useChooseNewPasswordActions();
 
-  const { curentUser } = useSelector(selectCurrentUserSelectors);
+  const { curentUser } = useGetCurrentUserSelectors();
 
   const dispatch = useDispatch();
   const navigate = useNavigate();

@@ -1,9 +1,7 @@
-import { useSelector } from "react-redux";
 import Balancer from "react-wrap-balancer";
 
+import useGetCurrentUserSelectors from "../../hooks/get-selectors/use-get-current-user-selectors";
 import useIsOnline from "../../hooks/use-is-online";
-
-import { selectCurrentUserSelectors } from "../../store/user/user.slice";
 
 import Loader from "../../components/loader/loader.component";
 import SocialSignInAccordion from "./social-sign-in-accordion.component";
@@ -16,9 +14,8 @@ import { BlackTitle } from "../../styles/h1/h1.styles";
 import { ParentDiv } from "../../styles/div/div.styles";
 
 const SocialSignIn = () => {
+  const { currentUserIsLoading } = useGetCurrentUserSelectors();
   const { isOnline } = useIsOnline();
-
-  const { currentUserIsLoading } = useSelector(selectCurrentUserSelectors);
 
   return (
     <Container>

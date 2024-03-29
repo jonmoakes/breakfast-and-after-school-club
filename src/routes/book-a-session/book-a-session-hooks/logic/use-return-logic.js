@@ -1,11 +1,11 @@
 import { useCallback } from "react";
-import { useSelector } from "react-redux";
 
 import useSessionLogic from "./use-session-logic";
-
-import { selectCurrentUserSelectors } from "../../../../store/user/user.slice";
+import useGetCurrentUserSelectors from "../../../../hooks/get-selectors/use-get-current-user-selectors";
 
 const useReturnLogic = () => {
+  const { currentUserWalletBalanceResult, currentUserWalletBalanceError } =
+    useGetCurrentUserSelectors();
   const {
     updateBalanceResult,
     updateBalanceError,
@@ -16,8 +16,6 @@ const useReturnLogic = () => {
     addSessionBookingInfoResult,
     addSessionBookingInfoError,
   } = useSessionLogic();
-  const { currentUserWalletBalanceResult, currentUserWalletBalanceError } =
-    useSelector(selectCurrentUserSelectors);
 
   const noActionsFiredYet = useCallback(() => {
     return !updateSessionResult &&

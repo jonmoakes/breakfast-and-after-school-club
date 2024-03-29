@@ -1,8 +1,5 @@
-import { useSelector } from "react-redux";
-
+import useGetCurrentUserSelectors from "../../hooks/get-selectors/use-get-current-user-selectors";
 import useNavAndResetSocialSignInError from "./social-sign-in-result-hooks/use-navigate-and-reset-social-sign-in-error";
-
-import { selectCurrentUserSelectors } from "../../store/user/user.slice";
 
 import TroubleShooting from "../../components/social-sign-in-browser-help/troubleshooting.component";
 import Safari from "../../components/social-sign-in-browser-help/safari.component";
@@ -12,13 +9,12 @@ import { Text } from "../../styles/p/p.styles";
 import { YellowGreenButton } from "../../styles/buttons/buttons.styles";
 
 const SocialSignInError = () => {
+  const { currentUserError } = useGetCurrentUserSelectors();
   const {
     reloadAndResetError,
     returnToSignInAndResetError,
     goToContactUsAndResetError,
   } = useNavAndResetSocialSignInError();
-
-  const { currentUserError } = useSelector(selectCurrentUserSelectors);
 
   return (
     <>

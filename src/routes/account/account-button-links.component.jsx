@@ -1,8 +1,6 @@
-import { useSelector } from "react-redux";
-
 import useNavigateToRoute from "./account-hooks/use-navigate-to-route";
 
-import { selectCurrentUserSelectors } from "../../store/user/user.slice";
+import useGetCurrentUserSelectors from "../../hooks/get-selectors/use-get-current-user-selectors";
 
 import RenderButtons from "./render-buttons.component";
 
@@ -16,11 +14,7 @@ const AccountButtonLinks = () => {
     notAppOwnerAuthProviderButtons,
   } = useNavigateToRoute();
 
-  const { currentUser, currentUserEnvironmentVariables } = useSelector(
-    selectCurrentUserSelectors
-  );
-  const { appOwnerId } = currentUserEnvironmentVariables;
-  const { id, provider } = currentUser;
+  const { id, provider, appOwnerId } = useGetCurrentUserSelectors();
 
   return (
     <ParentDiv>

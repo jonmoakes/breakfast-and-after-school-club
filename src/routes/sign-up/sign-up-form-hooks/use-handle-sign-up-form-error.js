@@ -1,10 +1,8 @@
 import { useEffect } from "react";
-import { useDispatch } from "react-redux";
 
 import useGetCurrentUserSelectors from "../../../hooks/get-selectors/use-get-current-user-selectors";
+import useCurrentUserActions from "../../../hooks/get-actions-and-thunks/current-user-actions-and-thunks/use-current-user-actions";
 import useFireSwal from "../../../hooks/use-fire-swal";
-
-import { resetCurrentUserErrorMessage } from "../../../store/user/user.slice";
 
 import {
   appwriteNoUserError,
@@ -13,15 +11,14 @@ import {
 
 const useHandleSignUpFormError = () => {
   const { currentUserError } = useGetCurrentUserSelectors();
+  const { dispatchResetCurrentUserErrorMessage } = useCurrentUserActions();
   const { fireSwal } = useFireSwal();
-
-  const dispatch = useDispatch();
 
   useEffect(() => {
     if (!currentUserError || currentUserError === appwriteNoUserError) return;
     fireSwal("error", errorSigningUpMessage, currentUserError, 0, true, false);
-    dispatch(resetCurrentUserErrorMessage());
-  }, [fireSwal, currentUserError, dispatch]);
+    dispatchResetCurrentUserErrorMessage();
+  }, [fireSwal, currentUserError, dispatchResetCurrentUserErrorMessage]);
 };
 
 export default useHandleSignUpFormError;

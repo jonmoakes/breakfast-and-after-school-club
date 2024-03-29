@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
 
+import useGetCurrentUserSelectors from "../../../../hooks/get-selectors/use-get-current-user-selectors";
 import useReturnLogic from "../use-return-logic";
 import useSuccessSwal from "./use-success-swal";
 import useUpdateBookingsResultErrorSwal from "./use-update-bookings-result-error-swal";
@@ -8,10 +9,10 @@ import useUpdateBalanceErrorSwal from "./use-update-balance-error-swal";
 import useUpdateSessionSpacesAndBalanceErrorSwal from "./use-update-session-spaces-and-balance-error-swal";
 
 import { selectUserBookingToDeleteSelectors } from "../../../../store/user-booking-to-delete/user-booking-to-delete.slice";
-import { selectCurrentUserSelectors } from "../../../../store/user/user.slice";
 import useBookingCancelledButFailedBalanceFetchSwal from "./use-booking-cancelled-but-failed-balance-fetch-swal";
 
 const useCancelBookingResultSwal = () => {
+  const { currentUserWalletBalanceResult } = useGetCurrentUserSelectors();
   const { noActionsFiredYet } = useReturnLogic();
   const { successSwal } = useSuccessSwal();
   const { updateBookingsResultErrorSwal } = useUpdateBookingsResultErrorSwal();
@@ -23,9 +24,6 @@ const useCancelBookingResultSwal = () => {
 
   const { updateBookingsDoc, updateUserDocBalance, updateSessionSpacesDoc } =
     useSelector(selectUserBookingToDeleteSelectors);
-  const { currentUserWalletBalanceResult } = useSelector(
-    selectCurrentUserSelectors
-  );
 
   const updateBookingsResult = updateBookingsDoc.result;
   const updateBalanceResult = updateUserDocBalance.result;

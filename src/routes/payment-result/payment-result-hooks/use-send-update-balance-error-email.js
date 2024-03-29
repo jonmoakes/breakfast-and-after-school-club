@@ -1,9 +1,9 @@
 import { useSelector, useDispatch } from "react-redux";
 
+import useGetCurrentUserSelectors from "../../../hooks/get-selectors/use-get-current-user-selectors";
 import useHamburgerHandlerNavigate from "../../../hooks/use-hamburger-handler-navigate";
 import useFireSwal from "../../../hooks/use-fire-swal";
 
-import { selectCurrentUserSelectors } from "../../../store/user/user.slice";
 import { selectWalletFundsToAddSelectors } from "../../../store/wallet-funds-to-add/wallet-funds-to-add.slice";
 import { sendEmailWalletFundsNotAddedErrorAsync } from "../../../store/send-email/send-email.thunks";
 
@@ -14,17 +14,13 @@ import {
 import { failedToSendEmailInstructions } from "../../../strings/errors/errors-strings";
 
 const useSendUpdateBalanceErrorEmail = () => {
+  const { id, appOwnerEmail } = useGetCurrentUserSelectors();
   const { hamburgerHandlerNavigate } = useHamburgerHandlerNavigate();
   const { fireSwal } = useFireSwal();
 
-  const { currentUser, currentUserEnvironmentVariables } = useSelector(
-    selectCurrentUserSelectors
-  );
   const { walletFundsToAdd } = useSelector(selectWalletFundsToAddSelectors);
 
   const dispatch = useDispatch();
-  const { id } = currentUser;
-  const { appOwnerEmail } = currentUserEnvironmentVariables;
 
   const sendUpdateBalanceErrorEmail = () => {
     dispatch(

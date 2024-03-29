@@ -1,29 +1,25 @@
 import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useLocation } from "react-router-dom";
+
+import useGetCurrentUserSelectors from "./get-selectors/use-get-current-user-selectors";
 
 import { getUsersChildrenAsync } from "../store/get-users-children/get-users-children.thunks";
 import { fetchBookedSessionsUserAsync } from "../store/booked-sessions-user/booked-sessions-user.thunks";
 import { getSessionPricesAsync } from "../store/session-types-and-prices/session-types-and-prices.thunks";
-import { selectCurrentUserSelectors } from "../store/user/user.slice";
 
 const useGetUsersChildrenUserBookingsAndSessionPrices = () => {
-  const { currentUser, currentUserEnvironmentVariables } = useSelector(
-    selectCurrentUserSelectors
-  );
-
-  const { id } = currentUser;
   const {
+    id,
     databaseId,
     childrenCollectionId: collectionId,
     bookedSessionsCollectionId,
     sessionPricesCollectionId,
     sessionPricesDocumentId,
-  } = currentUserEnvironmentVariables;
+  } = useGetCurrentUserSelectors();
 
   const location = useLocation();
   const dispatch = useDispatch();
-
   const path = location.pathname;
 
   useEffect(() => {

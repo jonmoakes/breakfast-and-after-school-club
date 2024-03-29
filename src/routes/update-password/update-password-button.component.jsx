@@ -1,9 +1,6 @@
-import { useSelector } from "react-redux";
-
+import useGetCurrentUserSelectors from "../../hooks/get-selectors/use-get-current-user-selectors";
 import useConfirmUpdatePassword from "./update-password-hooks/use-confirm-update-password";
 import useIsOnline from "../../hooks/use-is-online";
-
-import { selectCurrentUserSelectors } from "../../store/user/user.slice";
 
 import NetworkError from "../../components/errors/network-error.component";
 
@@ -13,11 +10,9 @@ import { Text } from "../../styles/p/p.styles";
 import { BlueLowercasedSpan } from "../../styles/span/span.styles";
 
 const UpdatePasswordButton = () => {
+  const { email } = useGetCurrentUserSelectors();
   const { isOnline } = useIsOnline();
   const { confirmUpdatePassword } = useConfirmUpdatePassword();
-
-  const { currentUser } = useSelector(selectCurrentUserSelectors);
-  const { email } = currentUser;
 
   return (
     <>

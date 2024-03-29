@@ -1,16 +1,12 @@
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 
+import useGetCurrentUserSelectors from "../../../hooks/get-selectors/use-get-current-user-selectors";
 import useFireSwal from "../../../hooks/use-fire-swal";
 
 import {
   requestFacebookSignInAsync,
   requestGoogleSignInAsync,
 } from "../../../store/user/user.thunks";
-
-import {
-  selectCurrentUserSelectors,
-  setSchoolCodeForSocialLogin,
-} from "../../../store/user/user.slice";
 
 import {
   invalidSchoolCode,
@@ -20,15 +16,10 @@ import {
 import { isNotValidSchoolCode } from "../../../functions/is-not-valid-school-code";
 
 const useSignInWithSocials = () => {
+  const { schoolCodeForSocialLogin } = useGetCurrentUserSelectors();
   const { fireSwal } = useFireSwal();
 
-  const { schoolCodeForSocialLogin } = useSelector(selectCurrentUserSelectors);
-
   const dispatch = useDispatch();
-
-  const handleChangeForSchoolCode = (event) => {
-    dispatch(setSchoolCodeForSocialLogin(event.target.value));
-  };
 
   const signInWithFacebook = () => {
     const schoolCode = schoolCodeForSocialLogin;
@@ -65,7 +56,10 @@ const useSignInWithSocials = () => {
     }
   };
 
-  return { handleChangeForSchoolCode, signInWithFacebook, signInWithGoogle };
+  return {
+    signInWithFacebook,
+    signInWithGoogle,
+  };
 };
 
 export default useSignInWithSocials;

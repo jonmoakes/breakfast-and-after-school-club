@@ -1,16 +1,12 @@
-import { useSelector } from "react-redux";
-
-import useSignInWithSocials from "./social-sign-in-hooks/use-sign-in-wth-socials";
-
-import { selectCurrentUserSelectors } from "../../store/user/user.slice";
+import useGetCurrentUserSelectors from "../../hooks/get-selectors/use-get-current-user-selectors";
+import useCurrentUserActions from "../../hooks/get-actions-and-thunks/current-user-actions-and-thunks/use-current-user-actions";
 
 import { Form, Label, StyledInput } from "../../styles/form/form.styles";
 import { WhiteShadowText } from "../../styles/p/p.styles";
 
 const SocialSignInInput = () => {
-  const { handleChangeForSchoolCode } = useSignInWithSocials();
-
-  const { schoolCodeForSocialLogin } = useSelector(selectCurrentUserSelectors);
+  const { schoolCodeForSocialLogin } = useGetCurrentUserSelectors();
+  const { dispatchSetSchoolCodeForSocialLogin } = useCurrentUserActions();
 
   return (
     <Form>
@@ -18,7 +14,7 @@ const SocialSignInInput = () => {
       <StyledInput
         type="text"
         name="schooolCode"
-        onChange={handleChangeForSchoolCode}
+        onChange={dispatchSetSchoolCodeForSocialLogin}
         value={schoolCodeForSocialLogin || ""}
       />
       {schoolCodeForSocialLogin ? (
