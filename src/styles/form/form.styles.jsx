@@ -8,6 +8,7 @@ import {
   customWhite,
   customYellow,
   customLightGreen,
+  customLightGrey,
 } from "../colors";
 
 const bounceInDownAnimation = keyframes`${bounceInDown}`;
@@ -69,7 +70,7 @@ export const StyledInput = styled.input`
   font-size: 18px;
   font-family: inherit;
   outline: none;
-  background-color: ${customWhite};
+  background: radial-gradient(circle, ${customWhite}, ${customLightGrey});
   appearance: none;
   color: ${customBlack};
 
@@ -175,6 +176,7 @@ export const StyledTextArea = styled.textarea`
   font-family: inherit;
   outline: none;
   text-transform: capitalize;
+  background: radial-gradient(circle, ${customWhite}, ${customLightGrey});
   color: ${customBlack};
 
   &.small-bottom-margin {
@@ -241,7 +243,7 @@ export const StyledSelect = styled.select`
   margin-bottom: 20px;
   font-size: 18px;
   outline: none;
-  background-color: ${customWhite};
+  background: radial-gradient(circle, ${customWhite}, ${customLightGrey});
   color: ${customBlack};
   text-transform: capitalize;
 
@@ -270,6 +272,7 @@ export const StyledSelect = styled.select`
 export const PaginationSelect = styled.select`
   width: 200px;
   height: 40px;
+  background: radial-gradient(circle, ${customWhite}, ${customLightGrey});
   color: ${customBlack};
   padding: 10px;
   border-radius: 5px;
@@ -303,6 +306,7 @@ export const PaginationInput = styled.input`
   height: 40px;
   border-radius: 5px;
   border: 2px solid ${customBlack};
+  background: radial-gradient(circle, ${customWhite}, ${customLightGrey});
   text-align: center;
 `;
 
@@ -313,7 +317,7 @@ export const SearchInput = styled.input`
   outline: none;
   height: 50px;
   border-radius: 5px;
-  background-color: ${customWhite};
+  background: radial-gradient(circle, ${customWhite}, ${customLightGrey});
   outline: none;
   border: 2px solid ${customBlack};
   padding-left: 20px;

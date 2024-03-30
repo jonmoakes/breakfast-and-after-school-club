@@ -103,7 +103,7 @@ export const ParentDiv = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background-color: ${customWhite};
+  background: radial-gradient(circle, ${customWhite}, ${customLightGrey});
   margin: 50px auto;
   width: 75%;
   height: auto;
