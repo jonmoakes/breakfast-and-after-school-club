@@ -1,13 +1,10 @@
 import { BlueH2 } from "../../../styles/h2/h2.styles";
+import { BlackHr } from "../../../styles/hr/hr.styles";
 import { Text } from "../../../styles/p/p.styles";
 
 const IsBookedSessionsOwnerRouteTableHelp = () => (
   <>
-    <Text>
-      if you tap the button to change the table filtering, please note that if
-      you have a search term already entered as you swap, you will have to re
-      enter the search term in order to trigger the search.
-    </Text>
+    <BlackHr />
     <BlueH2>toggling current day or all time bookings:</BlueH2>
     <Text>
       tap the grey 'show all bookings' or 'show todays bookings' button to
@@ -23,11 +20,18 @@ const IsBookedSessionsOwnerRouteTableHelp = () => (
       future bookings.
     </Text>
 
+    <Text>
+      if you tap the button to change the table filtering, please note that if
+      you have a search term already entered as you swap, you will have to re
+      enter the search term in order to trigger the search.
+    </Text>
+
+    <BlackHr />
     <BlueH2>viewing a childs info:</BlueH2>
     <Text>
-      to view the childs name, age, consents choice, medical info, dietry
-      requirements and additional info, tap the small checkbox next to the date
-      of the booking that you wish to view.
+      to view the name, age, consents choice, medical info, dietry requirements
+      and additional info of the child / children in the booking, tap the small
+      checkbox next to the date of the booking that you wish to view.
     </Text>
     <Text>a button will appear that says 'view child info'.</Text>
     <Text>

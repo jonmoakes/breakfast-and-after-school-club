@@ -1,8 +1,7 @@
 import { BlueH2 } from "../../../styles/h2/h2.styles";
 import { Text } from "../../../styles/p/p.styles";
-import EmailAndCallTableHelp from "./email-and-call-table-help.component";
 
-const IsAllChildrenRouteTableHelp = () => (
+const DateSearchingHelp = () => (
   <>
     <BlueH2>searching for a month:</BlueH2>
     <Text>
@@ -23,11 +22,9 @@ const IsAllChildrenRouteTableHelp = () => (
 
     <BlueH2>searching for a full date:</BlueH2>
     <Text>
-      a full date would be for example '03 april 2024' or 12 december 2022.
+      a full date would be for example '03 april 2024' or '12 december 2024'.
     </Text>
-
-    <EmailAndCallTableHelp />
   </>
 );
 
-export default IsAllChildrenRouteTableHelp;
+export default DateSearchingHelp;

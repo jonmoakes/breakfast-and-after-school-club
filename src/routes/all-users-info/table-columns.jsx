@@ -1,10 +1,10 @@
 import { format, parseISO } from "date-fns";
+
 import EmailIcon from "../../assets/email-icon.png";
 import ShowCallIcon from "../../components/tables/show-call-icon.component";
 
 import { IconImage } from "../../styles/image/image.styles";
 import { InLineDiv } from "../../styles/div/div.styles";
-import { LowercaseTooltip } from "../../styles/tooltip/tooltip.styles";
 import { LowercasedSpan, RightMarginSpan } from "../../styles/span/span.styles";
 
 export const TABLE_COLUMNS = [
@@ -20,26 +20,13 @@ export const TABLE_COLUMNS = [
         "Message From Breakfast & After School Club"
       );
 
-      const truncateEmail = (value, maxLength = 10) => {
-        return value.length > maxLength
-          ? value.slice(0, maxLength) + "..."
-          : value;
-      };
-
       const openEmail = () => {
         return (window.location.href = `mailto:${value}?Subject=${subject}`);
       };
 
       return (
         <InLineDiv>
-          <LowercaseTooltip id="email" />
-          <LowercasedSpan
-            data-tooltip-id="email"
-            data-tooltip-content={value}
-            className="right-margin"
-          >
-            {truncateEmail(value)}
-          </LowercasedSpan>
+          <LowercasedSpan className="right-margin">{value}</LowercasedSpan>
           <IconImage className="email" src={EmailIcon} onClick={openEmail} />
         </InLineDiv>
       );

@@ -21,7 +21,6 @@ const CloseAccount = () => {
   const { sendEmailIsLoading } = useGetSendEmailSelectors();
   const { confirmCloseAccount } = useConfirmCloseAccount();
 
-  console.log(currentUserProvider);
   return (
     <Container>
       {sendEmailIsLoading ? <Loader /> : null}

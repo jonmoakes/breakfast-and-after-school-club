@@ -5,9 +5,10 @@ import useShouldShowElementActions from "../../hooks/get-actions-and-thunks/use-
 
 import CancelBookingTableHelp from "./table-helps/cancel-booking-table-help.component";
 import IsBookedSessionsOwnerRouteTableHelp from "./table-helps/is-booked-sessions-owner-route-table-help.component";
-import IsAllChildrenRouteTableHelp from "./table-helps/is-all-children-route-table-help.component";
 import ColourCodingTableHelp from "./table-helps/colour-coding-table-help.component";
 import DownloadPdfTableHelp from "./table-helps/download-pdf-table-help.component";
+import DateSearchingHelp from "./table-helps/date-searching-help.component";
+import EmailAndCallTableHelp from "./table-helps/email-and-call-table-help.component";
 
 import { YellowGreenButton } from "../../styles/buttons/buttons.styles";
 import {
@@ -25,6 +26,7 @@ import {
   bookedSessionsOwnerRoute,
   bookedSessionsUserRoute,
 } from "../../strings/routes/routes-strings";
+import { BlackHr } from "../../styles/hr/hr.styles";
 
 const UserBookingsHelp = () => {
   const { shouldShowElement } = useGetShouldShowelementSelectors();
@@ -36,7 +38,6 @@ const UserBookingsHelp = () => {
 
   const isBookedSessionsOwnerRoute =
     path === bookedSessionsOwnerRoute ? true : false;
-
   const isAllChildrenRoute = path === allChildrenRoute ? true : false;
   const isBookedSessionsUserRoute =
     path === bookedSessionsUserRoute ? true : false;
@@ -61,15 +62,21 @@ const UserBookingsHelp = () => {
             </Text>
             <Text>
               you can search for anything that will have been entered into any
-              of the table headers ( ie child name etc ).
+              of the yellow table headers.
             </Text>
-            {!isBookedSessionsUserRoute && !isAllUsersRoute ? (
+
+            {isBookedSessionsOwnerRoute || isBookedSessionsUserRoute ? (
+              <DateSearchingHelp />
+            ) : null}
+
+            {isBookedSessionsOwnerRoute || isAllChildrenRoute ? (
               <>
+                <BlackHr />
                 <Text>
                   please note however that the{" "}
                   <RedSpan>email And phone number</RedSpan> values are not
-                  searchable ( as they are pulled into the app separately from
-                  other table data for data protection reasons ).
+                  searchable ( as these are pulled in dynamically from the
+                  database ).
                 </Text>
                 <Text>
                   instead, please search for the parent name or child name and
@@ -83,27 +90,19 @@ const UserBookingsHelp = () => {
               </>
             ) : null}
 
+            {isBookedSessionsOwnerRoute ||
+            isAllChildrenRoute ||
+            isAllUsersRoute ? (
+              <EmailAndCallTableHelp />
+            ) : null}
+
+            <BlackHr />
+
             <BlueH2>sorting:</BlueH2>
             <Text>
               you can sort the table into ascending, descending or unsorted
               order by tapping on any of the yellow headers.
             </Text>
-
-            {isAllUsersRoute ? (
-              <>
-                <BlueH2>viewing entire email address:</BlueH2>
-                <Text>
-                  some email addresses are long. To keep the table cells as
-                  small as possible, the email address is truncated after 10
-                  letters. if you're on a desktop / laptop, hover over the text
-                  to display the full email address.
-                </Text>
-                <Text>
-                  on mobiles / tablets, tap on the email icon to open your email
-                  client, which will then display the full email address.
-                </Text>
-              </>
-            ) : null}
 
             {isBookedSessionsOwnerRoute ? (
               <IsBookedSessionsOwnerRouteTableHelp />
@@ -116,10 +115,11 @@ const UserBookingsHelp = () => {
               </>
             ) : null}
 
-            {isAllChildrenRoute ? <IsAllChildrenRouteTableHelp /> : null}
+            {isBookedSessionsOwnerRoute || isBookedSessionsUserRoute ? (
+              <ColourCodingTableHelp />
+            ) : null}
 
-            {!isAllChildrenRoute ? <ColourCodingTableHelp /> : null}
-
+            <BlackHr />
             <YellowGreenButton onClick={dispatchHideShownElement}>
               ok, close
             </YellowGreenButton>

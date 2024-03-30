@@ -1,8 +1,10 @@
 import { BlueH2 } from "../../../styles/h2/h2.styles";
 import { Text } from "../../../styles/p/p.styles";
+import { BlackHr } from "../../../styles/hr/hr.styles";
 
 const EmailAndCallTableHelp = () => (
   <>
+    <BlackHr />
     <BlueH2>emailing a user:</BlueH2>
     <Text>
       you can email the parent by simply tapping on the envelope icon in

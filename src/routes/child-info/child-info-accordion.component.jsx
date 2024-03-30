@@ -43,6 +43,10 @@ const ChildInfoAccordion = () => {
                 information.
               </Text>
               <Text>
+                you can also delete the child by tapping the 'delete child'
+                button.
+              </Text>
+              <Text>
                 on smaller screens, drag the table left and right to view data
                 that may be off the screen.
               </Text>
