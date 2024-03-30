@@ -190,6 +190,14 @@ export const BackButton = styled.button`
 export const GreyButton = styled(Button)`
   background-color: ${customGrey};
 
+  &.small-text {
+    font-size: 16px;
+
+    @media screen and (max-width: 320px) {
+      font-size: 14px;
+    }
+  }
+
   &:hover {
     color: ${customBlack};
     background-color: ${customGrey};

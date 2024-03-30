@@ -19,7 +19,7 @@ import GetChildDetailsButton from "./get-child-details-button.component";
 import NoBookingDataFound from "./no-booking-data.found.component";
 import BookingsTableRenderTable from "../../components/tables/bookings-table-render-table.component";
 import TableSearchBox from "../../components/tables/table-search-box.component";
-import ToggleBookingsShownButton from "./toggle-bookings-show-button.component";
+import BookedSessionsOwnerToggleBookingsShownButton from "./booked-sessions-owner-toggle-bookings-show-button.component";
 import TablePagination from "../../components/tables/table-pagination.component";
 
 const BookedSessionsOwnerTable = () => {
@@ -100,7 +100,9 @@ const BookedSessionsOwnerTable = () => {
             }}
           />
 
-          <ToggleBookingsShownButton {...{ data }} />
+          <BookedSessionsOwnerToggleBookingsShownButton
+            {...{ chosenEntry, data }}
+          />
 
           <GetChildDetailsButton {...{ chosenEntry }} />
 

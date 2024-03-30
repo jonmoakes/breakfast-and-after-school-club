@@ -27,6 +27,7 @@ import {
   bookedSessionsUserRoute,
 } from "../../strings/routes/routes-strings";
 import { BlackHr } from "../../styles/hr/hr.styles";
+import BookedSessionsUserToggleBookings from "./table-helps/booked-sessions-user-toggle-bookings.component";
 
 const UserBookingsHelp = () => {
   const { shouldShowElement } = useGetShouldShowelementSelectors();
@@ -110,6 +111,7 @@ const UserBookingsHelp = () => {
 
             {isBookedSessionsUserRoute ? (
               <>
+                <BookedSessionsUserToggleBookings />
                 <CancelBookingTableHelp />
                 <DownloadPdfTableHelp />
               </>

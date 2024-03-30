@@ -6,12 +6,16 @@ const INITIAL_STATE = {
   bookedSessionsUserIsLoading: false,
   bookedSessionsUser: [],
   bookedSessionsUserError: null,
+  bookedSessionsUserShowAllDates: false,
 };
 
 export const bookedSessionsUserSlice = createSlice({
   name: "bookedSessionsUser",
   initialState: INITIAL_STATE,
   reducers: {
+    setBookedSessionsUserShowAllDates(state, action) {
+      state.bookedSessionsUserShowAllDates = action.payload;
+    },
     resetBookSessionUserError(state) {
       state.bookedSessionsUserError = null;
     },
@@ -24,10 +28,12 @@ export const bookedSessionsUserSlice = createSlice({
       (state) => state.bookedSessionsUserIsLoading,
       (state) => state.bookedSessionsUser || [],
       (state) => state.bookedSessionsUserError,
+      (state) => state.bookedSessionsUserShowAllDates,
       (
         bookedSessionsUserIsLoading,
         bookedSessionsUser,
-        bookedSessionsUserError
+        bookedSessionsUserError,
+        bookedSessionsUserShowAllDates
       ) => {
         const formattedUserBookings = bookedSessionsUser.map((booking) => ({
           ...booking,
@@ -47,6 +53,7 @@ export const bookedSessionsUserSlice = createSlice({
           bookedSessionsUser,
           sortedUserBookings,
           bookedSessionsUserError,
+          bookedSessionsUserShowAllDates,
         };
       }
     ),
@@ -69,8 +76,11 @@ export const bookedSessionsUserSlice = createSlice({
   },
 });
 
-export const { resetBookedSessionsUserState, resetBookSessionUserError } =
-  bookedSessionsUserSlice.actions;
+export const {
+  resetBookedSessionsUserState,
+  resetBookSessionUserError,
+  setBookedSessionsUserShowAllDates,
+} = bookedSessionsUserSlice.actions;
 export const { selectBookedSessionsUserSelectors } =
   bookedSessionsUserSlice.selectors;
 

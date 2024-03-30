@@ -6,7 +6,7 @@ const INITIAL_STATE = {
   bookedSessionsOwnerIsLoading: false,
   bookedSessionsOwner: [],
   bookedSessionsOwnerError: null,
-  showAllDates: false,
+  bookedSessionsOwnerShowAllDates: false,
 };
 
 export const bookedSessionsOwnerSlice = createSlice({
@@ -16,8 +16,8 @@ export const bookedSessionsOwnerSlice = createSlice({
     setBookedSessionsOwner(state, action) {
       state.bookedSessionsOwner = action.payload;
     },
-    setShowAllDates(state, action) {
-      state.showAllDates = action.payload;
+    setBookedSessionsOwnerShowAllDates(state, action) {
+      state.bookedSessionsOwnerShowAllDates = action.payload;
     },
     resetBookedSessionsOwnerError(state) {
       state.bookedSessionsOwnerError = null;
@@ -30,13 +30,13 @@ export const bookedSessionsOwnerSlice = createSlice({
     selectBookedSessionsOwnerSelectors: createSelector(
       (state) => state.bookedSessionsOwnerIsLoading,
       (state) => state.bookedSessionsOwner || [],
-      (state) => state.showAllDates,
+      (state) => state.bookedSessionsOwnerShowAllDates,
       (state) => state.bookedSessionsOwnerError,
 
       (
         bookedSessionsOwnerIsLoading,
         bookedSessionsOwner,
-        showAllDates,
+        bookedSessionsOwnerShowAllDates,
         bookedSessionsOwnerError
       ) => {
         const formattedOwnerBookings = bookedSessionsOwner.map((booking) => ({
@@ -55,7 +55,7 @@ export const bookedSessionsOwnerSlice = createSlice({
         return {
           bookedSessionsOwnerIsLoading,
           bookedSessionsOwner,
-          showAllDates,
+          bookedSessionsOwnerShowAllDates,
           bookedSessionsOwnerError,
           sortedOwnerBookings,
         };
@@ -83,8 +83,7 @@ export const bookedSessionsOwnerSlice = createSlice({
 export const {
   setBookedSessionsOwner,
   resetBookedSessionsOwnerState,
-  setShowAllDates,
-  toggleShowAllDates,
+  setBookedSessionsOwnerShowAllDates,
   resetBookedSessionsOwnerError,
 } = bookedSessionsOwnerSlice.actions;
 

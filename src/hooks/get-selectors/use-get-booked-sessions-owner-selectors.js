@@ -6,7 +6,7 @@ const useGetBookedSessionsOwnerSelectors = () => {
   const {
     bookedSessionsOwnerIsLoading,
     bookedSessionsOwner,
-    showAllDates,
+    bookedSessionsOwnerShowAllDates,
     bookedSessionsOwnerError,
     sortedOwnerBookings,
   } = useSelector(selectBookedSessionsOwnerSelectors);
@@ -14,7 +14,7 @@ const useGetBookedSessionsOwnerSelectors = () => {
   return {
     bookedSessionsOwnerIsLoading,
     bookedSessionsOwner,
-    showAllDates,
+    bookedSessionsOwnerShowAllDates,
     bookedSessionsOwnerError,
     sortedOwnerBookings,
   };

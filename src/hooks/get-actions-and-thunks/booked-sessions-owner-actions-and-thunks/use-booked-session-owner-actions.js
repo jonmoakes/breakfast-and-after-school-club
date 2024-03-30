@@ -4,7 +4,7 @@ import {
   resetBookedSessionsOwnerError,
   resetBookedSessionsOwnerState,
   setBookedSessionsOwner,
-  setShowAllDates,
+  setBookedSessionsOwnerShowAllDates,
 } from "../../../store/booked-sessions-owner/booked-sessions-owner.slice";
 
 const useBookedSessionsOwnerActions = () => {
@@ -14,8 +14,8 @@ const useBookedSessionsOwnerActions = () => {
     dispatch(setBookedSessionsOwner(updatedEntries));
   };
 
-  const dispatchSetShowAllDates = (boolean) => {
-    dispatch(setShowAllDates(boolean));
+  const dispatchBookedSessionsOwnerSetShowAllDates = (boolean) => {
+    dispatch(setBookedSessionsOwnerShowAllDates(boolean));
   };
 
   const dispatchResetBookedSessionsOwnerError = () => {
@@ -28,7 +28,7 @@ const useBookedSessionsOwnerActions = () => {
 
   return {
     dispatchSetBookedSessionsOwner,
-    dispatchSetShowAllDates,
+    dispatchBookedSessionsOwnerSetShowAllDates,
     dispatchResetBookedSessionsOwnerError,
     dispatchResetBookedSessionsOwnerState,
   };

@@ -8,6 +8,7 @@ const useGetBookedSessionsUserSelectors = () => {
     bookedSessionsUser,
     sortedUserBookings,
     bookedSessionsUserError,
+    bookedSessionsUserShowAllDates,
   } = useSelector(selectBookedSessionsUserSelectors);
 
   return {
@@ -15,6 +16,7 @@ const useGetBookedSessionsUserSelectors = () => {
     bookedSessionsUser,
     sortedUserBookings,
     bookedSessionsUserError,
+    bookedSessionsUserShowAllDates,
   };
 };
 

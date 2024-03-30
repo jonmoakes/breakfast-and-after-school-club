@@ -7,6 +7,7 @@ import { TABLE_COLUMNS } from "../table-columns";
 
 const useBookedSessionsUserVariables = () => {
   const {
+    bookedSessionsUserShowAllDates,
     sortedUserBookings,
     bookedSessionsUserIsLoading,
     bookedSessionsUser,
@@ -16,7 +17,26 @@ const useBookedSessionsUserVariables = () => {
     useGetCurrentUserSelectors();
 
   const columns = useMemo(() => TABLE_COLUMNS, []);
-  const data = useMemo(() => sortedUserBookings, [sortedUserBookings]);
+
+  const setTimeToMidnight = (date) => {
+    date.setHours(0, 0, 0, 0);
+  };
+
+  const data = useMemo(
+    () =>
+      !bookedSessionsUserShowAllDates
+        ? sortedUserBookings.filter((row) => {
+            const rowDate = new Date(row.date);
+            setTimeToMidnight(rowDate);
+
+            const currentDate = new Date();
+            setTimeToMidnight(currentDate);
+
+            return rowDate >= currentDate;
+          })
+        : sortedUserBookings,
+    [sortedUserBookings, bookedSessionsUserShowAllDates]
+  );
 
   const initialState = useMemo(
     () => ({ sortBy: [{ id: "date", desc: true }], pageSize: 30 }),

@@ -19,6 +19,7 @@ import TableSearchBox from "../../components/tables/table-search-box.component";
 import TablePagination from "../../components/tables/table-pagination.component";
 import CancelBookingAndDownloadPdfButtons from "./cancel-booking-and-download-pdf-buttons.component";
 import ShowFetchErrors from "../../components/errors/show-fetch-errors.component";
+import BookedSessionsUserToggleBookingsShownButton from "./booked-sessions-user-toggle-bookings-show-button.component";
 
 const BookedSessionsUserTable = () => {
   const { data, columns, initialState, bookedSessionsUserError } =
@@ -95,6 +96,10 @@ const BookedSessionsUserTable = () => {
               globalFilter,
               setGlobalFilter,
             }}
+          />
+
+          <BookedSessionsUserToggleBookingsShownButton
+            {...{ chosenEntry, data }}
           />
 
           <CancelBookingAndDownloadPdfButtons {...{ chosenEntry }} />

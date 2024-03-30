@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import useGetBookedSessionsUserSelectors from "../../../hooks/get-selectors/use-get-booked-sessions-user-selectors";
 import useGetRequestDateDataSelectors from "../../../hooks/get-selectors/use-get-request-date-data-selectors";
 import useBookedSessionsUserVariables from "./use-booked-sessions-user-variables";
+import useBookedSessionsUserActions from "../../../hooks/get-actions-and-thunks/booked-sessions-user-actions-and-thunks/use-booked-session-user-actions";
 import useUserBookingToDeleteActions from "../../../hooks/get-actions-and-thunks/user-booking-to-delete-actions-and-thunks/use-user-booking-to-delete-actions";
 import useFireErrorSwals from "./use-fire-error-swals";
 
@@ -12,7 +13,10 @@ import { cancelBookingRoute } from "../../../strings/routes/routes-strings";
 import { scrollToTop } from "../../../functions/scroll-top-top";
 
 const useBookedSessionsUserFunctions = (chosenEntry) => {
-  const { bookedSessionsUser } = useGetBookedSessionsUserSelectors();
+  const { bookedSessionsUser, bookedSessionsUserShowAllDates } =
+    useGetBookedSessionsUserSelectors();
+  const { dispatchSetBookedSessionsUserShowAllDates } =
+    useBookedSessionsUserActions();
   const { bookingClosingTimes } = useGetRequestDateDataSelectors();
   const { data } = useBookedSessionsUserVariables();
   const { dispatchAddUserBookingToDelete } = useUserBookingToDeleteActions();
@@ -29,6 +33,26 @@ const useBookedSessionsUserFunctions = (chosenEntry) => {
   // no bookings have been made yet
   const noBookingDataFound = () => {
     return !bookedSessionsUser.length && !data.length ? true : false;
+  };
+
+  const noDataFound = (data) => {
+    return !data.length ? true : false;
+  };
+
+  const allBookingsAreBeingShown = (data) => {
+    return data.length && bookedSessionsUserShowAllDates ? true : false;
+  };
+
+  const showCurrentAndFutureBookings = () => {
+    dispatchSetBookedSessionsUserShowAllDates(false);
+  };
+
+  const showAllBookings = () => {
+    dispatchSetBookedSessionsUserShowAllDates(true);
+  };
+
+  const noEntryHasBeenSelected = () => {
+    return !chosenEntry.length ? true : false;
   };
 
   const oneEntrySelected = () => {
@@ -120,11 +144,16 @@ const useBookedSessionsUserFunctions = (chosenEntry) => {
   };
 
   return {
+    noEntryHasBeenSelected,
     oneEntrySelected,
     moreThanOneEntrySelected,
     noBookingDataFound,
+    noDataFound,
     checkOkToCancelAndGoToCancelBookingRoute,
     scrollToTop,
+    allBookingsAreBeingShown,
+    showCurrentAndFutureBookings,
+    showAllBookings,
   };
 };
 

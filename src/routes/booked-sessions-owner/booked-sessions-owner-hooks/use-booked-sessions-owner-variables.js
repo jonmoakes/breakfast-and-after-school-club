@@ -8,7 +8,7 @@ import { TABLE_COLUMNS } from "../table-columns";
 
 const useBookedSessionsOwnerVariables = () => {
   const {
-    showAllDates,
+    bookedSessionsOwnerShowAllDates,
     sortedOwnerBookings,
     bookedSessionsOwnerIsLoading,
     bookedSessionsOwner,
@@ -19,14 +19,14 @@ const useBookedSessionsOwnerVariables = () => {
 
   const data = useMemo(
     () =>
-      !showAllDates
+      !bookedSessionsOwnerShowAllDates
         ? sortedOwnerBookings.filter((row) => {
             const rowDate = row.date;
             const formattedTodaysDate = format(new Date(), "yyyy-MM-dd");
             return rowDate === formattedTodaysDate;
           })
         : sortedOwnerBookings,
-    [sortedOwnerBookings, showAllDates]
+    [sortedOwnerBookings, bookedSessionsOwnerShowAllDates]
   );
 
   const columns = useMemo(() => TABLE_COLUMNS, []);

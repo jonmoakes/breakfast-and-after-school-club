@@ -1,6 +1,7 @@
 import useGetRequestDateDataSelectors from "../../../hooks/get-selectors/use-get-request-date-data-selectors";
 import { BlueH2 } from "../../../styles/h2/h2.styles";
 import { Text } from "../../../styles/p/p.styles";
+import { BlackHr } from "../../../styles/hr/hr.styles";
 
 const CancelBookingTableHelp = () => {
   const { bookingClosingTimes } = useGetRequestDateDataSelectors();
@@ -10,6 +11,7 @@ const CancelBookingTableHelp = () => {
 
   return (
     <>
+      <BlackHr />
       <BlueH2>cancelling a booking:</BlueH2>
       <Text>
         to cancel your booking, tap on the small checkbox to the left of the

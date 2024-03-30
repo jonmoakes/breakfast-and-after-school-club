@@ -8,10 +8,12 @@ import { chosenEntryChildDetailsRoute } from "../../../strings/routes/routes-str
 import { scrollToTop } from "../../../functions/scroll-top-top";
 
 const useBookedSessionsOwnerFunctions = (chosenEntry) => {
-  const { bookedSessionsOwner, showAllDates } =
+  const { bookedSessionsOwner, bookedSessionsOwnerShowAllDates } =
     useGetBookedSessionsOwnerSelectors();
-  const { dispatchSetShowAllDates, dispatchSetBookedSessionsOwner } =
-    useBookedSessionsOwnerActions();
+  const {
+    dispatchBookedSessionsOwnerSetShowAllDates,
+    dispatchSetBookedSessionsOwner,
+  } = useBookedSessionsOwnerActions();
 
   const navigate = useNavigate();
 
@@ -25,13 +27,17 @@ const useBookedSessionsOwnerFunctions = (chosenEntry) => {
   };
 
   const allBookingsAreBeingShown = (data) => {
-    return data.length && showAllDates ? true : false;
+    return data.length && bookedSessionsOwnerShowAllDates ? true : false;
   };
 
   const passChosenEntryAndGoToChosenEntryChildDetailsRoute = () => {
     navigate(chosenEntryChildDetailsRoute, {
       state: { ...{ chosenEntry } },
     });
+  };
+
+  const noEntryHasBeenSelected = () => {
+    return !chosenEntry.length ? true : false;
   };
 
   const oneEntrySelected = () => {
@@ -43,11 +49,11 @@ const useBookedSessionsOwnerFunctions = (chosenEntry) => {
   };
 
   const showTodaysBookings = () => {
-    dispatchSetShowAllDates(false);
+    dispatchBookedSessionsOwnerSetShowAllDates(false);
   };
 
   const showAllBookings = () => {
-    dispatchSetShowAllDates(true);
+    dispatchBookedSessionsOwnerSetShowAllDates(true);
   };
 
   return {
@@ -55,6 +61,7 @@ const useBookedSessionsOwnerFunctions = (chosenEntry) => {
     noDataFound,
     allBookingsAreBeingShown,
     passChosenEntryAndGoToChosenEntryChildDetailsRoute,
+    noEntryHasBeenSelected,
     oneEntrySelected,
     moreThanOneEntrySelected,
     showTodaysBookings,
