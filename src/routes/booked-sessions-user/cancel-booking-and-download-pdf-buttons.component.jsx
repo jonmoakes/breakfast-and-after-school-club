@@ -1,6 +1,6 @@
 import { PDFDownloadLink } from "@react-pdf/renderer";
 
-import useBookedSessionsUserLogic from "./booked-sessions-user-hooks/logic/use-booked-sessions-user-logic";
+import useBookedSessionsUserFunctions from "./booked-sessions-user-hooks/use-booked-sessions-user-functions";
 
 import BookingPdf from "../../components/booking-pdf/booking-pdf.component";
 
@@ -12,12 +12,15 @@ import {
 import { Text } from "../../styles/p/p.styles";
 
 const CancelBookingAndDownloadPdfButtons = ({ chosenEntry }) => {
-  const { checkOkToCancelAndGoToCancelBookingRoute } =
-    useBookedSessionsUserLogic(chosenEntry);
+  const {
+    oneEntrySelected,
+    moreThanOneEntrySelected,
+    checkOkToCancelAndGoToCancelBookingRoute,
+  } = useBookedSessionsUserFunctions(chosenEntry);
 
   return (
     <>
-      {chosenEntry.length === 1 ? (
+      {oneEntrySelected() ? (
         <TableEditsButtonDiv>
           <RemoveEntryButton onClick={checkOkToCancelAndGoToCancelBookingRoute}>
             cancel booking
@@ -30,7 +33,7 @@ const CancelBookingAndDownloadPdfButtons = ({ chosenEntry }) => {
             <DownloadPdfButton>download PDF</DownloadPdfButton>
           </PDFDownloadLink>
         </TableEditsButtonDiv>
-      ) : chosenEntry.length > 1 ? (
+      ) : moreThanOneEntrySelected() ? (
         <ParentDiv>
           <Text>please select just one entry.</Text>
           <Text>

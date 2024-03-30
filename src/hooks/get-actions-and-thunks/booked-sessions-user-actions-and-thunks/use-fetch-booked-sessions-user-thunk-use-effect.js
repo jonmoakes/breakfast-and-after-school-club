@@ -1,11 +1,11 @@
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 
-import useGetCurrentUserSelectors from "../../../hooks/get-selectors/use-get-current-user-selectors";
+import useGetCurrentUserSelectors from "../../get-selectors/use-get-current-user-selectors";
 import { fetchBookedSessionsUserAsync } from "../../../store/booked-sessions-user/booked-sessions-user.thunks";
 import { requestBookingClosingTimesAsync } from "../../../store/request-date-data/request-date-data.thunks";
 
-const useFetchBookedSessionsUser = () => {
+const useFetchBookedSessionsUserThunkUseEffect = () => {
   const {
     currentUser,
     id,
@@ -49,4 +49,4 @@ const useFetchBookedSessionsUser = () => {
   ]);
 };
 
-export default useFetchBookedSessionsUser;
+export default useFetchBookedSessionsUserThunkUseEffect;

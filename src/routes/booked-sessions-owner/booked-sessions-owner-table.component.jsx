@@ -27,7 +27,6 @@ const BookedSessionsOwnerTable = () => {
   const { bookedSessionsOwnerError, data, columns, initialState } =
     useBookedSessionsOwnerVariables();
   const { scrollToTop } = useBookedSessionsOwnerFunctions();
-
   const { isOnline } = useIsOnline();
 
   const {

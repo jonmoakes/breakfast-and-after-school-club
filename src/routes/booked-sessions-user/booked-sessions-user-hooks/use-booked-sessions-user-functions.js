@@ -1,18 +1,21 @@
 import { isBefore, isAfter, isSameDay, parse, startOfDay } from "date-fns";
 import { useNavigate } from "react-router-dom";
 
-import useGetBookedSessionsUserSelectors from "../../../../hooks/get-selectors/use-get-booked-sessions-user-selectors";
-import useGetRequestDateDataSelectors from "../../../../hooks/get-selectors/use-get-request-date-data-selectors";
-import useUserBookingToDeleteActions from "../../../../hooks/get-actions-and-thunks/user-booking-to-delete-actions-and-thunks/use-user-booking-to-delete-actions";
-import useFireErrorSwals from "../use-fire-error-swals";
+import useGetBookedSessionsUserSelectors from "../../../hooks/get-selectors/use-get-booked-sessions-user-selectors";
+import useGetRequestDateDataSelectors from "../../../hooks/get-selectors/use-get-request-date-data-selectors";
+import useBookedSessionsUserVariables from "./use-booked-sessions-user-variables";
+import useUserBookingToDeleteActions from "../../../hooks/get-actions-and-thunks/user-booking-to-delete-actions-and-thunks/use-user-booking-to-delete-actions";
+import useFireErrorSwals from "./use-fire-error-swals";
 
-import { cancelBookingRoute } from "../../../../strings/routes/routes-strings";
+import { cancelBookingRoute } from "../../../strings/routes/routes-strings";
 
-const useBookedSessionsUserLogic = (chosenEntry) => {
+import { scrollToTop } from "../../../functions/scroll-top-top";
+
+const useBookedSessionsUserFunctions = (chosenEntry) => {
   const { bookedSessionsUser } = useGetBookedSessionsUserSelectors();
   const { bookingClosingTimes } = useGetRequestDateDataSelectors();
+  const { data } = useBookedSessionsUserVariables();
   const { dispatchAddUserBookingToDelete } = useUserBookingToDeleteActions();
-
   const {
     cantCancelPastBookingSwal,
     cantCancelMorningSessionSwal,
@@ -22,6 +25,19 @@ const useBookedSessionsUserLogic = (chosenEntry) => {
   } = useFireErrorSwals();
 
   const navigate = useNavigate();
+
+  // no bookings have been made yet
+  const noBookingDataFound = () => {
+    return !bookedSessionsUser.length && !data.length ? true : false;
+  };
+
+  const oneEntrySelected = () => {
+    return chosenEntry.length === 1 ? true : false;
+  };
+
+  const moreThanOneEntrySelected = () => {
+    return chosenEntry.length > 1 ? true : false;
+  };
 
   const { sessionType, date } = (chosenEntry ?? [])[0] ?? {};
 
@@ -86,11 +102,6 @@ const useBookedSessionsUserLogic = (chosenEntry) => {
       : false;
   };
 
-  // no bookings have been made yet
-  const noBookingDataFound = (data) => {
-    return !bookedSessionsUser.length && !data.length ? true : false;
-  };
-
   const checkOkToCancelAndGoToCancelBookingRoute = () => {
     if (!bookingClosingTimes) {
       couldntFetchBookingClosingTimesSwal();
@@ -109,9 +120,12 @@ const useBookedSessionsUserLogic = (chosenEntry) => {
   };
 
   return {
+    oneEntrySelected,
+    moreThanOneEntrySelected,
     noBookingDataFound,
     checkOkToCancelAndGoToCancelBookingRoute,
+    scrollToTop,
   };
 };
 
-export default useBookedSessionsUserLogic;
+export default useBookedSessionsUserFunctions;

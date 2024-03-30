@@ -1,4 +1,3 @@
-import { useMemo } from "react";
 import {
   useTable,
   useSortBy,
@@ -8,10 +7,10 @@ import {
   useColumnOrder,
 } from "react-table";
 
+import useBookedSessionsUserVariables from "./booked-sessions-user-hooks/use-booked-sessions-user-variables";
+import useBookedSessionsUserFunctions from "./booked-sessions-user-hooks/use-booked-sessions-user-functions";
 import useIsOnline from "../../hooks/use-is-online";
-import useGetBookedSessionsUserSelectors from "../../hooks/get-selectors/use-get-booked-sessions-user-selectors";
 
-import { TABLE_COLUMNS } from "./table-columns";
 import NetworkError from "../../components/errors/network-error.component";
 import TableCheckBox from "../../components/tables/table-checkbox";
 import NoBookingsFound from "./no-bookings-found.component";
@@ -21,20 +20,11 @@ import TablePagination from "../../components/tables/table-pagination.component"
 import CancelBookingAndDownloadPdfButtons from "./cancel-booking-and-download-pdf-buttons.component";
 import ShowFetchErrors from "../../components/errors/show-fetch-errors.component";
 
-import { scrollToTop } from "../../functions/scroll-top-top";
-
 const BookedSessionsUserTable = () => {
+  const { data, columns, initialState, bookedSessionsUserError } =
+    useBookedSessionsUserVariables();
+  const { scrollToTop } = useBookedSessionsUserFunctions();
   const { isOnline } = useIsOnline();
-  const { bookedSessionsUserError } = useGetBookedSessionsUserSelectors();
-  let { sortedUserBookings } = useGetBookedSessionsUserSelectors();
-
-  const columns = useMemo(() => TABLE_COLUMNS, []);
-  const data = useMemo(() => sortedUserBookings, [sortedUserBookings]);
-
-  const initialState = useMemo(
-    () => ({ sortBy: [{ id: "date", desc: true }], pageSize: 30 }),
-    []
-  );
 
   const {
     getTableProps,
@@ -85,9 +75,7 @@ const BookedSessionsUserTable = () => {
   );
 
   const { globalFilter, pageIndex, pageSize } = state;
-
   const chosenEntry = selectedFlatRows.map((row) => row.original);
-  sortedUserBookings = chosenEntry;
 
   return (
     <>
@@ -97,7 +85,7 @@ const BookedSessionsUserTable = () => {
         <ShowFetchErrors />
       ) : (
         <>
-          <NoBookingsFound {...{ data }} />
+          <NoBookingsFound />
 
           <TableSearchBox
             {...{

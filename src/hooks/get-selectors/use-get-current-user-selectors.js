@@ -16,6 +16,7 @@ const useGetCurrentUserSelectors = () => {
 
   const { walletBalance, email, id, name, phoneNumber, provider } =
     currentUser ?? {};
+
   const currentUserEmailForContactForm = email ? email : "";
   const currentUserNameForContactForm = name ? name : "";
   const currentUserProvider = provider ? provider : "";
@@ -52,6 +53,8 @@ const useGetCurrentUserSelectors = () => {
     walletFundsToAdd,
     walletBalance,
     id,
+    name,
+    email,
     phoneNumber,
     currentUserEmailForContactForm,
     currentUserNameForContactForm,
