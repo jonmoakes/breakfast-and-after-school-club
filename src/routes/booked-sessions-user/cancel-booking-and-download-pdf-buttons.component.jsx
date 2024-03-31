@@ -16,15 +16,20 @@ const CancelBookingAndDownloadPdfButtons = ({ chosenEntry }) => {
     oneEntrySelected,
     moreThanOneEntrySelected,
     checkOkToCancelAndGoToCancelBookingRoute,
+    bookingIsOnADayInThePast,
   } = useBookedSessionsUserFunctions(chosenEntry);
 
   return (
     <>
       {oneEntrySelected() ? (
         <TableEditsButtonDiv>
-          <RemoveEntryButton onClick={checkOkToCancelAndGoToCancelBookingRoute}>
-            cancel booking
-          </RemoveEntryButton>
+          {bookingIsOnADayInThePast() ? null : (
+            <RemoveEntryButton
+              onClick={checkOkToCancelAndGoToCancelBookingRoute}
+            >
+              cancel booking
+            </RemoveEntryButton>
+          )}
 
           <PDFDownloadLink
             document={<BookingPdf {...{ chosenEntry }} />}

@@ -32,6 +32,7 @@ export const TABLE_COLUMNS = [
   },
   {
     Header: "parent email",
+
     Cell: ({ row }) => {
       return <UsersEmailCell {...{ row }} />;
     },
@@ -39,6 +40,7 @@ export const TABLE_COLUMNS = [
   {
     Header: "Parent Phone",
     accessor: "parentPhoneNumber",
+
     Cell: ({ value, row }) => {
       return <UsersPhoneNumberCell {...{ value, row }} />;
     },

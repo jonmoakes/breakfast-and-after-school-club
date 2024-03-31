@@ -66,7 +66,9 @@ const UserBookingsHelp = () => {
               of the yellow table headers.
             </Text>
 
-            {isBookedSessionsOwnerRoute || isBookedSessionsUserRoute ? (
+            {isBookedSessionsOwnerRoute ||
+            isBookedSessionsUserRoute ||
+            isAllUsersRoute ? (
               <DateSearchingHelp />
             ) : null}
 
@@ -101,8 +103,9 @@ const UserBookingsHelp = () => {
 
             <BlueH2>sorting:</BlueH2>
             <Text>
-              you can sort the table into ascending, descending or unsorted
-              order by tapping on any of the yellow headers.
+              you can sort the table into descending ( ⬇️ ), unsorted ( no arrow
+              ) or ascending ( ⬆️ ) order by tapping on any of the yellow
+              headers. The default sorted method is descending.
             </Text>
 
             {isBookedSessionsOwnerRoute ? (

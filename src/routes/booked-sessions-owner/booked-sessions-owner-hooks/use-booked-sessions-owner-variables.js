@@ -1,5 +1,4 @@
 import { useMemo } from "react";
-import { format } from "date-fns";
 
 import useGetBookedSessionsOwnerSelectors from "../../../hooks/get-selectors/use-get-booked-sessions-owner-selectors";
 import useGetCurrentUserSelectors from "../../../hooks/get-selectors/use-get-current-user-selectors";
@@ -17,22 +16,34 @@ const useBookedSessionsOwnerVariables = () => {
   const { currentUser, databaseId, bookedSessionsCollectionId } =
     useGetCurrentUserSelectors();
 
+  const setTimeToMidnight = (date) => {
+    date.setHours(0, 0, 0, 0);
+  };
+
   const data = useMemo(
     () =>
       !bookedSessionsOwnerShowAllDates
         ? sortedOwnerBookings.filter((row) => {
-            const rowDate = row.date;
-            const formattedTodaysDate = format(new Date(), "yyyy-MM-dd");
-            return rowDate === formattedTodaysDate;
+            const rowDate = row.dateAsDateObjectForSorting;
+            const currentDate = new Date();
+            setTimeToMidnight(rowDate);
+            setTimeToMidnight(currentDate);
+            const rowDateTime = rowDate.getTime();
+            const currentDateTime = currentDate.getTime();
+            const bookingsOnTodaysDate = rowDateTime === currentDateTime;
+
+            return bookingsOnTodaysDate;
           })
         : sortedOwnerBookings,
     [sortedOwnerBookings, bookedSessionsOwnerShowAllDates]
   );
 
   const columns = useMemo(() => TABLE_COLUMNS, []);
-
   const initialState = useMemo(
-    () => ({ sortBy: [{ id: "date", desc: true }], pageSize: 30 }),
+    () => ({
+      sortBy: [{ id: "dateAsDateObjectForSorting", desc: true }],
+      pageSize: 30,
+    }),
     []
   );
 
@@ -46,6 +57,7 @@ const useBookedSessionsOwnerVariables = () => {
     bookedSessionsOwnerIsLoading,
     bookedSessionsOwner,
     bookedSessionsOwnerError,
+    bookedSessionsOwnerShowAllDates,
   };
 };
 

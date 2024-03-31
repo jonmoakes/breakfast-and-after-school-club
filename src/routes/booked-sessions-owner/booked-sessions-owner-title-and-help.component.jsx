@@ -5,11 +5,14 @@ import { BlackTitle } from "../../styles/h1/h1.styles";
 import useBookedSessionsOwnerVariables from "./booked-sessions-owner-hooks/use-booked-sessions-owner-variables";
 
 const BookedSessionsOwnerTitleAndHelp = () => {
-  const { data } = useBookedSessionsOwnerVariables();
+  const { data, bookedSessionsOwnerShowAllDates } =
+    useBookedSessionsOwnerVariables();
 
   return (
     <ParentDiv>
-      <BlackTitle>booked sessions</BlackTitle>
+      <BlackTitle>
+        {!bookedSessionsOwnerShowAllDates ? "todays " : "all "}booked sessions
+      </BlackTitle>
       {data.length ? <TableHelp /> : null}
     </ParentDiv>
   );

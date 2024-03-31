@@ -1,11 +1,10 @@
-import { format, parseISO } from "date-fns";
-
 import EmailIcon from "../../assets/email-icon.png";
 import ShowCallIcon from "../../components/tables/show-call-icon.component";
 
 import { IconImage } from "../../styles/image/image.styles";
 import { InLineDiv } from "../../styles/div/div.styles";
 import { LowercasedSpan, RightMarginSpan } from "../../styles/span/span.styles";
+import FormattedDateCell from "../../components/tables/formatted-date-cell.component";
 
 export const TABLE_COLUMNS = [
   {
@@ -61,14 +60,9 @@ export const TABLE_COLUMNS = [
   },
   {
     Header: "joined On",
-    accessor: "createdAt",
+    accessor: "createdAtDateObjectForSorting",
     Cell: ({ value }) => {
-      const formattedCreatedOn = format(
-        parseISO(value),
-        "EEEE dd MMMM yyyy 'at' HH:mm"
-      );
-
-      return <span>{formattedCreatedOn}</span>;
+      return <FormattedDateCell {...{ value }} />;
     },
   },
 ];

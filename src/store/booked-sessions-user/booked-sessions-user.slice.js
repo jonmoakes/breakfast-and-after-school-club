@@ -1,6 +1,5 @@
 import { createSelector, createSlice } from "@reduxjs/toolkit";
 import { fetchBookedSessionsUserAsync } from "./booked-sessions-user.thunks";
-import { format, parseISO } from "date-fns";
 
 const INITIAL_STATE = {
   bookedSessionsUserIsLoading: false,
@@ -37,17 +36,18 @@ export const bookedSessionsUserSlice = createSlice({
       ) => {
         const formattedUserBookings = bookedSessionsUser.map((booking) => ({
           ...booking,
-          formattedDate: format(parseISO(booking.date), "EEEE dd MMMM yyyy"),
+          dateAsDateObjectForSorting: new Date(booking.date),
         }));
 
         const sortedUserBookings = formattedUserBookings.sort(
           (bookingA, bookingB) => {
-            const dateA = new Date(bookingA.date);
-            const dateB = new Date(bookingB.date);
+            const dateA = new Date(bookingA.dateAsDateObjectForSorting);
+            const dateB = new Date(bookingB.dateAsDateObjectForSorting);
 
             return dateA - dateB;
           }
         );
+
         return {
           bookedSessionsUserIsLoading,
           bookedSessionsUser,

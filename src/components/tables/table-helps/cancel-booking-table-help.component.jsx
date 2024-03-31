@@ -37,6 +37,9 @@ const CancelBookingTableHelp = () => {
         past {morningSessionClosingTime}AM, you wont be able to cancel the
         afternoon session.
       </Text>
+      <Text>
+        the button to cancel a booking wont show if the date is in the past.
+      </Text>
     </>
   );
 };

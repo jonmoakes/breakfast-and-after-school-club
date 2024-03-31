@@ -1,3 +1,4 @@
+import FormattedDateCell from "../../components/tables/formatted-date-cell.component";
 import UsersPhoneNumberCell from "../../components/tables/users-phone-number-cell.component";
 import UsersEmailCell from "../../components/tables/user-email-cell.component";
 
@@ -6,7 +7,10 @@ import { getSessionTypeString } from "../../functions/get-session-type-string";
 export const TABLE_COLUMNS = [
   {
     Header: "date",
-    accessor: "formattedDate",
+    accessor: "dateAsDateObjectForSorting",
+    Cell: ({ value }) => {
+      return <FormattedDateCell {...{ value }} />;
+    },
   },
   {
     Header: "session",

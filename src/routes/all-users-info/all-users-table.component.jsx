@@ -24,13 +24,16 @@ const AllUsersTable = () => {
   useAllUsersListener();
   const { isOnline } = useIsOnline();
 
-  let { allUsers } = useGetAllUsersSelectors();
+  let { allUserWithFormattedCreatedAt } = useGetAllUsersSelectors();
   const { getAllUsersError } = useGetAllUsersSelectors();
 
   const columns = useMemo(() => TABLE_COLUMNS, []);
   const data = useMemo(
-    () => (allUsers !== undefined ? allUsers : []),
-    [allUsers]
+    () =>
+      allUserWithFormattedCreatedAt !== undefined
+        ? allUserWithFormattedCreatedAt
+        : [],
+    [allUserWithFormattedCreatedAt]
   );
   const initialState = useMemo(
     () => ({ sortBy: [{ id: "name", desc: false }], pageSize: 30 }),

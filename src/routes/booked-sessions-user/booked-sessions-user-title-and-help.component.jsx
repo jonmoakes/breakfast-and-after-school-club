@@ -6,11 +6,14 @@ import { ParentDiv } from "../../styles/div/div.styles";
 import { BlackTitle } from "../../styles/h1/h1.styles";
 
 const BookedSessionsUserTitleAndHelp = () => {
-  const { data } = useBookedSessionsUserVariables();
+  const { data, bookedSessionsUserShowAllDates } =
+    useBookedSessionsUserVariables();
 
   return (
     <ParentDiv>
-      <BlackTitle>booked sessions</BlackTitle>
+      <BlackTitle>
+        {!bookedSessionsUserShowAllDates ? "upcoming " : "all "}booked sessions
+      </BlackTitle>
       {data.length ? <TableHelp /> : null}
     </ParentDiv>
   );

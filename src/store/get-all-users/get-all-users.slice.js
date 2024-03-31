@@ -27,9 +27,17 @@ export const getAllUsersSlice = createSlice({
       (state) => state.allUsers,
       (state) => state.getAllUsersError,
       (getAllUsersIsLoading, allUsers, getAllUsersError) => {
+        const allUserWithFormattedCreatedAt = allUsers.map((user) => {
+          return {
+            ...user,
+            createdAtDateObjectForSorting: new Date(user.createdAt),
+          };
+        });
+
         return {
           getAllUsersIsLoading,
           allUsers,
+          allUserWithFormattedCreatedAt,
           getAllUsersError,
         };
       }

@@ -154,6 +154,7 @@ const useBookedSessionsUserFunctions = (chosenEntry) => {
     allBookingsAreBeingShown,
     showCurrentAndFutureBookings,
     showAllBookings,
+    bookingIsOnADayInThePast,
   };
 };
 

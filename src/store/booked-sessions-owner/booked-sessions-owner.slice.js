@@ -1,6 +1,5 @@
 import { createSelector, createSlice } from "@reduxjs/toolkit";
 import { fetchBookedSessionsOwnerAsync } from "./booked-sessions-owner.thunks";
-import { format, parseISO } from "date-fns";
 
 const INITIAL_STATE = {
   bookedSessionsOwnerIsLoading: false,
@@ -39,15 +38,17 @@ export const bookedSessionsOwnerSlice = createSlice({
         bookedSessionsOwnerShowAllDates,
         bookedSessionsOwnerError
       ) => {
-        const formattedOwnerBookings = bookedSessionsOwner.map((booking) => ({
-          ...booking,
-          formattedDate: format(parseISO(booking.date), "EEEE dd MMMM yyyy"),
-        }));
+        const formattedOwnerBookings = bookedSessionsOwner.map((booking) => {
+          return {
+            ...booking,
+            dateAsDateObjectForSorting: new Date(booking.date),
+          };
+        });
 
         const sortedOwnerBookings = formattedOwnerBookings.sort(
           (bookingA, bookingB) => {
-            const dateA = new Date(bookingA.date);
-            const dateB = new Date(bookingB.date);
+            const dateA = new Date(bookingA.dateAsDateObjectForSorting);
+            const dateB = new Date(bookingB.dateAsDateObjectForSorting);
 
             return dateA - dateB;
           }
