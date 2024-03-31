@@ -40,6 +40,10 @@ export const bookSessionSlice = createSlice({
     setSessionPrice(state, action) {
       state.sessionPrice = action.payload;
     },
+    resetSessionTypeAndPrice(state) {
+      state.sessionType = "";
+      state.sessionPrice = null;
+    },
     setChildrenSelectedForBooking: (state, action) => {
       const checkboxName = Object.keys(action.payload)[0];
       const isChecked = action.payload[checkboxName];
@@ -153,6 +157,7 @@ export const bookSessionSlice = createSlice({
 export const {
   setSessionType,
   setSessionPrice,
+  resetSessionTypeAndPrice,
   resetUserDocBalanceError,
   resetBookSessionState,
   setChildrenSelectedForBooking,

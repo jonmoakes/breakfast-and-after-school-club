@@ -30,7 +30,7 @@ const useBookSessionThunks = (date) => {
   // Then updates the users balance in the databse.
   // Then adds the sessionBookingInfo to the database
   // Then fetches the latest balance from the database
-  const bookSessionAsync = (sessionType, price) => {
+  const dispatchBookSessionThunks = (sessionType, price) => {
     dispatch(
       updateSessionDocAsync({
         date,
@@ -75,7 +75,7 @@ const useBookSessionThunks = (date) => {
     });
   };
 
-  return { bookSessionAsync };
+  return { dispatchBookSessionThunks };
 };
 
 export default useBookSessionThunks;

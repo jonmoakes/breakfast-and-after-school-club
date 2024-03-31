@@ -1,3 +1,4 @@
+import useBookSessionActions from "../../../../hooks/get-actions-and-thunks/book-session-actions-and-thunks/use-book-session-actions";
 import useGetBookSessionSelectors from "../../../../hooks/get-selectors/use-get-book-session-selectors";
 import useDatesLogic from "../logic/use-dates-logic";
 import useGetChildrenLogic from "./use-get-children-logic";
@@ -11,6 +12,7 @@ const useSessionLogic = () => {
     sessionPrice,
     addSessionBookingInfo,
   } = useGetBookSessionSelectors();
+  const { dispatchResetSessionTypeAndPrice } = useBookSessionActions();
   const { date, morningSessionSpaces, afternoonSessionSpaces } =
     useDatesLogic();
   const { childrenSelectedForBooking } = useGetChildrenLogic();
@@ -83,6 +85,10 @@ const useSessionLogic = () => {
         : false;
     };
 
+  const cancelResult = () => {
+    dispatchResetSessionTypeAndPrice();
+  };
+
   return {
     onlyMorningSessionsAvailable,
     onlyAfternoonSessionsAvailable,
@@ -102,6 +108,7 @@ const useSessionLogic = () => {
     resetSessionError,
     addSessionBookingInfoResult,
     addSessionBookingInfoError,
+    cancelResult,
   };
 };
 

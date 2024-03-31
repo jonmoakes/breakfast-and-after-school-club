@@ -5,6 +5,7 @@ import {
   setChildrenSelectedForBooking,
   setSessionPrice,
   setSessionType,
+  resetSessionTypeAndPrice,
 } from "../../../store/book-session/book-session.slice";
 
 const useBookSessionActions = () => {
@@ -23,6 +24,10 @@ const useBookSessionActions = () => {
     dispatch(setSessionType(sessionType));
   };
 
+  const dispatchResetSessionTypeAndPrice = () => {
+    dispatch(resetSessionTypeAndPrice());
+  };
+
   const dispatchResetBookSessionState = () => {
     dispatch(resetBookSessionState());
   };
@@ -31,6 +36,7 @@ const useBookSessionActions = () => {
     handleSetChildrenSelectedForBookingChange,
     dispatchSetSessionPrice,
     dispatchSetSessionType,
+    dispatchResetSessionTypeAndPrice,
     dispatchResetBookSessionState,
   };
 };
