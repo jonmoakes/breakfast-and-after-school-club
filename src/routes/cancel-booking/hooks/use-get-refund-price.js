@@ -1,9 +1,9 @@
 import useGetUserBookingToDeleteSelectors from "../../../hooks/get-selectors/use-get-user-booking-to-delete-selectors";
 import useGetSessionTypesAndPricesSelectors from "../../../hooks/get-selectors/use-get-session-types-and-prices-selectors";
+import useGetUsersChildrenSelectors from "../../../hooks/get-selectors/use-get-users-children-selectors";
 
 const useGetRefundPrice = () => {
   const { userBookingToDelete } = useGetUserBookingToDeleteSelectors();
-
   const {
     morningSessionPrice,
     afternoonShortSessionPrice,
@@ -11,12 +11,15 @@ const useGetRefundPrice = () => {
     morningAndAfternoonShortSessionPrice,
     morningAndAfternoonLongSessionPrice,
   } = useGetSessionTypesAndPricesSelectors();
+  const { usersChildren } = useGetUsersChildrenSelectors();
 
   const { sessionType } = userBookingToDelete || {};
 
   const childrensName = userBookingToDelete
     ? userBookingToDelete.childrensName
     : "";
+
+  console.log(childrensName);
 
   const getRefundPrice = () => {
     switch (sessionType) {
@@ -53,10 +56,17 @@ const useGetRefundPrice = () => {
 
   const numberOfChildrenInBooking = numberOfCommasInNamesString + 1;
 
-  const refundPrice = getRefundPrice();
-  const totalRefundPrice = refundPrice * numberOfChildrenInBooking;
+  let refundPrice = getRefundPrice();
 
-  return { refundPrice, totalRefundPrice, numberOfChildrenInBooking };
+  refundPrice =
+    usersChildren.length === 1
+      ? refundPrice
+      : refundPrice * numberOfChildrenInBooking;
+
+  return {
+    refundPrice,
+    numberOfChildrenInBooking,
+  };
 };
 
 export default useGetRefundPrice;

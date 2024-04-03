@@ -1,12 +1,9 @@
-import { useDispatch } from "react-redux";
-
 import useFireSwal from "../../../hooks/use-fire-swal";
 import useConfirmSwal from "../../../hooks/use-confirm-swal";
 import useShowInvalidEmailMessageSwal from "../../../hooks/use-show-invalid-email-message-swal";
 import useGetUpdateEmailSelectors from "../../../hooks/get-selectors/use-get-update-email-selectors";
 import useGetCurrentUserSelectors from "../../../hooks/get-selectors/use-get-current-user-selectors";
-
-import { updateEmailAsync } from "../../../store/update-email/update-email.thunks";
+import useUpdateEmailThunk from "../../../hooks/get-actions-and-thunks/update-email-actions-and-thunks/use-update-email-thunk";
 
 import {
   imSureMessage,
@@ -20,24 +17,15 @@ import {
 import { validateEmail } from "../../../functions/validate-email";
 
 const useConfirmUpdateEmail = () => {
-  const { newEmail, confirmNewEmail, password } = useGetUpdateEmailSelectors();
-
-  const {
-    databaseId,
-    userCollectionId: collectionId,
-    id,
-    email,
-  } = useGetCurrentUserSelectors();
+  const { email } = useGetCurrentUserSelectors();
+  const { newEmail, confirmNewEmail } = useGetUpdateEmailSelectors();
+  const { updateEmailThunk } = useUpdateEmailThunk();
   const { fireSwal } = useFireSwal();
   const { confirmSwal } = useConfirmSwal();
   const { showInvalidEmailMessageSwal } = useShowInvalidEmailMessageSwal();
 
-  const dispatch = useDispatch();
-
   const confirmResult = () => {
-    dispatch(
-      updateEmailAsync({ id, newEmail, password, databaseId, collectionId })
-    );
+    updateEmailThunk();
   };
 
   const confirmUpdateEmail = () => {

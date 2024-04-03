@@ -5,7 +5,6 @@ import { ErrorBoundary } from "react-error-boundary";
 import { GlobalStyle } from "./global-styles";
 import "./App.css";
 
-import useGetUserOnLoad from "./hooks/use-get-user-on-load";
 import useGetCurrentUserSelectors from "./hooks/get-selectors/use-get-current-user-selectors";
 
 import PrivateRoutes from "./components/private-routes/private-routes.component";
@@ -41,6 +40,7 @@ import {
   socialSignInResultRoute,
   allUsersRoute,
 } from "./strings/routes/routes-strings";
+import useGetUserOnLoadThunkUseEffect from "./hooks/get-actions-and-thunks/current-user-actions-and-thunks/use-get-user-on-load-thunk-use-effect";
 
 const Navigation = lazy(() =>
   import("./routes/navigation/navigation.component")
@@ -114,7 +114,7 @@ const ChooseNewPassword = lazy(() =>
 
 const App = () => {
   const { currentUser, appOwnerId } = useGetCurrentUserSelectors();
-  useGetUserOnLoad();
+  useGetUserOnLoadThunkUseEffect();
 
   return (
     <>

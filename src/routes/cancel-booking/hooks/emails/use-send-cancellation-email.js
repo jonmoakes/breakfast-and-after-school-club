@@ -1,6 +1,5 @@
 import { useDispatch } from "react-redux";
 
-import useGetUsersChildrenSelectors from "../../../../hooks/get-selectors/use-get-users-children-selectors";
 import useGetCurrentUserSelectors from "../../../../hooks/get-selectors/use-get-current-user-selectors";
 import useGetUserBookingToDeleteSelectors from "../../../../hooks/get-selectors/use-get-user-booking-to-delete-selectors";
 import useFireSwal from "../../../../hooks/use-fire-swal";
@@ -14,16 +13,14 @@ import { bookedSessionsUserRoute } from "../../../../strings/routes/routes-strin
 
 const useSendCancellationEmail = () => {
   const { name, email } = useGetCurrentUserSelectors();
-  const { usersChildren } = useGetUsersChildrenSelectors();
   const { userBookingToDelete } = useGetUserBookingToDeleteSelectors();
   const { fireSwal } = useFireSwal();
   const { hamburgerHandlerNavigate } = useHamburgerHandlerNavigate();
-  let { refundPrice, totalRefundPrice } = useGetRefundPrice();
+  const { refundPrice } = useGetRefundPrice();
 
   const dispatch = useDispatch();
 
   const { date, sessionType, childrensName } = userBookingToDelete || {};
-  refundPrice = usersChildren.length === 1 ? refundPrice : totalRefundPrice;
 
   const sendCancellationEmail = () => {
     dispatch(

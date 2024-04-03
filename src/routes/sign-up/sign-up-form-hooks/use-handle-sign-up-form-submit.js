@@ -1,10 +1,7 @@
-import { useDispatch } from "react-redux";
-
 import useGetSignUpFormSelectors from "../../../hooks/get-selectors/use-get-sign-up-form-selectors";
 import useFireSwal from "../../../hooks/use-fire-swal";
 import useShowInvalidEmailMessageSwal from "../../../hooks/use-show-invalid-email-message-swal";
-
-import { signUpAsync } from "../../../store/user/user.thunks";
+import useSignUpThunk from "../../../hooks/get-actions-and-thunks/current-user-actions-and-thunks/use-sign-up-thunk";
 
 import { validateEmail } from "../../../functions/validate-email";
 import { setProjectId } from "../../../school-codes-list/get-ids-from-school-code/set-project-id";
@@ -21,10 +18,9 @@ import {
 const useHandleSignUpFormSubmit = () => {
   const { name, email, phoneNumber, schoolCode, password, confirmPassword } =
     useGetSignUpFormSelectors();
+  const { signUpThunk } = useSignUpThunk();
   const { fireSwal } = useFireSwal();
   const { showInvalidEmailMessageSwal } = useShowInvalidEmailMessageSwal();
-
-  const dispatch = useDispatch();
 
   const handleSignUpFormSubmit = () => {
     if (!name || !email || !schoolCode || !password || !confirmPassword) {
@@ -46,7 +42,7 @@ const useHandleSignUpFormSubmit = () => {
       );
     } else {
       setProjectId(schoolCode);
-      dispatch(signUpAsync({ email, password, name, schoolCode, phoneNumber }));
+      signUpThunk();
     }
   };
 

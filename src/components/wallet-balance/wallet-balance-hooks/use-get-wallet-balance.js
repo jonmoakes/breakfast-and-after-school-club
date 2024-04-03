@@ -1,14 +1,11 @@
 import { useEffect } from "react";
-import { useDispatch } from "react-redux";
 
 import useConfirmSwal from "../../../hooks/use-confirm-swal";
 import useFireSwal from "../../../hooks/use-fire-swal";
 import useGetCurrentUserSelectors from "../../../hooks/get-selectors/use-get-current-user-selectors";
 import useCurrentUserActions from "../../../hooks/get-actions-and-thunks/current-user-actions-and-thunks/use-current-user-actions";
+import useGetWalletBalanceThunk from "../../../hooks/get-actions-and-thunks/current-user-actions-and-thunks/use-get-wallet-balance-thunk";
 
-import { getUsersWalletBalanceAsync } from "../../../store/user/user.thunks";
-
-import { balanceSuccessfullyReceivedMessage } from "../../../strings/successes/successes-strings";
 import { confirmRequestWalletBalance } from "../../../strings/confirms/confirms-strings";
 import {
   errorFetchingBalanceMessage,
@@ -16,21 +13,16 @@ import {
 } from "../../../strings/errors/errors-strings";
 
 const useGetWalletBalance = () => {
-  const {
-    id,
-    databaseId,
-    userCollectionId: collectionId,
-    currentUserWalletBalanceResult,
-    currentUserWalletBalanceError,
-  } = useGetCurrentUserSelectors();
+  const { currentUserWalletBalanceResult, currentUserWalletBalanceError } =
+    useGetCurrentUserSelectors();
+  const { getWalletBalanceThunk } = useGetWalletBalanceThunk();
+
   const {
     dispatchResetCurrentUserWalletBalanceResult,
     dispatchResetCurrentUserWalletBalanceError,
   } = useCurrentUserActions();
   const { confirmSwal } = useConfirmSwal();
   const { fireSwal } = useFireSwal();
-
-  const dispatch = useDispatch();
 
   useEffect(() => {
     if (!currentUserWalletBalanceResult && !currentUserWalletBalanceError)
@@ -59,24 +51,7 @@ const useGetWalletBalance = () => {
   ]);
 
   const confirmResult = () => {
-    dispatch(getUsersWalletBalanceAsync({ id, databaseId, collectionId })).then(
-      (resultAction) => {
-        if (getUsersWalletBalanceAsync.fulfilled.match(resultAction)) {
-          fireSwal(
-            "success",
-            balanceSuccessfullyReceivedMessage,
-            "",
-            0,
-            true,
-            false
-          ).then((isConfirmed) => {
-            if (isConfirmed) {
-              dispatchResetCurrentUserWalletBalanceResult();
-            }
-          });
-        }
-      }
-    );
+    getWalletBalanceThunk();
   };
 
   const confirmRequestLatestWalletBalance = () => {

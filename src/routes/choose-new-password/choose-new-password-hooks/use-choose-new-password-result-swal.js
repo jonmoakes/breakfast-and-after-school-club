@@ -1,13 +1,11 @@
 import { useEffect } from "react";
-import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
 import useGetCurrentUserSelectors from "../../../hooks/get-selectors/use-get-current-user-selectors";
 import useFireSwal from "../../../hooks/use-fire-swal";
-import useResetAllStoreOnSignOut from "../../../hooks/use-reset-all-store-on-sign-out";
 import useGetChooseNewPasswordSelectors from "../../../hooks/get-selectors/use-get-choose-new-password-selectors";
 import useChooseNewPasswordActions from "../../../hooks/get-actions-and-thunks/choose-new-password-actions-and-thunks/use-choose-new-password-actions";
-import { signOutAsync } from "../../../store/user/user.thunks";
+import useSignOutSubmitThunk from "../../../hooks/get-actions-and-thunks/current-user-actions-and-thunks/use-sign-out-submit-thunk";
 
 import {
   errorReceivedMessage,
@@ -21,15 +19,13 @@ import { passwordResetSuccessMessage } from "../../../strings/successes/successe
 import { signInRoute } from "../../../strings/routes/routes-strings";
 
 const useChooseNewPasswordResultSwal = () => {
-  const { fireSwal } = useFireSwal();
-  const { resetAllStoreOnSignOut } = useResetAllStoreOnSignOut();
+  const { curentUser } = useGetCurrentUserSelectors();
   const { newPasswordResult, newPasswordError } =
     useGetChooseNewPasswordSelectors();
+  const { fireSwal } = useFireSwal();
+  const { signOutSoCanSignInWithNewPasswordThunk } = useSignOutSubmitThunk();
   const { dispatchResetPasswordResultError } = useChooseNewPasswordActions();
 
-  const { curentUser } = useGetCurrentUserSelectors();
-
-  const dispatch = useDispatch();
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -45,8 +41,7 @@ const useChooseNewPasswordResultSwal = () => {
         false
       ).then((isConfirmed) => {
         if (isConfirmed) {
-          dispatch(signOutAsync());
-          resetAllStoreOnSignOut();
+          signOutSoCanSignInWithNewPasswordThunk();
         }
       });
     } else if (newPasswordResult && !curentUser) {
@@ -80,12 +75,11 @@ const useChooseNewPasswordResultSwal = () => {
   }, [
     newPasswordError,
     newPasswordResult,
-    dispatch,
     fireSwal,
     navigate,
     curentUser,
-    resetAllStoreOnSignOut,
     dispatchResetPasswordResultError,
+    signOutSoCanSignInWithNewPasswordThunk,
   ]);
 };
 

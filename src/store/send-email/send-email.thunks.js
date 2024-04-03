@@ -173,14 +173,14 @@ export const sendEmailResetSessionSpacesAndBalanceErrorAsync = createAsyncThunk(
 
 export const sendEmailBalanceNotUpdatedErrorAsync = createAsyncThunk(
   "sendEmailBalanceNotUpdatedError",
-  async ({ appOwnerEmail, id, refundAmount }, thunkAPI) => {
+  async ({ appOwnerEmail, id, refundPrice }, thunkAPI) => {
     try {
       const response = await axios.post(
         SEND_EMAIL_BALANCE_NOT_UPDATED_ERROR_ENDPOINT,
         {
           appOwnerEmail,
           id,
-          refundAmount,
+          refundPrice,
         }
       );
 

@@ -1,10 +1,7 @@
-import { useDispatch } from "react-redux";
-
 import useShowInvalidEmailMessageSwal from "../../../hooks/use-show-invalid-email-message-swal";
 import useGetSignInFormSelectors from "../../../hooks/get-selectors/use-get-sign-in-form-selectors";
 import useFireSwal from "../../../hooks/use-fire-swal";
-
-import { signInAsync } from "../../../store/user/user.thunks";
+import useSignInThunk from "../../../hooks/get-actions-and-thunks/current-user-actions-and-thunks/use-sign-in-thunk";
 
 import {
   missingFieldsMessage,
@@ -18,10 +15,9 @@ import { validateEmail } from "../../../functions/validate-email";
 
 const useHandleSignInFormSubmit = () => {
   const { email, password, schoolCode } = useGetSignInFormSelectors();
+  const { signInThunk } = useSignInThunk();
   const { fireSwal } = useFireSwal();
   const { showInvalidEmailMessageSwal } = useShowInvalidEmailMessageSwal();
-
-  const dispatch = useDispatch();
 
   const handleSignInFormSubmit = () => {
     if (!email || !password || !schoolCode) {
@@ -39,7 +35,8 @@ const useHandleSignInFormSubmit = () => {
       );
     } else {
       setProjectId(schoolCode);
-      dispatch(signInAsync({ email, password, schoolCode }));
+      signInThunk();
+      // dispatch(signInAsync({ email, password, schoolCode }));
     }
   };
 

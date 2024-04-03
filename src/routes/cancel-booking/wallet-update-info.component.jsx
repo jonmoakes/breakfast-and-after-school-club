@@ -14,13 +14,9 @@ import { getSessionTypeString } from "../../functions/get-session-type-string";
 const WalletUpdateInfo = () => {
   const { userBookingToDelete } = useGetUserBookingToDeleteSelectors();
   const { walletBalance } = useGetCurrentUserSelectors();
-
-  const { refundPrice, totalRefundPrice, numberOfChildrenInBooking } =
-    useGetRefundPrice();
+  const { refundPrice } = useGetRefundPrice();
 
   const { date, sessionType, childrensName } = userBookingToDelete || {};
-  const refundAmount =
-    numberOfChildrenInBooking > 1 ? totalRefundPrice : refundPrice;
 
   return (
     <ParentDiv>
@@ -44,7 +40,7 @@ const WalletUpdateInfo = () => {
       <BlackHr />
 
       <Text>
-        <RedSpan>£{(refundAmount / 100).toFixed(2)}</RedSpan> will be added to
+        <RedSpan>£{(refundPrice / 100).toFixed(2)}</RedSpan> will be added to
         your wallet on completion of the cancellation.
       </Text>
 
@@ -59,7 +55,7 @@ const WalletUpdateInfo = () => {
 
       <Text>balance after cancellation:</Text>
       <Text>
-        <RedSpan>£{((walletBalance + refundAmount) / 100).toFixed(2)}</RedSpan>
+        <RedSpan>£{((walletBalance + refundPrice) / 100).toFixed(2)}</RedSpan>
       </Text>
       <BlackHr />
       <Text>

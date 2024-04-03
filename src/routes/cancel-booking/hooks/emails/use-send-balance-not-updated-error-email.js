@@ -15,19 +15,15 @@ import { failedToSendEmailInstructions } from "../../../../strings/errors/errors
 
 const useSendBalanceNotUpdatedErrorEmail = () => {
   const { id, appOwnerEmail } = useGetCurrentUserSelectors();
-  const { refundPrice, totalRefundPrice, numberOfChildrenInBooking } =
-    useGetRefundPrice();
+  const { refundPrice } = useGetRefundPrice();
   const { hamburgerHandlerNavigate } = useHamburgerHandlerNavigate();
   const { fireSwal } = useFireSwal();
 
   const dispatch = useDispatch();
 
-  const refundAmount =
-    numberOfChildrenInBooking > 1 ? totalRefundPrice : refundPrice;
-
   const sendBalanceNotUpdatedErrorEmail = () => {
     dispatch(
-      sendEmailBalanceNotUpdatedErrorAsync({ appOwnerEmail, id, refundAmount })
+      sendEmailBalanceNotUpdatedErrorAsync({ appOwnerEmail, id, refundPrice })
     ).then((resultAction) => {
       if (sendEmailBalanceNotUpdatedErrorAsync.fulfilled.match(resultAction)) {
         hamburgerHandlerNavigate(bookedSessionsUserRoute);

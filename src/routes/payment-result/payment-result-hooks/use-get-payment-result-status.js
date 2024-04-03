@@ -8,7 +8,6 @@ const useGetPaymentResultStatus = () => {
   const { paymentResultObject } = useGetHandlePaymentSelectors();
   const { addWalletFundsToDatabaseAndThenGetUsersWalletBalanceThunks } =
     useAddWalletFundsToDatabaseAndThenGetUsersWalletBalanceThunks();
-  // const { updateWalletBalance } = useUpdateWalletBalance();
   const { handlePaymentFailed } = useHandlePaymentFailed();
 
   // payment result is an object initially when fulfilled, which we get the status off. Then, addWalletFundsToDatabaseAsync starts which turns the paymentResult in the reducer to an empty object. Therefore the status from the paymentResult is now undefined.
