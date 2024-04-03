@@ -1,36 +1,20 @@
 import { useState } from "react";
-import { useDispatch } from "react-redux";
 
 import useFireSwal from "../../../../hooks/use-fire-swal";
-import useSendResetSessionSpacesErrorEmail from "../emails/use-send-reset-session-spaces-error-email";
-import useHamburgerHandlerNavigate from "../../../../hooks/use-hamburger-handler-navigate";
 import useDatesLogic from "../logic/use-dates-logic";
 import useSessionLogic from "../logic/use-session-logic";
-import useGetCurrentUserSelectors from "../../../../hooks/get-selectors/use-get-current-user-selectors";
+import useResetSessionDocumentSpaces from "../../../../hooks/get-actions-and-thunks/book-session-actions-and-thunks/use-reset-session-document-spaces";
 
-import { resetSessionDocAsync } from "../../../../store/book-session/book-session.thunks";
-
-import {
-  errorUpdatingBalanceMessage,
-  errorInstructions,
-  resetSessionErrorMessage,
-} from "../../../../strings/errors/errors-strings";
-import { bookSessionRoute } from "../../../../strings/routes/routes-strings";
+import { errorUpdatingBalanceMessage } from "../../../../strings/errors/errors-strings";
 
 const useUpdateBalanceErrorResetSessionDocSwal = () => {
+  const { resetSessionDocumentSpaces } = useResetSessionDocumentSpaces();
   const { fireSwal } = useFireSwal();
-  const { sendResetSessionSpacesErrorEmail } =
-    useSendResetSessionSpacesErrorEmail();
-  const { hamburgerHandlerNavigate } = useHamburgerHandlerNavigate();
   const { date } = useDatesLogic();
   const { numberOfSpacesToAdd, updateBalanceError, sessionType } =
     useSessionLogic();
 
-  const { databaseId, termDatesCollectionId: collectionId } =
-    useGetCurrentUserSelectors();
-
   const [swalConfirmed, setSwalConfirmed] = useState(false);
-  const dispatch = useDispatch();
 
   // the error here is that whilst session spaces have been updated, the users balance has not.
   // we therefore reset the session spaces and to the user, we just make it appear as a generic fail.
@@ -48,33 +32,7 @@ const useUpdateBalanceErrorResetSessionDocSwal = () => {
     ).then((isConfirmed) => {
       if (isConfirmed) {
         setSwalConfirmed(true);
-
-        dispatch(
-          resetSessionDocAsync({
-            date,
-            databaseId,
-            collectionId,
-            sessionType,
-            numberOfSpacesToAdd,
-          })
-        ).then((action) => {
-          if (resetSessionDocAsync.fulfilled.match(action)) {
-            hamburgerHandlerNavigate(bookSessionRoute);
-          } else {
-            fireSwal(
-              "error",
-              resetSessionErrorMessage,
-              errorInstructions,
-              0,
-              true,
-              false
-            ).then((isConfirmed) => {
-              if (isConfirmed) {
-                sendResetSessionSpacesErrorEmail();
-              }
-            });
-          }
-        });
+        resetSessionDocumentSpaces(date, sessionType, numberOfSpacesToAdd);
       }
     });
   };

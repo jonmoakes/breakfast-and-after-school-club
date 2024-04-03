@@ -15,7 +15,7 @@ import useGetAllUsersActions from "./get-actions-and-thunks/get-all-users-action
 import useGetUsersChildrenActions from "./get-actions-and-thunks/get-users-children-actions-and-thunks/use-get-users-children-actions";
 import useHandlePaymentActions from "./get-actions-and-thunks/handle-payment-actions-and-thunks/use-handle-payment-actions";
 import usePasswordIsVisibleActions from "./get-actions-and-thunks/use-password-is-visible-actions";
-import useSendEmailActions from "./get-actions-and-thunks/use-send-email-actions";
+import useSendEmailActions from "./get-actions-and-thunks/send-email-actions-and-thunks/use-send-email-actions";
 import useSessionTypesAndPricesActions from "./get-actions-and-thunks/session-types-and-prices-actions-and-thunks/use-session-types-and-prices-actions";
 import useShouldShowElementActions from "./get-actions-and-thunks/use-should-show-element-actions";
 import useSignInFormActions from "./get-actions-and-thunks/use-sign-in-form-actions";

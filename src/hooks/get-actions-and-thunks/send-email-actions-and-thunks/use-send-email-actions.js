@@ -1,6 +1,6 @@
 import { useDispatch } from "react-redux";
 
-import { resetSendEmailState } from "../../store/send-email/send-email.slice";
+import { resetSendEmailState } from "../../../store/send-email/send-email.slice";
 
 const useSendEmailActions = () => {
   const dispatch = useDispatch();

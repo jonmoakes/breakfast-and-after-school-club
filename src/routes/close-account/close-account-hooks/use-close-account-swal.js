@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
-import useSendEmailActions from "../../../hooks/get-actions-and-thunks/use-send-email-actions";
+import useSendEmailActions from "../../../hooks/get-actions-and-thunks/send-email-actions-and-thunks/use-send-email-actions";
 import useGetSendEmailSelectors from "../../../hooks/get-selectors/use-get-send-email-selectors";
 import useFireSwal from "../../../hooks/use-fire-swal";
 
