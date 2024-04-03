@@ -1,21 +1,23 @@
 import Balancer from "react-wrap-balancer";
 
 import useCancelAndReturn from "../../hooks/use-cancel-and-return";
-import useGetChosenEntryChildDetailsSelectors from "../../hooks/get-selectors/use-get-chosen-entry-child-details-selectors";
 import useChosenEntryChildDetailsLogic from "./chosen-entry-child-details-hooks/use-chosen-entry-child-details-logic";
+import useGetChosenEntryChildDetailsThunkUseEffect from "../../hooks/get-actions-and-thunks/chosen-entry-child-details-actions-and-thunks/use-get-chosen-entry-child-details-thunk-use-effect";
 
 import { ParentDiv } from "../../styles/div/div.styles";
 import { Text } from "../../styles/p/p.styles";
 import { YellowGreenButton } from "../../styles/buttons/buttons.styles";
 import { BlueH2 } from "../../styles/h2/h2.styles";
 import { BlackHr } from "../../styles/hr/hr.styles";
-import useGetChosenEntryChildDetails from "./chosen-entry-child-details-hooks/use-get-chosen-entry-child-details";
 
 const ChildDetails = () => {
-  useGetChosenEntryChildDetails();
   const { cancelAndReturn } = useCancelAndReturn();
-  const { noChosenEntryFound } = useChosenEntryChildDetailsLogic();
-  const { chosenEntryChildDetails } = useGetChosenEntryChildDetailsSelectors();
+  const {
+    noChosenEntryFound,
+    childrensNamesInChosenEntry,
+    chosenEntryChildDetails,
+  } = useChosenEntryChildDetailsLogic();
+  useGetChosenEntryChildDetailsThunkUseEffect(childrensNamesInChosenEntry);
 
   return (
     <>

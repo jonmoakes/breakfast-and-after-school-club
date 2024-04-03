@@ -1,11 +1,9 @@
-import { useDispatch } from "react-redux";
-
+import useGetContactFormSelectors from "../../../hooks/get-selectors/use-get-contact-form-selectors";
+import useSendContactFormMessageThunk from "../../../hooks/get-actions-and-thunks/contact-form-actions-and-thunks/use-send-contact-form-message-thunk";
 import useFireSwal from "../../../hooks/use-fire-swal";
 import useConfirmSwal from "../../../hooks/use-confirm-swal";
-import useGetContactFormSelectors from "../../../hooks/get-selectors/use-get-contact-form-selectors";
-import useGetCurrentUserSelectors from "../../../hooks/get-selectors/use-get-current-user-selectors";
+
 import useShowInvalidEmailMessageSwal from "../../../hooks/use-show-invalid-email-message-swal";
-import { sendContactFormMessageAsync } from "../../../store/contact-form/contact-form.thunks";
 
 import { validateEmail } from "../../../functions/validate-email";
 
@@ -16,25 +14,14 @@ import {
 import { missingEmailFieldsErrorMessage } from "../../../strings/errors/errors-strings";
 
 const useConfirmSendContactFormMessage = () => {
+  const { name, email, message } = useGetContactFormSelectors();
+  const { sendContactFormMessageThunk } = useSendContactFormMessageThunk();
   const { fireSwal } = useFireSwal();
   const { confirmSwal } = useConfirmSwal();
-  const { name, email, message } = useGetContactFormSelectors();
-  const { appOwnerEmail, currentUserEmailForContactForm } =
-    useGetCurrentUserSelectors();
   const { showInvalidEmailMessageSwal } = useShowInvalidEmailMessageSwal();
 
-  const dispatch = useDispatch();
-
   const confirmResult = () => {
-    dispatch(
-      sendContactFormMessageAsync({
-        currentUserEmailForContactForm,
-        appOwnerEmail,
-        name,
-        email,
-        message,
-      })
-    );
+    sendContactFormMessageThunk();
   };
 
   const confirmSendContactFormMessage = () => {

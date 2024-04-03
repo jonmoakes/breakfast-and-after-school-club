@@ -22,6 +22,7 @@ const useChosenEntryChildDetailsLogic = () => {
     childOrChildrenString,
     noChosenEntryFound,
     childrensNamesInChosenEntry,
+    chosenEntryChildDetails,
   };
 };
 
