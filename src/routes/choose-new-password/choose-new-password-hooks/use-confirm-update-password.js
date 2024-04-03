@@ -1,10 +1,7 @@
-import { useDispatch } from "react-redux";
-
 import useConfirmSwal from "../../../hooks/use-confirm-swal";
 import useFireSwal from "../../../hooks/use-fire-swal";
 import useGetChooseNewPasswordSelectors from "../../../hooks/get-selectors/use-get-choose-new-password-selectors";
-
-import { getChooseNewPasswordResultAsync } from "../../../store/choose-new-password/choose-new-password.thunks";
+import useGetChooseNewPasswordResultThunk from "../../../hooks/get-actions-and-thunks/choose-new-password-actions-and-thunks/use-get-choose-new-password-result-thunk";
 
 import {
   passwordLengthErrorMessage,
@@ -20,13 +17,11 @@ const useConfirmUpdatePassword = () => {
   const { fireSwal } = useFireSwal();
   const { newPassword, confirmNewPassword } =
     useGetChooseNewPasswordSelectors();
-
-  const dispatch = useDispatch();
+  const { getChooseNewPasswordResultThunk } =
+    useGetChooseNewPasswordResultThunk();
 
   const confirmResult = () => {
-    dispatch(
-      getChooseNewPasswordResultAsync({ newPassword, confirmNewPassword })
-    );
+    getChooseNewPasswordResultThunk();
   };
 
   const confirmUpdatePassword = () => {
