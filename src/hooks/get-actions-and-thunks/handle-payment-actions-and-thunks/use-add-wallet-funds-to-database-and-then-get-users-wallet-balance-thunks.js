@@ -1,22 +1,21 @@
 import { useDispatch } from "react-redux";
 
-import useGetCurrentUserSelectors from "../../../hooks/get-selectors/use-get-current-user-selectors";
-import useCurrentUserActions from "../../../hooks/get-actions-and-thunks/current-user-actions-and-thunks/use-current-user-actions";
-import useFireSwal from "../../../hooks/use-fire-swal";
-import useHamburgerHandlerNavigate from "../../../hooks/use-hamburger-handler-navigate";
-import useSendUpdateBalanceErrorEmail from "./use-send-update-balance-error-email";
+import useGetCurrentUserSelectors from "../../get-selectors/use-get-current-user-selectors";
+import useFireSwal from "../../use-fire-swal";
+import useHamburgerHandlerNavigate from "../../use-hamburger-handler-navigate";
+import useSendErrorUpdatingBalanceEmailThunk from "../send-email-actions-and-thunks/use-send-error-updating-balance-email-thunk";
+import useCurrentUserActions from "../current-user-actions-and-thunks/use-current-user-actions";
 
 import { addWalletFundsToDatabaseAsync } from "../../../store/handle-payment/handle-payment.thunks";
 import { getUsersWalletBalanceAsync } from "../../../store/user/user.thunks";
-
+import { fundsAddedMessage } from "../../../strings/successes/successes-strings";
 import { bookSessionRoute } from "../../../strings/routes/routes-strings";
 import {
   failedToUpdateBalanceMessage,
   fundsAddedBalanceUpdateFailedMessage,
 } from "../../../strings/errors/errors-strings";
-import { fundsAddedMessage } from "../../../strings/successes/successes-strings";
 
-const useUpdateWalletBalance = () => {
+const useAddWalletFundsToDatabaseAndThenGetUsersWalletBalanceThunks = () => {
   const {
     databaseId,
     userCollectionId: collectionId,
@@ -28,13 +27,14 @@ const useUpdateWalletBalance = () => {
     dispatchResetCurrentUserWalletBalanceResult,
     dispatchResetCurrentUserWalletBalanceError,
   } = useCurrentUserActions();
+  const { sendErrorUpdatingBalanceEmailThunk } =
+    useSendErrorUpdatingBalanceEmailThunk();
   const { fireSwal } = useFireSwal();
   const { hamburgerHandlerNavigate } = useHamburgerHandlerNavigate();
-  const { sendUpdateBalanceErrorEmail } = useSendUpdateBalanceErrorEmail();
 
   const dispatch = useDispatch();
 
-  const updateWalletBalance = () => {
+  const addWalletFundsToDatabaseAndThenGetUsersWalletBalanceThunks = () => {
     dispatch(
       addWalletFundsToDatabaseAsync({
         databaseId,
@@ -88,14 +88,14 @@ const useUpdateWalletBalance = () => {
           false
         ).then((isConfirmed) => {
           if (isConfirmed) {
-            sendUpdateBalanceErrorEmail();
+            sendErrorUpdatingBalanceEmailThunk();
           }
         });
       }
     });
   };
 
-  return { updateWalletBalance };
+  return { addWalletFundsToDatabaseAndThenGetUsersWalletBalanceThunks };
 };
 
-export default useUpdateWalletBalance;
+export default useAddWalletFundsToDatabaseAndThenGetUsersWalletBalanceThunks;

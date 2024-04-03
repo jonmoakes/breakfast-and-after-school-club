@@ -1,11 +1,7 @@
-import { useDispatch } from "react-redux";
-
-import useGetCurrentUserSelectors from "../../../hooks/get-selectors/use-get-current-user-selectors";
 import useGetEditChildInfoSelectors from "../../../hooks/get-selectors/use-get-edit-child-info-selectors";
+import useEditChildInfoThunk from "../../..//hooks/get-actions-and-thunks/edit-child-info-actions-and-thunks/use-edit-child-info-thunk";
 import useFireSwal from "../../../hooks/use-fire-swal";
 import useConfirmSwal from "../../../hooks/use-confirm-swal";
-
-import { editChildInfoAsync } from "../../../store/edit-child-info/edit-child-info.thunks";
 
 import {
   confirmUpdateChildMessage,
@@ -29,13 +25,10 @@ const useEditChildInfoLogic = (updatedChildInfo) => {
     additionalInfo,
     childToEditInfo,
   } = useGetEditChildInfoSelectors();
-  const { databaseId, childrenCollectionId: collectionId } =
-    useGetCurrentUserSelectors();
+  const { editChildInfoThunk } = useEditChildInfoThunk();
 
   const { fireSwal } = useFireSwal();
   const { confirmSwal } = useConfirmSwal();
-
-  const dispatch = useDispatch();
 
   //renaming to save typing updatedChildInfo.propertyName all the time.
   const {
@@ -48,14 +41,7 @@ const useEditChildInfoLogic = (updatedChildInfo) => {
   } = updatedChildInfo || {};
 
   const confirmResult = () => {
-    dispatch(
-      editChildInfoAsync({
-        $id,
-        databaseId,
-        collectionId,
-        updatedChildInfo,
-      })
-    );
+    editChildInfoThunk(updatedChildInfo);
   };
 
   const entriesAreTheSame = () => {

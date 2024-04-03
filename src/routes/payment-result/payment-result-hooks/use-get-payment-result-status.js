@@ -1,12 +1,14 @@
 import { useEffect } from "react";
 
 import useGetHandlePaymentSelectors from "../../../hooks/get-selectors/use-get-handle-payment-selectors";
-import useUpdateWalletBalance from "./use-update-wallet-balance";
+import useAddWalletFundsToDatabaseAndThenGetUsersWalletBalanceThunks from "../../../hooks/get-actions-and-thunks/handle-payment-actions-and-thunks/use-add-wallet-funds-to-database-and-then-get-users-wallet-balance-thunks";
 import useHandlePaymentFailed from "./use-handle-payment-failed";
 
 const useGetPaymentResultStatus = () => {
   const { paymentResultObject } = useGetHandlePaymentSelectors();
-  const { updateWalletBalance } = useUpdateWalletBalance();
+  const { addWalletFundsToDatabaseAndThenGetUsersWalletBalanceThunks } =
+    useAddWalletFundsToDatabaseAndThenGetUsersWalletBalanceThunks();
+  // const { updateWalletBalance } = useUpdateWalletBalance();
   const { handlePaymentFailed } = useHandlePaymentFailed();
 
   // payment result is an object initially when fulfilled, which we get the status off. Then, addWalletFundsToDatabaseAsync starts which turns the paymentResult in the reducer to an empty object. Therefore the status from the paymentResult is now undefined.
@@ -20,7 +22,7 @@ const useGetPaymentResultStatus = () => {
     if (!Object.keys(paymentResultObject).length) return;
 
     if (paymentResultStatus === "succeeded") {
-      updateWalletBalance();
+      addWalletFundsToDatabaseAndThenGetUsersWalletBalanceThunks();
     } else {
       handlePaymentFailed();
     }
@@ -28,7 +30,7 @@ const useGetPaymentResultStatus = () => {
     handlePaymentFailed,
     paymentResultObject,
     paymentResultStatus,
-    updateWalletBalance,
+    addWalletFundsToDatabaseAndThenGetUsersWalletBalanceThunks,
   ]);
 };
 

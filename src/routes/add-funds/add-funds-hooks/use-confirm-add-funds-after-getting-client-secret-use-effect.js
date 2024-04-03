@@ -15,7 +15,7 @@ import {
   confirmAddFundsMessage,
 } from "../../../strings/confirms/confirms-strings";
 
-const useConfirmAddFundsAfterGettingClientSecret = () => {
+const useConfirmAddFundsAfterGettingClientSecretUseEffect = () => {
   const { showPrePayButton } = useGetCardInputResultSelectors();
   const { client_secret, showConfirmButton, userHasConfirmedPayment } =
     useGetHandlePaymentSelectors();
@@ -80,4 +80,4 @@ const useConfirmAddFundsAfterGettingClientSecret = () => {
   ]);
 };
 
-export default useConfirmAddFundsAfterGettingClientSecret;
+export default useConfirmAddFundsAfterGettingClientSecretUseEffect;
