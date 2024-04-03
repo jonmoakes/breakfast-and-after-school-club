@@ -11,7 +11,7 @@ import {
 } from "../../../store/book-session/book-session.thunks";
 import { getUsersWalletBalanceAsync } from "../../../store/user/user.thunks";
 
-const useBookSessionThunks = (date) => {
+const useDispatchBookSessionThunks = () => {
   const {
     id,
     name,
@@ -30,7 +30,7 @@ const useBookSessionThunks = (date) => {
   // Then updates the users balance in the databse.
   // Then adds the sessionBookingInfo to the database
   // Then fetches the latest balance from the database
-  const dispatchBookSessionThunks = (sessionType, price) => {
+  const dispatchBookSessionThunks = (date, sessionType, price) => {
     dispatch(
       updateSessionDocAsync({
         date,
@@ -78,4 +78,4 @@ const useBookSessionThunks = (date) => {
   return { dispatchBookSessionThunks };
 };
 
-export default useBookSessionThunks;
+export default useDispatchBookSessionThunks;

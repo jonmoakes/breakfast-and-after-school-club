@@ -2,13 +2,13 @@ import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useLocation } from "react-router-dom";
 
-import useGetCurrentUserSelectors from "./get-selectors/use-get-current-user-selectors";
+import useGetCurrentUserSelectors from "../../get-selectors/use-get-current-user-selectors";
 
-import { getUsersChildrenAsync } from "../store/get-users-children/get-users-children.thunks";
-import { fetchBookedSessionsUserAsync } from "../store/booked-sessions-user/booked-sessions-user.thunks";
-import { getSessionPricesAsync } from "../store/session-types-and-prices/session-types-and-prices.thunks";
+import { getUsersChildrenAsync } from "../../../store/get-users-children/get-users-children.thunks";
+import { fetchBookedSessionsUserAsync } from "../../../store/booked-sessions-user/booked-sessions-user.thunks";
+import { getSessionPricesAsync } from "../../../store/session-types-and-prices/session-types-and-prices.thunks";
 
-const useGetUsersChildrenUserBookingsAndSessionPrices = () => {
+const useGetUsersChildrenUserBookingsAndSessionPricesThunkUseEffect = () => {
   const {
     id,
     databaseId,
@@ -60,4 +60,4 @@ const useGetUsersChildrenUserBookingsAndSessionPrices = () => {
   ]);
 };
 
-export default useGetUsersChildrenUserBookingsAndSessionPrices;
+export default useGetUsersChildrenUserBookingsAndSessionPricesThunkUseEffect;

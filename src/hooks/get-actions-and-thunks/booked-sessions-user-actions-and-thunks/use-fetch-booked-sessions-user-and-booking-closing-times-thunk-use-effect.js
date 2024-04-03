@@ -5,7 +5,7 @@ import useGetCurrentUserSelectors from "../../get-selectors/use-get-current-user
 import { fetchBookedSessionsUserAsync } from "../../../store/booked-sessions-user/booked-sessions-user.thunks";
 import { requestBookingClosingTimesAsync } from "../../../store/request-date-data/request-date-data.thunks";
 
-const useFetchBookedSessionsUserThunkUseEffect = () => {
+const useFetchBookedSessionsUserAndBookingClosingTimesThunkUseEffect = () => {
   const {
     currentUser,
     id,
@@ -49,4 +49,4 @@ const useFetchBookedSessionsUserThunkUseEffect = () => {
   ]);
 };
 
-export default useFetchBookedSessionsUserThunkUseEffect;
+export default useFetchBookedSessionsUserAndBookingClosingTimesThunkUseEffect;

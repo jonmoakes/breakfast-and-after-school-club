@@ -1,7 +1,7 @@
 import useChildSessionAlreadyBooked from "./logic/use-child-session-already-booked";
 import useConfirmSwal from "../../../hooks/use-confirm-swal";
 import useSessionAlreadyBookedSwal from "./swals/use-session-already-booked-swal";
-import useBookSessionThunks from "../../../hooks/get-actions-and-thunks/book-session-actions-and-thunks/use-book-session-thunks";
+import useDispatchBookSessionThunks from "../../../hooks/get-actions-and-thunks/book-session-actions-and-thunks/use-dispatch-book-session-thunks";
 import useDatesLogic from "./logic/use-dates-logic";
 import useGetChildrenLogic from "./logic/use-get-children-logic";
 import useSessionLogic from "./logic/use-session-logic";
@@ -20,12 +20,12 @@ const useCheckForPreviousBookingAndConfirmSession = () => {
     useChildSessionAlreadyBooked();
   const { sessionAlreadyBookedSwal } = useSessionAlreadyBookedSwal();
   const { childrenSelectedLength } = useGetChildrenLogic();
-  const { dispatchBookSessionThunks } = useBookSessionThunks(date);
+  const { dispatchBookSessionThunks } = useDispatchBookSessionThunks();
 
   // sessionType and price is received from confirmSession -  to avoid closure issue where if we tried to use the selector for sessionType and price,  the selector doesn't pick up the latest value.
   const checkForPreviousBookingAndConfirmSession = (sessionType, price) => {
     const confirmResult = () => {
-      dispatchBookSessionThunks(sessionType, price);
+      dispatchBookSessionThunks(date, sessionType, price);
     };
 
     if (
