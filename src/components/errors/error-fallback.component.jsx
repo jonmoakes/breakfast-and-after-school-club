@@ -7,45 +7,43 @@ import { StyledLink } from "../../styles/link/link.styles";
 
 import { contactRoute } from "../../strings/routes/routes-strings";
 
-import Image from "../../assets/sad-face-emoji.png";
+import Image from "../../assets/sad-face-emoji.jpg";
 import PlaceholderImage from "../../assets/placeholder-image.jpeg";
 
-const ErrorFallback = () => {
-  return (
-    <>
-      <ErrorFallbackImageDiv>
-        <ProgressiveImg
-          src={Image}
-          placeholderSrc={PlaceholderImage}
-          alt="error-image"
-        />
-      </ErrorFallbackImageDiv>
+const ErrorFallback = () => (
+  <>
+    <ErrorFallbackImageDiv>
+      <ProgressiveImg
+        src={Image}
+        placeholderSrc={PlaceholderImage}
+        alt="error-image"
+      />
+    </ErrorFallbackImageDiv>
 
-      <ParentDiv>
-        <ErrorImageText>
-          Sorry, there was an error, most likely on our end.. :({" "}
-        </ErrorImageText>
-        <ErrorImageText>
-          Please Try Checking Your internet Connection.
-        </ErrorImageText>
+    <ParentDiv>
+      <ErrorImageText>
+        Sorry, there was an error, most likely on our end.. :({" "}
+      </ErrorImageText>
+      <ErrorImageText>
+        Please Try Checking Your internet Connection.
+      </ErrorImageText>
 
-        <ErrorImageText>
-          if you're sure you're online, please try reloading the page by tapping
-          the button below.
-        </ErrorImageText>
-        <ErrorFallbackButton onClick={() => window.location.reload()}>
-          reload the page
-        </ErrorFallbackButton>
-      </ParentDiv>
+      <ErrorImageText>
+        if you're sure you're online, please try reloading the page by tapping
+        the button below.
+      </ErrorImageText>
+      <ErrorFallbackButton onClick={() => window.location.reload()}>
+        reload the page
+      </ErrorFallbackButton>
+    </ParentDiv>
 
-      <ParentDiv>
-        <ErrorImageText>
-          and if that doesn't work, please{" "}
-          <StyledLink to={contactRoute}>contact us!</StyledLink>
-        </ErrorImageText>
-      </ParentDiv>
-    </>
-  );
-};
+    <ParentDiv>
+      <ErrorImageText>
+        and if that doesn't work, please{" "}
+        <StyledLink to={contactRoute}>contact us!</StyledLink>
+      </ErrorImageText>
+    </ParentDiv>
+  </>
+);
 
 export default ErrorFallback;

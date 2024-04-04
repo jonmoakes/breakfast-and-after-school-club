@@ -15,8 +15,7 @@ import { failedToSendEmailInstructions } from "../../../strings/errors/errors-st
 import { createChildrenToAddToBooking } from "../../../functions/create-children-to-add-to-booking";
 
 const useSendAddBookingInfoErrorEmailThunk = () => {
-  const { name, email, appOwnerEmail, phoneNumber, id } =
-    useGetCurrentUserSelectors();
+  const { name, appOwnerEmail, phoneNumber, id } = useGetCurrentUserSelectors();
   const { fireSwal } = useFireSwal();
   const { hamburgerHandlerNavigate } = useHamburgerHandlerNavigate();
 
@@ -37,7 +36,6 @@ const useSendAddBookingInfoErrorEmailThunk = () => {
           childrenSelectedForBooking,
           usersChildren
         ),
-        parentEmail: email,
         parentName: name,
         parentPhoneNumber: phoneNumber,
         parentsUserId: id,
