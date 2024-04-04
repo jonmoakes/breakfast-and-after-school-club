@@ -54,6 +54,9 @@ const userSlice = createSlice({
     resetWalletFundsToAdd: (state) => {
       state.walletFundsToAdd = 0;
     },
+    setWalletBalance: (state, action) => {
+      state.currentUser.walletBalance = action.payload;
+    },
   },
   selectors: {
     selectCurrentUserSelectors: createSelector(
@@ -192,6 +195,7 @@ export const {
   setSchoolCodeForSocialLogin,
   setWalletFundsToAdd,
   resetWalletFundsToAdd,
+  setWalletBalance,
 } = userSlice.actions;
 export const { selectCurrentUserSelectors } = userSlice.selectors;
 

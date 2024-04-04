@@ -172,6 +172,7 @@ const useResetStore = () => {
         break;
       case cancelBookingRoute:
         dispatchResetUserBookingToDeleteState();
+        dispatchResetSendEmailState();
         break;
       case bookedSessionsOwnerRoute:
         if (bookedSessionsOwnerError) {

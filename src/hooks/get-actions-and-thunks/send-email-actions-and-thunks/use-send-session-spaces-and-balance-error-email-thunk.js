@@ -2,7 +2,6 @@ import { useDispatch } from "react-redux";
 
 import useGetCurrentUserSelectors from "../../get-selectors/use-get-current-user-selectors";
 import useGetUserBookingToDeleteSelectors from "../../get-selectors/use-get-user-booking-to-delete-selectors";
-import useSendEmailActions from "./use-send-email-actions";
 import useHamburgerHandlerNavigate from "../../use-hamburger-handler-navigate";
 import useFireSwal from "../../use-fire-swal";
 
@@ -19,7 +18,6 @@ const useSendSessionSpacesAndBalanceErrorEmailThunk = () => {
   const { userBookingToDelete } = useGetUserBookingToDeleteSelectors();
   const { hamburgerHandlerNavigate } = useHamburgerHandlerNavigate();
   const { fireSwal } = useFireSwal();
-  const { dispatchResetSendEmailState } = useSendEmailActions();
 
   const { date, sessionType } = userBookingToDelete || {};
 
@@ -44,7 +42,6 @@ const useSendSessionSpacesAndBalanceErrorEmailThunk = () => {
           resultAction
         )
       ) {
-        dispatchResetSendEmailState();
         hamburgerHandlerNavigate(bookedSessionsUserRoute);
       } else {
         fireSwal(
@@ -56,7 +53,6 @@ const useSendSessionSpacesAndBalanceErrorEmailThunk = () => {
           false
         ).then((isConfirmed) => {
           if (isConfirmed) {
-            dispatchResetSendEmailState();
             hamburgerHandlerNavigate(contactRoute);
           }
         });

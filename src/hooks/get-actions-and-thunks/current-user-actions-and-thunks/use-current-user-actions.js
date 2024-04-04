@@ -7,6 +7,7 @@ import {
   resetWalletFundsToAdd,
   setSchoolCodeForSocialLogin,
   setWalletFundsToAdd,
+  setWalletBalance,
 } from "../../../store/user/user.slice";
 
 const useCurrentUserActions = () => {
@@ -36,6 +37,10 @@ const useCurrentUserActions = () => {
     dispatch(resetWalletFundsToAdd());
   };
 
+  const dispatchSetWalletBalance = (walletBalance) => {
+    dispatch(setWalletBalance(walletBalance));
+  };
+
   return {
     dispatchResetCurrentUserErrorMessage,
     dispatchResetCurrentUserWalletBalanceResult,
@@ -43,6 +48,7 @@ const useCurrentUserActions = () => {
     dispatchSetSchoolCodeForSocialLogin,
     dispatchSetWalletFundsToAdd,
     dispatchResetWalletFundsToAdd,
+    dispatchSetWalletBalance,
   };
 };
 

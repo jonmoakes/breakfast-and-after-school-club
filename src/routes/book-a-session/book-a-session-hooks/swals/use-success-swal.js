@@ -1,7 +1,6 @@
 import useCurrentUserActions from "../../../../hooks/get-actions-and-thunks/current-user-actions-and-thunks/use-current-user-actions";
 import useFireSwal from "../../../../hooks/use-fire-swal";
-
-import useSendEmailBookingConfirmation from "../emails/use-send-email-booking-confirmation";
+import useSendEmailConfirmation from "../use-send-email-confirmation";
 
 import {
   sessionBookedMessage,
@@ -12,7 +11,7 @@ const useSuccessSwal = () => {
   const { dispatchResetCurrentUserWalletBalanceResult } =
     useCurrentUserActions();
   const { fireSwal } = useFireSwal();
-  const { sendEmailBookingConfirmation } = useSendEmailBookingConfirmation();
+  const { sendEmailConfirmation } = useSendEmailConfirmation();
 
   const successSwal = () => {
     fireSwal(
@@ -25,7 +24,7 @@ const useSuccessSwal = () => {
     ).then((isConfirmed) => {
       if (isConfirmed) {
         dispatchResetCurrentUserWalletBalanceResult();
-        sendEmailBookingConfirmation();
+        sendEmailConfirmation();
       }
     });
   };

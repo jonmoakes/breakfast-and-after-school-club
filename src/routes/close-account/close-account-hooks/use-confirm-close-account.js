@@ -1,10 +1,7 @@
-import { useDispatch } from "react-redux";
-
 import useGetCurrentUserSelectors from "../../../hooks/get-selectors/use-get-current-user-selectors";
 import useConfirmSwal from "../../../hooks/use-confirm-swal";
 import useFireSwal from "../../../hooks/use-fire-swal";
-
-import { sendEmailToAdminCloseAccountRequestAsync } from "../../../store/send-email/send-email.thunks";
+import useSendEmailToAdminCloseAccountRequestThunk from "../../../hooks/get-actions-and-thunks/send-email-actions-and-thunks/use-send-email-to-admin-close-account-request-thunk";
 
 import {
   loseAllAccountDataMessage,
@@ -16,21 +13,14 @@ import {
 } from "../../../strings/confirms/confirms-strings";
 
 const useConfirmCloseAccount = () => {
-  const { walletBalance, id, email, appOwnerEmail } =
-    useGetCurrentUserSelectors();
+  const { walletBalance } = useGetCurrentUserSelectors();
+  const { sendEmailToAdminCloseAccountRequestThunk } =
+    useSendEmailToAdminCloseAccountRequestThunk();
   const { confirmSwal } = useConfirmSwal();
   const { fireSwal } = useFireSwal();
 
-  const dispatch = useDispatch();
-
   const confirmResult = () => {
-    dispatch(
-      sendEmailToAdminCloseAccountRequestAsync({
-        appOwnerEmail,
-        id,
-        email,
-      })
-    );
+    sendEmailToAdminCloseAccountRequestThunk();
   };
 
   const confirmCloseAccount = () => {

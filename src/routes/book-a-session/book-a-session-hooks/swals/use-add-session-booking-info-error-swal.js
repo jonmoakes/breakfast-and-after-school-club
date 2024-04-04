@@ -1,17 +1,18 @@
 import useFireSwal from "../../../../hooks/use-fire-swal";
 import useDatesLogic from "../logic/use-dates-logic";
-
-import useSendAddBookingInfoErrorEmail from "../emails/use-send-add-booking-info-error-email";
+import useGetChildrenLogic from "../logic/use-get-children-logic";
+import useSessionLogic from "../logic/use-session-logic";
+import useSendAddBookingInfoErrorEmailThunk from "../../../../hooks/get-actions-and-thunks/send-email-actions-and-thunks/use-send-add-booking-info-error-email-thunk";
 
 import { addSessionBookingInfoErrorMessage } from "../../../../strings/errors/errors-strings";
 
 const useAddSessionBookingInfoErrorSwal = () => {
   const { fireSwal } = useFireSwal();
   const { date } = useDatesLogic();
-
-  //passing the date to stop it being undefined as store is cleared by the time we get there if you try to select it in the hook itself
-  const { sendAddBookingInfoErrorEmail } =
-    useSendAddBookingInfoErrorEmail(date);
+  const { childrenSelectedForBooking, usersChildren } = useGetChildrenLogic();
+  const { sessionType } = useSessionLogic();
+  const { sendAddBookingInfoErrorEmailThunk } =
+    useSendAddBookingInfoErrorEmailThunk();
 
   const addSessionBookingInfoErrorSwal = () => {
     fireSwal(
@@ -23,7 +24,12 @@ const useAddSessionBookingInfoErrorSwal = () => {
       false
     ).then((isConfirmed) => {
       if (isConfirmed) {
-        sendAddBookingInfoErrorEmail();
+        sendAddBookingInfoErrorEmailThunk(
+          date,
+          sessionType,
+          childrenSelectedForBooking,
+          usersChildren
+        );
       }
     });
   };

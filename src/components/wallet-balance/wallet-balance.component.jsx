@@ -15,9 +15,11 @@ import {
   addChildInfoRoute,
   bookSessionRoute,
 } from "../../strings/routes/routes-strings";
+import useWalletBalanceListener from "./wallet-balance-hooks/use-wallet-balance-listener";
 
 const WalletBalance = () => {
   useGetWalletBalance();
+  useWalletBalanceListener();
   const { confirmRequestLatestWalletBalance } = useGetWalletBalance();
   const { usersChildren } = useGetUsersChildrenSelectors();
   const { walletBalance, currentUserIsLoading } = useGetCurrentUserSelectors();

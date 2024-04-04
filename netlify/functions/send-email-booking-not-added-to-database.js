@@ -9,6 +9,8 @@ export const handler = async (event) => {
     childrenInBooking,
     parentEmail,
     parentName,
+    parentPhoneNumber,
+    parentsUserId,
   } = JSON.parse(event.body);
 
   try {
@@ -24,6 +26,8 @@ export const handler = async (event) => {
         childrenInBooking,
         parentEmail,
         parentName,
+        parentPhoneNumber,
+        parentsUserId,
       },
     });
 
