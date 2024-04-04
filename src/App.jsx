@@ -6,6 +6,7 @@ import { GlobalStyle } from "./global-styles";
 import "./App.css";
 
 import useGetCurrentUserSelectors from "./hooks/get-selectors/use-get-current-user-selectors";
+import useGetUserOnLoadThunkUseEffect from "./hooks/get-actions-and-thunks/current-user-actions-and-thunks/use-get-user-on-load-thunk-use-effect";
 
 import PrivateRoutes from "./components/private-routes/private-routes.component";
 import ErrorFallback from "./components/errors/error-fallback.component";
@@ -19,7 +20,7 @@ import {
   accountRoute,
   updateEmailRoute,
   forgotPasswordRequestRoute,
-  localhostChooseNewPasswordRoute,
+  chooseNewPasswordRoute,
   addFundsRoute,
   bookSessionRoute,
   updatePasswordRoute,
@@ -33,14 +34,12 @@ import {
   bookedSessionsUserRoute,
   cancelBookingRoute,
   bookedSessionsOwnerRoute,
-  productionChooseNewPasswordRoute,
   allChildrenRoute,
   socialSignInRoute,
   localhostSocialSignInResultRoute,
   socialSignInResultRoute,
   allUsersRoute,
 } from "./strings/routes/routes-strings";
-import useGetUserOnLoadThunkUseEffect from "./hooks/get-actions-and-thunks/current-user-actions-and-thunks/use-get-user-on-load-thunk-use-effect";
 
 const Navigation = lazy(() =>
   import("./routes/navigation/navigation.component")
@@ -139,10 +138,7 @@ const App = () => {
             />
 
             <Route
-              path={
-                productionChooseNewPasswordRoute ||
-                localhostChooseNewPasswordRoute
-              }
+              path={chooseNewPasswordRoute}
               element={<ChooseNewPassword />}
             />
 

@@ -1,10 +1,7 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { account } from "../../utils/appwrite/appwrite-config";
 
-import {
-  localhostChooseNewPasswordRoute,
-  productionChooseNewPasswordRoute,
-} from "../../strings/routes/routes-strings";
+import { chooseNewPasswordRoute } from "../../strings/routes/routes-strings";
 
 export const generateNewPasswordRequestAsync = createAsyncThunk(
   "generateNewPasswordRequest",
@@ -13,12 +10,12 @@ export const generateNewPasswordRequestAsync = createAsyncThunk(
       if (import.meta.env.MODE === "development") {
         await account.createRecovery(
           generateNewPasswordRequestEmail,
-          localhostChooseNewPasswordRoute
+          chooseNewPasswordRoute
         );
       } else if (import.meta.env.MODE === "production") {
         await account.createRecovery(
           generateNewPasswordRequestEmail,
-          productionChooseNewPasswordRoute
+          `https://www.breakfast-and-after-school-club.co.uk${chooseNewPasswordRoute}`
         );
       }
     } catch (error) {
