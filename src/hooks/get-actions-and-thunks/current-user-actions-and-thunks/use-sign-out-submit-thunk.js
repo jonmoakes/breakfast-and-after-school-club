@@ -13,6 +13,7 @@ import {
   errorReceivedMessage,
   errorSigningOutMessage,
 } from "../../../strings/errors/errors-strings";
+import { signInRoute } from "../../../strings/routes/routes-strings";
 
 const useSignOutSubmitThunk = () => {
   const { fireSwal } = useFireSwal();
@@ -26,12 +27,12 @@ const useSignOutSubmitThunk = () => {
   const signOutSubmitThunk = () => {
     dispatch(signOutAsync()).then((resultAction) => {
       if (signOutAsync.fulfilled.match(resultAction)) {
+        navigate(signInRoute);
         fireSwal("success", successMessage, "", 2000, false, true);
         resetAllStoreOnSignOut();
         if (showHamburgerMenu) {
           dispatchHideHamburgerMenu();
         }
-        navigate("/");
       } else if (signOutAsync.rejected.match(resultAction)) {
         if (resultAction.error.message === "Rejected") {
           const error = resultAction.payload;

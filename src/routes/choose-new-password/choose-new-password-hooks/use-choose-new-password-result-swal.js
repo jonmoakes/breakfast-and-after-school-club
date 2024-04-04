@@ -19,7 +19,7 @@ import { passwordResetSuccessMessage } from "../../../strings/successes/successe
 import { signInRoute } from "../../../strings/routes/routes-strings";
 
 const useChooseNewPasswordResultSwal = () => {
-  const { curentUser } = useGetCurrentUserSelectors();
+  const { currentUser } = useGetCurrentUserSelectors();
   const { newPasswordResult, newPasswordError } =
     useGetChooseNewPasswordSelectors();
   const { fireSwal } = useFireSwal();
@@ -31,7 +31,7 @@ const useChooseNewPasswordResultSwal = () => {
   useEffect(() => {
     if (!newPasswordError && !newPasswordResult) return;
 
-    if (newPasswordResult && curentUser) {
+    if (newPasswordResult && currentUser) {
       fireSwal(
         "success",
         passwordResetSuccessMessage,
@@ -44,7 +44,7 @@ const useChooseNewPasswordResultSwal = () => {
           signOutSoCanSignInWithNewPasswordThunk();
         }
       });
-    } else if (newPasswordResult && !curentUser) {
+    } else if (newPasswordResult && !currentUser) {
       fireSwal(
         "success",
         passwordResetSuccessMessage,
@@ -77,7 +77,7 @@ const useChooseNewPasswordResultSwal = () => {
     newPasswordResult,
     fireSwal,
     navigate,
-    curentUser,
+    currentUser,
     dispatchResetPasswordResultError,
     signOutSoCanSignInWithNewPasswordThunk,
   ]);

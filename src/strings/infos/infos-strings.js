@@ -36,6 +36,7 @@ export const checkBackRegularlyMessage =
 export const entriesAreTheSameMessage = "you haven't changed any data yet.";
 export const bookingCancelledMessage = "booking cancelled.";
 export const walletBeenUpdatedMessage = "your wallet balance has been updated.";
-export const checkEmailMessage = "please check your email!";
+export const checkEmailMessage =
+  "please check your email! Please note that it can take several minutes to arrive - And don't forget to check your spam folder.";
 export const getBookingInfoEmailInstructions =
   "if you require this email, please contact us using the contact form on our website. Rest assured however, your booking has been successfully made!";
