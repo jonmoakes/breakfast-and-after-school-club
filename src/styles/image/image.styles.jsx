@@ -1,7 +1,7 @@
 import styled, { keyframes } from "styled-components";
 import { rotateInDownLeft, rotateInDownRight, pulse } from "react-animations";
 
-import { customBlack, customWhite } from "../colors";
+import { customBlack } from "../colors";
 
 const rotateInLeftAnimation = keyframes`${rotateInDownLeft}`;
 const rotateInRightAnimation = keyframes`${rotateInDownRight}`;
