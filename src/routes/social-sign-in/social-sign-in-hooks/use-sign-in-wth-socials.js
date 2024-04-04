@@ -1,12 +1,6 @@
-import { useDispatch } from "react-redux";
-
 import useGetCurrentUserSelectors from "../../../hooks/get-selectors/use-get-current-user-selectors";
 import useFireSwal from "../../../hooks/use-fire-swal";
-
-import {
-  requestFacebookSignInAsync,
-  requestGoogleSignInAsync,
-} from "../../../store/user/user.thunks";
+import useRequestSocialSignInThunks from "../../../hooks/get-actions-and-thunks/current-user-actions-and-thunks/use-request-social-sign-in-thunks";
 
 import {
   invalidSchoolCode,
@@ -17,9 +11,9 @@ import { isNotValidSchoolCode } from "../../../functions/is-not-valid-school-cod
 
 const useSignInWithSocials = () => {
   const { schoolCodeForSocialLogin } = useGetCurrentUserSelectors();
+  const { signInWithFacebookThunk, signInWithGoogleThunk } =
+    useRequestSocialSignInThunks();
   const { fireSwal } = useFireSwal();
-
-  const dispatch = useDispatch();
 
   const signInWithFacebook = () => {
     const schoolCode = schoolCodeForSocialLogin;
@@ -34,7 +28,7 @@ const useSignInWithSocials = () => {
       );
     } else {
       localStorage.setItem("schoolCode", schoolCode);
-      dispatch(requestFacebookSignInAsync());
+      signInWithFacebookThunk();
     }
   };
 
@@ -52,7 +46,7 @@ const useSignInWithSocials = () => {
       );
     } else {
       localStorage.setItem("schoolCode", schoolCode);
-      dispatch(requestGoogleSignInAsync());
+      signInWithGoogleThunk();
     }
   };
 

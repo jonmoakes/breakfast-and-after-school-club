@@ -14,8 +14,8 @@ export const confirmAddFundsMessage = (walletFunds) => {
   )} to your wallet?`;
 };
 
-export const fundsReaddedToAccountMessage = (refundPrice) => {
-  return `£${refundPrice.toFixed(2)}  will be added to your wallet.`;
+export const fundsReaddedToAccountMessage = (formattedRefundPrice) => {
+  return `£${formattedRefundPrice}  will be added to your wallet.`;
 };
 export const confirmSureBookSession = (sessionType, date) => {
   return `are you sure you want to book the ${getSessionTypeString(

@@ -1,27 +1,24 @@
 import { useDispatch } from "react-redux";
 
-import useGetCurrentUserSelectors from "../../../../hooks/get-selectors/use-get-current-user-selectors";
-import useGetRefundPrice from "../use-get-refund-price";
-import useFireSwal from "../../../../hooks/use-fire-swal";
-import useHamburgerHandlerNavigate from "../../../../hooks/use-hamburger-handler-navigate";
+import useHamburgerHandlerNavigate from "../../use-hamburger-handler-navigate";
+import useFireSwal from "../../use-fire-swal";
+import useGetCurrentUserSelectors from "../../get-selectors/use-get-current-user-selectors";
 
-import { sendEmailBalanceNotUpdatedErrorAsync } from "../../../../store/send-email/send-email.thunks";
+import { sendEmailBalanceNotUpdatedErrorAsync } from "../../../store/send-email/send-email.thunks";
 
 import {
-  contactRoute,
   bookedSessionsUserRoute,
-} from "../../../../strings/routes/routes-strings";
-import { failedToSendEmailInstructions } from "../../../../strings/errors/errors-strings";
+  contactRoute,
+} from "../../../strings/routes/routes-strings";
+import { failedToSendEmailInstructions } from "../../../strings/errors/errors-strings";
 
-const useSendBalanceNotUpdatedErrorEmail = () => {
+const useSendBalanceNotUpdatedErrorEmailThunk = () => {
   const { id, appOwnerEmail } = useGetCurrentUserSelectors();
-  const { refundPrice } = useGetRefundPrice();
   const { hamburgerHandlerNavigate } = useHamburgerHandlerNavigate();
   const { fireSwal } = useFireSwal();
-
   const dispatch = useDispatch();
 
-  const sendBalanceNotUpdatedErrorEmail = () => {
+  const sendBalanceNotUpdatedErrorEmailThunk = (refundPrice) => {
     dispatch(
       sendEmailBalanceNotUpdatedErrorAsync({ appOwnerEmail, id, refundPrice })
     ).then((resultAction) => {
@@ -44,7 +41,7 @@ const useSendBalanceNotUpdatedErrorEmail = () => {
     });
   };
 
-  return { sendBalanceNotUpdatedErrorEmail };
+  return { sendBalanceNotUpdatedErrorEmailThunk };
 };
 
-export default useSendBalanceNotUpdatedErrorEmail;
+export default useSendBalanceNotUpdatedErrorEmailThunk;

@@ -3,12 +3,13 @@ import { useState } from "react";
 import useFireSwal from "../../../../hooks/use-fire-swal";
 import useDatesLogic from "../logic/use-dates-logic";
 import useSessionLogic from "../logic/use-session-logic";
-import useResetSessionDocumentSpaces from "../../../../hooks/get-actions-and-thunks/book-session-actions-and-thunks/use-reset-session-document-spaces";
+import useResetSessionDocumentSpacesThunk from "../../../../hooks/get-actions-and-thunks/book-session-actions-and-thunks/use-reset-session-document-spaces-thunk";
 
 import { errorUpdatingBalanceMessage } from "../../../../strings/errors/errors-strings";
 
 const useUpdateBalanceErrorResetSessionDocSwal = () => {
-  const { resetSessionDocumentSpaces } = useResetSessionDocumentSpaces();
+  const { resetSessionDocumentSpacesThunk } =
+    useResetSessionDocumentSpacesThunk();
   const { fireSwal } = useFireSwal();
   const { date } = useDatesLogic();
   const { numberOfSpacesToAdd, updateBalanceError, sessionType } =
@@ -32,7 +33,7 @@ const useUpdateBalanceErrorResetSessionDocSwal = () => {
     ).then((isConfirmed) => {
       if (isConfirmed) {
         setSwalConfirmed(true);
-        resetSessionDocumentSpaces(date, sessionType, numberOfSpacesToAdd);
+        resetSessionDocumentSpacesThunk(date, sessionType, numberOfSpacesToAdd);
       }
     });
   };

@@ -1,5 +1,6 @@
 import useConfirmSwal from "../../../hooks/use-confirm-swal";
-import useGetRefundPrice from "./use-get-refund-price";
+import useGetRefundPrice from "./cancel-booking-logic/use-get-refund-price";
+import useCancelBookingVariables from "./cancel-booking-logic/use-cancel-booking-variables";
 import useDeleteUserBookingUpdateSessionSpacesDocRefundUserGetWalletBalanceThunk from "../../../hooks/get-actions-and-thunks/user-booking-to-delete-actions-and-thunks/use-delete-user-booking-update-session-spaces-doc-refund-user-get-wallet-balance-thunk";
 
 import {
@@ -15,7 +16,8 @@ const useConfirmDeleteChildInfo = () => {
     useDeleteUserBookingUpdateSessionSpacesDocRefundUserGetWalletBalanceThunk();
 
   const { confirmSwal } = useConfirmSwal();
-  const { refundPrice, numberOfChildrenInBooking } = useGetRefundPrice();
+  const { refundPrice, formattedRefundPrice } = useGetRefundPrice();
+  const { numberOfChildrenInBooking } = useCancelBookingVariables();
 
   const confirmResult = () => {
     deleteUserBookingUpdateSessionSpacesDocRefundUserGetWalletBalanceThunk(
@@ -27,7 +29,7 @@ const useConfirmDeleteChildInfo = () => {
   const confirmCancelBooking = () => {
     confirmSwal(
       confirmCancelBookingMessage,
-      fundsReaddedToAccountMessage(refundPrice / 100),
+      fundsReaddedToAccountMessage(formattedRefundPrice),
       imSureMessage,
       confirmResult
     );

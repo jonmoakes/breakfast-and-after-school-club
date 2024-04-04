@@ -14,7 +14,7 @@ import {
   resetSessionErrorMessage,
 } from "../../../strings/errors/errors-strings";
 
-const useResetSessionDocumentSpaces = () => {
+const useResetSessionDocumentSpacesThunk = () => {
   const { databaseId, termDatesCollectionId: collectionId } =
     useGetCurrentUserSelectors();
   const { fireSwal } = useFireSwal();
@@ -24,7 +24,7 @@ const useResetSessionDocumentSpaces = () => {
 
   const dispatch = useDispatch();
 
-  const resetSessionDocumentSpaces = (
+  const resetSessionDocumentSpacesThunk = (
     date,
     sessionType,
     numberOfSpacesToAdd
@@ -61,7 +61,7 @@ const useResetSessionDocumentSpaces = () => {
     });
   };
 
-  return { resetSessionDocumentSpaces };
+  return { resetSessionDocumentSpacesThunk };
 };
 
-export default useResetSessionDocumentSpaces;
+export default useResetSessionDocumentSpacesThunk;

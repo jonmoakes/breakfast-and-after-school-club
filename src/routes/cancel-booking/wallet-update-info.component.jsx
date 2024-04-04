@@ -1,34 +1,32 @@
-import { format } from "date-fns";
-
-import useGetCurrentUserSelectors from "../../hooks/get-selectors/use-get-current-user-selectors";
-import useGetUserBookingToDeleteSelectors from "../../hooks/get-selectors/use-get-user-booking-to-delete-selectors";
-import useGetRefundPrice from "./hooks/use-get-refund-price";
+import useCancelBookingVariables from "./hooks/cancel-booking-logic/use-cancel-booking-variables";
 
 import { ParentDiv } from "../../styles/div/div.styles";
 import { RedText, Text } from "../../styles/p/p.styles";
 import { RedSpan } from "../../styles/span/span.styles";
 import { BlackHr } from "../../styles/hr/hr.styles";
-
-import { getSessionTypeString } from "../../functions/get-session-type-string";
+import useGetRefundPrice from "./hooks/cancel-booking-logic/use-get-refund-price";
 
 const WalletUpdateInfo = () => {
-  const { userBookingToDelete } = useGetUserBookingToDeleteSelectors();
-  const { walletBalance } = useGetCurrentUserSelectors();
-  const { refundPrice } = useGetRefundPrice();
-
-  const { date, sessionType, childrensName } = userBookingToDelete || {};
+  const {
+    childrensName,
+    walletBalanceToFixed,
+    formattedSessionType,
+    formattedDate,
+  } = useCancelBookingVariables();
+  const { formattedRefundPrice, formattedBalanceAfterCancellation } =
+    useGetRefundPrice();
 
   return (
     <ParentDiv>
       <BlackHr />
       <Text>you are about to cancel your booking for:</Text>
       <BlackHr />
-      <RedText>{date ? format(new Date(date), "dd MMMM yyyy") : ""}</RedText>
+      <RedText>{formattedDate}</RedText>
 
       <Text>
         session Type:
         <br />
-        <RedSpan>{getSessionTypeString(sessionType)}</RedSpan>
+        <RedSpan>{formattedSessionType}</RedSpan>
       </Text>
 
       <Text>
@@ -40,22 +38,22 @@ const WalletUpdateInfo = () => {
       <BlackHr />
 
       <Text>
-        <RedSpan>£{(refundPrice / 100).toFixed(2)}</RedSpan> will be added to
-        your wallet on completion of the cancellation.
+        <RedSpan>£{formattedRefundPrice}</RedSpan> will be added to your wallet
+        on completion of the cancellation.
       </Text>
 
       <BlackHr />
 
       <Text>balance before cancellation:</Text>
       <Text>
-        <RedSpan>£{(walletBalance / 100).toFixed(2)}</RedSpan>
+        <RedSpan>£{walletBalanceToFixed}</RedSpan>
       </Text>
 
       <BlackHr />
 
       <Text>balance after cancellation:</Text>
       <Text>
-        <RedSpan>£{((walletBalance + refundPrice) / 100).toFixed(2)}</RedSpan>
+        <RedSpan>£{formattedBalanceAfterCancellation}</RedSpan>
       </Text>
       <BlackHr />
       <Text>

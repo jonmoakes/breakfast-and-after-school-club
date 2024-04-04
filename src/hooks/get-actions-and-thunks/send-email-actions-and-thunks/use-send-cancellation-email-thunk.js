@@ -1,28 +1,27 @@
 import { useDispatch } from "react-redux";
 
-import useGetCurrentUserSelectors from "../../../../hooks/get-selectors/use-get-current-user-selectors";
-import useGetUserBookingToDeleteSelectors from "../../../../hooks/get-selectors/use-get-user-booking-to-delete-selectors";
-import useFireSwal from "../../../../hooks/use-fire-swal";
-import useHamburgerHandlerNavigate from "../../../../hooks/use-hamburger-handler-navigate";
-import useGetRefundPrice from "../use-get-refund-price";
+import useHamburgerHandlerNavigate from "../../use-hamburger-handler-navigate";
+import useFireSwal from "../../use-fire-swal";
+import useGetCurrentUserSelectors from "../../get-selectors/use-get-current-user-selectors";
+import useGetUserBookingToDeleteSelectors from "../../get-selectors/use-get-user-booking-to-delete-selectors";
+import useSendEmailActions from "../../get-actions-and-thunks/send-email-actions-and-thunks/use-send-email-actions";
 
-import { sendEmailBookingCancellationConfirmationAsync } from "../../../../store/send-email/send-email.thunks";
+import { sendEmailBookingCancellationConfirmationAsync } from "../../../store/send-email/send-email.thunks";
 
-import { errorSendCancellationConfirmationEmailMessage } from "../../../../strings/errors/errors-strings";
-import { bookedSessionsUserRoute } from "../../../../strings/routes/routes-strings";
+import { bookedSessionsUserRoute } from "../../../strings/routes/routes-strings";
+import { errorSendCancellationConfirmationEmailMessage } from "../../../strings/errors/errors-strings";
 
-const useSendCancellationEmail = () => {
+const useSendCancellationEmailThunk = () => {
   const { name, email } = useGetCurrentUserSelectors();
   const { userBookingToDelete } = useGetUserBookingToDeleteSelectors();
-  const { fireSwal } = useFireSwal();
+  const { dispatchResetSendEmailState } = useSendEmailActions();
   const { hamburgerHandlerNavigate } = useHamburgerHandlerNavigate();
-  const { refundPrice } = useGetRefundPrice();
-
+  const { fireSwal } = useFireSwal();
   const dispatch = useDispatch();
 
   const { date, sessionType, childrensName } = userBookingToDelete || {};
 
-  const sendCancellationEmail = () => {
+  const sendCancellationEmailThunk = (refundPrice) => {
     dispatch(
       sendEmailBookingCancellationConfirmationAsync({
         email,
@@ -38,6 +37,7 @@ const useSendCancellationEmail = () => {
           resultAction
         )
       ) {
+        dispatchResetSendEmailState();
         hamburgerHandlerNavigate(bookedSessionsUserRoute);
       } else {
         fireSwal(
@@ -50,6 +50,7 @@ const useSendCancellationEmail = () => {
         ).then((isConfirmed) => {
           if (isConfirmed) {
             //don't need to do anything else as swal tells user to contact if they need the confirmation email.
+            dispatchResetSendEmailState();
             hamburgerHandlerNavigate(bookedSessionsUserRoute);
           }
         });
@@ -57,7 +58,7 @@ const useSendCancellationEmail = () => {
     });
   };
 
-  return { sendCancellationEmail };
+  return { sendCancellationEmailThunk };
 };
 
-export default useSendCancellationEmail;
+export default useSendCancellationEmailThunk;

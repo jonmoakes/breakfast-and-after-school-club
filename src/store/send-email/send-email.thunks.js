@@ -15,6 +15,7 @@ import {
   SEND_EMAIL_TO_ADMIN_CLOSE_ACCOUNT_REQUEST_ENDPOINT,
 } from "../../../netlify/api-endpoints/api-endpoints";
 
+// this one
 export const sendEmailBookingConfirmationAsync = createAsyncThunk(
   "sendEmailBookingConfirmation",
   async (
@@ -46,7 +47,7 @@ export const sendEmailBookingConfirmationAsync = createAsyncThunk(
     }
   }
 );
-
+// this one
 export const sendEmailBookingNotAddedToDatabaseAsync = createAsyncThunk(
   "sendEmailBookingNotAddedToDatabase",
   async (
@@ -146,7 +147,7 @@ export const sendEmailResetSessionSpacesAndBalanceErrorAsync = createAsyncThunk(
       sessionType,
       numberOfChildrenInBooking,
       id,
-      refundAmount,
+      refundPrice,
     },
     thunkAPI
   ) => {
@@ -159,7 +160,7 @@ export const sendEmailResetSessionSpacesAndBalanceErrorAsync = createAsyncThunk(
           sessionType,
           numberOfChildrenInBooking,
           id,
-          refundAmount,
+          refundPrice,
         }
       );
 
@@ -214,6 +215,7 @@ export const sendEmailWalletFundsNotAddedErrorAsync = createAsyncThunk(
   }
 );
 
+// this one
 export const sendEmailToAdminCloseAccountRequestAsync = createAsyncThunk(
   "sendEmailToAdminCloseAccountRequest",
   async ({ appOwnerEmail, id, email }, thunkAPI) => {

@@ -1,14 +1,18 @@
 import useFireSwal from "../../../../hooks/use-fire-swal";
-import useSendSessionSpacesAndBalanceErrorEmail from "../emails/use-send-session-spaces-and-balance-error-email";
+import useGetRefundPrice from "../cancel-booking-logic/use-get-refund-price";
+import useCancelBookingVariables from "../cancel-booking-logic/use-cancel-booking-variables";
+import useSendSessionSpacesAndBalanceErrorEmailThunk from "../../../../hooks/get-actions-and-thunks/send-email-actions-and-thunks/use-send-session-spaces-and-balance-error-email-thunk";
 
 import { failedToUpdateBalanceOnCancellationMessage } from "../../../../strings/errors/errors-strings";
 
 const useUpdateSessionSpacesAndBalanceErrorSwal = () => {
+  const { numberOfChildrenInBooking } = useCancelBookingVariables();
+  const { refundPrice } = useGetRefundPrice();
   const { fireSwal } = useFireSwal();
-  const { sendSessionSpacesAndBalanceErrorEmail } =
-    useSendSessionSpacesAndBalanceErrorEmail();
+  const { sendSessionSpacesAndBalanceErrorEmailThunk } =
+    useSendSessionSpacesAndBalanceErrorEmailThunk();
 
-  // the session spaces - and therefore the users balance have failed to update here. However the user doesn't need to know about the session spaces as it doesn't affect them.. so we tell them that their balance has not updated and all the relevent data will be sent in the email to the app owner.
+  // the session spaces - and therefore the users balance have failed to update here. However the user doesn't need to know about the session spaces as it doesn't affect them.. so we tell them that their balance has not updated and all the relevent data to reset session spaces and update the users balance will be sent in the email to the app owner.
 
   const updateSessionSpacesAndBalanceErrorSwal = () => {
     fireSwal(
@@ -20,7 +24,10 @@ const useUpdateSessionSpacesAndBalanceErrorSwal = () => {
       false
     ).then((isConfirmed) => {
       if (isConfirmed) {
-        sendSessionSpacesAndBalanceErrorEmail();
+        sendSessionSpacesAndBalanceErrorEmailThunk(
+          numberOfChildrenInBooking,
+          refundPrice
+        );
       }
     });
   };
