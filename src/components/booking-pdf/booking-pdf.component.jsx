@@ -1,7 +1,7 @@
 import { Page, Text, View, Document, Image } from "@react-pdf/renderer";
 import { format, parseISO } from "date-fns";
 
-import Logo from "../../assets/logo.webp";
+import Logo from "../../assets/logo-250x250.webp";
 
 import { pdfStyles } from "./booking-pdf.styles";
 import { getSessionTypeString } from "../../functions/get-session-type-string";

@@ -8,8 +8,8 @@ const rotateInRightAnimation = keyframes`${rotateInDownRight}`;
 const PulseAnimation = keyframes`${pulse}`;
 
 export const StyledImage = styled.img`
-  width: 90%;
-  height: 90%;
+  width: 250px;
+  height: 250px;
   border-radius: 5px;
 
   &.loading {
@@ -20,6 +20,11 @@ export const StyledImage = styled.img`
     filter: blur(0px);
     transition: filter 0.5s linear;
     border: 2px solid ${customBlack};
+  }
+
+  @media screen and (max-width: 450px) {
+    width: 180px;
+    height: 180px;
   }
 `;
 
