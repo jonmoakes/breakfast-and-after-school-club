@@ -9,8 +9,7 @@ import { getSessionTypeString } from "../../functions/get-session-type-string";
 export const BookingPdf = ({ chosenEntry }) => {
   // checks if chosenEntry is null or undefined. If it is, it provides a default value of an empty array ([]).
   // Access first element if it exists. Use empty object if first element is undefined.
-  // const { $createdAt, $id, childrensName, formattedDate, sessionType } =
-  //   (chosenEntry ?? [])[0] ?? {};
+
   const { $createdAt, $id, childrensName, formattedDate, sessionType } =
     (chosenEntry ?? [])[0] ?? {};
 
