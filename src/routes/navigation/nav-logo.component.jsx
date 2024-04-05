@@ -4,7 +4,7 @@ import useIsRouteWithNavWarning from "../../hooks/use-is-route-with-nav-warning"
 import useConfirmSwal from "../../hooks/use-confirm-swal";
 import useHamburgerHandlerNavigate from "../../hooks/use-hamburger-handler-navigate";
 
-import Logo from "../../assets/logo.png";
+import Logo from "../../assets/logo.webp";
 import { LogoContainer } from "../../styles/div/div.styles";
 import { LogoImage } from "../../styles/image/image.styles";
 

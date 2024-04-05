@@ -2,7 +2,7 @@ import ProgressiveImg from "../../components/progressive-image/progressive-image
 import { ImageDiv, ParentDiv } from "../../styles/div/div.styles";
 import { BlackTitle } from "../../styles/h1/h1.styles";
 
-import Image from "../../assets/logo.png";
+import Image from "../../assets/logo.webp";
 import PlaceholderImage from "../../assets/placeholder-image.jpeg";
 
 const Intro = () => (
