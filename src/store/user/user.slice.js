@@ -51,11 +51,14 @@ const userSlice = createSlice({
     setWalletFundsToAdd(state, action) {
       state.walletFundsToAdd = action.payload;
     },
-    resetWalletFundsToAdd: (state) => {
+    resetWalletFundsToAdd(state) {
       state.walletFundsToAdd = 0;
     },
-    setWalletBalance: (state, action) => {
+    setWalletBalance(state, action) {
       state.currentUser.walletBalance = action.payload;
+    },
+    resetSchoolCodeForSocialLogin(state) {
+      state.schoolCodeForSocialLogin = "";
     },
   },
   selectors: {
@@ -196,6 +199,7 @@ export const {
   setWalletFundsToAdd,
   resetWalletFundsToAdd,
   setWalletBalance,
+  resetSchoolCodeForSocialLogin,
 } = userSlice.actions;
 export const { selectCurrentUserSelectors } = userSlice.selectors;
 

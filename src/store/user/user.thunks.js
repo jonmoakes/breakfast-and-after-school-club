@@ -7,10 +7,7 @@ import {
   getRetrievedUserFromDocument,
   createDocumentAndSetUser,
 } from "./functions";
-import {
-  localhostSocialSignInResultRoute,
-  socialSignInResultRoute,
-} from "../../strings/routes/routes-strings";
+import { signInRoute } from "../../strings/routes/routes-strings";
 
 export const getUserOnLoadAsync = createAsyncThunk(
   "user/getUserOnLoad",
@@ -113,14 +110,14 @@ export const requestFacebookSignInAsync = createAsyncThunk(
       if (import.meta.env.MODE === "development") {
         account.createOAuth2Session(
           "facebook",
-          localhostSocialSignInResultRoute,
-          localhostSocialSignInResultRoute
+          "http://localhost:8888/sign-in",
+          "http://localhost:8888/sign-in"
         );
       } else if (import.meta.env.MODE === "production") {
         account.createOAuth2Session(
           "facebook",
-          `https://www.breakfast-and-after-school-club.co.uk${socialSignInResultRoute}`,
-          `https://www.breakfast-and-after-school-club.co.uk${socialSignInResultRoute}`
+          `https://www.breakfast-and-after-school-club.co.uk${signInRoute}`,
+          `https://www.breakfast-and-after-school-club.co.uk${signInRoute}`
         );
       }
     } catch (error) {
@@ -136,14 +133,14 @@ export const requestGoogleSignInAsync = createAsyncThunk(
       if (import.meta.env.MODE === "development") {
         account.createOAuth2Session(
           "google",
-          localhostSocialSignInResultRoute,
-          localhostSocialSignInResultRoute
+          "http://localhost:8888/sign-in",
+          "http://localhost:8888/sign-in"
         );
       } else if (import.meta.env.MODE === "production") {
         account.createOAuth2Session(
           "google",
-          `https://www.breakfast-and-after-school-club.co.uk${socialSignInResultRoute}`,
-          `https://www.breakfast-and-after-school-club.co.uk${socialSignInResultRoute}`
+          `https://www.breakfast-and-after-school-club.co.uk${signInRoute}`,
+          `https://www.breakfast-and-after-school-club.co.uk${signInRoute}`
         );
       }
     } catch (error) {

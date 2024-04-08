@@ -35,9 +35,6 @@ import {
   cancelBookingRoute,
   bookedSessionsOwnerRoute,
   allChildrenRoute,
-  socialSignInRoute,
-  localhostSocialSignInResultRoute,
-  socialSignInResultRoute,
   allUsersRoute,
 } from "./strings/routes/routes-strings";
 
@@ -48,12 +45,6 @@ const Home = lazy(() => import("./routes/home/home.component"));
 const Contact = lazy(() => import("./routes/contact/contact.component"));
 const SignUp = lazy(() => import("./routes/sign-up/sign-up.component"));
 const SignIn = lazy(() => import("./routes/sign-in/sign-in.component"));
-const SocialSignIn = lazy(() =>
-  import("./routes/social-sign-in/social-sign-in.component")
-);
-const SocialSignInResult = lazy(() =>
-  import("./routes/social-sign-in-result/social-sign-in-result.component")
-);
 const BookedSessionsOwner = lazy(() =>
   import("./routes/booked-sessions-owner/booked-sessions-owner.component")
 );
@@ -125,11 +116,6 @@ const App = () => {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path={signInRoute} element={<SignIn />} />
-            <Route path={socialSignInRoute} element={<SocialSignIn />} />
-            <Route
-              path={socialSignInResultRoute || localhostSocialSignInResultRoute}
-              element={<SocialSignInResult />}
-            />
             <Route path={contactRoute} element={<Contact />} />
             <Route path={signUpRoute} element={<SignUp />} />
             <Route

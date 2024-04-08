@@ -107,7 +107,7 @@ export const SocialImage = styled.img`
     }
   }
 
-  @media screen and (max-width: 600px) {
+  @media screen and (max-width: 320px) {
     width: 50px;
     height: 50px;
 

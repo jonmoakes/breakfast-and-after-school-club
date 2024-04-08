@@ -2,12 +2,13 @@ import { Link } from "react-router-dom";
 
 import useChildInfoLogic from "./child-info-hooks/use-child-info-logic";
 
-import { ParentDiv, TableEditsButtonDiv } from "../../styles/div/div.styles";
+import UncheckEntriesInfo from "../../components/tables/uncheck-entries-info.component";
+
+import { TableEditsButtonDiv } from "../../styles/div/div.styles";
 import {
   EditEntryButton,
   RemoveEntryButton,
 } from "../../styles/buttons/buttons.styles";
-import { Text } from "../../styles/p/p.styles";
 
 import {
   editChildInfoRoute,
@@ -37,12 +38,7 @@ const EditRemoveButtons = ({ chosenEntry }) => {
           </>
         </TableEditsButtonDiv>
       ) : moreThanOneEntryHasBeenSelected() ? (
-        <ParentDiv>
-          <Text>please select just one entry in order to make edits.</Text>
-          <Text>
-            uncheck entries by tapping the checkboxes on the left of the table.
-          </Text>
-        </ParentDiv>
+        <UncheckEntriesInfo />
       ) : null}
     </>
   );

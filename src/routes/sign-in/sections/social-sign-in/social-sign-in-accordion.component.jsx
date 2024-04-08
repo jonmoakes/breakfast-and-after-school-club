@@ -1,19 +1,19 @@
-import useGetShouldShowElementSelectors from "../../hooks/get-selectors/use-get-should-show-element-selectors";
-import useShouldShowElementActions from "../../hooks/get-actions-and-thunks/use-should-show-element-actions";
+import useGetShouldShowElementSelectors from "../../../../hooks/get-selectors/use-get-should-show-element-selectors";
+import useShouldShowElementActions from "../../../../hooks/get-actions-and-thunks/use-should-show-element-actions";
 
-import Info from "../../components/social-sign-in-browser-help/info.component";
-import TroubleShooting from "../../components/social-sign-in-browser-help/troubleshooting.component";
-import Safari from "../../components/social-sign-in-browser-help/safari.component";
-import Brave from "../../components/social-sign-in-browser-help/brave.component";
-import Chrome from "../../components/social-sign-in-browser-help/chrome.component";
-import Firefox from "../../components/social-sign-in-browser-help/firefox.component";
+import Info from "../../../../components/social-sign-in-browser-help/info.component";
+import TroubleShooting from "../../../../components/social-sign-in-browser-help/troubleshooting.component";
+import Safari from "../../../../components/social-sign-in-browser-help/safari.component";
+import Brave from "../../../../components/social-sign-in-browser-help/brave.component";
+import Chrome from "../../../../components/social-sign-in-browser-help/chrome.component";
+import Firefox from "../../../../components/social-sign-in-browser-help/firefox.component";
 
 import {
   Accordion,
   AccordionTitle,
   AccordionContent,
-} from "../../styles/div/div.styles";
-import { YellowGreenButton } from "../../styles/buttons/buttons.styles";
+} from "../../../../styles/div/div.styles";
+import { YellowGreenButton } from "../../../../styles/buttons/buttons.styles";
 
 const SocialSignInAccordion = () => {
   const { shouldShowElement } = useGetShouldShowElementSelectors();

@@ -99,7 +99,10 @@ const useResetStore = () => {
   const { dispatchResetUpdateEmailState } = useUpdateEmailActions();
   const { dispatchResetUserBookingToDeleteState } =
     useUserBookingToDeleteActions();
-  const { dispatchResetWalletFundsToAdd } = useCurrentUserActions();
+  const {
+    dispatchResetWalletFundsToAdd,
+    dispatchResetSchoolCodeForSocialLogin,
+  } = useCurrentUserActions();
 
   const location = useLocation();
   const path = location.pathname;
@@ -109,6 +112,7 @@ const useResetStore = () => {
       case signInRoute:
         dispatchResetShouldShowElementState();
         dispatchResetSignInFormState();
+        dispatchResetSchoolCodeForSocialLogin();
         break;
       case signUpRoute:
         dispatchResetShouldShowElementState();

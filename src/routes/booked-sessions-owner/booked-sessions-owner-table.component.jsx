@@ -62,6 +62,9 @@ const BookedSessionsOwnerTable = () => {
       hooks.visibleColumns.push((columns) => {
         return [
           {
+            Header: ({ getToggleAllRowsSelectedProps }) => (
+              <TableCheckBox {...getToggleAllRowsSelectedProps()} />
+            ),
             Cell: ({ row }) => {
               return <TableCheckBox {...row.getToggleRowSelectedProps()} />;
             },

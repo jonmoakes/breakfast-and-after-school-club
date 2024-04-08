@@ -64,6 +64,9 @@ const ChildTable = () => {
       hooks.visibleColumns.push((columns) => {
         return [
           {
+            Header: ({ getToggleAllRowsSelectedProps }) => (
+              <TableCheckBox {...getToggleAllRowsSelectedProps()} />
+            ),
             Cell: ({ row }) => {
               return (
                 <TableCheckBox

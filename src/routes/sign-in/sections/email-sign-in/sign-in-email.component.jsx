@@ -1,6 +1,6 @@
-import useGetSignInFormSelectors from "../../../hooks/get-selectors/use-get-sign-in-form-selectors";
+import useGetSignInFormSelectors from "../../../../hooks/get-selectors/use-get-sign-in-form-selectors";
 
-import { LowercasedInput, Label } from "../../../styles/form/form.styles";
+import { LowercasedInput, Label } from "../../../../styles/form/form.styles";
 
 const SignInEmail = ({ dispatchHandleSignInFormChange }) => {
   const { email } = useGetSignInFormSelectors();

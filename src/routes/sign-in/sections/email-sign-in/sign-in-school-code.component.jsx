@@ -1,6 +1,6 @@
-import useGetSignInFormSelectors from "../../../hooks/get-selectors/use-get-sign-in-form-selectors";
+import useGetSignInFormSelectors from "../../../../hooks/get-selectors/use-get-sign-in-form-selectors";
 
-import { Label, StyledInput } from "../../../styles/form/form.styles";
+import { Label, StyledInput } from "../../../../styles/form/form.styles";
 
 const SignInSchoolCode = ({ dispatchHandleSignInFormChange }) => {
   const { schoolCode } = useGetSignInFormSelectors();

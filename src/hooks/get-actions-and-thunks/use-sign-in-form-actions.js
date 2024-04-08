@@ -5,6 +5,8 @@ import useGetSignInFormSelectors from "../get-selectors/use-get-sign-in-form-sel
 import {
   resetSignInFormState,
   setSignInFormDetails,
+  setShowSocialSignInForm,
+  resetSignInFormDetails,
 } from "../../store/sign-in-form/sign-in-form.slice";
 
 const useSignInFormActions = () => {
@@ -21,7 +23,20 @@ const useSignInFormActions = () => {
     dispatch(resetSignInFormState());
   };
 
-  return { dispatchHandleSignInFormChange, dispatchResetSignInFormState };
+  const dispatchShowSocialSignIn = (payload) => {
+    dispatch(setShowSocialSignInForm(payload));
+  };
+
+  const dispatchResetSignInFormDetails = () => {
+    dispatch(resetSignInFormDetails());
+  };
+
+  return {
+    dispatchHandleSignInFormChange,
+    dispatchResetSignInFormState,
+    dispatchShowSocialSignIn,
+    dispatchResetSignInFormDetails,
+  };
 };
 
 export default useSignInFormActions;

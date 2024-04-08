@@ -1,8 +1,7 @@
-import { Text } from "../../styles/p/p.styles";
+import { Text } from "../../../../styles/p/p.styles";
 
 const SocialSignInInstructions = () => (
   <>
-    {" "}
     <Text>
       before we can sign you in, we need your school code in order to match you
       to the correct database.

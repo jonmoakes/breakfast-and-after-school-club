@@ -5,10 +5,9 @@ import useBookedSessionsUserFunctions from "./booked-sessions-user-hooks/use-boo
 import CancelIcon from "../../assets/cancel-icon.png";
 import PdfIcon from "../../assets/pdf-icon.png";
 import BookingPdf from "../../components/booking-pdf/booking-pdf.component";
+import UncheckEntriesInfo from "../../components/tables/uncheck-entries-info.component";
 
-import { ParentDiv, TableEditsButtonDiv } from "../../styles/div/div.styles";
 import { IconButton } from "../../styles/buttons/buttons.styles";
-import { Text } from "../../styles/p/p.styles";
 import { Icon } from "../../styles/image/image.styles";
 
 const CancelBookingAndDownloadPdfButtons = ({ chosenEntry }) => {
@@ -22,7 +21,7 @@ const CancelBookingAndDownloadPdfButtons = ({ chosenEntry }) => {
   return (
     <>
       {oneEntrySelected() ? (
-        <TableEditsButtonDiv>
+        <>
           {bookingIsOnADayInThePast() ? null : (
             <IconButton
               className="top-floating-button"
@@ -40,14 +39,9 @@ const CancelBookingAndDownloadPdfButtons = ({ chosenEntry }) => {
               <Icon className="bottom-floating-button" src={PdfIcon} />
             </IconButton>
           </PDFDownloadLink>
-        </TableEditsButtonDiv>
+        </>
       ) : moreThanOneEntrySelected() ? (
-        <ParentDiv>
-          <Text>please select just one entry.</Text>
-          <Text>
-            uncheck entries by tapping the checkboxes on the left of the table.
-          </Text>
-        </ParentDiv>
+        <UncheckEntriesInfo />
       ) : null}
     </>
   );

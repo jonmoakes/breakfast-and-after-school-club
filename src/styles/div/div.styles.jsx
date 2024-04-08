@@ -528,7 +528,7 @@ export const SocialLoginsDiv = styled.div`
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  margin: -20px auto 40px auto;
+  margin: 40px auto 20px auto;
 
   @media screen and (max-width: 280px) {
     flex-direction: column;

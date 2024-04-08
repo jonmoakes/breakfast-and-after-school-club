@@ -25,6 +25,3 @@ export const aboutRoute = "/about";
 export const allChildrenRoute = "/children-list";
 export const allUsersRoute = "/users-list";
 export const socialSignInRoute = "/social-sign-in";
-export const localhostSocialSignInResultRoute =
-  "http://localhost:8888/social-sign-in-result";
-export const socialSignInResultRoute = "/social-sign-in-result";
