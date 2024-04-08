@@ -106,7 +106,7 @@ export const IconButton = styled.button`
 
   &.top-floating-button {
     right: 10px;
-    animation: 2s ${bounceInDownAnimation};
+    animation: 1s ${bounceInDownAnimation};
 
     @media screen and (max-width: 1366px) {
       right: 0px;
@@ -123,7 +123,7 @@ export const IconButton = styled.button`
 
   &.bottom-floating-button {
     right: 10px;
-    animation: 2s ${bounceInDownAnimation};
+    animation: 1s ${bounceInDownAnimation};
     top: 190px;
 
     @media screen and (max-width: 1366px) {
