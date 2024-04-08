@@ -1,7 +1,7 @@
 import styled, { keyframes } from "styled-components";
 import { rotateInDownLeft, rotateInDownRight, pulse } from "react-animations";
 
-import { customBlack } from "../colors";
+import { customBlack, customOrange, customRed } from "../colors";
 
 const rotateInLeftAnimation = keyframes`${rotateInDownLeft}`;
 const rotateInRightAnimation = keyframes`${rotateInDownRight}`;
@@ -36,13 +36,45 @@ export const LogoImage = styled.img`
   padding-bottom: 1px;
 `;
 
-export const AddIcon = styled.img`
+export const Icon = styled.img`
   width: 70px;
   height: 70px;
   background-color: transparent;
   position: relative;
   right: 6px;
   top: -1px;
+
+  &.top-floating-button {
+    width: 50px;
+    height: 50px;
+    padding: 10px;
+    background-color: ${customOrange};
+    border: 1px solid ${customBlack};
+    border-radius: 5px;
+    animation: infinite 1s ${PulseAnimation};
+
+    @media screen and (max-width: 600px) {
+      width: 40px;
+      height: 40px;
+      padding: 5px;
+    }
+  }
+
+  &.bottom-floating-button {
+    width: 50px;
+    height: 50px;
+    padding: 10px;
+    background-color: ${customRed};
+    border: 1px solid ${customBlack};
+    border-radius: 5px;
+    animation: infinite 1s ${PulseAnimation};
+
+    @media screen and (max-width: 600px) {
+      width: 40px;
+      height: 40px;
+      padding: 5px;
+    }
+  }
 
   @media screen and (max-width: 600px) {
     width: 60px;

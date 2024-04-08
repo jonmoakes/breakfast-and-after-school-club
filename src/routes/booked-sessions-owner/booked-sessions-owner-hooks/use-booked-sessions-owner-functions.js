@@ -5,8 +5,6 @@ import useBookedSessionsOwnerActions from "../../../hooks/get-actions-and-thunks
 
 import { chosenEntryChildDetailsRoute } from "../../../strings/routes/routes-strings";
 
-import { scrollToTop } from "../../../functions/scroll-top-top";
-
 const useBookedSessionsOwnerFunctions = (chosenEntry) => {
   const { bookedSessionsOwner, bookedSessionsOwnerShowAllDates } =
     useGetBookedSessionsOwnerSelectors();
@@ -44,8 +42,16 @@ const useBookedSessionsOwnerFunctions = (chosenEntry) => {
     return chosenEntry.length === 1 ? true : false;
   };
 
-  const moreThanOneEntrySelected = () => {
-    return chosenEntry.length > 1 ? true : false;
+  const moreThanOneEntrySelectedAndShowingAllBookings = () => {
+    return chosenEntry.length > 1 && bookedSessionsOwnerShowAllDates
+      ? true
+      : false;
+  };
+
+  const moreThanOneEntrySelectedAndShowingTodaysBookings = () => {
+    return chosenEntry.length > 1 && !bookedSessionsOwnerShowAllDates
+      ? true
+      : false;
   };
 
   const showTodaysBookings = () => {
@@ -63,11 +69,12 @@ const useBookedSessionsOwnerFunctions = (chosenEntry) => {
     passChosenEntryAndGoToChosenEntryChildDetailsRoute,
     noEntryHasBeenSelected,
     oneEntrySelected,
-    moreThanOneEntrySelected,
+    moreThanOneEntrySelectedAndShowingAllBookings,
+    moreThanOneEntrySelectedAndShowingTodaysBookings,
     showTodaysBookings,
     showAllBookings,
-    scrollToTop,
     dispatchSetBookedSessionsOwner,
+    chosenEntry,
   };
 };
 

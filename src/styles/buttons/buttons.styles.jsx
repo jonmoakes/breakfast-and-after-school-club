@@ -91,7 +91,7 @@ export const YellowGreenButton = styled(Button)`
   }
 `;
 
-export const AddButton = styled.button`
+export const IconButton = styled.button`
   width: 70px;
   height: 70px;
   position: fixed;
@@ -104,16 +104,43 @@ export const AddButton = styled.button`
   cursor: pointer;
   animation: infinite 1s ${PulseAnimation};
 
+  &.top-floating-button {
+    right: 10px;
+    animation: 2s ${bounceInDownAnimation};
+
+    @media screen and (max-width: 1366px) {
+      right: 0px;
+    }
+
+    @media screen and (max-width: 600px) {
+      right: -10px;
+    }
+
+    @media screen and (max-width: 450px) {
+      top: 100px;
+    }
+  }
+
+  &.bottom-floating-button {
+    right: 10px;
+    animation: 2s ${bounceInDownAnimation};
+    top: 190px;
+
+    @media screen and (max-width: 1366px) {
+      right: 0px;
+    }
+
+    @media screen and (max-width: 600px) {
+      top: 170px;
+      right: -10px;
+    }
+  }
+
   @media screen and (max-width: 850px) {
     right: 20px;
   }
 
-  @media screen and (max-width: 600px) {
-    right: -10px;
-  }
-
   @media screen and (max-width: 450px) {
-    right: 5px;
     top: 100px;
   }
 `;

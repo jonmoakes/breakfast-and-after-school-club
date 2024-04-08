@@ -2,6 +2,7 @@ import {
   useTable,
   useSortBy,
   useGlobalFilter,
+  useFilters,
   usePagination,
   useRowSelect,
   useColumnOrder,
@@ -10,7 +11,6 @@ import {
 import useIsOnline from "../../hooks/use-is-online";
 import useBookedSessionsOwnerListener from "./booked-sessions-owner-hooks/use-booked-sessions-owner-listener";
 import useBookedSessionsOwnerVariables from "./booked-sessions-owner-hooks/use-booked-sessions-owner-variables";
-import useBookedSessionsOwnerFunctions from "./booked-sessions-owner-hooks/use-booked-sessions-owner-functions";
 
 import NetworkError from "../../components/errors/network-error.component";
 import ShowFetchErrors from "../../components/errors/show-fetch-errors.component";
@@ -26,7 +26,6 @@ const BookedSessionsOwnerTable = () => {
   useBookedSessionsOwnerListener();
   const { bookedSessionsOwnerError, data, columns, initialState } =
     useBookedSessionsOwnerVariables();
-  const { scrollToTop } = useBookedSessionsOwnerFunctions();
   const { isOnline } = useIsOnline();
 
   const {
@@ -53,6 +52,7 @@ const BookedSessionsOwnerTable = () => {
       data,
       initialState,
     },
+    useFilters,
     useGlobalFilter,
     useSortBy,
     usePagination,
@@ -63,12 +63,7 @@ const BookedSessionsOwnerTable = () => {
         return [
           {
             Cell: ({ row }) => {
-              return (
-                <TableCheckBox
-                  onClick={() => scrollToTop()}
-                  {...row.getToggleRowSelectedProps()}
-                />
-              );
+              return <TableCheckBox {...row.getToggleRowSelectedProps()} />;
             },
           },
           ...columns,

@@ -1,11 +1,12 @@
 import Balancer from "react-wrap-balancer";
 
+import useEditChildInfoLogic from "../hooks/use-edit-child-info-logic";
+
 import { RadioDiv } from "../../../styles/div/div.styles";
 import { BlackHr } from "../../../styles/hr/hr.styles";
 import { WhiteShadowText } from "../../../styles/p/p.styles";
 import { LightGreenSpan, RedSpan } from "../../../styles/span/span.styles";
 import { Label } from "../../../styles/form/form.styles";
-import useEditChildInfoLogic from "../hooks/use-edit-child-info-logic";
 
 const Consent = ({ handleUpdatedChildInfoChange }) => {
   const { consent } = useEditChildInfoLogic();

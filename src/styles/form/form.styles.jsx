@@ -288,6 +288,12 @@ export const Label = styled.label`
   float: left;
   padding-left: 20px;
 
+  &.book-session {
+    float: unset;
+    padding-left: 0px;
+    text-align: center;
+  }
+
   @media screen and (max-width: 1000px) {
     padding-left: 15px;
   }
@@ -390,55 +396,26 @@ export const SearchInput = styled.input`
   }
 `;
 
-export const OptionsForm = styled.form`
-  width: 50%;
-  height: auto;
-  background-color: ${customBlue};
-  margin: 20px auto;
-  border-radius: 5px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 20px 0px 20px 0px;
-  animation: 1s ${bounceInDownAnimation};
-  border: 2px solid ${customBlack};
+export const StyledCheckbox = styled.input`
+  /* Add if not using autoprefixer */
+  -webkit-appearance: none;
+  /* Remove most all native input styles */
+  appearance: none;
+  /* For iOS < 15 */
+  background-color: transparent;
+  /* Not removed via appearance */
+  margin: 10px auto 0px auto;
+  font-family: inherit;
+  background-color: lightgrey;
+  width: 1.5rem;
+  height: 1.5rem;
+  border: 2px solid black;
+  border-radius: 0.15em;
+  transform: translateY(-0.075em);
+  display: grid;
+  place-content: center;
 
-  input {
-    accent-color: red;
-  }
-
-  label {
-    text-align: center;
-    text-shadow: 1px 1px 1px ${customBlack};
-    color: ${customYellow};
-  }
-
-  input[type="checkbox"] {
-    /* Add if not using autoprefixer */
-    -webkit-appearance: none;
-    /* Remove most all native input styles */
-    appearance: none;
-    /* For iOS < 15 */
-    background-color: transparent;
-    /* Not removed via appearance */
-    margin: 10px auto 0px auto;
-    font-family: inherit;
-    background-color: lightgrey;
-    width: 1.5rem;
-    height: 1.5rem;
-    border: 2px solid black;
-    border-radius: 0.15em;
-    transform: translateY(-0.075em);
-    display: grid;
-    place-content: center;
-
-    @media screen and (max-width: 650px) {
-      width: 2rem;
-      height: 2rem;
-    }
-  }
-
-  input[type="checkbox"]::before {
+  &::before {
     content: "";
     width: 0.9rem;
     height: 0.9rem;
@@ -451,13 +428,27 @@ export const OptionsForm = styled.form`
     background-color: black;
   }
 
-  input[type="checkbox"]:checked::before {
+  &:checked::before {
     transform: scale(1);
   }
 
-  input[type="checkbox"]:focus {
+  &:focus {
     outline: max(2px, 0.15em) solid black;
   }
+`;
+
+export const OptionsForm = styled.form`
+  width: 50%;
+  height: auto;
+  background-color: ${customBlue};
+  margin: 20px auto;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px 0px 20px 0px;
+  animation: 1s ${bounceInDownAnimation};
+  border: 2px solid ${customBlack};
 
   @media screen and (max-width: 1366px) {
     width: 70%;

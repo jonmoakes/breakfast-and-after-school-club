@@ -1,6 +1,7 @@
 import { forwardRef, useRef, useEffect } from "react";
+import { StyledCheckbox } from "../../styles/form/form.styles";
 
-const TableCheckBox = forwardRef(({ data, indeterminate, ...rest }, ref) => {
+const TableCheckBox = forwardRef(({ indeterminate, ...rest }, ref) => {
   const defaultRef = useRef();
   const resolvedRef = ref || defaultRef;
 
@@ -8,11 +9,7 @@ const TableCheckBox = forwardRef(({ data, indeterminate, ...rest }, ref) => {
     resolvedRef.current.indeterminate = indeterminate;
   }, [resolvedRef, indeterminate]);
 
-  return (
-    <div>
-      <input type="checkbox" ref={resolvedRef} {...rest} />
-    </div>
-  );
+  return <StyledCheckbox type="checkbox" ref={resolvedRef} {...rest} />;
 });
 
 export default TableCheckBox;

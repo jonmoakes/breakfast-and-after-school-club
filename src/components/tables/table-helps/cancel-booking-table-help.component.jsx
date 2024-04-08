@@ -1,4 +1,5 @@
 import useGetRequestDateDataSelectors from "../../../hooks/get-selectors/use-get-request-date-data-selectors";
+
 import { BlueH2 } from "../../../styles/h2/h2.styles";
 import { Text } from "../../../styles/p/p.styles";
 import { BlackHr } from "../../../styles/hr/hr.styles";
@@ -15,7 +16,16 @@ const CancelBookingTableHelp = () => {
       <BlueH2>cancelling a booking:</BlueH2>
       <Text>
         to cancel your booking, tap on the small checkbox to the left of the
-        date that you want to cancel and then tap 'cancel booking'
+        date that you want to cancel and then tap the orange icon with the cross
+        in it that appears in the top right of the screen.
+      </Text>
+      <Text>
+        Note that only one entry should be selected in order for this button to
+        show.
+      </Text>
+      <Text>
+        the button to cancel a booking will also wont show if the date is in the
+        past.
       </Text>
       <Text>
         this will take you to a page where you can confirm the cancellation.
@@ -36,9 +46,6 @@ const CancelBookingTableHelp = () => {
         if you've booked a combined morning and afternoon session, once it is
         past {morningSessionClosingTime}AM, you wont be able to cancel the
         afternoon session.
-      </Text>
-      <Text>
-        the button to cancel a booking wont show if the date is in the past.
       </Text>
     </>
   );

@@ -3,7 +3,11 @@ import useDatesLogic from "../book-a-session-hooks/logic/use-dates-logic";
 import useTimesLogic from "../book-a-session-hooks/logic/use-times-logic";
 import useGetChildrenLogic from "../book-a-session-hooks/logic/use-get-children-logic";
 
-import { OptionsForm } from "../../../styles/form/form.styles";
+import {
+  Label,
+  OptionsForm,
+  StyledCheckbox,
+} from "../../../styles/form/form.styles";
 import { Text } from "../../../styles/p/p.styles";
 import { ParentDiv, RadioDiv } from "../../../styles/div/div.styles";
 
@@ -26,8 +30,8 @@ const ChildCheckbox = () => {
             <OptionsForm onChange={handleSetChildrenSelectedForBookingChange}>
               {usersChildren.map((child) => (
                 <RadioDiv key={child.$id}>
-                  <label>{child.childName}</label>
-                  <input
+                  <Label className="book-session">{child.childName}</Label>
+                  <StyledCheckbox
                     type="checkbox"
                     id={child.childName}
                     name={child.childName}

@@ -1,34 +1,40 @@
 import useBookedSessionsOwnerFunctions from "./booked-sessions-owner-hooks/use-booked-sessions-owner-functions";
 
-import { ParentDiv, TableEditsButtonDiv } from "../../styles/div/div.styles";
-import { EditEntryButton } from "../../styles/buttons/buttons.styles";
+import InfoIcon from "../../assets/info-icon.png";
+
+import { ParentDiv } from "../../styles/div/div.styles";
+
 import { Text } from "../../styles/p/p.styles";
+import { Icon } from "../../styles/image/image.styles";
+import { IconButton } from "../../styles/buttons/buttons.styles";
 
 const GetChildDetailsButton = ({ chosenEntry }) => {
   const {
     passChosenEntryAndGoToChosenEntryChildDetailsRoute,
     oneEntrySelected,
-    moreThanOneEntrySelected,
+    moreThanOneEntrySelectedAndShowingAllBookings,
+    moreThanOneEntrySelectedAndShowingTodaysBookings,
   } = useBookedSessionsOwnerFunctions(chosenEntry);
 
   return (
     <>
       {oneEntrySelected() ? (
-        <TableEditsButtonDiv>
-          <EditEntryButton
-            onClick={passChosenEntryAndGoToChosenEntryChildDetailsRoute}
-          >
-            view child info
-          </EditEntryButton>
-        </TableEditsButtonDiv>
-      ) : moreThanOneEntrySelected() ? (
+        <IconButton
+          className="top-floating-button"
+          onClick={passChosenEntryAndGoToChosenEntryChildDetailsRoute}
+        >
+          <Icon className="top-floating-button" src={InfoIcon} />
+        </IconButton>
+      ) : moreThanOneEntrySelectedAndShowingAllBookings() ? (
         <ParentDiv>
           <Text>please select just one entry.</Text>
           <Text>
             uncheck entries by tapping the checkboxes on the left of the table.
           </Text>
         </ParentDiv>
-      ) : null}
+      ) : (
+        moreThanOneEntrySelectedAndShowingTodaysBookings() && null
+      )}
     </>
   );
 };

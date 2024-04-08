@@ -22,6 +22,11 @@ const BookedSessionsUserToggleBookings = () => {
       </Text>
 
       <Text>
+        please note, that in order for this button to show, no entries in the
+        table should be selected.
+      </Text>
+
+      <Text>
         if you tap the button to change the table filtering, please note that if
         you have a search term already entered as you swap, you will have to re
         enter the search term in order to trigger the search.
