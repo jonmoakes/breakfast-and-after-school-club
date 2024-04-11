@@ -5,7 +5,6 @@ import useRequestDateDataActions from "../../../hooks/get-actions-and-thunks/req
 import {
   cancelBeforeTimeMessage,
   tooLateToCancelAfternoonMessage,
-  cantCancelPastBookingMessage,
   tooLateToCancelMorningMessage,
   tooLateToCancelDualSession,
   errorTryingToCancelBookingMessage,
@@ -30,10 +29,6 @@ const useFireErrorSwals = () => {
         dispatchResetRequestDateDataError();
       }
     });
-  };
-
-  const cantCancelPastBookingSwal = () => {
-    fireSwal("error", cantCancelPastBookingMessage, "", 0, true, false);
   };
 
   const cantCancelMorningSessionSwal = (morningSessionClosingTime) => {
@@ -73,7 +68,6 @@ const useFireErrorSwals = () => {
   };
 
   return {
-    cantCancelPastBookingSwal,
     cantCancelMorningSessionSwal,
     cantCancelAfternoonSessionSwal,
     couldntFetchBookingClosingTimesSwal,

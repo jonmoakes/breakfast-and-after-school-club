@@ -8,7 +8,7 @@ const BookedSessionsUserToggleBookings = () => {
       <BlackHr />
       <BlueH2>toggling which bookings to show:</BlueH2>
       <Text>
-        tap the grey 'show all bookings' or 'show bookings from today' button to
+        tap the grey 'show all bookings' or 'show upcoming bookings' button to
         toggle between showing every booking you've ever made, or just the
         bookings from the current date onwards.
       </Text>

@@ -119,8 +119,7 @@ export const errorCancellingBookingMessage =
   "sorry, there was an error cancelling your booking.";
 export const errorInstructions =
   "please tap ok to continue. This will email the app owner with details of the error, allowing them to fix it manually. Your balance has not been affected. We apologise for the inconvenience.";
-export const cantCancelPastBookingMessage =
-  "sorry, you can't cancel a past booking.";
+
 export const tooLateToCancelMorningMessage =
   "it's too late to cancel your morning session.";
 export const tooLateToCancelAfternoonMessage =

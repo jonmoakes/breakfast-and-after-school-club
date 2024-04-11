@@ -3,28 +3,32 @@ import useBookedSessionsUserFunctions from "./booked-sessions-user-hooks/use-boo
 import { FilterEntriesButtonDiv } from "../../styles/div/div.styles";
 import { GreyButton } from "../../styles/buttons/buttons.styles";
 
-const BookedSessionsUserToggleBookingsShownButton = ({ chosenEntry, data }) => {
+const BookedSessionsUserToggleBookingsShownButton = ({ chosenEntry }) => {
   const {
+    noBookingsHaveBeenMadeYet,
     noEntryHasBeenSelected,
-    noDataFound,
     allBookingsAreBeingShown,
     showCurrentAndFutureBookings,
     showAllBookings,
+    noUpcomingBookingsFound,
   } = useBookedSessionsUserFunctions(chosenEntry);
 
   return (
     <>
       {noEntryHasBeenSelected() ? (
         <FilterEntriesButtonDiv>
-          {noDataFound(data) ? null : allBookingsAreBeingShown(data) ? (
+          {noBookingsHaveBeenMadeYet() ||
+          noUpcomingBookingsFound() ? null : allBookingsAreBeingShown() ? (
             <GreyButton
               className="small-text"
               onClick={showCurrentAndFutureBookings}
             >
-              show bookings from today
+              show upcoming bookings
             </GreyButton>
           ) : (
-            <GreyButton onClick={showAllBookings}>show all bookings</GreyButton>
+            <GreyButton className="small-text" onClick={showAllBookings}>
+              show all bookings
+            </GreyButton>
           )}
         </FilterEntriesButtonDiv>
       ) : null}

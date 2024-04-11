@@ -13,7 +13,8 @@ import useIsOnline from "../../hooks/use-is-online";
 
 import NetworkError from "../../components/errors/network-error.component";
 import TableCheckBox from "../../components/tables/table-checkbox";
-import NoBookingsFound from "./no-bookings-found.component";
+import NoUpcomingBookingsFound from "./no-upcoming-bookings-found.component";
+import NoBookingsHaveBeenMadeYet from "./no-bookings-have-been-made-yet.component";
 import BookingsTableRenderTable from "../../components/tables/bookings-table-render-table.component";
 import TableSearchBox from "../../components/tables/table-search-box.component";
 import TablePagination from "../../components/tables/table-pagination.component";
@@ -89,7 +90,8 @@ const BookedSessionsUserTable = () => {
         <ShowFetchErrors />
       ) : (
         <>
-          <NoBookingsFound />
+          <NoBookingsHaveBeenMadeYet />
+          <NoUpcomingBookingsFound />
 
           <TableSearchBox
             {...{
@@ -101,9 +103,7 @@ const BookedSessionsUserTable = () => {
             }}
           />
 
-          <BookedSessionsUserToggleBookingsShownButton
-            {...{ chosenEntry, data }}
-          />
+          <BookedSessionsUserToggleBookingsShownButton {...{ chosenEntry }} />
 
           <CancelBookingAndDownloadPdfButtons {...{ chosenEntry }} />
 

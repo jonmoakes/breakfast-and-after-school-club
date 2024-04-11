@@ -11,8 +11,10 @@ export const BookingPdf = ({ chosenEntry }) => {
   // checks if chosenEntry is null or undefined. If it is, it provides a default value of an empty array ([]).
   // Access first element if it exists. Use empty object if first element is undefined.
 
-  const { $createdAt, $id, childrensName, formattedDate, sessionType } =
+  const { $createdAt, $id, childrensName, date, sessionType } =
     (chosenEntry ?? [])[0] ?? {};
+
+  const formattedDate = date ? format(new Date(date), "dd MMMM yyyy") : "";
 
   return (
     <Document>

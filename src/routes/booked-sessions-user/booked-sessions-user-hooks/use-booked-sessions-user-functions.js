@@ -21,7 +21,6 @@ const useBookedSessionsUserFunctions = (chosenEntry) => {
   const { data } = useBookedSessionsUserVariables();
   const { dispatchAddUserBookingToDelete } = useUserBookingToDeleteActions();
   const {
-    cantCancelPastBookingSwal,
     cantCancelMorningSessionSwal,
     cantCancelAfternoonSessionSwal,
     couldntFetchBookingClosingTimesSwal,
@@ -30,16 +29,15 @@ const useBookedSessionsUserFunctions = (chosenEntry) => {
 
   const navigate = useNavigate();
 
-  // no bookings have been made yet
-  const noBookingDataFound = () => {
+  const noBookingsHaveBeenMadeYet = () => {
     return !bookedSessionsUser.length && !data.length ? true : false;
   };
 
-  const noDataFound = (data) => {
-    return !data.length ? true : false;
+  const noUpcomingBookingsFound = () => {
+    return bookedSessionsUser.length && !data.length ? true : false;
   };
 
-  const allBookingsAreBeingShown = (data) => {
+  const allBookingsAreBeingShown = () => {
     return data.length && bookedSessionsUserShowAllDates ? true : false;
   };
 
@@ -129,8 +127,6 @@ const useBookedSessionsUserFunctions = (chosenEntry) => {
   const checkOkToCancelAndGoToCancelBookingRoute = () => {
     if (!bookingClosingTimes) {
       couldntFetchBookingClosingTimesSwal();
-    } else if (bookingIsOnADayInThePast()) {
-      cantCancelPastBookingSwal();
     } else if (sessionIsTodayInTheMorningAndTooLateTooCancel()) {
       cantCancelMorningSessionSwal(morningSessionClosingTime);
     } else if (sessionIsTodayInTheAfternoonAndTooLateTooCancel()) {
@@ -147,8 +143,8 @@ const useBookedSessionsUserFunctions = (chosenEntry) => {
     noEntryHasBeenSelected,
     oneEntrySelected,
     moreThanOneEntrySelected,
-    noBookingDataFound,
-    noDataFound,
+    noUpcomingBookingsFound,
+    noBookingsHaveBeenMadeYet,
     checkOkToCancelAndGoToCancelBookingRoute,
     scrollToTop,
     allBookingsAreBeingShown,

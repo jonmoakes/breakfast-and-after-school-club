@@ -7,12 +7,12 @@ import { Text } from "../../styles/p/p.styles";
 
 import { bookSessionRoute } from "../../strings/routes/routes-strings";
 
-const NoBookingsFound = () => {
-  const { noBookingDataFound } = useBookedSessionsUserFunctions();
+const NoBookingsHaveBeenMadeYet = () => {
+  const { noBookingsHaveBeenMadeYet } = useBookedSessionsUserFunctions();
 
   return (
     <>
-      {noBookingDataFound() ? (
+      {noBookingsHaveBeenMadeYet() ? (
         <ParentDiv>
           <BlueH2>no bookings.</BlueH2>
           <Text>you haven't made any bookings yet.</Text>
@@ -26,4 +26,4 @@ const NoBookingsFound = () => {
   );
 };
 
-export default NoBookingsFound;
+export default NoBookingsHaveBeenMadeYet;

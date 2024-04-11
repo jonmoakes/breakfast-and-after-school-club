@@ -35,6 +35,7 @@ const useBookedSessionsUserVariables = () => {
         : sortedUserBookings,
     [sortedUserBookings, bookedSessionsUserShowAllDates]
   );
+
   const columns = useMemo(() => TABLE_COLUMNS, []);
   const initialState = useMemo(
     () => ({
