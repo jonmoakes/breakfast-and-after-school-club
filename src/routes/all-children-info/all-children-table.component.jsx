@@ -21,6 +21,8 @@ import NetworkError from "../../components/errors/network-error.component";
 import TablePagination from "../../components/tables/table-pagination.component";
 import AllUsersAllChildrenSearchBox from "../../components/tables/all-users-all-children-search-box.component";
 
+import { defaultTableSize } from "../../components/tables/default-table-size";
+
 const AllChildrenTable = () => {
   useAllChildrenListener();
   const { isOnline } = useIsOnline();
@@ -28,15 +30,26 @@ const AllChildrenTable = () => {
   let { allChildren } = useGetAllChildrenSelectors();
   const { getAllChildrenError } = useGetAllChildrenSelectors();
 
+  const allChildrenPageSizeFromLocalStorage = localStorage.getItem(
+    "allChildrenChosenTablePageSize"
+  );
+
   const columns = useMemo(() => TABLE_COLUMNS, []);
   const data = useMemo(
     () => (allChildren !== undefined ? allChildren : []),
     [allChildren]
   );
+
   const initialState = useMemo(
-    () => ({ sortBy: [{ id: "childName", desc: false }], pageSize: 30 }),
-    []
+    () => ({
+      sortBy: [{ id: "childName", desc: false }],
+      pageSize: allChildrenPageSizeFromLocalStorage
+        ? Number(allChildrenPageSizeFromLocalStorage)
+        : defaultTableSize,
+    }),
+    [allChildrenPageSizeFromLocalStorage]
   );
+
   const {
     getTableProps,
     getTableBodyProps,

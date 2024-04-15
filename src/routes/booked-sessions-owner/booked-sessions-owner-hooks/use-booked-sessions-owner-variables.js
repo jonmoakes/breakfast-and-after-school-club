@@ -5,6 +5,8 @@ import useGetCurrentUserSelectors from "../../../hooks/get-selectors/use-get-cur
 
 import { TABLE_COLUMNS } from "../table-columns";
 
+import { defaultTableSize } from "../../../components/tables/default-table-size";
+
 const useBookedSessionsOwnerVariables = () => {
   const {
     bookedSessionsOwnerShowAllDates,
@@ -38,13 +40,20 @@ const useBookedSessionsOwnerVariables = () => {
     [sortedOwnerBookings, bookedSessionsOwnerShowAllDates]
   );
 
+  const bookedSessionsOwnerPageSizeFromLocalStorage = localStorage.getItem(
+    "bookedSessionsOwnerChosenTablePageSize"
+  );
+
   const columns = useMemo(() => TABLE_COLUMNS, []);
+
   const initialState = useMemo(
     () => ({
       sortBy: [{ id: "dateAsDateObjectForSorting", desc: true }],
-      pageSize: 30,
+      pageSize: bookedSessionsOwnerPageSizeFromLocalStorage
+        ? Number(bookedSessionsOwnerPageSizeFromLocalStorage)
+        : defaultTableSize,
     }),
-    []
+    [bookedSessionsOwnerPageSizeFromLocalStorage]
   );
 
   return {

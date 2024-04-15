@@ -1,3 +1,5 @@
+import { useLocation } from "react-router-dom";
+
 import { PaginationDiv, PaginationTextDiv } from "../../styles/div/div.styles";
 import { PaginationPageButton } from "../../styles/buttons/buttons.styles";
 import { PaginationText } from "../../styles/p/p.styles";
@@ -7,6 +9,12 @@ import {
 } from "../../styles/form/form.styles";
 
 import { defaultTableSize } from "../tables/default-table-size";
+import {
+  allChildrenRoute,
+  allUsersRoute,
+  bookedSessionsOwnerRoute,
+  bookedSessionsUserRoute,
+} from "../../strings/routes/routes-strings";
 
 const TablePagination = ({
   pageIndex,
@@ -22,6 +30,37 @@ const TablePagination = ({
   data,
   rows,
 }) => {
+  const location = useLocation();
+  const path = location.pathname;
+
+  const setTablePageSizeBasedOnRoute = (selectedPageSize) => {
+    switch (path) {
+      case bookedSessionsUserRoute:
+        localStorage.setItem(
+          "bookedSessionsUserChosenTablePageSize",
+          selectedPageSize
+        );
+        break;
+      case bookedSessionsOwnerRoute:
+        localStorage.setItem(
+          "bookedSessionsOwnerChosenTablePageSize",
+          selectedPageSize
+        );
+        break;
+      case allChildrenRoute:
+        localStorage.setItem(
+          "allChildrenChosenTablePageSize",
+          selectedPageSize
+        );
+        break;
+      case allUsersRoute:
+        localStorage.setItem("allUsersChosenTablePageSize", selectedPageSize);
+        break;
+      default:
+        return;
+    }
+  };
+
   return (
     <>
       {data.length > defaultTableSize && rows.length ? (
@@ -86,10 +125,7 @@ const TablePagination = ({
                 value={pageSize}
                 onChange={(e) => {
                   const selectedPageSize = e.target.value;
-                  localStorage.setItem(
-                    "bookedSessionsUserChosenTablePageSize",
-                    selectedPageSize
-                  );
+                  setTablePageSizeBasedOnRoute(selectedPageSize);
                   setPageSize(Number(selectedPageSize));
                 }}
               >

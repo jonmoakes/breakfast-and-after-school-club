@@ -69,7 +69,6 @@ export const signOutAsync = createAsyncThunk(
   async (_, thunkAPI) => {
     try {
       await account.deleteSession("current");
-      localStorage.removeItem("schoolCode");
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }
