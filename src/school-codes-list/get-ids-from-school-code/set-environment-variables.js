@@ -34,6 +34,7 @@ export const setEnvironmentVariables = (schoolCode) => {
           .VITE_TEST_SCHOOL_CHILDREN_COLLECTION_ID,
         bookedSessionsCollectionId: import.meta.env
           .VITE_TEST_SCHOOL_BOOKED_SESSIONS_COLLECTION_ID,
+        schoolLogoUrl: import.meta.env.VITE_TEST_SCHOOL_LOGO_URL,
       };
     case cleveleysPrimary:
       return {
@@ -67,6 +68,7 @@ export const setEnvironmentVariables = (schoolCode) => {
           .VITE_CLEVELEYS_PRIMARY_CHILDREN_COLLECTION_ID,
         bookedSessionsCollectionId: import.meta.env
           .VITE_CLEVELEYS_PRIMARY_BOOKED_SESSIONS_COLLECTION_ID,
+        schoolLogoUrl: import.meta.env.VITE_CLEVELEYS_PRIMARY_LOGO_URL,
       };
     default:
       return {};

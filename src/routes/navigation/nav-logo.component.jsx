@@ -15,7 +15,7 @@ import {
 import { loseAllDataMessage } from "../../strings/infos/infos-strings";
 
 const NavLogo = () => {
-  const { currentUser } = useGetCurrentUserSelectors();
+  const { currentUser, schoolLogoUrl } = useGetCurrentUserSelectors();
   const { isRouteWithNavWarning } = useIsRouteWithNavWarning();
   const { confirmForwardToNewRoute } = useConfirmSwal();
   const { hamburgerHandlerNavigate } = useHamburgerHandlerNavigate();
@@ -37,7 +37,11 @@ const NavLogo = () => {
 
   return (
     <LogoContainer>
-      <LogoImage onClick={handleClick} src={Logo} alt="logo" />
+      <LogoImage
+        onClick={handleClick}
+        src={schoolLogoUrl && schoolLogoUrl !== "none" ? schoolLogoUrl : Logo}
+        alt="logo"
+      />
     </LogoContainer>
   );
 };

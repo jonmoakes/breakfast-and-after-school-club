@@ -14,7 +14,7 @@ const useGetCurrentUserSelectors = () => {
     walletFundsToAdd,
   } = useSelector(selectCurrentUserSelectors);
 
-  const { walletBalance, email, id, name, phoneNumber, provider } =
+  const { walletBalance, email, id, name, phoneNumber, provider, schoolCode } =
     currentUser ?? {};
 
   const currentUserEmailForContactForm = email ? email : "";
@@ -39,6 +39,7 @@ const useGetCurrentUserSelectors = () => {
     stripeSecretKey,
     termDatesCollectionId,
     userCollectionId,
+    schoolLogoUrl,
   } = currentUserEnvironmentVariables ?? {};
 
   return {
@@ -76,6 +77,8 @@ const useGetCurrentUserSelectors = () => {
     stripeSecretKey,
     termDatesCollectionId,
     userCollectionId,
+    schoolLogoUrl,
+    schoolCode,
   };
 };
 

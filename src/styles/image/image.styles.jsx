@@ -34,6 +34,7 @@ export const LogoImage = styled.img`
   margin-left: 20px;
   border-radius: 5px;
   padding-bottom: 1px;
+  border: 1px solid ${customBlack};
 `;
 
 export const Icon = styled.img`
