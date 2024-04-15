@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 
-import CustomButton from "../../components/custom-button/custom-button.component";
 import { ParentDiv } from "../../styles/div/div.styles";
+import { Button } from "../../styles/buttons/buttons.styles";
 import { Text } from "../../styles/p/p.styles";
 
 import {
@@ -14,17 +14,20 @@ const Links = () => (
   <>
     <ParentDiv>
       <Link to={signInRoute}>
-        <CustomButton>sign in</CustomButton>
+        <Button>sign in</Button>
       </Link>
+
       <Text>or</Text>
+
       <Link to={signUpRoute}>
-        <CustomButton>sign up</CustomButton>
+        <Button>sign up</Button>
       </Link>
     </ParentDiv>
+
     <ParentDiv>
       <Text>need help?</Text>
       <Link to={contactRoute}>
-        <CustomButton>contact us</CustomButton>
+        <Button>contact us</Button>
       </Link>
     </ParentDiv>
   </>

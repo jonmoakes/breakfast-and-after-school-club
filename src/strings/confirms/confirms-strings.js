@@ -5,7 +5,6 @@ import { getSessionTypeString } from "../../functions/get-session-type-string";
 export const confirmCancelBookingMessage =
   "do you want to cancel this booking?";
 export const confirmSignOutMessage = "are you sure you wish to sign out?";
-export const redirectMessage = "this will redirect you to the home page.";
 export const yesSignOutMessage = "yes, sign me out!";
 export const areYouSureMessage = "are you sure?";
 export const confirmAddFundsMessage = (walletFunds) => {

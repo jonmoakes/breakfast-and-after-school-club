@@ -1,8 +1,7 @@
 import { Link } from "react-router-dom";
 
-import CustomButton from "../../components/custom-button/custom-button.component";
-
 import { FeatureDiv, ParentDiv } from "../../styles/div/div.styles";
+import { Button } from "../../styles/buttons/buttons.styles";
 import { BlueH2 } from "../../styles/h2/h2.styles";
 import { Text } from "../../styles/p/p.styles";
 import { BlackHr } from "../../styles/hr/hr.styles";
@@ -61,7 +60,7 @@ const Info = () => (
 
     <FeatureDiv>
       <Link to={aboutRoute}>
-        <CustomButton>find out more!</CustomButton>
+        <Button>find out more!</Button>
       </Link>
       <Text>
         or get in touch to request a full demo or to ask any questions!

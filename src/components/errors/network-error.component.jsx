@@ -1,9 +1,8 @@
 import useIsOnline from "../../hooks/use-is-online";
 
-import CustomButton from "../custom-button/custom-button.component";
-
 import { BlackTitle } from "../../styles/h1/h1.styles";
 import { ErrorDiv } from "../../styles/div/div.styles";
+import { Button } from "../../styles/buttons/buttons.styles";
 import { Text } from "../../styles/p/p.styles";
 
 const NetworkError = () => {
@@ -31,7 +30,7 @@ const NetworkError = () => {
           </Text>
           <Text>or you can tap the reload page button below to try again.</Text>
 
-          <CustomButton onClick={reload}>reload</CustomButton>
+          <Button onClick={reload}>reload</Button>
         </ErrorDiv>
       )}
     </>

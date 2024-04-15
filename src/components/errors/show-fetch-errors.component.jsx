@@ -1,10 +1,9 @@
 import useHandleShowError from "./errors-hooks/use-handle-show-error";
 
-import CustomButton from "../custom-button/custom-button.component";
-
 import { Text } from "../../styles/p/p.styles";
 import { RedSpan, BlackSpan } from "../../styles/span/span.styles";
 import { ErrorDiv, ParentDiv } from "../../styles/div/div.styles";
+import { Button } from "../../styles/buttons/buttons.styles";
 import { StyledLink } from "../../styles/link/link.styles";
 
 import { contactRoute } from "../../strings/routes/routes-strings";
@@ -39,9 +38,7 @@ const ShowFetchErrors = () => {
           </Text>
           <Text>we apologise for the inconvenience!</Text>
 
-          <CustomButton onClick={() => window.location.reload()}>
-            reload
-          </CustomButton>
+          <Button onClick={() => window.location.reload()}>reload</Button>
         </ParentDiv>
       ) : null}
     </>

@@ -33,7 +33,6 @@ export const LogoImage = styled.img`
   width: 80px;
   margin-left: 20px;
   border-radius: 5px;
-  padding-bottom: 1px;
   border: 1px solid ${customBlack};
 `;
 

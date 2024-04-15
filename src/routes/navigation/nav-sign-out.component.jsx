@@ -10,7 +10,6 @@ import { BorderLink } from "../../styles/span/span.styles";
 import { noNetworkMessage } from "../../strings/errors/errors-strings";
 
 import {
-  redirectMessage,
   confirmSignOutMessage,
   yesSignOutMessage,
 } from "../../strings/confirms/confirms-strings";
@@ -27,12 +26,7 @@ const NavSignOut = () => {
   };
 
   const confirmSignOut = () => {
-    confirmSwal(
-      confirmSignOutMessage,
-      redirectMessage,
-      yesSignOutMessage,
-      confirmResult
-    );
+    confirmSwal(confirmSignOutMessage, yesSignOutMessage, confirmResult);
   };
 
   const showNetworkErrorSwal = () => {
