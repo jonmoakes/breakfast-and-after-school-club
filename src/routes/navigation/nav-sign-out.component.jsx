@@ -26,7 +26,7 @@ const NavSignOut = () => {
   };
 
   const confirmSignOut = () => {
-    confirmSwal(confirmSignOutMessage, yesSignOutMessage, confirmResult);
+    confirmSwal(confirmSignOutMessage, "", yesSignOutMessage, confirmResult);
   };
 
   const showNetworkErrorSwal = () => {
