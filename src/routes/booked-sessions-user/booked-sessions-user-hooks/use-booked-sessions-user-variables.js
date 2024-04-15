@@ -4,6 +4,8 @@ import useGetCurrentUserSelectors from "../../../hooks/get-selectors/use-get-cur
 
 import { TABLE_COLUMNS } from "../table-columns";
 
+import { defaultTableSize } from "../../../components/tables/default-table-size";
+
 const useBookedSessionsUserVariables = () => {
   const {
     bookedSessionsUserShowAllDates,
@@ -36,13 +38,19 @@ const useBookedSessionsUserVariables = () => {
     [sortedUserBookings, bookedSessionsUserShowAllDates]
   );
 
+  const bookedSessionsUserPageSizeFromLocalStorage = localStorage.getItem(
+    "bookedSessionsUserChosenTablePageSize"
+  );
+
   const columns = useMemo(() => TABLE_COLUMNS, []);
   const initialState = useMemo(
     () => ({
       sortBy: [{ id: "dateAsDateObjectForSorting", desc: true }],
-      pageSize: 30,
+      pageSize: bookedSessionsUserPageSizeFromLocalStorage
+        ? Number(bookedSessionsUserPageSizeFromLocalStorage)
+        : defaultTableSize,
     }),
-    []
+    [bookedSessionsUserPageSizeFromLocalStorage]
   );
 
   return {

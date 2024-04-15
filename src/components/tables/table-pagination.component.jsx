@@ -6,6 +6,8 @@ import {
   PaginationSelect,
 } from "../../styles/form/form.styles";
 
+import { defaultTableSize } from "../tables/default-table-size";
+
 const TablePagination = ({
   pageIndex,
   pageOptions,
@@ -22,7 +24,7 @@ const TablePagination = ({
 }) => {
   return (
     <>
-      {data.length > 30 && rows.length ? (
+      {data.length > defaultTableSize && rows.length ? (
         <PaginationDiv>
           <div>
             <PaginationText>
@@ -83,14 +85,21 @@ const TablePagination = ({
               <PaginationSelect
                 value={pageSize}
                 onChange={(e) => {
-                  setPageSize(Number(e.target.value));
+                  const selectedPageSize = e.target.value;
+                  localStorage.setItem(
+                    "bookedSessionsUserChosenTablePageSize",
+                    selectedPageSize
+                  );
+                  setPageSize(Number(selectedPageSize));
                 }}
               >
-                {[5, 10, 25, 50, 75, 100, 150, 200].map((pageSize) => (
-                  <option key={pageSize} value={pageSize}>
-                    Show {pageSize} Rows
-                  </option>
-                ))}
+                {[5, 10, 20, defaultTableSize, 50, 75, 100, 150, 200].map(
+                  (pageSize) => (
+                    <option key={pageSize} value={pageSize}>
+                      Show {pageSize} Rows
+                    </option>
+                  )
+                )}
               </PaginationSelect>
             </PaginationTextDiv>
           </div>
