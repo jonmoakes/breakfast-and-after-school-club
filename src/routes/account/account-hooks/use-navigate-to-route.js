@@ -11,6 +11,7 @@ import {
   bookedSessionsUserRoute,
   allChildrenRoute,
   allUsersRoute,
+  uploadDatesRoute,
 } from "../../../strings/routes/routes-strings";
 
 const useNavigateToRoute = () => {
@@ -36,6 +37,11 @@ const useNavigateToRoute = () => {
       id: 4,
       text: " update password",
       onClick: () => navigate(updatePasswordRoute),
+    },
+    {
+      id: 5,
+      text: " upload dates",
+      onClick: () => navigate(uploadDatesRoute),
     },
   ];
 

@@ -36,6 +36,7 @@ import {
   bookedSessionsOwnerRoute,
   allChildrenRoute,
   allUsersRoute,
+  uploadDatesRoute,
 } from "./strings/routes/routes-strings";
 
 const Navigation = lazy(() =>
@@ -101,6 +102,9 @@ const ForgotPasswordRequest = lazy(() =>
 const ChooseNewPassword = lazy(() =>
   import("./routes/choose-new-password/choose-new-password.component")
 );
+const UploadDatesToDatabase = lazy(() =>
+  import("./routes/upload-dates-to-database/upload-dates-to-database.component")
+);
 
 const App = () => {
   const { currentUser, appOwnerId } = useGetCurrentUserSelectors();
@@ -144,6 +148,16 @@ const App = () => {
                 element={
                   currentUser && currentUser.id === appOwnerId ? (
                     <AllUsersInfo />
+                  ) : null
+                }
+              />
+              <Route
+                path={uploadDatesRoute}
+                element={
+                  currentUser &&
+                  currentUser.id ===
+                    import.meta.env.VITE_TEST_SCHOOL_APP_OWNER_ID ? (
+                    <UploadDatesToDatabase />
                   ) : null
                 }
               />

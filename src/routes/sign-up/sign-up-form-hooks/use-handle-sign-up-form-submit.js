@@ -4,7 +4,6 @@ import useShowInvalidEmailMessageSwal from "../../../hooks/use-show-invalid-emai
 import useSignUpThunk from "../../../hooks/get-actions-and-thunks/current-user-actions-and-thunks/use-sign-up-thunk";
 
 import { validateEmail } from "../../../functions/validate-email";
-import { setProjectId } from "../../../school-codes-list/get-ids-from-school-code/set-project-id";
 import { isNotValidSchoolCode } from "../../../functions/is-not-valid-school-code";
 
 import {
@@ -41,7 +40,6 @@ const useHandleSignUpFormSubmit = () => {
         false
       );
     } else {
-      setProjectId(schoolCode);
       signUpThunk();
     }
   };

@@ -9,7 +9,6 @@ import {
   invalidSchoolCodeHelpMessage,
 } from "../../../strings/errors/errors-strings";
 
-import { setProjectId } from "../../../school-codes-list/get-ids-from-school-code/set-project-id";
 import { isNotValidSchoolCode } from "../../../functions/is-not-valid-school-code";
 import { validateEmail } from "../../../functions/validate-email";
 
@@ -34,9 +33,7 @@ const useHandleSignInFormSubmit = () => {
         false
       );
     } else {
-      setProjectId(schoolCode);
       signInThunk();
-      // dispatch(signInAsync({ email, password, schoolCode }));
     }
   };
 

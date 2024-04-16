@@ -195,3 +195,8 @@ export const BlueLowercasedSpan = styled(LowercasedSpan)`
 export const RightMarginSpan = styled.span`
   margin-right: 10px;
 `;
+
+export const UntransformedSpan = styled.span`
+  text-transform: none;
+  color: ${customRed};
+`;

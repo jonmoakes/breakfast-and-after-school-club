@@ -1,38 +1,10 @@
-import {
-  createAsyncThunk,
-  createSelector,
-  createSlice,
-} from "@reduxjs/toolkit";
-import { databases } from "../../utils/appwrite/appwrite-config";
-import { ID } from "appwrite";
+import { createSelector, createSlice } from "@reduxjs/toolkit";
 
-import { datesUploadedToDatabaseSuccessMessage } from "../../strings/successes/successes-strings";
-
-export const uploadDatesToDatabaseAsync = createAsyncThunk(
-  "uploadDatesToDatabase",
-  async ({ datesList, databaseId, collectionId }, thunkAPI) => {
-    try {
-      const uploadDates = [];
-
-      for (const date of datesList) {
-        const result = await databases.createDocument(
-          databaseId,
-          collectionId,
-          ID.unique(),
-          date
-        );
-        uploadDates.push(result);
-      }
-      return uploadDates;
-    } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
-    }
-  }
-);
+import { uploadDatesToDatabaseAsync } from "./upload-dates-to-database-thunks";
 
 const initialState = {
   uploadDatesToDatabaseIsLoading: false,
-  uploadDatesToDatabaseSuccessMessage: "",
+  uploadDatesToDatabaseResult: "",
   uploadDatesToDatabaseError: null,
 };
 
@@ -40,26 +12,26 @@ const uploadDatesToDatabaseSlice = createSlice({
   name: "uploadDatesToDatabase",
   initialState,
   reducers: {
-    resetUploadDatesToDatabaseSuccessMessage(state) {
-      state.uploadDatesToDatabaseSuccessMessage = "";
+    resetUploadDatesToDatabaseResult(state) {
+      state.uploadDatesToDatabaseResult = "";
     },
     resetUploadDatesToDatabaseError(state) {
-      state.uploadDatesToDatabaseError = "";
+      state.uploadDatesToDatabaseError = null;
     },
   },
   selectors: {
     selectUploadDatesToDatabaseSelectors: createSelector(
       (state) => state.uploadDatesToDatabaseIsLoading,
-      (state) => state.uploadDatesToDatabaseSuccessMessage,
+      (state) => state.uploadDatesToDatabaseResult,
       (state) => state.uploadDatesToDatabaseError,
       (
         uploadDatesToDatabaseIsLoading,
-        uploadDatesToDatabaseSuccessMessage,
+        uploadDatesToDatabaseResult,
         uploadDatesToDatabaseError
       ) => {
         return {
           uploadDatesToDatabaseIsLoading,
-          uploadDatesToDatabaseSuccessMessage,
+          uploadDatesToDatabaseResult,
           uploadDatesToDatabaseError,
         };
       }
@@ -68,23 +40,23 @@ const uploadDatesToDatabaseSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(uploadDatesToDatabaseAsync.pending, (state) => {
-        state.isLoading = true;
+        state.uploadDatesToDatabaseIsLoading = true;
       })
       .addCase(uploadDatesToDatabaseAsync.fulfilled, (state) => {
-        state.isLoading = false;
-        state.successMessage = datesUploadedToDatabaseSuccessMessage;
-        state.error = "";
+        state.uploadDatesToDatabaseIsLoading = false;
+        state.uploadDatesToDatabaseResult = "fulfilled";
+        state.uploadDatesToDatabaseError = null;
       })
       .addCase(uploadDatesToDatabaseAsync.rejected, (state, action) => {
-        state.isLoading = false;
-        state.successMessage = "";
-        state.error = action.payload;
+        state.uploadDatesToDatabaseIsLoading = false;
+        state.uploadDatesToDatabaseResult = "failed";
+        state.uploadDatesToDatabaseError = action.payload;
       });
   },
 });
 
 export const {
-  resetUploadDatesToDatabaseSuccessMessage,
+  resetUploadDatesToDatabaseResult,
   resetUploadDatesToDatabaseError,
 } = uploadDatesToDatabaseSlice.actions;
 export const { selectUploadDatesToDatabaseSelectors } =

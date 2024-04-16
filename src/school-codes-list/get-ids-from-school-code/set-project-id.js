@@ -2,10 +2,8 @@ import { client } from "../../utils/appwrite/appwrite-config";
 
 import { schoolCodesList } from "../school-codes-list";
 
-export const setProjectId = () => {
+export const setProjectId = (schoolCode) => {
   const { cleveleysPrimary } = schoolCodesList;
-
-  const schoolCode = localStorage.getItem("schoolCode");
 
   switch (schoolCode) {
     case cleveleysPrimary:

@@ -1,4 +1,4 @@
-export const termDates2023And2024 = [
+export const testSchoolDates2324 = [
   {
     date: "2023-09-04",
     morningSessionSpaces: 30,

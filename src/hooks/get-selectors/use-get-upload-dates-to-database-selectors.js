@@ -5,13 +5,13 @@ import { selectUploadDatesToDatabaseSelectors } from "../../store/upload-dates-t
 const useGetUploadDatesToDatabaseSelectors = () => {
   const {
     uploadDatesToDatabaseIsLoading,
-    uploadDatesToDatabaseSuccessMessage,
+    uploadDatesToDatabaseResult,
     uploadDatesToDatabaseError,
   } = useSelector(selectUploadDatesToDatabaseSelectors);
 
   return {
     uploadDatesToDatabaseIsLoading,
-    uploadDatesToDatabaseSuccessMessage,
+    uploadDatesToDatabaseResult,
     uploadDatesToDatabaseError,
   };
 };

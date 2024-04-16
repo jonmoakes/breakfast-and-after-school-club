@@ -50,3 +50,4 @@ export const confirmUpdateChildMessage =
   "are you sure you want to update your childs details?";
 export const confirmDeleteChildMessage =
   "are you sure you want to delete your child?";
+export const confirmUploadDatesMessage = "do you want to upload these dates?";

@@ -1,15 +1,14 @@
 import { useDispatch } from "react-redux";
-
 import {
   resetUploadDatesToDatabaseError,
-  resetUploadDatesToDatabaseSuccessMessage,
-} from "../../store/upload-dates-to-database/upload-dates-to-database.slice";
+  resetUploadDatesToDatabaseResult,
+} from "../../../store/upload-dates-to-database/upload-dates-to-database.slice";
 
 const useUploadDatesToDatabaseActions = () => {
   const dispatch = useDispatch();
 
-  const dispatchResetUploadDatesToDatabaseSuccessMessage = () => {
-    dispatch(resetUploadDatesToDatabaseSuccessMessage());
+  const dispatchResetUploadDatesToDatabaseResult = () => {
+    dispatch(resetUploadDatesToDatabaseResult());
   };
 
   const dispatchResetUploadDatesToDatabaseError = () => {
@@ -17,7 +16,7 @@ const useUploadDatesToDatabaseActions = () => {
   };
 
   return {
-    dispatchResetUploadDatesToDatabaseSuccessMessage,
+    dispatchResetUploadDatesToDatabaseResult,
     dispatchResetUploadDatesToDatabaseError,
   };
 };

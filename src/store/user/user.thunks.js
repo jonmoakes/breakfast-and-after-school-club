@@ -14,8 +14,10 @@ export const getUserOnLoadAsync = createAsyncThunk(
   async (_, thunkAPI) => {
     try {
       const schoolCode = localStorage.getItem("schoolCode");
+
       const phoneNumber = "";
       const user = await account.get();
+
       const session = await account.getSession("current");
 
       if (!user || !session || !schoolCode) return;
