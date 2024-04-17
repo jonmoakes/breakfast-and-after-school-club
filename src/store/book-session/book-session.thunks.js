@@ -144,9 +144,9 @@ export const addSessionBookingInfoAsync = createAsyncThunk(
   "addSessionBookingInfo",
   async (
     {
+      sessionType,
       id,
       date,
-      sessionType,
       childrenSelectedForBooking,
       usersChildren,
       name,

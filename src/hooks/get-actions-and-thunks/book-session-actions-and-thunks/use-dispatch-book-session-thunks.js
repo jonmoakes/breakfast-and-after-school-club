@@ -53,9 +53,9 @@ const useDispatchBookSessionThunks = () => {
           if (action.type === updateUserDocBalanceAsync.fulfilled.type) {
             dispatch(
               addSessionBookingInfoAsync({
+                sessionType,
                 id,
                 date,
-                sessionType,
                 childrenSelectedForBooking,
                 usersChildren,
                 name,
