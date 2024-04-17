@@ -9,6 +9,7 @@ import {
 } from "./user.thunks";
 
 import { getSchoolCodeAndSetEnvVariables } from "./functions";
+import { account } from "../../utils/appwrite/appwrite-config";
 
 const initialState = {
   currentUser: null,
@@ -86,10 +87,25 @@ const userSlice = createSlice({
         state.currentUserIsLoading = true;
       })
       .addCase(getUserOnLoadAsync.fulfilled, (state, action) => {
-        state.currentUserIsLoading = false;
-        state.currentUser = action.payload;
-        state.currentUserError = null;
-        getSchoolCodeAndSetEnvVariables(state);
+        // This is if the users email and password are correct, but the school code isn't ( although it IS one of the school codes in the list ).
+        // In this case, getUserOnLoadAsync will be fulfilled as the email and password are correct, but retrievedUser from getUserOnLoadAsync will be undefined as no user will have been matched as the school code is wrong. We need to reset the envVariables as they will have been set as a result of the fulfilled action, and a session will have been created too which needs to be deleted.
+        if (
+          action.payload === "no user found" ||
+          state.currentUser === undefined
+        ) {
+          state.currentUserIsLoading = false;
+          state.currentUserError = "action fulfilled but no user";
+          state.currentUserEnvironmentVariables = {};
+          const deleteSession = async () => {
+            await account.deleteSession("current");
+          };
+          deleteSession();
+        } else {
+          state.currentUserIsLoading = false;
+          state.currentUser = action.payload;
+          state.currentUserError = null;
+          getSchoolCodeAndSetEnvVariables(state);
+        }
       })
       .addCase(getUserOnLoadAsync.rejected, (state, action) => {
         state.currentUserIsLoading = false;

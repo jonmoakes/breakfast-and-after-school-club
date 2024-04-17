@@ -25,6 +25,7 @@ export const getRetrievedUserFromDocument = async (schoolCode) => {
   // number of documents found in database and the document.
   //Should only be 1 as only 1 should match the user.$id
   const { total, documents } = userDocument;
+
   if (total && documents.length) {
     const {
       id,
@@ -46,7 +47,8 @@ export const getRetrievedUserFromDocument = async (schoolCode) => {
       schoolCode,
     };
   } else {
-    return null;
+    // throw new Error("argghh");
+    return;
   }
 };
 

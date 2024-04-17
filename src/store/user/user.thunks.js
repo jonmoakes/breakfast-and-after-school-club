@@ -19,8 +19,11 @@ export const getUserOnLoadAsync = createAsyncThunk(
       if (!user || !session || !schoolCode) return;
 
       const retrievedUser = await getRetrievedUserFromDocument(schoolCode);
-
-      return retrievedUser;
+      if (retrievedUser) {
+        return retrievedUser;
+      } else {
+        return "no user found";
+      }
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }

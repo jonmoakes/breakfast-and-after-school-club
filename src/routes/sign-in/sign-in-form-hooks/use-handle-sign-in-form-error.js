@@ -26,7 +26,8 @@ const useHandleSignInFormError = () => {
 
     const error = currentUserError;
     const errorDetails =
-      currentUserError && currentUserError === appwriteCredentialsError
+      (currentUserError && currentUserError === appwriteCredentialsError) ||
+      (currentUserError && currentUserError === "action fulfilled but no user")
         ? errorSigningInInstructions
         : errorReceivedMessage(error);
 
