@@ -8,13 +8,9 @@ import { ParentDiv } from "../../styles/div/div.styles";
 import { BlueH2 } from "../../styles/h2/h2.styles";
 
 const AccountButtonLinks = () => {
-  const {
-    appOwnerButtons,
-    notAppOwnerEmailProviderButtons,
-    notAppOwnerAuthProviderButtons,
-  } = useNavigateToRoute();
+  const { appOwnerButtons, notAppOwnerButtons } = useNavigateToRoute();
 
-  const { id, currentUserProvider, appOwnerId } = useGetCurrentUserSelectors();
+  const { id, appOwnerId } = useGetCurrentUserSelectors();
 
   return (
     <ParentDiv>
@@ -22,10 +18,8 @@ const AccountButtonLinks = () => {
 
       {id === appOwnerId ? (
         <RenderButtons {...{ buttons: appOwnerButtons }} />
-      ) : id !== appOwnerId && currentUserProvider === "email" ? (
-        <RenderButtons {...{ buttons: notAppOwnerEmailProviderButtons }} />
       ) : (
-        <RenderButtons {...{ buttons: notAppOwnerAuthProviderButtons }} />
+        <RenderButtons {...{ buttons: notAppOwnerButtons }} />
       )}
     </ParentDiv>
   );

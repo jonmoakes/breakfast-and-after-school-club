@@ -57,6 +57,10 @@ const UploadDatesToDatabase = () => {
           note that when submitted, the thunk will take a few seconds to upload
           the dates to the database.
         </Text>
+
+        <Text>
+          split the dates into 2 parts to avoid the rate limits error.
+        </Text>
       </ParentDiv>
 
       {!confirmed ? (

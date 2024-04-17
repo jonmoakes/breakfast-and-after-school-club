@@ -24,5 +24,4 @@ export const cancelBookingRoute = "/cancel-booking";
 export const aboutRoute = "/about";
 export const allChildrenRoute = "/children-list";
 export const allUsersRoute = "/users-list";
-export const socialSignInRoute = "/social-sign-in";
 export const uploadDatesRoute = "/upload-dates";

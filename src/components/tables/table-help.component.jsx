@@ -9,6 +9,7 @@ import ColourCodingTableHelp from "./table-helps/colour-coding-table-help.compon
 import DownloadPdfTableHelp from "./table-helps/download-pdf-table-help.component";
 import DateSearchingHelp from "./table-helps/date-searching-help.component";
 import EmailAndCallTableHelp from "./table-helps/email-and-call-table-help.component";
+import BookedSessionsUserToggleBookings from "./table-helps/booked-sessions-user-toggle-bookings.component";
 
 import { YellowGreenButton } from "../../styles/buttons/buttons.styles";
 import {
@@ -18,7 +19,6 @@ import {
 } from "../../styles/div/div.styles";
 import { Text } from "../../styles/p/p.styles";
 import { BlueH2 } from "../../styles/h2/h2.styles";
-import { RedSpan } from "../../styles/span/span.styles";
 
 import {
   allChildrenRoute,
@@ -27,7 +27,6 @@ import {
   bookedSessionsUserRoute,
 } from "../../strings/routes/routes-strings";
 import { BlackHr } from "../../styles/hr/hr.styles";
-import BookedSessionsUserToggleBookings from "./table-helps/booked-sessions-user-toggle-bookings.component";
 
 const UserBookingsHelp = () => {
   const { shouldShowElement } = useGetShouldShowelementSelectors();
@@ -70,27 +69,6 @@ const UserBookingsHelp = () => {
             isBookedSessionsUserRoute ||
             isAllUsersRoute ? (
               <DateSearchingHelp />
-            ) : null}
-
-            {isBookedSessionsOwnerRoute || isAllChildrenRoute ? (
-              <>
-                <BlackHr />
-                <Text>
-                  please note however that the{" "}
-                  <RedSpan>email And phone number</RedSpan> values are not
-                  searchable ( as these are pulled in dynamically from the
-                  database ).
-                </Text>
-                <Text>
-                  instead, please search for the parent name or child name and
-                  then the table will give you a list of matching documents.
-                </Text>
-                <Text>
-                  you can then get the email or phone numbers from there. Please
-                  see the 'emailing a user' and 'calling a user' help sections
-                  below for more information.
-                </Text>
-              </>
             ) : null}
 
             {isBookedSessionsOwnerRoute ||

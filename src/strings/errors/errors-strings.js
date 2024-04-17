@@ -150,7 +150,3 @@ export const errorFetchingAllChildrenMessage =
   "there was an error fetching the list of children from the database.";
 export const appwriteCredentialsError =
   "Invalid credentials. Please check the email and password.";
-export const errorRequestingFacebookSignIn =
-  "error requesting facebook sign in. please try again.";
-export const errorRequestingGoogleSignIn =
-  "error requesting google sign in. please try again.";

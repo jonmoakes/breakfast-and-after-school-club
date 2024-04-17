@@ -150,6 +150,7 @@ export const addSessionBookingInfoAsync = createAsyncThunk(
       childrenSelectedForBooking,
       usersChildren,
       name,
+      email,
       phoneNumber,
       bookedSessionsCollectionId,
       databaseId,
@@ -173,6 +174,7 @@ export const addSessionBookingInfoAsync = createAsyncThunk(
             usersChildren
           ),
           parentName: name,
+          parentEmail: email,
           parentPhoneNumber: phoneNumber,
         };
         const afternoonBooking = {
@@ -187,6 +189,7 @@ export const addSessionBookingInfoAsync = createAsyncThunk(
             usersChildren
           ),
           parentName: name,
+          parentEmail: email,
           parentPhoneNumber: phoneNumber,
         };
 
@@ -202,6 +205,7 @@ export const addSessionBookingInfoAsync = createAsyncThunk(
             usersChildren
           ),
           parentName: name,
+          parentEmail: email,
           parentPhoneNumber: phoneNumber,
         };
 

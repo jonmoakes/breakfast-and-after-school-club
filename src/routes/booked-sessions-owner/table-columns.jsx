@@ -1,6 +1,9 @@
 import FormattedDateCell from "../../components/tables/formatted-date-cell.component";
-import UsersPhoneNumberCell from "../../components/tables/users-phone-number-cell.component";
 import UsersEmailCell from "../../components/tables/user-email-cell.component";
+import UsersPhoneNumberCell from "../../components/tables/users-phone-number-cell.component";
+
+import { InLineDiv } from "../../styles/div/div.styles";
+import { LowercasedSpan, RightMarginSpan } from "../../styles/span/span.styles";
 
 import { getSessionTypeString } from "../../functions/get-session-type-string";
 
@@ -30,15 +33,26 @@ export const TABLE_COLUMNS = [
   },
   {
     Header: "parent email",
-    Cell: ({ row }) => {
-      return <UsersEmailCell {...{ row }} />;
+    accessor: "parentEmail",
+    Cell: ({ value }) => {
+      return (
+        <InLineDiv>
+          <LowercasedSpan className="right-margin">{value}</LowercasedSpan>
+          <UsersEmailCell {...{ value }} />
+        </InLineDiv>
+      );
     },
   },
   {
     Header: "Parent Phone",
     accessor: "parentPhoneNumber",
-    Cell: ({ value, row }) => {
-      return <UsersPhoneNumberCell {...{ value, row }} />;
+    Cell: ({ value }) => {
+      return (
+        <InLineDiv>
+          <RightMarginSpan>{value}</RightMarginSpan>
+          <UsersPhoneNumberCell {...{ value }} />
+        </InLineDiv>
+      );
     },
   },
 ];

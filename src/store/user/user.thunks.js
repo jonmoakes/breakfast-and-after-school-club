@@ -7,32 +7,20 @@ import {
   getRetrievedUserFromDocument,
   createDocumentAndSetUser,
 } from "./functions";
-import { signInRoute } from "../../strings/routes/routes-strings";
 
 export const getUserOnLoadAsync = createAsyncThunk(
   "user/getUserOnLoad",
   async (_, thunkAPI) => {
     try {
       const schoolCode = localStorage.getItem("schoolCode");
-
-      const phoneNumber = "";
       const user = await account.get();
-
       const session = await account.getSession("current");
 
       if (!user || !session || !schoolCode) return;
 
       const retrievedUser = await getRetrievedUserFromDocument(schoolCode);
-      const createdUser = await createDocumentAndSetUser(
-        schoolCode,
-        phoneNumber
-      );
 
-      if (retrievedUser) {
-        return retrievedUser;
-      } else {
-        return createdUser;
-      }
+      return retrievedUser;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }
@@ -58,6 +46,7 @@ export const signUpAsync = createAsyncThunk(
     try {
       await account.create(ID.unique(), email, password, name);
       await account.createEmailSession(email, password);
+
       localStorage.setItem("schoolCode", schoolCode);
       return await createDocumentAndSetUser(schoolCode, phoneNumber);
     } catch (error) {
@@ -98,52 +87,6 @@ export const getUsersWalletBalanceAsync = createAsyncThunk(
       const { walletBalance } = documents[0];
 
       return walletBalance;
-    } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
-    }
-  }
-);
-
-export const requestFacebookSignInAsync = createAsyncThunk(
-  "user/facebookSignIn",
-  async (_, thunkAPI) => {
-    try {
-      if (import.meta.env.MODE === "development") {
-        account.createOAuth2Session(
-          "facebook",
-          "http://localhost:8888/sign-in",
-          "http://localhost:8888/sign-in"
-        );
-      } else if (import.meta.env.MODE === "production") {
-        account.createOAuth2Session(
-          "facebook",
-          `https://www.breakfast-and-after-school-club.co.uk${signInRoute}`,
-          `https://www.breakfast-and-after-school-club.co.uk${signInRoute}`
-        );
-      }
-    } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
-    }
-  }
-);
-
-export const requestGoogleSignInAsync = createAsyncThunk(
-  "user/googleSignIn",
-  async (_, thunkAPI) => {
-    try {
-      if (import.meta.env.MODE === "development") {
-        account.createOAuth2Session(
-          "google",
-          "http://localhost:8888/sign-in",
-          "http://localhost:8888/sign-in"
-        );
-      } else if (import.meta.env.MODE === "production") {
-        account.createOAuth2Session(
-          "google",
-          `https://www.breakfast-and-after-school-club.co.uk${signInRoute}`,
-          `https://www.breakfast-and-after-school-club.co.uk${signInRoute}`
-        );
-      }
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }

@@ -1,5 +1,7 @@
 import { useNavigate } from "react-router-dom";
 
+import useGetCurrentUserSelectors from "../../../hooks/get-selectors/use-get-current-user-selectors";
+
 import {
   addFundsRoute,
   bookSessionRoute,
@@ -15,6 +17,7 @@ import {
 } from "../../../strings/routes/routes-strings";
 
 const useNavigateToRoute = () => {
+  const { id } = useGetCurrentUserSelectors();
   const navigate = useNavigate();
 
   const appOwnerButtons = [
@@ -38,14 +41,14 @@ const useNavigateToRoute = () => {
       text: " update password",
       onClick: () => navigate(updatePasswordRoute),
     },
-    {
+    id === import.meta.env.VITE_TEST_SCHOOL_APP_OWNER_ID && {
       id: 5,
       text: " upload dates",
       onClick: () => navigate(uploadDatesRoute),
     },
-  ];
+  ].filter(Boolean); // Remove falsy values (null, undefined) from the array
 
-  const notAppOwnerEmailProviderButtons = [
+  const notAppOwnerButtons = [
     {
       id: 1,
       text: "view your bookings",
@@ -83,38 +86,9 @@ const useNavigateToRoute = () => {
     },
   ];
 
-  const notAppOwnerAuthProviderButtons = [
-    {
-      id: 1,
-      text: "view your bookings",
-      onClick: () => navigate(bookedSessionsUserRoute),
-    },
-    {
-      id: 2,
-      text: "book a session",
-      onClick: () => navigate(bookSessionRoute),
-    },
-    {
-      id: 3,
-      text: "add funds",
-      onClick: () => navigate(addFundsRoute),
-    },
-    {
-      id: 4,
-      text: "child info",
-      onClick: () => navigate(childInfoRoute),
-    },
-    {
-      id: 5,
-      text: " close account",
-      onClick: () => navigate(closeAccountRoute),
-    },
-  ];
-
   return {
     appOwnerButtons,
-    notAppOwnerEmailProviderButtons,
-    notAppOwnerAuthProviderButtons,
+    notAppOwnerButtons,
   };
 };
 

@@ -1,5 +1,4 @@
 import useGetSendEmailSelectors from "../../hooks/get-selectors/use-get-send-email-selectors";
-import useGetCurrentUserSelectors from "../../hooks/get-selectors/use-get-current-user-selectors";
 import useConfirmCloseAccount from "./close-account-hooks/use-confirm-close-account";
 import useCloseAccountSwal from "./close-account-hooks/use-close-account-swal";
 
@@ -17,7 +16,6 @@ import { contactRoute } from "../../strings/routes/routes-strings";
 const CloseAccount = () => {
   useCloseAccountSwal();
 
-  const { currentUserProvider } = useGetCurrentUserSelectors();
   const { sendEmailIsLoading } = useGetSendEmailSelectors();
   const { confirmCloseAccount } = useConfirmCloseAccount();
 
@@ -40,44 +38,7 @@ const CloseAccount = () => {
         </Text>
 
         <Text>you will receive an email once the process is complete.</Text>
-        {currentUserProvider !== "email" ? (
-          <>
-            <Text>
-              you should also remove access to the app in your{" "}
-              {currentUserProvider === "facebook" ? "facebook" : "google"}{" "}
-              account.
-            </Text>
-            {currentUserProvider === "facebook" ? (
-              <>
-                <Text>
-                  in facebook, navigate to 'settings', then scroll down until
-                  you find 'apps and websites' and tap on it.
-                </Text>
-                <Text>
-                  then, tap on 'breakfast & after school club' and then tap
-                  remove.
-                </Text>
-              </>
-            ) : (
-              <>
-                <Text>
-                  please tap on the following link to see how to remove app
-                  access from your google account. The link is from the official
-                  google docs.
-                </Text>
-                <Text>
-                  <a
-                    className="red"
-                    href="https://support.google.com/accounts/answer/13533235?hl=en#zippy=%2Csign-in-with-google"
-                  >
-                    Manage connections between your Google Account and
-                    third-parties
-                  </a>
-                </Text>
-              </>
-            )}
-          </>
-        ) : null}
+
         <Text>
           please make sure that if you have funds in your account, that you
           either spend or request a refund for the amount in your wallet before

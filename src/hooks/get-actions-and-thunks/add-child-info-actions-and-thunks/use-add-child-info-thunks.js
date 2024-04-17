@@ -9,6 +9,8 @@ const useAddChildInfoThunks = () => {
   const {
     id,
     name,
+    email,
+    phoneNumber,
     databaseId,
     childrenCollectionId: collectionId,
   } = useGetCurrentUserSelectors();
@@ -21,6 +23,8 @@ const useAddChildInfoThunks = () => {
         childInfo,
         id,
         name,
+        email,
+        phoneNumber,
         databaseId,
         collectionId,
       })

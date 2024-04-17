@@ -7,7 +7,6 @@ const defaultSignInFormDetails = {
 };
 const INITIAL_STATE = {
   signInFormDetails: defaultSignInFormDetails,
-  showSocialSignInForm: false,
 };
 
 export const signInFormSlice = createSlice({
@@ -20,33 +19,22 @@ export const signInFormSlice = createSlice({
     resetSignInFormState: () => {
       return INITIAL_STATE;
     },
-    setShowSocialSignInForm(state, action) {
-      state.showSocialSignInForm = action.payload;
-    },
-    resetSignInFormDetails(state) {
-      state.signInFormDetails = defaultSignInFormDetails;
-    },
   },
   selectors: {
     selectSignInFormSelectors: createSelector(
       (state) => state.signInFormDetails,
-      (state) => state.showSocialSignInForm,
-      (signInFormDetails, showSocialSignInForm) => {
+
+      (signInFormDetails) => {
         return {
           signInFormDetails,
-          showSocialSignInForm,
         };
       }
     ),
   },
 });
 
-export const {
-  setSignInFormDetails,
-  resetSignInFormState,
-  setShowSocialSignInForm,
-  resetSignInFormDetails,
-} = signInFormSlice.actions;
+export const { setSignInFormDetails, resetSignInFormState } =
+  signInFormSlice.actions;
 export const { selectSignInFormSelectors } = signInFormSlice.selectors;
 
 export const signInFormReducer = signInFormSlice.reducer;

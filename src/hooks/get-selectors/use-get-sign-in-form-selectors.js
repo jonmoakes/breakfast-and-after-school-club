@@ -3,9 +3,7 @@ import { useSelector } from "react-redux";
 import { selectSignInFormSelectors } from "../../store/sign-in-form/sign-in-form.slice";
 
 const useGetSignInFormSelectors = () => {
-  const { signInFormDetails, showSocialSignInForm } = useSelector(
-    selectSignInFormSelectors
-  );
+  const { signInFormDetails } = useSelector(selectSignInFormSelectors);
 
   const { email, password, schoolCode } = signInFormDetails;
 
@@ -14,7 +12,6 @@ const useGetSignInFormSelectors = () => {
     email,
     password,
     schoolCode,
-    showSocialSignInForm,
   };
 };
 

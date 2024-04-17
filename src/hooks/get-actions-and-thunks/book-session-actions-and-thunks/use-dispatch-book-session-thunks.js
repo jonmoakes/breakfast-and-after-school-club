@@ -15,6 +15,7 @@ const useDispatchBookSessionThunks = () => {
   const {
     id,
     name,
+    email,
     phoneNumber,
     databaseId,
     termDatesCollectionId,
@@ -58,6 +59,7 @@ const useDispatchBookSessionThunks = () => {
                 childrenSelectedForBooking,
                 usersChildren,
                 name,
+                email,
                 phoneNumber,
                 bookedSessionsCollectionId,
                 databaseId,

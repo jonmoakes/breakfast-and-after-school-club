@@ -39,8 +39,8 @@ const CancelBookingTableHelp = () => {
         day up to {morningSessionClosingTime}AM latest.
       </Text>
       <Text>
-        to cancel an afternoon session session booking on the same day, you need
-        to cancel before {afternoonSessionClosingTime}PM latest.
+        to cancel an afternoon session booking on the same day, you need to
+        cancel before {afternoonSessionClosingTime}PM latest.
       </Text>
       <Text>
         if you've booked a combined morning and afternoon session, once it is

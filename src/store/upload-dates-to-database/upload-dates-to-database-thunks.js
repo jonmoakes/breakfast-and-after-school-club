@@ -1,7 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { ID } from "appwrite";
 import { manageDatabaseDocument } from "../../utils/appwrite/appwrite-functions";
-// import { client } from "../../utils/appwrite/appwrite-config";
 
 // FOR USE ONLY BY SOLARIS APPS
 export const uploadDatesToDatabaseAsync = createAsyncThunk(
@@ -9,8 +8,8 @@ export const uploadDatesToDatabaseAsync = createAsyncThunk(
   async ({ datesList }, thunkAPI) => {
     try {
       const uploadDates = [];
-      //set projectId, databaseId and collectionId manually here
-      // client.setProject();
+      //set  databaseId and collectionId manually here
+
       // const databaseId =
       // const collectionId =
 

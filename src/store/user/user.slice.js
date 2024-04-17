@@ -6,16 +6,9 @@ import {
   signUpAsync,
   signOutAsync,
   getUsersWalletBalanceAsync,
-  requestFacebookSignInAsync,
-  requestGoogleSignInAsync,
 } from "./user.thunks";
 
 import { getSchoolCodeAndSetEnvVariables } from "./functions";
-
-import {
-  errorRequestingFacebookSignIn,
-  errorRequestingGoogleSignIn,
-} from "../../strings/errors/errors-strings";
 
 const initialState = {
   currentUser: null,
@@ -25,7 +18,6 @@ const initialState = {
   currentUserWalletBalanceResult: "",
   currentUserWalletBalanceError: null,
   loadStripeKey: null,
-  schoolCodeForSocialLogin: "",
   walletFundsToAdd: 0,
 };
 
@@ -45,9 +37,6 @@ const userSlice = createSlice({
     setLoadStripeKey(state, action) {
       state.loadStripeKey = action.payload;
     },
-    setSchoolCodeForSocialLogin(state, action) {
-      state.schoolCodeForSocialLogin = action.payload;
-    },
     setWalletFundsToAdd(state, action) {
       state.walletFundsToAdd = action.payload;
     },
@@ -56,9 +45,6 @@ const userSlice = createSlice({
     },
     setWalletBalance(state, action) {
       state.currentUser.walletBalance = action.payload;
-    },
-    resetSchoolCodeForSocialLogin(state) {
-      state.schoolCodeForSocialLogin = "";
     },
   },
   selectors: {
@@ -70,7 +56,6 @@ const userSlice = createSlice({
       (state) => state.currentUserWalletBalanceResult,
       (state) => state.currentUserWalletBalanceError,
       (state) => state.loadStripeKey,
-      (state) => state.schoolCodeForSocialLogin,
       (state) => state.walletFundsToAdd,
       (
         currentUser,
@@ -80,7 +65,6 @@ const userSlice = createSlice({
         currentUserWalletBalanceResult,
         currentUserWalletBalanceError,
         loadStripeKey,
-        schoolCodeForSocialLogin,
         walletFundsToAdd
       ) => {
         return {
@@ -91,7 +75,6 @@ const userSlice = createSlice({
           currentUserWalletBalanceResult,
           currentUserWalletBalanceError,
           loadStripeKey,
-          schoolCodeForSocialLogin,
           walletFundsToAdd,
         };
       }
@@ -164,28 +147,6 @@ const userSlice = createSlice({
         state.currentUserIsLoading = false;
         state.currentUserWalletBalanceResult = "rejected";
         state.currentUserWalletBalanceError = action.payload;
-      })
-      .addCase(requestFacebookSignInAsync.pending, (state) => {
-        state.currentUserIsLoading = true;
-      })
-      .addCase(requestFacebookSignInAsync.fulfilled, (state) => {
-        state.currentUserIsLoading = false;
-        state.currentUserError = null;
-      })
-      .addCase(requestFacebookSignInAsync.rejected, (state) => {
-        state.currentUserIsLoading = false;
-        state.currentUserError = errorRequestingFacebookSignIn;
-      })
-      .addCase(requestGoogleSignInAsync.pending, (state) => {
-        state.currentUserIsLoading = true;
-      })
-      .addCase(requestGoogleSignInAsync.fulfilled, (state) => {
-        state.currentUserIsLoading = false;
-        state.currentUserError = null;
-      })
-      .addCase(requestGoogleSignInAsync.rejected, (state) => {
-        state.currentUserIsLoading = false;
-        state.currentUserError = errorRequestingGoogleSignIn;
       });
   },
 });
@@ -195,11 +156,9 @@ export const {
   resetCurrentUserWalletBalanceResult,
   resetCurrentUserWalletBalanceError,
   setLoadStripeKey,
-  setSchoolCodeForSocialLogin,
   setWalletFundsToAdd,
   resetWalletFundsToAdd,
   setWalletBalance,
-  resetSchoolCodeForSocialLogin,
 } = userSlice.actions;
 export const { selectCurrentUserSelectors } = userSlice.selectors;
 

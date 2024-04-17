@@ -1,10 +1,9 @@
-import EmailIcon from "../../assets/email-icon.png";
-import ShowCallIcon from "../../components/tables/show-call-icon.component";
+import FormattedDateCell from "../../components/tables/formatted-date-cell.component";
+import UsersEmailCell from "../../components/tables/user-email-cell.component";
+import UsersPhoneNumberCell from "../../components/tables/users-phone-number-cell.component";
 
-import { IconImage } from "../../styles/image/image.styles";
 import { InLineDiv } from "../../styles/div/div.styles";
 import { LowercasedSpan, RightMarginSpan } from "../../styles/span/span.styles";
-import FormattedDateCell from "../../components/tables/formatted-date-cell.component";
 
 export const TABLE_COLUMNS = [
   {
@@ -15,18 +14,10 @@ export const TABLE_COLUMNS = [
     Header: "email",
     accessor: "email",
     Cell: ({ value }) => {
-      const subject = encodeURIComponent(
-        "Message From Breakfast & After School Club"
-      );
-
-      const openEmail = () => {
-        return (window.location.href = `mailto:${value}?Subject=${subject}`);
-      };
-
       return (
         <InLineDiv>
           <LowercasedSpan className="right-margin">{value}</LowercasedSpan>
-          <IconImage className="email" src={EmailIcon} onClick={openEmail} />
+          <UsersEmailCell {...{ value }} />
         </InLineDiv>
       );
     },
@@ -35,24 +26,13 @@ export const TABLE_COLUMNS = [
     Header: "phone number",
     accessor: "phoneNumber",
     Cell: ({ value }) => {
-      const callNumber = `tel:${value}`;
       return (
         <InLineDiv>
-          {!value ? (
-            <span>no number found</span>
-          ) : (
-            <>
-              <RightMarginSpan>{value}</RightMarginSpan>
-              <ShowCallIcon {...{ callNumber }} />
-            </>
-          )}
+          <RightMarginSpan>{value}</RightMarginSpan>
+          <UsersPhoneNumberCell {...{ value }} />
         </InLineDiv>
       );
     },
-  },
-  {
-    Header: "Signed Up Via",
-    accessor: "provider",
   },
   {
     Header: "User Id",

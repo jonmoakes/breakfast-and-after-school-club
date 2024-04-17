@@ -521,20 +521,6 @@ export const ForgotPasswordDiv = styled.div`
   margin-top: 20px;
 `;
 
-export const SocialLoginsDiv = styled.div`
-  width: 100%;
-  height: auto;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  margin: 40px auto 20px auto;
-
-  @media screen and (max-width: 280px) {
-    flex-direction: column;
-  }
-`;
-
 export const TableCellErrorDiv = styled.div`
   width: 100%;
   height: auto;

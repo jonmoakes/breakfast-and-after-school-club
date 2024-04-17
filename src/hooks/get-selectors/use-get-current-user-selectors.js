@@ -10,16 +10,14 @@ const useGetCurrentUserSelectors = () => {
     currentUserError,
     currentUserWalletBalanceError,
     loadStripeKey,
-    schoolCodeForSocialLogin,
     walletFundsToAdd,
   } = useSelector(selectCurrentUserSelectors);
 
-  const { walletBalance, email, id, name, phoneNumber, provider, schoolCode } =
+  const { walletBalance, email, id, name, phoneNumber, schoolCode } =
     currentUser ?? {};
 
   const currentUserEmailForContactForm = email ? email : "";
   const currentUserNameForContactForm = name ? name : "";
-  const currentUserProvider = provider ? provider : "";
 
   const {
     appOwnerEmail,
@@ -30,7 +28,6 @@ const useGetCurrentUserSelectors = () => {
     childrenCollectionId,
     databaseId,
     earlyFinishDatesCollectionId,
-    projectId,
     sessionPricesCollectionId,
     sessionPricesDocumentId,
     sessionTimesCollectionId,
@@ -50,7 +47,6 @@ const useGetCurrentUserSelectors = () => {
     currentUserError,
     currentUserWalletBalanceError,
     loadStripeKey,
-    schoolCodeForSocialLogin,
     walletFundsToAdd,
     walletBalance,
     id,
@@ -59,7 +55,6 @@ const useGetCurrentUserSelectors = () => {
     phoneNumber,
     currentUserEmailForContactForm,
     currentUserNameForContactForm,
-    currentUserProvider,
     appOwnerEmail,
     appOwnerId,
     bookedSessionsCollectionId,
@@ -68,7 +63,6 @@ const useGetCurrentUserSelectors = () => {
     childrenCollectionId,
     databaseId,
     earlyFinishDatesCollectionId,
-    projectId,
     sessionPricesCollectionId,
     sessionPricesDocumentId,
     sessionTimesCollectionId,

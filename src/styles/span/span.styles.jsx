@@ -26,7 +26,7 @@ export const BorderLink = styled.span`
   color: ${customBlack};
   border: 2px solid ${customBlack};
   padding: 5px;
-  border-radius: 10px;
+  border-radius: 5px;
 `;
 
 export const RedSpan = styled.span`
