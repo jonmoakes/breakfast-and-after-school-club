@@ -14,6 +14,7 @@ import {
   allChildrenRoute,
   allUsersRoute,
   uploadDatesRoute,
+  databaseManagementRoute,
 } from "../../../strings/routes/routes-strings";
 
 const useNavigateToRoute = () => {
@@ -41,8 +42,13 @@ const useNavigateToRoute = () => {
       text: " update password",
       onClick: () => navigate(updatePasswordRoute),
     },
-    id === import.meta.env.VITE_TEST_SCHOOL_APP_OWNER_ID && {
+    id !== import.meta.env.VITE_TEST_SCHOOL_APP_OWNER_ID && {
       id: 5,
+      text: " database management",
+      onClick: () => navigate(databaseManagementRoute),
+    },
+    id === import.meta.env.VITE_TEST_SCHOOL_APP_OWNER_ID && {
+      id: 6,
       text: " upload dates",
       onClick: () => navigate(uploadDatesRoute),
     },

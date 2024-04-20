@@ -12,6 +12,7 @@ import PrivateRoutes from "./components/private-routes/private-routes.component"
 import ErrorFallback from "./components/errors/error-fallback.component";
 import Loader from "./components/loader/loader.component";
 import FloatingBackButton from "./components/floating-back-button/floating-back-button.component";
+import DBManageViewBookingClosingTimes from "./routes/database-management/db-manage-view-booking-closing-times.component";
 
 import {
   contactRoute,
@@ -37,6 +38,8 @@ import {
   allChildrenRoute,
   allUsersRoute,
   uploadDatesRoute,
+  databaseManagementRoute,
+  databaseManagementViewBookingClosingTimesRoute,
 } from "./strings/routes/routes-strings";
 
 const Navigation = lazy(() =>
@@ -105,6 +108,9 @@ const ChooseNewPassword = lazy(() =>
 const UploadDatesToDatabase = lazy(() =>
   import("./routes/upload-dates-to-database/upload-dates-to-database.component")
 );
+const DatabaseManagement = lazy(() =>
+  import("./routes/database-management/database-management.component")
+);
 
 const App = () => {
   const { currentUser, appOwnerId } = useGetCurrentUserSelectors();
@@ -161,6 +167,20 @@ const App = () => {
                   ) : null
                 }
               />
+
+              <Route
+                path={databaseManagementRoute}
+                element={
+                  currentUser && currentUser.id === appOwnerId ? (
+                    <DatabaseManagement />
+                  ) : null
+                }
+              />
+              <Route
+                path={databaseManagementViewBookingClosingTimesRoute}
+                element={<DBManageViewBookingClosingTimes />}
+              />
+
               <Route path={childInfoRoute} element={<ChildInfo />} />
               <Route path={addChildInfoRoute} element={<AddChildInfo />} />
               <Route path={editChildInfoRoute} element={<EditChildInfo />} />

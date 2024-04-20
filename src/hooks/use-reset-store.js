@@ -50,6 +50,7 @@ import {
   allChildrenRoute,
   allUsersRoute,
   childInfoRoute,
+  databaseManagementViewBookingClosingTimesRoute,
 } from "../strings/routes/routes-strings";
 
 const useResetStore = () => {
@@ -202,6 +203,9 @@ const useResetStore = () => {
         } else {
           dispatchResetGetAllUsersState();
         }
+        break;
+      case databaseManagementViewBookingClosingTimesRoute:
+        dispatchResetRequestDateDataState();
         break;
       default:
         return;

@@ -18,6 +18,7 @@ import {
   allChildrenRoute,
   allUsersRoute,
   childInfoRoute,
+  databaseManagementViewBookingClosingTimesRoute,
 } from "../../../strings/routes/routes-strings";
 
 const useHandleShowError = () => {
@@ -78,8 +79,10 @@ const useHandleShowError = () => {
         return "display the list of users";
       case childInfoRoute:
         return "display the list of your children";
+      case databaseManagementViewBookingClosingTimesRoute:
+        return "display the booking closing times from the database";
       default:
-        return "";
+        return "display the requested data";
     }
   };
 
