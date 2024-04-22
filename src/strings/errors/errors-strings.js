@@ -158,3 +158,5 @@ export const morningSessionClosingTimesInfoMessage =
 export const sameTimeErrorMessage =
   "the time you have chosen is the same as the one currently in the database";
 export const chooseAnotherTimeMessage = "please choose another time";
+export const errorUpdatingBookingClosingTimeMessage =
+  "sorry, there was an error updating the booking closing time.";

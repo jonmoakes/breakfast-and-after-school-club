@@ -28,13 +28,21 @@ const UpdateMorningSessionClosingTimesInfo = () => {
         button when it appears.
       </Text>
       <Text>
+        this wil set the new latest time that a user is allowed to book or
+        cancel a session (for bookings on the current date ).
+      </Text>
+      <Text>
         please enter in the following format:
         <br />
         <RedSpan>
           HH:<LowercasedSpan>mm</LowercasedSpan>
         </RedSpan>
       </Text>
-      <Text>for example 07:00 for 7AM</Text>
+      <Text>
+        for example:
+        <br />
+        07:00 for 7AM
+      </Text>
     </>
   );
 };

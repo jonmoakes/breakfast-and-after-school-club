@@ -1,4 +1,4 @@
-import useDatabaseManagementActions from "../../../../hooks/get-actions-and-thunks/database-management-actions-and-thunks/database-management-actions";
+import useDatabaseManagementActions from "../../../../hooks/get-actions-and-thunks/database-management-actions-and-thunks/use-database-management-actions";
 
 const useHandleUpdateMorningSessionClosingTimeChange = () => {
   const { dispatchSetNewMorningBookingClosingTime } =

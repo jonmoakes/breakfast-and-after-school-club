@@ -2,6 +2,7 @@ import useGetDatabaseManagementSelectors from "../../../../hooks/get-selectors/u
 import useGetRequestDateDataSelectors from "../../../../hooks/get-selectors/use-get-request-date-data-selectors";
 import useConfirmSwal from "../../../../hooks/use-confirm-swal";
 import useFireSwal from "../../../../hooks/use-fire-swal";
+import useUpdateBookingClosingTimesThunk from "../../../../hooks/get-actions-and-thunks/database-management-actions-and-thunks/use-update-booking-closing-times-thunk";
 
 import {
   confirmUpdateMorningSessionClosingTimeMessage,
@@ -19,18 +20,22 @@ import {
 const useConfirmUpdateBookingClosingTime = () => {
   const { newMorningBookingClosingTime } = useGetDatabaseManagementSelectors();
   const { bookingClosingTimes } = useGetRequestDateDataSelectors();
+  const { updateBookingClosingTimesThunk } =
+    useUpdateBookingClosingTimesThunk();
+
   const { morningSessionClosingTime } = bookingClosingTimes || {};
 
   const { confirmSwal } = useConfirmSwal();
   const { fireSwal } = useFireSwal();
 
   const confirmResult = () => {
-    console.log("confirm here");
+    const attributeToUpdate = "morningSessionClosingTime";
+    const newTime = newMorningBookingClosingTime;
+    updateBookingClosingTimesThunk(attributeToUpdate, newTime);
   };
 
   const isValidTime = () => {
     const [hours, minutes] = newMorningBookingClosingTime.split(":");
-
     if (hours < "00" || hours > "09" || minutes < "00" || minutes > "59") {
       return false;
     }

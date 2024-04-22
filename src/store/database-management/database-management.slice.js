@@ -1,9 +1,10 @@
 import { createSelector, createSlice } from "@reduxjs/toolkit";
-// import { deleteChildInfoAsync } from "./delete-child-info.thunks";
+import { updateBookingClosingTimesAsync } from "./database-management-thunks";
 
 const INITIAL_STATE = {
   databaseManagementIsLoading: false,
   newMorningBookingClosingTime: "",
+  databaseManagementResult: "",
   databaseManagementError: null,
 };
 
@@ -14,8 +15,14 @@ export const databaseManagementSlice = createSlice({
     setNewMorningBookingClosingTime(state, action) {
       state.newMorningBookingClosingTime = action.payload;
     },
-    resetDatabaseManagementError(state, action) {
+    resetNewMorningBookingClosingTime(state) {
+      state.newMorningBookingClosingTime = "";
+    },
+    resetDatabaseManagementError(state) {
       state.databaseManagementError = null;
+    },
+    resetDatabaseManagementResult(state) {
+      state.databaseManagementResult = "";
     },
     resetDatabaseManagementState: () => {
       return INITIAL_STATE;
@@ -25,42 +32,47 @@ export const databaseManagementSlice = createSlice({
     selectDatabaseManagementSelectors: createSelector(
       (state) => state.databaseManagementIsLoading,
       (state) => state.newMorningBookingClosingTime,
+      (state) => state.databaseManagementResult,
       (state) => state.databaseManagementError,
 
       (
         databaseManagementIsLoading,
         newMorningBookingClosingTime,
+        databaseManagementResult,
         databaseManagementError
       ) => {
         return {
           databaseManagementIsLoading,
           newMorningBookingClosingTime,
+          databaseManagementResult,
           databaseManagementError,
         };
       }
     ),
   },
   extraReducers: (builder) => {
-    // builder
-    // .addCase(deleteChildInfoAsync.pending, (state) => {
-    //   state.deleteChildInfoIsLoading = true;
-    // })
-    // .addCase(deleteChildInfoAsync.fulfilled, (state) => {
-    //   state.deleteChildInfoIsLoading = false;
-    //   state.deleteChildInfoResult = "fulfilled";
-    //   state.deleteChildInfoError = null;
-    // })
-    // .addCase(deleteChildInfoAsync.rejected, (state, action) => {
-    //   state.deleteChildInfoIsLoading = false;
-    //   state.deleteChildInfoResult = "rejected";
-    //   state.deleteChildInfoError = action.payload;
-    // });
+    builder
+      .addCase(updateBookingClosingTimesAsync.pending, (state) => {
+        state.databaseManagementIsLoading = true;
+      })
+      .addCase(updateBookingClosingTimesAsync.fulfilled, (state) => {
+        state.databaseManagementIsLoading = false;
+        state.databaseManagementResult = "fulfilled";
+        state.databaseManagementError = null;
+      })
+      .addCase(updateBookingClosingTimesAsync.rejected, (state, action) => {
+        state.databaseManagementIsLoading = false;
+        state.databaseManagementResult = "rejected";
+        state.databaseManagementError = action.payload;
+      });
   },
 });
 
 export const {
   setNewMorningBookingClosingTime,
+  resetNewMorningBookingClosingTime,
   resetDatabaseManagementError,
+  resetDatabaseManagementResult,
   resetDatabaseManagementState,
 } = databaseManagementSlice.actions;
 export const { selectDatabaseManagementSelectors } =

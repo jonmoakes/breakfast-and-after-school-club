@@ -41,6 +41,7 @@ import {
   databaseManagementRoute,
   databaseManagementViewBookingClosingTimesRoute,
 } from "./strings/routes/routes-strings";
+import ScrollToTop from "./components/scroll-to-top/use-scroll-to-top";
 
 const Navigation = lazy(() =>
   import("./routes/navigation/navigation.component")
@@ -119,6 +120,7 @@ const App = () => {
   return (
     <>
       <GlobalStyle />
+      <ScrollToTop />
       <FloatingBackButton />
       <Navigation />
       <ErrorBoundary FallbackComponent={ErrorFallback}>

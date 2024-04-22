@@ -6,7 +6,7 @@ import { BlackTitle } from "../../../styles/h1/h1.styles";
 const UpdateBookingClosingTimesTitle = () => (
   <ParentDiv>
     <Balancer>
-      <BlackTitle>booking closing times from your database:</BlackTitle>
+      <BlackTitle>your current booking closing times:</BlackTitle>
     </Balancer>
   </ParentDiv>
 );

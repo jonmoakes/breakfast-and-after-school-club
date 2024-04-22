@@ -23,7 +23,7 @@ import useSignUpFormActions from "./get-actions-and-thunks/use-sign-up-form-acti
 import useUpdateEmailActions from "./get-actions-and-thunks/update-email-actions-and-thunks/use-update-email-actions";
 import useUserBookingToDeleteActions from "./get-actions-and-thunks/user-booking-to-delete-actions-and-thunks/use-user-booking-to-delete-actions";
 import useCurrentUserActions from "./get-actions-and-thunks/current-user-actions-and-thunks/use-current-user-actions";
-import useDatabaseManagementActions from "./get-actions-and-thunks/database-management-actions-and-thunks/database-management-actions";
+import useDatabaseManagementActions from "./get-actions-and-thunks/database-management-actions-and-thunks/use-database-management-actions";
 
 const useResetAllStoreOnSignOut = () => {
   const { dispatchResetAllAddChildInfoState } = useAddChildInfoActions();

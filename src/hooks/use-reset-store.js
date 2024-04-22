@@ -31,7 +31,7 @@ import useUpdateEmailActions from "./get-actions-and-thunks/update-email-actions
 import useUserBookingToDeleteActions from "./get-actions-and-thunks/user-booking-to-delete-actions-and-thunks/use-user-booking-to-delete-actions";
 import useCurrentUserActions from "./get-actions-and-thunks/current-user-actions-and-thunks/use-current-user-actions";
 import useGetDatabaseManagementSelectors from "./get-selectors/use-get-database-management-selectors";
-import useDatabaseManagementActions from "./get-actions-and-thunks/database-management-actions-and-thunks/database-management-actions";
+import useDatabaseManagementActions from "./get-actions-and-thunks/database-management-actions-and-thunks/use-database-management-actions";
 
 import {
   addFundsRoute,
@@ -53,7 +53,6 @@ import {
   allUsersRoute,
   childInfoRoute,
   databaseManagementViewBookingClosingTimesRoute,
-  databaseManagementRoute,
 } from "../strings/routes/routes-strings";
 
 const useResetStore = () => {
@@ -213,9 +212,6 @@ const useResetStore = () => {
         }
         break;
       case databaseManagementViewBookingClosingTimesRoute:
-        dispatchResetRequestDateDataState();
-        break;
-      case databaseManagementRoute:
         if (databaseManagementError) {
           dispatchResetDatabaseManagementError();
         } else {

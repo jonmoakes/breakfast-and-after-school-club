@@ -13,14 +13,19 @@ import { ParentDiv } from "../../../styles/div/div.styles";
 import { Text } from "../../../styles/p/p.styles";
 import { RedSpan } from "../../../styles/span/span.styles";
 import { Container } from "../../../styles/container/container.styles";
+import useGetDatabaseManagementSelectors from "../../../hooks/get-selectors/use-get-database-management-selectors";
+import useUpdateBookingClosingTimeResultSwal from "./hooks/use-update-booking-closing-time-result-swal";
 
 const DBManageViewBookingClosingTimes = () => {
   useRequestBookingClosingTimesThunkUseEffect();
+  useUpdateBookingClosingTimeResultSwal();
+
   const {
     bookingClosingTimes,
     requestDateDataError,
     requestDateDataIsLoading,
   } = useGetRequestDateDataSelectors();
+  const { databaseManagementIsLoading } = useGetDatabaseManagementSelectors();
 
   const { afternoonSessionClosingTime } = bookingClosingTimes || {};
 
@@ -28,7 +33,7 @@ const DBManageViewBookingClosingTimes = () => {
     <Container>
       <UpdateBookingClosingTimesTitle />
 
-      {requestDateDataIsLoading ? (
+      {requestDateDataIsLoading || databaseManagementIsLoading ? (
         <Loader />
       ) : (
         <>
