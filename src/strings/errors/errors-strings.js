@@ -150,3 +150,11 @@ export const errorFetchingAllChildrenMessage =
   "there was an error fetching the list of children from the database.";
 export const appwriteCredentialsError =
   "Invalid credentials. Please check the email and password.";
+export const updateSessionClosingTimeFormatErrorMessage =
+  "the new time should be 5 characters long in the format of HH:MM";
+export const timeIsInvalidErrorMessage = "the time you entered is invalid";
+export const morningSessionClosingTimesInfoMessage =
+  "the hour digits should be between 00 & 09 and the minutes should be between 00 & 59";
+export const sameTimeErrorMessage =
+  "the time you have chosen is the same as the one currently in the database";
+export const chooseAnotherTimeMessage = "please choose another time";

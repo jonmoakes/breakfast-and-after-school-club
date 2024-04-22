@@ -1,6 +1,5 @@
-import { useNavigate } from "react-router-dom";
-
 import useGetCurrentUserSelectors from "../../../hooks/get-selectors/use-get-current-user-selectors";
+import useHamburgerHandlerNavigate from "../../../hooks/use-hamburger-handler-navigate";
 
 import {
   addFundsRoute,
@@ -19,38 +18,38 @@ import {
 
 const useNavigateToRoute = () => {
   const { id } = useGetCurrentUserSelectors();
-  const navigate = useNavigate();
+  const { hamburgerHandlerNavigate } = useHamburgerHandlerNavigate();
 
   const appOwnerButtons = [
     {
       id: 1,
       text: "view bookings",
-      onClick: () => navigate(bookedSessionsOwnerRoute),
+      onClick: () => hamburgerHandlerNavigate(bookedSessionsOwnerRoute),
     },
     {
       id: 2,
       text: "view all children",
-      onClick: () => navigate(allChildrenRoute),
+      onClick: () => hamburgerHandlerNavigate(allChildrenRoute),
     },
     {
       id: 3,
       text: "view all Users",
-      onClick: () => navigate(allUsersRoute),
+      onClick: () => hamburgerHandlerNavigate(allUsersRoute),
     },
     {
       id: 4,
       text: " update password",
-      onClick: () => navigate(updatePasswordRoute),
+      onClick: () => hamburgerHandlerNavigate(updatePasswordRoute),
     },
     id !== import.meta.env.VITE_TEST_SCHOOL_APP_OWNER_ID && {
       id: 5,
       text: " database management",
-      onClick: () => navigate(databaseManagementRoute),
+      onClick: () => hamburgerHandlerNavigate(databaseManagementRoute),
     },
     id === import.meta.env.VITE_TEST_SCHOOL_APP_OWNER_ID && {
       id: 6,
       text: " upload dates",
-      onClick: () => navigate(uploadDatesRoute),
+      onClick: () => hamburgerHandlerNavigate(uploadDatesRoute),
     },
   ].filter(Boolean); // Remove falsy values (null, undefined) from the array
 
@@ -58,37 +57,37 @@ const useNavigateToRoute = () => {
     {
       id: 1,
       text: "view your bookings",
-      onClick: () => navigate(bookedSessionsUserRoute),
+      onClick: () => hamburgerHandlerNavigate(bookedSessionsUserRoute),
     },
     {
       id: 2,
       text: "book a session",
-      onClick: () => navigate(bookSessionRoute),
+      onClick: () => hamburgerHandlerNavigate(bookSessionRoute),
     },
     {
       id: 3,
       text: "add funds",
-      onClick: () => navigate(addFundsRoute),
+      onClick: () => hamburgerHandlerNavigate(addFundsRoute),
     },
     {
       id: 4,
       text: "child info",
-      onClick: () => navigate(childInfoRoute),
+      onClick: () => hamburgerHandlerNavigate(childInfoRoute),
     },
     {
       id: 5,
       text: " update email",
-      onClick: () => navigate(updateEmailRoute),
+      onClick: () => hamburgerHandlerNavigate(updateEmailRoute),
     },
     {
       id: 6,
       text: " update password",
-      onClick: () => navigate(updatePasswordRoute),
+      onClick: () => hamburgerHandlerNavigate(updatePasswordRoute),
     },
     {
       id: 7,
       text: " close account",
-      onClick: () => navigate(closeAccountRoute),
+      onClick: () => hamburgerHandlerNavigate(closeAccountRoute),
     },
   ];
 

@@ -51,3 +51,10 @@ export const confirmUpdateChildMessage =
 export const confirmDeleteChildMessage =
   "are you sure you want to delete your child?";
 export const confirmUploadDatesMessage = "do you want to upload these dates?";
+export const confirmUpdateMorningSessionClosingTimeMessage =
+  "are you sure you want to update the latest time that a user can book or cancel a morning session?";
+export const newMorningSessionTimeInfoMessage = (
+  newMorningBookingClosingTime
+) => {
+  return `the new time will be ${newMorningBookingClosingTime}AM`;
+};

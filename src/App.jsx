@@ -12,7 +12,7 @@ import PrivateRoutes from "./components/private-routes/private-routes.component"
 import ErrorFallback from "./components/errors/error-fallback.component";
 import Loader from "./components/loader/loader.component";
 import FloatingBackButton from "./components/floating-back-button/floating-back-button.component";
-import DBManageViewBookingClosingTimes from "./routes/database-management/db-manage-view-booking-closing-times.component";
+import DBManageViewBookingClosingTimes from "./routes/database-management/booking-closing-times/db-manage-view-booking-closing-times.component";
 
 import {
   contactRoute,
