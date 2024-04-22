@@ -7,10 +7,14 @@ import {
   errorReceivedMessage,
   errorUpdatingBookingClosingTimeMessage,
 } from "../../../../strings/errors/errors-strings";
+import { bookingClosingTimeUpdatedMessage } from "../../../../strings/successes/successes-strings";
+import useRequestBookingClosingTimesThunk from "../../../../hooks/get-actions-and-thunks/request-date-data-actions-and-thunks/use-request-booking-closing-times-thunk";
 
 const useUpdateBookingClosingTimeResultSwal = () => {
   const { databaseManagementResult, databaseManagementError } =
     useGetDatabaseManagementSelectors();
+  const { requestBookingClosingTimesThunk } =
+    useRequestBookingClosingTimesThunk();
   const {
     dispatchResetDatabaseManagementResult,
     dispatchResetDatabaseManagementError,
@@ -24,15 +28,22 @@ const useUpdateBookingClosingTimeResultSwal = () => {
     if (!databaseManagementResult && !databaseManagementError) return;
 
     if (databaseManagementResult === "fulfilled") {
-      fireSwal("success", "closing time updated", "", 0, true, false).then(
-        (isConfirmed) => {
-          if (isConfirmed) {
-            dispatchResetDatabaseManagementResult();
-            dispatchResetNewMorningBookingClosingTime();
-            dispatchResetNewAfternoonBookingClosingTime();
-          }
+      fireSwal(
+        "success",
+        bookingClosingTimeUpdatedMessage,
+        "",
+        0,
+        true,
+        false
+      ).then((isConfirmed) => {
+        if (isConfirmed) {
+          dispatchResetDatabaseManagementResult();
+          dispatchResetNewMorningBookingClosingTime();
+          dispatchResetNewAfternoonBookingClosingTime();
+          //so UI updates with new value
+          requestBookingClosingTimesThunk();
         }
-      );
+      });
     } else {
       const error = databaseManagementError;
       fireSwal(
@@ -57,6 +68,7 @@ const useUpdateBookingClosingTimeResultSwal = () => {
     dispatchResetNewMorningBookingClosingTime,
     dispatchResetNewAfternoonBookingClosingTime,
     fireSwal,
+    requestBookingClosingTimesThunk,
   ]);
 };
 
