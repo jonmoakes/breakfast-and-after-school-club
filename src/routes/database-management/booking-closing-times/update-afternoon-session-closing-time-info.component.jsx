@@ -4,35 +4,35 @@ import useBookingClosingTimesVariables from "./hooks/use-booking-closing-times-v
 
 import UpdateBookingClosingTimesInstructions from "./update-booking-closing-times-instructions.component";
 
-import { BlueH2 } from "../../../styles/h2/h2.styles";
 import { Text } from "../../../styles/p/p.styles";
 import { RedSpan } from "../../../styles/span/span.styles";
+import { BlueH2 } from "../../../styles/h2/h2.styles";
 
-const UpdateMorningSessionClosingTimesInfo = () => {
-  const { morningSessionClosingTime, morningText } =
+const UpdateAfternoonSessionClosingTimesInfo = () => {
+  const { afternoonSessionClosingTime, afternoonText } =
     useBookingClosingTimesVariables();
 
   return (
     <>
-      <BlueH2>morning session</BlueH2>
+      <BlueH2>afternoon session</BlueH2>
       <Balancer>
         <Text>
-          the latest time a user can book or cancel a morning session is:
+          the latest time a user can book or cancel an afternoon session is:
         </Text>
         <Text>
-          <RedSpan>{morningSessionClosingTime} AM</RedSpan>
+          <RedSpan>{afternoonSessionClosingTime} PM</RedSpan>
         </Text>
       </Balancer>
 
-      <UpdateBookingClosingTimesInstructions sessionType={morningText} />
+      <UpdateBookingClosingTimesInstructions sessionType={afternoonText} />
 
       <Text>
         for example:
         <br />
-        07:00 for 7AM
+        14:30 for 2:30PM
       </Text>
     </>
   );
 };
 
-export default UpdateMorningSessionClosingTimesInfo;
+export default UpdateAfternoonSessionClosingTimesInfo;

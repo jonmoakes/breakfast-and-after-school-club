@@ -6,6 +6,7 @@ const useGetDatabaseManagementSelectors = () => {
   const {
     databaseManagementIsLoading,
     newMorningBookingClosingTime,
+    newAfternoonBookingClosingTime,
     databaseManagementResult,
     databaseManagementError,
   } = useSelector(selectDatabaseManagementSelectors);
@@ -13,6 +14,7 @@ const useGetDatabaseManagementSelectors = () => {
   return {
     databaseManagementIsLoading,
     newMorningBookingClosingTime,
+    newAfternoonBookingClosingTime,
     databaseManagementResult,
     databaseManagementError,
   };

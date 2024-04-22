@@ -6,6 +6,8 @@ import {
   resetDatabaseManagementState,
   resetDatabaseManagementResult,
   resetNewMorningBookingClosingTime,
+  setNewAfternoonBookingClosingTime,
+  resetNewAfternoonBookingClosingTime,
 } from "../../../store/database-management/database-management.slice";
 
 const useDatabaseManagementActions = () => {
@@ -17,6 +19,14 @@ const useDatabaseManagementActions = () => {
 
   const dispatchResetNewMorningBookingClosingTime = () => {
     dispatch(resetNewMorningBookingClosingTime());
+  };
+
+  const dispatchSetNewAfternoonBookingClosingTime = (payload) => {
+    dispatch(setNewAfternoonBookingClosingTime(payload));
+  };
+
+  const dispatchResetNewAfternoonBookingClosingTime = () => {
+    dispatch(resetNewAfternoonBookingClosingTime());
   };
 
   const dispatchResetDatabaseManagementResult = () => {
@@ -34,6 +44,8 @@ const useDatabaseManagementActions = () => {
   return {
     dispatchSetNewMorningBookingClosingTime,
     dispatchResetNewMorningBookingClosingTime,
+    dispatchSetNewAfternoonBookingClosingTime,
+    dispatchResetNewAfternoonBookingClosingTime,
     dispatchResetDatabaseManagementResult,
     dispatchResetDatabaseManagementError,
     dispatchResetDatabaseManagementState,

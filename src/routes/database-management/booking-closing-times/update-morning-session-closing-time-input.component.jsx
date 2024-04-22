@@ -1,23 +1,23 @@
-import useGetDatabaseManagementSelectors from "../../../hooks/get-selectors/use-get-database-management-selectors";
+import useHandleClosingTimeChanges from "./hooks/use-handle-closing-time-changes";
+import useConfirmUpdateMorningBookingClosingTime from "./hooks/use-confirm-update-morning-booking-closing-time";
+import useBookingClosingTimesVariables from "./hooks/use-booking-closing-times-variables";
+
 import { YellowGreenButton } from "../../../styles/buttons/buttons.styles";
 import { Form, Label, LowercasedInput } from "../../../styles/form/form.styles";
-import useConfirmUpdateBookingClosingTime from "./hooks/use-confirm-update-booking-closing-time";
-import useHandleUpdateMorningSessionClosingTimeChange from "./hooks/use-handle-update-morning-session-closing-time-change";
 
 const UpdateMorningSessionClosingTimeInput = () => {
-  const { newMorningBookingClosingTime } = useGetDatabaseManagementSelectors();
+  const { newMorningBookingClosingTime } = useBookingClosingTimesVariables();
   const { handleUpdateMorningSessionClosingTimeChange } =
-    useHandleUpdateMorningSessionClosingTimeChange();
-
-  const { confirmUpdateBookingClosingTime } =
-    useConfirmUpdateBookingClosingTime();
+    useHandleClosingTimeChanges();
+  const { confirmUpdateMorningBookingClosingTime } =
+    useConfirmUpdateMorningBookingClosingTime();
 
   return (
     <Form>
       <Label>new morning booking closing time:</Label>
       <LowercasedInput
         type="text"
-        name="newMorningTime"
+        name="newMorningBookingClosingTime"
         onChange={handleUpdateMorningSessionClosingTimeChange}
         value={newMorningBookingClosingTime || ""}
         placeholder="ie 07:00"
@@ -26,7 +26,7 @@ const UpdateMorningSessionClosingTimeInput = () => {
       {newMorningBookingClosingTime ? (
         <YellowGreenButton
           type="button"
-          onClick={confirmUpdateBookingClosingTime}
+          onClick={confirmUpdateMorningBookingClosingTime}
         >
           upload new time
         </YellowGreenButton>

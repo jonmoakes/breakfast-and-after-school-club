@@ -15,6 +15,7 @@ const useUpdateBookingClosingTimeResultSwal = () => {
     dispatchResetDatabaseManagementResult,
     dispatchResetDatabaseManagementError,
     dispatchResetNewMorningBookingClosingTime,
+    dispatchResetNewAfternoonBookingClosingTime,
   } = useDatabaseManagementActions();
 
   const { fireSwal } = useFireSwal();
@@ -28,6 +29,7 @@ const useUpdateBookingClosingTimeResultSwal = () => {
           if (isConfirmed) {
             dispatchResetDatabaseManagementResult();
             dispatchResetNewMorningBookingClosingTime();
+            dispatchResetNewAfternoonBookingClosingTime();
           }
         }
       );
@@ -53,6 +55,7 @@ const useUpdateBookingClosingTimeResultSwal = () => {
     dispatchResetDatabaseManagementError,
     dispatchResetDatabaseManagementResult,
     dispatchResetNewMorningBookingClosingTime,
+    dispatchResetNewAfternoonBookingClosingTime,
     fireSwal,
   ]);
 };

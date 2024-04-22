@@ -4,6 +4,7 @@ import { updateBookingClosingTimesAsync } from "./database-management-thunks";
 const INITIAL_STATE = {
   databaseManagementIsLoading: false,
   newMorningBookingClosingTime: "",
+  newAfternoonBookingClosingTime: "",
   databaseManagementResult: "",
   databaseManagementError: null,
 };
@@ -17,6 +18,12 @@ export const databaseManagementSlice = createSlice({
     },
     resetNewMorningBookingClosingTime(state) {
       state.newMorningBookingClosingTime = "";
+    },
+    setNewAfternoonBookingClosingTime(state, action) {
+      state.newAfternoonBookingClosingTime = action.payload;
+    },
+    resetNewAfternoonBookingClosingTime(state) {
+      state.newAfternoonBookingClosingTime = "";
     },
     resetDatabaseManagementError(state) {
       state.databaseManagementError = null;
@@ -32,18 +39,21 @@ export const databaseManagementSlice = createSlice({
     selectDatabaseManagementSelectors: createSelector(
       (state) => state.databaseManagementIsLoading,
       (state) => state.newMorningBookingClosingTime,
+      (state) => state.newAfternoonBookingClosingTime,
       (state) => state.databaseManagementResult,
       (state) => state.databaseManagementError,
 
       (
         databaseManagementIsLoading,
         newMorningBookingClosingTime,
+        newAfternoonBookingClosingTime,
         databaseManagementResult,
         databaseManagementError
       ) => {
         return {
           databaseManagementIsLoading,
           newMorningBookingClosingTime,
+          newAfternoonBookingClosingTime,
           databaseManagementResult,
           databaseManagementError,
         };
@@ -71,6 +81,8 @@ export const databaseManagementSlice = createSlice({
 export const {
   setNewMorningBookingClosingTime,
   resetNewMorningBookingClosingTime,
+  setNewAfternoonBookingClosingTime,
+  resetNewAfternoonBookingClosingTime,
   resetDatabaseManagementError,
   resetDatabaseManagementResult,
   resetDatabaseManagementState,

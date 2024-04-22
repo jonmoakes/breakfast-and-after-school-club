@@ -1,5 +1,5 @@
-import useGetDatabaseManagementSelectors from "../../../../hooks/get-selectors/use-get-database-management-selectors";
-import useGetRequestDateDataSelectors from "../../../../hooks/get-selectors/use-get-request-date-data-selectors";
+import useBookingClosingTimesVariables from "./use-booking-closing-times-variables";
+import useBookingclosingTimesFunctions from "./use-booking-closing-times-functions";
 import useConfirmSwal from "../../../../hooks/use-confirm-swal";
 import useFireSwal from "../../../../hooks/use-fire-swal";
 import useUpdateBookingClosingTimesThunk from "../../../../hooks/get-actions-and-thunks/database-management-actions-and-thunks/use-update-booking-closing-times-thunk";
@@ -10,20 +10,20 @@ import {
   newMorningSessionTimeInfoMessage,
 } from "../../../../strings/confirms/confirms-strings";
 import {
-  morningSessionClosingTimesInfoMessage,
   timeIsInvalidErrorMessage,
   updateSessionClosingTimeFormatErrorMessage,
   sameTimeErrorMessage,
   chooseAnotherTimeMessage,
+  sessionClosingTimesInfoMessage,
 } from "../../../../strings/errors/errors-strings";
 
-const useConfirmUpdateBookingClosingTime = () => {
-  const { newMorningBookingClosingTime } = useGetDatabaseManagementSelectors();
-  const { bookingClosingTimes } = useGetRequestDateDataSelectors();
+const useConfirmUpdateMorningBookingClosingTime = () => {
+  const { morningSessionClosingTime, newMorningBookingClosingTime } =
+    useBookingClosingTimesVariables();
+  const { isValidTime } = useBookingclosingTimesFunctions();
+
   const { updateBookingClosingTimesThunk } =
     useUpdateBookingClosingTimesThunk();
-
-  const { morningSessionClosingTime } = bookingClosingTimes || {};
 
   const { confirmSwal } = useConfirmSwal();
   const { fireSwal } = useFireSwal();
@@ -34,15 +34,7 @@ const useConfirmUpdateBookingClosingTime = () => {
     updateBookingClosingTimesThunk(attributeToUpdate, newTime);
   };
 
-  const isValidTime = () => {
-    const [hours, minutes] = newMorningBookingClosingTime.split(":");
-    if (hours < "00" || hours > "09" || minutes < "00" || minutes > "59") {
-      return false;
-    }
-    return true;
-  };
-
-  const confirmUpdateBookingClosingTime = () => {
+  const confirmUpdateMorningBookingClosingTime = () => {
     if (
       !newMorningBookingClosingTime ||
       newMorningBookingClosingTime.length !== 5 ||
@@ -56,11 +48,11 @@ const useConfirmUpdateBookingClosingTime = () => {
         true,
         false
       );
-    } else if (!isValidTime()) {
+    } else if (!isValidTime(newMorningBookingClosingTime)) {
       fireSwal(
         "error",
         timeIsInvalidErrorMessage,
-        morningSessionClosingTimesInfoMessage,
+        sessionClosingTimesInfoMessage,
         0,
         true,
         false
@@ -84,7 +76,7 @@ const useConfirmUpdateBookingClosingTime = () => {
     }
   };
 
-  return { confirmUpdateBookingClosingTime };
+  return { confirmUpdateMorningBookingClosingTime };
 };
 
-export default useConfirmUpdateBookingClosingTime;
+export default useConfirmUpdateMorningBookingClosingTime;

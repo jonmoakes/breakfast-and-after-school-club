@@ -1,33 +1,27 @@
-import Balancer from "react-wrap-balancer";
-
 import useRequestBookingClosingTimesThunkUseEffect from "../../../hooks/get-actions-and-thunks/request-date-data-actions-and-thunks/use-request-booking-closing-times-thunk-use-effect";
-import useGetRequestDateDataSelectors from "../../../hooks/get-selectors/use-get-request-date-data-selectors";
+import useUpdateBookingClosingTimeResultSwal from "./hooks/use-update-booking-closing-time-result-swal";
+import useBookingClosingTimesVariables from "./hooks/use-booking-closing-times-variables";
 
 import ShowFetchErrors from "../../../components/errors/show-fetch-errors.component";
 import Loader from "../../../components/loader/loader.component";
 import UpdateBookingClosingTimesTitle from "./update-booking-closing-times-title.component";
 import UpdateMorningSessionClosingTimesInfo from "./update-morning-session-closing-time-info.component";
 import UpdateMorningSessionClosingTimeInput from "./update-morning-session-closing-time-input.component";
+import UpdateAfternoonSessionClosingTimesInfo from "./update-afternoon-session-closing-time-info.component";
+import UpdateAfternoonSessionClosingTimeInput from "./update-afternoon-session-closing-time-input.component";
 
 import { ParentDiv } from "../../../styles/div/div.styles";
-import { Text } from "../../../styles/p/p.styles";
-import { RedSpan } from "../../../styles/span/span.styles";
 import { Container } from "../../../styles/container/container.styles";
-import useGetDatabaseManagementSelectors from "../../../hooks/get-selectors/use-get-database-management-selectors";
-import useUpdateBookingClosingTimeResultSwal from "./hooks/use-update-booking-closing-time-result-swal";
 
 const DBManageViewBookingClosingTimes = () => {
   useRequestBookingClosingTimesThunkUseEffect();
   useUpdateBookingClosingTimeResultSwal();
 
   const {
-    bookingClosingTimes,
-    requestDateDataError,
     requestDateDataIsLoading,
-  } = useGetRequestDateDataSelectors();
-  const { databaseManagementIsLoading } = useGetDatabaseManagementSelectors();
-
-  const { afternoonSessionClosingTime } = bookingClosingTimes || {};
+    databaseManagementIsLoading,
+    requestDateDataError,
+  } = useBookingClosingTimesVariables();
 
   return (
     <Container>
@@ -45,14 +39,8 @@ const DBManageViewBookingClosingTimes = () => {
               </ParentDiv>
 
               <ParentDiv>
-                <Balancer>
-                  <Text>
-                    the latest time a user can book or cancel an afternoon
-                    session is:
-                    <br />
-                    <RedSpan>{afternoonSessionClosingTime} PM</RedSpan>
-                  </Text>
-                </Balancer>
+                <UpdateAfternoonSessionClosingTimesInfo />
+                <UpdateAfternoonSessionClosingTimeInput />
               </ParentDiv>
             </>
           ) : (

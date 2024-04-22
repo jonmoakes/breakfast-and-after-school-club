@@ -152,11 +152,11 @@ export const appwriteCredentialsError =
   "Invalid credentials. Please check the email and password.";
 export const updateSessionClosingTimeFormatErrorMessage =
   "the new time should be 5 characters long in the format of HH:MM";
-export const timeIsInvalidErrorMessage = "the time you entered is invalid";
-export const morningSessionClosingTimesInfoMessage =
-  "the hour digits should be between 00 & 09 and the minutes should be between 00 & 59";
+export const timeIsInvalidErrorMessage = "the time you entered is invalid.";
 export const sameTimeErrorMessage =
-  "the time you have chosen is the same as the one currently in the database";
-export const chooseAnotherTimeMessage = "please choose another time";
+  "the time you have chosen is the same as the one currently in the database.";
+export const chooseAnotherTimeMessage = "please choose another time.";
 export const errorUpdatingBookingClosingTimeMessage =
   "sorry, there was an error updating the booking closing time.";
+export const sessionClosingTimesInfoMessage =
+  "the hour digits should be between 00 & 23 or after and the minutes should be between 00 & 59.";

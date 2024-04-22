@@ -58,3 +58,10 @@ export const newMorningSessionTimeInfoMessage = (
 ) => {
   return `the new time will be ${newMorningBookingClosingTime}AM`;
 };
+export const confirmUpdateAfternoonSessionClosingTimeMessage =
+  "are you sure you want to update the latest time that a user can book or cancel an afternoon session?";
+export const newAfternoonSessionTimeInfoMessage = (
+  newAfternoonBookingClosingTime
+) => {
+  return `the new time will be ${newAfternoonBookingClosingTime}PM`;
+};
