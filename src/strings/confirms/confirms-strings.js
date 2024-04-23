@@ -67,3 +67,7 @@ export const newAfternoonSessionTimeInfoMessage = (
 };
 export const confirmUpdateMorningSessionTime =
   "are you sure you'd like to update the morning session time?";
+export const confirmUpdateAfternoonShortSessionTime =
+  "are you sure you'd like to update the afternoon short session time?";
+export const confirmUpdateAfternoonLongSessionTime =
+  "are you sure you'd like to update the afternoon long session time?";
