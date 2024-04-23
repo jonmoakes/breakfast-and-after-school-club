@@ -22,3 +22,5 @@ export const childDeletedMessage =
   "the child has been deleted from the database!";
 export const bookingClosingTimeUpdatedMessage =
   "the time was successfully updated in the database!";
+export const sessionTimeUpdatedMessage =
+  "the session time was successfully updated!";

@@ -8,11 +8,13 @@ import "./App.css";
 import useGetCurrentUserSelectors from "./hooks/get-selectors/use-get-current-user-selectors";
 import useGetUserOnLoadThunkUseEffect from "./hooks/get-actions-and-thunks/current-user-actions-and-thunks/use-get-user-on-load-thunk-use-effect";
 
+import ScrollToTop from "./components/scroll-to-top/use-scroll-to-top";
 import PrivateRoutes from "./components/private-routes/private-routes.component";
 import ErrorFallback from "./components/errors/error-fallback.component";
 import Loader from "./components/loader/loader.component";
 import FloatingBackButton from "./components/floating-back-button/floating-back-button.component";
 import DBManageViewBookingClosingTimes from "./routes/database-management/booking-closing-times/db-manage-view-booking-closing-times.component";
+import DBManageViewSessionTimes from "./routes/database-management/session-times/db-manage-view-session-times.component";
 
 import {
   contactRoute,
@@ -40,8 +42,8 @@ import {
   uploadDatesRoute,
   databaseManagementRoute,
   databaseManagementViewBookingClosingTimesRoute,
+  databaseManagementViewSessionTimesRoute,
 } from "./strings/routes/routes-strings";
-import ScrollToTop from "./components/scroll-to-top/use-scroll-to-top";
 
 const Navigation = lazy(() =>
   import("./routes/navigation/navigation.component")
@@ -181,6 +183,10 @@ const App = () => {
               <Route
                 path={databaseManagementViewBookingClosingTimesRoute}
                 element={<DBManageViewBookingClosingTimes />}
+              />
+              <Route
+                path={databaseManagementViewSessionTimesRoute}
+                element={<DBManageViewSessionTimes />}
               />
 
               <Route path={childInfoRoute} element={<ChildInfo />} />

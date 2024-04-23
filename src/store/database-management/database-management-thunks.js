@@ -23,3 +23,26 @@ export const updateBookingClosingTimesAsync = createAsyncThunk(
     }
   }
 );
+
+export const updateSessionTimesAsync = createAsyncThunk(
+  "updateSessionTimes",
+  async (
+    { attributeToUpdate, newTime, databaseId, collectionId, documentId },
+    thunkAPI
+  ) => {
+    try {
+      const dataToUpdate = {
+        [attributeToUpdate]: newTime,
+      };
+      await manageDatabaseDocument(
+        "update",
+        databaseId,
+        collectionId,
+        documentId,
+        dataToUpdate
+      );
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);

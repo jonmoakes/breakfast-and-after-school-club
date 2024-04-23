@@ -160,3 +160,9 @@ export const errorUpdatingBookingClosingTimeMessage =
   "sorry, there was an error updating the booking closing time.";
 export const sessionClosingTimesInfoMessage =
   "the hour digits should be between 00 & 23 or after and the minutes should be between 00 & 59.";
+export const errorUpdatingSessionTime =
+  "sorry, there was an error updating the session time.";
+export const updatingSessionTimeFormattingErrorMessage =
+  "the time you entered isn't formatted correctly.";
+export const updatingSessionTimeInfoMessage =
+  "please see the example above the input field and make sure that your new time matches 'HH:MM - HH:MM";

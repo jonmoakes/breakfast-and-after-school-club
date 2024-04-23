@@ -1,26 +1,24 @@
 import { useEffect } from "react";
 
-import useRequestBookingClosingTimesThunk from "../../../../hooks/get-actions-and-thunks/request-date-data-actions-and-thunks/use-request-booking-closing-times-thunk";
+import useRequestSessionTimesThunk from "../../../../hooks/get-actions-and-thunks/request-date-data-actions-and-thunks/use-request-session-times-thunk";
 import useDbManagementVariables from "../../db-management-hooks/use-db-management-variables";
 import useDatabaseManagementActions from "../../../../hooks/get-actions-and-thunks/database-management-actions-and-thunks/use-database-management-actions";
 import useFireSwal from "../../../../hooks/use-fire-swal";
 
 import {
   errorReceivedMessage,
-  errorUpdatingBookingClosingTimeMessage,
+  errorUpdatingSessionTime,
 } from "../../../../strings/errors/errors-strings";
-import { bookingClosingTimeUpdatedMessage } from "../../../../strings/successes/successes-strings";
+import { sessionTimeUpdatedMessage } from "../../../../strings/successes/successes-strings";
 
 const useUpdateBookingClosingTimeResultSwal = () => {
   const { databaseManagementResult, databaseManagementError } =
     useDbManagementVariables();
-  const { requestBookingClosingTimesThunk } =
-    useRequestBookingClosingTimesThunk();
+  const { requestSessionTimesThunk } = useRequestSessionTimesThunk();
   const {
     dispatchResetDatabaseManagementResult,
     dispatchResetDatabaseManagementError,
-    dispatchResetNewMorningBookingClosingTime,
-    dispatchResetNewAfternoonBookingClosingTime,
+    dispatchResetNewSessionTimesDetails,
   } = useDatabaseManagementActions();
 
   const { fireSwal } = useFireSwal();
@@ -29,27 +27,20 @@ const useUpdateBookingClosingTimeResultSwal = () => {
     if (!databaseManagementResult && !databaseManagementError) return;
 
     if (databaseManagementResult === "fulfilled") {
-      fireSwal(
-        "success",
-        bookingClosingTimeUpdatedMessage,
-        "",
-        0,
-        true,
-        false
-      ).then((isConfirmed) => {
-        if (isConfirmed) {
-          dispatchResetDatabaseManagementResult();
-          dispatchResetNewMorningBookingClosingTime();
-          dispatchResetNewAfternoonBookingClosingTime();
-          //so UI updates with new value
-          requestBookingClosingTimesThunk();
+      fireSwal("success", sessionTimeUpdatedMessage, "", 0, true, false).then(
+        (isConfirmed) => {
+          if (isConfirmed) {
+            dispatchResetDatabaseManagementResult();
+            dispatchResetNewSessionTimesDetails();
+            requestSessionTimesThunk();
+          }
         }
-      });
+      );
     } else {
       const error = databaseManagementError;
       fireSwal(
         "error",
-        errorUpdatingBookingClosingTimeMessage,
+        errorUpdatingSessionTime,
         errorReceivedMessage(error),
         0,
         true,
@@ -64,12 +55,11 @@ const useUpdateBookingClosingTimeResultSwal = () => {
   }, [
     databaseManagementResult,
     databaseManagementError,
+    dispatchResetNewSessionTimesDetails,
     dispatchResetDatabaseManagementError,
     dispatchResetDatabaseManagementResult,
-    dispatchResetNewMorningBookingClosingTime,
-    dispatchResetNewAfternoonBookingClosingTime,
     fireSwal,
-    requestBookingClosingTimesThunk,
+    requestSessionTimesThunk,
   ]);
 };
 

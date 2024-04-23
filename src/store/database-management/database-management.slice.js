@@ -1,12 +1,35 @@
 import { createSelector, createSlice } from "@reduxjs/toolkit";
-import { updateBookingClosingTimesAsync } from "./database-management-thunks";
+import {
+  updateBookingClosingTimesAsync,
+  updateSessionTimesAsync,
+} from "./database-management-thunks";
 
 const INITIAL_STATE = {
   databaseManagementIsLoading: false,
   newMorningBookingClosingTime: "",
   newAfternoonBookingClosingTime: "",
+  newMorningSessionTime: "",
+  newAfternoonShortSessionTime: "",
+  newAfternoonLongSessionTime: "",
   databaseManagementResult: "",
   databaseManagementError: null,
+};
+
+const handleAsyncAction = (builder, asyncAction) => {
+  builder
+    .addCase(asyncAction.pending, (state) => {
+      state.databaseManagementIsLoading = true;
+    })
+    .addCase(asyncAction.fulfilled, (state, action) => {
+      state.databaseManagementIsLoading = false;
+      state.databaseManagementResult = "fulfilled";
+      state.databaseManagementError = null;
+    })
+    .addCase(asyncAction.rejected, (state, action) => {
+      state.databaseManagementIsLoading = false;
+      state.databaseManagementResult = "rejected";
+      state.databaseManagementError = action.payload;
+    });
 };
 
 export const databaseManagementSlice = createSlice({
@@ -25,6 +48,20 @@ export const databaseManagementSlice = createSlice({
     resetNewAfternoonBookingClosingTime(state) {
       state.newAfternoonBookingClosingTime = "";
     },
+    setNewMorningSessionTime(state, action) {
+      state.newMorningSessionTime = action.payload;
+    },
+    setNewAfternoonShortSessionTime(state, action) {
+      state.newAfternoonShortSessionTime = action.payload;
+    },
+    setNewAfternoonLongSessionTime(state, action) {
+      state.newAfternoonLongSessionTime = action.payload;
+    },
+    resetNewSessionTimesDetails(state) {
+      state.newMorningSessionTime = "";
+      state.newAfternoonShortSessionTime = "";
+      state.newAfternoonLongSessionTime = "";
+    },
     resetDatabaseManagementError(state) {
       state.databaseManagementError = null;
     },
@@ -42,13 +79,18 @@ export const databaseManagementSlice = createSlice({
       (state) => state.newAfternoonBookingClosingTime,
       (state) => state.databaseManagementResult,
       (state) => state.databaseManagementError,
-
+      (state) => state.newMorningSessionTime,
+      (state) => state.newAfternoonShortSessionTime,
+      (state) => state.newAfternoonLongSessionTime,
       (
         databaseManagementIsLoading,
         newMorningBookingClosingTime,
         newAfternoonBookingClosingTime,
         databaseManagementResult,
-        databaseManagementError
+        databaseManagementError,
+        newMorningSessionTime,
+        newAfternoonShortSessionTime,
+        newAfternoonLongSessionTime
       ) => {
         return {
           databaseManagementIsLoading,
@@ -56,25 +98,16 @@ export const databaseManagementSlice = createSlice({
           newAfternoonBookingClosingTime,
           databaseManagementResult,
           databaseManagementError,
+          newMorningSessionTime,
+          newAfternoonShortSessionTime,
+          newAfternoonLongSessionTime,
         };
       }
     ),
   },
   extraReducers: (builder) => {
-    builder
-      .addCase(updateBookingClosingTimesAsync.pending, (state) => {
-        state.databaseManagementIsLoading = true;
-      })
-      .addCase(updateBookingClosingTimesAsync.fulfilled, (state) => {
-        state.databaseManagementIsLoading = false;
-        state.databaseManagementResult = "fulfilled";
-        state.databaseManagementError = null;
-      })
-      .addCase(updateBookingClosingTimesAsync.rejected, (state, action) => {
-        state.databaseManagementIsLoading = false;
-        state.databaseManagementResult = "rejected";
-        state.databaseManagementError = action.payload;
-      });
+    handleAsyncAction(builder, updateBookingClosingTimesAsync);
+    handleAsyncAction(builder, updateSessionTimesAsync);
   },
 });
 
@@ -83,6 +116,10 @@ export const {
   resetNewMorningBookingClosingTime,
   setNewAfternoonBookingClosingTime,
   resetNewAfternoonBookingClosingTime,
+  setNewMorningSessionTime,
+  setNewAfternoonShortSessionTime,
+  setNewAfternoonLongSessionTime,
+  resetNewSessionTimesDetails,
   resetDatabaseManagementError,
   resetDatabaseManagementResult,
   resetDatabaseManagementState,

@@ -28,3 +28,5 @@ export const uploadDatesRoute = "/upload-dates";
 export const databaseManagementRoute = "/database-management/*";
 export const databaseManagementViewBookingClosingTimesRoute =
   "/database-management/booking-closing-times";
+export const databaseManagementViewSessionTimesRoute =
+  "/database-management/session-times";

@@ -5,16 +5,22 @@ import { selectDatabaseManagementSelectors } from "../../store/database-manageme
 const useGetDatabaseManagementSelectors = () => {
   const {
     databaseManagementIsLoading,
-    newMorningBookingClosingTime,
-    newAfternoonBookingClosingTime,
     databaseManagementResult,
     databaseManagementError,
+    newMorningBookingClosingTime,
+    newAfternoonBookingClosingTime,
+    newMorningSessionTime,
+    newAfternoonShortSessionTime,
+    newAfternoonLongSessionTime,
   } = useSelector(selectDatabaseManagementSelectors);
 
   return {
     databaseManagementIsLoading,
     newMorningBookingClosingTime,
     newAfternoonBookingClosingTime,
+    newMorningSessionTime,
+    newAfternoonShortSessionTime,
+    newAfternoonLongSessionTime,
     databaseManagementResult,
     databaseManagementError,
   };

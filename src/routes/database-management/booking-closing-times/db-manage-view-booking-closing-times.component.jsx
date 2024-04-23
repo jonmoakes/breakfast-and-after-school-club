@@ -1,6 +1,6 @@
 import useRequestBookingClosingTimesThunkUseEffect from "../../../hooks/get-actions-and-thunks/request-date-data-actions-and-thunks/use-request-booking-closing-times-thunk-use-effect";
 import useUpdateBookingClosingTimeResultSwal from "./hooks/use-update-booking-closing-time-result-swal";
-import useBookingClosingTimesVariables from "./hooks/use-booking-closing-times-variables";
+import useDbManagementVariables from "../db-management-hooks/use-db-management-variables";
 
 import ShowFetchErrors from "../../../components/errors/show-fetch-errors.component";
 import Loader from "../../../components/loader/loader.component";
@@ -18,10 +18,10 @@ const DBManageViewBookingClosingTimes = () => {
   useUpdateBookingClosingTimeResultSwal();
 
   const {
-    requestDateDataIsLoading,
     databaseManagementIsLoading,
+    requestDateDataIsLoading,
     requestDateDataError,
-  } = useBookingClosingTimesVariables();
+  } = useDbManagementVariables();
 
   return (
     <Container>

@@ -2,16 +2,9 @@ import useGetDatabaseManagementSelectors from "../../../../hooks/get-selectors/u
 import useGetRequestDateDataSelectors from "../../../../hooks/get-selectors/use-get-request-date-data-selectors";
 
 const useBookingClosingTimesVariables = () => {
-  const {
-    newMorningBookingClosingTime,
-    newAfternoonBookingClosingTime,
-    databaseManagementIsLoading,
-  } = useGetDatabaseManagementSelectors();
-  const {
-    requestDateDataIsLoading,
-    bookingClosingTimes,
-    requestDateDataError,
-  } = useGetRequestDateDataSelectors();
+  const { newMorningBookingClosingTime, newAfternoonBookingClosingTime } =
+    useGetDatabaseManagementSelectors();
+  const { bookingClosingTimes } = useGetRequestDateDataSelectors();
 
   const { morningSessionClosingTime, afternoonSessionClosingTime } =
     bookingClosingTimes || {};
@@ -23,9 +16,6 @@ const useBookingClosingTimesVariables = () => {
   return {
     newMorningBookingClosingTime,
     newAfternoonBookingClosingTime,
-    databaseManagementIsLoading,
-    requestDateDataIsLoading,
-    requestDateDataError,
     morningSessionClosingTime,
     afternoonSessionClosingTime,
     morningText,

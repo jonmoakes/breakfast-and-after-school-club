@@ -1,6 +1,9 @@
 import useHamburgerHandlerNavigate from "../../../hooks/use-hamburger-handler-navigate";
 
-import { databaseManagementViewBookingClosingTimesRoute } from "../../../strings/routes/routes-strings";
+import {
+  databaseManagementViewBookingClosingTimesRoute,
+  databaseManagementViewSessionTimesRoute,
+} from "../../../strings/routes/routes-strings";
 
 const useNavigateToDbManagementButtons = () => {
   const { hamburgerHandlerNavigate } = useHamburgerHandlerNavigate();
@@ -15,6 +18,13 @@ const useNavigateToDbManagementButtons = () => {
         hamburgerHandlerNavigate(
           databaseManagementViewBookingClosingTimesRoute
         ),
+    },
+    {
+      id: 2,
+      heading,
+      text: "session times",
+      onClick: () =>
+        hamburgerHandlerNavigate(databaseManagementViewSessionTimesRoute),
     },
   ];
 
