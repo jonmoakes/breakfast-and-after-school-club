@@ -9,7 +9,7 @@ import {
 import { Text } from "../../../styles/p/p.styles";
 import { LowercasedSpan, RedSpan } from "../../../styles/span/span.styles";
 
-const UpdateBookingClosingTimesInstructions = ({ sessionType, example }) => {
+const UpdateBookingClosingTimesInstructions = () => {
   const { shouldShowElement } = useGetShouldShowElementSelectors();
   const { dispatchShowOppositeShowElement, dispatchHideShownElement } =
     useShouldShowElementActions();
@@ -29,13 +29,13 @@ const UpdateBookingClosingTimesInstructions = ({ sessionType, example }) => {
           <AccordionContent>
             <Text>
               to update this value in the database, enter in the new time into
-              the input below and then tap the 'upload new time' button when it
-              appears.
+              the respective input below ( there is a separate input for the
+              morning session and afternoon session times ) and then tap the
+              'upload new time' button when it appears.
             </Text>
             <Text>
               this will set the new latest time that a user is allowed to book
-              or cancel a session in the {sessionType} ( for bookings on the
-              current date ).
+              or cancel a session ( for bookings on the current date ).
             </Text>
             <Text>
               please enter in the following format using the 24 hour clock:
@@ -48,7 +48,11 @@ const UpdateBookingClosingTimesInstructions = ({ sessionType, example }) => {
             <Text>
               for example:
               <br />
-              {example}
+              <RedSpan>07:00 </RedSpan> for 7AM
+              <br />
+              or
+              <br />
+              <RedSpan>14:30 </RedSpan> for 2:30PM
             </Text>
 
             <YellowGreenButton onClick={dispatchHideShownElement}>

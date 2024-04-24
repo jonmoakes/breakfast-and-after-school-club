@@ -6,20 +6,20 @@ import { BlueH2 } from "../../../styles/h2/h2.styles";
 import { Text } from "../../../styles/p/p.styles";
 import { RedSpan } from "../../../styles/span/span.styles";
 
-const UpdateMorningSessionPriceInfo = () => {
-  const { morningSessionPriceToFixed } = useSessionPricesVariables();
+const UpdateAfternoonShortSessionPriceInfo = () => {
+  const { afternoonShortSessionPriceToFixed } = useSessionPricesVariables();
 
   return (
     <>
-      <BlueH2>morning session price</BlueH2>
+      <BlueH2>afternoon short session price</BlueH2>
       <Balancer>
-        <Text>your current morning session price is:</Text>
+        <Text>your current afternoon short session price is:</Text>
         <Text>
-          <RedSpan>£{morningSessionPriceToFixed}</RedSpan>
+          <RedSpan>£{afternoonShortSessionPriceToFixed}</RedSpan>
         </Text>
       </Balancer>
     </>
   );
 };
 
-export default UpdateMorningSessionPriceInfo;
+export default UpdateAfternoonShortSessionPriceInfo;

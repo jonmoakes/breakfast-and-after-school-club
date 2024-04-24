@@ -32,7 +32,7 @@ const UpdateMorningSessionPriceInput = () => {
             type="button"
             onClick={confirmUpdateMorningSessionPrice}
           >
-            upload new time
+            update price
           </YellowGreenButton>
 
           <WhiteShadowText>

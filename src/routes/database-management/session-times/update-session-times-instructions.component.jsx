@@ -30,16 +30,14 @@ const UpdateSessionTimesInstructions = ({ sessionTime, example }) => {
         {shouldShowElement && (
           <AccordionContent>
             <Text>
-              to update this {sessionTime} session time in the database, enter
-              in the new session time into the input below and then tap the
-              'update session time' button when it appears.
+              to update this session time in the database, enter in the new
+              session time into its respective input below ( there is one input
+              for each session time ) and then tap the 'update session time'
+              button when it appears.
             </Text>
-
             <Text>
-              this will set the new {sessionTime} session time for your users
-              information.
+              this will set the new session time for your users information.
             </Text>
-
             <Text>
               please enter in the following format using the 24 hour clock:
               <br />
@@ -52,9 +50,16 @@ const UpdateSessionTimesInstructions = ({ sessionTime, example }) => {
             <Text>
               for example:
               <br />
-              {example}
+              <RedSpan>07:00 - 08:50</RedSpan>
+              <br />
+              for the morning session,
+              <br />
+              Or
+              <br />
+              <RedSpan>15:30 - 16:30</RedSpan>
+              <br />
+              for an afternoon short session etc,
             </Text>
-
             <YellowGreenButton onClick={dispatchHideShownElement}>
               Ok, Close
             </YellowGreenButton>

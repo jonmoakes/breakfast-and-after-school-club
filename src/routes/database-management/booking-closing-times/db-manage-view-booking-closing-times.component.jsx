@@ -4,7 +4,7 @@ import useDbManagementVariables from "../db-management-hooks/use-db-management-v
 
 import ShowFetchErrors from "../../../components/errors/show-fetch-errors.component";
 import Loader from "../../../components/loader/loader.component";
-import UpdateBookingClosingTimesTitle from "./update-booking-closing-times-title.component";
+import UpdateBookingClosingTimesTitleAndAccordion from "./update-booking-closing-times-title-and-accordion.component";
 import UpdateMorningSessionClosingTimesInfo from "./update-morning-session-closing-time-info.component";
 import UpdateMorningSessionClosingTimeInput from "./update-morning-session-closing-time-input.component";
 import UpdateAfternoonSessionClosingTimesInfo from "./update-afternoon-session-closing-time-info.component";
@@ -25,7 +25,7 @@ const DBManageViewBookingClosingTimes = () => {
 
   return (
     <Container>
-      <UpdateBookingClosingTimesTitle />
+      <UpdateBookingClosingTimesTitleAndAccordion />
 
       {requestDateDataIsLoading || databaseManagementIsLoading ? (
         <Loader />

@@ -2,7 +2,7 @@ import useRequestSessionTimesThunkUseEffect from "../../../hooks/get-actions-and
 import useUpdateSessionTimeResultSwal from "./hooks/use-update-session-time-result-swal";
 import useDbManagementVariables from "../db-management-hooks/use-db-management-variables";
 
-import UpdateSessionTimesTitle from "./update-session-times-title.component";
+import UpdateSessionTimesTitleAndAccordion from "./update-session-times-title-and-accordion.component";
 import Loader from "../../../components/loader/loader.component";
 import ShowFetchErrors from "../../../components/errors/show-fetch-errors.component";
 import MorningSessionTimeInfo from "./morning-session-time-info.component";
@@ -27,7 +27,7 @@ const DBManageViewSessionTimes = () => {
 
   return (
     <Container>
-      <UpdateSessionTimesTitle />
+      <UpdateSessionTimesTitleAndAccordion />
 
       {requestDateDataIsLoading || databaseManagementIsLoading ? (
         <Loader />

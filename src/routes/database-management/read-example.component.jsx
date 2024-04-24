@@ -6,7 +6,8 @@ const ReadExample = () => (
   <Balancer>
     <WhiteShadowText>
       please also make sure that you have read the '
-      <YellowShadowSpan>important info</YellowShadowSpan>' notes above.
+      <YellowShadowSpan>important info</YellowShadowSpan>' notes at the top of
+      the page.
     </WhiteShadowText>
   </Balancer>
 );

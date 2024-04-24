@@ -25,13 +25,6 @@ const useSessionPricesVariables = () => {
     morningAndAfternoonLongSessionPriceToFixed,
   } = usePricesToFixedLogic();
 
-  const morningText = "morning";
-  const afternoonText = "afternoon";
-  const afternoonShortText = "afternoon short";
-  const afternoonLongText = "afternoon long";
-  const morningAndAfternoonShortText = "morning and afternoon short";
-  const morningAndAfternoonLongText = "morning and afternoon long";
-
   return {
     newMorningSessionPrice,
     newAfternoonShortSessionPrice,
@@ -48,12 +41,6 @@ const useSessionPricesVariables = () => {
     afternoonLongSessionPriceToFixed,
     morningAndAfternoonShortSessionPriceToFixed,
     morningAndAfternoonLongSessionPriceToFixed,
-    morningText,
-    afternoonText,
-    afternoonShortText,
-    afternoonLongText,
-    morningAndAfternoonShortText,
-    morningAndAfternoonLongText,
   };
 };
 

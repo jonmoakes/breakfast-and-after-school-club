@@ -30,7 +30,7 @@ const UpdateAfternoonLongSessionTimeInput = () => {
           type="button"
           onClick={checkForNewAfternoonLongSessionTimeErrorsAndConfirm}
         >
-          upload new time
+          Update Session Time
         </YellowGreenButton>
       ) : (
         <ReadExample />

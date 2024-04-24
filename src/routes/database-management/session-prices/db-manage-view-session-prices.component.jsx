@@ -4,9 +4,10 @@ import useDbManagementVariables from "../db-management-hooks/use-db-management-v
 
 import ShowFetchErrors from "../../../components/errors/show-fetch-errors.component";
 import Loader from "../../../components/loader/loader.component";
-import UpdatePricesTitle from "./update-prices-title.component";
+import UpdatePricesTitleAndAccordion from "./update-prices-title-and-accordion.component";
 import UpdateMorningSessionPriceInfo from "./update-morning-session-price-info.component";
 import UpdateMorningSessionPriceInput from "./update-morning-session-price-input.component";
+import UpdateAfternoonShortSessionPriceInfo from "./update-afternoon-short-session-price-info.component";
 
 import { ParentDiv } from "../../../styles/div/div.styles";
 import { Container } from "../../../styles/container/container.styles";
@@ -23,7 +24,7 @@ const DBManageViewSessionPrices = () => {
 
   return (
     <Container>
-      <UpdatePricesTitle />
+      <UpdatePricesTitleAndAccordion />
 
       {sessionTypesAndPricesIsLoading || databaseManagementIsLoading ? (
         <Loader />
@@ -34,6 +35,10 @@ const DBManageViewSessionPrices = () => {
               <ParentDiv>
                 <UpdateMorningSessionPriceInfo />
                 <UpdateMorningSessionPriceInput />
+              </ParentDiv>
+
+              <ParentDiv>
+                <UpdateAfternoonShortSessionPriceInfo />
               </ParentDiv>
             </>
           ) : (
