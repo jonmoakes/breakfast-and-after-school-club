@@ -1,5 +1,5 @@
 import useRequestSessionTimesThunkUseEffect from "../../../hooks/get-actions-and-thunks/request-date-data-actions-and-thunks/use-request-session-times-thunk-use-effect";
-import useUpdateSessionTimesTimeResultSwal from "./hooks/use-update-session-times-result-swal";
+import useUpdateSessionTimeResultSwal from "./hooks/use-update-session-time-result-swal";
 import useDbManagementVariables from "../db-management-hooks/use-db-management-variables";
 
 import UpdateSessionTimesTitle from "./update-session-times-title.component";
@@ -17,7 +17,7 @@ import { ParentDiv } from "../../../styles/div/div.styles";
 
 const DBManageViewSessionTimes = () => {
   useRequestSessionTimesThunkUseEffect();
-  useUpdateSessionTimesTimeResultSwal();
+  useUpdateSessionTimeResultSwal();
 
   const {
     requestDateDataIsLoading,

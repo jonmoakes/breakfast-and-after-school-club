@@ -7,7 +7,8 @@ import { Text } from "../../../styles/p/p.styles";
 import { RedSpan } from "../../../styles/span/span.styles";
 
 const MorningSessionTimeInfo = () => {
-  const { morningSessionTime, morningSessionText } = useSessionTimesVariables();
+  const { morningSessionTime, morningSessionText, morningSessionTimeExample } =
+    useSessionTimesVariables();
 
   return (
     <>
@@ -17,13 +18,10 @@ const MorningSessionTimeInfo = () => {
         <RedSpan>{morningSessionTime}</RedSpan>
       </Text>
 
-      <UpdateSessionTimesInstructions sessionTime={morningSessionText} />
-
-      <Text>
-        for example:
-        <br />
-        07:00 - 08:50
-      </Text>
+      <UpdateSessionTimesInstructions
+        sessionTime={morningSessionText}
+        example={morningSessionTimeExample}
+      />
     </>
   );
 };

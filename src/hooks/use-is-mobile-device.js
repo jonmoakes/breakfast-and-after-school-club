@@ -15,17 +15,6 @@ const useIsMobileMobileDevice = () => {
     }
   };
 
-  const isPwa = () => {
-    if (
-      width <= 1366 &&
-      !window.matchMedia("(display-mode: standalone)").matches
-    ) {
-      return true;
-    } else {
-      return false;
-    }
-  };
-
   const isDesktop = () => {
     if (width > 1366) {
       return true;
@@ -34,7 +23,7 @@ const useIsMobileMobileDevice = () => {
     }
   };
 
-  return { isMobileDevice, isPwa, isDesktop };
+  return { isMobileDevice, isDesktop };
 };
 
 export default useIsMobileMobileDevice;

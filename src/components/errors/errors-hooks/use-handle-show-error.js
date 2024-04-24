@@ -19,6 +19,8 @@ import {
   allUsersRoute,
   childInfoRoute,
   databaseManagementViewBookingClosingTimesRoute,
+  databaseManagementViewSessionPricesRoute,
+  databaseManagementViewSessionTimesRoute,
 } from "../../../strings/routes/routes-strings";
 
 const useHandleShowError = () => {
@@ -33,6 +35,8 @@ const useHandleShowError = () => {
 
   const location = useLocation();
   const path = location.pathname;
+
+  console.log(sessionTypesAndPricesError);
 
   const showErrorHeading = () => {
     if (getUsersChildrenError) return "failed to fetch users children.";
@@ -81,6 +85,10 @@ const useHandleShowError = () => {
         return "display the list of your children";
       case databaseManagementViewBookingClosingTimesRoute:
         return "display the booking closing times from the database";
+      case databaseManagementViewSessionTimesRoute:
+        return "display the session times from the database";
+      case databaseManagementViewSessionPricesRoute:
+        return "display the session prices from the database";
       default:
         return "display the requested data";
     }

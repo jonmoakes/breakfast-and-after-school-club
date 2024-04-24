@@ -7,8 +7,11 @@ import { Text } from "../../../styles/p/p.styles";
 import { RedSpan } from "../../../styles/span/span.styles";
 
 const AfternoonShortSessionTimeInfo = () => {
-  const { afternoonShortSessionTime, afternoonShortSessionText } =
-    useSessionTimesVariables();
+  const {
+    afternoonShortSessionTime,
+    afternoonShortSessionText,
+    afternoonShortSessionTimeExample,
+  } = useSessionTimesVariables();
 
   return (
     <>
@@ -18,13 +21,10 @@ const AfternoonShortSessionTimeInfo = () => {
         <RedSpan>{afternoonShortSessionTime}</RedSpan>
       </Text>
 
-      <UpdateSessionTimesInstructions sessionTime={afternoonShortSessionText} />
-
-      <Text>
-        for example:
-        <br />
-        15:30 - 16:30
-      </Text>
+      <UpdateSessionTimesInstructions
+        sessionTime={afternoonShortSessionText}
+        example={afternoonShortSessionTimeExample}
+      />
     </>
   );
 };

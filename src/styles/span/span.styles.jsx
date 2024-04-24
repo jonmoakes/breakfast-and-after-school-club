@@ -5,6 +5,7 @@ import {
   customRed,
   customBlue,
   customLightGreen,
+  customYellow,
 } from "../colors";
 
 import eyeIcon from "../../assets/eye.png";
@@ -48,6 +49,11 @@ export const LightGreenSpan = styled.span`
 
 export const BlackSpan = styled.span`
   color: ${customBlack};
+`;
+
+export const YellowShadowSpan = styled.span`
+  color: ${customYellow};
+  text-shadow: 1px 1px 1px ${customBlack};
 `;
 
 export const BlackSpanHover = styled(BlackSpan)`

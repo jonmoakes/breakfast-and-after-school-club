@@ -12,17 +12,27 @@ const useGetDatabaseManagementSelectors = () => {
     newMorningSessionTime,
     newAfternoonShortSessionTime,
     newAfternoonLongSessionTime,
+    newMorningSessionPrice,
+    newAfternoonShortSessionPrice,
+    newAfternoonLongSessionPrice,
+    newMorningAndAfternoonShortSessionPrice,
+    newMorningAndAfternoonLongSessionPrice,
   } = useSelector(selectDatabaseManagementSelectors);
 
   return {
     databaseManagementIsLoading,
+    databaseManagementResult,
+    databaseManagementError,
     newMorningBookingClosingTime,
     newAfternoonBookingClosingTime,
     newMorningSessionTime,
     newAfternoonShortSessionTime,
     newAfternoonLongSessionTime,
-    databaseManagementResult,
-    databaseManagementError,
+    newMorningSessionPrice,
+    newAfternoonShortSessionPrice,
+    newAfternoonLongSessionPrice,
+    newMorningAndAfternoonShortSessionPrice,
+    newMorningAndAfternoonLongSessionPrice,
   };
 };
 

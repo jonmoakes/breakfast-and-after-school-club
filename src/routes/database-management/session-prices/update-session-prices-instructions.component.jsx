@@ -1,17 +1,16 @@
-import useShouldShowElementActions from "../../../hooks/get-actions-and-thunks/use-should-show-element-actions";
 import useGetShouldShowElementSelectors from "../../../hooks/get-selectors/use-get-should-show-element-selectors";
+import useShouldShowElementActions from "../../../hooks/get-actions-and-thunks/use-should-show-element-actions";
 
-import { YellowGreenButton } from "../../../styles/buttons/buttons.styles";
 import {
   Accordion,
   AccordionContent,
   AccordionTitle,
 } from "../../../styles/div/div.styles";
-import { BlackHr } from "../../../styles/hr/hr.styles";
 import { Text } from "../../../styles/p/p.styles";
-import { LowercasedSpan, RedSpan } from "../../../styles/span/span.styles";
+import { RedSpan } from "../../../styles/span/span.styles";
+import { YellowGreenButton } from "../../../styles/buttons/buttons.styles";
 
-const UpdateSessionTimesInstructions = ({ sessionTime, example }) => {
+const UpdateSessionPricesInstructions = ({ sessionPrice }) => {
   const { shouldShowElement } = useGetShouldShowElementSelectors();
   const { dispatchShowOppositeShowElement, dispatchHideShownElement } =
     useShouldShowElementActions();
@@ -30,29 +29,28 @@ const UpdateSessionTimesInstructions = ({ sessionTime, example }) => {
         {shouldShowElement && (
           <AccordionContent>
             <Text>
-              to update this {sessionTime} session time in the database, enter
-              in the new session time into the input below and then tap the
-              'update session time' button when it appears.
+              to update this value in the database, enter in the new time into
+              the input below and then tap the 'upload new Price' button when it
+              appears.
             </Text>
-
             <Text>
-              this will set the new {sessionTime} session time for your users
-              information.
+              this will set the new {sessionPrice} session price in the
+              database, which will then take effect whenever a user goes to book
+              a new session.
             </Text>
-
             <Text>
-              please enter in the following format using the 24 hour clock:
-              <br />
-              <RedSpan>
-                HH:<LowercasedSpan>mm</LowercasedSpan>(space)-(space)HH:
-                <LowercasedSpan>mm</LowercasedSpan>
-              </RedSpan>
+              please enter in a 'double' format with a decimal point. This is
+              because how the app reads prices in the database.
             </Text>
 
             <Text>
               for example:
               <br />
-              {example}
+              <RedSpan>5.5</RedSpan> for £5.50
+              <br />
+              or
+              <br />
+              <RedSpan>5.0</RedSpan> for £5
             </Text>
 
             <YellowGreenButton onClick={dispatchHideShownElement}>
@@ -64,9 +62,4 @@ const UpdateSessionTimesInstructions = ({ sessionTime, example }) => {
     </Accordion>
   );
 };
-
-export default UpdateSessionTimesInstructions;
-
-<>
-  <BlackHr />
-</>;
+export default UpdateSessionPricesInstructions;

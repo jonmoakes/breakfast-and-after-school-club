@@ -2,6 +2,8 @@ import useHandleClosingTimeChanges from "./hooks/use-handle-closing-time-changes
 import useConfirmUpdateMorningBookingClosingTime from "./hooks/use-confirm-update-morning-booking-closing-time";
 import useBookingClosingTimesVariables from "./hooks/use-booking-closing-times-variables";
 
+import ReadExample from "../read-example.component";
+
 import { YellowGreenButton } from "../../../styles/buttons/buttons.styles";
 import { Form, Label, LowercasedInput } from "../../../styles/form/form.styles";
 
@@ -30,7 +32,9 @@ const UpdateMorningSessionClosingTimeInput = () => {
         >
           upload new time
         </YellowGreenButton>
-      ) : null}
+      ) : (
+        <ReadExample />
+      )}
     </Form>
   );
 };

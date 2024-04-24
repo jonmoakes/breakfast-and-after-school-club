@@ -46,3 +46,28 @@ export const updateSessionTimesAsync = createAsyncThunk(
     }
   }
 );
+
+export const updateSessionPriceAsync = createAsyncThunk(
+  "updateSessionPrice",
+  async (
+    { attributeToUpdate, newPrice, databaseId, collectionId, documentId },
+    thunkAPI
+  ) => {
+    //db expects a double for its attribute
+    const newPriceAsDouble = parseFloat(newPrice);
+    try {
+      const dataToUpdate = {
+        [attributeToUpdate]: newPriceAsDouble,
+      };
+      await manageDatabaseDocument(
+        "update",
+        databaseId,
+        collectionId,
+        documentId,
+        dataToUpdate
+      );
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);

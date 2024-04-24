@@ -2,6 +2,8 @@ import useSessionTimesVariables from "./hooks/use-session-times-variables";
 import useConfirmUpdateAfternoonShortSessionTimes from "./hooks/use-confirm-update-afternoon-short-session-times";
 import useHandleNewSessionTimesChange from "./hooks/use-handle-session-time-change";
 
+import ReadExample from "../read-example.component";
+
 import { YellowGreenButton } from "../../../styles/buttons/buttons.styles";
 import { Form, Label, LowercasedInput } from "../../../styles/form/form.styles";
 
@@ -30,7 +32,9 @@ const UpdateAfternoonShortSessionTimeInput = () => {
         >
           upload new time
         </YellowGreenButton>
-      ) : null}
+      ) : (
+        <ReadExample />
+      )}
     </Form>
   );
 };

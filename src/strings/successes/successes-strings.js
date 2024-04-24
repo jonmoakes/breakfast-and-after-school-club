@@ -24,3 +24,5 @@ export const bookingClosingTimeUpdatedMessage =
   "the time was successfully updated in the database!";
 export const sessionTimeUpdatedMessage =
   "the session time was successfully updated!";
+export const sessionPriceUpdatedMessage =
+  "the session price was successfully updated!";

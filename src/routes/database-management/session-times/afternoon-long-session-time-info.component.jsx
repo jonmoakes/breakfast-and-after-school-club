@@ -7,8 +7,11 @@ import { Text } from "../../../styles/p/p.styles";
 import { RedSpan } from "../../../styles/span/span.styles";
 
 const AfternoonLongSessionTimeInfo = () => {
-  const { afternoonLongSessionTime, afternoonLongSessionText } =
-    useSessionTimesVariables();
+  const {
+    afternoonLongSessionTime,
+    afternoonLongSessionText,
+    afternoonLongSessionTimeExample,
+  } = useSessionTimesVariables();
 
   return (
     <>
@@ -18,13 +21,10 @@ const AfternoonLongSessionTimeInfo = () => {
         <RedSpan>{afternoonLongSessionTime}</RedSpan>
       </Text>
 
-      <UpdateSessionTimesInstructions sessionTime={afternoonLongSessionText} />
-
-      <Text>
-        for example:
-        <br />
-        15:30 - 18:00
-      </Text>
+      <UpdateSessionTimesInstructions
+        sessionTime={afternoonLongSessionText}
+        example={afternoonLongSessionTimeExample}
+      />
     </>
   );
 };

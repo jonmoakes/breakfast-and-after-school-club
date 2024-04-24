@@ -54,6 +54,7 @@ import {
   childInfoRoute,
   databaseManagementViewBookingClosingTimesRoute,
   databaseManagementViewSessionTimesRoute,
+  databaseManagementViewSessionPricesRoute,
 } from "../strings/routes/routes-strings";
 
 const useResetStore = () => {
@@ -96,7 +97,10 @@ const useResetStore = () => {
   } = useHandlePaymentActions();
   const { dispatchResetSendEmailState } = useSendEmailActions();
   const { sessionTypesAndPricesError } = useGetSessionTypesAndPricesSelectors();
-  const { dispatchResetSessionPricesError } = useSessionTypesAndPricesActions();
+  const {
+    dispatchResetSessionPricesError,
+    dispatchResetSessionTypesAndPricesState,
+  } = useSessionTypesAndPricesActions();
   const { dispatchResetShouldShowElementState } = useShouldShowElementActions();
   const { dispatchResetSignInFormState } = useSignInFormActions();
   const { dispatchResetSignUpFormState } = useSignUpFormActions();
@@ -149,6 +153,7 @@ const useResetStore = () => {
         dispatchResetShouldShowElementState();
         dispatchResetBookSessionState();
         dispatchResetSendEmailState();
+        dispatchResetSessionTypesAndPricesState();
         if (sessionTypesAndPricesError) {
           dispatchResetSessionPricesError();
         } else if (getUsersChildrenError) {
@@ -219,6 +224,14 @@ const useResetStore = () => {
         } else {
           dispatchResetDatabaseManagementState();
           dispatchResetRequestDateDataState();
+        }
+        break;
+      case databaseManagementViewSessionPricesRoute:
+        if (databaseManagementError) {
+          dispatchResetDatabaseManagementError();
+        } else {
+          dispatchResetDatabaseManagementState();
+          dispatchResetSessionTypesAndPricesState();
         }
         break;
       default:

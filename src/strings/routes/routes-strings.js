@@ -30,3 +30,5 @@ export const databaseManagementViewBookingClosingTimesRoute =
   "/database-management/booking-closing-times";
 export const databaseManagementViewSessionTimesRoute =
   "/database-management/session-times";
+export const databaseManagementViewSessionPricesRoute =
+  "/database-management/session-prices";

@@ -16,6 +16,9 @@ const useSessionTimesVariables = () => {
   const morningSessionText = "morning";
   const afternoonShortSessionText = "afternoon short";
   const afternoonLongSessionText = "afternoon long";
+  const morningSessionTimeExample = "07:00 - 08:50";
+  const afternoonShortSessionTimeExample = "15:30 - 16:30";
+  const afternoonLongSessionTimeExample = " 15:30 - 18:00";
 
   return {
     morningSessionTime,
@@ -27,6 +30,9 @@ const useSessionTimesVariables = () => {
     morningSessionText,
     afternoonShortSessionText,
     afternoonLongSessionText,
+    morningSessionTimeExample,
+    afternoonShortSessionTimeExample,
+    afternoonLongSessionTimeExample,
   };
 };
 

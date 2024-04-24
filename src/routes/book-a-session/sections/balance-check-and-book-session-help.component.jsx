@@ -10,7 +10,7 @@ import { StyledLink } from "../../../styles/link/link.styles";
 import { RedSpan } from "../../../styles/span/span.styles";
 
 import { addFundsRoute } from "../../../strings/routes/routes-strings";
-import usePricesToFixedLogic from "../book-a-session-hooks/logic/use-prices-to-fixed-logic";
+import usePricesToFixedLogic from "../../../hooks/use-prices-to-fixed-logic";
 
 const BalanceCheckAndBookSessionHelp = () => {
   const { noChildrenAddedYet } = useGetChildrenLogic();

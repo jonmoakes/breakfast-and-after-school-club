@@ -11,7 +11,7 @@ import {
 } from "../../../../strings/errors/errors-strings";
 import { sessionTimeUpdatedMessage } from "../../../../strings/successes/successes-strings";
 
-const useUpdateSessionTimesTimeResultSwal = () => {
+const useUpdateSessionTimeResultSwal = () => {
   const { databaseManagementResult, databaseManagementError } =
     useDbManagementVariables();
   const { requestSessionTimesThunk } = useRequestSessionTimesThunk();
@@ -63,4 +63,4 @@ const useUpdateSessionTimesTimeResultSwal = () => {
   ]);
 };
 
-export default useUpdateSessionTimesTimeResultSwal;
+export default useUpdateSessionTimeResultSwal;

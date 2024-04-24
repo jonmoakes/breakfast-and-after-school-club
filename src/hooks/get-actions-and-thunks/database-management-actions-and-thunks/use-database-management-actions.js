@@ -12,6 +12,12 @@ import {
   setNewMorningSessionTime,
   setNewAfternoonShortSessionTime,
   setNewAfternoonLongSessionTime,
+  setNewMorningSessionPrice,
+  setNewAfternoonShortSessionPrice,
+  setNewAfternoonLongSessionPrice,
+  setNewMorningAndAfternoonShortSessionPrice,
+  setNewMorningAndAfternoonLongSessionPrice,
+  resetNewSessionPricesDetails,
 } from "../../../store/database-management/database-management.slice";
 
 const useDatabaseManagementActions = () => {
@@ -61,6 +67,30 @@ const useDatabaseManagementActions = () => {
     dispatch(resetDatabaseManagementState());
   };
 
+  const dispatchSetNewMorningSessionPrice = (payload) => {
+    dispatch(setNewMorningSessionPrice(payload));
+  };
+
+  const dispatchSetNewAfternoonShortSessionPrice = (payload) => {
+    dispatch(setNewAfternoonShortSessionPrice(payload));
+  };
+
+  const dispatchSetNewAfternoonLongSessionPrice = (payload) => {
+    dispatch(setNewAfternoonLongSessionPrice(payload));
+  };
+
+  const dispatchSetNewMorningAndAfternoonShortSessionPrice = (payload) => {
+    dispatch(setNewMorningAndAfternoonShortSessionPrice(payload));
+  };
+
+  const dispatchSetNewMorningAndAfternoonLongSessionPrice = (payload) => {
+    dispatch(setNewMorningAndAfternoonLongSessionPrice(payload));
+  };
+
+  const dispatchResetNewSessionPricesDetails = () => {
+    dispatch(resetNewSessionPricesDetails());
+  };
+
   return {
     dispatchSetNewMorningBookingClosingTime,
     dispatchResetNewMorningBookingClosingTime,
@@ -73,6 +103,12 @@ const useDatabaseManagementActions = () => {
     dispatchResetDatabaseManagementResult,
     dispatchResetDatabaseManagementError,
     dispatchResetDatabaseManagementState,
+    dispatchSetNewMorningSessionPrice,
+    dispatchSetNewAfternoonShortSessionPrice,
+    dispatchSetNewAfternoonLongSessionPrice,
+    dispatchSetNewMorningAndAfternoonShortSessionPrice,
+    dispatchSetNewMorningAndAfternoonLongSessionPrice,
+    dispatchResetNewSessionPricesDetails,
   };
 };
 

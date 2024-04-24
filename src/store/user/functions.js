@@ -47,7 +47,6 @@ export const getRetrievedUserFromDocument = async (schoolCode) => {
       schoolCode,
     };
   } else {
-    // throw new Error("argghh");
     return;
   }
 };

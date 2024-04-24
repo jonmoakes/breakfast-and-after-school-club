@@ -1,4 +1,4 @@
-import useGetSessionTypesAndPricesSelectors from "../../../../hooks/get-selectors/use-get-session-types-and-prices-selectors";
+import useGetSessionTypesAndPricesSelectors from "./get-selectors/use-get-session-types-and-prices-selectors";
 
 const usePricesToFixedLogic = () => {
   const {

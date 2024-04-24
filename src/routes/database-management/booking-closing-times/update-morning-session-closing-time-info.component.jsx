@@ -9,7 +9,7 @@ import { Text } from "../../../styles/p/p.styles";
 import { RedSpan } from "../../../styles/span/span.styles";
 
 const UpdateMorningSessionClosingTimesInfo = () => {
-  const { morningSessionClosingTime, morningText } =
+  const { morningSessionClosingTime, morningText, morningExample } =
     useBookingClosingTimesVariables();
 
   return (
@@ -24,13 +24,10 @@ const UpdateMorningSessionClosingTimesInfo = () => {
         </Text>
       </Balancer>
 
-      <UpdateBookingClosingTimesInstructions sessionType={morningText} />
-
-      <Text>
-        for example:
-        <br />
-        07:00 for 7AM
-      </Text>
+      <UpdateBookingClosingTimesInstructions
+        sessionType={morningText}
+        example={morningExample}
+      />
     </>
   );
 };

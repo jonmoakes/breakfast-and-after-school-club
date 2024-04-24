@@ -12,6 +12,8 @@ const useBookingClosingTimesVariables = () => {
   // for use in UpdateBookingClosingTimesInstructions for clarity as to which time they're trying to change
   const morningText = "morning";
   const afternoonText = "afternoon";
+  const morningExample = "07:00 for 7AM";
+  const afternoonExample = "14:30 for 2:30PM";
 
   return {
     newMorningBookingClosingTime,
@@ -20,6 +22,8 @@ const useBookingClosingTimesVariables = () => {
     afternoonSessionClosingTime,
     morningText,
     afternoonText,
+    morningExample,
+    afternoonExample,
   };
 };
 

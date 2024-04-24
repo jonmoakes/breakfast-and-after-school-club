@@ -1,4 +1,4 @@
-import usePricesToFixedLogic from "../book-a-session-hooks/logic/use-prices-to-fixed-logic";
+import usePricesToFixedLogic from "../../../hooks/use-prices-to-fixed-logic";
 import useGetRequestDateDataSelectors from "../../../hooks/get-selectors/use-get-request-date-data-selectors";
 import useShouldShowElementSelectors from "../../../hooks/get-selectors/use-get-should-show-element-selectors";
 import useShouldShowElementActions from "../../../hooks/get-actions-and-thunks/use-should-show-element-actions";

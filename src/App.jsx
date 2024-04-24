@@ -15,6 +15,7 @@ import Loader from "./components/loader/loader.component";
 import FloatingBackButton from "./components/floating-back-button/floating-back-button.component";
 import DBManageViewBookingClosingTimes from "./routes/database-management/booking-closing-times/db-manage-view-booking-closing-times.component";
 import DBManageViewSessionTimes from "./routes/database-management/session-times/db-manage-view-session-times.component";
+import DBManageViewSessionPrices from "./routes/database-management/session-prices/db-manage-view-session-prices.component";
 
 import {
   contactRoute,
@@ -43,6 +44,7 @@ import {
   databaseManagementRoute,
   databaseManagementViewBookingClosingTimesRoute,
   databaseManagementViewSessionTimesRoute,
+  databaseManagementViewSessionPricesRoute,
 } from "./strings/routes/routes-strings";
 
 const Navigation = lazy(() =>
@@ -187,6 +189,10 @@ const App = () => {
               <Route
                 path={databaseManagementViewSessionTimesRoute}
                 element={<DBManageViewSessionTimes />}
+              />
+              <Route
+                path={databaseManagementViewSessionPricesRoute}
+                element={<DBManageViewSessionPrices />}
               />
 
               <Route path={childInfoRoute} element={<ChildInfo />} />

@@ -2,6 +2,7 @@ import { createSelector, createSlice } from "@reduxjs/toolkit";
 import {
   updateBookingClosingTimesAsync,
   updateSessionTimesAsync,
+  updateSessionPriceAsync,
 } from "./database-management-thunks";
 
 const INITIAL_STATE = {
@@ -11,6 +12,11 @@ const INITIAL_STATE = {
   newMorningSessionTime: "",
   newAfternoonShortSessionTime: "",
   newAfternoonLongSessionTime: "",
+  newMorningSessionPrice: "",
+  newAfternoonShortSessionPrice: "",
+  newAfternoonLongSessionPrice: "",
+  newMorningAndAfternoonShortSessionPrice: "",
+  newMorningAndAfternoonLongSessionPrice: "",
   databaseManagementResult: "",
   databaseManagementError: null,
 };
@@ -20,7 +26,7 @@ const handleAsyncAction = (builder, asyncAction) => {
     .addCase(asyncAction.pending, (state) => {
       state.databaseManagementIsLoading = true;
     })
-    .addCase(asyncAction.fulfilled, (state, action) => {
+    .addCase(asyncAction.fulfilled, (state) => {
       state.databaseManagementIsLoading = false;
       state.databaseManagementResult = "fulfilled";
       state.databaseManagementError = null;
@@ -62,6 +68,28 @@ export const databaseManagementSlice = createSlice({
       state.newAfternoonShortSessionTime = "";
       state.newAfternoonLongSessionTime = "";
     },
+    setNewMorningSessionPrice(state, action) {
+      state.newMorningSessionPrice = action.payload;
+    },
+    setNewAfternoonShortSessionPrice(state, action) {
+      state.newAfternoonShortSessionPrice = action.payload;
+    },
+    setNewAfternoonLongSessionPrice(state, action) {
+      state.newAfternoonLongSessionPrice = action.payload;
+    },
+    setNewMorningAndAfternoonShortSessionPrice(state, action) {
+      state.newMorningAndAfternoonShortSessionPrice = action.payload;
+    },
+    setNewMorningAndAfternoonLongSessionPrice(state, action) {
+      state.newMorningAndAfternoonLongSessionPrice = action.payload;
+    },
+    resetNewSessionPricesDetails(state) {
+      state.newMorningSessionPrice = "";
+      state.newAfternoonShortSessionPrice = "";
+      state.newAfternoonLongSessionPrice = "";
+      state.newMorningAndAfternoonShortSessionPrice = "";
+      state.newMorningAndAfternoonLongSessionPrice = "";
+    },
     resetDatabaseManagementError(state) {
       state.databaseManagementError = null;
     },
@@ -82,6 +110,11 @@ export const databaseManagementSlice = createSlice({
       (state) => state.newMorningSessionTime,
       (state) => state.newAfternoonShortSessionTime,
       (state) => state.newAfternoonLongSessionTime,
+      (state) => state.newMorningSessionPrice,
+      (state) => state.newAfternoonShortSessionPrice,
+      (state) => state.newAfternoonLongSessionPrice,
+      (state) => state.newMorningAndAfternoonShortSessionPrice,
+      (state) => state.newMorningAndAfternoonLongSessionPrice,
       (
         databaseManagementIsLoading,
         newMorningBookingClosingTime,
@@ -90,7 +123,12 @@ export const databaseManagementSlice = createSlice({
         databaseManagementError,
         newMorningSessionTime,
         newAfternoonShortSessionTime,
-        newAfternoonLongSessionTime
+        newAfternoonLongSessionTime,
+        newMorningSessionPrice,
+        newAfternoonShortSessionPrice,
+        newAfternoonLongSessionPrice,
+        newMorningAndAfternoonShortSessionPrice,
+        newMorningAndAfternoonLongSessionPrice
       ) => {
         return {
           databaseManagementIsLoading,
@@ -101,6 +139,11 @@ export const databaseManagementSlice = createSlice({
           newMorningSessionTime,
           newAfternoonShortSessionTime,
           newAfternoonLongSessionTime,
+          newMorningSessionPrice,
+          newAfternoonShortSessionPrice,
+          newAfternoonLongSessionPrice,
+          newMorningAndAfternoonShortSessionPrice,
+          newMorningAndAfternoonLongSessionPrice,
         };
       }
     ),
@@ -108,6 +151,7 @@ export const databaseManagementSlice = createSlice({
   extraReducers: (builder) => {
     handleAsyncAction(builder, updateBookingClosingTimesAsync);
     handleAsyncAction(builder, updateSessionTimesAsync);
+    handleAsyncAction(builder, updateSessionPriceAsync);
   },
 });
 
@@ -120,6 +164,12 @@ export const {
   setNewAfternoonShortSessionTime,
   setNewAfternoonLongSessionTime,
   resetNewSessionTimesDetails,
+  setNewMorningSessionPrice,
+  setNewAfternoonShortSessionPrice,
+  setNewAfternoonLongSessionPrice,
+  setNewMorningAndAfternoonShortSessionPrice,
+  setNewMorningAndAfternoonLongSessionPrice,
+  resetNewSessionPricesDetails,
   resetDatabaseManagementError,
   resetDatabaseManagementResult,
   resetDatabaseManagementState,

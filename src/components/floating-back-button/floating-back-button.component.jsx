@@ -19,7 +19,7 @@ import {
 const FloatingBackButton = () => {
   const { confirmGoBack } = useBackButton();
   const { isRouteWithNavWarning } = useIsRouteWithNavWarning();
-  const { isMobileDevice, isPwa, isDesktop } = useIsMobileMobileDevice();
+  const { isMobileDevice, isDesktop } = useIsMobileMobileDevice();
 
   const navigate = useNavigate();
   const location = useLocation();
@@ -46,7 +46,7 @@ const FloatingBackButton = () => {
 
   return (
     <>
-      {isPwa() || isDesktop() || dontShowButton() ? null : isMobileDevice() &&
+      {isDesktop() || dontShowButton() ? null : isMobileDevice() &&
         noConfirmNeeded() ? (
         <RelativePositionDiv>
           <BackButton onClick={() => navigate(-1)}>
