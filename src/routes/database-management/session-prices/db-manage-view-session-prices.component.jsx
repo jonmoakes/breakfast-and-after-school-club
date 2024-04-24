@@ -8,6 +8,7 @@ import UpdatePricesTitleAndAccordion from "./update-prices-title-and-accordion.c
 import UpdateMorningSessionPriceInfo from "./update-morning-session-price-info.component";
 import UpdateMorningSessionPriceInput from "./update-morning-session-price-input.component";
 import UpdateAfternoonShortSessionPriceInfo from "./update-afternoon-short-session-price-info.component";
+import UpdateAfternoonShortSessionPriceInput from "./update-afternoon-short-session-price-input.component";
 
 import { ParentDiv } from "../../../styles/div/div.styles";
 import { Container } from "../../../styles/container/container.styles";
@@ -39,6 +40,7 @@ const DBManageViewSessionPrices = () => {
 
               <ParentDiv>
                 <UpdateAfternoonShortSessionPriceInfo />
+                <UpdateAfternoonShortSessionPriceInput />
               </ParentDiv>
             </>
           ) : (

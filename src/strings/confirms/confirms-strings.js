@@ -73,3 +73,5 @@ export const confirmUpdateAfternoonLongSessionTime =
   "are you sure you'd like to update the afternoon long session time?";
 export const confirmUpdateMorningSessionPriceMessage =
   "are you sure you'd like to update the morning session price?";
+export const confirmUpdateAfternoonShortSessionPriceMessage =
+  "are you sure you'd like to update the afternoon short session price?";
