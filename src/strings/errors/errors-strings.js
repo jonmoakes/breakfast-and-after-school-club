@@ -165,8 +165,8 @@ export const errorUpdatingSessionTime =
 export const updatingSessionTimeFormattingErrorMessage =
   "the time you entered isn't formatted correctly.";
 export const updatingSessionTimeInfoMessage =
-  "please see the example above the input field and make sure that your new time matches 'HH:MM - HH:MM";
-export const newPriceInvalidFormatErrorMessage = `<span style="font-size: 20px;">the price you entered is in an invalid format. please make sure you have followed the formatting as described in the 'important info' section above the input.</span>`;
+  "please see the example in the 'important info' section at the top of the page and make sure that your new time matches 'HH:MM - HH:MM'";
+export const newPriceInvalidFormatErrorMessage = `<span style="font-size: 20px;">the price you entered is in an invalid format. please make sure you have followed the formatting as described in the 'important info' section at the top of the page.</span>`;
 export const priceSameAsBeforeErrorMessage =
   "the price you have entered is the same as it currently is";
 export const chooseAnotherPriceMessage = "please choose another price.";

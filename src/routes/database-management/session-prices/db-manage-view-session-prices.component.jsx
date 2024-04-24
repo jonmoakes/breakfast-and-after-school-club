@@ -9,6 +9,12 @@ import UpdateMorningSessionPriceInfo from "./update-morning-session-price-info.c
 import UpdateMorningSessionPriceInput from "./update-morning-session-price-input.component";
 import UpdateAfternoonShortSessionPriceInfo from "./update-afternoon-short-session-price-info.component";
 import UpdateAfternoonShortSessionPriceInput from "./update-afternoon-short-session-price-input.component";
+import UpdateAfternoonLongSessionPriceInfo from "./update-afternoon-long-session-price-info.component";
+import UpdateAfternoonLongSessionPriceInput from "./update-afternoon-long-session-price-input.component";
+import UpdateMorningAndAfternoonShortSessionPriceInfo from "./update-morning-and-afternoon-short-session-price-info.component";
+import UpdateMorningAndAfternoonShortSessionPriceInput from "./update-morning-and-afternoon-short-session-price-input.component";
+import UpdateMorningAndAfternoonLongSessionPriceInfo from "./update-morning-and-afternoon-long-session-price-info.component";
+import UpdateMorningAndAfternoonLongSessionPriceInput from "./update-morning-and-afternoon-long-session-price-input.component";
 
 import { ParentDiv } from "../../../styles/div/div.styles";
 import { Container } from "../../../styles/container/container.styles";
@@ -41,6 +47,21 @@ const DBManageViewSessionPrices = () => {
               <ParentDiv>
                 <UpdateAfternoonShortSessionPriceInfo />
                 <UpdateAfternoonShortSessionPriceInput />
+              </ParentDiv>
+
+              <ParentDiv>
+                <UpdateAfternoonLongSessionPriceInfo />
+                <UpdateAfternoonLongSessionPriceInput />
+              </ParentDiv>
+
+              <ParentDiv>
+                <UpdateMorningAndAfternoonShortSessionPriceInfo />
+                <UpdateMorningAndAfternoonShortSessionPriceInput />
+              </ParentDiv>
+
+              <ParentDiv>
+                <UpdateMorningAndAfternoonLongSessionPriceInfo />
+                <UpdateMorningAndAfternoonLongSessionPriceInput />
               </ParentDiv>
             </>
           ) : (
