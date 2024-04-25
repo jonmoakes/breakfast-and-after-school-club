@@ -36,8 +36,6 @@ const useHandleShowError = () => {
   const location = useLocation();
   const path = location.pathname;
 
-  console.log(sessionTypesAndPricesError);
-
   const showErrorHeading = () => {
     if (getUsersChildrenError) return "failed to fetch users children.";
     if (bookedSessionsUserError) return "failed to fetch your bookings.";

@@ -55,6 +55,7 @@ import {
   databaseManagementViewBookingClosingTimesRoute,
   databaseManagementViewSessionTimesRoute,
   databaseManagementViewSessionPricesRoute,
+  databaseManagementUpdateDocumentRoute,
 } from "../strings/routes/routes-strings";
 
 const useResetStore = () => {
@@ -232,6 +233,13 @@ const useResetStore = () => {
         } else {
           dispatchResetDatabaseManagementState();
           dispatchResetSessionTypesAndPricesState();
+        }
+        break;
+      case databaseManagementUpdateDocumentRoute:
+        if (databaseManagementError) {
+          dispatchResetDatabaseManagementError();
+        } else {
+          dispatchResetDatabaseManagementState();
         }
         break;
       default:

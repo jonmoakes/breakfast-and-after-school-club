@@ -4,6 +4,7 @@ import {
   databaseManagementViewBookingClosingTimesRoute,
   databaseManagementViewSessionTimesRoute,
   databaseManagementViewSessionPricesRoute,
+  databaseManagementChooseErrorRoute,
 } from "../../../strings/routes/routes-strings";
 
 const useNavigateToDbManagementButtons = () => {
@@ -33,6 +34,13 @@ const useNavigateToDbManagementButtons = () => {
       text: "session prices",
       onClick: () =>
         hamburgerHandlerNavigate(databaseManagementViewSessionPricesRoute),
+    },
+    {
+      id: 4,
+      heading: "update a document after an error",
+      text: "update other documents",
+      onClick: () =>
+        hamburgerHandlerNavigate(databaseManagementChooseErrorRoute),
     },
   ];
 

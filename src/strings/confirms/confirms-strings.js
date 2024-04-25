@@ -81,3 +81,5 @@ export const confirmUpdateMorningAndAfternoonShortSessionPriceMessage =
   "are you sure you'd like to update the morning and afternoon short session price?";
 export const confirmUpdateMorningAndAfternoonLongSessionPriceMessage =
   "are you sure you'd like to update the morning and afternoon long session price?";
+export const confirmUpdateUserBalanceMessage =
+  "are you sure you wish to update the wallet balance of this user?";

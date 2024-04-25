@@ -32,3 +32,7 @@ export const databaseManagementViewSessionTimesRoute =
   "/database-management/session-times";
 export const databaseManagementViewSessionPricesRoute =
   "/database-management/session-prices";
+export const databaseManagementChooseErrorRoute =
+  "/database-management/choose-error";
+export const databaseManagementUpdateDocumentRoute =
+  "/database-management/booked-sessions/update-document";

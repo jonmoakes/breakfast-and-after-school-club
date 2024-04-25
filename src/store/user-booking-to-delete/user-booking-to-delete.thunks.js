@@ -122,6 +122,7 @@ export const refundUserAsync = createAsyncThunk(
   "refundUser",
   async ({ id, databaseId, collectionId, refundPrice }, thunkAPI) => {
     try {
+      throw new Error("oops");
       const queryIndex = "id";
       const queryValue = id;
       const documentId = id;

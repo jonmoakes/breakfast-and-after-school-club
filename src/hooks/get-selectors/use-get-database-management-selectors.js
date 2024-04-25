@@ -17,6 +17,8 @@ const useGetDatabaseManagementSelectors = () => {
     newAfternoonLongSessionPrice,
     newMorningAndAfternoonShortSessionPrice,
     newMorningAndAfternoonLongSessionPrice,
+    receivedErrorFromEmail,
+    dataToUpdateDocument,
   } = useSelector(selectDatabaseManagementSelectors);
 
   return {
@@ -33,6 +35,8 @@ const useGetDatabaseManagementSelectors = () => {
     newAfternoonLongSessionPrice,
     newMorningAndAfternoonShortSessionPrice,
     newMorningAndAfternoonLongSessionPrice,
+    receivedErrorFromEmail,
+    dataToUpdateDocument,
   };
 };
 

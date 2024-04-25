@@ -16,6 +16,8 @@ import FloatingBackButton from "./components/floating-back-button/floating-back-
 import DBManageViewBookingClosingTimes from "./routes/database-management/booking-closing-times/db-manage-view-booking-closing-times.component";
 import DBManageViewSessionTimes from "./routes/database-management/session-times/db-manage-view-session-times.component";
 import DBManageViewSessionPrices from "./routes/database-management/session-prices/db-manage-view-session-prices.component";
+import DBManageChooseError from "./routes/database-management/choose-error/db-manage-choose-error.component";
+import DBManageUpdateDocument from "./routes/database-management/update-document/db-manage-update-document.component";
 
 import {
   contactRoute,
@@ -45,6 +47,8 @@ import {
   databaseManagementViewBookingClosingTimesRoute,
   databaseManagementViewSessionTimesRoute,
   databaseManagementViewSessionPricesRoute,
+  databaseManagementChooseErrorRoute,
+  databaseManagementUpdateDocumentRoute,
 } from "./strings/routes/routes-strings";
 
 const Navigation = lazy(() =>
@@ -173,7 +177,6 @@ const App = () => {
                   ) : null
                 }
               />
-
               <Route
                 path={databaseManagementRoute}
                 element={
@@ -194,7 +197,14 @@ const App = () => {
                 path={databaseManagementViewSessionPricesRoute}
                 element={<DBManageViewSessionPrices />}
               />
-
+              <Route
+                path={databaseManagementChooseErrorRoute}
+                element={<DBManageChooseError />}
+              />
+              <Route
+                path={databaseManagementUpdateDocumentRoute}
+                element={<DBManageUpdateDocument />}
+              />
               <Route path={childInfoRoute} element={<ChildInfo />} />
               <Route path={addChildInfoRoute} element={<AddChildInfo />} />
               <Route path={editChildInfoRoute} element={<EditChildInfo />} />
@@ -210,19 +220,15 @@ const App = () => {
                   ) : null
                 }
               />
-
               <Route
                 path={bookedSessionsUserRoute}
                 element={<BookedSessionsUser />}
               />
-
               <Route path={cancelBookingRoute} element={<CancelBooking />} />
-
               <Route
                 path={chosenEntryChildDetailsRoute}
                 element={<ChosenEntryChildDetails />}
               />
-
               <Route path={bookSessionRoute} element={<BookASession />} />
               <Route path={addFundsRoute} element={<AddFunds />} />
               <Route path={paymentResultRoute} element={<PaymentResult />} />

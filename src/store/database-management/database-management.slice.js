@@ -3,6 +3,7 @@ import {
   updateBookingClosingTimesAsync,
   updateSessionTimesAsync,
   updateSessionPriceAsync,
+  updateUsersBalanceAfterErrorEmailAsync,
 } from "./database-management-thunks";
 
 const INITIAL_STATE = {
@@ -17,6 +18,8 @@ const INITIAL_STATE = {
   newAfternoonLongSessionPrice: "",
   newMorningAndAfternoonShortSessionPrice: "",
   newMorningAndAfternoonLongSessionPrice: "",
+  receivedErrorFromEmail: "",
+  dataToUpdateDocument: {},
   databaseManagementResult: "",
   databaseManagementError: null,
 };
@@ -90,8 +93,17 @@ export const databaseManagementSlice = createSlice({
       state.newMorningAndAfternoonShortSessionPrice = "";
       state.newMorningAndAfternoonLongSessionPrice = "";
     },
+    setReceivedErrorFromEmail(state, action) {
+      state.receivedErrorFromEmail = action.payload;
+    },
+    resetReceivedErrorFromEmail(state) {
+      state.receivedErrorFromEmail = !"";
+    },
     resetDatabaseManagementError(state) {
       state.databaseManagementError = null;
+    },
+    setDataToUpdateDocument(state, action) {
+      state.dataToUpdateDocument = action.payload;
     },
     resetDatabaseManagementResult(state) {
       state.databaseManagementResult = "";
@@ -115,6 +127,8 @@ export const databaseManagementSlice = createSlice({
       (state) => state.newAfternoonLongSessionPrice,
       (state) => state.newMorningAndAfternoonShortSessionPrice,
       (state) => state.newMorningAndAfternoonLongSessionPrice,
+      (state) => state.receivedErrorFromEmail,
+      (state) => state.dataToUpdateDocument,
       (
         databaseManagementIsLoading,
         newMorningBookingClosingTime,
@@ -128,7 +142,9 @@ export const databaseManagementSlice = createSlice({
         newAfternoonShortSessionPrice,
         newAfternoonLongSessionPrice,
         newMorningAndAfternoonShortSessionPrice,
-        newMorningAndAfternoonLongSessionPrice
+        newMorningAndAfternoonLongSessionPrice,
+        receivedErrorFromEmail,
+        dataToUpdateDocument
       ) => {
         return {
           databaseManagementIsLoading,
@@ -144,6 +160,8 @@ export const databaseManagementSlice = createSlice({
           newAfternoonLongSessionPrice,
           newMorningAndAfternoonShortSessionPrice,
           newMorningAndAfternoonLongSessionPrice,
+          receivedErrorFromEmail,
+          dataToUpdateDocument,
         };
       }
     ),
@@ -152,6 +170,7 @@ export const databaseManagementSlice = createSlice({
     handleAsyncAction(builder, updateBookingClosingTimesAsync);
     handleAsyncAction(builder, updateSessionTimesAsync);
     handleAsyncAction(builder, updateSessionPriceAsync);
+    handleAsyncAction(builder, updateUsersBalanceAfterErrorEmailAsync);
   },
 });
 
@@ -170,6 +189,9 @@ export const {
   setNewMorningAndAfternoonShortSessionPrice,
   setNewMorningAndAfternoonLongSessionPrice,
   resetNewSessionPricesDetails,
+  setReceivedErrorFromEmail,
+  resetReceivedErrorFromEmail,
+  setDataToUpdateDocument,
   resetDatabaseManagementError,
   resetDatabaseManagementResult,
   resetDatabaseManagementState,

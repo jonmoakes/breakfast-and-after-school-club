@@ -18,6 +18,9 @@ import {
   setNewMorningAndAfternoonShortSessionPrice,
   setNewMorningAndAfternoonLongSessionPrice,
   resetNewSessionPricesDetails,
+  setReceivedErrorFromEmail,
+  resetReceivedErrorFromEmail,
+  setDataToUpdateDocument,
 } from "../../../store/database-management/database-management.slice";
 
 const useDatabaseManagementActions = () => {
@@ -91,6 +94,18 @@ const useDatabaseManagementActions = () => {
     dispatch(resetNewSessionPricesDetails());
   };
 
+  const dispatchSetReceivedErrorFromEmail = (payload) => {
+    dispatch(setReceivedErrorFromEmail(payload));
+  };
+
+  const dispatchResetReceivedErrorFromEmail = () => {
+    dispatch(resetReceivedErrorFromEmail());
+  };
+
+  const dispatchSetDataToUpdateDocument = (payload) => {
+    dispatch(setDataToUpdateDocument(payload));
+  };
+
   return {
     dispatchSetNewMorningBookingClosingTime,
     dispatchResetNewMorningBookingClosingTime,
@@ -109,6 +124,9 @@ const useDatabaseManagementActions = () => {
     dispatchSetNewMorningAndAfternoonShortSessionPrice,
     dispatchSetNewMorningAndAfternoonLongSessionPrice,
     dispatchResetNewSessionPricesDetails,
+    dispatchSetReceivedErrorFromEmail,
+    dispatchResetReceivedErrorFromEmail,
+    dispatchSetDataToUpdateDocument,
   };
 };
 

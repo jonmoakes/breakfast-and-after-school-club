@@ -170,3 +170,12 @@ export const newPriceInvalidFormatErrorMessage = `<span style="font-size: 20px;"
 export const priceSameAsBeforeErrorMessage =
   "the price you have entered is the same as it currently is";
 export const chooseAnotherPriceMessage = "please choose another price.";
+export const dbManageErrorUpdatingBalanceAfterCancellingBookingMessage =
+  "there was an error updating a users balance after they cancelled a booking.";
+export const emptyFieldsMessage =
+  "please make sure that all fields have been filled in";
+export const documentLengthErrorMessage =
+  "the document id should be 20 characters in length";
+export const refundPriceLengthErrorMessage =
+  "the refund price should be no more than 5 characters in length";
+export const whiteSpaceErrorMessage = `<span style="font-size: 20px;">one or both of your entered values starts or ends with a space ( ' ' ). please make sure there is no white space at the beginning or end of the data you are trying to input.</span>`;
