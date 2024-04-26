@@ -83,3 +83,5 @@ export const confirmUpdateMorningAndAfternoonLongSessionPriceMessage =
   "are you sure you'd like to update the morning and afternoon long session price?";
 export const confirmUpdateUserBalanceMessage =
   "are you sure you wish to update the wallet balance of this user?";
+export const confirmManuallyAddBookingToDatabase =
+  "are you sure you want to manually add this booking to the database?";

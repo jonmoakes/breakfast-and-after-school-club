@@ -38,7 +38,7 @@ const useNavigateToDbManagementButtons = () => {
     {
       id: 4,
       heading: "update a document after an error",
-      text: "update other documents",
+      text: "update other docs",
       onClick: () =>
         hamburgerHandlerNavigate(databaseManagementChooseErrorRoute),
     },

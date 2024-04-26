@@ -178,4 +178,11 @@ export const documentLengthErrorMessage =
   "the document id should be 20 characters in length";
 export const refundPriceLengthErrorMessage =
   "the refund price should be no more than 5 characters in length";
-export const whiteSpaceErrorMessage = `<span style="font-size: 20px;">one or both of your entered values starts or ends with a space ( ' ' ). please make sure there is no white space at the beginning or end of the data you are trying to input.</span>`;
+export const whiteSpaceErrorMessage = `<span style="font-size: 20px;">one or some of your entered values starts or ends with a space ( ' ' ). please make sure there is no white space at the beginning or end of the data you are trying to input.</span>`;
+export const dbManageErrorAddingBookingToDatabaseMessage =
+  "there was an error adding a users booking to the database";
+export const copyAndPasteFromEmailMessage =
+  "please consider copy and pasting the value from the email.";
+export const uppercaseLettersErrorMessage = `<span style="font-size: 20px;">  the inputs ( apart from the 'sessionType' ), can't have uppercase characters. ${copyAndPasteFromEmailMessage}</span>`;
+export const invalidDateErrorMessage = `<span style="font-size: 20px;">the date you entered has an invalid format. ${copyAndPasteFromEmailMessage}</span>`;
+export const invalidSessionTypeErrorMessage = `<span style="font-size: 20px;">the session type you entered has an invalid format. please check for typos and whitespace at the beginning or end of the value you entered. ${copyAndPasteFromEmailMessage}</span>`;

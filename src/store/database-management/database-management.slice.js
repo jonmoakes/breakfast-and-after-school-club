@@ -4,6 +4,7 @@ import {
   updateSessionTimesAsync,
   updateSessionPriceAsync,
   updateUsersBalanceAfterErrorEmailAsync,
+  manuallyAddBookingDataAfterErrorAsync,
 } from "./database-management-thunks";
 
 const INITIAL_STATE = {
@@ -171,6 +172,7 @@ export const databaseManagementSlice = createSlice({
     handleAsyncAction(builder, updateSessionTimesAsync);
     handleAsyncAction(builder, updateSessionPriceAsync);
     handleAsyncAction(builder, updateUsersBalanceAfterErrorEmailAsync);
+    handleAsyncAction(builder, manuallyAddBookingDataAfterErrorAsync);
   },
 });
 

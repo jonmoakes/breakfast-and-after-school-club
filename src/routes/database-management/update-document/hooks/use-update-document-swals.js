@@ -2,7 +2,11 @@ import useFireSwal from "../../../../hooks/use-fire-swal";
 import {
   documentLengthErrorMessage,
   emptyFieldsMessage,
+  invalidDateErrorMessage,
+  invalidSessionTypeErrorMessage,
+  phoneNumberLengthErrorMessage,
   refundPriceLengthErrorMessage,
+  uppercaseLettersErrorMessage,
   whiteSpaceErrorMessage,
 } from "../../../../strings/errors/errors-strings";
 
@@ -11,6 +15,10 @@ const useUpdateDocumentSwals = () => {
 
   const fireEmptyValuesSwal = () => {
     fireSwal("error", emptyFieldsMessage, "", 0, true, false);
+  };
+
+  const fireCantHaveUppercaseCharactersSwal = () => {
+    fireSwal("error", uppercaseLettersErrorMessage, "", 0, true, false);
   };
 
   const fireDocumentIdLengthErrorSwal = () => {
@@ -25,11 +33,27 @@ const useUpdateDocumentSwals = () => {
     fireSwal("error", whiteSpaceErrorMessage, "", 0, true, false);
   };
 
+  const fireInvalidDateFormatSwal = () => {
+    fireSwal("error", invalidDateErrorMessage, "", 0, true, false);
+  };
+
+  const fireInvalidSessionTypeSwal = () => {
+    fireSwal("error", invalidSessionTypeErrorMessage, "", 0, true, false);
+  };
+
+  const fireInvalidPhoneNumberSwal = () => {
+    fireSwal("error", phoneNumberLengthErrorMessage, "", 0, true, false);
+  };
+
   return {
     fireEmptyValuesSwal,
+    fireCantHaveUppercaseCharactersSwal,
     fireDocumentIdLengthErrorSwal,
     fireRefundPriceLengthErrorSwal,
     fireWhiteSpaceErrorSwal,
+    fireInvalidDateFormatSwal,
+    fireInvalidSessionTypeSwal,
+    fireInvalidPhoneNumberSwal,
   };
 };
 

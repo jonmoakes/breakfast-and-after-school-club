@@ -3,6 +3,7 @@ import {
   listDocumentsByQueryOrSearch,
   manageDatabaseDocument,
 } from "../../utils/appwrite/appwrite-functions";
+import { ID } from "appwrite";
 
 export const updateBookingClosingTimesAsync = createAsyncThunk(
   "updateBookingClosingTimes",
@@ -106,6 +107,43 @@ export const updateUsersBalanceAfterErrorEmailAsync = createAsyncThunk(
         databaseId,
         collectionId,
         documentId,
+        dataToUpdate
+      );
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
+export const manuallyAddBookingDataAfterErrorAsync = createAsyncThunk(
+  "manuallyAddBookingDataAfterError",
+  async ({ databaseId, collectionId, bookingData }, thunkAPI) => {
+    try {
+      const {
+        date,
+        sessionType,
+        childrenInBooking,
+        parentName,
+        parentPhoneNumber,
+        parentsUserId,
+        parentEmail,
+      } = bookingData;
+
+      const dataToUpdate = {
+        date,
+        sessionType,
+        childrensName: childrenInBooking,
+        parentName,
+        parentPhoneNumber,
+        parentsUserId,
+        parentEmail,
+      };
+
+      await manageDatabaseDocument(
+        "create",
+        databaseId,
+        collectionId,
+        ID.unique(),
         dataToUpdate
       );
     } catch (error) {

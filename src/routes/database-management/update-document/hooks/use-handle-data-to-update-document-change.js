@@ -6,7 +6,7 @@ const useHandleDataToUpdateDocumentChange = () => {
   const { dispatchSetDataToUpdateDocument } = useDatabaseManagementActions();
 
   const handleDataToUpdateDocumentChange = (event) => {
-    const { value, name } = event.target;
+    const { name, value } = event.target;
     dispatchSetDataToUpdateDocument({ ...dataToUpdateDocument, [name]: value });
   };
 

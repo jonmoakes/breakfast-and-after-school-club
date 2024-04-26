@@ -1,5 +1,5 @@
-import { Text } from "../../../styles/p/p.styles";
-import { RedSpan } from "../../../styles/span/span.styles";
+import { Text } from "../../../../styles/p/p.styles";
+import { RedSpan } from "../../../../styles/span/span.styles";
 
 const InputRecommendation = () => (
   <>
