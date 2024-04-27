@@ -11,12 +11,18 @@ const useEditChildInfoThunk = () => {
   const dispatch = useDispatch();
 
   const editChildInfoThunk = (updatedChildInfo) => {
+    // appwrite expects age as a number
+    const updatedChildInfoWithNumberAge = {
+      ...updatedChildInfo,
+      age: Number(updatedChildInfo.age),
+    };
+
     dispatch(
       editChildInfoAsync({
         $id,
         databaseId,
         collectionId,
-        updatedChildInfo,
+        updatedChildInfo: updatedChildInfoWithNumberAge,
       })
     );
   };

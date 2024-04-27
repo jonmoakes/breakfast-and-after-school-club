@@ -9,7 +9,6 @@ import {
 } from "react-table";
 
 import useIsOnline from "../../hooks/use-is-online";
-import useGetUsersChildrenListener from "./child-info-hooks/use-get-users-children-listener";
 import useGetUsersChildrenSelectors from "../../hooks/get-selectors/use-get-users-children-selectors";
 
 import ShowFetchErrors from "../../components/errors/show-fetch-errors.component";
@@ -21,7 +20,6 @@ import TableCheckBox from "../../components/tables/table-checkbox";
 import EditRemoveButtons from "./edit-remove-buttons.component";
 
 const ChildTable = () => {
-  useGetUsersChildrenListener();
   const { isOnline } = useIsOnline();
 
   let { usersChildren } = useGetUsersChildrenSelectors();

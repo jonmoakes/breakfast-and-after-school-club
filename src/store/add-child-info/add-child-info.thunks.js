@@ -18,12 +18,13 @@ export const addChildInfoAsync = createAsyncThunk(
         additionalInfo,
       } = childInfo;
 
+      const ageAsNumber = Number(age);
       const documentId = ID.unique();
 
       const dataToAdd = {
         parentsUserId: id,
         childName: childName.toLowerCase(),
-        age,
+        age: ageAsNumber,
         consent,
         medicalInfo,
         dietryRequirements,
