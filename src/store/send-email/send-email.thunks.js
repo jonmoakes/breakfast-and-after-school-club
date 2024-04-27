@@ -58,6 +58,7 @@ export const sendEmailBookingNotAddedToDatabaseAsync = createAsyncThunk(
       parentName,
       parentPhoneNumber,
       parentsUserId,
+      parentEmail,
     },
     thunkAPI
   ) => {
@@ -72,6 +73,7 @@ export const sendEmailBookingNotAddedToDatabaseAsync = createAsyncThunk(
           parentName,
           parentPhoneNumber,
           parentsUserId,
+          parentEmail,
         }
       );
 

@@ -158,7 +158,6 @@ export const addSessionBookingInfoAsync = createAsyncThunk(
     thunkAPI
   ) => {
     try {
-      throw new Error("oops");
       let sessionBookings = [];
 
       if (
