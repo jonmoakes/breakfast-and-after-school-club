@@ -3,6 +3,7 @@ import {
   documentLengthErrorMessage,
   emptyFieldsMessage,
   invalidDateErrorMessage,
+  invalidNumberOfChildrenErrorMessage,
   invalidSessionTypeErrorMessage,
   phoneNumberLengthErrorMessage,
   refundPriceLengthErrorMessage,
@@ -45,6 +46,10 @@ const useUpdateDocumentSwals = () => {
     fireSwal("error", phoneNumberLengthErrorMessage, "", 0, true, false);
   };
 
+  const fireInvalidNumberOfChildrenSwal = () => {
+    fireSwal("error", invalidNumberOfChildrenErrorMessage, "", 0, true, false);
+  };
+
   return {
     fireEmptyValuesSwal,
     fireCantHaveUppercaseCharactersSwal,
@@ -54,6 +59,7 @@ const useUpdateDocumentSwals = () => {
     fireInvalidDateFormatSwal,
     fireInvalidSessionTypeSwal,
     fireInvalidPhoneNumberSwal,
+    fireInvalidNumberOfChildrenSwal,
   };
 };
 

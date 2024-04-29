@@ -98,7 +98,7 @@ export const databaseManagementSlice = createSlice({
       state.receivedErrorFromEmail = action.payload;
     },
     resetReceivedErrorFromEmail(state) {
-      state.receivedErrorFromEmail = !"";
+      state.receivedErrorFromEmail = "";
     },
     resetDatabaseManagementError(state) {
       state.databaseManagementError = null;

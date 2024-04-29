@@ -1,10 +1,11 @@
 import useUpdateDocumentVariables from "./use-update-document-variables";
 
 const useUpdateDocumentFunctions = () => {
-  const { documentId, refundPrice } = useUpdateDocumentVariables();
+  const { usersDocumentId, refundPrice, numberOfChildrenInBooking } =
+    useUpdateDocumentVariables();
 
-  const stringHasUpperCaseLetters = (string) => {
-    if (/[A-Z]/.test(string)) {
+  const stringHasUpperCaseLetters = (stringValue) => {
+    if (/[A-Z]/.test(stringValue)) {
       return true;
     } else {
       return false;
@@ -20,7 +21,7 @@ const useUpdateDocumentFunctions = () => {
   };
 
   const formHasEmptyValue = () => {
-    if (!documentId || !refundPrice) {
+    if (!usersDocumentId || !refundPrice) {
       return true;
     } else {
       return false;
@@ -38,8 +39,8 @@ const useUpdateDocumentFunctions = () => {
     }
   };
 
-  const invalidDocumentIdLength = (string) => {
-    if (string.length !== 20) {
+  const invalidDocumentIdLength = (id) => {
+    if (id.length !== 20) {
       return true;
     } else {
       return false;
@@ -54,9 +55,9 @@ const useUpdateDocumentFunctions = () => {
     }
   };
 
-  const formHasWhiteSpaceValues = (string) => {
+  const formHasWhiteSpaceValues = () => {
     if (
-      valueStartsOrEndsWithSpace(string) ||
+      valueStartsOrEndsWithSpace(usersDocumentId) ||
       valueStartsOrEndsWithSpace(refundPrice)
     ) {
       return true;
@@ -85,6 +86,19 @@ const useUpdateDocumentFunctions = () => {
     }
   };
 
+  const isNotValidNumberOfChildrenValue = () => {
+    if (
+      numberOfChildrenInBooking === undefined ||
+      !numberOfChildrenInBooking.length ||
+      numberOfChildrenInBooking === "0" ||
+      numberOfChildrenInBooking.includes("-")
+    ) {
+      return true;
+    } else {
+      return false;
+    }
+  };
+
   return {
     stringHasUpperCaseLetters,
     valueStartsOrEndsWithSpace,
@@ -95,6 +109,7 @@ const useUpdateDocumentFunctions = () => {
     formHasWhiteSpaceValues,
     isNotValidDateFormat,
     isNotValidSessionType,
+    isNotValidNumberOfChildrenValue,
   };
 };
 

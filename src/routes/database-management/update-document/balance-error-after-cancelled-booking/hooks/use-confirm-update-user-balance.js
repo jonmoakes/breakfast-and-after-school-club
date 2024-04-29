@@ -12,10 +12,10 @@ import {
 const useConfirmUpdateUserBalance = () => {
   const { updateUsersBalanceAfterErrorEmailThunk } =
     useUpdateUsersBalanceAfterErrorEmailThunk();
-  const { documentId, refundPrice } = useUpdateDocumentVariables();
+  const { usersDocumentId, refundPrice } = useUpdateDocumentVariables();
   const {
     formHasEmptyValue,
-    documentIdHasUpperCaseLetters,
+    stringHasUpperCaseLetters,
     invalidDocumentIdLength,
     invalidRefundPriceLength,
     formHasWhiteSpaceValues,
@@ -30,15 +30,15 @@ const useConfirmUpdateUserBalance = () => {
   const { confirmSwal } = useConfirmSwal();
 
   const confirmResult = () => {
-    updateUsersBalanceAfterErrorEmailThunk(documentId, refundPrice);
+    updateUsersBalanceAfterErrorEmailThunk(usersDocumentId, refundPrice);
   };
 
   const confirmUpdateUserBalance = () => {
     if (formHasEmptyValue()) {
       fireEmptyValuesSwal();
-    } else if (documentIdHasUpperCaseLetters(documentId)) {
+    } else if (stringHasUpperCaseLetters(usersDocumentId)) {
       fireCantHaveUppercaseCharactersSwal();
-    } else if (invalidDocumentIdLength()) {
+    } else if (invalidDocumentIdLength(usersDocumentId)) {
       fireDocumentIdLengthErrorSwal();
     } else if (invalidRefundPriceLength()) {
       fireRefundPriceLengthErrorSwal();

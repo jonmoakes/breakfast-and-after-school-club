@@ -4,7 +4,6 @@ const useUpdateDocumentVariables = () => {
   const { dataToUpdateDocument } = useGetDatabaseManagementSelectors();
 
   const {
-    documentId,
     refundPrice,
     date,
     sessionType,
@@ -13,10 +12,11 @@ const useUpdateDocumentVariables = () => {
     parentPhoneNumber,
     parentsUserId,
     parentEmail,
+    numberOfChildrenInBooking,
+    usersDocumentId,
   } = dataToUpdateDocument ?? {};
 
   return {
-    documentId,
     refundPrice,
     date,
     sessionType,
@@ -25,6 +25,8 @@ const useUpdateDocumentVariables = () => {
     parentPhoneNumber,
     parentsUserId,
     parentEmail,
+    numberOfChildrenInBooking,
+    usersDocumentId,
   };
 };
 

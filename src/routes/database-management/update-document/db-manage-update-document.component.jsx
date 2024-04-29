@@ -14,8 +14,10 @@ import { BlackTitle } from "../../../styles/h1/h1.styles";
 import {
   dbManageErrorUpdatingBalanceAfterCancellingBookingMessage,
   dbManageErrorAddingBookingToDatabaseMessage,
+  dbManageErrorUpdatingSessionSpacesAndBalanceAfterCancelledBookingMessage,
 } from "../../../strings/errors/errors-strings";
 import { databaseManagementRoute } from "../../../strings/routes/routes-strings";
+import CancelledBookingSessionSpacesAndBalanceNotUpdated from "./cancelled-booking-session-spaces-and-balance-not-updated/cancelled-booking-session-spaces-and-balance-not-updated.component";
 
 const UpdateDocument = () => {
   useUpdateDocumentResultSwal();
@@ -45,6 +47,11 @@ const UpdateDocument = () => {
           {receivedErrorFromEmail ===
           dbManageErrorAddingBookingToDatabaseMessage ? (
             <BookingNotAddedToDatabase />
+          ) : null}
+
+          {receivedErrorFromEmail ===
+          dbManageErrorUpdatingSessionSpacesAndBalanceAfterCancelledBookingMessage ? (
+            <CancelledBookingSessionSpacesAndBalanceNotUpdated />
           ) : null}
         </ParentDiv>
       )}

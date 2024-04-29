@@ -4,17 +4,19 @@ import useGetCurrentUserSelectors from "../../get-selectors/use-get-current-user
 import { updateUsersBalanceAfterErrorEmailAsync } from "../../../store/database-management/database-management-thunks";
 
 const useUpdateUsersBalanceAfterErrorEmailThunk = () => {
-  const { databaseId, userCollectionId: collectionId } =
-    useGetCurrentUserSelectors();
+  const { databaseId, userCollectionId } = useGetCurrentUserSelectors();
 
   const dispatch = useDispatch();
 
-  const updateUsersBalanceAfterErrorEmailThunk = (documentId, refundPrice) => {
+  const updateUsersBalanceAfterErrorEmailThunk = (
+    usersDocumentId,
+    refundPrice
+  ) => {
     dispatch(
       updateUsersBalanceAfterErrorEmailAsync({
-        documentId,
+        usersDocumentId,
         databaseId,
-        collectionId,
+        userCollectionId,
         refundPrice,
       })
     );

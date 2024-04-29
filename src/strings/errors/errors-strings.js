@@ -181,8 +181,11 @@ export const refundPriceLengthErrorMessage =
 export const whiteSpaceErrorMessage = `<span style="font-size: 20px;">one or some of your entered values starts or ends with a space ( ' ' ). please make sure there is no white space at the beginning or end of the data you are trying to input.</span>`;
 export const dbManageErrorAddingBookingToDatabaseMessage =
   "there was an error adding a users booking to the database";
+export const dbManageErrorUpdatingSessionSpacesAndBalanceAfterCancelledBookingMessage =
+  "there was an error updating the session spaces and the users balance when they cancelled a booking";
 export const copyAndPasteFromEmailMessage =
   "please consider copy and pasting the value from the email.";
 export const uppercaseLettersErrorMessage = `<span style="font-size: 20px;">  the inputs ( apart from the 'sessionType' ), can't have uppercase characters. ${copyAndPasteFromEmailMessage}</span>`;
 export const invalidDateErrorMessage = `<span style="font-size: 20px;">the date you entered has an invalid format. ${copyAndPasteFromEmailMessage}</span>`;
 export const invalidSessionTypeErrorMessage = `<span style="font-size: 20px;">the session type you entered has an invalid format. please check for typos and whitespace at the beginning or end of the value you entered. ${copyAndPasteFromEmailMessage}</span>`;
+export const invalidNumberOfChildrenErrorMessage = `<span style="font-size: 20px;">the number of children should be greater than 0. ${copyAndPasteFromEmailMessage}</span>`;

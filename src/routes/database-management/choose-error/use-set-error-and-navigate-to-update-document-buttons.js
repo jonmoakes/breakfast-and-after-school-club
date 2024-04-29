@@ -3,6 +3,7 @@ import useHamburgerHandlerNavigate from "../../../hooks/use-hamburger-handler-na
 import {
   dbManageErrorAddingBookingToDatabaseMessage,
   dbManageErrorUpdatingBalanceAfterCancellingBookingMessage,
+  dbManageErrorUpdatingSessionSpacesAndBalanceAfterCancelledBookingMessage,
 } from "../../../strings/errors/errors-strings";
 
 import { databaseManagementUpdateDocumentRoute } from "../../../strings/routes/routes-strings";
@@ -34,6 +35,16 @@ const useSetErrorAndNavigateToUpdateDocumentButtons = () => {
       text: "2",
       onClick: () => {
         setChoiceAndNavigate(dbManageErrorAddingBookingToDatabaseMessage);
+      },
+    },
+    {
+      id: 3,
+      heading,
+      text: "3",
+      onClick: () => {
+        setChoiceAndNavigate(
+          dbManageErrorUpdatingSessionSpacesAndBalanceAfterCancelledBookingMessage
+        );
       },
     },
   ];
