@@ -4,6 +4,7 @@ import {
   manageDatabaseDocument,
 } from "../../utils/appwrite/appwrite-functions";
 import { ID } from "appwrite";
+import { updateWalletBalance } from "./database-management-functions";
 
 export const updateBookingClosingTimesAsync = createAsyncThunk(
   "updateBookingClosingTimes",
@@ -57,9 +58,9 @@ export const updateSessionPriceAsync = createAsyncThunk(
     { attributeToUpdate, newPrice, databaseId, collectionId, documentId },
     thunkAPI
   ) => {
-    //db expects a double for its attribute
-    const newPriceAsDouble = parseFloat(newPrice);
     try {
+      //db expects a double for its attribute
+      const newPriceAsDouble = parseFloat(newPrice);
       const dataToUpdate = {
         [attributeToUpdate]: newPriceAsDouble,
       };
@@ -83,34 +84,11 @@ export const updateUsersBalanceAfterErrorEmailAsync = createAsyncThunk(
     thunkAPI
   ) => {
     try {
-      const queryIndex = "$id";
-      const queryValue = usersDocumentId;
-
-      const getUsersDocument = await listDocumentsByQueryOrSearch(
-        databaseId,
-        userCollectionId,
-        queryIndex,
-        queryValue
-      );
-
-      const { documents, total } = getUsersDocument;
-
-      if (!total) {
-        throw new Error("no document found");
-      }
-
-      const { walletBalance } = documents[0];
-      //db expects a double for its attribute
-      const refundPriceAsDoubleInPence = parseFloat(refundPrice);
-      const dataToUpdate = {
-        walletBalance: walletBalance + refundPriceAsDoubleInPence,
-      };
-      await manageDatabaseDocument(
-        "update",
-        databaseId,
-        userCollectionId,
+      await updateWalletBalance(
         usersDocumentId,
-        dataToUpdate
+        databaseId,
+        userCollectionId,
+        refundPrice
       );
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
@@ -173,62 +151,64 @@ export const updateSessionSpacesDocAsync = createAsyncThunk(
           ? Number(numberOfChildrenInBooking)
           : numberOfChildrenInBooking;
 
-      const queryIndex = "date";
-      const queryValue = date;
+      const queryIndexDate = "date";
+      const queryValueDate = date;
 
       const getDateDocumentToUpdate = await listDocumentsByQueryOrSearch(
         databaseId,
         termDatesCollectionId,
-        queryIndex,
-        queryValue
+        queryIndexDate,
+        queryValueDate
       );
 
       const dateDocument = getDateDocumentToUpdate.documents;
 
       if (!dateDocument.length) {
-        return;
-      } else {
-        const { $id, morningSessionSpaces, afternoonSessionSpaces } =
-          dateDocument[0];
-
-        let updatedSessionSpaces = {};
-
-        if (sessionType === "morning") {
-          updatedSessionSpaces = {
-            morningSessionSpaces:
-              morningSessionSpaces + numberOfChildrenAsNumber,
-          };
-        } else if (
-          sessionType === "afternoonShort" ||
-          sessionType === "afternoonLong"
-        ) {
-          updatedSessionSpaces = {
-            afternoonSessionSpaces:
-              afternoonSessionSpaces + numberOfChildrenAsNumber,
-          };
-        } else if (
-          sessionType === "morningAndAfternoonShort" ||
-          sessionType === "morningAndAfternoonLong"
-        ) {
-          updatedSessionSpaces = {
-            morningSessionSpaces:
-              morningSessionSpaces + numberOfChildrenAsNumber,
-            afternoonSessionSpaces:
-              afternoonSessionSpaces + numberOfChildrenAsNumber,
-          };
-        }
-
-        const documentId = $id;
-        const data = updatedSessionSpaces;
-
-        await manageDatabaseDocument(
-          "update",
-          databaseId,
-          termDatesCollectionId,
-          documentId,
-          data
-        );
+        throw new Error("Date document not found");
       }
+
+      const { $id, morningSessionSpaces, afternoonSessionSpaces } =
+        dateDocument[0];
+
+      let updatedSessionSpaces = {};
+
+      switch (sessionType) {
+        case "morning":
+          updatedSessionSpaces = {
+            morningSessionSpaces:
+              morningSessionSpaces + numberOfChildrenAsNumber,
+          };
+          break;
+        case "afternoonShort":
+        case "afternoonlong":
+          updatedSessionSpaces = {
+            afternoonSessionSpaces:
+              afternoonSessionSpaces + numberOfChildrenAsNumber,
+          };
+          break;
+        case "morningAndAfternoonShort":
+        case "morningAndAfternoonLong":
+          updatedSessionSpaces = {
+            morningSessionSpaces:
+              morningSessionSpaces + numberOfChildrenAsNumber,
+            afternoonSessionSpaces:
+              afternoonSessionSpaces + numberOfChildrenAsNumber,
+          };
+          break;
+        default:
+          return;
+      }
+
+      const documentId = $id;
+      const data = updatedSessionSpaces;
+
+      await manageDatabaseDocument(
+        "update",
+        databaseId,
+        termDatesCollectionId,
+        documentId,
+        data
+      );
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }

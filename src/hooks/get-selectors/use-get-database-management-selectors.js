@@ -5,38 +5,89 @@ import { selectDatabaseManagementSelectors } from "../../store/database-manageme
 const useGetDatabaseManagementSelectors = () => {
   const {
     databaseManagementIsLoading,
-    databaseManagementResult,
-    databaseManagementError,
+
     newMorningBookingClosingTime,
     newAfternoonBookingClosingTime,
+    bookingClosingTimeResult,
+    bookingClosingTimeError,
+
     newMorningSessionTime,
     newAfternoonShortSessionTime,
     newAfternoonLongSessionTime,
+    sessionTimeResult,
+    sessionTimeError,
+
     newMorningSessionPrice,
     newAfternoonShortSessionPrice,
     newAfternoonLongSessionPrice,
     newMorningAndAfternoonShortSessionPrice,
     newMorningAndAfternoonLongSessionPrice,
-    receivedErrorFromEmail,
+    sessionPricesResult,
+    sessionPricesError,
+
     dataToUpdateDocument,
+    updateBalanceResult,
+    updateBalanceError,
+    addBookingResult,
+    addBookingError,
+    updateSessionSpacesResult,
+    updateSessionSpacesError,
+    errorId,
   } = useSelector(selectDatabaseManagementSelectors);
+
+  const {
+    refundPrice,
+    date,
+    sessionType,
+    childrenInBooking,
+    parentName,
+    parentPhoneNumber,
+    parentsUserId,
+    parentEmail,
+    numberOfChildrenInBooking,
+    usersDocumentId,
+  } = dataToUpdateDocument ?? {};
 
   return {
     databaseManagementIsLoading,
-    databaseManagementResult,
-    databaseManagementError,
+
     newMorningBookingClosingTime,
     newAfternoonBookingClosingTime,
+    bookingClosingTimeResult,
+    bookingClosingTimeError,
+
     newMorningSessionTime,
     newAfternoonShortSessionTime,
     newAfternoonLongSessionTime,
+    sessionTimeResult,
+    sessionTimeError,
+
     newMorningSessionPrice,
     newAfternoonShortSessionPrice,
     newAfternoonLongSessionPrice,
     newMorningAndAfternoonShortSessionPrice,
     newMorningAndAfternoonLongSessionPrice,
-    receivedErrorFromEmail,
+    sessionPricesResult,
+    sessionPricesError,
+
     dataToUpdateDocument,
+    updateBalanceResult,
+    updateBalanceError,
+    addBookingResult,
+    addBookingError,
+    updateSessionSpacesResult,
+    updateSessionSpacesError,
+    errorId,
+    refundPrice,
+    date,
+    sessionType,
+    childrenInBooking,
+    parentName,
+    parentPhoneNumber,
+    parentsUserId,
+    parentEmail,
+    numberOfChildrenInBooking,
+    usersDocumentId,
   };
 };
 

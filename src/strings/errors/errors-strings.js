@@ -189,3 +189,7 @@ export const uppercaseLettersErrorMessage = `<span style="font-size: 20px;">  th
 export const invalidDateErrorMessage = `<span style="font-size: 20px;">the date you entered has an invalid format. ${copyAndPasteFromEmailMessage}</span>`;
 export const invalidSessionTypeErrorMessage = `<span style="font-size: 20px;">the session type you entered has an invalid format. please check for typos and whitespace at the beginning or end of the value you entered. ${copyAndPasteFromEmailMessage}</span>`;
 export const invalidNumberOfChildrenErrorMessage = `<span style="font-size: 20px;">the number of children should be greater than 0. ${copyAndPasteFromEmailMessage}</span>`;
+export const errorUpdatingUsersBalanceMessage =
+  "sorry, there was an error updating the users balance.";
+export const errorUpdatingSessionSpacesMessage =
+  "sorry, there was an error updating the session spaces.";

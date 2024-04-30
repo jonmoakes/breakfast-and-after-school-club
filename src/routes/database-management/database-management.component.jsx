@@ -1,4 +1,5 @@
-import useNavigateToDbManagementButtons from "./db-management-hooks/use-navigate-to-db-management-buttons";
+import Balancer from "react-wrap-balancer";
+import useNavigateToDbManagementButtons from "./hooks/use-navigate-to-db-management-buttons";
 
 import RenderButtonsList from "../../components/render-buttons-list/render-buttons-list.component";
 
@@ -8,7 +9,6 @@ import { BlackTitle } from "../../styles/h1/h1.styles";
 import { Text } from "../../styles/p/p.styles";
 import { RedSpan } from "../../styles/span/span.styles";
 import { YellowGreenButton } from "../../styles/buttons/buttons.styles";
-import Balancer from "react-wrap-balancer";
 
 const DatabaseManagement = () => {
   const { dbManagementButtons } = useNavigateToDbManagementButtons();
@@ -33,6 +33,19 @@ const DatabaseManagement = () => {
             please note, editing the database can break the app if not done
             correctly!
           </RedSpan>
+        </Text>
+        <Text>
+          please note, any button including and under the heading of '
+          <RedSpan>update a users balance</RedSpan>', should only be pressed if
+          you have received an email telling you that there was an error when a
+          user tried to perform an action in the app.
+        </Text>
+        <Text>
+          if this is the case, you will have the error id in the email.
+        </Text>
+        <Text>
+          tap on the button with the corresponding error id and this will take
+          you to the appropriate page where you can manually fix the error.
         </Text>
         <Text>
           please contact jonathan if you have any queries at all before

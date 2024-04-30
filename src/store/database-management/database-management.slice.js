@@ -1,46 +1,13 @@
 import { createSelector, createSlice } from "@reduxjs/toolkit";
+import { INITIAL_STATE } from "./database-management-initial-state";
 import {
   updateBookingClosingTimesAsync,
   updateSessionTimesAsync,
   updateSessionPriceAsync,
   updateUsersBalanceAfterErrorEmailAsync,
   manuallyAddBookingDataAfterErrorAsync,
+  updateSessionSpacesDocAsync,
 } from "./database-management-thunks";
-
-const INITIAL_STATE = {
-  databaseManagementIsLoading: false,
-  newMorningBookingClosingTime: "",
-  newAfternoonBookingClosingTime: "",
-  newMorningSessionTime: "",
-  newAfternoonShortSessionTime: "",
-  newAfternoonLongSessionTime: "",
-  newMorningSessionPrice: "",
-  newAfternoonShortSessionPrice: "",
-  newAfternoonLongSessionPrice: "",
-  newMorningAndAfternoonShortSessionPrice: "",
-  newMorningAndAfternoonLongSessionPrice: "",
-  receivedErrorFromEmail: "",
-  dataToUpdateDocument: {},
-  databaseManagementResult: "",
-  databaseManagementError: null,
-};
-
-const handleAsyncAction = (builder, asyncAction) => {
-  builder
-    .addCase(asyncAction.pending, (state) => {
-      state.databaseManagementIsLoading = true;
-    })
-    .addCase(asyncAction.fulfilled, (state) => {
-      state.databaseManagementIsLoading = false;
-      state.databaseManagementResult = "fulfilled";
-      state.databaseManagementError = null;
-    })
-    .addCase(asyncAction.rejected, (state, action) => {
-      state.databaseManagementIsLoading = false;
-      state.databaseManagementResult = "rejected";
-      state.databaseManagementError = action.payload;
-    });
-};
 
 export const databaseManagementSlice = createSlice({
   name: "databaseManagement",
@@ -58,6 +25,13 @@ export const databaseManagementSlice = createSlice({
     resetNewAfternoonBookingClosingTime(state) {
       state.newAfternoonBookingClosingTime = "";
     },
+    resetBookingClosingTimeResult(state) {
+      state.bookingClosingTimeResult = "";
+    },
+    resetBookingClosingTimeError(state) {
+      state.bookingClosingTimeError = null;
+    },
+
     setNewMorningSessionTime(state, action) {
       state.newMorningSessionTime = action.payload;
     },
@@ -72,6 +46,13 @@ export const databaseManagementSlice = createSlice({
       state.newAfternoonShortSessionTime = "";
       state.newAfternoonLongSessionTime = "";
     },
+    resetSessionTimeResult(state) {
+      state.sessionTimeResult = "";
+    },
+    resetSessionTimeError(state) {
+      state.sessionTimeError = null;
+    },
+
     setNewMorningSessionPrice(state, action) {
       state.newMorningSessionPrice = action.payload;
     },
@@ -94,20 +75,36 @@ export const databaseManagementSlice = createSlice({
       state.newMorningAndAfternoonShortSessionPrice = "";
       state.newMorningAndAfternoonLongSessionPrice = "";
     },
-    setReceivedErrorFromEmail(state, action) {
-      state.receivedErrorFromEmail = action.payload;
+    resetSessionPricesResult(state) {
+      state.sessionPricesResult = "";
     },
-    resetReceivedErrorFromEmail(state) {
-      state.receivedErrorFromEmail = "";
+    resetSessionPricesError(state) {
+      state.sessionPricesError = null;
     },
-    resetDatabaseManagementError(state) {
-      state.databaseManagementError = null;
-    },
+
     setDataToUpdateDocument(state, action) {
       state.dataToUpdateDocument = action.payload;
     },
-    resetDatabaseManagementResult(state) {
-      state.databaseManagementResult = "";
+    resetUpdateBalanceResult(state) {
+      state.updateBalanceResult = "";
+    },
+    resetUpdateBalanceError(state) {
+      state.updateBalanceError = null;
+    },
+    resetAddBookingResult(state) {
+      state.addBookingResult = "";
+    },
+    resetAddBookingError(state) {
+      state.addBookingError = null;
+    },
+    resetUpdateSessionSpacesResult(state) {
+      state.updateSessionSpacesResult = "";
+    },
+    resetUpdateSessionSpacesError(state) {
+      state.updateSessionSpacesError = null;
+    },
+    setErrorId(state, action) {
+      state.errorId = action.payload;
     },
     resetDatabaseManagementState: () => {
       return INITIAL_STATE;
@@ -116,63 +113,185 @@ export const databaseManagementSlice = createSlice({
   selectors: {
     selectDatabaseManagementSelectors: createSelector(
       (state) => state.databaseManagementIsLoading,
+
       (state) => state.newMorningBookingClosingTime,
       (state) => state.newAfternoonBookingClosingTime,
-      (state) => state.databaseManagementResult,
-      (state) => state.databaseManagementError,
+      (state) => state.bookingClosingTimeResult,
+      (state) => state.bookingClosingTimeError,
+
       (state) => state.newMorningSessionTime,
       (state) => state.newAfternoonShortSessionTime,
       (state) => state.newAfternoonLongSessionTime,
+      (state) => state.sessionTimeResult,
+      (state) => state.sessionTimeError,
+
       (state) => state.newMorningSessionPrice,
       (state) => state.newAfternoonShortSessionPrice,
       (state) => state.newAfternoonLongSessionPrice,
       (state) => state.newMorningAndAfternoonShortSessionPrice,
       (state) => state.newMorningAndAfternoonLongSessionPrice,
-      (state) => state.receivedErrorFromEmail,
+      (state) => state.sessionPricesResult,
+      (state) => state.sessionPricesError,
+
       (state) => state.dataToUpdateDocument,
+      (state) => state.updateBalanceResult,
+      (state) => state.updateBalanceError,
+      (state) => state.addBookingResult,
+      (state) => state.addBookingError,
+      (state) => state.updateSessionSpacesResult,
+      (state) => state.updateSessionSpacesError,
+      (state) => state.errorId,
       (
         databaseManagementIsLoading,
+
         newMorningBookingClosingTime,
         newAfternoonBookingClosingTime,
-        databaseManagementResult,
-        databaseManagementError,
+        bookingClosingTimeResult,
+        bookingClosingTimeError,
+
         newMorningSessionTime,
         newAfternoonShortSessionTime,
         newAfternoonLongSessionTime,
+        sessionTimeResult,
+        sessionTimeError,
+
         newMorningSessionPrice,
         newAfternoonShortSessionPrice,
         newAfternoonLongSessionPrice,
         newMorningAndAfternoonShortSessionPrice,
         newMorningAndAfternoonLongSessionPrice,
-        receivedErrorFromEmail,
-        dataToUpdateDocument
+        sessionPricesResult,
+        sessionPricesError,
+
+        dataToUpdateDocument,
+        updateBalanceResult,
+        updateBalanceError,
+        addBookingResult,
+        addBookingError,
+        updateSessionSpacesResult,
+        updateSessionSpacesError,
+        errorId
       ) => {
         return {
           databaseManagementIsLoading,
+
           newMorningBookingClosingTime,
           newAfternoonBookingClosingTime,
-          databaseManagementResult,
-          databaseManagementError,
+          bookingClosingTimeResult,
+          bookingClosingTimeError,
+
           newMorningSessionTime,
           newAfternoonShortSessionTime,
           newAfternoonLongSessionTime,
+          sessionTimeResult,
+          sessionTimeError,
+
           newMorningSessionPrice,
           newAfternoonShortSessionPrice,
           newAfternoonLongSessionPrice,
           newMorningAndAfternoonShortSessionPrice,
           newMorningAndAfternoonLongSessionPrice,
-          receivedErrorFromEmail,
+          sessionPricesResult,
+          sessionPricesError,
+
           dataToUpdateDocument,
+          updateBalanceResult,
+          updateBalanceError,
+          addBookingResult,
+          addBookingError,
+          updateSessionSpacesResult,
+          updateSessionSpacesError,
+          errorId,
         };
       }
     ),
   },
   extraReducers: (builder) => {
-    handleAsyncAction(builder, updateBookingClosingTimesAsync);
-    handleAsyncAction(builder, updateSessionTimesAsync);
-    handleAsyncAction(builder, updateSessionPriceAsync);
-    handleAsyncAction(builder, updateUsersBalanceAfterErrorEmailAsync);
-    handleAsyncAction(builder, manuallyAddBookingDataAfterErrorAsync);
+    builder
+      .addCase(updateBookingClosingTimesAsync.pending, (state) => {
+        state.databaseManagementIsLoading = true;
+      })
+      .addCase(updateBookingClosingTimesAsync.fulfilled, (state) => {
+        state.databaseManagementIsLoading = false;
+        state.bookingClosingTimeResult = "fulfilled";
+        state.bookingClosingTimeError = null;
+      })
+      .addCase(updateBookingClosingTimesAsync.rejected, (state, action) => {
+        state.databaseManagementIsLoading = false;
+        state.bookingClosingTimeResult = "rejected";
+        state.bookingClosingTimeError = action.payload;
+      })
+      .addCase(updateSessionTimesAsync.pending, (state) => {
+        state.databaseManagementIsLoading = true;
+      })
+      .addCase(updateSessionTimesAsync.fulfilled, (state) => {
+        state.databaseManagementIsLoading = false;
+        state.sessionTimeResult = "fulfilled";
+        state.sessionTimeError = null;
+      })
+      .addCase(updateSessionTimesAsync.rejected, (state, action) => {
+        state.databaseManagementIsLoading = false;
+        state.sessionTimeResult = "rejected";
+        state.sessionTimeError = action.payload;
+      })
+      .addCase(updateSessionPriceAsync.pending, (state) => {
+        state.databaseManagementIsLoading = true;
+      })
+      .addCase(updateSessionPriceAsync.fulfilled, (state) => {
+        state.databaseManagementIsLoading = false;
+        state.sessionPricesResult = "fulfilled";
+        state.sessionPricesError = null;
+      })
+      .addCase(updateSessionPriceAsync.rejected, (state, action) => {
+        state.databaseManagementIsLoading = false;
+        state.sessionPricesResult = "rejected";
+        state.sessionPricesError = action.payload;
+      })
+      .addCase(updateUsersBalanceAfterErrorEmailAsync.pending, (state) => {
+        state.databaseManagementIsLoading = true;
+      })
+      .addCase(updateUsersBalanceAfterErrorEmailAsync.fulfilled, (state) => {
+        state.databaseManagementIsLoading = false;
+        state.updateBalanceResult = "fulfilled";
+        state.updateBalanceError = null;
+      })
+      .addCase(
+        updateUsersBalanceAfterErrorEmailAsync.rejected,
+        (state, action) => {
+          state.databaseManagementIsLoading = false;
+          state.updateBalanceResult = "rejected";
+          state.updateBalanceError = action.payload;
+        }
+      )
+      .addCase(manuallyAddBookingDataAfterErrorAsync.pending, (state) => {
+        state.databaseManagementIsLoading = true;
+      })
+      .addCase(manuallyAddBookingDataAfterErrorAsync.fulfilled, (state) => {
+        state.databaseManagementIsLoading = false;
+        state.addBookingResult = "fulfilled";
+        state.addBookingError = null;
+      })
+      .addCase(
+        manuallyAddBookingDataAfterErrorAsync.rejected,
+        (state, action) => {
+          state.databaseManagementIsLoading = false;
+          state.addBookingResult = "rejected";
+          state.addBookingError = action.payload;
+        }
+      )
+      .addCase(updateSessionSpacesDocAsync.pending, (state) => {
+        state.databaseManagementIsLoading = true;
+      })
+      .addCase(updateSessionSpacesDocAsync.fulfilled, (state) => {
+        state.databaseManagementIsLoading = false;
+        state.updateSessionSpacesResult = "fulfilled";
+        state.updateSessionSpacesError = null;
+      })
+      .addCase(updateSessionSpacesDocAsync.rejected, (state, action) => {
+        state.databaseManagementIsLoading = false;
+        state.updateSessionSpacesResult = "rejected";
+        state.updateSessionSpacesError = action.payload;
+      });
   },
 });
 
@@ -181,21 +300,33 @@ export const {
   resetNewMorningBookingClosingTime,
   setNewAfternoonBookingClosingTime,
   resetNewAfternoonBookingClosingTime,
+  resetBookingClosingTimeResult,
+  resetBookingClosingTimeError,
+
   setNewMorningSessionTime,
   setNewAfternoonShortSessionTime,
   setNewAfternoonLongSessionTime,
   resetNewSessionTimesDetails,
+  resetSessionTimeResult,
+  resetSessionTimeError,
+
   setNewMorningSessionPrice,
   setNewAfternoonShortSessionPrice,
   setNewAfternoonLongSessionPrice,
   setNewMorningAndAfternoonShortSessionPrice,
   setNewMorningAndAfternoonLongSessionPrice,
   resetNewSessionPricesDetails,
-  setReceivedErrorFromEmail,
-  resetReceivedErrorFromEmail,
+  resetSessionPricesResult,
+  resetSessionPricesError,
+
   setDataToUpdateDocument,
-  resetDatabaseManagementError,
-  resetDatabaseManagementResult,
+  resetUpdateBalanceResult,
+  resetUpdateBalanceError,
+  resetAddBookingResult,
+  resetAddBookingError,
+  resetUpdateSessionSpacesResult,
+  resetUpdateSessionSpacesError,
+  setErrorId,
   resetDatabaseManagementState,
 } = databaseManagementSlice.actions;
 export const { selectDatabaseManagementSelectors } =

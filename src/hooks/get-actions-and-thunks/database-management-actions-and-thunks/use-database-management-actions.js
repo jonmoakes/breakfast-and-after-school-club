@@ -2,9 +2,6 @@ import { useDispatch } from "react-redux";
 
 import {
   setNewMorningBookingClosingTime,
-  resetDatabaseManagementError,
-  resetDatabaseManagementState,
-  resetDatabaseManagementResult,
   resetNewMorningBookingClosingTime,
   setNewAfternoonBookingClosingTime,
   resetNewAfternoonBookingClosingTime,
@@ -18,9 +15,21 @@ import {
   setNewMorningAndAfternoonShortSessionPrice,
   setNewMorningAndAfternoonLongSessionPrice,
   resetNewSessionPricesDetails,
-  setReceivedErrorFromEmail,
-  resetReceivedErrorFromEmail,
   setDataToUpdateDocument,
+  resetBookingClosingTimeResult,
+  resetBookingClosingTimeError,
+  resetSessionTimeResult,
+  resetSessionTimeError,
+  resetSessionPricesResult,
+  resetSessionPricesError,
+  resetUpdateBalanceResult,
+  resetUpdateBalanceError,
+  resetAddBookingResult,
+  resetAddBookingError,
+  resetUpdateSessionSpacesResult,
+  resetUpdateSessionSpacesError,
+  resetDatabaseManagementState,
+  setErrorId,
 } from "../../../store/database-management/database-management.slice";
 
 const useDatabaseManagementActions = () => {
@@ -42,6 +51,14 @@ const useDatabaseManagementActions = () => {
     dispatch(resetNewAfternoonBookingClosingTime());
   };
 
+  const dispatchResetBookingClosingTimeResult = () => {
+    dispatch(resetBookingClosingTimeResult());
+  };
+
+  const dispatchResetBookingClosingTimeError = () => {
+    dispatch(resetBookingClosingTimeError());
+  };
+
   const dispatchSetNewMorningSessionTime = (payload) => {
     dispatch(setNewMorningSessionTime(payload));
   };
@@ -58,16 +75,12 @@ const useDatabaseManagementActions = () => {
     dispatch(resetNewSessionTimesDetails());
   };
 
-  const dispatchResetDatabaseManagementResult = () => {
-    dispatch(resetDatabaseManagementResult());
+  const dispatchResetSessionTimeResult = () => {
+    dispatch(resetSessionTimeResult());
   };
 
-  const dispatchResetDatabaseManagementError = () => {
-    dispatch(resetDatabaseManagementError());
-  };
-
-  const dispatchResetDatabaseManagementState = () => {
-    dispatch(resetDatabaseManagementState());
+  const dispatchResetSessionTimeError = () => {
+    dispatch(resetSessionTimeError());
   };
 
   const dispatchSetNewMorningSessionPrice = (payload) => {
@@ -94,16 +107,48 @@ const useDatabaseManagementActions = () => {
     dispatch(resetNewSessionPricesDetails());
   };
 
-  const dispatchSetReceivedErrorFromEmail = (payload) => {
-    dispatch(setReceivedErrorFromEmail(payload));
+  const dispatchResetSessionPricesResult = () => {
+    dispatch(resetSessionPricesResult());
   };
 
-  const dispatchResetReceivedErrorFromEmail = () => {
-    dispatch(resetReceivedErrorFromEmail());
+  const dispatchResetSessionPricesError = () => {
+    dispatch(resetSessionPricesError());
   };
 
   const dispatchSetDataToUpdateDocument = (payload) => {
     dispatch(setDataToUpdateDocument(payload));
+  };
+
+  const dispatchResetUpdateBalanceResult = () => {
+    dispatch(resetUpdateBalanceResult());
+  };
+
+  const dispatchResetUpdateBalanceError = () => {
+    dispatch(resetUpdateBalanceError());
+  };
+
+  const dispatchResetAddBookingResult = () => {
+    dispatch(resetAddBookingResult());
+  };
+
+  const dispatchResetAddBookingError = () => {
+    dispatch(resetAddBookingError());
+  };
+
+  const dispatchResetUpdateSessionSpacesResult = () => {
+    dispatch(resetUpdateSessionSpacesResult());
+  };
+
+  const dispatchResetUpdateSessionSpacesError = () => {
+    dispatch(resetUpdateSessionSpacesError());
+  };
+
+  const dispatchErrorId = (payload) => {
+    dispatch(setErrorId(payload));
+  };
+
+  const dispatchResetDatabaseManagementState = () => {
+    dispatch(resetDatabaseManagementState());
   };
 
   return {
@@ -111,22 +156,34 @@ const useDatabaseManagementActions = () => {
     dispatchResetNewMorningBookingClosingTime,
     dispatchSetNewAfternoonBookingClosingTime,
     dispatchResetNewAfternoonBookingClosingTime,
+    dispatchResetBookingClosingTimeResult,
+    dispatchResetBookingClosingTimeError,
+
     dispatchSetNewMorningSessionTime,
     dispatchSetNewAfternoonShortSessionTime,
     dispatchSetNewAfternoonLongSessionTime,
     dispatchResetNewSessionTimesDetails,
-    dispatchResetDatabaseManagementResult,
-    dispatchResetDatabaseManagementError,
-    dispatchResetDatabaseManagementState,
+    dispatchResetSessionTimeResult,
+    dispatchResetSessionTimeError,
+
     dispatchSetNewMorningSessionPrice,
     dispatchSetNewAfternoonShortSessionPrice,
     dispatchSetNewAfternoonLongSessionPrice,
     dispatchSetNewMorningAndAfternoonShortSessionPrice,
     dispatchSetNewMorningAndAfternoonLongSessionPrice,
     dispatchResetNewSessionPricesDetails,
-    dispatchSetReceivedErrorFromEmail,
-    dispatchResetReceivedErrorFromEmail,
+    dispatchResetSessionPricesResult,
+    dispatchResetSessionPricesError,
+
     dispatchSetDataToUpdateDocument,
+    dispatchResetUpdateBalanceResult,
+    dispatchResetUpdateBalanceError,
+    dispatchResetAddBookingResult,
+    dispatchResetAddBookingError,
+    dispatchResetUpdateSessionSpacesResult,
+    dispatchResetUpdateSessionSpacesError,
+    dispatchErrorId,
+    dispatchResetDatabaseManagementState,
   };
 };
 

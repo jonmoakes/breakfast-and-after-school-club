@@ -13,11 +13,11 @@ import PrivateRoutes from "./components/private-routes/private-routes.component"
 import ErrorFallback from "./components/errors/error-fallback.component";
 import Loader from "./components/loader/loader.component";
 import FloatingBackButton from "./components/floating-back-button/floating-back-button.component";
-import DBManageViewBookingClosingTimes from "./routes/database-management/booking-closing-times/db-manage-view-booking-closing-times.component";
-import DBManageViewSessionTimes from "./routes/database-management/session-times/db-manage-view-session-times.component";
-import DBManageViewSessionPrices from "./routes/database-management/session-prices/db-manage-view-session-prices.component";
-import DBManageChooseError from "./routes/database-management/choose-error/db-manage-choose-error.component";
-import DBManageUpdateDocument from "./routes/database-management/update-document/db-manage-update-document.component";
+// import DBManageViewBookingClosingTimes from "./routes/database-management/booking-closing-times/db-manage-view-booking-closing-times.component";
+// import DBManageViewSessionTimes from "./routes/database-management/session-times/db-manage-view-session-times.component";
+// import DBManageViewSessionPrices from "./routes/database-management/session-prices/db-manage-view-session-prices.component";
+// import DBManageChooseError from "./routes/database-management/choose-error/db-manage-choose-error.component";
+// import DBManageUpdateDocument from "./routes/database-management/update-document/db-manage-update-document.component";
 
 import {
   contactRoute,
@@ -47,8 +47,11 @@ import {
   databaseManagementViewBookingClosingTimesRoute,
   databaseManagementViewSessionTimesRoute,
   databaseManagementViewSessionPricesRoute,
-  databaseManagementChooseErrorRoute,
-  databaseManagementUpdateDocumentRoute,
+  databaseManagementUpdateUserBalanceRoute,
+  databaseManagementUpdateSessionSpacesRoute,
+  // databaseManagementChooseErrorRoute,
+  // databaseManagementUpdateDocumentRoute,
+  // databaseManagementUpdateUserBalanceRoute,
 } from "./strings/routes/routes-strings";
 
 const Navigation = lazy(() =>
@@ -119,6 +122,31 @@ const UploadDatesToDatabase = lazy(() =>
 );
 const DatabaseManagement = lazy(() =>
   import("./routes/database-management/database-management.component")
+);
+const DBManageViewBookingClosingTimes = lazy(() =>
+  import(
+    "./routes/database-management-booking-closing-times/db-manage-view-booking-closing-times.component"
+  )
+);
+const DBManageViewSessionTimes = lazy(() =>
+  import(
+    "./routes/database-management-session-times/db-manage-view-session-times.component"
+  )
+);
+const DBManageViewSessionPrices = lazy(() =>
+  import(
+    "./routes/database-management-session-prices/db-manage-view-session-prices.component"
+  )
+);
+const UpdateUserBalance = lazy(() =>
+  import(
+    "./routes/database-management-update-balance/update-user-balance.component"
+  )
+);
+const UpdateSessionSpaces = lazy(() =>
+  import(
+    "./routes/database-management-update-session-spaces/update-session-spaces.component"
+  )
 );
 
 const App = () => {
@@ -198,13 +226,14 @@ const App = () => {
                 element={<DBManageViewSessionPrices />}
               />
               <Route
-                path={databaseManagementChooseErrorRoute}
-                element={<DBManageChooseError />}
+                path={databaseManagementUpdateUserBalanceRoute}
+                element={<UpdateUserBalance />}
               />
               <Route
-                path={databaseManagementUpdateDocumentRoute}
-                element={<DBManageUpdateDocument />}
+                path={databaseManagementUpdateSessionSpacesRoute}
+                element={<UpdateSessionSpaces />}
               />
+
               <Route path={childInfoRoute} element={<ChildInfo />} />
               <Route path={addChildInfoRoute} element={<AddChildInfo />} />
               <Route path={editChildInfoRoute} element={<EditChildInfo />} />

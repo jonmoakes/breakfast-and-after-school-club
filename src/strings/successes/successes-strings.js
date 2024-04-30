@@ -26,4 +26,7 @@ export const sessionTimeUpdatedMessage =
   "the session time was successfully updated!";
 export const sessionPriceUpdatedMessage =
   "the session price was successfully updated!";
-export const documentUpdatedMessage = "document successfully updated!";
+export const userBalanceUpdatedMessage =
+  "the users balance was successfully updated!";
+export const sessionspacesUpdatedMessage =
+  "the session spaces were successfully updated!";

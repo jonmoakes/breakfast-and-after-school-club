@@ -16,6 +16,7 @@ import { Nav, Menu } from "../../styles/div/div.styles";
 import {
   cancelBookingRoute,
   chosenEntryChildDetailsRoute,
+  databaseManagementUpdateSessionSpacesRoute,
   deleteChildInfoRoute,
   editChildInfoRoute,
 } from "../../strings/routes/routes-strings";
@@ -31,7 +32,8 @@ const Navigation = () => {
     return path !== editChildInfoRoute &&
       path !== deleteChildInfoRoute &&
       path !== chosenEntryChildDetailsRoute &&
-      path !== cancelBookingRoute
+      path !== cancelBookingRoute &&
+      path !== databaseManagementUpdateSessionSpacesRoute
       ? true
       : false;
   };
