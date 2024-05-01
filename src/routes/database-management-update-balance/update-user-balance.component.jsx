@@ -63,10 +63,12 @@ const UpdateUserBalance = () => {
             </Text>
             {errorId === "3" ? (
               <>
-                one you receive confirmation of the successful updating of a
-                users balance, when you tap 'ok' in the alert box that shows up,
-                you will be taken to the next form where you can update the
-                session spaces.
+                <Text>
+                  one you receive confirmation of the successful updating of a
+                  users balance, when you tap 'ok' in the alert box that shows
+                  up, you will be taken to the next form where you can update
+                  the session spaces.
+                </Text>
               </>
             ) : null}
 
