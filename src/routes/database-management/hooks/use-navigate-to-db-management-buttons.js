@@ -6,6 +6,7 @@ import {
   databaseManagementViewSessionPricesRoute,
   databaseManagementViewSessionTimesRoute,
   databaseManagementUpdateUserBalanceRoute,
+  databaseManagementAddBookingRoute,
 } from "../../../strings/routes/routes-strings";
 
 const useNavigateToDbManagementButtons = () => {
@@ -51,6 +52,13 @@ const useNavigateToDbManagementButtons = () => {
     },
     {
       id: 5,
+      heading: "add a booking",
+      text: "email error id '2'",
+      onClick: () =>
+        handleNavWithErrorId("2", databaseManagementAddBookingRoute),
+    },
+    {
+      id: 6,
       heading: "update user balance & session spaces",
       text: "email error id '3'",
       onClick: () =>

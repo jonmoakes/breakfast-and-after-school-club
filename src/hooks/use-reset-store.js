@@ -57,6 +57,7 @@ import {
   databaseManagementViewSessionPricesRoute,
   databaseManagementUpdateUserBalanceRoute,
   databaseManagementUpdateSessionSpacesRoute,
+  databaseManagementAddBookingRoute,
 } from "../strings/routes/routes-strings";
 
 const useResetStore = () => {
@@ -238,13 +239,13 @@ const useResetStore = () => {
         break;
       case databaseManagementUpdateUserBalanceRoute:
       case databaseManagementUpdateSessionSpacesRoute:
+      case databaseManagementAddBookingRoute:
         if (databaseManagementError) {
           dispatchResetDatabaseManagementError();
         } else {
           dispatchResetDatabaseManagementState();
         }
         break;
-
       default:
         return;
     }

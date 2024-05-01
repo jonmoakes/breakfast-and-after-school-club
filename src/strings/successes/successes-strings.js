@@ -30,3 +30,5 @@ export const userBalanceUpdatedMessage =
   "the users balance was successfully updated!";
 export const sessionspacesUpdatedMessage =
   "the session spaces were successfully updated!";
+export const bookingSuccessfullyAddedMessage =
+  "the booking was successfully added!";

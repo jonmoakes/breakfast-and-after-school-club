@@ -36,9 +36,5 @@ export const databaseManagementUpdateUserBalanceRoute =
   "/database-management/update-user-balance";
 export const databaseManagementUpdateSessionSpacesRoute =
   "/database-management/update-session-spaces";
-// export const databaseManagementAddBookingRoute =
-//   "/database-management/update-document/add-booking";
-// export const databaseManagementUpdateBalanceAndSessionSpacesBalanceDocumentRoute =
-//   "/database-management/update-document/update-balance-and-session-spaces-balance";
-// export const databaseManagementUpdateBalanceAndSessionSpacesSessionSpacesDocumentRoute =
-//   "/database-management/update-document/update-balance-and-session-spaces-session-spaces";
+export const databaseManagementAddBookingRoute =
+  "/database-management/update-document/add-booking";

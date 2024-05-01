@@ -13,6 +13,7 @@ import PrivateRoutes from "./components/private-routes/private-routes.component"
 import ErrorFallback from "./components/errors/error-fallback.component";
 import Loader from "./components/loader/loader.component";
 import FloatingBackButton from "./components/floating-back-button/floating-back-button.component";
+
 // import DBManageViewBookingClosingTimes from "./routes/database-management/booking-closing-times/db-manage-view-booking-closing-times.component";
 // import DBManageViewSessionTimes from "./routes/database-management/session-times/db-manage-view-session-times.component";
 // import DBManageViewSessionPrices from "./routes/database-management/session-prices/db-manage-view-session-prices.component";
@@ -49,6 +50,7 @@ import {
   databaseManagementViewSessionPricesRoute,
   databaseManagementUpdateUserBalanceRoute,
   databaseManagementUpdateSessionSpacesRoute,
+  databaseManagementAddBookingRoute,
   // databaseManagementChooseErrorRoute,
   // databaseManagementUpdateDocumentRoute,
   // databaseManagementUpdateUserBalanceRoute,
@@ -138,14 +140,19 @@ const DBManageViewSessionPrices = lazy(() =>
     "./routes/database-management-session-prices/db-manage-view-session-prices.component"
   )
 );
-const UpdateUserBalance = lazy(() =>
+const DBManageUpdateUserBalance = lazy(() =>
   import(
-    "./routes/database-management-update-balance/update-user-balance.component"
+    "./routes/database-management-update-balance/db-manage-update-user-balance.component"
   )
 );
-const UpdateSessionSpaces = lazy(() =>
+const DBManageAddBooking = lazy(() =>
   import(
-    "./routes/database-management-update-session-spaces/update-session-spaces.component"
+    "./routes/database-management-add-booking/db-manage-add-booking.component"
+  )
+);
+const DBManageUpdateSessionSpaces = lazy(() =>
+  import(
+    "./routes/database-management-update-session-spaces/db-manage-update-session-spaces.component"
   )
 );
 
@@ -227,11 +234,16 @@ const App = () => {
               />
               <Route
                 path={databaseManagementUpdateUserBalanceRoute}
-                element={<UpdateUserBalance />}
+                element={<DBManageUpdateUserBalance />}
+              />
+
+              <Route
+                path={databaseManagementAddBookingRoute}
+                element={<DBManageAddBooking />}
               />
               <Route
                 path={databaseManagementUpdateSessionSpacesRoute}
-                element={<UpdateSessionSpaces />}
+                element={<DBManageUpdateSessionSpaces />}
               />
 
               <Route path={childInfoRoute} element={<ChildInfo />} />

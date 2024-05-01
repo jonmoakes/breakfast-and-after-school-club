@@ -35,7 +35,7 @@ const DatabaseManagement = () => {
           </RedSpan>
         </Text>
         <Text>
-          please note, any button including and under the heading of '
+          please also note, any button including and under the heading of '
           <RedSpan>update a users balance</RedSpan>', should only be pressed if
           you have received an email telling you that there was an error when a
           user tried to perform an action in the app.
