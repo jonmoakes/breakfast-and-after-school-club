@@ -33,22 +33,24 @@ const DbManageAddBooking = () => {
             <Balancer>
               <Text>
                 if you're on this page, it means you should have received an
-                email saying that the users booking was not added to the
-                database when they made a booking.
+                email saying that:
+                <br />'
+                <RedSpan>
+                  There Was An Error Adding A Users Booking To The Database
+                </RedSpan>
+                '
               </Text>
+
               <Text>
                 in the email, it has the error id of
                 <br />'<RedSpan>{errorId}</RedSpan>'
               </Text>
-
               <Text>
                 to fix the error, we need the following data which you will find
                 in the email:
               </Text>
-
               <RequiredData />
               <InputRecommendation />
-
               <Text>
                 if successful, the user should see their booking appear in their
                 table the next time they go that page, or if they reload the
@@ -59,7 +61,6 @@ const DbManageAddBooking = () => {
                 your database when you add the booking on this page.
               </Text>
               <Text>If it does not, please reload your table page.</Text>
-
               <Text>
                 if you get an error when trying to do this, please contact
                 jonathan.

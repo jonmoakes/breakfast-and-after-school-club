@@ -9,7 +9,7 @@ import InputRecommendation from "../../components/database-management/input-reco
 import UpdateSessionSpacesForm from "./update-session-spaces-form.component";
 
 import { Text } from "../../styles/p/p.styles";
-import { NoHeaderFooterContainer } from "../../styles/container/container.styles";
+import { Container } from "../../styles/container/container.styles";
 import { ParentDiv } from "../../styles/div/div.styles";
 import { BlackTitle } from "../../styles/h1/h1.styles";
 import { RedSpan } from "../../styles/span/span.styles";
@@ -17,10 +17,11 @@ import { RedSpan } from "../../styles/span/span.styles";
 const DBManageUpdateSessionSpaces = () => {
   useUpdateSessionSpacesResultSwal();
 
-  const { databaseManagementIsLoading } = useGetDatabaseManagementSelectors();
+  const { databaseManagementIsLoading, errorId } =
+    useGetDatabaseManagementSelectors();
 
   return (
-    <NoHeaderFooterContainer>
+    <Container>
       <ParentDiv>
         <BlackTitle>update session spaces</BlackTitle>
       </ParentDiv>
@@ -31,24 +32,46 @@ const DBManageUpdateSessionSpaces = () => {
         <>
           <ParentDiv>
             <Balancer>
-              <Text>
-                now that you have successfully updated the users balance, we can
-                update the session spaces in the database so that they are
-                correct.
-              </Text>
+              {errorId === "3" ? (
+                <>
+                  <Text>
+                    now that you have successfully updated the users balance, we
+                    can update the session spaces in the database so that they
+                    are correct.
+                  </Text>
 
-              <Text>
-                <RedSpan>
-                  please don't leave this page before completing this step as
-                  your database data will be out of sync otherwise.
-                </RedSpan>
-              </Text>
-
-              <Text>
-                to fix this error, we need the following data which you will
-                also find in the same email you used to update the users balance
-                ( which has the error id of '<RedSpan>3</RedSpan>').
-              </Text>
+                  <Text>
+                    <RedSpan>
+                      please don't leave this page before completing this step
+                      as your database data will be out of sync otherwise.
+                    </RedSpan>
+                  </Text>
+                </>
+              ) : errorId === "4" ? (
+                <>
+                  <Text>
+                    If You're On This Page, It Means You Should Have Received An
+                    Email Saying That:
+                    <br />'
+                    <RedSpan>
+                      There has been An Error Resetting Session Data After
+                      Updating A Users Balance Failed, Which Caused A Failed
+                      Booking Attempt
+                    </RedSpan>
+                    '.
+                  </Text>
+                  <Text>
+                    it has the error id of '<RedSpan>4</RedSpan>'
+                  </Text>
+                </>
+              ) : null}
+              {errorId === "4" ? null : (
+                <Text>
+                  now that we have updated the users, balance, we need to update
+                  the session spaces. to fix this error, we need the following
+                  data which you will also find in the same email.
+                </Text>
+              )}
 
               <RequiredData />
               <InputRecommendation />
@@ -68,7 +91,7 @@ const DBManageUpdateSessionSpaces = () => {
           </ParentDiv>
         </>
       )}
-    </NoHeaderFooterContainer>
+    </Container>
   );
 };
 

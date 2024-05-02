@@ -24,7 +24,7 @@ const UpdateSessionSpacesForm = () => {
         placeholder="YYYY-MM-DD format"
       />
 
-      <Label>sessionType:</Label>
+      <Label>session Type:</Label>
       <StyledInput
         type="text"
         name="sessionType"

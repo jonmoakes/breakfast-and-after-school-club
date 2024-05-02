@@ -51,9 +51,6 @@ import {
   databaseManagementUpdateUserBalanceRoute,
   databaseManagementUpdateSessionSpacesRoute,
   databaseManagementAddBookingRoute,
-  // databaseManagementChooseErrorRoute,
-  // databaseManagementUpdateDocumentRoute,
-  // databaseManagementUpdateUserBalanceRoute,
 } from "./strings/routes/routes-strings";
 
 const Navigation = lazy(() =>

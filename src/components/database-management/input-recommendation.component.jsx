@@ -4,6 +4,7 @@ import { Text } from "../../styles/p/p.styles";
 import { RedSpan } from "../../styles/span/span.styles";
 
 import {
+  databaseManagementAddBookingRoute,
   databaseManagementUpdateSessionSpacesRoute,
   databaseManagementUpdateUserBalanceRoute,
 } from "../../strings/routes/routes-strings";
@@ -21,6 +22,8 @@ const InputRecommendation = () => {
           ? "balance"
           : path === databaseManagementUpdateSessionSpacesRoute
           ? "session spaces"
+          : path === databaseManagementAddBookingRoute
+          ? "booking"
           : "document"}
         '.
       </Text>

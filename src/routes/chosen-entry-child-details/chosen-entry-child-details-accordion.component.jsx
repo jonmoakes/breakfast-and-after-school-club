@@ -36,6 +36,11 @@ const ChosenEntryChildDetailsAccordion = () => {
                 visible if the parent has not entered anything for those fields
                 when creating the child.
               </Text>
+              <Text>
+                if the user has deleted their child from the database after they
+                made their booking, The information will not show up here
+                either.
+              </Text>
             </AccordionContent>
           )}
         </>

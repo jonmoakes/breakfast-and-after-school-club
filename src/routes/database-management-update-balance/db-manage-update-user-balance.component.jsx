@@ -33,8 +33,30 @@ const DBManageUpdateUserBalance = () => {
             <Balancer>
               <Text>
                 if you're on this page, it means you should have received an
-                email saying that the users balance was not updated after they
-                cancelled a booking.
+                email saying that
+                {errorId === "1" ? (
+                  <>
+                    <br />'
+                    <RedSpan>
+                      There Was An Error Updating A Users Balance After They
+                      Cancelled A Booking
+                    </RedSpan>
+                    '
+                  </>
+                ) : errorId === "3" ? (
+                  <>
+                    <br />'
+                    <RedSpan>
+                      A user cancelled a booking, but There Was An Error
+                      Updating the Session Spaces on the date of the cancelled
+                      booking. also, the users balance was not updated correctly
+                    </RedSpan>
+                    '
+                  </>
+                ) : (
+                  ""
+                )}
+                .
               </Text>
               <Text>
                 in the email, it has the error id of

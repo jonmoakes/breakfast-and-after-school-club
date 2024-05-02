@@ -21,60 +21,67 @@ const ChildDetails = () => {
 
   return (
     <>
-      {noChosenEntryFound
-        ? null
-        : chosenEntryChildDetails.map((childDetails) => {
-            const {
-              childName,
-              age,
-              consent,
-              medicalInfo,
-              dietryRequirements,
-              additionalInfo,
-            } = childDetails;
+      {noChosenEntryFound ? (
+        <ParentDiv>
+          <Text>
+            no details found ( The child or children may have been deleted from
+            the database ).
+          </Text>
+        </ParentDiv>
+      ) : (
+        chosenEntryChildDetails.map((childDetails) => {
+          const {
+            childName,
+            age,
+            consent,
+            medicalInfo,
+            dietryRequirements,
+            additionalInfo,
+          } = childDetails;
 
-            return (
-              <ParentDiv key={crypto.randomUUID()}>
-                <BlackHr />
+          return (
+            <ParentDiv key={crypto.randomUUID()}>
+              <BlackHr />
 
-                <BlueH2>child name:</BlueH2>
-                <Text>{childName}</Text>
-                <BlackHr />
+              <BlueH2>child name:</BlueH2>
+              <Text>{childName}</Text>
+              <BlackHr />
 
-                <BlueH2>age:</BlueH2>
-                <Text>{age}</Text>
-                <BlackHr />
-                <Balancer>
-                  <BlueH2>name / image consent given:</BlueH2>
-                </Balancer>
-                <Text>{consent}</Text>
-                <BlackHr />
-                {medicalInfo ? (
-                  <>
-                    <BlueH2>medical info:</BlueH2>
-                    <Text>{medicalInfo}</Text>
-                    <BlackHr />
-                  </>
-                ) : null}
+              <BlueH2>age:</BlueH2>
+              <Text>{age}</Text>
+              <BlackHr />
+              <Balancer>
+                <BlueH2>name / image consent given:</BlueH2>
+              </Balancer>
+              <Text>{consent}</Text>
+              <BlackHr />
+              {medicalInfo ? (
+                <>
+                  <BlueH2>medical info:</BlueH2>
+                  <Text>{medicalInfo}</Text>
+                  <BlackHr />
+                </>
+              ) : null}
 
-                {dietryRequirements ? (
-                  <>
-                    <BlueH2>dietry requirements:</BlueH2>
-                    <Text>{dietryRequirements}</Text>
-                    <BlackHr />
-                  </>
-                ) : null}
+              {dietryRequirements ? (
+                <>
+                  <BlueH2>dietry requirements:</BlueH2>
+                  <Text>{dietryRequirements}</Text>
+                  <BlackHr />
+                </>
+              ) : null}
 
-                {additionalInfo ? (
-                  <>
-                    <BlueH2>additional info:</BlueH2>
-                    <Text>{additionalInfo}</Text>
-                    <BlackHr />
-                  </>
-                ) : null}
-              </ParentDiv>
-            );
-          })}
+              {additionalInfo ? (
+                <>
+                  <BlueH2>additional info:</BlueH2>
+                  <Text>{additionalInfo}</Text>
+                  <BlackHr />
+                </>
+              ) : null}
+            </ParentDiv>
+          );
+        })
+      )}
 
       <ParentDiv>
         <YellowGreenButton onClick={cancelAndReturn}>
