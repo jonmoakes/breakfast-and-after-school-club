@@ -30,6 +30,10 @@ import {
   resetUpdateSessionSpacesError,
   resetDatabaseManagementState,
   setErrorId,
+  setUserHasDeletedAllChildren,
+  resetDeleteChildOrUserResult,
+  resetDeleteChildOrUserError,
+  resetDataToUpdateDocument,
 } from "../../../store/database-management/database-management.slice";
 
 const useDatabaseManagementActions = () => {
@@ -119,6 +123,10 @@ const useDatabaseManagementActions = () => {
     dispatch(setDataToUpdateDocument(payload));
   };
 
+  const dispatchResetDataToUpdateDocument = () => {
+    dispatch(resetDataToUpdateDocument());
+  };
+
   const dispatchResetUpdateBalanceResult = () => {
     dispatch(resetUpdateBalanceResult());
   };
@@ -145,6 +153,18 @@ const useDatabaseManagementActions = () => {
 
   const dispatchErrorId = (payload) => {
     dispatch(setErrorId(payload));
+  };
+
+  const dispatchSetUserHasDeletedAllChildren = (payload) => {
+    dispatch(setUserHasDeletedAllChildren(payload));
+  };
+
+  const dispatchResetDeleteChildOrUserResult = () => {
+    dispatch(resetDeleteChildOrUserResult());
+  };
+
+  const dispatchResetDeleteChildOrUserError = () => {
+    dispatch(resetDeleteChildOrUserError());
   };
 
   const dispatchResetDatabaseManagementState = () => {
@@ -176,6 +196,7 @@ const useDatabaseManagementActions = () => {
     dispatchResetSessionPricesError,
 
     dispatchSetDataToUpdateDocument,
+    dispatchResetDataToUpdateDocument,
     dispatchResetUpdateBalanceResult,
     dispatchResetUpdateBalanceError,
     dispatchResetAddBookingResult,
@@ -183,6 +204,9 @@ const useDatabaseManagementActions = () => {
     dispatchResetUpdateSessionSpacesResult,
     dispatchResetUpdateSessionSpacesError,
     dispatchErrorId,
+    dispatchSetUserHasDeletedAllChildren,
+    dispatchResetDeleteChildOrUserResult,
+    dispatchResetDeleteChildOrUserError,
     dispatchResetDatabaseManagementState,
   };
 };

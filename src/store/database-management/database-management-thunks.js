@@ -214,3 +214,19 @@ export const updateSessionSpacesDocAsync = createAsyncThunk(
     }
   }
 );
+
+export const deleteChildOrUserUserAsync = createAsyncThunk(
+  "deletChildOrUser",
+  async ({ databaseId, collectionId, documentId }, thunkAPI) => {
+    try {
+      await manageDatabaseDocument(
+        "delete",
+        databaseId,
+        collectionId,
+        documentId
+      );
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);

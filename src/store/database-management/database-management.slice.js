@@ -7,6 +7,7 @@ import {
   updateUsersBalanceAfterErrorEmailAsync,
   manuallyAddBookingDataAfterErrorAsync,
   updateSessionSpacesDocAsync,
+  deleteChildOrUserUserAsync,
 } from "./database-management-thunks";
 
 export const databaseManagementSlice = createSlice({
@@ -85,6 +86,9 @@ export const databaseManagementSlice = createSlice({
     setDataToUpdateDocument(state, action) {
       state.dataToUpdateDocument = action.payload;
     },
+    resetDataToUpdateDocument(state) {
+      state.dataToUpdateDocument = {};
+    },
     resetUpdateBalanceResult(state) {
       state.updateBalanceResult = "";
     },
@@ -105,6 +109,15 @@ export const databaseManagementSlice = createSlice({
     },
     setErrorId(state, action) {
       state.errorId = action.payload;
+    },
+    setUserHasDeletedAllChildren(state, action) {
+      state.userHasDeletedAllChildren = action.payload;
+    },
+    resetDeleteChildOrUserResult(state) {
+      state.deleteChildOrUserResult = "";
+    },
+    resetDeleteChildOrUserError(state) {
+      state.deleteChildOrUserError = null;
     },
     resetDatabaseManagementState: () => {
       return INITIAL_STATE;
@@ -141,6 +154,9 @@ export const databaseManagementSlice = createSlice({
       (state) => state.updateSessionSpacesResult,
       (state) => state.updateSessionSpacesError,
       (state) => state.errorId,
+      (state) => state.userHasDeletedAllChildren,
+      (state) => state.deleteChildOrUserResult,
+      (state) => state.deleteChildOrUserError,
       (
         databaseManagementIsLoading,
 
@@ -170,7 +186,10 @@ export const databaseManagementSlice = createSlice({
         addBookingError,
         updateSessionSpacesResult,
         updateSessionSpacesError,
-        errorId
+        errorId,
+        userHasDeletedAllChildren,
+        deleteChildOrUserResult,
+        deleteChildOrUserError
       ) => {
         return {
           databaseManagementIsLoading,
@@ -202,6 +221,9 @@ export const databaseManagementSlice = createSlice({
           updateSessionSpacesResult,
           updateSessionSpacesError,
           errorId,
+          userHasDeletedAllChildren,
+          deleteChildOrUserResult,
+          deleteChildOrUserError,
         };
       }
     ),
@@ -291,6 +313,19 @@ export const databaseManagementSlice = createSlice({
         state.databaseManagementIsLoading = false;
         state.updateSessionSpacesResult = "rejected";
         state.updateSessionSpacesError = action.payload;
+      })
+      .addCase(deleteChildOrUserUserAsync.pending, (state) => {
+        state.databaseManagementIsLoading = true;
+      })
+      .addCase(deleteChildOrUserUserAsync.fulfilled, (state) => {
+        state.databaseManagementIsLoading = false;
+        state.deleteChildOrUserResult = "fulfilled";
+        state.deleteChildOrUserError = null;
+      })
+      .addCase(deleteChildOrUserUserAsync.rejected, (state, action) => {
+        state.databaseManagementIsLoading = false;
+        state.deleteChildOrUserResult = "rejected";
+        state.deleteChildOrUserError = action.payload;
       });
   },
 });
@@ -320,6 +355,7 @@ export const {
   resetSessionPricesError,
 
   setDataToUpdateDocument,
+  resetDataToUpdateDocument,
   resetUpdateBalanceResult,
   resetUpdateBalanceError,
   resetAddBookingResult,
@@ -327,6 +363,9 @@ export const {
   resetUpdateSessionSpacesResult,
   resetUpdateSessionSpacesError,
   setErrorId,
+  setUserHasDeletedAllChildren,
+  resetDeleteChildOrUserResult,
+  resetDeleteChildOrUserError,
   resetDatabaseManagementState,
 } = databaseManagementSlice.actions;
 export const { selectDatabaseManagementSelectors } =

@@ -1,6 +1,6 @@
 import { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
 
+import useHamburgerHandlerNavigate from "../../../hooks/use-hamburger-handler-navigate";
 import useSendEmailActions from "../../../hooks/get-actions-and-thunks/send-email-actions-and-thunks/use-send-email-actions";
 import useGetSendEmailSelectors from "../../../hooks/get-selectors/use-get-send-email-selectors";
 import useFireSwal from "../../../hooks/use-fire-swal";
@@ -14,8 +14,7 @@ const useCloseAccountSwal = () => {
   const { sendEmailStatusCode, sendEmailError } = useGetSendEmailSelectors();
   const { dispatchResetSendEmailState } = useSendEmailActions();
   const { fireSwal } = useFireSwal();
-
-  const navigate = useNavigate();
+  const { hamburgerHandlerNavigate } = useHamburgerHandlerNavigate();
 
   useEffect(() => {
     if (!sendEmailStatusCode && !sendEmailError) return;
@@ -31,7 +30,7 @@ const useCloseAccountSwal = () => {
       ).then((isConfirmed) => {
         if (isConfirmed) {
           dispatchResetSendEmailState();
-          navigate(accountRoute);
+          hamburgerHandlerNavigate(accountRoute);
         }
       });
     } else {
@@ -53,7 +52,7 @@ const useCloseAccountSwal = () => {
     sendEmailError,
     fireSwal,
     dispatchResetSendEmailState,
-    navigate,
+    hamburgerHandlerNavigate,
   ]);
 };
 

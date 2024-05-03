@@ -55,17 +55,6 @@ const useUpdateDocumentFunctions = () => {
     }
   };
 
-  const formHasWhiteSpaceValues = () => {
-    if (
-      valueStartsOrEndsWithSpace(usersDocumentId) ||
-      valueStartsOrEndsWithSpace(refundPrice)
-    ) {
-      return true;
-    } else {
-      return false;
-    }
-  };
-
   const isNotValidDateFormat = (dateString) => {
     // Regular expression to match yyyy-mm-dd format
     const regex = /^\d{4}-\d{2}-\d{2}$/;
@@ -106,7 +95,7 @@ const useUpdateDocumentFunctions = () => {
     invalidRefundPriceLength,
     formHasEmptyValue,
     parentNameOrChildrenInBookingIsEmpty,
-    formHasWhiteSpaceValues,
+
     isNotValidDateFormat,
     isNotValidSessionType,
     isNotValidNumberOfChildrenValue,

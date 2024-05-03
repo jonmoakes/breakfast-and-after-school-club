@@ -1,5 +1,6 @@
 import useFireSwal from "../use-fire-swal";
 import {
+  deleteUserppercaseLettersErrorMessage,
   documentLengthErrorMessage,
   emptyFieldsMessage,
   invalidDateErrorMessage,
@@ -20,6 +21,17 @@ const useUpdateDocumentSwals = () => {
 
   const fireCantHaveUppercaseCharactersSwal = () => {
     fireSwal("error", uppercaseLettersErrorMessage, "", 0, true, false);
+  };
+
+  const fireDeleteUserUppercaseCharactersSwal = () => {
+    fireSwal(
+      "error",
+      deleteUserppercaseLettersErrorMessage,
+      "",
+      0,
+      true,
+      false
+    );
   };
 
   const fireDocumentIdLengthErrorSwal = () => {
@@ -53,6 +65,7 @@ const useUpdateDocumentSwals = () => {
   return {
     fireEmptyValuesSwal,
     fireCantHaveUppercaseCharactersSwal,
+    fireDeleteUserUppercaseCharactersSwal,
     fireDocumentIdLengthErrorSwal,
     fireRefundPriceLengthErrorSwal,
     fireWhiteSpaceErrorSwal,

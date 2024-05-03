@@ -28,4 +28,7 @@ export const INITIAL_STATE = {
   updateSessionSpacesResult: "",
   updateSessionSpacesError: null,
   errorId: "",
+  deleteChildOrUserResult: "",
+  deleteChildOrUserError: null,
+  userHasDeletedAllChildren: false,
 };

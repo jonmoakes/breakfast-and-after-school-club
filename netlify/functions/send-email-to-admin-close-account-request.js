@@ -2,7 +2,9 @@ import postmark from "postmark";
 const client = new postmark.ServerClient(process.env.VITE_POSTMARK_API_KEY);
 
 export const handler = async (event) => {
-  const { appOwnerEmail, id, email } = JSON.parse(event.body);
+  const { appOwnerEmail, childrenIdsToDelete, id, email } = JSON.parse(
+    event.body
+  );
 
   try {
     await client.sendEmailWithTemplate({
@@ -13,6 +15,7 @@ export const handler = async (event) => {
         product_url: "https://www.breakfast-and-after-school-club.co.uk",
         product_name: "Breakfast & After School Club",
         appOwnerEmail,
+        childrenIdsToDelete,
         id,
         email,
       },

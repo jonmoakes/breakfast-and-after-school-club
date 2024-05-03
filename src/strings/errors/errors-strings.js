@@ -193,3 +193,5 @@ export const errorUpdatingUsersBalanceMessage =
   "sorry, there was an error updating the users balance.";
 export const errorUpdatingSessionSpacesMessage =
   "sorry, there was an error updating the session spaces.";
+export const couldntFetchUsersChildrenErrorMessage = `<span style="font-size: 20px;">sorry, there was an error fetching your childrens details from the database. We need this information to send to the app owner so that they can delete all of the data associated with your account. please try again, or contact us if the error persists.</span>`;
+export const deleteUserppercaseLettersErrorMessage = `<span style="font-size: 20px;">  the input can't have uppercase characters. ${copyAndPasteFromEmailMessage}</span>`;

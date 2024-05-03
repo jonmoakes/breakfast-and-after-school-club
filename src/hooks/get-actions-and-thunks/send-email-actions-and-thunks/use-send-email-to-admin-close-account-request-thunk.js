@@ -7,10 +7,11 @@ const useSendEmailToAdminCloseAccountRequestThunk = () => {
 
   const dispatch = useDispatch();
 
-  const sendEmailToAdminCloseAccountRequestThunk = () => {
+  const sendEmailToAdminCloseAccountRequestThunk = (childrenIdsToDelete) => {
     dispatch(
       sendEmailToAdminCloseAccountRequestAsync({
         appOwnerEmail,
+        childrenIdsToDelete,
         id,
         email,
       })

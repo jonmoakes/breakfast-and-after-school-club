@@ -33,6 +33,9 @@ const useGetDatabaseManagementSelectors = () => {
     updateSessionSpacesResult,
     updateSessionSpacesError,
     errorId,
+    userHasDeletedAllChildren,
+    deleteChildOrUserResult,
+    deleteChildOrUserError,
   } = useSelector(selectDatabaseManagementSelectors);
 
   const {
@@ -46,6 +49,8 @@ const useGetDatabaseManagementSelectors = () => {
     parentEmail,
     numberOfChildrenInBooking,
     usersDocumentId,
+    childToDeleteDocumentId,
+    userToDeleteDocumentId,
   } = dataToUpdateDocument ?? {};
 
   return {
@@ -88,6 +93,11 @@ const useGetDatabaseManagementSelectors = () => {
     parentEmail,
     numberOfChildrenInBooking,
     usersDocumentId,
+    userHasDeletedAllChildren,
+    deleteChildOrUserResult,
+    deleteChildOrUserError,
+    childToDeleteDocumentId,
+    userToDeleteDocumentId,
   };
 };
 

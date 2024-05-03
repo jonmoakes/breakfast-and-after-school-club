@@ -8,6 +8,7 @@ import {
   databaseManagementUpdateUserBalanceRoute,
   databaseManagementAddBookingRoute,
   databaseManagementUpdateSessionSpacesRoute,
+  databaseManagementDeleteUserRoute,
 } from "../../../strings/routes/routes-strings";
 
 const useNavigateToDbManagementButtons = () => {
@@ -71,6 +72,13 @@ const useNavigateToDbManagementButtons = () => {
       text: "email error id '4'",
       onClick: () =>
         handleNavWithErrorId("4", databaseManagementUpdateSessionSpacesRoute),
+    },
+    {
+      id: 8,
+      heading: "delete user document",
+      text: "delete user",
+      onClick: () =>
+        hamburgerHandlerNavigate(databaseManagementDeleteUserRoute),
     },
   ];
 

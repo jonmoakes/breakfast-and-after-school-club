@@ -38,3 +38,5 @@ export const databaseManagementUpdateSessionSpacesRoute =
   "/database-management/update-session-spaces";
 export const databaseManagementAddBookingRoute =
   "/database-management/add-booking";
+export const databaseManagementDeleteUserRoute =
+  "/database-management/delete-user";

@@ -51,6 +51,7 @@ import {
   databaseManagementUpdateUserBalanceRoute,
   databaseManagementUpdateSessionSpacesRoute,
   databaseManagementAddBookingRoute,
+  databaseManagementDeleteUserRoute,
 } from "./strings/routes/routes-strings";
 
 const Navigation = lazy(() =>
@@ -153,6 +154,12 @@ const DBManageUpdateSessionSpaces = lazy(() =>
   )
 );
 
+const DBManageDeleteUser = lazy(() =>
+  import(
+    "./routes/database-management-delete-user/db-manage-delete-user.component"
+  )
+);
+
 const App = () => {
   const { currentUser, appOwnerId } = useGetCurrentUserSelectors();
   useGetUserOnLoadThunkUseEffect();
@@ -241,6 +248,10 @@ const App = () => {
               <Route
                 path={databaseManagementUpdateSessionSpacesRoute}
                 element={<DBManageUpdateSessionSpaces />}
+              />
+              <Route
+                path={databaseManagementDeleteUserRoute}
+                element={<DBManageDeleteUser />}
               />
 
               <Route path={childInfoRoute} element={<ChildInfo />} />

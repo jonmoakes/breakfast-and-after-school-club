@@ -85,3 +85,7 @@ export const confirmUpdateUserBalanceMessage =
   "are you sure you wish to update the wallet balance of this user?";
 export const confirmManuallyAddBookingToDatabase =
   "are you sure you want to manually add this booking to the database?";
+export const confirmDeleteChildDocument =
+  "are you sure you want to delete the users child?";
+export const confirmDeleteUserDocument =
+  "are you sure you want to delete the user?";

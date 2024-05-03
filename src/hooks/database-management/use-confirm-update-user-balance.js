@@ -18,7 +18,7 @@ const useConfirmUpdateUserBalance = () => {
     stringHasUpperCaseLetters,
     invalidDocumentIdLength,
     invalidRefundPriceLength,
-    formHasWhiteSpaceValues,
+    valueStartsOrEndsWithSpace,
   } = useUpdateDocumentFunctions();
   const {
     fireEmptyValuesSwal,
@@ -42,7 +42,10 @@ const useConfirmUpdateUserBalance = () => {
       fireDocumentIdLengthErrorSwal();
     } else if (invalidRefundPriceLength()) {
       fireRefundPriceLengthErrorSwal();
-    } else if (formHasWhiteSpaceValues()) {
+    } else if (
+      valueStartsOrEndsWithSpace(usersDocumentId) ||
+      valueStartsOrEndsWithSpace(refundPrice)
+    ) {
       fireWhiteSpaceErrorSwal();
     } else {
       confirmSwal(confirmUpdateUserBalanceMessage, "", imSureMessage, () =>

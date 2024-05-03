@@ -44,8 +44,7 @@ export const manageDatabaseDocument = async (
       return await databases.deleteDocument(
         databaseId,
         collectionId,
-        documentId,
-        data
+        documentId
       );
     case "get":
       return await databases.getDocument(databaseId, collectionId, documentId);
