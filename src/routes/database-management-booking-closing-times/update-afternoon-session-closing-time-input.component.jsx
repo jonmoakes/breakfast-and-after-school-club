@@ -2,7 +2,7 @@ import useHandleClosingTimeChanges from "./hooks/use-handle-closing-time-changes
 import useConfirmUpdateAfternoonBookingClosingTime from "./hooks/use-confirm-update-afternoon-booking-closing-time";
 import useBookingClosingTimesVariables from "./hooks/use-booking-closing-times-variables";
 
-import ReadExample from "../../components/database-management/read-example.component";
+import ReadExample from "../database-management/db-management-shared-components/read-example.component";
 
 import { YellowGreenButton } from "../../styles/buttons/buttons.styles";
 import { Form, Label, LowercasedInput } from "../../styles/form/form.styles";

@@ -5,7 +5,7 @@ import useGetDatabaseManagementSelectors from "../../hooks/get-selectors/use-get
 
 import Loader from "../../components/loader/loader.component";
 import RequiredData from "./required-data.component";
-import InputRecommendation from "../../components/database-management/input-recommendation.component";
+import InputRecommendation from "../database-management/db-management-shared-components/input-recommendation.component";
 import AddBookingForm from "./add-booking-form.component";
 
 import { Container } from "../../styles/container/container.styles";

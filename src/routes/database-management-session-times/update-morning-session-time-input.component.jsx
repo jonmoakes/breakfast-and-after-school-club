@@ -2,7 +2,7 @@ import useSessionTimesVariables from "./hooks/use-session-times-variables";
 import useConfirmUpdateMorningSessionTimes from "./hooks/use-confirm-update-morning-session-times";
 import useHandleNewSessionTimesChange from "./hooks/use-handle-session-time-change";
 
-import ReadExample from "../../components/database-management/read-example.component";
+import ReadExample from "../database-management/db-management-shared-components/read-example.component";
 
 import { YellowGreenButton } from "../../styles/buttons/buttons.styles";
 import { Form, Label, LowercasedInput } from "../../styles/form/form.styles";

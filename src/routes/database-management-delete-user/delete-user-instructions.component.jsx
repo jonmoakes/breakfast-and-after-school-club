@@ -47,6 +47,13 @@ const DeleteUserInstructions = () => {
                   more than one.
                 </Text>
 
+                <Text>
+                  if you have no children ids in your email, this means that the
+                  user has deleted their child(ren) themselves and therefore,
+                  you can skip this step and proceed to the next one directly
+                  below.
+                </Text>
+
                 <BlackHr />
 
                 <Text>

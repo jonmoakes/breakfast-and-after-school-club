@@ -5,8 +5,8 @@ import useUpdateBalanceResultSwal from "./hooks/use-update-balance-result-swal";
 
 import Loader from "../../components/loader/loader.component";
 import RequiredData from "./required-data.component";
-import InputRecommendation from "../../components/database-management/input-recommendation.component";
-import UpdateBalanceForm from "../../components/database-management/update-balance-form.component";
+import InputRecommendation from "../database-management/db-management-shared-components/input-recommendation.component";
+import UpdateBalanceForm from "./update-balance-form.component";
 
 import { Text } from "../../styles/p/p.styles";
 import { RedSpan } from "../../styles/span/span.styles";

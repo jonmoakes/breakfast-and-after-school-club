@@ -1,13 +1,13 @@
 import { useLocation } from "react-router-dom";
 
-import { Text } from "../../styles/p/p.styles";
-import { RedSpan } from "../../styles/span/span.styles";
+import { Text } from "../../../styles/p/p.styles";
+import { RedSpan } from "../../../styles/span/span.styles";
 
 import {
   databaseManagementAddBookingRoute,
   databaseManagementUpdateSessionSpacesRoute,
   databaseManagementUpdateUserBalanceRoute,
-} from "../../strings/routes/routes-strings";
+} from "../../../strings/routes/routes-strings";
 
 const InputRecommendation = () => {
   const location = useLocation();

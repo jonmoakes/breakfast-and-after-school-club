@@ -5,7 +5,7 @@ import useUpdateSessionSpacesResultSwal from "./hooks/use-update-session-spaces-
 
 import Loader from "../../components/loader/loader.component";
 import RequiredData from "./required-data.component";
-import InputRecommendation from "../../components/database-management/input-recommendation.component";
+import InputRecommendation from "../database-management/db-management-shared-components/input-recommendation.component";
 import UpdateSessionSpacesForm from "./update-session-spaces-form.component";
 
 import { Text } from "../../styles/p/p.styles";

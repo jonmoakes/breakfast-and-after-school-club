@@ -2,7 +2,7 @@ import useHandleNewPriceChanges from "./hooks/use-handle-new-prices-changes";
 import useConfirmUpdateMorningAndAfternoonLongSessionPrice from "./hooks/use-confirm-update-morning-and-afternoon-long-session-price";
 import useSessionPricesVariables from "./hooks/use-session-prices-variables";
 
-import ReadExample from "../../components/database-management/read-example.component";
+import ReadExample from "../database-management/db-management-shared-components/read-example.component";
 
 import { YellowGreenButton } from "../../styles/buttons/buttons.styles";
 import { Form, Label, LowercasedInput } from "../../styles/form/form.styles";

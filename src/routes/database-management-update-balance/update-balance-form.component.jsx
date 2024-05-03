@@ -1,4 +1,4 @@
-import useConfirmUpdateUserBalance from "../../hooks/database-management/use-confirm-update-user-balance";
+import useConfirmUpdateUserBalance from "./hooks/use-confirm-update-user-balance";
 import useHandleDataToUpdateDocumentChange from "../../hooks/database-management/use-handle-data-to-update-document-change";
 import useGetDatabaseManagementSelectors from "../../hooks/get-selectors/use-get-database-management-selectors";
 

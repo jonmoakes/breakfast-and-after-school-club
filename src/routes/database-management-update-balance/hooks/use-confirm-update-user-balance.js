@@ -1,13 +1,13 @@
-import useUpdateUsersBalanceAfterErrorEmailThunk from "../get-actions-and-thunks/database-management-actions-and-thunks/use-update-users-balance-after-error-email-thunk";
-import useConfirmSwal from "../use-confirm-swal";
-import useUpdateDocumentFunctions from "../database-management/use-update-document-functions";
-import useUpdateDocumentSwals from "../database-management/use-update-document-swals";
+import useUpdateUsersBalanceAfterErrorEmailThunk from "../../../hooks/get-actions-and-thunks/database-management-actions-and-thunks/use-update-users-balance-after-error-email-thunk";
+import useConfirmSwal from "../../../hooks/use-confirm-swal";
+import useUpdateDocumentFunctions from "../../../hooks/database-management/use-update-document-functions";
+import useUpdateDocumentSwals from "../../../hooks/database-management/use-update-document-swals";
 
 import {
   confirmUpdateUserBalanceMessage,
   imSureMessage,
-} from "../../strings/confirms/confirms-strings";
-import useGetDatabaseManagementSelectors from "../get-selectors/use-get-database-management-selectors";
+} from "../../../strings/confirms/confirms-strings";
+import useGetDatabaseManagementSelectors from "../../../hooks/get-selectors/use-get-database-management-selectors";
 
 const useConfirmUpdateUserBalance = () => {
   const { updateUsersBalanceAfterErrorEmailThunk } =
