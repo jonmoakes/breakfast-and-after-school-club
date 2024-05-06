@@ -3,4 +3,4 @@ export const bookingsExampleImacSrc =
 export const adminPhoneSrc =
   "https://lh3.googleusercontent.com/pw/AP1GczM9hMBfAi1zc_3u5W3rAGQRG0d6XmG7S1lgE4Q3zCNMo_q408QO0CfXQ86jdoPKiVqkDJ5ess1gO0mynz8n4q9f-N78xOBZmNAHiLzwrcvOncnJwEleoQhQIOfWbFyO1184PXMnTlJINJjFB481cYGL=w1600-h1600-s-no-gm?authuser=0";
 export const databaseAdminImacSrc =
-  "https://lh3.googleusercontent.com/pw/AP1GczPSmRpOK1XXkqn5vvUqIpmmlR3aXgSZawPdOvabZiXm9lCRaTuRDvMOMc-Xwu8Z1xYzaUKnEwAwUYQFw_n2Rz1SLhGxIu1QMA4lLLK_Yq8j9xcm1GSO6kfZk6bKDLVHuAZZMxhwD2LcwcGcuFj2yveF=w1600-h1600-s-no-gm?authuser=0";
+  "https://lh3.googleusercontent.com/pw/AP1GczMdF4y0pjCMDkn0Gotg3qKafc7_L1BO1g_RUAjwMsBldN1qhYjtg6_0eDatRcvpVWmYiQRa2tPwi8HVeHw8F3JPkvOdx4kYnejoQ5ROdWjHgp5s7Am3b-joiUNTUncrsAIqQbekgtXtJ6rGEl39rXQM=w2000-h1400-s-no-gm?authuser=0";
