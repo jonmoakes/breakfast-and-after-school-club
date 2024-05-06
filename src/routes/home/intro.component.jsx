@@ -3,7 +3,7 @@ import { ImageDiv, ParentDiv } from "../../styles/div/div.styles";
 import { BlackTitle } from "../../styles/h1/h1.styles";
 
 import Image from "../../assets/logo-250x250.webp";
-import PlaceholderImage from "../../assets/placeholder-image.jpeg";
+import PlaceholderImage from "../../assets/placeholder.jpg";
 
 const Intro = () => (
   <ParentDiv>

@@ -8,7 +8,7 @@ import { StyledLink } from "../../styles/link/link.styles";
 import { contactRoute } from "../../strings/routes/routes-strings";
 
 import Image from "../../assets/sad-face-emoji.jpg";
-import PlaceholderImage from "../../assets/placeholder-image.jpeg";
+import PlaceholderImage from "../../assets/placeholder.jpg";
 
 const ErrorFallback = () => (
   <>

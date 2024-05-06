@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-import PlaceholderImage from "../../assets/placeholder-image.jpeg";
+import PlaceholderImage from "../../assets/placeholder.jpg";
 
 import { StyledImage } from "../../styles/image/image.styles";
 

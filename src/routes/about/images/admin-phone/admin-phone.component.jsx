@@ -4,7 +4,7 @@ import useIsMobileDevice from "../../../../hooks/use-is-mobile-device";
 import useIsOnline from "../../../../hooks/use-is-online";
 
 import CheckConnection from "../../check-connection.component";
-import PlaceholderImage from "../../../../assets/placeholder-image.jpeg";
+import PlaceholderImage from "../../../../assets/placeholder.jpg";
 
 import { Text } from "../../../../styles/p/p.styles";
 import { BlackHr } from "../../../../styles/hr/hr.styles";

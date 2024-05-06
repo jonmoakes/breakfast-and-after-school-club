@@ -4,7 +4,7 @@ import useIsMobileDevice from "../../../../hooks/use-is-mobile-device";
 import useIsOnline from "../../../../hooks/use-is-online";
 
 import CheckConnection from "../../check-connection.component";
-import PlaceholderImage from "../../../../assets/placeholder-image.jpeg";
+import PlaceholderImage from "../../../../assets/placeholder.jpg";
 
 import { BlueH2 } from "../../../../styles/h2/h2.styles";
 import { Text } from "../../../../styles/p/p.styles";
