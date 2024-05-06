@@ -2,7 +2,7 @@ import { useNavigate, useLocation } from "react-router-dom";
 
 import useBackButton from "./use-back-button";
 import useIsRouteWithNavWarning from "../../hooks/use-is-route-with-nav-warning";
-import useIsMobileMobileDevice from "../../hooks/use-is-mobile-device";
+import useIsMobileDevice from "../../hooks/use-is-mobile-device";
 
 import { ReactComponent as BackArrowSVG } from "../../assets/arrow-left-1.svg";
 import { RelativePositionDiv } from "../../styles/div/div.styles";
@@ -19,7 +19,7 @@ import {
 const FloatingBackButton = () => {
   const { confirmGoBack } = useBackButton();
   const { isRouteWithNavWarning } = useIsRouteWithNavWarning();
-  const { isMobileDevice, isDesktop } = useIsMobileMobileDevice();
+  const { isMobileDevice, isDesktop } = useIsMobileDevice();
 
   const navigate = useNavigate();
   const location = useLocation();

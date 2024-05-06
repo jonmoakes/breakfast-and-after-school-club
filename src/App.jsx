@@ -52,12 +52,14 @@ import {
   databaseManagementUpdateSessionSpacesRoute,
   databaseManagementAddBookingRoute,
   databaseManagementDeleteUserRoute,
+  aboutRoute,
 } from "./strings/routes/routes-strings";
 
 const Navigation = lazy(() =>
   import("./routes/navigation/navigation.component")
 );
 const Home = lazy(() => import("./routes/home/home.component"));
+const About = lazy(() => import("./routes/about/about.component"));
 const Contact = lazy(() => import("./routes/contact/contact.component"));
 const SignUp = lazy(() => import("./routes/sign-up/sign-up.component"));
 const SignIn = lazy(() => import("./routes/sign-in/sign-in.component"));
@@ -174,6 +176,7 @@ const App = () => {
         <Suspense fallback={<Loader />}>
           <Routes>
             <Route path="/" element={<Home />} />
+            <Route path={aboutRoute} element={<About />} />
             <Route path={signInRoute} element={<SignIn />} />
             <Route path={contactRoute} element={<Contact />} />
             <Route path={signUpRoute} element={<SignUp />} />

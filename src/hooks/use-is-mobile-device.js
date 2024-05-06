@@ -1,6 +1,6 @@
 import useGetWindowWidth from "./use-get-window-width";
 
-const useIsMobileMobileDevice = () => {
+const useIsMobileDevice = () => {
   const { useWindowWidth } = useGetWindowWidth();
   const { width } = useWindowWidth();
 
@@ -23,7 +23,55 @@ const useIsMobileMobileDevice = () => {
     }
   };
 
-  return { isMobileDevice, isDesktop };
+  const isTinyScreen = () => {
+    if (width <= 300) {
+      return true;
+    } else {
+      return false;
+    }
+  };
+
+  const isSmallScreen = () => {
+    if (width > 300 && width <= 379) {
+      return true;
+    } else {
+      return false;
+    }
+  };
+
+  const isMediumScreen = () => {
+    if (width > 379 && width <= 539) {
+      return true;
+    } else {
+      return false;
+    }
+  };
+
+  const isLargeScreen = () => {
+    if (width > 539 && width <= 767) {
+      return true;
+    } else {
+      return false;
+    }
+  };
+
+  const isLargeTablet = () => {
+    if (width > 767 && width <= 1365) {
+      return true;
+    } else {
+      return false;
+    }
+  };
+
+  return {
+    isMobileDevice,
+    isDesktop,
+    isTinyScreen,
+    isSmallScreen,
+    isMediumScreen,
+    isLargeScreen,
+    isLargeTablet,
+  };
 };
 
-export default useIsMobileMobileDevice;
+export default useIsMobileDevice;

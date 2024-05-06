@@ -1,0 +1,2 @@
+export const bookingsExampleImacSrc =
+  "https://lh3.googleusercontent.com/pw/AP1GczPcVNjKFlkwrKs9MhL08IurAjY7XcKu2OzflDvQL4KIMpLsWPEvdUZjhUryWloFzJMYI1sShIq3FmRKKl4CiQ4mzMOqpChzCA9B_MCfr-4gKGWPc5ZKTgnJJfeUOB0JGCI2MokSH5G5CnjZQ9OB_kiY=w2000-h1400-s-no-gm?authuser=0";
