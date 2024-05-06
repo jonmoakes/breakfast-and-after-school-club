@@ -8,88 +8,24 @@ import { bookingsExampleImacSrc } from "../../../../strings/image-srcs/image-src
 import PlaceholderImage from "../../../../assets/placeholder-image.jpeg";
 
 const BookingsExampleImac = () => {
-  const {
-    isTinyScreen,
-    isSmallScreen,
-    isMediumScreen,
-    isLargeScreen,
-    isLargeTablet,
-    isDesktop,
-  } = useIsMobileDevice();
+  const { getImageSizeBasedOnScreen } = useIsMobileDevice();
+
+  const imageSize = getImageSizeBasedOnScreen();
 
   return (
     <>
-      {isTinyScreen() ? (
+      {imageSize ? (
         <a href={bookingsExampleImacSrc}>
           <LazyLoadImage
             src={bookingsExampleImacSrc}
-            width={280}
-            height={210}
+            width={imageSize.width}
+            height={imageSize.height}
             PlaceholderSrc={PlaceholderImage}
             alt="Bookings Example On An Imac"
           />
         </a>
       ) : null}
-
-      {isSmallScreen() ? (
-        <a href={bookingsExampleImacSrc}>
-          <LazyLoadImage
-            src={bookingsExampleImacSrc}
-            width={320}
-            height={240}
-            PlaceholderSrc={PlaceholderImage}
-            alt="Bookings Example On An Imac"
-          />
-        </a>
-      ) : null}
-
-      {isMediumScreen() ? (
-        <a href={bookingsExampleImacSrc}>
-          <LazyLoadImage
-            src={bookingsExampleImacSrc}
-            width={360}
-            height={270}
-            PlaceholderSrc={PlaceholderImage}
-            alt="Bookings Example On An Imac"
-          />
-        </a>
-      ) : null}
-
-      {isLargeScreen() ? (
-        <a href={bookingsExampleImacSrc}>
-          <LazyLoadImage
-            src={bookingsExampleImacSrc}
-            width={530}
-            height={398}
-            PlaceholderSrc={PlaceholderImage}
-            alt="Bookings Example On An Imac"
-          />
-        </a>
-      ) : null}
-
-      {isLargeTablet() ? (
-        <a href={bookingsExampleImacSrc}>
-          <LazyLoadImage
-            src={bookingsExampleImacSrc}
-            width={600}
-            height={450}
-            PlaceholderSrc={PlaceholderImage}
-            alt="Bookings Example On An Imac"
-          />
-        </a>
-      ) : null}
-
-      {isDesktop() ? (
-        <LazyLoadImage
-          src={bookingsExampleImacSrc}
-          width={1000}
-          height={750}
-          PlaceholderSrc={PlaceholderImage}
-          alt="Bookings Example On An Imac"
-        />
-      ) : null}
-
-      <Text>tap on the image to view the full size image</Text>
+      <Text>Tap on the image to view the full-size image</Text>
     </>
   );
 };
