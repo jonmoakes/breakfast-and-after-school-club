@@ -9,34 +9,33 @@ import PlaceholderImage from "../../../../assets/placeholder-image.jpeg";
 import { Text } from "../../../../styles/p/p.styles";
 import { BlackHr } from "../../../../styles/hr/hr.styles";
 
-import { bookingsExampleImacSrc } from "../../../../strings/image-srcs/image-srcs";
+import { adminPhoneSrc } from "../../../../strings/image-srcs/image-srcs";
 
-const BookingsExampleImac = () => {
-  const { getImacImageSizeBasedOnScreen } = useIsMobileDevice();
+const AdminPhone = () => {
+  const { getPhoneImageSizeBasedOnScreen } = useIsMobileDevice();
   const { isOnline } = useIsOnline();
 
-  const imageSize = getImacImageSizeBasedOnScreen();
+  const imageSize = getPhoneImageSizeBasedOnScreen();
 
   return (
     <>
-      <Text>view all bookings in a centralised table.</Text>
-
       <Text>
-        filter bookings by a search term, or call or email a parent at the touch
-        of a button!
+        take advantage of the dashboard screen to easily access any required
+        data or to manage your database.
       </Text>
+
       <BlackHr />
 
       {isOnline ? (
         <>
           {imageSize ? (
-            <a href={bookingsExampleImacSrc}>
+            <a href={adminPhoneSrc}>
               <LazyLoadImage
-                src={bookingsExampleImacSrc}
+                src={adminPhoneSrc}
                 width={imageSize.width}
                 height={imageSize.height}
                 placeholderSrc={PlaceholderImage}
-                alt="Bookings Example On An Imac"
+                alt="Admin Screen On A Phone"
               />
             </a>
           ) : null}
@@ -48,4 +47,4 @@ const BookingsExampleImac = () => {
   );
 };
 
-export default BookingsExampleImac;
+export default AdminPhone;

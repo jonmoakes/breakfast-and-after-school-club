@@ -1,4 +1,6 @@
 import BookingsExampleImac from "./images/bookings-example-imac/bookings-example-imac.component";
+import AdminPhone from "./images/admin-phone/admin-phone.component";
+import DatabaseAdminImac from "./images/database-admin-imac/database-admin-imac.component";
 
 import { Container } from "../../styles/container/container.styles";
 import { ParentDiv } from "../../styles/div/div.styles";
@@ -17,10 +19,23 @@ const About = () => (
         down on the amount of time and paperwork it takes to manage your
         business.
       </Text>
+
+      <Text>
+        Tap on the images to view the full-size image
+        <br />( or pinch to zoom )
+      </Text>
     </ParentDiv>
 
     <ParentDiv>
       <BookingsExampleImac />
+    </ParentDiv>
+
+    <ParentDiv>
+      <AdminPhone />
+    </ParentDiv>
+
+    <ParentDiv>
+      <DatabaseAdminImac />
     </ParentDiv>
   </Container>
 );

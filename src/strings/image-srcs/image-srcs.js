@@ -1,2 +1,6 @@
 export const bookingsExampleImacSrc =
   "https://lh3.googleusercontent.com/pw/AP1GczPcVNjKFlkwrKs9MhL08IurAjY7XcKu2OzflDvQL4KIMpLsWPEvdUZjhUryWloFzJMYI1sShIq3FmRKKl4CiQ4mzMOqpChzCA9B_MCfr-4gKGWPc5ZKTgnJJfeUOB0JGCI2MokSH5G5CnjZQ9OB_kiY=w2000-h1400-s-no-gm?authuser=0";
+export const adminPhoneSrc =
+  "https://lh3.googleusercontent.com/pw/AP1GczM9hMBfAi1zc_3u5W3rAGQRG0d6XmG7S1lgE4Q3zCNMo_q408QO0CfXQ86jdoPKiVqkDJ5ess1gO0mynz8n4q9f-N78xOBZmNAHiLzwrcvOncnJwEleoQhQIOfWbFyO1184PXMnTlJINJjFB481cYGL=w1600-h1600-s-no-gm?authuser=0";
+export const databaseAdminImacSrc =
+  "https://lh3.googleusercontent.com/pw/AP1GczPSmRpOK1XXkqn5vvUqIpmmlR3aXgSZawPdOvabZiXm9lCRaTuRDvMOMc-Xwu8Z1xYzaUKnEwAwUYQFw_n2Rz1SLhGxIu1QMA4lLLK_Yq8j9xcm1GSO6kfZk6bKDLVHuAZZMxhwD2LcwcGcuFj2yveF=w1600-h1600-s-no-gm?authuser=0";

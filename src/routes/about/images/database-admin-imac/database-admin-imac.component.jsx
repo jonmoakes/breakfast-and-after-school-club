@@ -9,9 +9,9 @@ import PlaceholderImage from "../../../../assets/placeholder-image.jpeg";
 import { Text } from "../../../../styles/p/p.styles";
 import { BlackHr } from "../../../../styles/hr/hr.styles";
 
-import { bookingsExampleImacSrc } from "../../../../strings/image-srcs/image-srcs";
+import { databaseAdminImacSrc } from "../../../../strings/image-srcs/image-srcs";
 
-const BookingsExampleImac = () => {
+const DatabaseAdminImac = () => {
   const { getImacImageSizeBasedOnScreen } = useIsMobileDevice();
   const { isOnline } = useIsOnline();
 
@@ -19,24 +19,23 @@ const BookingsExampleImac = () => {
 
   return (
     <>
-      <Text>view all bookings in a centralised table.</Text>
-
       <Text>
-        filter bookings by a search term, or call or email a parent at the touch
-        of a button!
+        manually add a booking for a user who doesn't use the app, or update
+        your session times, prices and more in just a few clicks!
       </Text>
       <BlackHr />
 
       {isOnline ? (
         <>
           {imageSize ? (
-            <a href={bookingsExampleImacSrc}>
+            <a href={databaseAdminImacSrc}>
               <LazyLoadImage
-                src={bookingsExampleImacSrc}
+                src={databaseAdminImacSrc}
                 width={imageSize.width}
                 height={imageSize.height}
                 placeholderSrc={PlaceholderImage}
-                alt="Bookings Example On An Imac"
+                effect="blur"
+                alt="Database Admin On An Imac"
               />
             </a>
           ) : null}
@@ -48,4 +47,4 @@ const BookingsExampleImac = () => {
   );
 };
 
-export default BookingsExampleImac;
+export default DatabaseAdminImac;

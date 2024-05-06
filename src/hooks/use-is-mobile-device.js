@@ -63,7 +63,7 @@ const useIsMobileDevice = () => {
     }
   };
 
-  const getImageSizeBasedOnScreen = () => {
+  const getImacImageSizeBasedOnScreen = () => {
     if (isTinyScreen()) return { width: 280, height: 210 };
     if (isSmallScreen()) return { width: 320, height: 240 };
     if (isMediumScreen()) return { width: 360, height: 270 };
@@ -73,11 +73,21 @@ const useIsMobileDevice = () => {
     return null;
   };
 
+  const getPhoneImageSizeBasedOnScreen = () => {
+    if (isTinyScreen()) return { width: 270, height: 300 };
+    if (isSmallScreen()) return { width: 320, height: 350 };
+    if (isMediumScreen()) return { width: 420, height: 400 };
+    if (isLargeScreen()) return { width: 450, height: 430 };
+    if (isLargeTablet()) return { width: 450, height: 420 };
+    if (isDesktop()) return { width: 750, height: 800 };
+    return null;
+  };
+
   return {
     isMobileDevice,
     isDesktop,
-
-    getImageSizeBasedOnScreen,
+    getImacImageSizeBasedOnScreen,
+    getPhoneImageSizeBasedOnScreen,
   };
 };
 
