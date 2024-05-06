@@ -1,6 +1,6 @@
 import Balancer from "react-wrap-balancer";
-import { WhiteShadowText } from "../../styles/p/p.styles";
-import { YellowShadowSpan } from "../../styles/span/span.styles";
+import { WhiteShadowText } from "../../../styles/p/p.styles";
+import { YellowShadowSpan } from "../../../styles/span/span.styles";
 
 const ReadExample = () => (
   <Balancer>
