@@ -84,9 +84,8 @@ const DeleteUserInstructions = () => {
 
                 <Text>
                   should you need to go back to deleting a users children
-                  instead of the user, you can press the 'continue' button,
-                  which will revert the form to delete a child instead of a
-                  user.
+                  instead of the user, you can press the 'go back' button, which
+                  will revert the form to delete a child instead of a user.
                 </Text>
                 <BlackHr />
                 <Text>
