@@ -1,6 +1,8 @@
 import BookingsExampleImac from "./images/bookings-example-imac/bookings-example-imac.component";
 import AdminPhone from "./images/admin-phone/admin-phone.component";
 import DatabaseAdminImac from "./images/database-admin-imac/database-admin-imac.component";
+import UserAddFundsPhone from "./images/user-add-funds-phone.component/user-add-funds-phone.component";
+import UserBooksSessionPhone from "./images/user-books-session-phone.component/user-books-session-phone.component";
 
 import { Container } from "../../styles/container/container.styles";
 import { ParentDiv } from "../../styles/div/div.styles";
@@ -36,6 +38,14 @@ const About = () => (
 
     <ParentDiv>
       <DatabaseAdminImac />
+    </ParentDiv>
+
+    <ParentDiv>
+      <UserAddFundsPhone />
+    </ParentDiv>
+
+    <ParentDiv>
+      <UserBooksSessionPhone />
     </ParentDiv>
   </Container>
 );

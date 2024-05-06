@@ -9,7 +9,10 @@ import PlaceholderImage from "../../../../assets/placeholder-image.jpeg";
 import { Text } from "../../../../styles/p/p.styles";
 import { BlackHr } from "../../../../styles/hr/hr.styles";
 
-import { databaseAdminImacSrc } from "../../../../strings/image-srcs/image-srcs";
+import {
+  databaseAdminImacSrc,
+  addBookingImacSrc,
+} from "../../../../strings/image-srcs/image-srcs";
 
 const DatabaseAdminImac = () => {
   const { getImacImageSizeBasedOnScreen } = useIsMobileDevice();
@@ -28,16 +31,30 @@ const DatabaseAdminImac = () => {
       {isOnline ? (
         <>
           {imageSize ? (
-            <a href={databaseAdminImacSrc}>
-              <LazyLoadImage
-                src={databaseAdminImacSrc}
-                width={imageSize.width}
-                height={imageSize.height}
-                placeholderSrc={PlaceholderImage}
-                effect="blur"
-                alt="Database Admin On An Imac"
-              />
-            </a>
+            <>
+              <a href={databaseAdminImacSrc}>
+                <LazyLoadImage
+                  src={databaseAdminImacSrc}
+                  width={imageSize.width}
+                  height={imageSize.height}
+                  placeholderSrc={PlaceholderImage}
+                  effect="blur"
+                  alt="Database Admin On An Imac"
+                />
+              </a>
+
+              <BlackHr />
+              <a href={addBookingImacSrc}>
+                <LazyLoadImage
+                  src={addBookingImacSrc}
+                  width={imageSize.width}
+                  height={imageSize.height}
+                  placeholderSrc={PlaceholderImage}
+                  effect="blur"
+                  alt="Adding A Booking On An Imac"
+                />
+              </a>
+            </>
           ) : null}
         </>
       ) : (
