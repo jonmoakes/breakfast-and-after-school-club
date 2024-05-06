@@ -26,7 +26,7 @@ const UserAddFundsPhone = () => {
         the user securely adds funds to a 'virtual wallet', which they can then
         use to book sessions.
       </Text>
-      <Text>you receive the money the add directly into your account.</Text>
+      <Text>you receive the money they add directly into your account.</Text>
       <Text>
         the wallet balance deducts with each booking until there is not enough
         remaining balance, at which point they can simply add more to their
