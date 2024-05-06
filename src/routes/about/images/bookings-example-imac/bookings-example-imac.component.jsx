@@ -6,8 +6,10 @@ import useIsOnline from "../../../../hooks/use-is-online";
 import CheckConnection from "../../check-connection.component";
 import PlaceholderImage from "../../../../assets/placeholder-image.jpeg";
 
+import { BlueH2 } from "../../../../styles/h2/h2.styles";
 import { Text } from "../../../../styles/p/p.styles";
 import { BlackHr } from "../../../../styles/hr/hr.styles";
+import { ParentDiv } from "../../../../styles/div/div.styles";
 
 import { bookingsExampleImacSrc } from "../../../../strings/image-srcs/image-srcs";
 
@@ -18,12 +20,14 @@ const BookingsExampleImac = () => {
   const imageSize = getImacImageSizeBasedOnScreen();
 
   return (
-    <>
-      <Text>view all bookings in a centralised table.</Text>
+    <ParentDiv>
+      <BlueH2>viewing your bookings:</BlueH2>
+
+      <Text>all bookings can be seen in a centralised table.</Text>
 
       <Text>
-        filter bookings by a search term, or call or email a parent at the touch
-        of a button!
+        you can filter bookings by a search term, or call or email a parent at
+        the touch of a button!
       </Text>
       <BlackHr />
 
@@ -44,7 +48,7 @@ const BookingsExampleImac = () => {
       ) : (
         <CheckConnection />
       )}
-    </>
+    </ParentDiv>
   );
 };
 

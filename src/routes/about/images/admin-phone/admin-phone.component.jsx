@@ -8,6 +8,8 @@ import PlaceholderImage from "../../../../assets/placeholder-image.jpeg";
 
 import { Text } from "../../../../styles/p/p.styles";
 import { BlackHr } from "../../../../styles/hr/hr.styles";
+import { BlueH2 } from "../../../../styles/h2/h2.styles";
+import { ParentDiv } from "../../../../styles/div/div.styles";
 
 import { adminPhoneSrc } from "../../../../strings/image-srcs/image-srcs";
 
@@ -18,10 +20,11 @@ const AdminPhone = () => {
   const imageSize = getPhoneImageSizeBasedOnScreen();
 
   return (
-    <>
+    <ParentDiv>
+      <BlueH2>admin dashboard:</BlueH2>
       <Text>
-        take advantage of the dashboard screen to easily access any required
-        data or to manage your database.
+        take advantage of your dashboard screen to easily access any required
+        data, or to manage your database.
       </Text>
 
       <BlackHr />
@@ -43,7 +46,7 @@ const AdminPhone = () => {
       ) : (
         <CheckConnection />
       )}
-    </>
+    </ParentDiv>
   );
 };
 

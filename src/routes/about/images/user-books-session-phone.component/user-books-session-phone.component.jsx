@@ -8,6 +8,8 @@ import PlaceholderImage from "../../../../assets/placeholder-image.jpeg";
 
 import { Text } from "../../../../styles/p/p.styles";
 import { BlackHr } from "../../../../styles/hr/hr.styles";
+import { BlueH2 } from "../../../../styles/h2/h2.styles";
+import { ParentDiv } from "../../../../styles/div/div.styles";
 
 import {
   userChoosesDatePhoneSrc,
@@ -21,23 +23,21 @@ const UserBooksSessionPhone = () => {
   const imageSize = getPhoneImageSizeBasedOnScreen();
 
   return (
-    <>
+    <ParentDiv>
+      <BlueH2>how does a user book a session?</BlueH2>
       <Text>
-        a user chooses the date of the session they want, and sees the number of
-        sessions available ( updated in realtime ).
-      </Text>
-      <Text>
-        they choose the type of session they want ( morning, afternoon etc ) -
-        dependent on their balance they have available.
+        to book a session, the user chooses the date of the session they want
+        and then the type of session ( morning, afternoon etc ) - dependent on
+        the balance they have available.
       </Text>
       <Text>
         if they don't have enough in their balance for a certain session, the
-        button to book will not show, stopping any possibility of a user being
-        'overdrawn'.
+        button to book will not show, stopping any possibility of a user
+        becoming 'overdrawn' in their virtual wallet.
       </Text>
       <Text>
-        once they confirm, the funds are deducted from the wallet and sent on
-        their way to you!
+        once they confirm, the funds are deducted from their wallet, and the
+        session spaces are updated in the database.
       </Text>
       <Text>
         both the user and the app admin will see the newly created session in
@@ -77,7 +77,7 @@ const UserBooksSessionPhone = () => {
       ) : (
         <CheckConnection />
       )}
-    </>
+    </ParentDiv>
   );
 };
 

@@ -8,6 +8,8 @@ import PlaceholderImage from "../../../../assets/placeholder-image.jpeg";
 
 import { Text } from "../../../../styles/p/p.styles";
 import { BlackHr } from "../../../../styles/hr/hr.styles";
+import { BlueH2 } from "../../../../styles/h2/h2.styles";
+import { ParentDiv } from "../../../../styles/div/div.styles";
 
 import {
   databaseAdminImacSrc,
@@ -21,10 +23,17 @@ const DatabaseAdminImac = () => {
   const imageSize = getImacImageSizeBasedOnScreen();
 
   return (
-    <>
+    <ParentDiv>
+      <BlueH2>manually add a booking:</BlueH2>
+      <Text>have a parent who doesn't use the app?</Text>
+      <Text>you can still make it easier for yourself!</Text>
       <Text>
-        manually add a booking for a user who doesn't use the app, or update
-        your session times, prices and more in just a few clicks!
+        rather than writing everything down on paper, you can manually add a
+        booking to your database with just a few details.
+      </Text>
+      <Text>
+        you can also update your session times, prices and more in just a few
+        clicks!
       </Text>
       <BlackHr />
 
@@ -60,7 +69,7 @@ const DatabaseAdminImac = () => {
       ) : (
         <CheckConnection />
       )}
-    </>
+    </ParentDiv>
   );
 };
 

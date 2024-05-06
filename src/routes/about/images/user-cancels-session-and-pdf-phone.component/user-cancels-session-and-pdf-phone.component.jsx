@@ -8,6 +8,8 @@ import PlaceholderImage from "../../../../assets/placeholder-image.jpeg";
 
 import { Text } from "../../../../styles/p/p.styles";
 import { BlackHr } from "../../../../styles/hr/hr.styles";
+import { BlueH2 } from "../../../../styles/h2/h2.styles";
+import { ParentDiv } from "../../../../styles/div/div.styles";
 
 import {
   userChoosesSessionToCancelPhoneSrc,
@@ -22,26 +24,23 @@ const UserCancelsSessionAndPdfPhone = () => {
   const imageSize = getPhoneImageSizeBasedOnScreen();
 
   return (
-    <>
+    <ParentDiv>
+      <BlueH2>cancelling a booking:</BlueH2>
       <Text>
-        a user sees their bookings in their table. tapping on the box to the
-        left of the booking allows them to cancel it, or download a pdf for
-        their records.
+        In their bookings table, a user taps on the box to the left of a booking
+        that they want to cancel.
       </Text>
       <Text>
-        to cancel, they simply tap the cancel button and after confirming, funds
-        are readded to their virtual wallet and the session spaces in your
-        database are updated.
+        they then simply tap the cancel icon and after confirming, funds are
+        re-added to their virtual wallet and the session spaces in your database
+        are updated.
       </Text>
       <Text>
-        in both and your and their session bookings table, the cancelled booking
-        is removed from view.
+        in your session bookings table and theirs, the cancelled booking is
+        removed from view.
       </Text>
       <Text>no more paperwork needed!</Text>
-      <Text>
-        to download a PDF, they simply tap the PDF button and can instantly
-        download a pdf of their booked session.
-      </Text>
+
       <BlackHr />
 
       {isOnline ? (
@@ -72,6 +71,14 @@ const UserCancelsSessionAndPdfPhone = () => {
               </a>
 
               <BlackHr />
+
+              <BlueH2>downloading a PDF:</BlueH2>
+              <Text>
+                by tapping the box next to a booking, a user can also download a
+                PDF for their records. they simply tap the icon and can
+                instantly download a PDF with details of their booked session.
+              </Text>
+
               <a href={pdfPhoneSrc}>
                 <LazyLoadImage
                   src={pdfPhoneSrc}
@@ -88,7 +95,7 @@ const UserCancelsSessionAndPdfPhone = () => {
       ) : (
         <CheckConnection />
       )}
-    </>
+    </ParentDiv>
   );
 };
 

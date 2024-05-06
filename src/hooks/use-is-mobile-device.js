@@ -56,7 +56,7 @@ const useIsMobileDevice = () => {
   };
 
   const isLargeTablet = () => {
-    if (width > 767 && width <= 1365) {
+    if (width > 767 && width <= 1366) {
       return true;
     } else {
       return false;

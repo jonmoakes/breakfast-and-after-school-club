@@ -8,6 +8,8 @@ import PlaceholderImage from "../../../../assets/placeholder-image.jpeg";
 
 import { Text } from "../../../../styles/p/p.styles";
 import { BlackHr } from "../../../../styles/hr/hr.styles";
+import { BlueH2 } from "../../../../styles/h2/h2.styles";
+import { ParentDiv } from "../../../../styles/div/div.styles";
 
 import { addFundsPhoneSrc } from "../../../../strings/image-srcs/image-srcs";
 
@@ -18,11 +20,13 @@ const UserAddFundsPhone = () => {
   const imageSize = getPhoneImageSizeBasedOnScreen();
 
   return (
-    <>
+    <ParentDiv>
+      <BlueH2>the virtual wallet:</BlueH2>
       <Text>
-        a user securely adds funds to a virtual wallet, which they can then use
-        to book sessions.
+        the user securely adds funds to a 'virtual wallet', which they can then
+        use to book sessions.
       </Text>
+      <Text>you receive the money the add directly into your account.</Text>
       <Text>
         the wallet balance deducts with each booking until there is not enough
         remaining balance, at which point they can simply add more to their
@@ -36,6 +40,19 @@ const UserAddFundsPhone = () => {
         session spaces also update in realtime, allowing multiple users to book
         sessions all at once without worrying if there is space available or
         not!
+      </Text>
+
+      <Text>
+        our payment processor is powered by stripe, who are one of the biggest
+        companies in the e-commerce world!
+      </Text>
+
+      <Text>
+        For you peace of mind, read more about{" "}
+        <a className="red" href="https://stripe.com/gb">
+          Stripe
+        </a>
+        .
       </Text>
 
       <BlackHr />
@@ -57,7 +74,7 @@ const UserAddFundsPhone = () => {
       ) : (
         <CheckConnection />
       )}
-    </>
+    </ParentDiv>
   );
 };
 
