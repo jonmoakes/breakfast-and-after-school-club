@@ -12,3 +12,9 @@ export const userChoosesDatePhoneSrc =
   "https://lh3.googleusercontent.com/pw/AP1GczMT-0PkhedqnIgLj2Z1_1phZKSoO9y-0GppxmuSsxhltRqoVqdQOVGGgI8arH9rOmOZVPVjjO0KZ39ZQM497ppzPQebTFMm53bKNB4pwlMRi8czsycQodpnt6pEE11LgpOJaM9xx14xGMMMv21AyKDX=w1600-h1600-s-no-gm?authuser=0";
 export const userConfirmsSessionPhoneSrc =
   "https://lh3.googleusercontent.com/pw/AP1GczOZ8ga51mFO7cahm-WbXWS9P9x5yqbxacZRRov6apnTQEF8iPWvhYkU-GRPt62aQIEkGUKYwCr4cQyjCrsv23pTPZpemY2geiJ_mq8YJFuNLGGIzmvJncD3kRJPU6VfTWbyLwdTxBzyBSwiQuVKUVfE=w1600-h1600-s-no-gm?authuser=0";
+export const userChoosesSessionToCancelPhoneSrc =
+  "https://lh3.googleusercontent.com/pw/AP1GczN-SfQIPH1DQoJ6G68li9-9rYds7p7tzKQuu62LLVcBPahgzCR9TGsREqpmgy-jvRP6DfMufcvx94d4PiSM7Z5-Mv9ID39IF2ENNqQRZlwa3zmFWnVZw-TXIHb6QptUf_ULkpnyD6xgdBC2yf4xzFN2=w1600-h1600-s-no-gm?authuser=0";
+export const sessionCancellationDetailsPhoneSrc =
+  "https://lh3.googleusercontent.com/pw/AP1GczOnRSwG71lWLTVTpVZn2VcWGAnWfzEM1MneqCRfY9KdxLrarwErHZhbSCuHcwwoY5X3z84jKrYQyeC9DxmZpg4wOK2c9iG6aahx3tOO8M7f09KmhiWleNZLQ567CKZVQtZqF9X9TDcm1vWMBzb8CUgD=w1600-h1600-s-no-gm?authuser=0";
+export const pdfPhoneSrc =
+  "https://lh3.googleusercontent.com/pw/AP1GczMZHLirMZ911tK4gdUrPBVTh_ooOfAFvGidAMeNqIAC2Gv_ObcnQkyBXtf18OqBY0rP3LIryGMSannJDwxSR43Hntu-pmtYCkr0naCHIxfei3uoymnl6gMjaFrfaZsNM-dd_hT-t4lbmCP_uazMp1hW=w1600-h1600-s-no-gm?authuser=0";

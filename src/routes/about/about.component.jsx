@@ -3,11 +3,15 @@ import AdminPhone from "./images/admin-phone/admin-phone.component";
 import DatabaseAdminImac from "./images/database-admin-imac/database-admin-imac.component";
 import UserAddFundsPhone from "./images/user-add-funds-phone.component/user-add-funds-phone.component";
 import UserBooksSessionPhone from "./images/user-books-session-phone.component/user-books-session-phone.component";
+import UserCancelsSessionAndPdfPhone from "./images/user-cancels-session-and-pdf-phone.component/user-cancels-session-and-pdf-phone.component";
 
 import { Container } from "../../styles/container/container.styles";
 import { ParentDiv } from "../../styles/div/div.styles";
 import { BlackTitle } from "../../styles/h1/h1.styles";
 import { Text } from "../../styles/p/p.styles";
+import { StyledLink } from "../../styles/link/link.styles";
+
+import { contactRoute } from "../../strings/routes/routes-strings";
 
 const About = () => (
   <Container>
@@ -46,6 +50,17 @@ const About = () => (
 
     <ParentDiv>
       <UserBooksSessionPhone />
+    </ParentDiv>
+
+    <ParentDiv>
+      <UserCancelsSessionAndPdfPhone />
+    </ParentDiv>
+
+    <ParentDiv>
+      <Text>if you have any more questions, or would like a full demo,</Text>
+      <Text>
+        please <StyledLink to={contactRoute}>contact me!</StyledLink>
+      </Text>
     </ParentDiv>
   </Container>
 );

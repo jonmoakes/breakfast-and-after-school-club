@@ -29,8 +29,8 @@ const UserAddFundsPhone = () => {
         wallet.
       </Text>
       <Text>
-        if a user cancels a booking, the their wallet balance is updated and
-        your bookings table is updated in realtime.
+        if a user cancels a booking, their wallet balance is updated and your
+        bookings table is updated in realtime.
       </Text>
       <Text>
         session spaces also update in realtime, allowing multiple users to book

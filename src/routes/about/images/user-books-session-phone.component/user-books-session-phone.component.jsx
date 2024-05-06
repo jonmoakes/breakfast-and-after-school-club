@@ -27,8 +27,8 @@ const UserBooksSessionPhone = () => {
         sessions available ( updated in realtime ).
       </Text>
       <Text>
-        they choose the session they want - dependent on their balance they have
-        available.
+        they choose the type of session they want ( morning, afternoon etc ) -
+        dependent on their balance they have available.
       </Text>
       <Text>
         if they don't have enough in their balance for a certain session, the
