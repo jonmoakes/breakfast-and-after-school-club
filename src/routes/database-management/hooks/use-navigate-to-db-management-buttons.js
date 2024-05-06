@@ -24,6 +24,13 @@ const useNavigateToDbManagementButtons = () => {
   const dbManagementButtons = [
     {
       id: 1,
+      heading: "add a booking for someone who doesn't use the app",
+      text: "add a booking",
+      onClick: () =>
+        handleNavWithErrorId("", databaseManagementAddBookingRoute),
+    },
+    {
+      id: 2,
       heading,
       text: "booking closing times",
       onClick: () =>
@@ -32,49 +39,49 @@ const useNavigateToDbManagementButtons = () => {
         ),
     },
     {
-      id: 2,
+      id: 3,
       heading,
       text: "session times",
       onClick: () =>
         hamburgerHandlerNavigate(databaseManagementViewSessionTimesRoute),
     },
     {
-      id: 3,
+      id: 4,
       heading,
       text: "session prices",
       onClick: () =>
         hamburgerHandlerNavigate(databaseManagementViewSessionPricesRoute),
     },
     {
-      id: 4,
+      id: 5,
       heading: "update a users balance",
       text: "email error id '1'",
       onClick: () =>
         handleNavWithErrorId("1", databaseManagementUpdateUserBalanceRoute),
     },
     {
-      id: 5,
-      heading: "add a booking",
+      id: 6,
+      heading: "add a booking after you received an error email",
       text: "email error id '2'",
       onClick: () =>
         handleNavWithErrorId("2", databaseManagementAddBookingRoute),
     },
     {
-      id: 6,
+      id: 7,
       heading: "update user balance & session spaces",
       text: "email error id '3'",
       onClick: () =>
         handleNavWithErrorId("3", databaseManagementUpdateUserBalanceRoute),
     },
     {
-      id: 7,
+      id: 8,
       heading: "update session spaces",
       text: "email error id '4'",
       onClick: () =>
         handleNavWithErrorId("4", databaseManagementUpdateSessionSpacesRoute),
     },
     {
-      id: 8,
+      id: 9,
       heading: "delete user document",
       text: "delete user",
       onClick: () =>

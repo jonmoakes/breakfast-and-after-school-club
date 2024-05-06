@@ -5,6 +5,7 @@ import useConfirmDeleteUser from "./hooks/use-confirm-delete-user";
 import { ParentDiv } from "../../styles/div/div.styles";
 import { Form, Label, StyledInput } from "../../styles/form/form.styles";
 import { YellowGreenButton } from "../../styles/buttons/buttons.styles";
+import { WhiteShadowText } from "../../styles/p/p.styles";
 
 const DeleteUserForm = () => {
   const { userToDeleteDocumentId } = useGetDatabaseManagementSelectors();
@@ -15,7 +16,7 @@ const DeleteUserForm = () => {
   return (
     <ParentDiv>
       <Form>
-        <Label>child to delete id</Label>
+        <Label>user to delete id</Label>
         <StyledInput
           type="text"
           name="userToDeleteDocumentId"
@@ -28,7 +29,9 @@ const DeleteUserForm = () => {
           <YellowGreenButton type="button" onClick={confirmDeleteUser}>
             delete user document
           </YellowGreenButton>
-        ) : null}
+        ) : (
+          <WhiteShadowText>please enter an id</WhiteShadowText>
+        )}
       </Form>
     </ParentDiv>
   );

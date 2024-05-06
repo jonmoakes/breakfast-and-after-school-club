@@ -1,6 +1,7 @@
 import useFireSwal from "../use-fire-swal";
 import {
-  deleteUserppercaseLettersErrorMessage,
+  cantHaveUppercaseCharactersErrorMessage,
+  cantHaveUppercaseCharactersExceptSessionSpacesErrorMessage,
   documentLengthErrorMessage,
   emptyFieldsMessage,
   invalidDateErrorMessage,
@@ -8,7 +9,6 @@ import {
   invalidSessionTypeErrorMessage,
   phoneNumberLengthErrorMessage,
   refundPriceLengthErrorMessage,
-  uppercaseLettersErrorMessage,
   whiteSpaceErrorMessage,
 } from "../../strings/errors/errors-strings";
 
@@ -19,14 +19,21 @@ const useUpdateDocumentSwals = () => {
     fireSwal("error", emptyFieldsMessage, "", 0, true, false);
   };
 
-  const fireCantHaveUppercaseCharactersSwal = () => {
-    fireSwal("error", uppercaseLettersErrorMessage, "", 0, true, false);
-  };
-
-  const fireDeleteUserUppercaseCharactersSwal = () => {
+  const fireCantHaveUppercaseCharactersExceptSessionSpacesSwal = () => {
     fireSwal(
       "error",
-      deleteUserppercaseLettersErrorMessage,
+      cantHaveUppercaseCharactersExceptSessionSpacesErrorMessage,
+      "",
+      0,
+      true,
+      false
+    );
+  };
+
+  const fireCantHaveUppercaseCharactersSwal = () => {
+    fireSwal(
+      "error",
+      cantHaveUppercaseCharactersErrorMessage,
       "",
       0,
       true,
@@ -65,7 +72,7 @@ const useUpdateDocumentSwals = () => {
   return {
     fireEmptyValuesSwal,
     fireCantHaveUppercaseCharactersSwal,
-    fireDeleteUserUppercaseCharactersSwal,
+    fireCantHaveUppercaseCharactersExceptSessionSpacesSwal,
     fireDocumentIdLengthErrorSwal,
     fireRefundPriceLengthErrorSwal,
     fireWhiteSpaceErrorSwal,

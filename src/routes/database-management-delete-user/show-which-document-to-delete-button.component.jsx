@@ -15,8 +15,8 @@ const ShowWhichDocumentToDeleteButton = () => {
       {!userHasDeletedAllChildren ? (
         <>
           <Text>
-            finished deleting all children? tap the button below to proceed to
-            the delete user form.
+            finished deleting all children? tap the button below switch the from
+            field to the delete user form.
           </Text>
           <YellowGreenButton
             onClick={() => dispatchSetUserHasDeletedAllChildren(true)}

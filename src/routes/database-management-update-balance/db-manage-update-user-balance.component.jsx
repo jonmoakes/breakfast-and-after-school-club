@@ -34,12 +34,21 @@ const DBManageUpdateUserBalance = () => {
               <Text>
                 if you're on this page, it means you should have received an
                 email saying that
+                <br />
                 {errorId === "1" ? (
                   <>
                     <br />'
                     <RedSpan>
                       There Was An Error Updating A Users Balance After They
                       Cancelled A Booking
+                    </RedSpan>
+                    '
+                    <br />
+                    OR
+                    <br />'
+                    <RedSpan>
+                      There Was An Error Adding A Users Balance to the database
+                      after they added funds
                     </RedSpan>
                     '
                   </>

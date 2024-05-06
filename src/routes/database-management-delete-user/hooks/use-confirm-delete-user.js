@@ -18,7 +18,7 @@ const useConfirmDeleteUser = () => {
     valueStartsOrEndsWithSpace,
   } = useUpdateDocumentFunctions();
   const {
-    fireDeleteUserUppercaseCharactersSwal,
+    fireCantHaveUppercaseCharactersSwal,
     fireDocumentIdLengthErrorSwal,
     fireWhiteSpaceErrorSwal,
   } = useUpdateDocumentSwals();
@@ -33,7 +33,7 @@ const useConfirmDeleteUser = () => {
     if (invalidDocumentIdLength(userToDeleteDocumentId)) {
       fireDocumentIdLengthErrorSwal();
     } else if (stringHasUpperCaseLetters(userToDeleteDocumentId)) {
-      fireDeleteUserUppercaseCharactersSwal();
+      fireCantHaveUppercaseCharactersSwal();
     } else if (valueStartsOrEndsWithSpace(userToDeleteDocumentId)) {
       fireWhiteSpaceErrorSwal();
     } else {

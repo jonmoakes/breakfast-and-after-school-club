@@ -46,25 +46,17 @@ export const GlobalStyle = createGlobalStyle`
             padding-left: unset;
             display: table;
             margin: 10px auto;
-            
             list-style-type: none;
 
            
         }
 
-        li {font-size:18px;
+        li {
+            font-size: calc(1rem + 0.25vw);
             margin-bottom:10px;
             color:${customBlue};
 
-             &.normal-text {
-                font-size: calc(1rem + 0.25vw);
-            }
-
-            @media screen and (max-width:450px) {
-                font-size:16px;
-
-                
-            }
+           
         }
 
         a {

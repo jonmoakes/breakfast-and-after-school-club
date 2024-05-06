@@ -17,14 +17,14 @@ const InputRecommendation = () => {
     <>
       <Text>
         please enter these values in the boxes below <RedSpan>exactly</RedSpan>{" "}
-        as they are in the email and then tap 'update{" "}
+        as they are in the email and then tap '
         {path === databaseManagementUpdateUserBalanceRoute
-          ? "balance"
+          ? "update balance"
           : path === databaseManagementUpdateSessionSpacesRoute
-          ? "session spaces"
+          ? "update session spaces"
           : path === databaseManagementAddBookingRoute
-          ? "booking"
-          : "document"}
+          ? "add booking"
+          : "update document"}
         '.
       </Text>
       <Text>

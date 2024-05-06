@@ -25,15 +25,15 @@ const useConfirmAddBookingDocument = () => {
   const {
     isNotValidDateFormat,
     isNotValidSessionType,
-    parentNameOrChildrenInBookingIsEmpty,
     stringHasUpperCaseLetters,
     invalidDocumentIdLength,
     valueStartsOrEndsWithSpace,
+    invalidPhoneNumberLength,
   } = useUpdateDocumentFunctions();
   const {
     fireInvalidDateFormatSwal,
     fireInvalidSessionTypeSwal,
-    fireCantHaveUppercaseCharactersSwal,
+    fireCantHaveUppercaseCharactersExceptSessionSpacesSwal,
     fireInvalidPhoneNumberSwal,
     fireDocumentIdLengthErrorSwal,
     fireWhiteSpaceErrorSwal,
@@ -58,22 +58,28 @@ const useConfirmAddBookingDocument = () => {
   };
 
   const confirmAddBookingDocument = () => {
-    if (isNotValidDateFormat(date)) {
+    if (
+      !date ||
+      !sessionType ||
+      !childrenInBooking ||
+      !parentName ||
+      !parentEmail ||
+      !parentPhoneNumber ||
+      !parentsUserId
+    ) {
+      fireEmptyValuesSwal();
+    } else if (isNotValidDateFormat(date)) {
       fireInvalidDateFormatSwal();
     } else if (isNotValidSessionType(sessionType)) {
       fireInvalidSessionTypeSwal();
-    } else if (
-      parentNameOrChildrenInBookingIsEmpty(parentName, childrenInBooking)
-    ) {
-      fireEmptyValuesSwal();
     } else if (
       stringHasUpperCaseLetters(childrenInBooking) ||
       stringHasUpperCaseLetters(parentName) ||
       stringHasUpperCaseLetters(parentsUserId) ||
       stringHasUpperCaseLetters(parentEmail)
     ) {
-      fireCantHaveUppercaseCharactersSwal();
-    } else if (parentPhoneNumber.length !== 11) {
+      fireCantHaveUppercaseCharactersExceptSessionSpacesSwal();
+    } else if (invalidPhoneNumberLength(parentPhoneNumber)) {
       fireInvalidPhoneNumberSwal();
     } else if (invalidDocumentIdLength(parentsUserId)) {
       fireDocumentIdLengthErrorSwal();

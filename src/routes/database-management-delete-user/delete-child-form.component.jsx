@@ -5,6 +5,7 @@ import useConfirmDeleteChild from "./hooks/use-confirm-delete-child";
 import { ParentDiv } from "../../styles/div/div.styles";
 import { Form, Label, StyledInput } from "../../styles/form/form.styles";
 import { YellowGreenButton } from "../../styles/buttons/buttons.styles";
+import { WhiteShadowText } from "../../styles/p/p.styles";
 
 const DeleteChildForm = () => {
   const { childToDeleteDocumentId } = useGetDatabaseManagementSelectors();
@@ -28,7 +29,9 @@ const DeleteChildForm = () => {
           <YellowGreenButton type="button" onClick={confirmDeleteChild}>
             delete child document
           </YellowGreenButton>
-        ) : null}
+        ) : (
+          <WhiteShadowText>please enter an id</WhiteShadowText>
+        )}
       </Form>
     </ParentDiv>
   );

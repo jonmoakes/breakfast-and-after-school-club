@@ -3,7 +3,10 @@ import useConfirmSwal from "../../../hooks/use-confirm-swal";
 import useUpdateDocumentFunctions from "../../../hooks/database-management/use-update-document-functions";
 import useUpdateDocumentSwals from "../../../hooks/database-management/use-update-document-swals";
 
-import { imSureMessage } from "../../../strings/confirms/confirms-strings";
+import {
+  confirmUpdateSessionSpacesMessage,
+  imSureMessage,
+} from "../../../strings/confirms/confirms-strings";
 import useGetDatabaseManagementSelectors from "../../../hooks/get-selectors/use-get-database-management-selectors";
 
 const useConfirmUpdateSessionSpaces = () => {
@@ -16,6 +19,7 @@ const useConfirmUpdateSessionSpaces = () => {
     isNotValidNumberOfChildrenValue,
   } = useUpdateDocumentFunctions();
   const {
+    fireEmptyValuesSwal,
     fireInvalidDateFormatSwal,
     fireInvalidSessionTypeSwal,
     fireInvalidNumberOfChildrenSwal,
@@ -28,14 +32,16 @@ const useConfirmUpdateSessionSpaces = () => {
   };
 
   const confirmUpdateSessionSpaces = () => {
-    if (isNotValidDateFormat(date)) {
+    if (!date || !sessionType || !numberOfChildrenInBooking) {
+      fireEmptyValuesSwal();
+    } else if (isNotValidDateFormat(date)) {
       fireInvalidDateFormatSwal();
     } else if (isNotValidSessionType(sessionType)) {
       fireInvalidSessionTypeSwal();
-    } else if (isNotValidNumberOfChildrenValue()) {
+    } else if (isNotValidNumberOfChildrenValue(numberOfChildrenInBooking)) {
       fireInvalidNumberOfChildrenSwal();
     } else {
-      confirmSwal("are you sure?", "", imSureMessage, () =>
+      confirmSwal(confirmUpdateSessionSpacesMessage, "", imSureMessage, () =>
         confirmResult(date, sessionType, numberOfChildrenInBooking)
       );
     }

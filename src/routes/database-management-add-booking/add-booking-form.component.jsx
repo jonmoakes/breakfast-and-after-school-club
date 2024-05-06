@@ -86,7 +86,7 @@ const UpdateBookingForm = () => {
       />
 
       <YellowGreenButton type="button" onClick={confirmAddBookingDocument}>
-        update booking
+        add booking
       </YellowGreenButton>
     </Form>
   );

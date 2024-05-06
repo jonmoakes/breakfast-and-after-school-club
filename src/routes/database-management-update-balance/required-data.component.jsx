@@ -2,7 +2,7 @@ import { BlackHr } from "../../styles/hr/hr.styles";
 import { BlackSpan } from "../../styles/span/span.styles";
 
 const RequiredData = () => (
-  <ul className="normal-text">
+  <ul>
     <BlackHr />
 
     <li>
@@ -15,7 +15,7 @@ const RequiredData = () => (
     <li>
       <BlackSpan>the</BlackSpan>
       <br />
-      refund price
+      amount to add
     </li>
     <BlackHr />
   </ul>

@@ -14,10 +14,9 @@ const useConfirmUpdateUserBalance = () => {
     useUpdateUsersBalanceAfterErrorEmailThunk();
   const { usersDocumentId, refundPrice } = useGetDatabaseManagementSelectors();
   const {
-    formHasEmptyValue,
     stringHasUpperCaseLetters,
     invalidDocumentIdLength,
-    invalidRefundPriceLength,
+    invalidUpdateBalanceLength,
     valueStartsOrEndsWithSpace,
   } = useUpdateDocumentFunctions();
   const {
@@ -34,19 +33,19 @@ const useConfirmUpdateUserBalance = () => {
   };
 
   const confirmUpdateUserBalance = () => {
-    if (formHasEmptyValue()) {
+    if (!usersDocumentId || !refundPrice) {
       fireEmptyValuesSwal();
-    } else if (stringHasUpperCaseLetters(usersDocumentId)) {
-      fireCantHaveUppercaseCharactersSwal();
     } else if (invalidDocumentIdLength(usersDocumentId)) {
       fireDocumentIdLengthErrorSwal();
-    } else if (invalidRefundPriceLength()) {
-      fireRefundPriceLengthErrorSwal();
+    } else if (stringHasUpperCaseLetters(usersDocumentId)) {
+      fireCantHaveUppercaseCharactersSwal();
     } else if (
       valueStartsOrEndsWithSpace(usersDocumentId) ||
       valueStartsOrEndsWithSpace(refundPrice)
     ) {
       fireWhiteSpaceErrorSwal();
+    } else if (invalidUpdateBalanceLength(refundPrice)) {
+      fireRefundPriceLengthErrorSwal();
     } else {
       confirmSwal(confirmUpdateUserBalanceMessage, "", imSureMessage, () =>
         confirmResult()

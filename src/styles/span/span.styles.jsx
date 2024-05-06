@@ -33,6 +33,10 @@ export const BorderLink = styled.span`
 export const RedSpan = styled.span`
   color: ${customRed};
 
+  &.no-format {
+    text-transform: none;
+  }
+
   &.capitalised {
     text-transform: capitalize;
   }

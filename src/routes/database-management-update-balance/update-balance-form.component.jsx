@@ -22,7 +22,7 @@ const UpdateBalanceForm = () => {
         placeholder="a 20 character value"
       />
 
-      <Label>refund price:</Label>
+      <Label>amount to add:</Label>
       <StyledInput
         type="number"
         name="refundPrice"

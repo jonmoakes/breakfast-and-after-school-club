@@ -56,7 +56,7 @@ export const updateSessionDocErrorMessage = `<span style="font-size: 20px;">ther
 export const errorUpdatingBalanceMessage = `<span style="font-size: 20px;">sorry, there was an error making your booking. please tap the "ok" button to continue. if the issue continues, please contact us using the contact form and quote the following error:</span>`;
 export const resetSessionErrorMessage = `<span style="font-size: 20px;">well this is embarassing.. We've had another error on our end.</span>`;
 export const failedToSendEmailInstructions = `<span style="font-size: 20px;">sorry, the email failed to send...please contact the school as soon as possible telling us what you were trying to do, so we can fix our error. We apologise for the inconvenience. please tap ok to continue!</span>`;
-export const failedToUpdateBalanceMessage = `<span style="font-size: 20px;">there was an error when adding your funds. the payment has successfully completed, but there was an error updating your balance in our database. please tap 'ok' below. This will email the app owner with all the necessary details so that they can update the database manually. the app owner will then email you when your balance has been successfully updated. you will then be asked to tap on the button that says 'not correct' under your wallet balance in the 'account' page to refresh your balance. if you urgently need to book a session, please contact us using the contact form. We are sorry for the inconvenience!</span>`;
+export const failedToUpdateBalanceMessage = `<span style="font-size: 20px;">there was an error when adding your funds. the payment has successfully completed, but there was an error updating your balance in our database. please tap 'ok' below. This will email the app owner with all the necessary details so that they can update the database manually. Once they have done this, the correct balance should immediately show in your account. please allow 24 hours for this to occur. After 24hrs, If you still think that your balance is not correct, please tap on the button that says 'not correct' under your wallet balance in the 'account' page to refresh your balance. if you urgently need to book a session, please contact us using the contact form. We are sorry for the inconvenience!</span>`;
 export const failedToUpdateBalanceOnCancellationMessage = `<span style="font-size:20px;">sorry, your booking was cancelled, but your balance was not updated correctly. please tap on 'ok' below. When you do, we will send an email to the app owner with the details required to manually update your balance. if your balance has not updated within 24h hours, please contact us using the contact form. We apologise for the inconvenience!</span>`;
 export const sessionAlreadyBookedMessage = (childrenSelectedForBooking) => {
   return childrenSelectedForBooking.length
@@ -175,7 +175,7 @@ export const dbManageErrorUpdatingBalanceAfterCancellingBookingMessage =
 export const emptyFieldsMessage =
   "please make sure that all fields have been filled in";
 export const documentLengthErrorMessage =
-  "the document id should be 20 characters in length";
+  "the id field should be 20 characters in length";
 export const refundPriceLengthErrorMessage =
   "the refund price should be no more than 5 characters in length";
 export const whiteSpaceErrorMessage = `<span style="font-size: 20px;">one or some of your entered values starts or ends with a space ( ' ' ). please make sure there is no white space at the beginning or end of the data you are trying to input.</span>`;
@@ -183,15 +183,14 @@ export const dbManageErrorAddingBookingToDatabaseMessage =
   "there was an error adding a users booking to the database";
 export const dbManageErrorUpdatingSessionSpacesAndBalanceAfterCancelledBookingMessage =
   "there was an error updating the session spaces and the users balance when they cancelled a booking";
-export const copyAndPasteFromEmailMessage =
-  "please consider copy and pasting the value from the email.";
-export const uppercaseLettersErrorMessage = `<span style="font-size: 20px;">  the inputs ( apart from the 'sessionType' ), can't have uppercase characters. ${copyAndPasteFromEmailMessage}</span>`;
-export const invalidDateErrorMessage = `<span style="font-size: 20px;">the date you entered has an invalid format. ${copyAndPasteFromEmailMessage}</span>`;
-export const invalidSessionTypeErrorMessage = `<span style="font-size: 20px;">the session type you entered has an invalid format. please check for typos and whitespace at the beginning or end of the value you entered. ${copyAndPasteFromEmailMessage}</span>`;
-export const invalidNumberOfChildrenErrorMessage = `<span style="font-size: 20px;">the number of children should be greater than 0. ${copyAndPasteFromEmailMessage}</span>`;
+
+export const invalidDateErrorMessage = `<span style="font-size: 20px;">the date you entered has an invalid format.</span>`;
+export const invalidSessionTypeErrorMessage = `<span style="font-size: 20px;">the session type you entered has an invalid format. please check for typos and whitespace at the beginning or end of the value you entered.</span>`;
+export const invalidNumberOfChildrenErrorMessage = `<span style="font-size: 20px;">the number of children should be greater than 0.</span>`;
 export const errorUpdatingUsersBalanceMessage =
   "sorry, there was an error updating the users balance.";
 export const errorUpdatingSessionSpacesMessage =
   "sorry, there was an error updating the session spaces.";
 export const couldntFetchUsersChildrenErrorMessage = `<span style="font-size: 20px;">sorry, there was an error fetching your childrens details from the database. We need this information to send to the app owner so that they can delete all of the data associated with your account. please try again, or contact us if the error persists.</span>`;
-export const deleteUserppercaseLettersErrorMessage = `<span style="font-size: 20px;">  the input can't have uppercase characters. ${copyAndPasteFromEmailMessage}</span>`;
+export const cantHaveUppercaseCharactersErrorMessage = `<span style="font-size: 20px;">  the input can't have uppercase characters.</span>`;
+export const cantHaveUppercaseCharactersExceptSessionSpacesErrorMessage = `<span style="font-size: 20px;">  the inputs ( apart from the 'sessionType' ), can't have uppercase characters.</span>`;
