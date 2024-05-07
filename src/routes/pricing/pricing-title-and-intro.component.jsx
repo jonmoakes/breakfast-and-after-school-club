@@ -23,6 +23,9 @@ const PricingTitleAndIntro = () => (
         Plus, with our transparent pricing structure and no hidden fees, you can
         rest assured knowing exactly what you're paying for!
       </Text>
+      <Text>
+        yearly plans also get <RedSpan>10% off</RedSpan> the monthly price!
+      </Text>
       <Text>whatever you choose, we also provide a</Text>
       <Text>
         <RedSpan>free, no obligation one month free trial</RedSpan>!
