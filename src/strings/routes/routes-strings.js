@@ -41,3 +41,4 @@ export const databaseManagementAddBookingRoute =
 export const databaseManagementDeleteUserRoute =
   "/database-management/delete-user";
 export const pricingRoute = "/pricing";
+export const termsRoute = "/terms-and-conditions";

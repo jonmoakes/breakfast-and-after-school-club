@@ -47,6 +47,9 @@ const UserAddFundsPhone = () => {
         companies in the e-commerce world!
       </Text>
 
+      <Text>stripes fees for each transaction by your users are:</Text>
+      <Text>1.5% + 20p</Text>
+
       <Text>
         For you peace of mind, read more about{" "}
         <a className="red" href="https://stripe.com/gb">

@@ -74,10 +74,10 @@ const useIsMobileDevice = () => {
   };
 
   const getPhoneImageSizeBasedOnScreen = () => {
-    if (isTinyScreen()) return { width: 250, height: 280 };
-    if (isSmallScreen()) return { width: 300, height: 320 };
-    if (isMediumScreen()) return { width: 420, height: 400 };
-    if (isLargeScreen()) return { width: 450, height: 430 };
+    if (isTinyScreen()) return { width: 230, height: 250 };
+    if (isSmallScreen()) return { width: 270, height: 290 };
+    if (isMediumScreen()) return { width: 320, height: 400 };
+    if (isLargeScreen()) return { width: 400, height: 420 };
     if (isLargeTablet()) return { width: 450, height: 420 };
     if (isDesktop()) return { width: 750, height: 800 };
     return null;

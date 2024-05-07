@@ -11,14 +11,15 @@ import {
   aboutRoute,
   allChildrenRoute,
   allUsersRoute,
+  pricingRoute,
 } from "../../strings/routes/routes-strings";
 
 export const signedInRoutes = [
   bookedSessionsUserRoute,
   bookSessionRoute,
   addFundsRoute,
-  accountRoute,
   childInfoRoute,
+  accountRoute,
   contactRoute,
 ];
 
@@ -32,6 +33,7 @@ export const ownerSignedInRoutes = [
 export const signedOutRoutes = [
   signInRoute,
   signUpRoute,
-  contactRoute,
   aboutRoute,
+  pricingRoute,
+  contactRoute,
 ];

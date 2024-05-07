@@ -20,6 +20,11 @@ export const WhiteShadowText = styled(Text)`
 
 export const RedText = styled(Text)`
   color: ${customRed};
+
+  &.underline {
+    text-decoration: underline;
+    text-decoration-color: ${customBlack};
+  }
 `;
 
 export const ItalicStripeText = styled.p`

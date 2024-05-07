@@ -14,6 +14,10 @@ const AboutTitleAndIntro = () => (
         down on the amount of time and paperwork it takes to manage your
         business.
       </Text>
+      <Text>
+        for your users, we have focused on making the app as simple to use as
+        possible, allowing them to book and cancel sessions in just a few taps!
+      </Text>
 
       <Text>
         Tap on the images to view the full-size image
