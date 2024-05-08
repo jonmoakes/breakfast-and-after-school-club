@@ -1,7 +1,7 @@
 import { useDispatch } from "react-redux";
 
 import useGetCurrentUserSelectors from "../../get-selectors/use-get-current-user-selectors";
-import { deleteChildOrUserUserAsync } from "../../../store/database-management/database-management-thunks";
+import { deleteDocumentAsync } from "../../../store/database-management/database-management-thunks";
 
 const useDeleteChildAndUserDocumentThunk = () => {
   const {
@@ -17,7 +17,7 @@ const useDeleteChildAndUserDocumentThunk = () => {
     const collectionId = childrenCollectionId;
 
     dispatch(
-      deleteChildOrUserUserAsync({
+      deleteDocumentAsync({
         databaseId,
         collectionId,
         documentId,
@@ -28,7 +28,7 @@ const useDeleteChildAndUserDocumentThunk = () => {
   const deleteUserThunk = (userToDeleteDocumentId) => {
     const documentId = userToDeleteDocumentId;
     dispatch(
-      deleteChildOrUserUserAsync({
+      deleteDocumentAsync({
         databaseId,
         collectionId,
         documentId,

@@ -21,6 +21,7 @@ import {
   databaseManagementViewBookingClosingTimesRoute,
   databaseManagementViewSessionPricesRoute,
   databaseManagementViewSessionTimesRoute,
+  databaseManagementCancelBookingRoute,
 } from "../../../strings/routes/routes-strings";
 
 const useHandleShowError = () => {
@@ -87,6 +88,8 @@ const useHandleShowError = () => {
         return "display the session times from the database";
       case databaseManagementViewSessionPricesRoute:
         return "display the session prices from the database";
+      case databaseManagementCancelBookingRoute:
+        return "cancel a booking";
       default:
         return "display the requested data";
     }

@@ -77,8 +77,8 @@ export const updateSessionPriceAsync = createAsyncThunk(
   }
 );
 
-export const updateUsersBalanceAfterErrorEmailAsync = createAsyncThunk(
-  "updateUsersBalanceAfterErrorEmail",
+export const updateUsersBalanceAsync = createAsyncThunk(
+  "updateUsersBalance",
   async (
     { usersDocumentId, databaseId, userCollectionId, refundPrice },
     thunkAPI
@@ -215,8 +215,8 @@ export const updateSessionSpacesDocAsync = createAsyncThunk(
   }
 );
 
-export const deleteChildOrUserUserAsync = createAsyncThunk(
-  "deletChildOrUser",
+export const deleteDocumentAsync = createAsyncThunk(
+  "deletDocument",
   async ({ databaseId, collectionId, documentId }, thunkAPI) => {
     try {
       await manageDatabaseDocument(

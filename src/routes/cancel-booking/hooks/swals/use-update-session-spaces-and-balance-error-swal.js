@@ -1,13 +1,18 @@
 import useFireSwal from "../../../../hooks/use-fire-swal";
-import useGetRefundPrice from "../cancel-booking-logic/use-get-refund-price";
-import useCancelBookingVariables from "../cancel-booking-logic/use-cancel-booking-variables";
+import useGetRefundPrice from "../../../../hooks/use-get-refund-price";
+import useCancelBookingVariables from "../use-cancel-booking-variables";
 import useSendSessionSpacesAndBalanceErrorEmailThunk from "../../../../hooks/get-actions-and-thunks/send-email-actions-and-thunks/use-send-session-spaces-and-balance-error-email-thunk";
 
 import { failedToUpdateBalanceOnCancellationMessage } from "../../../../strings/errors/errors-strings";
 
 const useUpdateSessionSpacesAndBalanceErrorSwal = () => {
-  const { numberOfChildrenInBooking } = useCancelBookingVariables();
-  const { refundPrice } = useGetRefundPrice();
+  const { sessionType, numberOfChildrenInBooking } =
+    useCancelBookingVariables();
+  const { refundPrice } = useGetRefundPrice(
+    sessionType,
+    numberOfChildrenInBooking
+  );
+
   const { fireSwal } = useFireSwal();
   const { sendSessionSpacesAndBalanceErrorEmailThunk } =
     useSendSessionSpacesAndBalanceErrorEmailThunk();

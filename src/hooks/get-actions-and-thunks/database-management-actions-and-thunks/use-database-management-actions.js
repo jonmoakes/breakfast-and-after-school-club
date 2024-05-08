@@ -31,9 +31,11 @@ import {
   resetDatabaseManagementState,
   setErrorId,
   setUserHasDeletedAllChildren,
-  resetDeleteChildOrUserResult,
-  resetDeleteChildOrUserError,
+  resetDeleteDocumentResult,
+  resetDeleteDocumentError,
   resetDataToUpdateDocument,
+  setBookingToCancelDetails,
+  resetBookingToCancelDetails,
 } from "../../../store/database-management/database-management.slice";
 
 const useDatabaseManagementActions = () => {
@@ -159,12 +161,20 @@ const useDatabaseManagementActions = () => {
     dispatch(setUserHasDeletedAllChildren(payload));
   };
 
-  const dispatchResetDeleteChildOrUserResult = () => {
-    dispatch(resetDeleteChildOrUserResult());
+  const dispatchResetDeleteDocumentResult = () => {
+    dispatch(resetDeleteDocumentResult());
   };
 
-  const dispatchResetDeleteChildOrUserError = () => {
-    dispatch(resetDeleteChildOrUserError());
+  const dispatchResetDeleteDocumentError = () => {
+    dispatch(resetDeleteDocumentError());
+  };
+
+  const dispatchSetBookingToCancelDetails = (payload) => {
+    dispatch(setBookingToCancelDetails(payload));
+  };
+
+  const dispatchResetBookingToCancelDetails = () => {
+    dispatch(resetBookingToCancelDetails());
   };
 
   const dispatchResetDatabaseManagementState = () => {
@@ -205,8 +215,10 @@ const useDatabaseManagementActions = () => {
     dispatchResetUpdateSessionSpacesError,
     dispatchErrorId,
     dispatchSetUserHasDeletedAllChildren,
-    dispatchResetDeleteChildOrUserResult,
-    dispatchResetDeleteChildOrUserError,
+    dispatchResetDeleteDocumentResult,
+    dispatchResetDeleteDocumentError,
+    dispatchSetBookingToCancelDetails,
+    dispatchResetBookingToCancelDetails,
     dispatchResetDatabaseManagementState,
   };
 };

@@ -4,7 +4,7 @@ import { BlueH2 } from "../../styles/h2/h2.styles";
 import { BlackHr } from "../../styles/hr/hr.styles";
 import { StyledLink } from "../../styles/link/link.styles";
 import { Text } from "../../styles/p/p.styles";
-import { RedSpan } from "../../styles/span/span.styles";
+import { BlueSpan } from "../../styles/span/span.styles";
 
 const PaymentProcessingFees = () => (
   <ParentDiv>
@@ -17,7 +17,7 @@ const PaymentProcessingFees = () => (
       are currently at the time of writing ( may 2024 ):
     </Text>
     <Text>
-      <RedSpan>1.5% + 20p</RedSpan> for each transaction
+      <BlueSpan>1.5% + 20p</BlueSpan> for each transaction
     </Text>
     <Text>so if one of your sessions is £5, stripe will take:</Text>
     <BlackHr />
@@ -26,7 +26,7 @@ const PaymentProcessingFees = () => (
     <Text>
       so stripe takes:
       <br />
-      <RedSpan>£0.275</RedSpan> per £5 transaction fee.
+      <BlueSpan>£0.275</BlueSpan> per £5 transaction fee.
     </Text>
     <BlackHr />
     <Text>

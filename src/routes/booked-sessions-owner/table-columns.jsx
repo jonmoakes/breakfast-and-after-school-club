@@ -55,4 +55,8 @@ export const TABLE_COLUMNS = [
       );
     },
   },
+  {
+    Header: "booking id",
+    accessor: "$id",
+  },
 ];

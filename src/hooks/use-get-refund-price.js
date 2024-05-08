@@ -1,11 +1,7 @@
-import useGetUserBookingToDeleteSelectors from "../../../../hooks/get-selectors/use-get-user-booking-to-delete-selectors";
-import useGetSessionTypesAndPricesSelectors from "../../../../hooks/get-selectors/use-get-session-types-and-prices-selectors";
-import useCancelBookingVariables from "./use-cancel-booking-variables";
-import useGetCurrentUserSelectors from "../../../../hooks/get-selectors/use-get-current-user-selectors";
-// import useCancelBookingFunctions from "./use-cancel-booking-functions";
+import useGetSessionTypesAndPricesSelectors from "./get-selectors/use-get-session-types-and-prices-selectors";
+import useGetCurrentUserSelectors from "./get-selectors/use-get-current-user-selectors";
 
-const useGetRefundPrice = () => {
-  const { userBookingToDelete } = useGetUserBookingToDeleteSelectors();
+const useGetRefundPrice = (sessionType, numberOfChildrenInBooking) => {
   const { walletBalance } = useGetCurrentUserSelectors();
   const {
     morningSessionPrice,
@@ -14,9 +10,6 @@ const useGetRefundPrice = () => {
     morningAndAfternoonShortSessionPrice,
     morningAndAfternoonLongSessionPrice,
   } = useGetSessionTypesAndPricesSelectors();
-  const { numberOfChildrenInBooking } = useCancelBookingVariables();
-
-  const { sessionType } = userBookingToDelete || {};
 
   const getRefundPrice = () => {
     switch (sessionType) {

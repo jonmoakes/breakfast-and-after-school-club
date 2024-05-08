@@ -13,10 +13,10 @@ const PricingTitleAndIntro = () => (
     <ParentDiv>
       <Text>
         choose the Right Plan for You! We offer a range of pricing plans
-        designed to accommodate schools and after-school clubs of all sizes.
+        designed to accommodate schools and after school clubs of all sizes.
       </Text>
       <Text>
-        Whether you're a small primary school or a bustling after-school club,
+        Whether you're a small primary school or a bustling after school club,
         we have a plan that fits your needs and budget.
       </Text>
       <Text>
@@ -28,7 +28,7 @@ const PricingTitleAndIntro = () => (
       </Text>
       <Text>whatever you choose, we also provide a</Text>
       <Text>
-        <RedSpan>free, no obligation one month free trial</RedSpan>!
+        <RedSpan>no obligation one month free trial</RedSpan>!
       </Text>
       <Text>
         please note, the free trial is still subject to payment processing fees
@@ -41,7 +41,8 @@ const PricingTitleAndIntro = () => (
       <BlueH2>pricing plans:</BlueH2>
       <Text>
         after your one month free trial period, if you'd like to continue using
-        the app, our pricing plans are as follows:
+        the app, our pricing plans are based on the number of children in your
+        setting, as follows:
       </Text>
     </ParentDiv>
   </>

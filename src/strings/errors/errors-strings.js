@@ -116,7 +116,7 @@ export const tryingToCancelErrorMessage = (error) => {
   return `the error received was: ${error}. If the issue persists, please contact the school directly to cancel your booking. We apologise for the inconvenience.`;
 };
 export const errorCancellingBookingMessage =
-  "sorry, there was an error cancelling your booking.";
+  "sorry, there was an error cancelling the booking.";
 export const errorInstructions =
   "please tap ok to continue. This will email the app owner with details of the error, allowing them to fix it manually. Your balance has not been affected. We apologise for the inconvenience.";
 
@@ -194,3 +194,5 @@ export const errorUpdatingSessionSpacesMessage =
 export const couldntFetchUsersChildrenErrorMessage = `<span style="font-size: 20px;">sorry, there was an error fetching your childrens details from the database. We need this information to send to the app owner so that they can delete all of the data associated with your account. please try again, or contact us if the error persists.</span>`;
 export const cantHaveUppercaseCharactersErrorMessage = `<span style="font-size: 20px;">  the input can't have uppercase characters.</span>`;
 export const cantHaveUppercaseCharactersExceptSessionSpacesErrorMessage = `<span style="font-size: 20px;">  the inputs ( apart from the 'sessionType' ), can't have uppercase characters.</span>`;
+export const bookingCancelledBalanceUpdateFailedMessage = `<span style="font-size: 20px;">  there was an error cancelling the booking. Whilst the booking itself was cancelled, updating the users balance and therefore session spaces, failed. please contact jonathan urgently - quoting the date on the booking, the session type, the number of children in the booking and the user id of the parent.</span>`;
+export const bookingCancelledBalanceUpdatedSessionSpacesFailedMessage = `<span style="font-size: 20px;">  there was an error cancelling the booking. Whilst the booking itself was cancelled and the users balance updated, updating the session spaces, failed. please contact jonathan urgently - quoting the date on the booking, the session type and the number of children in the booking.</span>`;

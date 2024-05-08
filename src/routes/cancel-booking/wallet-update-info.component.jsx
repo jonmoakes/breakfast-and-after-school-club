@@ -1,10 +1,10 @@
-import useCancelBookingVariables from "./hooks/cancel-booking-logic/use-cancel-booking-variables";
+import useCancelBookingVariables from "./hooks/use-cancel-booking-variables";
+import useGetRefundPrice from "../../hooks/use-get-refund-price";
 
 import { ParentDiv } from "../../styles/div/div.styles";
 import { RedText, Text } from "../../styles/p/p.styles";
 import { RedSpan } from "../../styles/span/span.styles";
 import { BlackHr } from "../../styles/hr/hr.styles";
-import useGetRefundPrice from "./hooks/cancel-booking-logic/use-get-refund-price";
 
 const WalletUpdateInfo = () => {
   const {
@@ -12,9 +12,11 @@ const WalletUpdateInfo = () => {
     walletBalanceToFixed,
     formattedSessionType,
     formattedDate,
+    sessionType,
+    numberOfChildrenInBooking,
   } = useCancelBookingVariables();
   const { formattedRefundPrice, formattedBalanceAfterCancellation } =
-    useGetRefundPrice();
+    useGetRefundPrice(sessionType, numberOfChildrenInBooking);
 
   return (
     <ParentDiv>

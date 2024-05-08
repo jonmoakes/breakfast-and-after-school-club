@@ -8,11 +8,11 @@ import useFireSwal from "../../../hooks/use-fire-swal";
 import { errorReceivedMessage } from "../../../strings/errors/errors-strings";
 
 const useDeleteChildOrUserResultSwal = () => {
-  const { deleteChildOrUserResult, deleteChildOrUserError } =
+  const { deleteDocumentResult, deleteDocumentError } =
     useGetDatabaseManagementSelectors();
   const {
-    dispatchResetDeleteChildOrUserResult,
-    dispatchResetDeleteChildOrUserError,
+    dispatchResetDeleteDocumentResult,
+    dispatchResetDeleteDocumentError,
     dispatchResetDataToUpdateDocument,
   } = useDatabaseManagementActions();
   const { hamburgerHandlerNavigate } = useHamburgerHandlerNavigate();
@@ -20,19 +20,19 @@ const useDeleteChildOrUserResultSwal = () => {
   const { fireSwal } = useFireSwal();
 
   useEffect(() => {
-    if (!deleteChildOrUserResult && !deleteChildOrUserError) return;
+    if (!deleteDocumentResult && !deleteDocumentError) return;
 
-    if (deleteChildOrUserResult === "fulfilled") {
+    if (deleteDocumentResult === "fulfilled") {
       fireSwal("success", "document deleted!", "", 0, true, false).then(
         (isConfirmed) => {
           if (isConfirmed) {
             dispatchResetDataToUpdateDocument();
-            dispatchResetDeleteChildOrUserResult();
+            dispatchResetDeleteDocumentResult();
           }
         }
       );
     } else {
-      const error = deleteChildOrUserError;
+      const error = deleteDocumentError;
       fireSwal(
         "error",
         "error deleting document",
@@ -42,19 +42,19 @@ const useDeleteChildOrUserResultSwal = () => {
         false
       ).then((isConfirmed) => {
         if (isConfirmed) {
-          dispatchResetDeleteChildOrUserResult();
-          dispatchResetDeleteChildOrUserError();
+          dispatchResetDeleteDocumentResult();
+          dispatchResetDeleteDocumentError();
         }
       });
     }
   }, [
     fireSwal,
     hamburgerHandlerNavigate,
-    deleteChildOrUserError,
-    deleteChildOrUserResult,
-    dispatchResetDeleteChildOrUserResult,
-    dispatchResetDeleteChildOrUserError,
+    dispatchResetDeleteDocumentResult,
+    dispatchResetDeleteDocumentError,
     dispatchResetDataToUpdateDocument,
+    deleteDocumentResult,
+    deleteDocumentError,
   ]);
 };
 

@@ -14,12 +14,6 @@ import ErrorFallback from "./components/errors/error-fallback.component";
 import Loader from "./components/loader/loader.component";
 import FloatingBackButton from "./components/floating-back-button/floating-back-button.component";
 
-// import DBManageViewBookingClosingTimes from "./routes/database-management/booking-closing-times/db-manage-view-booking-closing-times.component";
-// import DBManageViewSessionTimes from "./routes/database-management/session-times/db-manage-view-session-times.component";
-// import DBManageViewSessionPrices from "./routes/database-management/session-prices/db-manage-view-session-prices.component";
-// import DBManageChooseError from "./routes/database-management/choose-error/db-manage-choose-error.component";
-// import DBManageUpdateDocument from "./routes/database-management/update-document/db-manage-update-document.component";
-
 import {
   contactRoute,
   signUpRoute,
@@ -52,6 +46,7 @@ import {
   databaseManagementUpdateSessionSpacesRoute,
   databaseManagementAddBookingRoute,
   databaseManagementDeleteUserRoute,
+  databaseManagementCancelBookingRoute,
   aboutRoute,
   pricingRoute,
 } from "./strings/routes/routes-strings";
@@ -150,6 +145,11 @@ const DBManageUpdateUserBalance = lazy(() =>
 const DBManageAddBooking = lazy(() =>
   import(
     "./routes/database-management-add-booking/db-manage-add-booking.component"
+  )
+);
+const DbManageCancelBooking = lazy(() =>
+  import(
+    "./routes/database-management-cancel-booking/db-manage-cancel-booking.component"
   )
 );
 const DBManageUpdateSessionSpaces = lazy(() =>
@@ -251,6 +251,12 @@ const App = () => {
                 path={databaseManagementAddBookingRoute}
                 element={<DBManageAddBooking />}
               />
+
+              <Route
+                path={databaseManagementCancelBookingRoute}
+                element={<DbManageCancelBooking />}
+              />
+
               <Route
                 path={databaseManagementUpdateSessionSpacesRoute}
                 element={<DBManageUpdateSessionSpaces />}

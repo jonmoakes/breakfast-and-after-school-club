@@ -47,7 +47,6 @@ const DatabaseAdminImac = () => {
                   width={imageSize.width}
                   height={imageSize.height}
                   placeholderSrc={PlaceholderImage}
-                  effect="blur"
                   alt="Database Admin On An Imac"
                 />
               </a>
@@ -59,7 +58,6 @@ const DatabaseAdminImac = () => {
                   width={imageSize.width}
                   height={imageSize.height}
                   placeholderSrc={PlaceholderImage}
-                  effect="blur"
                   alt="Adding A Booking On An Imac"
                 />
               </a>

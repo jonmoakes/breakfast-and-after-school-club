@@ -1,4 +1,4 @@
-import useUpdateUsersBalanceAfterErrorEmailThunk from "../../../hooks/get-actions-and-thunks/database-management-actions-and-thunks/use-update-users-balance-after-error-email-thunk";
+import useUpdateUsersBalanceThunk from "../../../hooks/get-actions-and-thunks/database-management-actions-and-thunks/use-update-users-balance-thunk";
 import useConfirmSwal from "../../../hooks/use-confirm-swal";
 import useUpdateDocumentFunctions from "../../../hooks/database-management/use-update-document-functions";
 import useUpdateDocumentSwals from "../../../hooks/database-management/use-update-document-swals";
@@ -10,8 +10,7 @@ import {
 import useGetDatabaseManagementSelectors from "../../../hooks/get-selectors/use-get-database-management-selectors";
 
 const useConfirmUpdateUserBalance = () => {
-  const { updateUsersBalanceAfterErrorEmailThunk } =
-    useUpdateUsersBalanceAfterErrorEmailThunk();
+  const { updateUsersBalanceThunk } = useUpdateUsersBalanceThunk();
   const { usersDocumentId, refundPrice } = useGetDatabaseManagementSelectors();
   const {
     stringHasUpperCaseLetters,
@@ -29,7 +28,7 @@ const useConfirmUpdateUserBalance = () => {
   const { confirmSwal } = useConfirmSwal();
 
   const confirmResult = () => {
-    updateUsersBalanceAfterErrorEmailThunk(usersDocumentId, refundPrice);
+    updateUsersBalanceThunk(usersDocumentId, refundPrice);
   };
 
   const confirmUpdateUserBalance = () => {

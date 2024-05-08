@@ -4,10 +4,10 @@ import {
   updateBookingClosingTimesAsync,
   updateSessionTimesAsync,
   updateSessionPriceAsync,
-  updateUsersBalanceAfterErrorEmailAsync,
+  updateUsersBalanceAsync,
   manuallyAddBookingDataAfterErrorAsync,
   updateSessionSpacesDocAsync,
-  deleteChildOrUserUserAsync,
+  deleteDocumentAsync,
 } from "./database-management-thunks";
 
 export const databaseManagementSlice = createSlice({
@@ -113,11 +113,17 @@ export const databaseManagementSlice = createSlice({
     setUserHasDeletedAllChildren(state, action) {
       state.userHasDeletedAllChildren = action.payload;
     },
-    resetDeleteChildOrUserResult(state) {
-      state.deleteChildOrUserResult = "";
+    resetDeleteDocumentResult(state) {
+      state.deleteDocumentResult = "";
     },
-    resetDeleteChildOrUserError(state) {
-      state.deleteChildOrUserError = null;
+    resetDeleteDocumentError(state) {
+      state.deleteDocumentError = null;
+    },
+    setBookingToCancelDetails(state, action) {
+      state.bookingToCancelDetails = action.payload;
+    },
+    resetBookingToCancelDetails(state) {
+      state.bookingToCancelDetails = {};
     },
     resetDatabaseManagementState: () => {
       return INITIAL_STATE;
@@ -155,8 +161,9 @@ export const databaseManagementSlice = createSlice({
       (state) => state.updateSessionSpacesError,
       (state) => state.errorId,
       (state) => state.userHasDeletedAllChildren,
-      (state) => state.deleteChildOrUserResult,
-      (state) => state.deleteChildOrUserError,
+      (state) => state.deleteDocumentResult,
+      (state) => state.deleteDocumentError,
+      (state) => state.bookingToCancelDetails,
       (
         databaseManagementIsLoading,
 
@@ -188,8 +195,9 @@ export const databaseManagementSlice = createSlice({
         updateSessionSpacesError,
         errorId,
         userHasDeletedAllChildren,
-        deleteChildOrUserResult,
-        deleteChildOrUserError
+        deleteDocumentResult,
+        deleteDocumentError,
+        bookingToCancelDetails
       ) => {
         return {
           databaseManagementIsLoading,
@@ -222,8 +230,9 @@ export const databaseManagementSlice = createSlice({
           updateSessionSpacesError,
           errorId,
           userHasDeletedAllChildren,
-          deleteChildOrUserResult,
-          deleteChildOrUserError,
+          deleteDocumentResult,
+          deleteDocumentError,
+          bookingToCancelDetails,
         };
       }
     ),
@@ -269,22 +278,19 @@ export const databaseManagementSlice = createSlice({
         state.sessionPricesResult = "rejected";
         state.sessionPricesError = action.payload;
       })
-      .addCase(updateUsersBalanceAfterErrorEmailAsync.pending, (state) => {
+      .addCase(updateUsersBalanceAsync.pending, (state) => {
         state.databaseManagementIsLoading = true;
       })
-      .addCase(updateUsersBalanceAfterErrorEmailAsync.fulfilled, (state) => {
+      .addCase(updateUsersBalanceAsync.fulfilled, (state) => {
         state.databaseManagementIsLoading = false;
         state.updateBalanceResult = "fulfilled";
         state.updateBalanceError = null;
       })
-      .addCase(
-        updateUsersBalanceAfterErrorEmailAsync.rejected,
-        (state, action) => {
-          state.databaseManagementIsLoading = false;
-          state.updateBalanceResult = "rejected";
-          state.updateBalanceError = action.payload;
-        }
-      )
+      .addCase(updateUsersBalanceAsync.rejected, (state, action) => {
+        state.databaseManagementIsLoading = false;
+        state.updateBalanceResult = "rejected";
+        state.updateBalanceError = action.payload;
+      })
       .addCase(manuallyAddBookingDataAfterErrorAsync.pending, (state) => {
         state.databaseManagementIsLoading = true;
       })
@@ -314,18 +320,18 @@ export const databaseManagementSlice = createSlice({
         state.updateSessionSpacesResult = "rejected";
         state.updateSessionSpacesError = action.payload;
       })
-      .addCase(deleteChildOrUserUserAsync.pending, (state) => {
+      .addCase(deleteDocumentAsync.pending, (state) => {
         state.databaseManagementIsLoading = true;
       })
-      .addCase(deleteChildOrUserUserAsync.fulfilled, (state) => {
+      .addCase(deleteDocumentAsync.fulfilled, (state) => {
         state.databaseManagementIsLoading = false;
-        state.deleteChildOrUserResult = "fulfilled";
-        state.deleteChildOrUserError = null;
+        state.deleteDocumentResult = "fulfilled";
+        state.deleteDocumentError = null;
       })
-      .addCase(deleteChildOrUserUserAsync.rejected, (state, action) => {
+      .addCase(deleteDocumentAsync.rejected, (state, action) => {
         state.databaseManagementIsLoading = false;
-        state.deleteChildOrUserResult = "rejected";
-        state.deleteChildOrUserError = action.payload;
+        state.deleteDocumentResult = "rejected";
+        state.deleteDocumentError = action.payload;
       });
   },
 });
@@ -364,8 +370,10 @@ export const {
   resetUpdateSessionSpacesError,
   setErrorId,
   setUserHasDeletedAllChildren,
-  resetDeleteChildOrUserResult,
-  resetDeleteChildOrUserError,
+  resetDeleteDocumentResult,
+  resetDeleteDocumentError,
+  setBookingToCancelDetails,
+  resetBookingToCancelDetails,
   resetDatabaseManagementState,
 } = databaseManagementSlice.actions;
 export const { selectDatabaseManagementSelectors } =

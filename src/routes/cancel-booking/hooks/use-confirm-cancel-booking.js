@@ -1,6 +1,6 @@
 import useConfirmSwal from "../../../hooks/use-confirm-swal";
-import useGetRefundPrice from "./cancel-booking-logic/use-get-refund-price";
-import useCancelBookingVariables from "./cancel-booking-logic/use-cancel-booking-variables";
+import useGetRefundPrice from "../../../hooks/use-get-refund-price";
+import useCancelBookingVariables from "./use-cancel-booking-variables";
 import useDeleteUserBookingUpdateSessionSpacesDocRefundUserGetWalletBalanceThunk from "../../../hooks/get-actions-and-thunks/user-booking-to-delete-actions-and-thunks/use-delete-user-booking-update-session-spaces-doc-refund-user-get-wallet-balance-thunk";
 
 import {
@@ -16,8 +16,13 @@ const useConfirmDeleteChildInfo = () => {
     useDeleteUserBookingUpdateSessionSpacesDocRefundUserGetWalletBalanceThunk();
 
   const { confirmSwal } = useConfirmSwal();
-  const { refundPrice, formattedRefundPrice } = useGetRefundPrice();
-  const { numberOfChildrenInBooking } = useCancelBookingVariables();
+
+  const { sessionType, numberOfChildrenInBooking } =
+    useCancelBookingVariables();
+  const { refundPrice, formattedRefundPrice } = useGetRefundPrice(
+    sessionType,
+    numberOfChildrenInBooking
+  );
 
   const confirmResult = () => {
     deleteUserBookingUpdateSessionSpacesDocRefundUserGetWalletBalanceThunk(

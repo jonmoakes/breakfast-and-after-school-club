@@ -196,6 +196,10 @@ export const LowercasedSpan = styled.span`
   &.right-margin {
     margin-right: 10px;
   }
+
+  &.red {
+    color: ${customRed};
+  }
 `;
 
 export const BlueLowercasedSpan = styled(LowercasedSpan)`
