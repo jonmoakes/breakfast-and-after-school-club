@@ -3,6 +3,8 @@ import useDbManageCancelBookingVariables from "./hooks/use-db-manage-cancel-book
 
 import useGetSessionPricesThunkUseEffect from "../../hooks/get-actions-and-thunks/session-types-and-prices-actions-and-thunks/use-get-session-prices-thunk-use-effect";
 import useCancelBookingResultSwal from "./hooks/use-cancel-booking-result-swal";
+import useGetBookedSessionsOwnerSelectors from "../../hooks/get-selectors/use-get-booked-sessions-owner-selectors";
+import useGetSessionTypesAndPricesSelectors from "../../hooks/get-selectors/use-get-session-types-and-prices-selectors";
 
 import Loader from "../../components/loader/loader.component";
 import ShowFetchErrors from "../../components/errors/show-fetch-errors.component";
@@ -14,8 +16,7 @@ import CancelBookingButtons from "./cancel-booking-buttons.component";
 import { Container } from "../../styles/container/container.styles";
 import { ParentDiv } from "../../styles/div/div.styles";
 import { BlackTitle } from "../../styles/h1/h1.styles";
-import useGetBookedSessionsOwnerSelectors from "../../hooks/get-selectors/use-get-booked-sessions-owner-selectors";
-import useGetSessionTypesAndPricesSelectors from "../../hooks/get-selectors/use-get-session-types-and-prices-selectors";
+import CancelBookingInfoAccordion from "./cancel-booking-info-accordion.component";
 
 const DbManageCancelBooking = () => {
   useFetchBookedSessionsOwnerThunkUseEffect();
@@ -50,33 +51,38 @@ const DbManageCancelBooking = () => {
         <ShowFetchErrors />
       ) : (
         <>
+          <CancelBookingInfoAccordion />
           <CancelBookingIntro />
 
-          {!matchedBookingFound ? <GetBookingToCancelForm /> : null}
+          <GetBookingToCancelForm />
 
           {matchedBookingFound ? (
-            <ParentDiv>
-              <CancelBookingSessionDetails
-                {...{
-                  sessionDate,
-                  typeOfSession,
-                  numberOfChildrenInBooking,
-                  sessionChildren,
-                  userIdOfParent,
-                }}
-              />
+            <>
+              <ParentDiv>
+                <CancelBookingSessionDetails
+                  {...{
+                    sessionDate,
+                    typeOfSession,
+                    numberOfChildrenInBooking,
+                    sessionChildren,
+                    userIdOfParent,
+                  }}
+                />
+              </ParentDiv>
 
-              <CancelBookingButtons
-                {...{
-                  bookingId,
-                  userIdOfParent,
-                  refundPrice,
-                  sessionDate,
-                  typeOfSession,
-                  numberOfChildrenInBooking,
-                }}
-              />
-            </ParentDiv>
+              <ParentDiv>
+                <CancelBookingButtons
+                  {...{
+                    bookingId,
+                    userIdOfParent,
+                    refundPrice,
+                    sessionDate,
+                    typeOfSession,
+                    numberOfChildrenInBooking,
+                  }}
+                />
+              </ParentDiv>
+            </>
           ) : null}
         </>
       )}

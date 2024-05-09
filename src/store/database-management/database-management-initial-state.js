@@ -32,4 +32,5 @@ export const INITIAL_STATE = {
   deleteDocumentError: null,
   userHasDeletedAllChildren: false,
   bookingToCancelDetails: {},
+  userOfAppChoice: null,
 };

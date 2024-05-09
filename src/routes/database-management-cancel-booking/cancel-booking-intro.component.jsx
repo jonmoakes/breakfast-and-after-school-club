@@ -1,33 +1,55 @@
-import Balancer from "react-wrap-balancer";
+import useDatabaseManagementActions from "../../hooks/get-actions-and-thunks/database-management-actions-and-thunks/use-database-management-actions";
+
 import { ParentDiv } from "../../styles/div/div.styles";
 import { Text } from "../../styles/p/p.styles";
+import { StyledLink } from "../../styles/link/link.styles";
+import { YellowGreenButton } from "../../styles/buttons/buttons.styles";
+import { BlackHr } from "../../styles/hr/hr.styles";
+
+import { allUsersRoute } from "../../strings/routes/routes-strings";
+import useDbManageCancelBookingVariables from "./hooks/use-db-manage-cancel-booking-variables";
 import { RedSpan } from "../../styles/span/span.styles";
 
-const CancelBookingIntro = () => (
-  <ParentDiv>
-    <Balancer>
-      <Text>
-        here, you can cancel a booking for a user that doesn't use the app.
-      </Text>
+const CancelBookingIntro = () => {
+  const { dispatchSetUserOfAppChoice } = useDatabaseManagementActions();
+  const { userOfAppChoice, matchedBookingFound } =
+    useDbManageCancelBookingVariables();
 
-      <Text>
-        cancelling the booking will remove the booking from the database, then
-        update the users balance and finally update the session spaces.
-      </Text>
+  return (
+    <>
+      {!userOfAppChoice && !matchedBookingFound ? (
+        <ParentDiv>
+          <Text>
+            is the booking you wish to cancel from a customer who doesn't use
+            the app that you manually create bookings for?
+          </Text>
 
-      <Text>lets start by getting the details of the booking to cancel.</Text>
-      <Text>
-        you will need the <RedSpan>booking id</RedSpan> which you can find in
-        your bookings table.
-      </Text>
-
-      <Text>
-        please consider copy and pasting the value to avoid any errors and
-        double check you are entering the correct id so that you don't cancel
-        the wrong booking.
-      </Text>
-    </Balancer>
-  </ParentDiv>
-);
+          <Text>
+            Or are they a customer who does use the app to make their own
+            bookings?
+          </Text>
+          <Text>
+            if you're unsure, see if their <RedSpan>wallet balance</RedSpan> in
+            your <StyledLink to={allUsersRoute}>users table</StyledLink> is '
+            <RedSpan>N / A</RedSpan>'' or not.
+          </Text>
+          <Text>
+            if the value is N / A, then it means that they are a non user of the
+            app.
+          </Text>
+          <YellowGreenButton
+            onClick={() => dispatchSetUserOfAppChoice("non user")}
+          >
+            non user of app
+          </YellowGreenButton>
+          <BlackHr />
+          <YellowGreenButton onClick={() => dispatchSetUserOfAppChoice("user")}>
+            user of app
+          </YellowGreenButton>
+        </ParentDiv>
+      ) : null}
+    </>
+  );
+};
 
 export default CancelBookingIntro;

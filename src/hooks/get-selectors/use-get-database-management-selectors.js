@@ -37,6 +37,7 @@ const useGetDatabaseManagementSelectors = () => {
     deleteDocumentResult,
     deleteDocumentError,
     bookingToCancelDetails,
+    userOfAppChoice,
   } = useSelector(selectDatabaseManagementSelectors);
 
   const {
@@ -109,6 +110,7 @@ const useGetDatabaseManagementSelectors = () => {
     sessionChildren,
     typeOfSession,
     userIdOfParent,
+    userOfAppChoice,
   };
 };
 

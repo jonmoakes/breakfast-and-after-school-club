@@ -1,20 +1,22 @@
 import useShouldShowElementActions from "../../hooks/get-actions-and-thunks/use-should-show-element-actions";
 import useGetShouldShowElementSelectors from "../../hooks/get-selectors/use-get-should-show-element-selectors";
-import { YellowGreenButton } from "../../styles/buttons/buttons.styles";
+import SuccessAndFailInfo from "./success-and-fail-info.component";
 
+import { YellowGreenButton } from "../../styles/buttons/buttons.styles";
 import {
   Accordion,
   AccordionContent,
   AccordionTitle,
 } from "../../styles/div/div.styles";
 import { BlackHr } from "../../styles/hr/hr.styles";
-import { Text } from "../../styles/p/p.styles";
+import { RedText, Text } from "../../styles/p/p.styles";
 import {
   BlueSpan,
   LowercasedSpan,
   RedSpan,
 } from "../../styles/span/span.styles";
-import SuccessAndFailInfo from "./success-and-fail-info.component";
+import { StyledLink } from "../../styles/link/link.styles";
+import { allUsersRoute } from "../../strings/routes/routes-strings";
 
 const ManuallyAddBookingInstructionsAccordion = () => {
   const { shouldShowElement } = useGetShouldShowElementSelectors();
@@ -38,15 +40,16 @@ const ManuallyAddBookingInstructionsAccordion = () => {
             <Text>to add a booking, You will need the following data:</Text>
             <BlackHr />
             <Text>
-              <BlueSpan>the date of the booking</BlueSpan>
+              <BlueSpan>the date of the booking:</BlueSpan>
             </Text>
             <Text>
-              ( must be in the format of <RedSpan>YYYY MM DD</RedSpan> )
+              ( must be in the format of <RedSpan>YYYY-MM-DD</RedSpan> )
             </Text>
+            <Text>ie '2024-05-13' for the 13th May 2024</Text>
             <BlackHr />
 
             <Text>
-              <BlueSpan>the session type</BlueSpan>
+              <BlueSpan>the session type:</BlueSpan>
             </Text>
             <Text>
               this must be EXACTLY one of the following ( note the 'camel case'
@@ -75,8 +78,9 @@ const ManuallyAddBookingInstructionsAccordion = () => {
             <BlackHr />
 
             <Text>
-              <BlueSpan>the children in the booking</BlueSpan>
+              <BlueSpan>the children in the booking:</BlueSpan>
             </Text>
+            <RedText>very important!</RedText>
             <Text>
               type in the name of each child in the booking. Make sure that the
               name is <RedSpan>lowercased</RedSpan> and the spelling should
@@ -84,8 +88,9 @@ const ManuallyAddBookingInstructionsAccordion = () => {
             </Text>
             <Text>
               if it doesn't match, the app wont be able to find the child in the
-              database associated with the name that you have enetered.
+              database associated with the name that you have entered.
             </Text>
+
             <Text>
               if there is more than one child in the booking, separate each name
               with a comma and a space, ie:
@@ -97,11 +102,24 @@ const ManuallyAddBookingInstructionsAccordion = () => {
             <Text>
               if there is only one child, do not add the comma after the name.
             </Text>
+            <Text>
+              The comma is very important if there is more than one child in the
+              booking.
+            </Text>
+            <Text>
+              failure to separate child names with a comma would prevent the
+              correct number of sessions being deducted from the database.
+            </Text>
+
+            <Text>
+              note again, that adding the comma is not necessary if there is
+              just one child in the booking.
+            </Text>
 
             <BlackHr />
 
             <Text>
-              <BlueSpan>the parent name</BlueSpan>
+              <BlueSpan>the parent name:</BlueSpan>
             </Text>
             <Text>
               this should be lowercased text ie:
@@ -118,19 +136,24 @@ const ManuallyAddBookingInstructionsAccordion = () => {
             <BlackHr />
 
             <Text>
-              <BlueSpan>the parents phone number</BlueSpan>
+              <BlueSpan>the parents phone number:</BlueSpan>
             </Text>
 
             <BlackHr />
 
             <Text>
-              <BlueSpan>the parents user id</BlueSpan>
+              <BlueSpan>the parents user id:</BlueSpan>
+            </Text>
+
+            <Text>
+              this should be a 20 character id that is lowercased and is a
+              comination of letters and numbers only.
             </Text>
 
             <BlackHr />
 
             <Text>
-              <BlueSpan>the parents email</BlueSpan>
+              <BlueSpan>the parents email:</BlueSpan>
             </Text>
 
             <BlackHr />
@@ -138,8 +161,8 @@ const ManuallyAddBookingInstructionsAccordion = () => {
             <Text>
               you can find the information for the parent name, phone number,
               user id and email in the 'users list' in the navigation menu. you
-              can also tap on 'view all users' in the account page to find this
-              information.
+              can also tap <StyledLink to={allUsersRoute}>here</StyledLink> to
+              view all your users.
             </Text>
 
             <Text>
@@ -160,6 +183,12 @@ const ManuallyAddBookingInstructionsAccordion = () => {
                 will be lost and you would have to input it again.
               </RedSpan>
             </Text>
+            <Text>
+              if you're on a browser page, as opposed to having the app open in
+              full screen, you could open a new tab on the users page, whilst
+              also staying on this one.
+            </Text>
+            <BlackHr />
             <SuccessAndFailInfo />
 
             <YellowGreenButton onClick={dispatchHideShownElement}>

@@ -36,6 +36,8 @@ import {
   resetDataToUpdateDocument,
   setBookingToCancelDetails,
   resetBookingToCancelDetails,
+  setUserOfAppChoice,
+  resetUserOfAppChoice,
 } from "../../../store/database-management/database-management.slice";
 
 const useDatabaseManagementActions = () => {
@@ -177,6 +179,12 @@ const useDatabaseManagementActions = () => {
     dispatch(resetBookingToCancelDetails());
   };
 
+  const dispatchSetUserOfAppChoice = (payload) => {
+    dispatch(setUserOfAppChoice(payload));
+  };
+  const dispatchResetUserOfAppChoice = () => {
+    dispatch(resetUserOfAppChoice());
+  };
   const dispatchResetDatabaseManagementState = () => {
     dispatch(resetDatabaseManagementState());
   };
@@ -219,6 +227,8 @@ const useDatabaseManagementActions = () => {
     dispatchResetDeleteDocumentError,
     dispatchSetBookingToCancelDetails,
     dispatchResetBookingToCancelDetails,
+    dispatchSetUserOfAppChoice,
+    dispatchResetUserOfAppChoice,
     dispatchResetDatabaseManagementState,
   };
 };

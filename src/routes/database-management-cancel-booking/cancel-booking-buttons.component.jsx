@@ -5,6 +5,7 @@ import useConfirmDbManageCancelBooking from "./hooks/use-confirm-db-manage-cance
 import { YellowGreenButton } from "../../styles/buttons/buttons.styles";
 import { BlackHr } from "../../styles/hr/hr.styles";
 import { Text } from "../../styles/p/p.styles";
+import { BlueSpan, RedSpan } from "../../styles/span/span.styles";
 
 import { databaseManagementRoute } from "../../strings/routes/routes-strings";
 
@@ -31,7 +32,9 @@ const CancelBookingButtons = ({
 
   return (
     <>
-      <Text>they are correct</Text>
+      <Text>
+        the details are <BlueSpan>correct</BlueSpan>, so
+      </Text>
       <YellowGreenButton
         type="button"
         onClick={() =>
@@ -45,15 +48,20 @@ const CancelBookingButtons = ({
           )
         }
       >
-        cancel booking
+        cancel the booking
       </YellowGreenButton>
+
       <BlackHr />
-      <Text>they are incorrect</Text>
+
+      <Text>
+        the details are <RedSpan>incorrect</RedSpan>, so
+      </Text>
+
       <YellowGreenButton
         type="button"
         onClick={resetBookingToCancelAndBookingId}
       >
-        reset data
+        reset booking id
       </YellowGreenButton>
 
       <BlackHr />

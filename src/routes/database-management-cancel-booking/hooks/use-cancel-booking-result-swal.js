@@ -9,6 +9,7 @@ import useCancelBookingSuccessSwal from "./swals/use-cancel-booking-success-swal
 import useCancelBookingFailedSwal from "./swals/use-cancel-booking-failed-swal";
 import useBookingCancelledBalanceUpdateFailedSwal from "./swals/use-booking-cancelled-balance-update-failed-swal";
 import useBookingCancelledBalanceUpdatedSessionSpacesFailedSwal from "./swals/use-booking-cancelled-balance-updated-session-spaces-failed-swal";
+import useBookingCancelledSessionSpacesUpdateFailedSwal from "./swals/use-booking-cancelled-session-spaces-update-failed-swal";
 
 const useCancelBookingResultSwal = () => {
   const {
@@ -18,6 +19,7 @@ const useCancelBookingResultSwal = () => {
     updateBalanceError,
     updateSessionSpacesResult,
     updateSessionSpacesError,
+    userOfAppChoice,
   } = useGetDatabaseManagementSelectors();
   const {
     dispatchResetDeleteDocumentResult,
@@ -31,6 +33,8 @@ const useCancelBookingResultSwal = () => {
     useBookingCancelledBalanceUpdateFailedSwal();
   const { bookingCancelledBalanceUpdatedSessionSpacesFailedSwal } =
     useBookingCancelledBalanceUpdatedSessionSpacesFailedSwal();
+  const { bookingCancelledSessionSpacesUpdateFailedSwal } =
+    useBookingCancelledSessionSpacesUpdateFailedSwal();
 
   const { fireSwal } = useFireSwal();
 
@@ -46,24 +50,36 @@ const useCancelBookingResultSwal = () => {
       return;
 
     if (
-      deleteDocumentResult === "fulfilled" &&
-      updateBalanceResult === "fulfilled" &&
-      updateSessionSpacesResult === "fulfilled"
+      (userOfAppChoice === "user" &&
+        deleteDocumentResult === "fulfilled" &&
+        updateBalanceResult === "fulfilled" &&
+        updateSessionSpacesResult === "fulfilled") ||
+      (userOfAppChoice === "non user" &&
+        deleteDocumentResult === "fulfilled" &&
+        updateSessionSpacesResult === "fulfilled")
     ) {
       cancelBookingSuccessSwal();
     } else if (deleteDocumentResult === "rejected") {
       cancelBookingFailedSwal();
     } else if (
+      userOfAppChoice === "user" &&
       deleteDocumentResult === "fulfilled" &&
       updateBalanceResult === "rejected"
     ) {
       bookingCancelledBalanceUpdateFailedSwal();
     } else if (
+      userOfAppChoice === "user" &&
       deleteDocumentResult === "fulfilled" &&
       updateBalanceResult === "fulfilled" &&
       updateSessionSpacesResult === "rejected"
     ) {
       bookingCancelledBalanceUpdatedSessionSpacesFailedSwal();
+    } else if (
+      userOfAppChoice === "non user" &&
+      deleteDocumentResult === "fulfilled" &&
+      updateSessionSpacesResult === "rejected"
+    ) {
+      bookingCancelledSessionSpacesUpdateFailedSwal();
     }
   }, [
     fireSwal,
@@ -81,6 +97,8 @@ const useCancelBookingResultSwal = () => {
     cancelBookingFailedSwal,
     bookingCancelledBalanceUpdateFailedSwal,
     bookingCancelledBalanceUpdatedSessionSpacesFailedSwal,
+    userOfAppChoice,
+    bookingCancelledSessionSpacesUpdateFailedSwal,
   ]);
 };
 

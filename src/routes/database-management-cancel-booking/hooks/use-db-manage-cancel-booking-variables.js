@@ -13,6 +13,7 @@ const useDbManageCancelBookingVariables = () => {
     typeOfSession,
     userIdOfParent,
     bookingId,
+    userOfAppChoice,
   } = useGetDatabaseManagementSelectors();
   const { bookedSessionsOwnerIsLoading } = useBookedSessionsOwnerVariables();
   const numberOfChildrenInBooking =
@@ -22,9 +23,8 @@ const useDbManageCancelBookingVariables = () => {
     numberOfChildrenInBooking
   );
 
-  const matchedBookingFound = Object.keys(bookingToCancelDetails).length
-    ? true
-    : false;
+  const matchedBookingFound =
+    Object.keys(bookingToCancelDetails).length && true;
 
   return {
     databaseManagementIsLoading,
@@ -37,6 +37,7 @@ const useDbManageCancelBookingVariables = () => {
     typeOfSession,
     matchedBookingFound,
     numberOfChildrenInBooking,
+    userOfAppChoice,
   };
 };
 

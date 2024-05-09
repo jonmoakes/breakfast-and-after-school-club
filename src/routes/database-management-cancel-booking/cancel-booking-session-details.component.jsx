@@ -34,7 +34,6 @@ const CancelBookingSessionDetails = ({
     <Text>
       <RedSpan>{userIdOfParent}</RedSpan>
     </Text>
-    <BlackHr />
   </>
 );
 

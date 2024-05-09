@@ -4,8 +4,11 @@ import { bookingCancelledBalanceUpdateFailedMessage } from "../../../../strings/
 
 const useBookingCancelledBalanceUpdateFailedSwal = () => {
   const { fireSwal } = useFireSwal();
-  const { dispatchResetUpdateBalanceResult, dispatchResetUpdateBalanceError } =
-    useDatabaseManagementActions();
+  const {
+    dispatchResetDeleteDocumentResult,
+    dispatchResetUpdateBalanceResult,
+    dispatchResetUpdateBalanceError,
+  } = useDatabaseManagementActions();
 
   const bookingCancelledBalanceUpdateFailedSwal = () => {
     fireSwal(
@@ -17,6 +20,7 @@ const useBookingCancelledBalanceUpdateFailedSwal = () => {
       false
     ).then((isConfirmed) => {
       if (isConfirmed) {
+        dispatchResetDeleteDocumentResult();
         dispatchResetUpdateBalanceResult();
         dispatchResetUpdateBalanceError();
       }

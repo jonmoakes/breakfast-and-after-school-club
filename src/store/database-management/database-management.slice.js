@@ -125,6 +125,12 @@ export const databaseManagementSlice = createSlice({
     resetBookingToCancelDetails(state) {
       state.bookingToCancelDetails = {};
     },
+    setUserOfAppChoice(state, action) {
+      state.userOfAppChoice = action.payload;
+    },
+    resetUserOfAppChoice(state) {
+      state.userOfAppChoice = null;
+    },
     resetDatabaseManagementState: () => {
       return INITIAL_STATE;
     },
@@ -164,6 +170,7 @@ export const databaseManagementSlice = createSlice({
       (state) => state.deleteDocumentResult,
       (state) => state.deleteDocumentError,
       (state) => state.bookingToCancelDetails,
+      (state) => state.userOfAppChoice,
       (
         databaseManagementIsLoading,
 
@@ -197,7 +204,8 @@ export const databaseManagementSlice = createSlice({
         userHasDeletedAllChildren,
         deleteDocumentResult,
         deleteDocumentError,
-        bookingToCancelDetails
+        bookingToCancelDetails,
+        userOfAppChoice
       ) => {
         return {
           databaseManagementIsLoading,
@@ -233,6 +241,7 @@ export const databaseManagementSlice = createSlice({
           deleteDocumentResult,
           deleteDocumentError,
           bookingToCancelDetails,
+          userOfAppChoice,
         };
       }
     ),
@@ -371,6 +380,8 @@ export const {
   resetDeleteDocumentError,
   setBookingToCancelDetails,
   resetBookingToCancelDetails,
+  setUserOfAppChoice,
+  resetUserOfAppChoice,
   resetDatabaseManagementState,
 } = databaseManagementSlice.actions;
 export const { selectDatabaseManagementSelectors } =

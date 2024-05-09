@@ -25,14 +25,14 @@ const useNavigateToDbManagementButtons = () => {
   const dbManagementButtons = [
     {
       id: 1,
-      heading: "add a booking for a non app user",
+      heading: "add a booking",
       text: "add a booking",
       onClick: () =>
         handleNavWithErrorId("", databaseManagementAddBookingRoute),
     },
     {
       id: 2,
-      heading: "cancel a booking for a non app user",
+      heading: "cancel a booking",
       text: "cancel a booking",
       onClick: () =>
         handleNavWithErrorId("", databaseManagementCancelBookingRoute),

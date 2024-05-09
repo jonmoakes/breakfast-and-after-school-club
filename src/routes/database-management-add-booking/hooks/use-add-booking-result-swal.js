@@ -8,7 +8,6 @@ import useFireSwal from "../../../hooks/use-fire-swal";
 import {
   bookingManuallyAddedFailedErrorMessage,
   bookingManuallyAddedSessionSpacesFailedErrorMessage,
-  errorReceivedMessage,
   errorReceivedMessageWithoutContactDetail,
 } from "../../../strings/errors/errors-strings";
 import { bookingSuccessfullyAddedMessage } from "../../../strings/successes/successes-strings";
@@ -25,8 +24,8 @@ const useAddBookingResultSwal = () => {
   const {
     dispatchResetAddBookingResult,
     dispatchResetAddBookingError,
-    resetUpdateSessionSpacesResult,
-    resetUpdateSessionSpacesError,
+    dispatchResetUpdateSessionSpacesResult,
+    dispatchResetUpdateSessionSpacesError,
   } = useDatabaseManagementActions();
   const { hamburgerHandlerNavigate } = useHamburgerHandlerNavigate();
 
@@ -69,7 +68,7 @@ const useAddBookingResultSwal = () => {
       fireSwal(
         "error",
         bookingManuallyAddedFailedErrorMessage,
-        errorReceivedMessage(error),
+        errorReceivedMessageWithoutContactDetail(error),
         0,
         true,
         false
@@ -94,8 +93,8 @@ const useAddBookingResultSwal = () => {
       ).then((isConfirmed) => {
         if (isConfirmed && !errorId) {
           dispatchResetAddBookingResult();
-          resetUpdateSessionSpacesResult();
-          resetUpdateSessionSpacesError();
+          dispatchResetUpdateSessionSpacesResult();
+          dispatchResetUpdateSessionSpacesError();
         }
       });
     }
@@ -107,8 +106,8 @@ const useAddBookingResultSwal = () => {
     dispatchResetAddBookingError,
     dispatchResetAddBookingResult,
     errorId,
-    resetUpdateSessionSpacesError,
-    resetUpdateSessionSpacesResult,
+    dispatchResetUpdateSessionSpacesResult,
+    dispatchResetUpdateSessionSpacesError,
     updateSessionSpacesError,
     updateSessionSpacesResult,
   ]);

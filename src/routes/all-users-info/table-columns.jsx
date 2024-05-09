@@ -35,6 +35,14 @@ export const TABLE_COLUMNS = [
     },
   },
   {
+    Header: "current wallet balance",
+    accessor: "walletBalance",
+    Cell: ({ value }) => {
+      const amountToFixed = (value / 100).toFixed(2);
+      return <>{value === null ? "N / A" : `£${amountToFixed}`}</>;
+    },
+  },
+  {
     Header: "User Id",
     accessor: "id",
   },
