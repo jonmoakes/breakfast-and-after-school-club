@@ -9,7 +9,7 @@ import {
   imSureMessage,
 } from "../../../strings/confirms/confirms-strings";
 
-const useConfirmDeleteChildInfo = () => {
+const useConfirmCancelBooking = () => {
   const {
     deleteUserBookingUpdateSessionSpacesDocRefundUserGetWalletBalanceThunk,
   } =
@@ -43,4 +43,4 @@ const useConfirmDeleteChildInfo = () => {
   return { confirmCancelBooking };
 };
 
-export default useConfirmDeleteChildInfo;
+export default useConfirmCancelBooking;

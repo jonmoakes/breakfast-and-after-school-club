@@ -10,7 +10,7 @@ export const updateWalletBalance = async (
   userCollectionId,
   refundPrice
 ) => {
-  const queryIndexUser = "$id";
+  const queryIndexUser = "id";
   const queryValueUser = usersDocumentId;
 
   const getUsersDocument = await listDocumentsByQueryOrSearch(

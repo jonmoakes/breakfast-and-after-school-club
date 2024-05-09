@@ -2,6 +2,7 @@ import { useEffect } from "react";
 
 import useGetCurrentUserSelectors from "../../../../hooks/get-selectors/use-get-current-user-selectors";
 import useGetUserBookingToDeleteSelectors from "../../../../hooks/get-selectors/use-get-user-booking-to-delete-selectors";
+import useGetDatabaseManagementSelectors from "../../../../hooks/get-selectors/use-get-database-management-selectors";
 import useReturnLogic from "../use-return-logic";
 import useSuccessSwal from "./use-success-swal";
 import useUpdateBookingsResultErrorSwal from "./use-update-bookings-result-error-swal";
@@ -11,11 +12,9 @@ import useBookingCancelledButFailedBalanceFetchSwal from "./use-booking-cancelle
 
 const useCancelBookingResultSwal = () => {
   const { currentUserWalletBalanceResult } = useGetCurrentUserSelectors();
-  const {
-    updateBookingsResult,
-    updateBalanceResult,
-    updateSessionSpacesResult,
-  } = useGetUserBookingToDeleteSelectors();
+  const { updateBookingsResult, updateBalanceResult } =
+    useGetUserBookingToDeleteSelectors();
+  const { updateSessionSpacesResult } = useGetDatabaseManagementSelectors();
   const { noActionsFiredYet } = useReturnLogic();
   const { successSwal } = useSuccessSwal();
   const { updateBookingsResultErrorSwal } = useUpdateBookingsResultErrorSwal();

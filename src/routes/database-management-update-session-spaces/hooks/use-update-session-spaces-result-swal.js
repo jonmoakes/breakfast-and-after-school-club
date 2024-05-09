@@ -13,7 +13,7 @@ import { sessionspacesUpdatedMessage } from "../../../strings/successes/successe
 import { databaseManagementRoute } from "../../../strings/routes/routes-strings";
 
 const useUpdateSessionSpacesResultSwal = () => {
-  // need to get firect from the selector to avoid rerendering causing them to be undefined
+  // need to get direct from the selector to avoid rerendering causing them to be undefined
   const { updateSessionSpacesResult, updateSessionSpacesError } =
     useGetDatabaseManagementSelectors();
   const {

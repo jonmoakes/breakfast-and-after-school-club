@@ -6,25 +6,52 @@ import useDatabaseManagementActions from "../../../hooks/get-actions-and-thunks/
 import useFireSwal from "../../../hooks/use-fire-swal";
 
 import {
-  dbManageErrorAddingBookingToDatabaseMessage,
+  bookingManuallyAddedFailedErrorMessage,
+  bookingManuallyAddedSessionSpacesFailedErrorMessage,
   errorReceivedMessage,
+  errorReceivedMessageWithoutContactDetail,
 } from "../../../strings/errors/errors-strings";
 import { bookingSuccessfullyAddedMessage } from "../../../strings/successes/successes-strings";
 import { databaseManagementRoute } from "../../../strings/routes/routes-strings";
 
 const useAddBookingResultSwal = () => {
-  const { addBookingResult, addBookingError } =
-    useGetDatabaseManagementSelectors();
-  const { dispatchResetAddBookingResult, dispatchResetAddBookingError } =
-    useDatabaseManagementActions();
+  const {
+    addBookingResult,
+    addBookingError,
+    updateSessionSpacesResult,
+    updateSessionSpacesError,
+    errorId,
+  } = useGetDatabaseManagementSelectors();
+  const {
+    dispatchResetAddBookingResult,
+    dispatchResetAddBookingError,
+    resetUpdateSessionSpacesResult,
+    resetUpdateSessionSpacesError,
+  } = useDatabaseManagementActions();
   const { hamburgerHandlerNavigate } = useHamburgerHandlerNavigate();
 
   const { fireSwal } = useFireSwal();
 
-  useEffect(() => {
-    if (!addBookingResult && !addBookingError) return;
+  // if no error id, its adding a booking for a non app user, so session spaces also need to update. No balance update necessary as by not using the app, they will have paid vi another method.
+  // if errorId is '2', then its adding booking data after user received an error. Session spaces and balance will have been already updated successfully as they happen before the adding of booking data.
 
-    if (addBookingResult === "fulfilled") {
+  useEffect(() => {
+    if (
+      !addBookingResult &&
+      !addBookingError &&
+      !updateSessionSpacesResult &&
+      !updateSessionSpacesError
+    )
+      return;
+
+    if (
+      (!errorId &&
+        addBookingResult === "fulfilled" &&
+        updateSessionSpacesResult === "fulfilled") ||
+      (errorId === "2" &&
+        addBookingResult === "fulfilled" &&
+        !updateSessionSpacesResult)
+    ) {
       fireSwal(
         "success",
         bookingSuccessfullyAddedMessage,
@@ -37,11 +64,11 @@ const useAddBookingResultSwal = () => {
           hamburgerHandlerNavigate(databaseManagementRoute);
         }
       });
-    } else {
+    } else if (addBookingResult === "rejected") {
       const error = addBookingError;
       fireSwal(
         "error",
-        dbManageErrorAddingBookingToDatabaseMessage,
+        bookingManuallyAddedFailedErrorMessage,
         errorReceivedMessage(error),
         0,
         true,
@@ -52,6 +79,25 @@ const useAddBookingResultSwal = () => {
           dispatchResetAddBookingError();
         }
       });
+    } else if (
+      addBookingResult === "fulfilled" &&
+      updateSessionSpacesResult === "rejected"
+    ) {
+      const error = updateSessionSpacesError;
+      fireSwal(
+        "error",
+        bookingManuallyAddedSessionSpacesFailedErrorMessage,
+        errorReceivedMessageWithoutContactDetail(error),
+        0,
+        true,
+        false
+      ).then((isConfirmed) => {
+        if (isConfirmed && !errorId) {
+          dispatchResetAddBookingResult();
+          resetUpdateSessionSpacesResult();
+          resetUpdateSessionSpacesError();
+        }
+      });
     }
   }, [
     fireSwal,
@@ -60,6 +106,11 @@ const useAddBookingResultSwal = () => {
     addBookingResult,
     dispatchResetAddBookingError,
     dispatchResetAddBookingResult,
+    errorId,
+    resetUpdateSessionSpacesError,
+    resetUpdateSessionSpacesResult,
+    updateSessionSpacesError,
+    updateSessionSpacesResult,
   ]);
 };
 

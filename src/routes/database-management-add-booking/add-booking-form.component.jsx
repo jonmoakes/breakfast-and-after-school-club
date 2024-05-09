@@ -30,7 +30,7 @@ const UpdateBookingForm = () => {
         placeholder="YYYY-MM-DD format"
       />
 
-      <Label>sessionType:</Label>
+      <Label>session type:</Label>
       <StyledInput
         type="text"
         name="sessionType"

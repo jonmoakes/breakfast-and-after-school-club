@@ -6,6 +6,7 @@ import {
   updateUsersBalanceAsync,
 } from "../../../store/database-management/database-management-thunks";
 import useGetCurrentUserSelectors from "../../get-selectors/use-get-current-user-selectors";
+import { databaseManagementCancelBookingRoute } from "../../../strings/routes/routes-strings";
 
 const useCancelBookingUpdateBalanceUpdateSessionThunks = () => {
   const {
@@ -48,13 +49,17 @@ const useCancelBookingUpdateBalanceUpdateSessionThunks = () => {
           if (updateUsersBalanceAsync.fulfilled.match(resultAction)) {
             const date = sessionDate;
             const sessionType = typeOfSession;
+            const route = databaseManagementCancelBookingRoute;
+            const operation = "add";
             dispatch(
               updateSessionSpacesDocAsync({
                 numberOfChildrenInBooking,
                 date,
                 databaseId,
                 termDatesCollectionId,
+                route,
                 sessionType,
+                operation,
               })
             );
           }

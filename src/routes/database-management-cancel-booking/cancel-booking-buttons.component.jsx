@@ -1,12 +1,12 @@
-// import useCancelBookingUpdateBalanceUpdateSessionThunks from "../../hooks/get-actions-and-thunks/database-management-actions-and-thunks/use-cancel-booking-update-balance-update-session-thunks";
 import useDatabaseManagementActions from "../../hooks/get-actions-and-thunks/database-management-actions-and-thunks/use-database-management-actions";
 import useHamburgerHandlerNavigate from "../../hooks/use-hamburger-handler-navigate";
-import { databaseManagementRoute } from "../../strings/routes/routes-strings";
+import useConfirmDbManageCancelBooking from "./hooks/use-confirm-db-manage-cancel-booking";
 
 import { YellowGreenButton } from "../../styles/buttons/buttons.styles";
 import { BlackHr } from "../../styles/hr/hr.styles";
 import { Text } from "../../styles/p/p.styles";
-import useConfirmDbManageCancelBooking from "./hooks/use-confirm-db-manage-cancel-booking";
+
+import { databaseManagementRoute } from "../../strings/routes/routes-strings";
 
 const CancelBookingButtons = ({
   bookingId,
@@ -17,9 +17,6 @@ const CancelBookingButtons = ({
   numberOfChildrenInBooking,
 }) => {
   const { confirmDbManageCancelBooking } = useConfirmDbManageCancelBooking();
-
-  // const { cancelBookingUpdateBalanceUpdateSessionThunks } =
-  //   useCancelBookingUpdateBalanceUpdateSessionThunks();
 
   const {
     dispatchResetDataToUpdateDocument,
@@ -37,24 +34,15 @@ const CancelBookingButtons = ({
       <Text>they are correct</Text>
       <YellowGreenButton
         type="button"
-        onClick={
-          () =>
-            confirmDbManageCancelBooking(
-              bookingId,
-              userIdOfParent,
-              refundPrice,
-              sessionDate,
-              typeOfSession,
-              numberOfChildrenInBooking
-            )
-          // cancelBookingUpdateBalanceUpdateSessionThunks(
-          //   bookingId,
-          //   userIdOfParent,
-          //   refundPrice,
-          //   sessionDate,
-          //   typeOfSession,
-          //   numberOfChildrenInBooking
-          // )
+        onClick={() =>
+          confirmDbManageCancelBooking(
+            bookingId,
+            userIdOfParent,
+            refundPrice,
+            sessionDate,
+            typeOfSession,
+            numberOfChildrenInBooking
+          )
         }
       >
         cancel booking

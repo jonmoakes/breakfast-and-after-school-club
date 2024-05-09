@@ -1,5 +1,6 @@
 import useGetSessionTypesAndPricesSelectors from "../../hooks/get-selectors/use-get-session-types-and-prices-selectors";
 import useGetSendEmailSelectors from "../../hooks/get-selectors/use-get-send-email-selectors";
+import useGetDatabaseManagementSelectors from "../../hooks/get-selectors/use-get-database-management-selectors";
 import useGetUserBookingToDeleteSelectors from "../../hooks/get-selectors/use-get-user-booking-to-delete-selectors";
 import useConfirmCancelBooking from "./hooks/use-confirm-cancel-booking";
 import useCancelAndReturn from "../../hooks/use-cancel-and-return";
@@ -15,6 +16,7 @@ import { YellowGreenButton } from "../../styles/buttons/buttons.styles";
 
 const LoaderTitleButtons = () => {
   const { sessionTypesAndPricesError } = useGetSessionTypesAndPricesSelectors();
+  const { databaseManagementIsLoading } = useGetDatabaseManagementSelectors();
   const { sendEmailIsLoading } = useGetSendEmailSelectors();
   const { userBookingToDeleteIsLoading } = useGetUserBookingToDeleteSelectors();
   const { confirmCancelBooking } = useConfirmCancelBooking();
@@ -22,7 +24,11 @@ const LoaderTitleButtons = () => {
 
   return (
     <>
-      {userBookingToDeleteIsLoading || sendEmailIsLoading ? <Loader /> : null}
+      {userBookingToDeleteIsLoading ||
+      databaseManagementIsLoading ||
+      sendEmailIsLoading ? (
+        <Loader />
+      ) : null}
 
       <ParentDiv>
         <BlackTitle>cancel booking</BlackTitle>

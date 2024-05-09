@@ -5,6 +5,8 @@ import {
 } from "../../utils/appwrite/appwrite-functions";
 import { ID } from "appwrite";
 import { updateWalletBalance } from "./database-management-functions";
+import { lastMinuteNoSessionsMessage } from "../../strings/errors/errors-strings";
+import { bookSessionRoute } from "../../strings/routes/routes-strings";
 
 export const updateBookingClosingTimesAsync = createAsyncThunk(
   "updateBookingClosingTimes",
@@ -96,8 +98,8 @@ export const updateUsersBalanceAsync = createAsyncThunk(
   }
 );
 
-export const manuallyAddBookingDataAfterErrorAsync = createAsyncThunk(
-  "manuallyAddBookingDataAfterError",
+export const manuallyAddBookingDataAsync = createAsyncThunk(
+  "manuallyAddBookingData",
   async ({ databaseId, collectionId, bookingData }, thunkAPI) => {
     try {
       const {
@@ -110,23 +112,62 @@ export const manuallyAddBookingDataAfterErrorAsync = createAsyncThunk(
         parentEmail,
       } = bookingData;
 
-      const dataToUpdate = {
-        date,
-        sessionType,
-        childrensName: childrenInBooking,
-        parentName,
-        parentPhoneNumber,
-        parentsUserId,
-        parentEmail,
-      };
+      let sessionBookings = [];
 
-      await manageDatabaseDocument(
-        "create",
-        databaseId,
-        collectionId,
-        ID.unique(),
-        dataToUpdate
-      );
+      if (
+        sessionType === "morningAndAfternoonShort" ||
+        sessionType === "morningAndAfternoonLong"
+      ) {
+        // Create separate session bookings for morning and afternoon - for easier searching in table.
+        const morningBooking = {
+          parentsUserId,
+          date,
+          sessionType: "morning",
+          childrensName: childrenInBooking,
+          parentName,
+          parentEmail,
+          parentPhoneNumber,
+        };
+        const afternoonBooking = {
+          parentsUserId,
+          date,
+          sessionType:
+            sessionType === "morningAndAfternoonShort"
+              ? "afternoonShort"
+              : "afternoonLong",
+          childrensName: childrenInBooking,
+          parentName,
+          parentEmail,
+          parentPhoneNumber,
+        };
+
+        sessionBookings = [morningBooking, afternoonBooking];
+      } else {
+        // For other session types, create a single session booking
+        const sessionBooking = {
+          parentsUserId,
+          date,
+          sessionType,
+          childrensName: childrenInBooking,
+          parentName,
+          parentEmail,
+          parentPhoneNumber,
+        };
+
+        sessionBookings = [sessionBooking];
+      }
+
+      // Create documents for each session booking
+      for (const booking of sessionBookings) {
+        const documentId = ID.unique();
+        await manageDatabaseDocument(
+          "create",
+          databaseId,
+          collectionId,
+          documentId,
+          booking
+        );
+      }
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }
@@ -141,7 +182,9 @@ export const updateSessionSpacesDocAsync = createAsyncThunk(
       date,
       databaseId,
       termDatesCollectionId,
+      route,
       sessionType,
+      operation,
     },
     thunkAPI
   ) => {
@@ -170,29 +213,54 @@ export const updateSessionSpacesDocAsync = createAsyncThunk(
       const { $id, morningSessionSpaces, afternoonSessionSpaces } =
         dateDocument[0];
 
+      if (
+        route === bookSessionRoute &&
+        ((sessionType === "morning" && !morningSessionSpaces) ||
+          (sessionType === "afternoonShort" && !afternoonSessionSpaces) ||
+          (sessionType === "afternoonLong" && !afternoonSessionSpaces) ||
+          (sessionType === "morningAndAfternoonShort" &&
+            !morningSessionSpaces) ||
+          (sessionType === "morningAndAfternoonShort" &&
+            !afternoonSessionSpaces) ||
+          (sessionType === "morningAndAfternoonLong" &&
+            !morningSessionSpaces) ||
+          (sessionType === "morningAndAfternoonLong" &&
+            !afternoonSessionSpaces))
+      ) {
+        throw new Error(lastMinuteNoSessionsMessage);
+      }
+
       let updatedSessionSpaces = {};
 
       switch (sessionType) {
         case "morning":
           updatedSessionSpaces = {
             morningSessionSpaces:
-              morningSessionSpaces + numberOfChildrenAsNumber,
+              operation === "add"
+                ? morningSessionSpaces + numberOfChildrenAsNumber
+                : morningSessionSpaces - numberOfChildrenAsNumber,
           };
           break;
         case "afternoonShort":
-        case "afternoonlong":
+        case "afternoonLong":
           updatedSessionSpaces = {
             afternoonSessionSpaces:
-              afternoonSessionSpaces + numberOfChildrenAsNumber,
+              operation === "add"
+                ? afternoonSessionSpaces + numberOfChildrenAsNumber
+                : afternoonSessionSpaces - numberOfChildrenAsNumber,
           };
           break;
         case "morningAndAfternoonShort":
         case "morningAndAfternoonLong":
           updatedSessionSpaces = {
             morningSessionSpaces:
-              morningSessionSpaces + numberOfChildrenAsNumber,
+              operation === "add"
+                ? morningSessionSpaces + numberOfChildrenAsNumber
+                : morningSessionSpaces - numberOfChildrenAsNumber,
             afternoonSessionSpaces:
-              afternoonSessionSpaces + numberOfChildrenAsNumber,
+              operation === "add"
+                ? afternoonSessionSpaces + numberOfChildrenAsNumber
+                : afternoonSessionSpaces - numberOfChildrenAsNumber,
           };
           break;
         default:
@@ -216,7 +284,7 @@ export const updateSessionSpacesDocAsync = createAsyncThunk(
 );
 
 export const deleteDocumentAsync = createAsyncThunk(
-  "deletDocument",
+  "deleteDocument",
   async ({ databaseId, collectionId, documentId }, thunkAPI) => {
     try {
       await manageDatabaseDocument(

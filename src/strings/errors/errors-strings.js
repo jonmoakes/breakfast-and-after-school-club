@@ -74,7 +74,7 @@ export const removeChildFromSelectionMessage =
   "if you want to book this session, please remove this child from your selection to prevent double booking.";
 export const addSessionBookingInfoErrorMessage = `<span style="font-size: 16px;">sorry, there was an error completing your session booking. the funds were deducted from your wallet but our database didn't receive your booking info. When you tap ok below, we will automatically send an email to the app owner who will then manually add your booking details to the database. Rest assured, you can still send your child(ren) in for the session you have just booked! If the booking does not show up in your 'bookings' section within 24hrs, please contact us using our contact form. Please tap 'ok' below to continue!</span>`;
 export const lastMinuteNoSessionsMessage =
-  "sorry, just before you pressed the confirm button, another user booked the last session..";
+  "sorry, just before you pressed the confirm button,  the last available session was booked :(";
 export const errorAddingChild = "there was an error adding your child";
 export const enterChildsName = "please enter your childs full name";
 export const enterChildsAge = "please enter your childs age";
@@ -84,6 +84,9 @@ export const errorFetchingChildDetails =
   "sorry, there was an error fetching the children details...";
 export const errorReceivedMessage = (error) => {
   return `the error received was: '${error}'. please contact us if the error persists.`;
+};
+export const errorReceivedMessageWithoutContactDetail = (error) => {
+  return `the error received was: '${error}'.`;
 };
 export const morningSessionSpacesErrorMessage = (childrenSelectedLength) => {
   return `sorry, we don't have enough morning session spaces remaining to cover ${childrenSelectedLength} children.`;
@@ -196,3 +199,5 @@ export const cantHaveUppercaseCharactersErrorMessage = `<span style="font-size: 
 export const cantHaveUppercaseCharactersExceptSessionSpacesErrorMessage = `<span style="font-size: 20px;">  the inputs ( apart from the 'sessionType' ), can't have uppercase characters.</span>`;
 export const bookingCancelledBalanceUpdateFailedMessage = `<span style="font-size: 20px;">  there was an error cancelling the booking. Whilst the booking itself was cancelled, updating the users balance and therefore session spaces, failed. please contact jonathan urgently - quoting the date on the booking, the session type, the number of children in the booking and the user id of the parent.</span>`;
 export const bookingCancelledBalanceUpdatedSessionSpacesFailedMessage = `<span style="font-size: 20px;">  there was an error cancelling the booking. Whilst the booking itself was cancelled and the users balance updated, updating the session spaces, failed. please contact jonathan urgently - quoting the date on the booking, the session type and the number of children in the booking.</span>`;
+export const bookingManuallyAddedSessionSpacesFailedErrorMessage = `<span style="font-size: 20px;">the booking was added, but there was an error updating the session spaces. please contact jonathan urgently, giving him the date of the session you were trying to book, the type of session and the number of children in the booking.</span>`;
+export const bookingManuallyAddedFailedErrorMessage = `<span style="font-size: 20px;">there was an error adding the booking. please try again and if the error persists, contact jonathan, giving him the details of the booking contained in the form that you just tried to submit. date of the session you were trying to book, the type of session and the number of children in the booking.</span>`;

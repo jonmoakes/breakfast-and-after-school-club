@@ -7,7 +7,6 @@ const useGetUserBookingToDeleteSelectors = () => {
     userBookingToDelete,
     updateBookingsDoc,
     updateUserDocBalance,
-    updateSessionSpacesDoc,
   } = useSelector(selectUserBookingToDeleteSelectors);
 
   const updateBookingsResult = updateBookingsDoc.result;
@@ -16,21 +15,16 @@ const useGetUserBookingToDeleteSelectors = () => {
   const updateBalanceResult = updateUserDocBalance.result;
   const updateBalanceError = updateUserDocBalance.error;
 
-  const updateSessionSpacesResult = updateSessionSpacesDoc.result;
-  const updateSessionSpacesError = updateSessionSpacesDoc.error;
-
   return {
     userBookingToDeleteIsLoading,
     userBookingToDelete,
     updateBookingsDoc,
     updateUserDocBalance,
-    updateSessionSpacesDoc,
+
     updateBookingsResult,
     updateBookingsError,
     updateBalanceResult,
     updateBalanceError,
-    updateSessionSpacesResult,
-    updateSessionSpacesError,
   };
 };
 

@@ -3,7 +3,7 @@ import useUpdateDocumentFunctions from "../../../hooks/database-management/use-u
 import useGetDatabaseManagementSelectors from "../../../hooks/get-selectors/use-get-database-management-selectors";
 import useUpdateDocumentSwals from "../../../hooks/database-management/use-update-document-swals";
 import useShowInvalidEmailMessageSwal from "../../../hooks/use-show-invalid-email-message-swal";
-import useManuallyAddBookingDataAfterErrorThunk from "../../../hooks/get-actions-and-thunks/database-management-actions-and-thunks/use-manually-add-booking-data-after-error-thunk";
+import useManuallyAddBookingDataThunk from "../../../hooks/get-actions-and-thunks/database-management-actions-and-thunks/use-manually-add-booking-data-thunk";
 
 import {
   confirmManuallyAddBookingToDatabase,
@@ -11,6 +11,7 @@ import {
 } from "../../../strings/confirms/confirms-strings";
 
 import { validateEmail } from "../../../functions/validate-email";
+import useAddBookingAndDeductSessionSpacesThunk from "../../../hooks/get-actions-and-thunks/database-management-actions-and-thunks/use-add-booking-and-deduct-session-spaces";
 
 const useConfirmAddBookingDocument = () => {
   const {
@@ -21,6 +22,7 @@ const useConfirmAddBookingDocument = () => {
     parentPhoneNumber,
     parentsUserId,
     parentEmail,
+    errorId,
   } = useGetDatabaseManagementSelectors();
   const {
     isNotValidDateFormat,
@@ -41,8 +43,9 @@ const useConfirmAddBookingDocument = () => {
   } = useUpdateDocumentSwals();
   const { showInvalidEmailMessageSwal } = useShowInvalidEmailMessageSwal();
   const { confirmSwal } = useConfirmSwal();
-  const { manuallyAddBookingDataAfterErrorThunk } =
-    useManuallyAddBookingDataAfterErrorThunk();
+  const { manuallyAddBookingDataThunk } = useManuallyAddBookingDataThunk();
+  const { addBookingAndDeductSessionSpacesThunk } =
+    useAddBookingAndDeductSessionSpacesThunk();
 
   const confirmResult = () => {
     const bookingData = {
@@ -54,7 +57,12 @@ const useConfirmAddBookingDocument = () => {
       parentsUserId,
       parentEmail,
     };
-    manuallyAddBookingDataAfterErrorThunk(bookingData);
+
+    if (!errorId) {
+      addBookingAndDeductSessionSpacesThunk(bookingData);
+    } else {
+      manuallyAddBookingDataThunk(bookingData);
+    }
   };
 
   const confirmAddBookingDocument = () => {
