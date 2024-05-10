@@ -1,10 +1,12 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
+import { ID } from "appwrite";
 import {
   listDocumentsByQueryOrSearch,
   manageDatabaseDocument,
 } from "../../utils/appwrite/appwrite-functions";
-import { ID } from "appwrite";
+
 import { updateWalletBalance } from "./database-management-functions";
+
 import { lastMinuteNoSessionsMessage } from "../../strings/errors/errors-strings";
 import { bookSessionRoute } from "../../strings/routes/routes-strings";
 
@@ -98,8 +100,8 @@ export const updateUsersBalanceAsync = createAsyncThunk(
   }
 );
 
-export const manuallyAddBookingDataAsync = createAsyncThunk(
-  "manuallyAddBookingData",
+export const addBookingDataAsync = createAsyncThunk(
+  "addBookingData",
   async ({ databaseId, collectionId, bookingData }, thunkAPI) => {
     try {
       const {

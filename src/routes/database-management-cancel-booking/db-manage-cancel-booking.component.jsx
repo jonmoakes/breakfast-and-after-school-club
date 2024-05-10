@@ -9,14 +9,13 @@ import useGetSessionTypesAndPricesSelectors from "../../hooks/get-selectors/use-
 import Loader from "../../components/loader/loader.component";
 import ShowFetchErrors from "../../components/errors/show-fetch-errors.component";
 import CancelBookingIntro from "./cancel-booking-intro.component";
-import CancelBookingSessionDetails from "./cancel-booking-session-details.component";
+import MatchedSessionDetails from "./matched-session-details.component";
 import GetBookingToCancelForm from "./get-booking-to-cancel-form.component";
 import CancelBookingButtons from "./cancel-booking-buttons.component";
 
 import { Container } from "../../styles/container/container.styles";
 import { ParentDiv } from "../../styles/div/div.styles";
 import { BlackTitle } from "../../styles/h1/h1.styles";
-import CancelBookingInfoAccordion from "./cancel-booking-info-accordion.component";
 
 const DbManageCancelBooking = () => {
   useFetchBookedSessionsOwnerThunkUseEffect();
@@ -26,18 +25,8 @@ const DbManageCancelBooking = () => {
   const { bookedSessionsOwnerError } = useGetBookedSessionsOwnerSelectors();
   const { sessionTypesAndPricesError } = useGetSessionTypesAndPricesSelectors();
 
-  const {
-    databaseManagementIsLoading,
-    bookedSessionsOwnerIsLoading,
-    sessionDate,
-    userIdOfParent,
-    bookingId,
-    refundPrice,
-    sessionChildren,
-    typeOfSession,
-    matchedBookingFound,
-    numberOfChildrenInBooking,
-  } = useDbManageCancelBookingVariables();
+  const { databaseManagementIsLoading, bookedSessionsOwnerIsLoading } =
+    useDbManageCancelBookingVariables();
 
   return (
     <Container>
@@ -51,39 +40,11 @@ const DbManageCancelBooking = () => {
         <ShowFetchErrors />
       ) : (
         <>
-          <CancelBookingInfoAccordion />
+          {/* <CancelBookingInfoAccordion /> */}
           <CancelBookingIntro />
-
           <GetBookingToCancelForm />
-
-          {matchedBookingFound ? (
-            <>
-              <ParentDiv>
-                <CancelBookingSessionDetails
-                  {...{
-                    sessionDate,
-                    typeOfSession,
-                    numberOfChildrenInBooking,
-                    sessionChildren,
-                    userIdOfParent,
-                  }}
-                />
-              </ParentDiv>
-
-              <ParentDiv>
-                <CancelBookingButtons
-                  {...{
-                    bookingId,
-                    userIdOfParent,
-                    refundPrice,
-                    sessionDate,
-                    typeOfSession,
-                    numberOfChildrenInBooking,
-                  }}
-                />
-              </ParentDiv>
-            </>
-          ) : null}
+          <MatchedSessionDetails />
+          <CancelBookingButtons />
         </>
       )}
     </Container>

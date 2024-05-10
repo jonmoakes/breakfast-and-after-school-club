@@ -1,46 +1,49 @@
+import { ParentDiv } from "../../styles/div/div.styles";
 import { BlackHr } from "../../styles/hr/hr.styles";
 import { BlackSpan } from "../../styles/span/span.styles";
 
 const RequiredData = () => (
-  <ul>
-    <BlackHr />
-    <li>
-      <BlackSpan>the</BlackSpan>
-      <br />
-      Date
-    </li>
-    <BlackHr />
-    <li>
-      <BlackSpan>the</BlackSpan>
-      <br />
-      Children in the booking
-    </li>
-    <BlackHr />
-    <li>
-      <BlackSpan>the</BlackSpan>
-      <br />
-      parent name
-    </li>
-    <BlackHr />
-    <li>
-      <BlackSpan>the</BlackSpan>
-      <br />
-      parent phone number
-    </li>
-    <BlackHr />
-    <li>
-      <BlackSpan>the</BlackSpan>
-      <br />
-      parents user id
-    </li>
-    <BlackHr />
-    <li>
-      <BlackSpan>the</BlackSpan>
-      <br />
-      parent email
-    </li>
-    <BlackHr />
-  </ul>
+  <ParentDiv>
+    <ul>
+      <BlackHr />
+      <li>
+        <BlackSpan>the</BlackSpan>
+        <br />
+        Date
+      </li>
+      <BlackHr />
+      <li>
+        <BlackSpan>the</BlackSpan>
+        <br />
+        Children in the booking
+      </li>
+      <BlackHr />
+      <li>
+        <BlackSpan>the</BlackSpan>
+        <br />
+        parent name
+      </li>
+      <BlackHr />
+      <li>
+        <BlackSpan>the</BlackSpan>
+        <br />
+        parent phone number
+      </li>
+      <BlackHr />
+      <li>
+        <BlackSpan>the</BlackSpan>
+        <br />
+        parents user id
+      </li>
+      <BlackHr />
+      <li>
+        <BlackSpan>the</BlackSpan>
+        <br />
+        parent email
+      </li>
+      <BlackHr />
+    </ul>
+  </ParentDiv>
 );
 
 export default RequiredData;

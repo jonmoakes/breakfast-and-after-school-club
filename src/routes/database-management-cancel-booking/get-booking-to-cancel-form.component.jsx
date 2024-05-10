@@ -2,46 +2,31 @@ import useHandleDataToUpdateDocumentChange from "../../hooks/database-management
 import useDbManageCancelBookingVariables from "./hooks/use-db-manage-cancel-booking-variables";
 import useGetBookingDetails from "./hooks/use-get-booking-details";
 
+import SwitchUserOfAppChoice from "../database-management/db-management-shared-components/switch-user-of-app-choice.component";
+
 import { YellowGreenButton } from "../../styles/buttons/buttons.styles";
 import { Form, Label, StyledInput } from "../../styles/form/form.styles";
 import { Text, WhiteShadowText } from "../../styles/p/p.styles";
 import { ParentDiv } from "../../styles/div/div.styles";
 import { RedSpan } from "../../styles/span/span.styles";
-import useDatabaseManagementActions from "../../hooks/get-actions-and-thunks/database-management-actions-and-thunks/use-database-management-actions";
+import AddOrCancelWhatWillHappenInfo from "../database-management/db-management-shared-components/add-or-cancel-what-will-happen.component";
 
 const GetBookingToCancelForm = () => {
   const { handleDataToUpdateDocumentChange } =
     useHandleDataToUpdateDocumentChange();
   const { bookingId, userOfAppChoice, matchedBookingFound } =
     useDbManageCancelBookingVariables();
-  const { dispatchSetUserOfAppChoice } = useDatabaseManagementActions();
   const { getBookingDetails } = useGetBookingDetails();
 
   return (
     <>
       {userOfAppChoice && !matchedBookingFound ? (
         <>
-          <ParentDiv>
-            <Text>
-              you have chosen that the booking you want to cancel belongs to a{" "}
-              <RedSpan>{userOfAppChoice}</RedSpan> of the app.
-            </Text>
-
-            <Text>need to change?</Text>
-            <YellowGreenButton
-              onClick={() =>
-                dispatchSetUserOfAppChoice(
-                  userOfAppChoice === "user" ? "non user" : "user"
-                )
-              }
-            >
-              change to{" "}
-              {userOfAppChoice === "user" ? "Non User Of App" : "User Of App"}
-            </YellowGreenButton>
-          </ParentDiv>
+          <SwitchUserOfAppChoice {...{ userOfAppChoice }} />
+          <AddOrCancelWhatWillHappenInfo {...{ userOfAppChoice }} />
 
           <ParentDiv>
-            {userOfAppChoice === "user" ? (
+            {/* {userOfAppChoice === "user" ? (
               <Text>
                 cancelling the booking will remove the booking from the
                 database, then update the users balance and finally update the
@@ -52,7 +37,7 @@ const GetBookingToCancelForm = () => {
                 cancelling the booking will remove the booking from the
                 database, then update the session spaces.
               </Text>
-            )}
+            )} */}
 
             <Text>
               lets start by getting the details of the booking to cancel.

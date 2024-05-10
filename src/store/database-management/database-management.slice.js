@@ -5,7 +5,7 @@ import {
   updateSessionTimesAsync,
   updateSessionPriceAsync,
   updateUsersBalanceAsync,
-  manuallyAddBookingDataAsync,
+  addBookingDataAsync,
   updateSessionSpacesDocAsync,
   deleteDocumentAsync,
 } from "./database-management-thunks";
@@ -300,15 +300,15 @@ export const databaseManagementSlice = createSlice({
         state.updateBalanceResult = "rejected";
         state.updateBalanceError = action.payload;
       })
-      .addCase(manuallyAddBookingDataAsync.pending, (state) => {
+      .addCase(addBookingDataAsync.pending, (state) => {
         state.databaseManagementIsLoading = true;
       })
-      .addCase(manuallyAddBookingDataAsync.fulfilled, (state) => {
+      .addCase(addBookingDataAsync.fulfilled, (state) => {
         state.databaseManagementIsLoading = false;
         state.addBookingResult = "fulfilled";
         state.addBookingError = null;
       })
-      .addCase(manuallyAddBookingDataAsync.rejected, (state, action) => {
+      .addCase(addBookingDataAsync.rejected, (state, action) => {
         state.databaseManagementIsLoading = false;
         state.addBookingResult = "rejected";
         state.addBookingError = action.payload;

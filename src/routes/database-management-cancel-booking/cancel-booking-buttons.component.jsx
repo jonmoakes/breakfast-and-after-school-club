@@ -8,17 +8,20 @@ import { Text } from "../../styles/p/p.styles";
 import { BlueSpan, RedSpan } from "../../styles/span/span.styles";
 
 import { databaseManagementRoute } from "../../strings/routes/routes-strings";
+import { ParentDiv } from "../../styles/div/div.styles";
+import useDbManageCancelBookingVariables from "./hooks/use-db-manage-cancel-booking-variables";
 
-const CancelBookingButtons = ({
-  bookingId,
-  userIdOfParent,
-  refundPrice,
-  sessionDate,
-  typeOfSession,
-  numberOfChildrenInBooking,
-}) => {
+const CancelBookingButtons = () => {
+  const {
+    matchedBookingFound,
+    bookingId,
+    userIdOfParent,
+    refundPrice,
+    sessionDate,
+    typeOfSession,
+    numberOfChildrenInBooking,
+  } = useDbManageCancelBookingVariables();
   const { confirmDbManageCancelBooking } = useConfirmDbManageCancelBooking();
-
   const {
     dispatchResetDataToUpdateDocument,
     dispatchResetBookingToCancelDetails,
@@ -32,48 +35,52 @@ const CancelBookingButtons = ({
 
   return (
     <>
-      <Text>
-        the details are <BlueSpan>correct</BlueSpan>, so
-      </Text>
-      <YellowGreenButton
-        type="button"
-        onClick={() =>
-          confirmDbManageCancelBooking(
-            bookingId,
-            userIdOfParent,
-            refundPrice,
-            sessionDate,
-            typeOfSession,
-            numberOfChildrenInBooking
-          )
-        }
-      >
-        cancel the booking
-      </YellowGreenButton>
+      {matchedBookingFound ? (
+        <ParentDiv>
+          <Text>
+            the details are <BlueSpan>correct</BlueSpan>, so
+          </Text>
+          <YellowGreenButton
+            type="button"
+            onClick={() =>
+              confirmDbManageCancelBooking(
+                bookingId,
+                userIdOfParent,
+                refundPrice,
+                sessionDate,
+                typeOfSession,
+                numberOfChildrenInBooking
+              )
+            }
+          >
+            cancel the booking
+          </YellowGreenButton>
 
-      <BlackHr />
+          <BlackHr />
 
-      <Text>
-        the details are <RedSpan>incorrect</RedSpan>, so
-      </Text>
+          <Text>
+            the details are <RedSpan>incorrect</RedSpan>, so
+          </Text>
 
-      <YellowGreenButton
-        type="button"
-        onClick={resetBookingToCancelAndBookingId}
-      >
-        reset booking id
-      </YellowGreenButton>
+          <YellowGreenButton
+            type="button"
+            onClick={resetBookingToCancelAndBookingId}
+          >
+            reset booking id
+          </YellowGreenButton>
 
-      <BlackHr />
+          <BlackHr />
 
-      <Text>OR</Text>
-      <Text>return to database management page</Text>
-      <YellowGreenButton
-        type="button"
-        onClick={() => hamburgerHandlerNavigate(databaseManagementRoute)}
-      >
-        return
-      </YellowGreenButton>
+          <Text>OR</Text>
+          <Text>return to database management page</Text>
+          <YellowGreenButton
+            type="button"
+            onClick={() => hamburgerHandlerNavigate(databaseManagementRoute)}
+          >
+            return
+          </YellowGreenButton>
+        </ParentDiv>
+      ) : null}
     </>
   );
 };

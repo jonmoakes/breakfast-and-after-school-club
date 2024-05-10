@@ -1,17 +1,17 @@
-import useDatabaseManagementActions from "../../hooks/get-actions-and-thunks/database-management-actions-and-thunks/use-database-management-actions";
+import useDbManageCancelBookingVariables from "./hooks/use-db-manage-cancel-booking-variables";
+
+import SetUserOfAppChoiceButtons from "../database-management/db-management-shared-components/set-user-of-app-choice-buttons.component";
 
 import { ParentDiv } from "../../styles/div/div.styles";
 import { Text } from "../../styles/p/p.styles";
 import { StyledLink } from "../../styles/link/link.styles";
-import { YellowGreenButton } from "../../styles/buttons/buttons.styles";
-import { BlackHr } from "../../styles/hr/hr.styles";
-
-import { allUsersRoute } from "../../strings/routes/routes-strings";
-import useDbManageCancelBookingVariables from "./hooks/use-db-manage-cancel-booking-variables";
 import { RedSpan } from "../../styles/span/span.styles";
 
+import { allUsersRoute } from "../../strings/routes/routes-strings";
+import UserOrNonUserInfoAccordion from "../database-management/db-management-shared-components/user-or-non-user-info-accordion.component";
+import Balancer from "react-wrap-balancer";
+
 const CancelBookingIntro = () => {
-  const { dispatchSetUserOfAppChoice } = useDatabaseManagementActions();
   const { userOfAppChoice, matchedBookingFound } =
     useDbManageCancelBookingVariables();
 
@@ -19,33 +19,36 @@ const CancelBookingIntro = () => {
     <>
       {!userOfAppChoice && !matchedBookingFound ? (
         <ParentDiv>
-          <Text>
-            is the booking you wish to cancel from a customer who doesn't use
-            the app that you manually create bookings for?
-          </Text>
+          <Balancer>
+            <Text>
+              on this page, you can manually cancel one of your bookings.
+            </Text>
+            <Text>
+              is the booking you wish to cancel from a customer who doesn't use
+              the app that you manually cancel bookings for ( most common )?
+            </Text>
 
-          <Text>
-            Or are they a customer who does use the app to make their own
-            bookings?
-          </Text>
-          <Text>
-            if you're unsure, see if their <RedSpan>wallet balance</RedSpan> in
-            your <StyledLink to={allUsersRoute}>users table</StyledLink> is '
-            <RedSpan>N / A</RedSpan>'' or not.
-          </Text>
-          <Text>
-            if the value is N / A, then it means that they are a non user of the
-            app.
-          </Text>
-          <YellowGreenButton
-            onClick={() => dispatchSetUserOfAppChoice("non user")}
-          >
-            non user of app
-          </YellowGreenButton>
-          <BlackHr />
-          <YellowGreenButton onClick={() => dispatchSetUserOfAppChoice("user")}>
-            user of app
-          </YellowGreenButton>
+            <Text>
+              Or are they a customer who does use the app to cancel their own
+              bookings?
+              <br />( if so, this should be very rare that you are requested to
+              do cancel a booking for them ).
+            </Text>
+
+            <Text>
+              if you're unsure, see if their <RedSpan>wallet balance</RedSpan>{" "}
+              in your <StyledLink to={allUsersRoute}>users table</StyledLink> is
+              '<RedSpan>N / A</RedSpan>'' or not.
+            </Text>
+            <Text>
+              if the value is N / A, then it means that they are a non user of
+              the app.
+            </Text>
+          </Balancer>
+
+          <UserOrNonUserInfoAccordion />
+
+          <SetUserOfAppChoiceButtons />
         </ParentDiv>
       ) : null}
     </>

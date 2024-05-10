@@ -1,14 +1,13 @@
 import { useDispatch } from "react-redux";
 
-import useGetCurrentUserSelectors from "../../get-selectors/use-get-current-user-selectors";
+import useGetCurrentUserSelectors from "../../../get-selectors/use-get-current-user-selectors";
 
 import {
-  manuallyAddBookingDataAsync,
+  addBookingDataAsync,
   updateSessionSpacesDocAsync,
-} from "../../../store/database-management/database-management-thunks";
+} from "../../../../store/database-management/database-management-thunks";
 
-import { getNumberOfChildrenInBooking } from "../../../functions/get-number-of-children-in-booking";
-import { databaseManagementAddBookingRoute } from "../../../strings/routes/routes-strings";
+import { databaseManagementAddBookingRoute } from "../../../../strings/routes/routes-strings";
 
 const useAddBookingAndDeductSessionSpacesThunk = () => {
   const {
@@ -21,18 +20,20 @@ const useAddBookingAndDeductSessionSpacesThunk = () => {
 
   // This happens when a non app user wants to book a session so the app owner has to do it manually.
   // Because of this, session spaces need to be deducted also.
-  const addBookingAndDeductSessionSpacesThunk = (bookingData) => {
+  const addBookingAndDeductSessionSpacesThunk = (
+    bookingData,
+    numberOfChildrenInBooking
+  ) => {
     dispatch(
-      manuallyAddBookingDataAsync({
+      addBookingDataAsync({
         databaseId,
         collectionId,
         bookingData,
       })
     ).then((resultAction) => {
-      if (manuallyAddBookingDataAsync.fulfilled.match(resultAction)) {
-        const { childrenInBooking, date, sessionType } = bookingData;
-        const numberOfChildrenInBooking =
-          getNumberOfChildrenInBooking(childrenInBooking);
+      if (addBookingDataAsync.fulfilled.match(resultAction)) {
+        const { date, sessionType } = bookingData;
+
         const route = databaseManagementAddBookingRoute;
         const operation = "deduct";
 

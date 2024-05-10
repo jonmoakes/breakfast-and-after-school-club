@@ -1,9 +1,11 @@
+import useAddBookingAndDeductSessionSpacesThunk from "../../../hooks/get-actions-and-thunks/database-management-actions-and-thunks/add-booking/use-add-booking-and-deduct-session-spaces";
+import useAddBookingUpdateBalanceDeductSessionSpacesThunk from "../../../hooks/get-actions-and-thunks/database-management-actions-and-thunks/add-booking/use-add-booking-update-balance-deduct-session-spaces";
+import useAddBookingDataThunk from "../../../hooks/get-actions-and-thunks/database-management-actions-and-thunks/add-booking/use-add-booking-data-thunk";
+import useDbManageAddBookingVariables from "./use-db-manage-add-booking-variables";
 import useConfirmSwal from "../../../hooks/use-confirm-swal";
-import useUpdateDocumentFunctions from "../../../hooks/database-management/use-update-document-functions";
-import useGetDatabaseManagementSelectors from "../../../hooks/get-selectors/use-get-database-management-selectors";
 import useUpdateDocumentSwals from "../../../hooks/database-management/use-update-document-swals";
 import useShowInvalidEmailMessageSwal from "../../../hooks/use-show-invalid-email-message-swal";
-import useManuallyAddBookingDataThunk from "../../../hooks/get-actions-and-thunks/database-management-actions-and-thunks/use-manually-add-booking-data-thunk";
+import useUpdateDocumentFunctions from "../../../hooks/database-management/use-update-document-functions";
 
 import {
   confirmManuallyAddBookingToDatabase,
@@ -11,19 +13,10 @@ import {
 } from "../../../strings/confirms/confirms-strings";
 
 import { validateEmail } from "../../../functions/validate-email";
-import useAddBookingAndDeductSessionSpacesThunk from "../../../hooks/get-actions-and-thunks/database-management-actions-and-thunks/use-add-booking-and-deduct-session-spaces";
+import { getNumberOfChildrenInBooking } from "../../../functions/get-number-of-children-in-booking";
 
 const useConfirmAddBookingDocument = () => {
-  const {
-    date,
-    sessionType,
-    childrenInBooking,
-    parentName,
-    parentPhoneNumber,
-    parentsUserId,
-    parentEmail,
-    errorId,
-  } = useGetDatabaseManagementSelectors();
+  const { userOfAppChoice, errorId } = useDbManageAddBookingVariables();
   const {
     isNotValidDateFormat,
     isNotValidSessionType,
@@ -43,11 +36,23 @@ const useConfirmAddBookingDocument = () => {
   } = useUpdateDocumentSwals();
   const { showInvalidEmailMessageSwal } = useShowInvalidEmailMessageSwal();
   const { confirmSwal } = useConfirmSwal();
-  const { manuallyAddBookingDataThunk } = useManuallyAddBookingDataThunk();
+
+  const { addBookingDataThunk } = useAddBookingDataThunk();
   const { addBookingAndDeductSessionSpacesThunk } =
     useAddBookingAndDeductSessionSpacesThunk();
+  const { addBookingUpdateBalanceDeductSessionSpacesThunk } =
+    useAddBookingUpdateBalanceDeductSessionSpacesThunk();
 
-  const confirmResult = () => {
+  const confirmResult = (
+    date,
+    sessionType,
+    childrenInBooking,
+    parentName,
+    parentPhoneNumber,
+    parentsUserId,
+    parentEmail,
+    refundPrice
+  ) => {
     const bookingData = {
       date,
       sessionType,
@@ -58,14 +63,35 @@ const useConfirmAddBookingDocument = () => {
       parentEmail,
     };
 
-    if (!errorId) {
-      addBookingAndDeductSessionSpacesThunk(bookingData);
-    } else {
-      manuallyAddBookingDataThunk(bookingData);
+    const numberOfChildrenInBooking =
+      getNumberOfChildrenInBooking(childrenInBooking);
+
+    if (userOfAppChoice === "non user") {
+      addBookingAndDeductSessionSpacesThunk(
+        bookingData,
+        numberOfChildrenInBooking
+      );
+    } else if (userOfAppChoice === "user") {
+      addBookingUpdateBalanceDeductSessionSpacesThunk(
+        bookingData,
+        refundPrice,
+        numberOfChildrenInBooking
+      );
+    } else if (errorId === "2") {
+      addBookingDataThunk(bookingData);
     }
   };
 
-  const confirmAddBookingDocument = () => {
+  const confirmAddBookingDocument = (
+    date,
+    sessionType,
+    childrenInBooking,
+    parentName,
+    parentPhoneNumber,
+    parentsUserId,
+    parentEmail,
+    refundPrice
+  ) => {
     if (
       !date ||
       !sessionType ||
@@ -97,7 +123,16 @@ const useConfirmAddBookingDocument = () => {
       showInvalidEmailMessageSwal();
     } else {
       confirmSwal(confirmManuallyAddBookingToDatabase, "", imSureMessage, () =>
-        confirmResult()
+        confirmResult(
+          date,
+          sessionType,
+          childrenInBooking,
+          parentName,
+          parentPhoneNumber,
+          parentsUserId,
+          parentEmail,
+          refundPrice
+        )
       );
     }
   };
