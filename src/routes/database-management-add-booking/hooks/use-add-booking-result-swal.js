@@ -159,7 +159,9 @@ const useAddBookingResultSwal = () => {
         updateSessionSpacesResult === "rejected") ||
       (errorId === "2" && addBookingResult === "rejected")
     ) {
-      const error = addBookingError;
+      const error = addBookingError
+        ? addBookingError
+        : updateSessionSpacesError;
       fireSwal(
         "error",
         bookingManuallyAddedFailedErrorMessage,
