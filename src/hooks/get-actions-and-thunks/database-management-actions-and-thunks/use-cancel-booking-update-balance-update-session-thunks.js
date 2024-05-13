@@ -21,7 +21,7 @@ const useCancelBookingUpdateBalanceUpdateSessionThunks = () => {
   const cancelBookingUpdateBalanceUpdateSessionThunks = (
     bookingId,
     userIdOfParent,
-    refundPrice,
+    sessionPrice,
     sessionDate,
     typeOfSession,
     numberOfChildrenInBooking
@@ -38,12 +38,14 @@ const useCancelBookingUpdateBalanceUpdateSessionThunks = () => {
     ).then((resultAction) => {
       if (deleteDocumentAsync.fulfilled.match(resultAction)) {
         const usersDocumentId = userIdOfParent;
+        const operation = "add";
         dispatch(
           updateUsersBalanceAsync({
             usersDocumentId,
             databaseId,
             userCollectionId,
-            refundPrice,
+            sessionPrice,
+            operation,
           })
         ).then((resultAction) => {
           if (updateUsersBalanceAsync.fulfilled.match(resultAction)) {

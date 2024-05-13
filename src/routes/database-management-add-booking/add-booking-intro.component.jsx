@@ -11,6 +11,8 @@ import { RedSpan } from "../../styles/span/span.styles";
 import { ParentDiv } from "../../styles/div/div.styles";
 
 import { allUsersRoute } from "../../strings/routes/routes-strings";
+import Balancer from "react-wrap-balancer";
+import { BlueH2 } from "../../styles/h2/h2.styles";
 
 const AddBookingIntro = () => {
   const { userOfAppChoice } = useGetDatabaseManagementSelectors();
@@ -21,16 +23,19 @@ const AddBookingIntro = () => {
         <ParentDiv>
           <Text>on this page, you can manually add a booking.</Text>
           <BlackHr />
-          <Text>
-            is the booking you wish to add for a customer who doesn't use the
-            app ( that you manually create bookings for )?
-          </Text>
+          <Balancer>
+            <BlueH2>quick question:</BlueH2>
+            <Text>
+              is the customer a user of the app
+              <br />( ie they normally make their own bookings ),
+            </Text>
+            <Text>
+              or a non user of the app
+              <br />( ie, you create the bookings for them )?
+            </Text>
+          </Balancer>
 
-          <Text>
-            Or are they a customer who does use the app to make their own
-            bookings and for whatever reason, they need you to do it for them (
-            this should be very rare )?
-          </Text>
+          <BlackHr />
           <Text>
             if you're unsure, see if their <RedSpan>wallet balance</RedSpan> in
             your <StyledLink to={allUsersRoute}>users table</StyledLink> is '

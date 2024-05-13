@@ -42,40 +42,4 @@ export const deleteUserBookingAsync = createAsyncThunk(
   }
 );
 
-// session spaces update thunk is handled in database management thunks as it is shared in other cases.
-
-export const refundUserAsync = createAsyncThunk(
-  "refundUser",
-  async ({ id, databaseId, collectionId, refundPrice }, thunkAPI) => {
-    try {
-      const queryIndex = "id";
-      const queryValue = id;
-      const documentId = id;
-
-      const userDocument = await listDocumentsByQueryOrSearch(
-        databaseId,
-        collectionId,
-        queryIndex,
-        queryValue
-      );
-
-      const { total, documents } = userDocument;
-
-      if (total && documents.length) {
-        const { walletBalance } = documents[0];
-
-        const data = { walletBalance: walletBalance + refundPrice };
-
-        await manageDatabaseDocument(
-          "update",
-          databaseId,
-          collectionId,
-          documentId,
-          data
-        );
-      }
-    } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
-    }
-  }
-);
+// session spaces  and balance update thunk is handled in database management thunks as it is shared in other cases.

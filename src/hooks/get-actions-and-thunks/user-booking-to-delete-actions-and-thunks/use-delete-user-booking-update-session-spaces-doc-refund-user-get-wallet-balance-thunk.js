@@ -3,12 +3,12 @@ import { useDispatch } from "react-redux";
 import useGetCurrentUserSelectors from "../../get-selectors/use-get-current-user-selectors";
 import useGetUserBookingToDeleteSelectors from "../../get-selectors/use-get-user-booking-to-delete-selectors";
 import { getUsersWalletBalanceAsync } from "../../../store/user/user.thunks";
+import { deleteUserBookingAsync } from "../../../store/user-booking-to-delete/user-booking-to-delete.thunks";
+//updateSessionSpacesAsync and balance is shared, so put it in db management section.
 import {
-  deleteUserBookingAsync,
-  refundUserAsync,
-} from "../../../store/user-booking-to-delete/user-booking-to-delete.thunks";
-//updateSessionSpacesAsync is shared, so put it in db management section.
-import { updateSessionSpacesDocAsync } from "../../../store/database-management/database-management-thunks";
+  updateSessionSpacesDocAsync,
+  updateUsersBalanceAsync,
+} from "../../../store/database-management/database-management-thunks";
 import { cancelBookingRoute } from "../../../strings/routes/routes-strings";
 
 const useDeleteUserBookingUpdateSessionSpacesDocRefundUserGetWalletBalanceThunk =
@@ -16,7 +16,7 @@ const useDeleteUserBookingUpdateSessionSpacesDocRefundUserGetWalletBalanceThunk 
     const {
       id,
       databaseId,
-      userCollectionId: collectionId,
+      userCollectionId,
       bookedSessionsCollectionId,
       termDatesCollectionId,
     } = useGetCurrentUserSelectors();
@@ -27,7 +27,7 @@ const useDeleteUserBookingUpdateSessionSpacesDocRefundUserGetWalletBalanceThunk 
     const { date, sessionType } = userBookingToDelete || {};
 
     const deleteUserBookingUpdateSessionSpacesDocRefundUserGetWalletBalanceThunk =
-      (numberOfChildrenInBooking, refundPrice) => {
+      (numberOfChildrenInBooking, sessionPrice) => {
         dispatch(
           deleteUserBookingAsync({
             userBookingToDelete,
@@ -50,15 +50,24 @@ const useDeleteUserBookingUpdateSessionSpacesDocRefundUserGetWalletBalanceThunk 
               })
             ).then((resultAction) => {
               if (updateSessionSpacesDocAsync.fulfilled.match(resultAction)) {
+                const usersDocumentId = id;
+                const operation = "add";
+
                 dispatch(
-                  refundUserAsync({ id, databaseId, collectionId, refundPrice })
+                  updateUsersBalanceAsync({
+                    usersDocumentId,
+                    databaseId,
+                    userCollectionId,
+                    sessionPrice,
+                    operation,
+                  })
                 ).then((resultAction) => {
-                  if (refundUserAsync.fulfilled.match(resultAction)) {
+                  if (updateUsersBalanceAsync.fulfilled.match(resultAction)) {
                     dispatch(
                       getUsersWalletBalanceAsync({
                         id,
                         databaseId,
-                        collectionId,
+                        collectionId: userCollectionId,
                       })
                     );
                   }

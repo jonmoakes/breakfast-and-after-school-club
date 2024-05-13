@@ -11,7 +11,7 @@ import useGetDatabaseManagementSelectors from "../../../hooks/get-selectors/use-
 
 const useConfirmUpdateUserBalance = () => {
   const { updateUsersBalanceThunk } = useUpdateUsersBalanceThunk();
-  const { usersDocumentId, refundPrice } = useGetDatabaseManagementSelectors();
+  const { usersDocumentId, sessionPrice } = useGetDatabaseManagementSelectors();
   const {
     stringHasUpperCaseLetters,
     invalidDocumentIdLength,
@@ -28,11 +28,11 @@ const useConfirmUpdateUserBalance = () => {
   const { confirmSwal } = useConfirmSwal();
 
   const confirmResult = () => {
-    updateUsersBalanceThunk(usersDocumentId, refundPrice);
+    updateUsersBalanceThunk(usersDocumentId, sessionPrice);
   };
 
   const confirmUpdateUserBalance = () => {
-    if (!usersDocumentId || !refundPrice) {
+    if (!usersDocumentId || !sessionPrice) {
       fireEmptyValuesSwal();
     } else if (invalidDocumentIdLength(usersDocumentId)) {
       fireDocumentIdLengthErrorSwal();
@@ -40,10 +40,10 @@ const useConfirmUpdateUserBalance = () => {
       fireCantHaveUppercaseCharactersSwal();
     } else if (
       valueStartsOrEndsWithSpace(usersDocumentId) ||
-      valueStartsOrEndsWithSpace(refundPrice)
+      valueStartsOrEndsWithSpace(sessionPrice)
     ) {
       fireWhiteSpaceErrorSwal();
-    } else if (invalidUpdateBalanceLength(refundPrice)) {
+    } else if (invalidUpdateBalanceLength(sessionPrice)) {
       fireRefundPriceLengthErrorSwal();
     } else {
       confirmSwal(confirmUpdateUserBalanceMessage, "", imSureMessage, () =>

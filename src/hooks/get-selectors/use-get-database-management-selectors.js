@@ -41,7 +41,7 @@ const useGetDatabaseManagementSelectors = () => {
   } = useSelector(selectDatabaseManagementSelectors);
 
   const {
-    refundPrice,
+    sessionPrice,
     date,
     sessionType,
     childrenInBooking,
@@ -89,7 +89,7 @@ const useGetDatabaseManagementSelectors = () => {
     updateSessionSpacesResult,
     updateSessionSpacesError,
     errorId,
-    refundPrice,
+    sessionPrice,
     date,
     sessionType,
     childrenInBooking,

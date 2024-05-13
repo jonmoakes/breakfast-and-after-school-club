@@ -1,5 +1,5 @@
 import useCancelBookingVariables from "./hooks/use-cancel-booking-variables";
-import useGetRefundPrice from "../../hooks/use-get-refund-price";
+import useGetSessionPrice from "../../hooks/use-get-session-price";
 
 import { ParentDiv } from "../../styles/div/div.styles";
 import { RedText, Text } from "../../styles/p/p.styles";
@@ -15,8 +15,8 @@ const WalletUpdateInfo = () => {
     sessionType,
     numberOfChildrenInBooking,
   } = useCancelBookingVariables();
-  const { formattedRefundPrice, formattedBalanceAfterCancellation } =
-    useGetRefundPrice(sessionType, numberOfChildrenInBooking);
+  const { formattedSessionPrice, formattedBalanceAfterCancellation } =
+    useGetSessionPrice(sessionType, numberOfChildrenInBooking);
 
   return (
     <ParentDiv>
@@ -40,7 +40,7 @@ const WalletUpdateInfo = () => {
       <BlackHr />
 
       <Text>
-        <RedSpan>£{formattedRefundPrice}</RedSpan> will be added to your wallet
+        <RedSpan>£{formattedSessionPrice}</RedSpan> will be added to your wallet
         on completion of the cancellation.
       </Text>
 

@@ -12,9 +12,9 @@ import useBookingCancelledButFailedBalanceFetchSwal from "./use-booking-cancelle
 
 const useCancelBookingResultSwal = () => {
   const { currentUserWalletBalanceResult } = useGetCurrentUserSelectors();
-  const { updateBookingsResult, updateBalanceResult } =
-    useGetUserBookingToDeleteSelectors();
-  const { updateSessionSpacesResult } = useGetDatabaseManagementSelectors();
+  const { updateBookingsResult } = useGetUserBookingToDeleteSelectors();
+  const { updateSessionSpacesResult, updateBalanceResult } =
+    useGetDatabaseManagementSelectors();
   const { noActionsFiredYet } = useReturnLogic();
   const { successSwal } = useSuccessSwal();
   const { updateBookingsResultErrorSwal } = useUpdateBookingsResultErrorSwal();

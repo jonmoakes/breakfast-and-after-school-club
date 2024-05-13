@@ -1,5 +1,5 @@
 import useGetDatabaseManagementSelectors from "../../../hooks/get-selectors/use-get-database-management-selectors";
-import useGetRefundPrice from "../../../hooks/use-get-refund-price";
+import useGetSessionPrice from "../../../hooks/use-get-session-price";
 
 import { getNumberOfChildrenInBooking } from "../../../functions/get-number-of-children-in-booking";
 
@@ -20,7 +20,7 @@ const useDbManageAddBookingVariables = () => {
   const numberOfChildrenInBooking =
     getNumberOfChildrenInBooking(childrenInBooking);
 
-  const { refundPrice } = useGetRefundPrice(
+  const { sessionPrice } = useGetSessionPrice(
     sessionType,
     numberOfChildrenInBooking
   );
@@ -36,7 +36,7 @@ const useDbManageAddBookingVariables = () => {
     parentEmail,
     errorId,
     userOfAppChoice,
-    refundPrice,
+    sessionPrice,
   };
 };
 

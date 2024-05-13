@@ -25,7 +25,7 @@ const useSendSessionSpacesAndBalanceErrorEmailThunk = () => {
 
   const sendSessionSpacesAndBalanceErrorEmailThunk = (
     numberOfChildrenInBooking,
-    refundPrice
+    sessionPrice
   ) => {
     dispatch(
       sendEmailResetSessionSpacesAndBalanceErrorAsync({
@@ -34,7 +34,7 @@ const useSendSessionSpacesAndBalanceErrorEmailThunk = () => {
         sessionType,
         numberOfChildrenInBooking,
         id,
-        refundPrice,
+        sessionPrice,
       })
     ).then((resultAction) => {
       if (

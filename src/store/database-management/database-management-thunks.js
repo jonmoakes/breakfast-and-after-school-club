@@ -84,7 +84,7 @@ export const updateSessionPriceAsync = createAsyncThunk(
 export const updateUsersBalanceAsync = createAsyncThunk(
   "updateUsersBalance",
   async (
-    { usersDocumentId, databaseId, userCollectionId, refundPrice },
+    { usersDocumentId, databaseId, userCollectionId, sessionPrice, operation },
     thunkAPI
   ) => {
     try {
@@ -92,7 +92,8 @@ export const updateUsersBalanceAsync = createAsyncThunk(
         usersDocumentId,
         databaseId,
         userCollectionId,
-        refundPrice
+        sessionPrice,
+        operation
       );
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);

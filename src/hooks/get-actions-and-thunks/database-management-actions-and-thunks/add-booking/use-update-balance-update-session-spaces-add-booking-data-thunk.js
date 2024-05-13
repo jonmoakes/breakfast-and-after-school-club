@@ -10,7 +10,7 @@ import {
 
 import { databaseManagementAddBookingRoute } from "../../../../strings/routes/routes-strings";
 
-const useAddBookingUpdateBalanceDeductSessionSpacesThunk = () => {
+const useUpdateBalanceUpdateSessionSpacesAddBookingDataThunk = () => {
   const {
     databaseId,
     bookedSessionsCollectionId: collectionId,
@@ -22,41 +22,43 @@ const useAddBookingUpdateBalanceDeductSessionSpacesThunk = () => {
 
   // This happens when an app user wants the app owner  to book a session for them for whatever reason.
   // Because of this, the balance needs to be updated and session spaces need to be deducted too.
-  const addBookingUpdateBalanceDeductSessionSpacesThunk = (
+  const updateBalanceUpdateSessionSpacesAddBookingDataThunk = (
     bookingData,
-    refundPrice,
+    sessionPrice,
     numberOfChildrenInBooking
   ) => {
+    const usersDocumentId = bookingData.parentsUserId;
+    const operation = "deduct";
     dispatch(
-      addBookingDataAsync({
+      updateUsersBalanceAsync({
+        usersDocumentId,
         databaseId,
-        collectionId,
-        bookingData,
+        userCollectionId,
+        sessionPrice,
+        operation,
       })
     ).then((resultAction) => {
-      if (addBookingDataAsync.fulfilled.match(resultAction)) {
-        const usersDocumentId = bookingData.parentsUserId;
+      if (updateUsersBalanceAsync.fulfilled.match(resultAction)) {
+        const { date, sessionType } = bookingData;
+        const route = databaseManagementAddBookingRoute;
+        const operation = "deduct";
         dispatch(
-          updateUsersBalanceAsync({
-            usersDocumentId,
+          updateSessionSpacesDocAsync({
+            numberOfChildrenInBooking,
+            date,
             databaseId,
-            userCollectionId,
-            refundPrice,
+            termDatesCollectionId,
+            route,
+            sessionType,
+            operation,
           })
         ).then((resultAction) => {
-          if (updateUsersBalanceAsync.fulfilled.match(resultAction)) {
-            const { date, sessionType } = bookingData;
-            const route = databaseManagementAddBookingRoute;
-            const operation = "deduct";
+          if (updateSessionSpacesDocAsync.fulfilled.match(resultAction)) {
             dispatch(
-              updateSessionSpacesDocAsync({
-                numberOfChildrenInBooking,
-                date,
+              addBookingDataAsync({
                 databaseId,
-                termDatesCollectionId,
-                route,
-                sessionType,
-                operation,
+                collectionId,
+                bookingData,
               })
             );
           }
@@ -65,7 +67,7 @@ const useAddBookingUpdateBalanceDeductSessionSpacesThunk = () => {
     });
   };
 
-  return { addBookingUpdateBalanceDeductSessionSpacesThunk };
+  return { updateBalanceUpdateSessionSpacesAddBookingDataThunk };
 };
 
-export default useAddBookingUpdateBalanceDeductSessionSpacesThunk;
+export default useUpdateBalanceUpdateSessionSpacesAddBookingDataThunk;

@@ -1,17 +1,10 @@
 import { createSelector, createSlice } from "@reduxjs/toolkit";
-import {
-  deleteUserBookingAsync,
-  refundUserAsync,
-} from "./user-booking-to-delete.thunks";
+import { deleteUserBookingAsync } from "./user-booking-to-delete.thunks";
 
 const INITIAL_STATE = {
   userBookingToDeleteIsLoading: false,
   userBookingToDelete: {},
   updateBookingsDoc: {
-    result: "",
-    error: null,
-  },
-  updateUserDocBalance: {
     result: "",
     error: null,
   },
@@ -33,18 +26,15 @@ export const userBookingToDeleteSlice = createSlice({
       (state) => state.userBookingToDeleteIsLoading,
       (state) => state.userBookingToDelete[0],
       (state) => state.updateBookingsDoc,
-      (state) => state.updateUserDocBalance,
       (
         userBookingToDeleteIsLoading,
         userBookingToDelete,
-        updateBookingsDoc,
-        updateUserDocBalance
+        updateBookingsDoc
       ) => {
         return {
           userBookingToDeleteIsLoading,
           userBookingToDelete,
           updateBookingsDoc,
-          updateUserDocBalance,
         };
       }
     ),
@@ -63,19 +53,6 @@ export const userBookingToDeleteSlice = createSlice({
         state.userBookingToDeleteIsLoading = false;
         state.updateBookingsDoc.result = "rejected";
         state.updateBookingsDoc.error = action.payload;
-      })
-      .addCase(refundUserAsync.pending, (state) => {
-        state.userBookingToDeleteIsLoading = true;
-      })
-      .addCase(refundUserAsync.fulfilled, (state) => {
-        state.userBookingToDeleteIsLoading = false;
-        state.updateUserDocBalance.result = "fulfilled";
-        state.updateUserDocBalance.error = null;
-      })
-      .addCase(refundUserAsync.rejected, (state, action) => {
-        state.userBookingToDeleteIsLoading = false;
-        state.updateUserDocBalance.result = "rejected";
-        state.updateUserDocBalance.error = action.payload;
       });
   },
 });

@@ -113,13 +113,13 @@ export const sendEmailResetSessionSpacesErrorAsync = createAsyncThunk(
 export const sendEmailBookingCancellationConfirmationAsync = createAsyncThunk(
   "sendEmailBookingCancellationConfirmation",
   async (
-    { email, name, date, sessionType, childrensName, refundPrice },
+    { email, name, date, sessionType, childrensName, sessionPrice },
     thunkAPI
   ) => {
     try {
       const formattedDate = date ? format(new Date(date), "dd MMMM yyyy") : "";
       const sessionBooked = getSessionTypeString(sessionType);
-      const fundsAddedToWallet = (refundPrice / 100).toFixed(2);
+      const fundsAddedToWallet = (sessionPrice / 100).toFixed(2);
 
       const response = await axios.post(
         SEND_EMAIL_BOOKING_CANCELLATION_CONFIRMATION_ENDPOINT,
@@ -150,7 +150,7 @@ export const sendEmailResetSessionSpacesAndBalanceErrorAsync = createAsyncThunk(
       sessionType,
       numberOfChildrenInBooking,
       id,
-      refundPrice,
+      sessionPrice,
     },
     thunkAPI
   ) => {
@@ -163,7 +163,7 @@ export const sendEmailResetSessionSpacesAndBalanceErrorAsync = createAsyncThunk(
           sessionType,
           numberOfChildrenInBooking,
           id,
-          refundPrice,
+          sessionPrice,
         }
       );
 
@@ -177,14 +177,14 @@ export const sendEmailResetSessionSpacesAndBalanceErrorAsync = createAsyncThunk(
 
 export const sendEmailBalanceNotUpdatedErrorAsync = createAsyncThunk(
   "sendEmailBalanceNotUpdatedError",
-  async ({ appOwnerEmail, id, refundPrice }, thunkAPI) => {
+  async ({ appOwnerEmail, id, sessionPrice }, thunkAPI) => {
     try {
       const response = await axios.post(
         SEND_EMAIL_BALANCE_NOT_UPDATED_ERROR_ENDPOINT,
         {
           appOwnerEmail,
           id,
-          refundPrice,
+          sessionPrice,
         }
       );
 

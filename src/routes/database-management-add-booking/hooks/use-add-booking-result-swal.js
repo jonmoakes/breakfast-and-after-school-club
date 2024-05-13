@@ -6,9 +6,13 @@ import useDatabaseManagementActions from "../../../hooks/get-actions-and-thunks/
 import useFireSwal from "../../../hooks/use-fire-swal";
 
 import {
+  balanceAddedSessionSpacesUpdatedAddBookingFailedErrorMessage,
+  balanceUpdateFailedErrorMessage,
+  balanceUpdatedSessionSpacesFailedErrorMessage,
   bookingManuallyAddedFailedErrorMessage,
-  bookingManuallyAddedSessionSpacesFailedErrorMessage,
   errorReceivedMessageWithoutContactDetail,
+  sessionSpacesUpdatedAddBookingFailedErrorMessage,
+  userHasInsufficentFundsErrorMessage,
 } from "../../../strings/errors/errors-strings";
 import { bookingSuccessfullyAddedMessage } from "../../../strings/successes/successes-strings";
 import { databaseManagementRoute } from "../../../strings/routes/routes-strings";
@@ -19,11 +23,16 @@ const useAddBookingResultSwal = () => {
     addBookingError,
     updateSessionSpacesResult,
     updateSessionSpacesError,
+    updateBalanceResult,
+    updateBalanceError,
     errorId,
+    userOfAppChoice,
   } = useGetDatabaseManagementSelectors();
   const {
     dispatchResetAddBookingResult,
     dispatchResetAddBookingError,
+    dispatchResetUpdateBalanceResult,
+    dispatchResetUpdateBalanceError,
     dispatchResetUpdateSessionSpacesResult,
     dispatchResetUpdateSessionSpacesError,
   } = useDatabaseManagementActions();
@@ -31,13 +40,12 @@ const useAddBookingResultSwal = () => {
 
   const { fireSwal } = useFireSwal();
 
-  // if no error id, its adding a booking for a non app user, so session spaces also need to update. No balance update necessary as by not using the app, they will have paid vi another method.
-  // if errorId is '2', then its adding booking data after user received an error. Session spaces and balance will have been already updated successfully as they happen before the adding of booking data.
-
   useEffect(() => {
     if (
       !addBookingResult &&
       !addBookingError &&
+      !updateBalanceResult &&
+      !updateBalanceError &&
       !updateSessionSpacesResult &&
       !updateSessionSpacesError
     )
@@ -45,11 +53,15 @@ const useAddBookingResultSwal = () => {
 
     if (
       (!errorId &&
-        addBookingResult === "fulfilled" &&
-        updateSessionSpacesResult === "fulfilled") ||
-      (errorId === "2" &&
-        addBookingResult === "fulfilled" &&
-        !updateSessionSpacesResult)
+        userOfAppChoice === "non user" &&
+        updateSessionSpacesResult === "fulfilled" &&
+        addBookingResult === "fulfilled") ||
+      (!errorId &&
+        userOfAppChoice === "user" &&
+        updateBalanceResult === "fulfilled" &&
+        updateSessionSpacesResult === "fulfilled" &&
+        addBookingResult === "fulfilled") ||
+      (errorId === "2" && addBookingResult === "fulfilled")
     ) {
       fireSwal(
         "success",
@@ -63,7 +75,90 @@ const useAddBookingResultSwal = () => {
           hamburgerHandlerNavigate(databaseManagementRoute);
         }
       });
-    } else if (addBookingResult === "rejected") {
+    } else if (
+      userOfAppChoice === "user" &&
+      updateBalanceResult === "rejected" &&
+      updateBalanceError.includes("Value must be a valid range")
+    ) {
+      fireSwal(
+        "error",
+        userHasInsufficentFundsErrorMessage,
+        "",
+        0,
+        true,
+        false
+      ).then((isConfirmed) => {
+        if (isConfirmed) {
+          dispatchResetUpdateBalanceResult();
+          dispatchResetUpdateBalanceError();
+        }
+      });
+    } else if (
+      userOfAppChoice === "user" &&
+      updateBalanceResult === "rejected" &&
+      !updateBalanceError.includes("Value must be a valid range")
+    ) {
+      const error = updateBalanceError;
+      fireSwal(
+        "error",
+        balanceUpdateFailedErrorMessage,
+        errorReceivedMessageWithoutContactDetail(error),
+        0,
+        true,
+        false
+      ).then((isConfirmed) => {
+        if (isConfirmed) {
+          dispatchResetUpdateBalanceResult();
+          dispatchResetUpdateBalanceError();
+        }
+      });
+    } else if (
+      userOfAppChoice === "user" &&
+      updateBalanceResult === "fulfilled" &&
+      updateSessionSpacesResult === "rejected"
+    ) {
+      const error = updateSessionSpacesError;
+      fireSwal(
+        "error",
+        balanceUpdatedSessionSpacesFailedErrorMessage,
+        errorReceivedMessageWithoutContactDetail(error),
+        0,
+        true,
+        false
+      ).then((isConfirmed) => {
+        if (isConfirmed) {
+          dispatchResetUpdateBalanceResult();
+          dispatchResetUpdateSessionSpacesError();
+          dispatchResetUpdateSessionSpacesResult();
+        }
+      });
+    } else if (
+      userOfAppChoice === "user" &&
+      updateBalanceResult === "fulfilled" &&
+      updateSessionSpacesResult === "fulfilled" &&
+      addBookingResult === "rejected"
+    ) {
+      const error = addBookingError;
+      fireSwal(
+        "error",
+        balanceAddedSessionSpacesUpdatedAddBookingFailedErrorMessage,
+        errorReceivedMessageWithoutContactDetail(error),
+        0,
+        true,
+        false
+      ).then((isConfirmed) => {
+        if (isConfirmed) {
+          dispatchResetUpdateBalanceResult();
+          dispatchResetUpdateSessionSpacesResult();
+          dispatchResetAddBookingResult();
+          dispatchResetAddBookingError();
+        }
+      });
+    } else if (
+      (userOfAppChoice === "non user" &&
+        updateSessionSpacesResult === "rejected") ||
+      (errorId === "2" && addBookingResult === "rejected")
+    ) {
       const error = addBookingError;
       fireSwal(
         "error",
@@ -73,28 +168,32 @@ const useAddBookingResultSwal = () => {
         true,
         false
       ).then((isConfirmed) => {
-        if (isConfirmed) {
+        if (isConfirmed && !errorId) {
+          dispatchResetUpdateSessionSpacesResult();
+          dispatchResetUpdateSessionSpacesError();
+        } else if (isConfirmed && errorId === "2") {
           dispatchResetAddBookingResult();
           dispatchResetAddBookingError();
         }
       });
     } else if (
-      addBookingResult === "fulfilled" &&
-      updateSessionSpacesResult === "rejected"
+      userOfAppChoice === "non user" &&
+      updateSessionSpacesResult === "fulfilled" &&
+      addBookingResult === "rejected"
     ) {
-      const error = updateSessionSpacesError;
+      const error = addBookingError;
       fireSwal(
         "error",
-        bookingManuallyAddedSessionSpacesFailedErrorMessage,
+        sessionSpacesUpdatedAddBookingFailedErrorMessage,
         errorReceivedMessageWithoutContactDetail(error),
         0,
         true,
         false
       ).then((isConfirmed) => {
-        if (isConfirmed && !errorId) {
-          dispatchResetAddBookingResult();
+        if (isConfirmed) {
           dispatchResetUpdateSessionSpacesResult();
-          dispatchResetUpdateSessionSpacesError();
+          dispatchResetAddBookingResult();
+          dispatchResetAddBookingError();
         }
       });
     }
@@ -110,6 +209,11 @@ const useAddBookingResultSwal = () => {
     dispatchResetUpdateSessionSpacesError,
     updateSessionSpacesError,
     updateSessionSpacesResult,
+    dispatchResetUpdateBalanceResult,
+    dispatchResetUpdateBalanceError,
+    updateBalanceError,
+    updateBalanceResult,
+    userOfAppChoice,
   ]);
 };
 

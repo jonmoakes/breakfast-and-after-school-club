@@ -24,15 +24,9 @@ const CancelBookingIntro = () => {
               on this page, you can manually cancel one of your bookings.
             </Text>
             <Text>
-              is the booking you wish to cancel from a customer who doesn't use
-              the app that you manually cancel bookings for ( most common )?
-            </Text>
-
-            <Text>
-              Or are they a customer who does use the app to cancel their own
-              bookings?
-              <br />( if so, this should be very rare that you are requested to
-              do cancel a booking for them ).
+              is the customer a user of the app ( ie they normally cancel their
+              own bookings ), or a non user ( ie, you cancel the bookings for
+              them )?
             </Text>
 
             <Text>

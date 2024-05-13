@@ -19,7 +19,7 @@ const useSendCancellationEmailThunk = () => {
 
   const { date, sessionType, childrensName } = userBookingToDelete || {};
 
-  const sendCancellationEmailThunk = (refundPrice) => {
+  const sendCancellationEmailThunk = (sessionPrice) => {
     dispatch(
       sendEmailBookingCancellationConfirmationAsync({
         email,
@@ -27,7 +27,7 @@ const useSendCancellationEmailThunk = () => {
         date,
         sessionType,
         childrensName,
-        refundPrice,
+        sessionPrice,
       })
     ).then((resultAction) => {
       if (

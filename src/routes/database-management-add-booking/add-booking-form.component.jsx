@@ -1,17 +1,14 @@
-import { useState } from "react";
-
 import useDbManageAddBookingVariables from "./hooks/use-db-manage-add-booking-variables";
 import useHandleDataToUpdateDocumentChange from "../../hooks/database-management/use-handle-data-to-update-document-change";
 import useConfirmAddBooking from "./hooks/use-confirm-add-booking";
 
+import SwitchUserOfAppChoice from "../database-management/db-management-shared-components/switch-user-of-app-choice.component";
 import AddBookingInstructionsAccordion from "./add-booking-instructions-accordion.component";
 
 import { YellowGreenButton } from "../../styles/buttons/buttons.styles";
 import { Form, Label, StyledInput } from "../../styles/form/form.styles";
 import { Text } from "../../styles/p/p.styles";
 import { ParentDiv } from "../../styles/div/div.styles";
-import SwitchUserOfAppChoice from "../database-management/db-management-shared-components/switch-user-of-app-choice.component";
-import AddOrCancelWhatWillHappenInfo from "../database-management/db-management-shared-components/add-or-cancel-what-will-happen.component";
 
 const UpdateBookingForm = () => {
   const {
@@ -24,36 +21,19 @@ const UpdateBookingForm = () => {
     parentsUserId,
     parentEmail,
     userOfAppChoice,
-    refundPrice,
+    sessionPrice,
   } = useDbManageAddBookingVariables();
   const { handleDataToUpdateDocumentChange } =
     useHandleDataToUpdateDocumentChange();
   const { confirmAddBookingDocument } = useConfirmAddBooking();
 
-  const [confirm, setConfirm] = useState(false);
-
   return (
     <>
       <SwitchUserOfAppChoice {...{ userOfAppChoice }} />
-      <AddOrCancelWhatWillHappenInfo {...{ userOfAppChoice }} />
 
       <AddBookingInstructionsAccordion />
 
-      {userOfAppChoice && !confirm ? (
-        <ParentDiv>
-          <Text>
-            please confirm that you have read the important notes above. This
-            will help you to avoid pushing any errors to the database, which can
-            break the app.
-          </Text>
-          <Text>
-            please contact jonathan if there are any questions at all before
-            proceeding.
-          </Text>
-        </ParentDiv>
-      ) : null}
-
-      {(userOfAppChoice && confirm) || errorId === "2" ? (
+      {userOfAppChoice || errorId === "2" ? (
         <ParentDiv>
           <Text>please enter the booking details below.</Text>
           <Form>
@@ -132,19 +112,13 @@ const UpdateBookingForm = () => {
                   parentPhoneNumber,
                   parentsUserId,
                   parentEmail,
-                  refundPrice
+                  sessionPrice
                 )
               }
             >
               add booking
             </YellowGreenButton>
           </Form>
-        </ParentDiv>
-      ) : userOfAppChoice ? (
-        <ParentDiv>
-          <YellowGreenButton onClick={() => setConfirm(true)}>
-            i've read it!
-          </YellowGreenButton>
         </ParentDiv>
       ) : null}
     </>

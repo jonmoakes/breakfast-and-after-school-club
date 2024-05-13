@@ -1,5 +1,5 @@
-import useAddBookingAndDeductSessionSpacesThunk from "../../../hooks/get-actions-and-thunks/database-management-actions-and-thunks/add-booking/use-add-booking-and-deduct-session-spaces";
-import useAddBookingUpdateBalanceDeductSessionSpacesThunk from "../../../hooks/get-actions-and-thunks/database-management-actions-and-thunks/add-booking/use-add-booking-update-balance-deduct-session-spaces";
+import useDeductSessionSpacesAndAddBookingThunk from "../../../hooks/get-actions-and-thunks/database-management-actions-and-thunks/add-booking/use-deduct-session-spaces-and-add-booking-thunk";
+import useUpdateBalanceUpdateSessionSpacesAddBookingDataThunk from "../../../hooks/get-actions-and-thunks/database-management-actions-and-thunks/add-booking/use-update-balance-update-session-spaces-add-booking-data-thunk";
 import useAddBookingDataThunk from "../../../hooks/get-actions-and-thunks/database-management-actions-and-thunks/add-booking/use-add-booking-data-thunk";
 import useDbManageAddBookingVariables from "./use-db-manage-add-booking-variables";
 import useConfirmSwal from "../../../hooks/use-confirm-swal";
@@ -38,10 +38,10 @@ const useConfirmAddBookingDocument = () => {
   const { confirmSwal } = useConfirmSwal();
 
   const { addBookingDataThunk } = useAddBookingDataThunk();
-  const { addBookingAndDeductSessionSpacesThunk } =
-    useAddBookingAndDeductSessionSpacesThunk();
-  const { addBookingUpdateBalanceDeductSessionSpacesThunk } =
-    useAddBookingUpdateBalanceDeductSessionSpacesThunk();
+  const { deductSessionSpacesAndAddBookingThunk } =
+    useDeductSessionSpacesAndAddBookingThunk();
+  const { updateBalanceUpdateSessionSpacesAddBookingDataThunk } =
+    useUpdateBalanceUpdateSessionSpacesAddBookingDataThunk();
 
   const confirmResult = (
     date,
@@ -51,7 +51,7 @@ const useConfirmAddBookingDocument = () => {
     parentPhoneNumber,
     parentsUserId,
     parentEmail,
-    refundPrice
+    sessionPrice
   ) => {
     const bookingData = {
       date,
@@ -67,14 +67,14 @@ const useConfirmAddBookingDocument = () => {
       getNumberOfChildrenInBooking(childrenInBooking);
 
     if (userOfAppChoice === "non user") {
-      addBookingAndDeductSessionSpacesThunk(
+      deductSessionSpacesAndAddBookingThunk(
         bookingData,
         numberOfChildrenInBooking
       );
     } else if (userOfAppChoice === "user") {
-      addBookingUpdateBalanceDeductSessionSpacesThunk(
+      updateBalanceUpdateSessionSpacesAddBookingDataThunk(
         bookingData,
-        refundPrice,
+        sessionPrice,
         numberOfChildrenInBooking
       );
     } else if (errorId === "2") {
@@ -90,7 +90,7 @@ const useConfirmAddBookingDocument = () => {
     parentPhoneNumber,
     parentsUserId,
     parentEmail,
-    refundPrice
+    sessionPrice
   ) => {
     if (
       !date ||
@@ -131,7 +131,7 @@ const useConfirmAddBookingDocument = () => {
           parentPhoneNumber,
           parentsUserId,
           parentEmail,
-          refundPrice
+          sessionPrice
         )
       );
     }

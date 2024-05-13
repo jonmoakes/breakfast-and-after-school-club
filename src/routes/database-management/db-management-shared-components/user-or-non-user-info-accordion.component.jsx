@@ -47,40 +47,35 @@ const UserOrNonUserInfoAccordion = () => {
           {shouldShowElement && (
             <AccordionContent>
               <BlueH2>why do you need to know this?</BlueH2>
-              <Text>in the database we will be:</Text>
-              <Text>
-                <BlackHr />
-                if they're <RedSpan>not</RedSpan> a user of the app:
-                <br />
-                <ul>
-                  <li>
-                    {isAddingBookingRoute() ? "Adding" : "Remove"} the booking
-                    data.
-                  </li>
-
-                  <li>
-                    {isAddingBookingRoute() ? "Deducting" : "Adding"} session
-                    spaces.
-                  </li>
-                </ul>{" "}
-              </Text>
+              <BlackHr />
+              <Text>in the database, the following will happen.</Text>
               <BlackHr />
               <Text>
-                if they <RedSpan>are</RedSpan> a user of the app,
-                <br />
-                <ul>
-                  <li>
-                    {" "}
-                    {isAddingBookingRoute() ? "Adding" : "Remove"} booking data.
-                  </li>
-                  <li>
-                    {isAddingBookingRoute() ? "Deducting" : "Adding"} session
-                    spaces.
-                  </li>
-                  <li>updating the users balance.</li>
-                </ul>{" "}
-                <BlackHr />
+                if they're <RedSpan>not</RedSpan> a user of the app, we will:
               </Text>
+              <ul>
+                <li>
+                  {isAddingBookingRoute() ? "Add" : "Remove"} the booking data.
+                </li>
+
+                <li>
+                  {isAddingBookingRoute() ? "Deduct" : "Add"} session spaces.
+                </li>
+              </ul>
+              <BlackHr />
+              <Text>
+                if they <RedSpan>are</RedSpan> a user of the app, we will:
+              </Text>
+              <ul>
+                <li>
+                  {isAddingBookingRoute() ? "Add" : "Remove"} booking data.
+                </li>
+                <li>
+                  {isAddingBookingRoute() ? "Deduct" : "Add"} session spaces.
+                </li>
+                <li>update the users balance.</li>
+              </ul>
+              <BlackHr />
               <YellowGreenButton onClick={dispatchHideShownElement}>
                 Ok, Close
               </YellowGreenButton>

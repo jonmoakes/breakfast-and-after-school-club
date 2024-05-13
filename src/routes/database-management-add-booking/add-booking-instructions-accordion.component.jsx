@@ -32,7 +32,13 @@ const AddBookingInstructionsAccordion = () => {
     <>
       {userOfAppChoice ? (
         <ParentDiv>
-          <Accordion {...{ shouldShowElement }}>
+          {!shouldShowElement ? (
+            <Text>
+              &darr; <RedSpan>please read!</RedSpan> &darr;
+            </Text>
+          ) : null}
+
+          <Accordion className="small-top-margin" {...{ shouldShowElement }}>
             <>
               <AccordionTitle
                 {...{ shouldShowElement }}

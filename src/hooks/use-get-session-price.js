@@ -1,7 +1,7 @@
 import useGetSessionTypesAndPricesSelectors from "./get-selectors/use-get-session-types-and-prices-selectors";
 import useGetCurrentUserSelectors from "./get-selectors/use-get-current-user-selectors";
 
-const useGetRefundPrice = (sessionType, numberOfChildrenInBooking) => {
+const useGetSessionPrice = (sessionType, numberOfChildrenInBooking) => {
   const { walletBalance } = useGetCurrentUserSelectors();
   const {
     morningSessionPrice,
@@ -11,7 +11,7 @@ const useGetRefundPrice = (sessionType, numberOfChildrenInBooking) => {
     morningAndAfternoonLongSessionPrice,
   } = useGetSessionTypesAndPricesSelectors();
 
-  const getRefundPrice = () => {
+  const getSessionPrice = () => {
     switch (sessionType) {
       case "afternoonShort":
         return afternoonShortSessionPrice * 100;
@@ -26,22 +26,22 @@ const useGetRefundPrice = (sessionType, numberOfChildrenInBooking) => {
     }
   };
 
-  const refundPrice =
+  const sessionPrice =
     numberOfChildrenInBooking === 1
-      ? getRefundPrice()
-      : getRefundPrice() * numberOfChildrenInBooking;
+      ? getSessionPrice()
+      : getSessionPrice() * numberOfChildrenInBooking;
 
-  const formattedRefundPrice = (refundPrice / 100).toFixed(2);
+  const formattedSessionPrice = (sessionPrice / 100).toFixed(2);
   const formattedBalanceAfterCancellation = (
-    (walletBalance + refundPrice) /
+    (walletBalance + sessionPrice) /
     100
   ).toFixed(2);
 
   return {
-    refundPrice,
-    formattedRefundPrice,
+    sessionPrice,
+    formattedSessionPrice,
     formattedBalanceAfterCancellation,
   };
 };
 
-export default useGetRefundPrice;
+export default useGetSessionPrice;

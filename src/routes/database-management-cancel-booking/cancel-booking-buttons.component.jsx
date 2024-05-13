@@ -16,7 +16,7 @@ const CancelBookingButtons = () => {
     matchedBookingFound,
     bookingId,
     userIdOfParent,
-    refundPrice,
+    sessionPrice,
     sessionDate,
     typeOfSession,
     numberOfChildrenInBooking,
@@ -46,7 +46,7 @@ const CancelBookingButtons = () => {
               confirmDbManageCancelBooking(
                 bookingId,
                 userIdOfParent,
-                refundPrice,
+                sessionPrice,
                 sessionDate,
                 typeOfSession,
                 numberOfChildrenInBooking

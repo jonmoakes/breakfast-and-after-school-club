@@ -19,7 +19,7 @@ const useConfirmDbManageCancelBooking = () => {
   const confirmResult = (
     bookingId,
     userIdOfParent,
-    refundPrice,
+    sessionPrice,
     sessionDate,
     typeOfSession,
     numberOfChildrenInBooking
@@ -28,7 +28,7 @@ const useConfirmDbManageCancelBooking = () => {
       cancelBookingUpdateBalanceUpdateSessionThunks(
         bookingId,
         userIdOfParent,
-        refundPrice,
+        sessionPrice,
         sessionDate,
         typeOfSession,
         numberOfChildrenInBooking
@@ -46,7 +46,7 @@ const useConfirmDbManageCancelBooking = () => {
   const confirmDbManageCancelBooking = (
     bookingId,
     userIdOfParent,
-    refundPrice,
+    sessionPrice,
     sessionDate,
     typeOfSession,
     numberOfChildrenInBooking
@@ -55,7 +55,7 @@ const useConfirmDbManageCancelBooking = () => {
       confirmResult(
         bookingId,
         userIdOfParent,
-        refundPrice,
+        sessionPrice,
         sessionDate,
         typeOfSession,
         numberOfChildrenInBooking

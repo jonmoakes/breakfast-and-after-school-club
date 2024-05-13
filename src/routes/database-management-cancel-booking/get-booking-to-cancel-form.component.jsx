@@ -9,7 +9,6 @@ import { Form, Label, StyledInput } from "../../styles/form/form.styles";
 import { Text, WhiteShadowText } from "../../styles/p/p.styles";
 import { ParentDiv } from "../../styles/div/div.styles";
 import { RedSpan } from "../../styles/span/span.styles";
-import AddOrCancelWhatWillHappenInfo from "../database-management/db-management-shared-components/add-or-cancel-what-will-happen.component";
 
 const GetBookingToCancelForm = () => {
   const { handleDataToUpdateDocumentChange } =
@@ -23,22 +22,8 @@ const GetBookingToCancelForm = () => {
       {userOfAppChoice && !matchedBookingFound ? (
         <>
           <SwitchUserOfAppChoice {...{ userOfAppChoice }} />
-          <AddOrCancelWhatWillHappenInfo {...{ userOfAppChoice }} />
 
           <ParentDiv>
-            {/* {userOfAppChoice === "user" ? (
-              <Text>
-                cancelling the booking will remove the booking from the
-                database, then update the users balance and finally update the
-                session spaces.
-              </Text>
-            ) : (
-              <Text>
-                cancelling the booking will remove the booking from the
-                database, then update the session spaces.
-              </Text>
-            )} */}
-
             <Text>
               lets start by getting the details of the booking to cancel.
             </Text>

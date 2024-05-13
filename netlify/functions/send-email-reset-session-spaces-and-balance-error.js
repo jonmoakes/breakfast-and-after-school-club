@@ -8,7 +8,7 @@ export const handler = async (event) => {
     sessionType,
     numberOfChildrenInBooking,
     id,
-    refundPrice,
+    sessionPrice,
   } = JSON.parse(event.body);
 
   try {
@@ -23,7 +23,7 @@ export const handler = async (event) => {
         sessionType,
         numberOfChildrenInBooking,
         id,
-        refundPrice,
+        sessionPrice,
       },
     });
 

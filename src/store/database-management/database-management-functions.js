@@ -8,7 +8,8 @@ export const updateWalletBalance = async (
   usersDocumentId,
   databaseId,
   userCollectionId,
-  refundPrice
+  sessionPrice,
+  operation
 ) => {
   const queryIndexUser = "id";
   const queryValueUser = usersDocumentId;
@@ -28,9 +29,12 @@ export const updateWalletBalance = async (
 
   const { walletBalance } = documents[0];
   //db expects a double for its attribute
-  const refundPriceAsDoubleInPence = parseFloat(refundPrice);
+  const priceAsDoubleInPence = parseFloat(sessionPrice);
   const dataToUpdate = {
-    walletBalance: walletBalance + refundPriceAsDoubleInPence,
+    walletBalance:
+      operation === "add"
+        ? walletBalance + priceAsDoubleInPence
+        : operation === "deduct" && walletBalance - priceAsDoubleInPence,
   };
   await manageDatabaseDocument(
     "update",

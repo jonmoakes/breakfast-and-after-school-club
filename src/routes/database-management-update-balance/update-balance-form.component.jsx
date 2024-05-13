@@ -8,7 +8,7 @@ import { Form, Label, StyledInput } from "../../styles/form/form.styles";
 const UpdateBalanceForm = () => {
   const { handleDataToUpdateDocumentChange } =
     useHandleDataToUpdateDocumentChange();
-  const { usersDocumentId, refundPrice } = useGetDatabaseManagementSelectors();
+  const { usersDocumentId, sessionPrice } = useGetDatabaseManagementSelectors();
   const { confirmUpdateUserBalance } = useConfirmUpdateUserBalance();
 
   return (
@@ -25,8 +25,8 @@ const UpdateBalanceForm = () => {
       <Label>amount to add:</Label>
       <StyledInput
         type="number"
-        name="refundPrice"
-        value={refundPrice || ""}
+        name="sessionPrice"
+        value={sessionPrice || ""}
         onChange={handleDataToUpdateDocumentChange}
         placeholder="in pence"
       />

@@ -276,6 +276,10 @@ export const Accordion = styled.div.withConfig({
     }
   }
 
+  &.small-top-margin {
+    margin: 10px auto 2rem auto;
+  }
+
   @media screen and (max-width: 1366px) {
     width: ${({ shouldShowElement }) => (shouldShowElement ? "90%" : "50%")};
   }

@@ -1,7 +1,7 @@
 import useCurrentUserActions from "../../../../hooks/get-actions-and-thunks/current-user-actions-and-thunks/use-current-user-actions";
 import useFireSwal from "../../../../hooks/use-fire-swal";
 import useSendCancellationEmailThunk from "../../../../hooks/get-actions-and-thunks/send-email-actions-and-thunks/use-send-cancellation-email-thunk";
-import useGetRefundPrice from "../../../../hooks/use-get-refund-price";
+import useGetSessionPrice from "../../../../hooks/use-get-session-price";
 import useCancelBookingVariables from "../use-cancel-booking-variables";
 import { sessionCancelledBalanceUpdateFailedMessage } from "../../../../strings/infos/infos-strings";
 
@@ -13,7 +13,7 @@ const useBookingCancelledButFailedBalanceFetchSwal = () => {
   const { sendCancellationEmailThunk } = useSendCancellationEmailThunk();
   const { sessionType, numberOfChildrenInBooking } =
     useCancelBookingVariables();
-  const { refundPrice } = useGetRefundPrice(
+  const { sessionPrice } = useGetSessionPrice(
     sessionType,
     numberOfChildrenInBooking
   );
@@ -31,7 +31,7 @@ const useBookingCancelledButFailedBalanceFetchSwal = () => {
       if (isConfirmed) {
         dispatchResetCurrentUserWalletBalanceResult();
         dispatchResetCurrentUserWalletBalanceError();
-        sendCancellationEmailThunk(refundPrice);
+        sendCancellationEmailThunk(sessionPrice);
       }
     });
   };

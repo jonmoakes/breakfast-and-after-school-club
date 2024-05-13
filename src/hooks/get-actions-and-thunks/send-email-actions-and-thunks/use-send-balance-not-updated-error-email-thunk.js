@@ -18,9 +18,9 @@ const useSendBalanceNotUpdatedErrorEmailThunk = () => {
   const { fireSwal } = useFireSwal();
   const dispatch = useDispatch();
 
-  const sendBalanceNotUpdatedErrorEmailThunk = (refundPrice) => {
+  const sendBalanceNotUpdatedErrorEmailThunk = (sessionPrice) => {
     dispatch(
-      sendEmailBalanceNotUpdatedErrorAsync({ appOwnerEmail, id, refundPrice })
+      sendEmailBalanceNotUpdatedErrorAsync({ appOwnerEmail, id, sessionPrice })
     ).then((resultAction) => {
       if (sendEmailBalanceNotUpdatedErrorAsync.fulfilled.match(resultAction)) {
         hamburgerHandlerNavigate(bookedSessionsUserRoute);

@@ -5,16 +5,16 @@ import useGetUserBookingToDeleteSelectors from "../../../hooks/get-selectors/use
 import useGetDatabaseManagementSelectors from "../../../hooks/get-selectors/use-get-database-management-selectors";
 
 const useReturnLogic = () => {
-  const {
-    updateBookingsResult,
-    updateBookingsError,
-    updateBalanceResult,
-    updateBalanceError,
-  } = useGetUserBookingToDeleteSelectors();
+  const { updateBookingsResult, updateBookingsError } =
+    useGetUserBookingToDeleteSelectors();
   const { currentUserWalletBalanceResult, currentUserWalletBalanceError } =
     useGetCurrentUserSelectors();
-  const { updateSessionSpacesResult, updateSessionSpacesError } =
-    useGetDatabaseManagementSelectors();
+  const {
+    updateSessionSpacesResult,
+    updateSessionSpacesError,
+    updateBalanceResult,
+    updateBalanceError,
+  } = useGetDatabaseManagementSelectors();
 
   const noActionsFiredYet = useCallback(() => {
     return !updateBookingsResult &&

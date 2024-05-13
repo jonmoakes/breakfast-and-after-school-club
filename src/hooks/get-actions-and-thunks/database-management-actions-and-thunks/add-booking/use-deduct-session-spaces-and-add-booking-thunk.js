@@ -9,7 +9,7 @@ import {
 
 import { databaseManagementAddBookingRoute } from "../../../../strings/routes/routes-strings";
 
-const useAddBookingAndDeductSessionSpacesThunk = () => {
+const useDeductSessionSpacesAndAddBookingThunk = () => {
   const {
     databaseId,
     bookedSessionsCollectionId: collectionId,
@@ -20,39 +20,38 @@ const useAddBookingAndDeductSessionSpacesThunk = () => {
 
   // This happens when a non app user wants to book a session so the app owner has to do it manually.
   // Because of this, session spaces need to be deducted also.
-  const addBookingAndDeductSessionSpacesThunk = (
+  const deductSessionSpacesAndAddBookingThunk = (
     bookingData,
     numberOfChildrenInBooking
   ) => {
+    const { date, sessionType } = bookingData;
+    const route = databaseManagementAddBookingRoute;
+    const operation = "deduct";
+
     dispatch(
-      addBookingDataAsync({
+      updateSessionSpacesDocAsync({
+        numberOfChildrenInBooking,
+        date,
         databaseId,
-        collectionId,
-        bookingData,
+        termDatesCollectionId,
+        route,
+        sessionType,
+        operation,
       })
     ).then((resultAction) => {
-      if (addBookingDataAsync.fulfilled.match(resultAction)) {
-        const { date, sessionType } = bookingData;
-
-        const route = databaseManagementAddBookingRoute;
-        const operation = "deduct";
-
+      if (updateSessionSpacesDocAsync.fulfilled.match(resultAction)) {
         dispatch(
-          updateSessionSpacesDocAsync({
-            numberOfChildrenInBooking,
-            date,
+          addBookingDataAsync({
             databaseId,
-            termDatesCollectionId,
-            route,
-            sessionType,
-            operation,
+            collectionId,
+            bookingData,
           })
         );
       }
     });
   };
 
-  return { addBookingAndDeductSessionSpacesThunk };
+  return { deductSessionSpacesAndAddBookingThunk };
 };
 
-export default useAddBookingAndDeductSessionSpacesThunk;
+export default useDeductSessionSpacesAndAddBookingThunk;

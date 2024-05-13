@@ -1,5 +1,5 @@
 import useGetDatabaseManagementSelectors from "../../../hooks/get-selectors/use-get-database-management-selectors";
-import useGetRefundPrice from "../../../hooks/use-get-refund-price";
+import useGetSessionPrice from "../../../hooks/use-get-session-price";
 import useBookedSessionsOwnerVariables from "../../booked-sessions-owner/booked-sessions-owner-hooks/use-booked-sessions-owner-variables";
 
 import { getNumberOfChildrenInBooking } from "../../../functions/get-number-of-children-in-booking";
@@ -18,7 +18,7 @@ const useDbManageCancelBookingVariables = () => {
   const { bookedSessionsOwnerIsLoading } = useBookedSessionsOwnerVariables();
   const numberOfChildrenInBooking =
     getNumberOfChildrenInBooking(sessionChildren);
-  const { refundPrice } = useGetRefundPrice(
+  const { sessionPrice } = useGetSessionPrice(
     typeOfSession,
     numberOfChildrenInBooking
   );
@@ -32,7 +32,7 @@ const useDbManageCancelBookingVariables = () => {
     sessionDate,
     userIdOfParent,
     bookingId,
-    refundPrice,
+    sessionPrice,
     sessionChildren,
     typeOfSession,
     matchedBookingFound,
