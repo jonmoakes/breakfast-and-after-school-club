@@ -1,19 +1,19 @@
-import useCancelBookingUpdateBalanceUpdateSessionThunks from "../../../hooks/get-actions-and-thunks/database-management-actions-and-thunks/use-cancel-booking-update-balance-update-session-thunks";
-import useCancelBookingUpdateSessionThunks from "../../../hooks/get-actions-and-thunks/database-management-actions-and-thunks/use-cancel-booking-update-session-thunks";
+import useUpdateSessionSpacesRemoveBookingThunk from "../../../hooks/get-actions-and-thunks/database-management-actions-and-thunks/cancel-booking/use-update-session-spaces-remove-booking-thunk";
+import useUpdateBalanceUpdateSessionSpacesRemoveBookingThunk from "../../../hooks/get-actions-and-thunks/database-management-actions-and-thunks/cancel-booking/use-update-balance-update-session-spaces-remove-booking-thunk";
 import useConfirmSwal from "../../../hooks/use-confirm-swal";
+import useDbManageCancelBookingVariables from "./use-db-manage-cancel-booking-variables";
 
 import {
   confirmCancelBookingMessage,
   imSureMessage,
 } from "../../../strings/confirms/confirms-strings";
-import useDbManageCancelBookingVariables from "./use-db-manage-cancel-booking-variables";
 
 const useConfirmDbManageCancelBooking = () => {
   const { confirmSwal } = useConfirmSwal();
-  const { cancelBookingUpdateBalanceUpdateSessionThunks } =
-    useCancelBookingUpdateBalanceUpdateSessionThunks();
-  const { cancelBookingUpdateSessionThunks } =
-    useCancelBookingUpdateSessionThunks();
+  const { updateSessionSpacesRemoveBookingThunk } =
+    useUpdateSessionSpacesRemoveBookingThunk();
+  const { updateBalanceUpdateSessionSpacesRemoveBookingThunk } =
+    useUpdateBalanceUpdateSessionSpacesRemoveBookingThunk();
   const { userOfAppChoice } = useDbManageCancelBookingVariables();
 
   const confirmResult = (
@@ -24,21 +24,21 @@ const useConfirmDbManageCancelBooking = () => {
     typeOfSession,
     numberOfChildrenInBooking
   ) => {
-    if (userOfAppChoice === "user") {
-      cancelBookingUpdateBalanceUpdateSessionThunks(
-        bookingId,
+    if (userOfAppChoice === "non user") {
+      updateSessionSpacesRemoveBookingThunk(
+        sessionDate,
+        typeOfSession,
+        numberOfChildrenInBooking,
+        bookingId
+      );
+    } else if (userOfAppChoice === "user") {
+      updateBalanceUpdateSessionSpacesRemoveBookingThunk(
         userIdOfParent,
         sessionPrice,
         sessionDate,
         typeOfSession,
-        numberOfChildrenInBooking
-      );
-    } else if (userOfAppChoice === "non user") {
-      cancelBookingUpdateSessionThunks(
-        bookingId,
-        sessionDate,
-        typeOfSession,
-        numberOfChildrenInBooking
+        numberOfChildrenInBooking,
+        bookingId
       );
     }
   };

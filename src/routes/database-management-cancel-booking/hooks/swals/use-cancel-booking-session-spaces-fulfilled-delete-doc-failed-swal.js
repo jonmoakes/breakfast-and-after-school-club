@@ -1,41 +1,40 @@
 import useDatabaseManagementActions from "../../../../hooks/get-actions-and-thunks/database-management-actions-and-thunks/use-database-management-actions";
 import useGetDatabaseManagementSelectors from "../../../../hooks/get-selectors/use-get-database-management-selectors";
 import useFireSwal from "../../../../hooks/use-fire-swal";
+
 import {
-  bookingCancelledBalanceUpdatedSessionSpacesFailedMessage,
   errorReceivedMessageWithoutContactDetail,
+  sessionSpacesUpdatedDeleteDocumentFailedErrorMessage,
 } from "../../../../strings/errors/errors-strings";
 
-const useBookingCancelledBalanceUpdatedSessionSpacesFailedSwal = () => {
-  const { fireSwal } = useFireSwal();
+const useCancelBookingSessionSpacesFulfilledDeleteDocFailedSwal = () => {
+  const { deleteDocumentError } = useGetDatabaseManagementSelectors();
   const {
     dispatchResetDeleteDocumentResult,
-    dispatchResetUpdateBalanceResult,
+    dispatchResetDeleteDocumentError,
     dispatchResetUpdateSessionSpacesResult,
-    dispatchResetUpdateSessionSpacesError,
   } = useDatabaseManagementActions();
-  const { updateSessionSpacesError } = useGetDatabaseManagementSelectors();
+  const { fireSwal } = useFireSwal();
 
-  const bookingCancelledBalanceUpdatedSessionSpacesFailedSwal = () => {
-    const error = updateSessionSpacesError;
+  const cancelBookingSessionSpacesFulfilledDeleteDocFailedSwal = () => {
+    const error = deleteDocumentError;
     fireSwal(
       "error",
-      bookingCancelledBalanceUpdatedSessionSpacesFailedMessage,
+      sessionSpacesUpdatedDeleteDocumentFailedErrorMessage,
       errorReceivedMessageWithoutContactDetail(error),
       0,
       true,
       false
     ).then((isConfirmed) => {
       if (isConfirmed) {
-        dispatchResetDeleteDocumentResult();
-        dispatchResetUpdateBalanceResult();
         dispatchResetUpdateSessionSpacesResult();
-        dispatchResetUpdateSessionSpacesError();
+        dispatchResetDeleteDocumentResult();
+        dispatchResetDeleteDocumentError();
       }
     });
   };
 
-  return { bookingCancelledBalanceUpdatedSessionSpacesFailedSwal };
+  return { cancelBookingSessionSpacesFulfilledDeleteDocFailedSwal };
 };
 
-export default useBookingCancelledBalanceUpdatedSessionSpacesFailedSwal;
+export default useCancelBookingSessionSpacesFulfilledDeleteDocFailedSwal;

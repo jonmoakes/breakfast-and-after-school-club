@@ -11,11 +11,12 @@ import { getSessionTypeString } from "../../functions/get-session-type-string";
 const MatchedSessionDetails = () => {
   const {
     matchedBookingFound,
-    sessionDate,
     typeOfSession,
     numberOfChildrenInBooking,
     sessionChildren,
     userIdOfParent,
+    bookingId,
+    formattedDate,
   } = useDbManageCancelBookingVariables();
 
   return (
@@ -23,13 +24,13 @@ const MatchedSessionDetails = () => {
       {matchedBookingFound ? (
         <ParentDiv>
           <Text>
-            are these the correct date, session type and names of the children
-            in the booking that you wish to cancel?
+            are these the correct date, session type and number of children in
+            the booking that you wish to cancel?
           </Text>
           <BlackHr />
           <BlueH2>date of booking:</BlueH2>
           <Text>
-            <RedSpan>{sessionDate}</RedSpan>
+            <RedSpan>{formattedDate}</RedSpan>
           </Text>
           <BlueH2>session type</BlueH2>
           <Text>
@@ -40,9 +41,20 @@ const MatchedSessionDetails = () => {
             <RedSpan>{numberOfChildrenInBooking}</RedSpan>
           </Text>
           <Text>( {sessionChildren} )</Text>
+          <BlackHr />
+          <Text>
+            other details:
+            <br />
+            (you shouldn't need these unless there is an error when trying to
+            cancel the booking. )
+          </Text>
           <BlueH2>parents user id </BlueH2>
           <Text>
             <RedSpan>{userIdOfParent}</RedSpan>
+          </Text>
+          <BlueH2>booking Id</BlueH2>
+          <Text>
+            <RedSpan>{bookingId}</RedSpan>
           </Text>
         </ParentDiv>
       ) : null}

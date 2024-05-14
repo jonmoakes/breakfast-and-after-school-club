@@ -3,6 +3,7 @@ import useGetSessionPrice from "../../../hooks/use-get-session-price";
 import useBookedSessionsOwnerVariables from "../../booked-sessions-owner/booked-sessions-owner-hooks/use-booked-sessions-owner-variables";
 
 import { getNumberOfChildrenInBooking } from "../../../functions/get-number-of-children-in-booking";
+import { format, parseISO } from "date-fns";
 
 const useDbManageCancelBookingVariables = () => {
   const {
@@ -26,6 +27,11 @@ const useDbManageCancelBookingVariables = () => {
   const matchedBookingFound =
     Object.keys(bookingToCancelDetails).length && true;
 
+  const dateAsDateObject = parseISO(sessionDate);
+  const formattedDate = dateAsDateObject
+    ? format(dateAsDateObject, "EEEE dd MMMM yyyy")
+    : sessionDate;
+
   return {
     databaseManagementIsLoading,
     bookedSessionsOwnerIsLoading,
@@ -38,6 +44,7 @@ const useDbManageCancelBookingVariables = () => {
     matchedBookingFound,
     numberOfChildrenInBooking,
     userOfAppChoice,
+    formattedDate,
   };
 };
 

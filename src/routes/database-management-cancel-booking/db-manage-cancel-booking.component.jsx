@@ -40,7 +40,6 @@ const DbManageCancelBooking = () => {
         <ShowFetchErrors />
       ) : (
         <>
-          {/* <CancelBookingInfoAccordion /> */}
           <CancelBookingIntro />
           <GetBookingToCancelForm />
           <MatchedSessionDetails />

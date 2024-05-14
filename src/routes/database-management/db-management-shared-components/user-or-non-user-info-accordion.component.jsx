@@ -55,11 +55,10 @@ const UserOrNonUserInfoAccordion = () => {
               </Text>
               <ul>
                 <li>
-                  {isAddingBookingRoute() ? "Add" : "Remove"} the booking data.
-                </li>
-
-                <li>
                   {isAddingBookingRoute() ? "Deduct" : "Add"} session spaces.
+                </li>
+                <li>
+                  {isAddingBookingRoute() ? "Add" : "Remove"} the booking data.
                 </li>
               </ul>
               <BlackHr />
@@ -67,13 +66,13 @@ const UserOrNonUserInfoAccordion = () => {
                 if they <RedSpan>are</RedSpan> a user of the app, we will:
               </Text>
               <ul>
-                <li>
-                  {isAddingBookingRoute() ? "Add" : "Remove"} booking data.
-                </li>
+                <li>update the users balance.</li>
                 <li>
                   {isAddingBookingRoute() ? "Deduct" : "Add"} session spaces.
                 </li>
-                <li>update the users balance.</li>
+                <li>
+                  {isAddingBookingRoute() ? "Add" : "Remove"} booking data.
+                </li>
               </ul>
               <BlackHr />
               <YellowGreenButton onClick={dispatchHideShownElement}>

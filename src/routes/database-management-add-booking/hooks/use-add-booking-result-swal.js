@@ -1,21 +1,13 @@
 import { useEffect } from "react";
 
 import useGetDatabaseManagementSelectors from "../../../hooks/get-selectors/use-get-database-management-selectors";
-import useHamburgerHandlerNavigate from "../../../hooks/use-hamburger-handler-navigate";
-import useDatabaseManagementActions from "../../../hooks/get-actions-and-thunks/database-management-actions-and-thunks/use-database-management-actions";
-import useFireSwal from "../../../hooks/use-fire-swal";
-
-import {
-  balanceAddedSessionSpacesUpdatedAddBookingFailedErrorMessage,
-  balanceUpdateFailedErrorMessage,
-  balanceUpdatedSessionSpacesFailedErrorMessage,
-  bookingManuallyAddedFailedErrorMessage,
-  errorReceivedMessageWithoutContactDetail,
-  sessionSpacesUpdatedAddBookingFailedErrorMessage,
-  userHasInsufficentFundsErrorMessage,
-} from "../../../strings/errors/errors-strings";
-import { bookingSuccessfullyAddedMessage } from "../../../strings/successes/successes-strings";
-import { databaseManagementRoute } from "../../../strings/routes/routes-strings";
+import useAddBookingSuccessSwal from "./swals/use-add-booking-success-swal";
+import useInsufficientFundsSwal from "./swals/use-insufficient-funds-swal";
+import useAddBookingUpdateBalanceFailedSwal from "./swals/use-add-booking-update-balance-failed-swal";
+import useAddBookingUpdateBalanceFulfilledUpdateSessionSpacesFailedSwal from "./swals/use-add-booking-update-balance-fulfilled-update-session-spaces-failed-swal";
+import useAddBookingUpdateBalanceFulfilledUpdateSessionSpacesFulfilledAddBookingFailedSwal from "./swals/use-add-booking-update-balance-fulfilled-update-session-spaces-fulfilled-add-booking-failed-swal";
+import useUpdateSessionSpacesOrAddBookingFailedSwal from "./swals/use-add-booking-update-session-spaces-or-add-booking-failed-swal";
+import useUpdateSessionSpacesFulfilledAddBookingFailedSwal from "./swals/use-add-booking-update-session-spaces-fulfilled-add-booking-failed-swal";
 
 const useAddBookingResultSwal = () => {
   const {
@@ -28,17 +20,21 @@ const useAddBookingResultSwal = () => {
     errorId,
     userOfAppChoice,
   } = useGetDatabaseManagementSelectors();
-  const {
-    dispatchResetAddBookingResult,
-    dispatchResetAddBookingError,
-    dispatchResetUpdateBalanceResult,
-    dispatchResetUpdateBalanceError,
-    dispatchResetUpdateSessionSpacesResult,
-    dispatchResetUpdateSessionSpacesError,
-  } = useDatabaseManagementActions();
-  const { hamburgerHandlerNavigate } = useHamburgerHandlerNavigate();
 
-  const { fireSwal } = useFireSwal();
+  const { addBookingSuccessSwal } = useAddBookingSuccessSwal();
+  const { insufficientFundsSwal } = useInsufficientFundsSwal();
+  const { addBookingUpdateBalanceFailedSwal } =
+    useAddBookingUpdateBalanceFailedSwal();
+  const { addBookingUpdateBalanceFulfilledUpdateSessionSpacesFailedSwal } =
+    useAddBookingUpdateBalanceFulfilledUpdateSessionSpacesFailedSwal();
+  const {
+    addBookingUpdateBalanceFulfilledUpdateSessionSpacesFulfilledAddBookingFailedSwal,
+  } =
+    useAddBookingUpdateBalanceFulfilledUpdateSessionSpacesFulfilledAddBookingFailedSwal();
+  const { updateSessionSpacesOrAddBookingFailedSwal } =
+    useUpdateSessionSpacesOrAddBookingFailedSwal();
+  const { updateSessionSpacesFulfilledAddBookingFailedSwal } =
+    useUpdateSessionSpacesFulfilledAddBookingFailedSwal();
 
   useEffect(() => {
     if (
@@ -63,159 +59,61 @@ const useAddBookingResultSwal = () => {
         addBookingResult === "fulfilled") ||
       (errorId === "2" && addBookingResult === "fulfilled")
     ) {
-      fireSwal(
-        "success",
-        bookingSuccessfullyAddedMessage,
-        "",
-        0,
-        true,
-        false
-      ).then((isConfirmed) => {
-        if (isConfirmed) {
-          hamburgerHandlerNavigate(databaseManagementRoute);
-        }
-      });
+      addBookingSuccessSwal();
     } else if (
       userOfAppChoice === "user" &&
       updateBalanceResult === "rejected" &&
       updateBalanceError.includes("Value must be a valid range")
     ) {
-      fireSwal(
-        "error",
-        userHasInsufficentFundsErrorMessage,
-        "",
-        0,
-        true,
-        false
-      ).then((isConfirmed) => {
-        if (isConfirmed) {
-          dispatchResetUpdateBalanceResult();
-          dispatchResetUpdateBalanceError();
-        }
-      });
+      insufficientFundsSwal();
     } else if (
       userOfAppChoice === "user" &&
       updateBalanceResult === "rejected" &&
       !updateBalanceError.includes("Value must be a valid range")
     ) {
-      const error = updateBalanceError;
-      fireSwal(
-        "error",
-        balanceUpdateFailedErrorMessage,
-        errorReceivedMessageWithoutContactDetail(error),
-        0,
-        true,
-        false
-      ).then((isConfirmed) => {
-        if (isConfirmed) {
-          dispatchResetUpdateBalanceResult();
-          dispatchResetUpdateBalanceError();
-        }
-      });
+      addBookingUpdateBalanceFailedSwal();
     } else if (
       userOfAppChoice === "user" &&
       updateBalanceResult === "fulfilled" &&
       updateSessionSpacesResult === "rejected"
     ) {
-      const error = updateSessionSpacesError;
-      fireSwal(
-        "error",
-        balanceUpdatedSessionSpacesFailedErrorMessage,
-        errorReceivedMessageWithoutContactDetail(error),
-        0,
-        true,
-        false
-      ).then((isConfirmed) => {
-        if (isConfirmed) {
-          dispatchResetUpdateBalanceResult();
-          dispatchResetUpdateSessionSpacesError();
-          dispatchResetUpdateSessionSpacesResult();
-        }
-      });
+      addBookingUpdateBalanceFulfilledUpdateSessionSpacesFailedSwal();
     } else if (
       userOfAppChoice === "user" &&
       updateBalanceResult === "fulfilled" &&
       updateSessionSpacesResult === "fulfilled" &&
       addBookingResult === "rejected"
     ) {
-      const error = addBookingError;
-      fireSwal(
-        "error",
-        balanceAddedSessionSpacesUpdatedAddBookingFailedErrorMessage,
-        errorReceivedMessageWithoutContactDetail(error),
-        0,
-        true,
-        false
-      ).then((isConfirmed) => {
-        if (isConfirmed) {
-          dispatchResetUpdateBalanceResult();
-          dispatchResetUpdateSessionSpacesResult();
-          dispatchResetAddBookingResult();
-          dispatchResetAddBookingError();
-        }
-      });
+      addBookingUpdateBalanceFulfilledUpdateSessionSpacesFulfilledAddBookingFailedSwal();
     } else if (
       (userOfAppChoice === "non user" &&
         updateSessionSpacesResult === "rejected") ||
       (errorId === "2" && addBookingResult === "rejected")
     ) {
-      const error = addBookingError
-        ? addBookingError
-        : updateSessionSpacesError;
-      fireSwal(
-        "error",
-        bookingManuallyAddedFailedErrorMessage,
-        errorReceivedMessageWithoutContactDetail(error),
-        0,
-        true,
-        false
-      ).then((isConfirmed) => {
-        if (isConfirmed && !errorId) {
-          dispatchResetUpdateSessionSpacesResult();
-          dispatchResetUpdateSessionSpacesError();
-        } else if (isConfirmed && errorId === "2") {
-          dispatchResetAddBookingResult();
-          dispatchResetAddBookingError();
-        }
-      });
+      updateSessionSpacesOrAddBookingFailedSwal();
     } else if (
       userOfAppChoice === "non user" &&
       updateSessionSpacesResult === "fulfilled" &&
       addBookingResult === "rejected"
     ) {
-      const error = addBookingError;
-      fireSwal(
-        "error",
-        sessionSpacesUpdatedAddBookingFailedErrorMessage,
-        errorReceivedMessageWithoutContactDetail(error),
-        0,
-        true,
-        false
-      ).then((isConfirmed) => {
-        if (isConfirmed) {
-          dispatchResetUpdateSessionSpacesResult();
-          dispatchResetAddBookingResult();
-          dispatchResetAddBookingError();
-        }
-      });
+      updateSessionSpacesFulfilledAddBookingFailedSwal();
     }
   }, [
-    fireSwal,
-    hamburgerHandlerNavigate,
     addBookingError,
     addBookingResult,
-    dispatchResetAddBookingError,
-    dispatchResetAddBookingResult,
     errorId,
-    dispatchResetUpdateSessionSpacesResult,
-    dispatchResetUpdateSessionSpacesError,
     updateSessionSpacesError,
     updateSessionSpacesResult,
-    dispatchResetUpdateBalanceResult,
-    dispatchResetUpdateBalanceError,
     updateBalanceError,
     updateBalanceResult,
     userOfAppChoice,
+    addBookingSuccessSwal,
+    insufficientFundsSwal,
+    addBookingUpdateBalanceFailedSwal,
+    addBookingUpdateBalanceFulfilledUpdateSessionSpacesFailedSwal,
+    addBookingUpdateBalanceFulfilledUpdateSessionSpacesFulfilledAddBookingFailedSwal,
+    updateSessionSpacesOrAddBookingFailedSwal,
+    updateSessionSpacesFulfilledAddBookingFailedSwal,
   ]);
 };
 

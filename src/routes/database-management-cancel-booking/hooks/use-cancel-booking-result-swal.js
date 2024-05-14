@@ -1,15 +1,11 @@
 import { useEffect } from "react";
 
 import useGetDatabaseManagementSelectors from "../../../hooks/get-selectors/use-get-database-management-selectors";
-import useHamburgerHandlerNavigate from "../../../hooks/use-hamburger-handler-navigate";
-import useDatabaseManagementActions from "../../../hooks/get-actions-and-thunks/database-management-actions-and-thunks/use-database-management-actions";
-import useFireSwal from "../../../hooks/use-fire-swal";
 import useCancelBookingSuccessSwal from "./swals/use-cancel-booking-success-swal";
-
-import useCancelBookingFailedSwal from "./swals/use-cancel-booking-failed-swal";
-import useBookingCancelledBalanceUpdateFailedSwal from "./swals/use-booking-cancelled-balance-update-failed-swal";
-import useBookingCancelledBalanceUpdatedSessionSpacesFailedSwal from "./swals/use-booking-cancelled-balance-updated-session-spaces-failed-swal";
-import useBookingCancelledSessionSpacesUpdateFailedSwal from "./swals/use-booking-cancelled-session-spaces-update-failed-swal";
+import useCancelBookingFirstThunkFailedSwal from "./swals/use-cancel-booking-first-thunk-failed-swal";
+import useCancelBookingSessionSpacesFulfilledDeleteDocFailedSwal from "./swals/use-cancel-booking-session-spaces-fulfilled-delete-doc-failed-swal";
+import useCancelBookingUpdateBalanceFulfilledUpdateSessionSpacesFailedSwal from "./swals/use-cancel-booking-update-balance-fulfilled-update-session-spaces-failed-swal";
+import useCancelBookingUpdateBalanceFulfilledUpdateSessionSpacesFulfilledDeleteDocFailedSwal from "./swals/use-cancel-booking-update-balance-fulfilled-update-session-spaces-fulfilled-delete-doc-failed-swal";
 
 const useCancelBookingResultSwal = () => {
   const {
@@ -21,22 +17,18 @@ const useCancelBookingResultSwal = () => {
     updateSessionSpacesError,
     userOfAppChoice,
   } = useGetDatabaseManagementSelectors();
-  const {
-    dispatchResetDeleteDocumentResult,
-    dispatchResetDeleteDocumentError,
-    dispatchResetDataToUpdateDocument,
-  } = useDatabaseManagementActions();
-  const { hamburgerHandlerNavigate } = useHamburgerHandlerNavigate();
-  const { cancelBookingSuccessSwal } = useCancelBookingSuccessSwal();
-  const { cancelBookingFailedSwal } = useCancelBookingFailedSwal();
-  const { bookingCancelledBalanceUpdateFailedSwal } =
-    useBookingCancelledBalanceUpdateFailedSwal();
-  const { bookingCancelledBalanceUpdatedSessionSpacesFailedSwal } =
-    useBookingCancelledBalanceUpdatedSessionSpacesFailedSwal();
-  const { bookingCancelledSessionSpacesUpdateFailedSwal } =
-    useBookingCancelledSessionSpacesUpdateFailedSwal();
 
-  const { fireSwal } = useFireSwal();
+  const { cancelBookingSuccessSwal } = useCancelBookingSuccessSwal();
+  const { cancelBookingFirstThunkFailedSwal } =
+    useCancelBookingFirstThunkFailedSwal();
+  const { cancelBookingSessionSpacesFulfilledDeleteDocFailedSwal } =
+    useCancelBookingSessionSpacesFulfilledDeleteDocFailedSwal();
+  const { cancelBookingUpdateBalanceFulfilledUpdateSessionSpacesFailedSwal } =
+    useCancelBookingUpdateBalanceFulfilledUpdateSessionSpacesFailedSwal();
+  const {
+    cancelBookingUpdateBalanceFulfilledUpdateSessionSpacesFulfilledDeleteDocFailedSwal,
+  } =
+    useCancelBookingUpdateBalanceFulfilledUpdateSessionSpacesFulfilledDeleteDocFailedSwal();
 
   useEffect(() => {
     if (
@@ -50,55 +42,54 @@ const useCancelBookingResultSwal = () => {
       return;
 
     if (
+      (userOfAppChoice === "non user" &&
+        updateSessionSpacesResult === "fulfilled" &&
+        deleteDocumentResult === "fulfilled") ||
       (userOfAppChoice === "user" &&
         deleteDocumentResult === "fulfilled" &&
         updateBalanceResult === "fulfilled" &&
-        updateSessionSpacesResult === "fulfilled") ||
-      (userOfAppChoice === "non user" &&
-        deleteDocumentResult === "fulfilled" &&
         updateSessionSpacesResult === "fulfilled")
     ) {
       cancelBookingSuccessSwal();
-    } else if (deleteDocumentResult === "rejected") {
-      cancelBookingFailedSwal();
     } else if (
-      userOfAppChoice === "user" &&
-      deleteDocumentResult === "fulfilled" &&
-      updateBalanceResult === "rejected"
+      (userOfAppChoice === "non user" &&
+        updateSessionSpacesResult === "rejected") ||
+      (userOfAppChoice === "user" && updateBalanceResult === "rejected")
     ) {
-      bookingCancelledBalanceUpdateFailedSwal();
+      cancelBookingFirstThunkFailedSwal();
+    } else if (
+      userOfAppChoice === "non user" &&
+      updateSessionSpacesResult === "fulfilled" &&
+      deleteDocumentResult === "rejected"
+    ) {
+      cancelBookingSessionSpacesFulfilledDeleteDocFailedSwal();
     } else if (
       userOfAppChoice === "user" &&
-      deleteDocumentResult === "fulfilled" &&
       updateBalanceResult === "fulfilled" &&
       updateSessionSpacesResult === "rejected"
     ) {
-      bookingCancelledBalanceUpdatedSessionSpacesFailedSwal();
+      cancelBookingUpdateBalanceFulfilledUpdateSessionSpacesFailedSwal();
     } else if (
-      userOfAppChoice === "non user" &&
-      deleteDocumentResult === "fulfilled" &&
-      updateSessionSpacesResult === "rejected"
+      userOfAppChoice === "user" &&
+      updateBalanceResult === "fulfilled" &&
+      updateSessionSpacesResult === "fulfilled" &&
+      deleteDocumentResult === "rejected"
     ) {
-      bookingCancelledSessionSpacesUpdateFailedSwal();
+      cancelBookingUpdateBalanceFulfilledUpdateSessionSpacesFulfilledDeleteDocFailedSwal();
     }
   }, [
-    fireSwal,
-    hamburgerHandlerNavigate,
-    dispatchResetDeleteDocumentResult,
-    dispatchResetDeleteDocumentError,
-    dispatchResetDataToUpdateDocument,
     deleteDocumentResult,
     deleteDocumentError,
     updateBalanceError,
     updateBalanceResult,
     updateSessionSpacesError,
     updateSessionSpacesResult,
-    cancelBookingSuccessSwal,
-    cancelBookingFailedSwal,
-    bookingCancelledBalanceUpdateFailedSwal,
-    bookingCancelledBalanceUpdatedSessionSpacesFailedSwal,
     userOfAppChoice,
-    bookingCancelledSessionSpacesUpdateFailedSwal,
+    cancelBookingSuccessSwal,
+    cancelBookingFirstThunkFailedSwal,
+    cancelBookingSessionSpacesFulfilledDeleteDocFailedSwal,
+    cancelBookingUpdateBalanceFulfilledUpdateSessionSpacesFailedSwal,
+    cancelBookingUpdateBalanceFulfilledUpdateSessionSpacesFulfilledDeleteDocFailedSwal,
   ]);
 };
 
