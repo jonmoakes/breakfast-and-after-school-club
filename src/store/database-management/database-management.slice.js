@@ -8,6 +8,7 @@ import {
   addBookingDataAsync,
   updateSessionSpacesDocAsync,
   deleteDocumentAsync,
+  createUserDocumentAsync,
 } from "./database-management-thunks";
 
 export const databaseManagementSlice = createSlice({
@@ -119,6 +120,12 @@ export const databaseManagementSlice = createSlice({
     resetDeleteDocumentError(state) {
       state.deleteDocumentError = null;
     },
+    resetCreateUserDocumentResult(state) {
+      state.createUserDocumentResult = "";
+    },
+    resetCreateUserDocumentError(state) {
+      state.createUserDocumentError = null;
+    },
     setBookingToCancelDetails(state, action) {
       state.bookingToCancelDetails = action.payload;
     },
@@ -169,6 +176,8 @@ export const databaseManagementSlice = createSlice({
       (state) => state.userHasDeletedAllChildren,
       (state) => state.deleteDocumentResult,
       (state) => state.deleteDocumentError,
+      (state) => state.createUserDocumentResult,
+      (state) => state.createUserDocumentError,
       (state) => state.bookingToCancelDetails,
       (state) => state.userOfAppChoice,
       (
@@ -204,6 +213,8 @@ export const databaseManagementSlice = createSlice({
         userHasDeletedAllChildren,
         deleteDocumentResult,
         deleteDocumentError,
+        createUserDocumentResult,
+        createUserDocumentError,
         bookingToCancelDetails,
         userOfAppChoice
       ) => {
@@ -240,6 +251,8 @@ export const databaseManagementSlice = createSlice({
           userHasDeletedAllChildren,
           deleteDocumentResult,
           deleteDocumentError,
+          createUserDocumentResult,
+          createUserDocumentError,
           bookingToCancelDetails,
           userOfAppChoice,
         };
@@ -338,6 +351,19 @@ export const databaseManagementSlice = createSlice({
         state.databaseManagementIsLoading = false;
         state.deleteDocumentResult = "rejected";
         state.deleteDocumentError = action.payload;
+      })
+      .addCase(createUserDocumentAsync.pending, (state) => {
+        state.databaseManagementIsLoading = true;
+      })
+      .addCase(createUserDocumentAsync.fulfilled, (state) => {
+        state.databaseManagementIsLoading = false;
+        state.createUserDocumentResult = "fulfilled";
+        state.createUserDocumentError = null;
+      })
+      .addCase(createUserDocumentAsync.rejected, (state, action) => {
+        state.databaseManagementIsLoading = false;
+        state.createUserDocumentResult = "rejected";
+        state.createUserDocumentError = action.payload;
       });
   },
 });
@@ -378,6 +404,8 @@ export const {
   setUserHasDeletedAllChildren,
   resetDeleteDocumentResult,
   resetDeleteDocumentError,
+  resetCreateUserDocumentResult,
+  resetCreateUserDocumentError,
   setBookingToCancelDetails,
   resetBookingToCancelDetails,
   setUserOfAppChoice,

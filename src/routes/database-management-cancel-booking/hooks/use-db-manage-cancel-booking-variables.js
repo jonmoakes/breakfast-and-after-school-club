@@ -27,7 +27,7 @@ const useDbManageCancelBookingVariables = () => {
   const matchedBookingFound =
     Object.keys(bookingToCancelDetails).length && true;
 
-  const dateAsDateObject = parseISO(sessionDate);
+  const dateAsDateObject = sessionDate ? parseISO(sessionDate) : sessionDate;
   const formattedDate = dateAsDateObject
     ? format(dateAsDateObject, "EEEE dd MMMM yyyy")
     : sessionDate;

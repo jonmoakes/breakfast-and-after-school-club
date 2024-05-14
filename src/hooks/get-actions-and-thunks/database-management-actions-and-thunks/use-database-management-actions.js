@@ -33,6 +33,8 @@ import {
   setUserHasDeletedAllChildren,
   resetDeleteDocumentResult,
   resetDeleteDocumentError,
+  resetCreateUserDocumentResult,
+  resetCreateUserDocumentError,
   resetDataToUpdateDocument,
   setBookingToCancelDetails,
   resetBookingToCancelDetails,
@@ -171,6 +173,14 @@ const useDatabaseManagementActions = () => {
     dispatch(resetDeleteDocumentError());
   };
 
+  const dispatchResetCreateUserDocumentResult = () => {
+    dispatch(resetCreateUserDocumentResult());
+  };
+
+  const dispatchResetCreateUserDocumentError = () => {
+    dispatch(resetCreateUserDocumentError());
+  };
+
   const dispatchSetBookingToCancelDetails = (payload) => {
     dispatch(setBookingToCancelDetails(payload));
   };
@@ -225,6 +235,8 @@ const useDatabaseManagementActions = () => {
     dispatchSetUserHasDeletedAllChildren,
     dispatchResetDeleteDocumentResult,
     dispatchResetDeleteDocumentError,
+    dispatchResetCreateUserDocumentResult,
+    dispatchResetCreateUserDocumentError,
     dispatchSetBookingToCancelDetails,
     dispatchResetBookingToCancelDetails,
     dispatchSetUserOfAppChoice,

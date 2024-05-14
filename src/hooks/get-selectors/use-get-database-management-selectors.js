@@ -36,6 +36,8 @@ const useGetDatabaseManagementSelectors = () => {
     userHasDeletedAllChildren,
     deleteDocumentResult,
     deleteDocumentError,
+    createUserDocumentResult,
+    createUserDocumentError,
     bookingToCancelDetails,
     userOfAppChoice,
   } = useSelector(selectDatabaseManagementSelectors);
@@ -102,6 +104,8 @@ const useGetDatabaseManagementSelectors = () => {
     userHasDeletedAllChildren,
     deleteDocumentResult,
     deleteDocumentError,
+    createUserDocumentResult,
+    createUserDocumentError,
     childToDeleteDocumentId,
     userToDeleteDocumentId,
     bookingId,

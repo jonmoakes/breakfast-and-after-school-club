@@ -30,6 +30,8 @@ export const INITIAL_STATE = {
   errorId: "",
   deleteDocumentResult: "",
   deleteDocumentError: null,
+  createUserDocumentResult: "",
+  createUserDocumentError: null,
   userHasDeletedAllChildren: false,
   bookingToCancelDetails: {},
   userOfAppChoice: null,

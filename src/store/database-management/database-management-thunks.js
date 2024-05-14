@@ -10,6 +10,8 @@ import { updateWalletBalance } from "./database-management-functions";
 import { lastMinuteNoSessionsMessage } from "../../strings/errors/errors-strings";
 import { bookSessionRoute } from "../../strings/routes/routes-strings";
 
+import { generateUniqueId } from "../../functions/generate-unique-id";
+
 export const updateBookingClosingTimesAsync = createAsyncThunk(
   "updateBookingClosingTimes",
   async (
@@ -295,6 +297,45 @@ export const deleteDocumentAsync = createAsyncThunk(
         databaseId,
         collectionId,
         documentId
+      );
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
+export const createUserDocumentAsync = createAsyncThunk(
+  "createUserDocument",
+  async (
+    {
+      parentName,
+      parentEmail,
+      schoolCode,
+      parentPhoneNumber,
+      databaseId,
+      collectionId,
+    },
+    thunkAPI
+  ) => {
+    try {
+      const id = generateUniqueId(20);
+
+      const data = {
+        id,
+        name: parentName.toLowerCase(),
+        email: parentEmail.toLowerCase(),
+        createdAt: new Date(),
+        walletBalance: null,
+        schoolCode,
+        phoneNumber: parentPhoneNumber,
+      };
+
+      await manageDatabaseDocument(
+        "create",
+        databaseId,
+        collectionId,
+        id,
+        data
       );
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
