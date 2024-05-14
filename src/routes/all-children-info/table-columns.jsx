@@ -57,4 +57,8 @@ export const TABLE_COLUMNS = [
       );
     },
   },
+  {
+    Header: "parents user id",
+    accessor: "parentsUserId",
+  },
 ];
