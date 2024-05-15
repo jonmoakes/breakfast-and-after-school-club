@@ -51,6 +51,7 @@ import {
   aboutRoute,
   pricingRoute,
   databaseManagementCreateChildRoute,
+  databaseManagementDeleteChildRoute,
 } from "./strings/routes/routes-strings";
 
 const Navigation = lazy(() =>
@@ -176,6 +177,12 @@ const DBManageCreateChild = lazy(() =>
   )
 );
 
+const DBManageDeleteChild = lazy(() =>
+  import(
+    "./routes/database-management-delete-child/db-manage-delete-child.component"
+  )
+);
+
 const App = () => {
   const { currentUser, appOwnerId } = useGetCurrentUserSelectors();
   useGetUserOnLoadThunkUseEffect();
@@ -284,6 +291,10 @@ const App = () => {
               <Route
                 path={databaseManagementCreateChildRoute}
                 element={<DBManageCreateChild />}
+              />
+              <Route
+                path={databaseManagementDeleteChildRoute}
+                element={<DBManageDeleteChild />}
               />
               <Route path={childInfoRoute} element={<ChildInfo />} />
               <Route path={addChildInfoRoute} element={<AddChildInfo />} />

@@ -1,5 +1,5 @@
 import useGetDatabaseManagementSelectors from "../../hooks/get-selectors/use-get-database-management-selectors";
-import useDeleteChildOrUserResultSwal from "./hooks/use-delete-child-or-user-result-swal";
+import useDeleteChildOrUserResultSwal from "../../hooks/database-management/use-delete-child-or-user-result-swal";
 import useHamburgerHandlerNavigate from "../../hooks/use-hamburger-handler-navigate";
 
 import Loader from "../../components/loader/loader.component";
