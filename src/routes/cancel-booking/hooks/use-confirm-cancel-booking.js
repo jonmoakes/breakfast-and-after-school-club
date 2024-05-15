@@ -19,6 +19,7 @@ const useConfirmCancelBooking = () => {
 
   const { sessionType, numberOfChildrenInBooking } =
     useCancelBookingVariables();
+
   const { sessionPrice, formattedSessionPrice } = useGetSessionPrice(
     sessionType,
     numberOfChildrenInBooking

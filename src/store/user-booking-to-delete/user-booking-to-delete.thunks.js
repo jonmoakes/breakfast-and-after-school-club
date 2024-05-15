@@ -6,17 +6,12 @@ import {
 
 export const deleteUserBookingAsync = createAsyncThunk(
   "deleteUserbooking",
-  async (
-    { userBookingToDelete, bookedSessionsCollectionId, databaseId },
-    thunkAPI
-  ) => {
+  async ({ $id, bookedSessionsCollectionId, databaseId }, thunkAPI) => {
     try {
-      const { $id } = userBookingToDelete;
-      const collectionId = bookedSessionsCollectionId;
       const queryIndex = "$id";
       const queryValue = $id;
       const documentId = $id;
-      const data = userBookingToDelete;
+      const collectionId = bookedSessionsCollectionId;
 
       const getBookingDocuments = await listDocumentsByQueryOrSearch(
         databaseId,
@@ -27,14 +22,15 @@ export const deleteUserBookingAsync = createAsyncThunk(
 
       const { total } = getBookingDocuments;
 
-      if (!total) return;
+      if (!total) {
+        throw new Error("booking not found");
+      }
 
       await manageDatabaseDocument(
         "delete",
         databaseId,
         collectionId,
-        documentId,
-        data
+        documentId
       );
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);

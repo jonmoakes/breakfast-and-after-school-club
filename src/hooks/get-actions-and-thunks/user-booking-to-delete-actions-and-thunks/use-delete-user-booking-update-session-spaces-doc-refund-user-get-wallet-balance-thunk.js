@@ -24,13 +24,13 @@ const useDeleteUserBookingUpdateSessionSpacesDocRefundUserGetWalletBalanceThunk 
 
     const dispatch = useDispatch();
 
-    const { date, sessionType } = userBookingToDelete || {};
+    const { date, sessionType, $id } = userBookingToDelete || {};
 
     const deleteUserBookingUpdateSessionSpacesDocRefundUserGetWalletBalanceThunk =
       (numberOfChildrenInBooking, sessionPrice) => {
         dispatch(
           deleteUserBookingAsync({
-            userBookingToDelete,
+            $id,
             bookedSessionsCollectionId,
             databaseId,
           })
