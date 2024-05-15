@@ -28,6 +28,7 @@ export const ownerSignedInRoutes = [
   allChildrenRoute,
   allUsersRoute,
   accountRoute,
+  contactRoute,
 ];
 
 export const signedOutRoutes = [

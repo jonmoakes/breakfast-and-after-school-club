@@ -14,6 +14,7 @@ import {
   allUsersRoute,
   uploadDatesRoute,
   databaseManagementRoute,
+  contactRoute,
 } from "../../../strings/routes/routes-strings";
 
 const useNavigateToRoute = () => {
@@ -50,6 +51,11 @@ const useNavigateToRoute = () => {
       id: 6,
       text: " upload dates",
       onClick: () => hamburgerHandlerNavigate(uploadDatesRoute),
+    },
+    {
+      id: 7,
+      text: " contact",
+      onClick: () => hamburgerHandlerNavigate(contactRoute),
     },
   ].filter(Boolean); // Remove falsy values (null, undefined) from the array
 
@@ -88,6 +94,11 @@ const useNavigateToRoute = () => {
       id: 7,
       text: " close account",
       onClick: () => hamburgerHandlerNavigate(closeAccountRoute),
+    },
+    {
+      id: 8,
+      text: " contact us",
+      onClick: () => hamburgerHandlerNavigate(contactRoute),
     },
   ];
 

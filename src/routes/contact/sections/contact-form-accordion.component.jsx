@@ -43,8 +43,8 @@ const ContactFormAccordion = () => {
             {shouldShowElement && (
               <AccordionContent>
                 <Text>
-                  to provide the app owner with your contact details, we will
-                  use the name and email that you signed up with:
+                  to provide the school with your contact details, we will use
+                  the name and email that you signed up with:
                   <br />
                   <RedSpan>{currentUserNameForContactForm}</RedSpan>
                   <br />
