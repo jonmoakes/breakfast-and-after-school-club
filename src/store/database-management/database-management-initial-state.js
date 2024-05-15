@@ -32,6 +32,8 @@ export const INITIAL_STATE = {
   deleteDocumentError: null,
   createUserDocumentResult: "",
   createUserDocumentError: null,
+  createChildDocumentResult: "",
+  createChildDocumentError: null,
   userHasDeletedAllChildren: false,
   bookingToCancelDetails: {},
   userOfAppChoice: null,

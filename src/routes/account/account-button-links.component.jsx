@@ -2,6 +2,7 @@ import useNavigateToRoute from "./account-hooks/use-navigate-to-route";
 
 import useGetCurrentUserSelectors from "../../hooks/get-selectors/use-get-current-user-selectors";
 import RenderButtonsList from "../../components/render-buttons-list/render-buttons-list.component";
+import { ParentDiv } from "../../styles/div/div.styles";
 
 const AccountButtonLinks = () => {
   const { appOwnerButtons, notAppOwnerButtons } = useNavigateToRoute();
@@ -10,9 +11,13 @@ const AccountButtonLinks = () => {
   return (
     <>
       {id === appOwnerId ? (
-        <RenderButtonsList {...{ buttons: appOwnerButtons }} />
+        <ParentDiv>
+          <RenderButtonsList {...{ buttons: appOwnerButtons }} />
+        </ParentDiv>
       ) : (
-        <RenderButtonsList {...{ buttons: notAppOwnerButtons }} />
+        <ParentDiv>
+          <RenderButtonsList {...{ buttons: notAppOwnerButtons }} />
+        </ParentDiv>
       )}
     </>
   );

@@ -38,6 +38,8 @@ const useGetDatabaseManagementSelectors = () => {
     deleteDocumentError,
     createUserDocumentResult,
     createUserDocumentError,
+    createChildDocumentResult,
+    createChildDocumentError,
     bookingToCancelDetails,
     userOfAppChoice,
   } = useSelector(selectDatabaseManagementSelectors);
@@ -56,6 +58,14 @@ const useGetDatabaseManagementSelectors = () => {
     childToDeleteDocumentId,
     userToDeleteDocumentId,
     bookingId,
+
+    //adding a child
+    childName,
+    childAge,
+    consent,
+    medicalInfo,
+    dietryRequirements,
+    additionalInfo,
   } = dataToUpdateDocument ?? {};
 
   const { sessionDate, sessionChildren, typeOfSession, userIdOfParent } =
@@ -106,6 +116,8 @@ const useGetDatabaseManagementSelectors = () => {
     deleteDocumentError,
     createUserDocumentResult,
     createUserDocumentError,
+    createChildDocumentResult,
+    createChildDocumentError,
     childToDeleteDocumentId,
     userToDeleteDocumentId,
     bookingId,
@@ -115,6 +127,12 @@ const useGetDatabaseManagementSelectors = () => {
     typeOfSession,
     userIdOfParent,
     userOfAppChoice,
+    childName,
+    childAge,
+    consent,
+    medicalInfo,
+    dietryRequirements,
+    additionalInfo,
   };
 };
 

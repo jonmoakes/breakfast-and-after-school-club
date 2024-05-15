@@ -44,5 +44,9 @@ export const databaseManagementDeleteUserRoute =
   "/database-management/delete-user";
 export const databaseManagementCreateUserRoute =
   "/database-manangement/create-user";
+export const databaseManagementCreateChildRoute =
+  "/database-manangement/create-child";
+export const databaseManagementDeleteChildRoute =
+  "/database-manangement/delete-child";
 export const pricingRoute = "/pricing";
 export const termsRoute = "/terms-and-conditions";

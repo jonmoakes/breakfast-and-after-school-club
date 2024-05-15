@@ -342,3 +342,53 @@ export const createUserDocumentAsync = createAsyncThunk(
     }
   }
 );
+
+export const createChildDocumentAsync = createAsyncThunk(
+  "createChildDocument",
+  async (
+    {
+      childAge,
+      childName,
+      consent,
+      medicalInfo,
+      dietryRequirements,
+      additionalInfo,
+      parentName,
+      parentEmail,
+      parentPhoneNumber,
+      parentsUserId,
+      databaseId,
+      collectionId,
+    },
+    thunkAPI
+  ) => {
+    try {
+      const id = generateUniqueId(20);
+      const ageOfChildAsNumber =
+        typeof childAge === "string" ? Number(childAge) : childAge;
+
+      const data = {
+        childName: childName.toLowerCase(),
+        age: ageOfChildAsNumber,
+        consent,
+        medicalInfo,
+        dietryRequirements,
+        additionalInfo,
+        parentName: parentName.toLowerCase(),
+        parentEmail: parentEmail.toLowerCase(),
+        parentPhoneNumber,
+        parentsUserId: parentsUserId.toLowerCase(),
+      };
+
+      await manageDatabaseDocument(
+        "create",
+        databaseId,
+        collectionId,
+        id,
+        data
+      );
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);

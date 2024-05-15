@@ -32,3 +32,4 @@ export const sessionspacesUpdatedMessage =
   "the session spaces were successfully updated!";
 export const bookingSuccessfullyAddedMessage =
   "the booking was successfully added!";
+export const userCreatedMessage = `<span style="font-size:20px;">user created! consider now heading to the 'create child' page so that you can add this users children to the database.'</span>`;

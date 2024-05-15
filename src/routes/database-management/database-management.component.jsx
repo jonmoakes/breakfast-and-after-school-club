@@ -9,9 +9,12 @@ import { BlackTitle } from "../../styles/h1/h1.styles";
 import { Text } from "../../styles/p/p.styles";
 import { RedSpan } from "../../styles/span/span.styles";
 import { YellowGreenButton } from "../../styles/buttons/buttons.styles";
+import { BlackH2 } from "../../styles/h2/h2.styles";
+import { BlackHr } from "../../styles/hr/hr.styles";
 
 const DatabaseManagement = () => {
-  const { dbManagementButtons } = useNavigateToDbManagementButtons();
+  const { dbManagementButtons, dbManagementForErrorReceivedButtons } =
+    useNavigateToDbManagementButtons();
 
   const setUserHasConfirmed = () => {
     localStorage.setItem("userHasConfirmed", "true");
@@ -35,13 +38,14 @@ const DatabaseManagement = () => {
           </RedSpan>
         </Text>
         <Text>
-          please also note, any button including and under the heading of '
-          <RedSpan>update a users balance</RedSpan>', should only be pressed if
-          you have received an email telling you that there was an error when a
-          user tried to perform an action in the app.
+          please also note that any button under the heading of '
+          <RedSpan>For If You Received An Error Email</RedSpan>', should only be
+          pressed if you have received an email telling you that there was an
+          error when a user tried to perform an action in the app.
         </Text>
         <Text>
-          if this is the case, you will have the error id in the email.
+          if this is the case, you will have the error id in the email you
+          received.
         </Text>
         <Text>
           tap on the button with the corresponding error id and this will take
@@ -78,7 +82,21 @@ const DatabaseManagement = () => {
       ) : null}
 
       {userHasConfirmed === "true" ? (
-        <RenderButtonsList {...{ buttons: dbManagementButtons }} />
+        <ParentDiv>
+          <BlackH2>standard database management options:</BlackH2>
+          <BlackHr />
+          <RenderButtonsList {...{ buttons: dbManagementButtons }} />
+        </ParentDiv>
+      ) : null}
+
+      {userHasConfirmed === "true" ? (
+        <ParentDiv>
+          <BlackH2>for if you received an error email</BlackH2>
+          <BlackHr />
+          <RenderButtonsList
+            {...{ buttons: dbManagementForErrorReceivedButtons }}
+          />
+        </ParentDiv>
       ) : null}
     </Container>
   );

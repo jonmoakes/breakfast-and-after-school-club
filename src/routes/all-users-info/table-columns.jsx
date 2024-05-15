@@ -45,9 +45,12 @@ export const TABLE_COLUMNS = [
   {
     Header: "User Id",
     accessor: "id",
+    Cell: ({ value }) => {
+      return <LowercasedSpan>{value}</LowercasedSpan>;
+    },
   },
   {
-    Header: "joined On",
+    Header: "created On",
     accessor: "createdAtDateObjectForSorting",
     Cell: ({ value }) => {
       return <FormattedDateCell {...{ value }} />;

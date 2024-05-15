@@ -56,6 +56,7 @@ import {
   databaseManagementDeleteUserRoute,
   databaseManagementCreateUserRoute,
   databaseManagementCancelBookingRoute,
+  databaseManagementCreateChildRoute,
 } from "../strings/routes/routes-strings";
 
 const useResetStore = () => {
@@ -207,6 +208,7 @@ const useResetStore = () => {
       case databaseManagementAddBookingRoute:
       case databaseManagementDeleteUserRoute:
       case databaseManagementCreateUserRoute:
+      case databaseManagementCreateChildRoute:
         dispatchResetDatabaseManagementState();
         break;
       case databaseManagementCancelBookingRoute:

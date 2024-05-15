@@ -5,29 +5,25 @@ import useHamburgerHandlerNavigate from "../../../hooks/use-hamburger-handler-na
 import useDatabaseManagementActions from "../../../hooks/get-actions-and-thunks/database-management-actions-and-thunks/use-database-management-actions";
 import useFireSwal from "../../../hooks/use-fire-swal";
 
-import {
-  errorCreatingUserMessage,
-  errorReceivedMessage,
-} from "../../../strings/errors/errors-strings";
+import { errorReceivedMessage } from "../../../strings/errors/errors-strings";
 import { databaseManagementRoute } from "../../../strings/routes/routes-strings";
-import { userCreatedMessage } from "../../../strings/successes/successes-strings";
 
-const useCreateUserResultSwal = () => {
-  const { createUserDocumentResult, createUserDocumentError } =
+const useCreateChildResultSwal = () => {
+  const { createChildDocumentResult, createChildDocumentError } =
     useGetDatabaseManagementSelectors();
   const {
-    dispatchResetCreateUserDocumentResult,
-    dispatchResetCreateUserDocumentError,
+    dispatchResetCreateChildDocumentResult,
+    dispatchResetCreateChildDocumentError,
   } = useDatabaseManagementActions();
   const { hamburgerHandlerNavigate } = useHamburgerHandlerNavigate();
 
   const { fireSwal } = useFireSwal();
 
   useEffect(() => {
-    if (!createUserDocumentResult && !createUserDocumentError) return;
+    if (!createChildDocumentResult && !createChildDocumentError) return;
 
-    if (createUserDocumentResult === "fulfilled") {
-      fireSwal("success", userCreatedMessage, "", 0, true, false).then(
+    if (createChildDocumentResult === "fulfilled") {
+      fireSwal("success", "child created!", "", 0, true, false).then(
         (isConfirmed) => {
           if (isConfirmed) {
             hamburgerHandlerNavigate(databaseManagementRoute);
@@ -35,29 +31,29 @@ const useCreateUserResultSwal = () => {
         }
       );
     } else {
-      const error = createUserDocumentError;
+      const error = createChildDocumentError;
       fireSwal(
         "error",
-        errorCreatingUserMessage,
+        "error creating child",
         errorReceivedMessage(error),
         0,
         true,
         false
       ).then((isConfirmed) => {
         if (isConfirmed) {
-          dispatchResetCreateUserDocumentResult();
-          dispatchResetCreateUserDocumentError();
+          dispatchResetCreateChildDocumentResult();
+          dispatchResetCreateChildDocumentError();
         }
       });
     }
   }, [
     fireSwal,
     hamburgerHandlerNavigate,
-    createUserDocumentResult,
-    createUserDocumentError,
-    dispatchResetCreateUserDocumentResult,
-    dispatchResetCreateUserDocumentError,
+    createChildDocumentResult,
+    createChildDocumentError,
+    dispatchResetCreateChildDocumentResult,
+    dispatchResetCreateChildDocumentError,
   ]);
 };
 
-export default useCreateUserResultSwal;
+export default useCreateChildResultSwal;

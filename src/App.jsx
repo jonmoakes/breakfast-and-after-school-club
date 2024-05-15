@@ -50,6 +50,7 @@ import {
   databaseManagementCancelBookingRoute,
   aboutRoute,
   pricingRoute,
+  databaseManagementCreateChildRoute,
 } from "./strings/routes/routes-strings";
 
 const Navigation = lazy(() =>
@@ -169,6 +170,11 @@ const DBManageCreateUser = lazy(() =>
     "./routes/database-management-create-user/db-manange-create-user.component"
   )
 );
+const DBManageCreateChild = lazy(() =>
+  import(
+    "./routes/database-management-create-child/db-manange-create-child.component"
+  )
+);
 
 const App = () => {
   const { currentUser, appOwnerId } = useGetCurrentUserSelectors();
@@ -275,7 +281,10 @@ const App = () => {
                 path={databaseManagementCreateUserRoute}
                 element={<DBManageCreateUser />}
               />
-
+              <Route
+                path={databaseManagementCreateChildRoute}
+                element={<DBManageCreateChild />}
+              />
               <Route path={childInfoRoute} element={<ChildInfo />} />
               <Route path={addChildInfoRoute} element={<AddChildInfo />} />
               <Route path={editChildInfoRoute} element={<EditChildInfo />} />

@@ -60,5 +60,15 @@ export const TABLE_COLUMNS = [
   {
     Header: "parents user id",
     accessor: "parentsUserId",
+    Cell: ({ value }) => {
+      return <LowercasedSpan>{value}</LowercasedSpan>;
+    },
+  },
+  {
+    Header: "childs id",
+    accessor: "$id",
+    Cell: ({ value }) => {
+      return <LowercasedSpan>{value}</LowercasedSpan>;
+    },
   },
 ];

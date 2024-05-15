@@ -2,6 +2,7 @@ import useFireSwal from "../use-fire-swal";
 import {
   cantHaveUppercaseCharactersErrorMessage,
   cantHaveUppercaseCharactersExceptSessionSpacesErrorMessage,
+  cantIncludeCommaMessage,
   documentLengthErrorMessage,
   emptyFieldsMessage,
   invalidDateErrorMessage,
@@ -69,6 +70,10 @@ const useUpdateDocumentSwals = () => {
     fireSwal("error", invalidNumberOfChildrenErrorMessage, "", 0, true, false);
   };
 
+  const nameCantIncludeCommaSwal = () => {
+    fireSwal("error", cantIncludeCommaMessage, "", 0, true, false);
+  };
+
   return {
     fireEmptyValuesSwal,
     fireCantHaveUppercaseCharactersSwal,
@@ -80,6 +85,7 @@ const useUpdateDocumentSwals = () => {
     fireInvalidSessionTypeSwal,
     fireInvalidPhoneNumberSwal,
     fireInvalidNumberOfChildrenSwal,
+    nameCantIncludeCommaSwal,
   };
 };
 

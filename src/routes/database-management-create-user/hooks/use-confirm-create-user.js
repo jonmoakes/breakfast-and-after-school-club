@@ -4,7 +4,10 @@ import useFireSwal from "../../../hooks/use-fire-swal";
 import useConfirmSwal from "../../../hooks/use-confirm-swal";
 
 import { phoneNumberLengthErrorMessage } from "../../../strings/errors/errors-strings";
-import { imSureMessage } from "../../../strings/confirms/confirms-strings";
+import {
+  confirmCreateUserMessage,
+  imSureMessage,
+} from "../../../strings/confirms/confirms-strings";
 
 import { validateEmail } from "../../../functions/validate-email";
 
@@ -24,11 +27,8 @@ const useConfirmCreateUser = () => {
     } else if (parentPhoneNumber.length !== 11) {
       fireSwal("error", phoneNumberLengthErrorMessage, "", 0, true, false);
     } else {
-      confirmSwal(
-        "are you sure you want to create this user?",
-        "",
-        imSureMessage,
-        () => confirmResult(parentName, parentEmail, parentPhoneNumber)
+      confirmSwal(confirmCreateUserMessage, "", imSureMessage, () =>
+        confirmResult(parentName, parentEmail, parentPhoneNumber)
       );
     }
   };

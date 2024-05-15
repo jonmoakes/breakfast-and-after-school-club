@@ -91,3 +91,5 @@ export const confirmDeleteUserDocument =
   "are you sure you want to delete the user?";
 export const confirmUpdateSessionSpacesMessage =
   "are you sure you wish to update the session spaces?";
+export const confirmCreateUserMessage =
+  "are you sure you want to create this user?";
