@@ -9,9 +9,9 @@ const TwoHundredPlusChildren = () => (
     <BlueH2>200 + children:</BlueH2>
 
     <Text>monthly:</Text>
-    <RedText>£250 per month</RedText>
-    <Text>yearly ( 10% discount ):</Text>
-    <RedText>£2700 per year</RedText>
+    <RedText>£300 per month</RedText>
+    <Text>yearly ( 10% discount - saving £360 per year! ):</Text>
+    <RedText>£3240 per year</RedText>
     <BlackHr />
   </ParentDiv>
 );

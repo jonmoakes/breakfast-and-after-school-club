@@ -9,9 +9,9 @@ const TenToFourtyNineChildren = () => (
     <BlueH2>10 - 49 children:</BlueH2>
 
     <Text>monthly:</Text>
-    <RedText>£100 per month</RedText>
-    <Text>yearly ( 10% discount ):</Text>
-    <RedText>£1080 per year</RedText>
+    <RedText>£150 per month</RedText>
+    <Text>yearly ( 10% discount - saving £180 per year! ):</Text>
+    <RedText>£1620 per year</RedText>
     <BlackHr />
   </ParentDiv>
 );

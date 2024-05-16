@@ -7,6 +7,7 @@ import TenToFourtyNineChildren from "./ten-to-fourty-nine-children.component";
 import FiftyToOneNineNineChildren from "./fifty-to-one-nine-nine-children.component";
 import TwoHundredPlusChildren from "./two-hundred-plus-children.component";
 import PlansInclude from "./plans-include.component";
+import LinkToContact from "./link-to-contact.component";
 
 const Pricing = () => (
   <Container>
@@ -17,6 +18,7 @@ const Pricing = () => (
     <TwoHundredPlusChildren />
     <PlansInclude />
     <PaymentProcessingFees />
+    <LinkToContact />
   </Container>
 );
 

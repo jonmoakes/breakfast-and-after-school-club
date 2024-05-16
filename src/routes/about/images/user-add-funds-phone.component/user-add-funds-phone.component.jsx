@@ -26,11 +26,21 @@ const UserAddFundsPhone = () => {
         the user securely adds funds to a 'virtual wallet', which they can then
         use to book sessions.
       </Text>
-      <Text>you receive the money they add directly into your account.</Text>
+      <Text>
+        the money that they add is then sent to your{" "}
+        <a className="red" href="https://stripe.com/gb">
+          stripe
+        </a>{" "}
+        account, where you can withdraw the funds.
+      </Text>
+      <Text>
+        stripe is our chosen payment processor, who are one of the biggest
+        companies in the e-commerce world!
+      </Text>
       <Text>
         the wallet balance deducts with each booking until there is not enough
-        remaining balance, at which point they can simply add more to their
-        wallet.
+        remaining balance, at which point they can simply add more funds to
+        their wallet.
       </Text>
       <Text>
         if a user cancels a booking, their wallet balance is updated and your
@@ -42,24 +52,7 @@ const UserAddFundsPhone = () => {
         not!
       </Text>
 
-      <Text>
-        our payment processor is powered by stripe, who are one of the biggest
-        companies in the e-commerce world!
-      </Text>
-
-      <Text>stripes fees for each transaction by your users are:</Text>
-      <Text>1.5% + 20p</Text>
-
-      <Text>
-        For you peace of mind, read more about{" "}
-        <a className="red" href="https://stripe.com/gb">
-          Stripe
-        </a>
-        .
-      </Text>
-
       <BlackHr />
-
       {isOnline ? (
         <>
           {imageSize ? (

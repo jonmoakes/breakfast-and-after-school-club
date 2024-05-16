@@ -36,6 +36,9 @@ const UserCancelsSessionAndPdfPhone = () => {
         are updated.
       </Text>
       <Text>
+        the user then receives an email confirming their cancellation.
+      </Text>
+      <Text>
         in your session bookings table and theirs, the cancelled booking is
         removed from view.
       </Text>

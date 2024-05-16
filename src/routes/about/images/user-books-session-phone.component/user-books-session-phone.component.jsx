@@ -39,6 +39,10 @@ const UserBooksSessionPhone = () => {
         once they confirm, the funds are deducted from their wallet, and the
         session spaces are updated in the database.
       </Text>
+
+      <Text>
+        an email receipt is sent to the user confirming their booking.
+      </Text>
       <Text>
         both the user and the app admin will see the newly created session in
         their respective booking tables.

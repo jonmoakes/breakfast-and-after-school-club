@@ -24,9 +24,9 @@ const PaymentProcessingFees = () => (
     <Text>( 1.5/100 ) * 5 = £0.075</Text>
     <Text>£0.075 + £0.20 = £0.275</Text>
     <Text>
-      so stripe takes:
+      so stripe takes just:
       <br />
-      <BlueSpan>£0.275</BlueSpan> per £5 transaction fee.
+      <BlueSpan>27.5 pence</BlueSpan> per £5 transaction fee!
     </Text>
     <BlackHr />
     <Text>
