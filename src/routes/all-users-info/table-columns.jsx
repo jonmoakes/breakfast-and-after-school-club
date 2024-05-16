@@ -1,9 +1,8 @@
 import FormattedDateCell from "../../components/tables/formatted-date-cell.component";
-import UsersEmailCell from "../../components/tables/user-email-cell.component";
-import UsersPhoneNumberCell from "../../components/tables/users-phone-number-cell.component";
+import PhoneNumberCell from "../../components/tables/phone-number-cell.component";
+import EmailCell from "../../components/tables/email-cell.component";
 
-import { InLineDiv } from "../../styles/div/div.styles";
-import { LowercasedSpan, RightMarginSpan } from "../../styles/span/span.styles";
+import { LowercasedSpan } from "../../styles/span/span.styles";
 
 export const TABLE_COLUMNS = [
   {
@@ -13,26 +12,12 @@ export const TABLE_COLUMNS = [
   {
     Header: "email",
     accessor: "email",
-    Cell: ({ value }) => {
-      return (
-        <InLineDiv>
-          <LowercasedSpan className="right-margin">{value}</LowercasedSpan>
-          <UsersEmailCell {...{ value }} />
-        </InLineDiv>
-      );
-    },
+    Cell: ({ value }) => <EmailCell {...{ value }} />,
   },
   {
     Header: "phone number",
     accessor: "phoneNumber",
-    Cell: ({ value }) => {
-      return (
-        <InLineDiv>
-          <RightMarginSpan>{value}</RightMarginSpan>
-          <UsersPhoneNumberCell {...{ value }} />
-        </InLineDiv>
-      );
-    },
+    Cell: ({ value }) => <PhoneNumberCell {...{ value }} />,
   },
   {
     Header: "current wallet balance",

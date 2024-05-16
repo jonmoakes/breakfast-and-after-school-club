@@ -1,8 +1,7 @@
-import UsersPhoneNumberCell from "../../components/tables/users-phone-number-cell.component";
-import UsersEmailCell from "../../components/tables/user-email-cell.component";
+import { LowercasedSpan } from "../../styles/span/span.styles";
 
-import { InLineDiv } from "../../styles/div/div.styles";
-import { LowercasedSpan, RightMarginSpan } from "../../styles/span/span.styles";
+import EmailCell from "../../components/tables/email-cell.component";
+import PhoneNumberCell from "../../components/tables/phone-number-cell.component";
 
 export const TABLE_COLUMNS = [
   {
@@ -36,26 +35,12 @@ export const TABLE_COLUMNS = [
   {
     Header: "parent email",
     accessor: "parentEmail",
-    Cell: ({ value }) => {
-      return (
-        <InLineDiv>
-          <LowercasedSpan className="right-margin">{value}</LowercasedSpan>
-          <UsersEmailCell {...{ value }} />
-        </InLineDiv>
-      );
-    },
+    Cell: ({ value }) => <EmailCell {...{ value }} />,
   },
   {
     Header: "parent phone number",
     accessor: "parentPhoneNumber",
-    Cell: ({ value }) => {
-      return (
-        <InLineDiv>
-          <RightMarginSpan>{value}</RightMarginSpan>
-          <UsersPhoneNumberCell {...{ value }} />
-        </InLineDiv>
-      );
-    },
+    Cell: ({ value }) => <PhoneNumberCell {...{ value }} />,
   },
   {
     Header: "parents user id",

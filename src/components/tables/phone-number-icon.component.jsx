@@ -2,7 +2,7 @@ import PhoneIcon from "../../assets/phone-icon.png";
 
 import { IconImage } from "../../styles/image/image.styles";
 
-const UsersPhoneNumberCell = ({ value }) => {
+const PhoneNumberIcon = ({ value }) => {
   const callNumber = `tel:${value}`;
 
   return (
@@ -14,4 +14,4 @@ const UsersPhoneNumberCell = ({ value }) => {
   );
 };
 
-export default UsersPhoneNumberCell;
+export default PhoneNumberIcon;

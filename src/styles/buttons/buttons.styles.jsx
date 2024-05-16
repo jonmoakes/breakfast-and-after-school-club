@@ -10,6 +10,8 @@ import {
   customWhite,
   customYellow,
 } from "../colors";
+import eyeIcon from "../../assets/eye.png";
+import eyeIconHide from "../../assets/hide-eye.png";
 
 const PulseAnimation = keyframes`${pulse}`;
 const zoomInLeftAnimation = keyframes`${zoomInLeft}`;
@@ -355,4 +357,30 @@ export const ReloadInTableCellButton = styled.button`
   &:hover {
     cursor: pointer;
   }
+`;
+
+export const ToggleShowEmailButton = styled.button.withConfig({
+  shouldForwardProp: (prop) => prop !== "showEmail",
+})`
+  cursor: pointer;
+  width: 40px;
+  height: 24px;
+  background-image: ${(props) =>
+    `url(${props.showEmail ? eyeIconHide : eyeIcon})`};
+  background-repeat: no-repeat;
+  background-position: center;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  margin-right: 10px;
+  animation: infinite 2s ${PulseAnimation};
+`;
+
+export const ToggleShowPhoneNumberButton = styled(
+  ToggleShowEmailButton
+).withConfig({
+  shouldForwardProp: (prop) => prop !== "showPhone",
+})`
+  background-image: ${(props) =>
+    `url(${props.showPhone ? eyeIconHide : eyeIcon})`};
 `;

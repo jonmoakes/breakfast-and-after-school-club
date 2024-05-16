@@ -2,7 +2,7 @@ import Emailcon from "../../assets/email-icon.png";
 
 import { IconImage } from "../../styles/image/image.styles";
 
-const UsersEmailCell = ({ value }) => {
+const EmailIcon = ({ value }) => {
   const subject = encodeURIComponent(
     "Message From Breakfast & After School Club"
   );
@@ -12,4 +12,4 @@ const UsersEmailCell = ({ value }) => {
   return <IconImage className="email" src={Emailcon} onClick={openEmail} />;
 };
 
-export default UsersEmailCell;
+export default EmailIcon;
