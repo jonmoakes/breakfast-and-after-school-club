@@ -43,7 +43,6 @@ const useCheckForPreviousBookingAndConfirmSession = () => {
       sessionAlreadyBookedSwal();
     } else {
       const balanceAfterBooking = ((walletBalance - price) / 100).toFixed(2);
-      console.log(balanceAfterBooking);
       confirmSwal(
         confirmSureBookSession(sessionType, date),
         fundsDeductedFromBalance(price, balanceAfterBooking),
