@@ -146,6 +146,7 @@ const useResetStore = () => {
         dispatchResetBookSessionState();
         dispatchResetSendEmailState();
         dispatchResetSessionTypesAndPricesState();
+        dispatchResetDatabaseManagementState();
         if (sessionTypesAndPricesError) {
           dispatchResetSessionPricesError();
         } else if (getUsersChildrenError) {

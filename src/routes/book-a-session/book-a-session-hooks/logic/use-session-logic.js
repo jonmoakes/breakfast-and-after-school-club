@@ -1,34 +1,18 @@
+import { createChildrenToAddToBooking } from "../../../../functions/create-children-to-add-to-booking";
 import useBookSessionActions from "../../../../hooks/get-actions-and-thunks/book-session-actions-and-thunks/use-book-session-actions";
 import useGetBookSessionSelectors from "../../../../hooks/get-selectors/use-get-book-session-selectors";
+import useGetCurrentUserSelectors from "../../../../hooks/get-selectors/use-get-current-user-selectors";
 import useDatesLogic from "../logic/use-dates-logic";
 import useGetChildrenLogic from "./use-get-children-logic";
 
 const useSessionLogic = () => {
-  const {
-    updateUserDocBalance,
-    updateSessionDoc,
-    resetSessionDoc,
-    sessionType,
-    sessionPrice,
-    addSessionBookingInfo,
-  } = useGetBookSessionSelectors();
+  const { id, name, email, phoneNumber, walletBalance } =
+    useGetCurrentUserSelectors();
+  const { sessionType, sessionPrice } = useGetBookSessionSelectors();
   const { dispatchResetSessionTypeAndPrice } = useBookSessionActions();
   const { date, morningSessionSpaces, afternoonSessionSpaces } =
     useDatesLogic();
-  const { childrenSelectedForBooking } = useGetChildrenLogic();
-
-  const updateBalanceResult = updateUserDocBalance.result;
-  const updateBalanceError = updateUserDocBalance.error;
-  const updateSessionResult = updateSessionDoc.result;
-  const updateSessionError = updateSessionDoc.error;
-  const resetSessionResult = resetSessionDoc.result;
-  const resetSessionError = resetSessionDoc.error;
-  const addSessionBookingInfoResult = addSessionBookingInfo.result;
-  const addSessionBookingInfoError = addSessionBookingInfo.error;
-
-  const numberOfSpacesToAdd = childrenSelectedForBooking.length
-    ? childrenSelectedForBooking.length
-    : 1;
+  const { childrenSelectedForBooking, usersChildren } = useGetChildrenLogic();
 
   const onlyMorningSessionsAvailable = () => {
     return date && morningSessionSpaces && !afternoonSessionSpaces
@@ -89,6 +73,21 @@ const useSessionLogic = () => {
     dispatchResetSessionTypeAndPrice();
   };
 
+  // date and sessionType are empty here because they're passed when calling the function to add the booking.
+  // they are then set in the thunk that adds the booking before it fires.
+  const bookingData = {
+    date: "",
+    sessionType: "",
+    childrenInBooking: createChildrenToAddToBooking(
+      childrenSelectedForBooking,
+      usersChildren
+    ),
+    parentName: name,
+    parentPhoneNumber: phoneNumber,
+    parentsUserId: id,
+    parentEmail: email,
+  };
+
   return {
     onlyMorningSessionsAvailable,
     onlyAfternoonSessionsAvailable,
@@ -97,18 +96,11 @@ const useSessionLogic = () => {
     notEnoughAfternoonSpacesForMultipleChildren,
     notEnoughMorningSpacesForMultipleChildrenInMorningAndAfternoonSession,
     notEnoughAfternoonSpacesForMultipleChildrenInMorningAndAfternoonSession,
-    numberOfSpacesToAdd,
-    updateBalanceResult,
-    updateBalanceError,
-    updateSessionError,
     sessionType,
     sessionPrice,
-    updateSessionResult,
-    resetSessionResult,
-    resetSessionError,
-    addSessionBookingInfoResult,
-    addSessionBookingInfoError,
     cancelResult,
+    bookingData,
+    walletBalance,
   };
 };
 

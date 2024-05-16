@@ -1,7 +1,7 @@
 import { useCallback } from "react";
 
-import useSessionLogic from "./use-session-logic";
 import useGetCurrentUserSelectors from "../../../../hooks/get-selectors/use-get-current-user-selectors";
+import useGetDatabaseManagementSelectors from "../../../../hooks/get-selectors/use-get-database-management-selectors";
 
 const useReturnLogic = () => {
   const { currentUserWalletBalanceResult, currentUserWalletBalanceError } =
@@ -9,36 +9,30 @@ const useReturnLogic = () => {
   const {
     updateBalanceResult,
     updateBalanceError,
-    updateSessionError,
-    updateSessionResult,
-    resetSessionResult,
-    resetSessionError,
-    addSessionBookingInfoResult,
-    addSessionBookingInfoError,
-  } = useSessionLogic();
+    addBookingResult,
+    addBookingError,
+    updateSessionSpacesResult,
+    updateSessionSpacesError,
+  } = useGetDatabaseManagementSelectors();
 
   const noActionsFiredYet = useCallback(() => {
-    return !updateSessionResult &&
-      !updateSessionError &&
-      !updateBalanceResult &&
+    return !updateBalanceResult &&
       !updateBalanceError &&
-      !resetSessionResult &&
-      !resetSessionError &&
-      !addSessionBookingInfoResult &&
-      !addSessionBookingInfoError &&
+      !updateSessionSpacesResult &&
+      !updateSessionSpacesError &&
+      !addBookingResult &&
+      !addBookingError &&
       !currentUserWalletBalanceResult &&
       !currentUserWalletBalanceError
       ? true
       : false;
   }, [
-    resetSessionError,
-    resetSessionResult,
-    updateBalanceError,
     updateBalanceResult,
-    updateSessionError,
-    updateSessionResult,
-    addSessionBookingInfoResult,
-    addSessionBookingInfoError,
+    updateBalanceError,
+    updateSessionSpacesResult,
+    updateSessionSpacesError,
+    addBookingResult,
+    addBookingError,
     currentUserWalletBalanceResult,
     currentUserWalletBalanceError,
   ]);

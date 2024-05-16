@@ -1,19 +1,19 @@
 import { useState } from "react";
 
+import useGetChildrenLogic from "../logic/use-get-children-logic";
+import useResetSessionSpacesThunk from "../../../../hooks/get-actions-and-thunks/book-session-actions-and-thunks/use-reset-session-spaces-thunk";
 import useFireSwal from "../../../../hooks/use-fire-swal";
 import useDatesLogic from "../logic/use-dates-logic";
 import useSessionLogic from "../logic/use-session-logic";
-import useResetSessionDocumentSpacesThunk from "../../../../hooks/get-actions-and-thunks/book-session-actions-and-thunks/use-reset-session-document-spaces-thunk";
 
 import { errorUpdatingBalanceMessage } from "../../../../strings/errors/errors-strings";
 
 const useUpdateBalanceErrorResetSessionDocSwal = () => {
-  const { resetSessionDocumentSpacesThunk } =
-    useResetSessionDocumentSpacesThunk();
+  const { resetSessionSpacesThunk } = useResetSessionSpacesThunk();
   const { fireSwal } = useFireSwal();
   const { date } = useDatesLogic();
-  const { numberOfSpacesToAdd, updateBalanceError, sessionType } =
-    useSessionLogic();
+  const { updateBalanceError, sessionType } = useSessionLogic();
+  const { numberOfChildrenInBooking } = useGetChildrenLogic();
 
   const [swalConfirmed, setSwalConfirmed] = useState(false);
 
@@ -33,7 +33,7 @@ const useUpdateBalanceErrorResetSessionDocSwal = () => {
     ).then((isConfirmed) => {
       if (isConfirmed) {
         setSwalConfirmed(true);
-        resetSessionDocumentSpacesThunk(date, sessionType, numberOfSpacesToAdd);
+        resetSessionSpacesThunk(numberOfChildrenInBooking, date, sessionType);
       }
     });
   };

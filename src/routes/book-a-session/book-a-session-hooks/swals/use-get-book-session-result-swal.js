@@ -1,18 +1,18 @@
 import { useEffect } from "react";
 
+import useGetCurrentUserSelectors from "../../../../hooks/get-selectors/use-get-current-user-selectors";
+import useGetDatabaseManagmentSelectors from "../../../../hooks/get-selectors/use-get-database-management-selectors";
 import useReturnLogic from "../logic/use-return-logic";
 import useSuccessSwal from "./use-success-swal";
-import useUpdateSessionDocErrorSwal from "./use-update-session-doc-error-swal";
 import useUpdateBalanceErrorResetSessionDocSwal from "./use-update-balance-error-reset-session-doc-swal";
 import useAddSessionBookingInfoErrorSwal from "./use-add-session-booking-info-error-swal";
 import useSuccessfulBookingButFailedBalanceFetchSwal from "./use-successful-booking-but-failed-balance-fetch-swal";
-import useGetCurrentUserSelectors from "../../../../hooks/get-selectors/use-get-current-user-selectors";
-import useSessionLogic from "../logic/use-session-logic";
+import useUpdateSessionSpacesErrorSwal from "./use-update-session-spaces-error-swal";
 
 const useGetBookSessionResultSwal = () => {
   const { noActionsFiredYet } = useReturnLogic();
   const { successSwal } = useSuccessSwal();
-  const { updateSessionDocErrorSwal } = useUpdateSessionDocErrorSwal();
+  const { updateSessionSpacesErrorSwal } = useUpdateSessionSpacesErrorSwal();
   const { swalConfirmed, updateBalanceErrorResetSessionDocSwal } =
     useUpdateBalanceErrorResetSessionDocSwal();
   const { addSessionBookingInfoErrorSwal } =
@@ -20,53 +20,50 @@ const useGetBookSessionResultSwal = () => {
   const { successfulBookingButFailedBalanceFetchSwal } =
     useSuccessfulBookingButFailedBalanceFetchSwal();
   const { currentUserWalletBalanceResult } = useGetCurrentUserSelectors();
-  const {
-    updateSessionResult,
-    updateBalanceResult,
-    addSessionBookingInfoResult,
-  } = useSessionLogic();
+  const { updateBalanceResult, updateSessionSpacesResult, addBookingResult } =
+    useGetDatabaseManagmentSelectors();
 
   useEffect(() => {
     if (noActionsFiredYet() || swalConfirmed) return;
     if (
-      updateSessionResult === "fulfilled" &&
+      updateSessionSpacesResult === "fulfilled" &&
       updateBalanceResult === "fulfilled" &&
-      addSessionBookingInfoResult === "fulfilled" &&
+      addBookingResult === "fulfilled" &&
       currentUserWalletBalanceResult === "success"
     ) {
       successSwal();
+    } else if (updateSessionSpacesResult === "rejected") {
+      updateSessionSpacesErrorSwal();
     } else if (
-      updateSessionResult === "fulfilled" &&
-      updateBalanceResult === "fulfilled" &&
-      addSessionBookingInfoResult === "fulfilled" &&
-      currentUserWalletBalanceResult === "rejected"
-    ) {
-      successfulBookingButFailedBalanceFetchSwal();
-    } else if (updateSessionResult === "rejected") {
-      updateSessionDocErrorSwal();
-    } else if (
-      updateSessionResult === "fulfilled" &&
+      updateSessionSpacesResult === "fulfilled" &&
       updateBalanceResult === "rejected"
     ) {
       updateBalanceErrorResetSessionDocSwal();
     } else if (
-      updateSessionResult === "fulfilled" &&
+      updateSessionSpacesResult === "fulfilled" &&
       updateBalanceResult === "fulfilled" &&
-      addSessionBookingInfoResult === "rejected"
+      addBookingResult === "rejected"
     ) {
       addSessionBookingInfoErrorSwal();
+    } else if (
+      updateSessionSpacesResult === "fulfilled" &&
+      updateBalanceResult === "fulfilled" &&
+      addBookingResult === "fulfilled" &&
+      currentUserWalletBalanceResult === "rejected"
+    ) {
+      successfulBookingButFailedBalanceFetchSwal();
     }
   }, [
+    swalConfirmed,
+    updateBalanceResult,
+    updateSessionSpacesResult,
+    addBookingResult,
+    currentUserWalletBalanceResult,
     noActionsFiredYet,
     successSwal,
-    swalConfirmed,
+    updateSessionSpacesErrorSwal,
     updateBalanceErrorResetSessionDocSwal,
-    updateBalanceResult,
-    updateSessionDocErrorSwal,
-    updateSessionResult,
-    addSessionBookingInfoResult,
     addSessionBookingInfoErrorSwal,
-    currentUserWalletBalanceResult,
     successfulBookingButFailedBalanceFetchSwal,
   ]);
 };

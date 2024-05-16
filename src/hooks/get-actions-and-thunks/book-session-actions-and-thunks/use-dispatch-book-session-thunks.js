@@ -1,71 +1,74 @@
 import { useDispatch } from "react-redux";
 
-import useGetBookSessionSelectors from "../../get-selectors/use-get-book-session-selectors";
 import useGetCurrentUserSelectors from "../../get-selectors/use-get-current-user-selectors";
-import useGetUsersChildrenSelectors from "../../get-selectors/use-get-users-children-selectors";
 
 import {
-  addSessionBookingInfoAsync,
-  updateSessionDocAsync,
-  updateUserDocBalanceAsync,
-} from "../../../store/book-session/book-session.thunks";
+  updateUsersBalanceAsync,
+  updateSessionSpacesDocAsync,
+  addBookingDataAsync,
+} from "../../../store/database-management/database-management-thunks";
 import { getUsersWalletBalanceAsync } from "../../../store/user/user.thunks";
+
+import { bookSessionRoute } from "../../../strings/routes/routes-strings";
 
 const useDispatchBookSessionThunks = () => {
   const {
     id,
-    name,
-    email,
-    phoneNumber,
     databaseId,
     termDatesCollectionId,
-    userCollectionId: collectionId,
+    userCollectionId,
     bookedSessionsCollectionId,
   } = useGetCurrentUserSelectors();
-  const { usersChildren } = useGetUsersChildrenSelectors();
-  const { childrenSelectedForBooking } = useGetBookSessionSelectors();
 
   const dispatch = useDispatch();
 
-  // Updates the session document, reducing the available spaces by whatever the childrenSelectedForBooking length is.
-  // Then updates the users balance in the databse.
+  // Updates the session document, reducing the available spaces by whatever the numberOfChildrenInBooking length is.
+  // Then updates the users balance in the database.
   // Then adds the sessionBookingInfo to the database
   // Then fetches the latest balance from the database
-  const dispatchBookSessionThunks = (date, sessionType, price) => {
+  const dispatchBookSessionThunks = (
+    numberOfChildrenInBooking,
+    date,
+    sessionType,
+    price,
+    bookingData
+  ) => {
+    const route = bookSessionRoute;
+    const operation = "deduct";
     dispatch(
-      updateSessionDocAsync({
+      updateSessionSpacesDocAsync({
+        numberOfChildrenInBooking,
         date,
         databaseId,
         termDatesCollectionId,
-        childrenSelectedForBooking,
+        route,
         sessionType,
+        operation,
       })
-    ).then((action) => {
-      if (action.type === updateSessionDocAsync.fulfilled.type) {
+    ).then((resultAction) => {
+      if (updateSessionSpacesDocAsync.fulfilled.match(resultAction)) {
+        const usersDocumentId = id;
+        const sessionPrice = price;
+        const operation = "deduct";
         dispatch(
-          updateUserDocBalanceAsync({
-            id,
+          updateUsersBalanceAsync({
+            usersDocumentId,
             databaseId,
-            collectionId,
-            price,
+            userCollectionId,
+            sessionPrice,
+            operation,
           })
-        ).then((action) => {
-          if (action.type === updateUserDocBalanceAsync.fulfilled.type) {
+        ).then((resultAction) => {
+          if (updateUsersBalanceAsync.fulfilled.match(resultAction)) {
+            const collectionId = bookedSessionsCollectionId;
+            // add these here as they are passed in the dispatchBookSessionThunks action, so initially they are empty strings in 'bookingData'. They are added with their correct values here before firing addBookingDataAsync.
+            bookingData.date = date;
+            bookingData.sessionType = sessionType;
             dispatch(
-              addSessionBookingInfoAsync({
-                sessionType,
-                id,
-                date,
-                childrenSelectedForBooking,
-                usersChildren,
-                name,
-                email,
-                phoneNumber,
-                bookedSessionsCollectionId,
-                databaseId,
-              })
-            ).then((action) => {
-              if (action.type === addSessionBookingInfoAsync.fulfilled.type) {
+              addBookingDataAsync({ databaseId, collectionId, bookingData })
+            ).then((resultAction) => {
+              if (addBookingDataAsync.fulfilled.match(resultAction)) {
+                const collectionId = userCollectionId;
                 dispatch(
                   getUsersWalletBalanceAsync({ id, databaseId, collectionId })
                 );

@@ -1,3 +1,4 @@
+import useGetDatabaseManagementSelectors from "../../../../hooks/get-selectors/use-get-database-management-selectors";
 import useFireSwal from "../../../../hooks/use-fire-swal";
 import useHamburgerHandlerNavigate from "../../../../hooks/use-hamburger-handler-navigate";
 
@@ -7,15 +8,14 @@ import {
 } from "../../../../strings/errors/errors-strings";
 import { checkBackRegularlyMessage } from "../../../../strings/infos/infos-strings";
 import { bookSessionRoute } from "../../../../strings/routes/routes-strings";
-import useSessionLogic from "../logic/use-session-logic";
 
-const useUpdateSessionDocErrorSwal = () => {
+const useUpdateSessionSpacesErrorSwal = () => {
+  const { updateSessionSpacesError } = useGetDatabaseManagementSelectors();
   const { fireSwal } = useFireSwal();
   const { hamburgerHandlerNavigate } = useHamburgerHandlerNavigate();
-  const { updateSessionError } = useSessionLogic();
 
-  const updateSessionDocErrorSwal = () => {
-    if (updateSessionError === lastMinuteNoSessionsMessage) {
+  const updateSessionSpacesErrorSwal = () => {
+    if (updateSessionSpacesError === lastMinuteNoSessionsMessage) {
       fireSwal(
         "error",
         lastMinuteNoSessionsMessage,
@@ -32,7 +32,7 @@ const useUpdateSessionDocErrorSwal = () => {
       fireSwal(
         "error",
         updateSessionDocErrorMessage,
-        updateSessionError,
+        updateSessionSpacesError,
         0,
         true,
         false
@@ -44,7 +44,7 @@ const useUpdateSessionDocErrorSwal = () => {
     }
   };
 
-  return { updateSessionDocErrorSwal };
+  return { updateSessionSpacesErrorSwal };
 };
 
-export default useUpdateSessionDocErrorSwal;
+export default useUpdateSessionSpacesErrorSwal;

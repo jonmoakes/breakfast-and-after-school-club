@@ -28,7 +28,8 @@ const useConfirmUpdateUserBalance = () => {
   const { confirmSwal } = useConfirmSwal();
 
   const confirmResult = () => {
-    updateUsersBalanceThunk(usersDocumentId, sessionPrice);
+    const operation = "add";
+    updateUsersBalanceThunk(usersDocumentId, sessionPrice, operation);
   };
 
   const confirmUpdateUserBalance = () => {

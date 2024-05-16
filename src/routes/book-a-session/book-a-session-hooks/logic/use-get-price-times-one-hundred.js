@@ -5,7 +5,7 @@ import { priceMultipliedBy100 } from "../../../../functions/price-multiplied-by-
 const useGetPriceTimesOneHundred = () => {
   const { childrenSelectedForBooking } = useGetChildrenLogic();
 
-  //if user has only one child in the database, childrenSelectedForBooking.length will be 0 - so price there will be 1 child 'selected'ß = sessionPrice * 100.
+  //if user has only one child in the database, childrenSelectedForBooking.length will be 0 - so price there will be 1 child 'selected' = sessionPrice * 100.
   // If more than one child is selected, price = the session price * however many children have been selected.
   const getPriceTimesOneHundred = (sessionPrice) => {
     const price = !childrenSelectedForBooking.length

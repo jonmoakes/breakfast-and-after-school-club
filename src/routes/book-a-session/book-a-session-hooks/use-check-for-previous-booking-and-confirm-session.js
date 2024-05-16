@@ -15,17 +15,24 @@ import {
 const useCheckForPreviousBookingAndConfirmSession = () => {
   const { confirmSwal } = useConfirmSwal();
   const { date } = useDatesLogic();
-  const { cancelResult } = useSessionLogic();
+  const { cancelResult, bookingData, walletBalance } = useSessionLogic();
   const { singleChildSessionAlreadyBooked, multipleChildSessionAlreadyBooked } =
     useChildSessionAlreadyBooked();
   const { sessionAlreadyBookedSwal } = useSessionAlreadyBookedSwal();
-  const { childrenSelectedLength } = useGetChildrenLogic();
+  const { childrenSelectedLength, numberOfChildrenInBooking } =
+    useGetChildrenLogic();
   const { dispatchBookSessionThunks } = useDispatchBookSessionThunks();
 
   // sessionType and price is received from confirmSession -  to avoid closure issue where if we tried to use the selector for sessionType and price,  the selector doesn't pick up the latest value.
   const checkForPreviousBookingAndConfirmSession = (sessionType, price) => {
     const confirmResult = () => {
-      dispatchBookSessionThunks(date, sessionType, price);
+      dispatchBookSessionThunks(
+        numberOfChildrenInBooking,
+        date,
+        sessionType,
+        price,
+        bookingData
+      );
     };
 
     if (
@@ -35,9 +42,11 @@ const useCheckForPreviousBookingAndConfirmSession = () => {
     ) {
       sessionAlreadyBookedSwal();
     } else {
+      const balanceAfterBooking = ((walletBalance - price) / 100).toFixed(2);
+      console.log(balanceAfterBooking);
       confirmSwal(
         confirmSureBookSession(sessionType, date),
-        fundsDeductedFromBalance(price),
+        fundsDeductedFromBalance(price, balanceAfterBooking),
         imSureMessage,
         () => confirmResult(),
         cancelResult

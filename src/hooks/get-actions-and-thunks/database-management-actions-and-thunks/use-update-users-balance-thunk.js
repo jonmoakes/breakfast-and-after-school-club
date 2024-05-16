@@ -7,8 +7,12 @@ const useUpdateUsersBalanceThunk = () => {
   const { databaseId, userCollectionId } = useGetCurrentUserSelectors();
 
   const dispatch = useDispatch();
-  const updateUsersBalanceThunk = (usersDocumentId, sessionPrice) => {
-    const operation = "add";
+
+  const updateUsersBalanceThunk = (
+    usersDocumentId,
+    sessionPrice,
+    operation
+  ) => {
     dispatch(
       updateUsersBalanceAsync({
         usersDocumentId,

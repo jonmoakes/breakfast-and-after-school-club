@@ -21,10 +21,10 @@ export const confirmSureBookSession = (sessionType, date) => {
     sessionType
   )} session for ${format(new Date(date), "dd MMMM yyyy")}?`;
 };
-export const fundsDeductedFromBalance = (sessionPrice) => {
+export const fundsDeductedFromBalance = (sessionPrice, balanceAfterBooking) => {
   return `£${(sessionPrice / 100).toFixed(
     2
-  )} will be deducted from your wallet balance.`;
+  )} will be deducted from your wallet balance. After the booking, your remaining balance will be £${balanceAfterBooking}`;
 };
 export const sureCloseAccountQuestion =
   "are you sure you wish to close your account with us?";
