@@ -37,4 +37,8 @@ export const INITIAL_STATE = {
   userHasDeletedAllChildren: false,
   bookingToCancelDetails: {},
   userOfAppChoice: null,
+  updateBookingEmailsResult: "",
+  updateBookingEmailsError: null,
+  updateChildrensListEmailResult: "",
+  updateChildrensListEmailError: null,
 };

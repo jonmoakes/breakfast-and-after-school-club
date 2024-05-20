@@ -22,3 +22,5 @@ export const SEND_EMAIL_WALET_FUNDS_NOT_ADDED_ERROR_ENDPOINT =
   "/.netlify/functions/send-email-wallet-funds-not-added-error";
 export const SEND_EMAIL_TO_ADMIN_CLOSE_ACCOUNT_REQUEST_ENDPOINT =
   "/.netlify/functions/send-email-to-admin-close-account-request";
+export const SEND_EMAIL_UPDATE_LATEST_BOOKINGS_WITH_NEW_EMAIL_ENDPOINT =
+  "./netlify/functions/send-email-update-latest-bookings-with-new-email";

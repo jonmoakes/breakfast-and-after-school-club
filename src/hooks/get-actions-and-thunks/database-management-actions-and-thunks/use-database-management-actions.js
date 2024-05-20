@@ -42,6 +42,10 @@ import {
   resetBookingToCancelDetails,
   setUserOfAppChoice,
   resetUserOfAppChoice,
+  resetUpdateBookingEmailsResult,
+  resetUpdateBookingEmailsError,
+  resetUpdateChildrensListEmailResult,
+  resetUpdateChildrensListEmailError,
 } from "../../../store/database-management/database-management.slice";
 
 const useDatabaseManagementActions = () => {
@@ -205,6 +209,23 @@ const useDatabaseManagementActions = () => {
   const dispatchResetUserOfAppChoice = () => {
     dispatch(resetUserOfAppChoice());
   };
+
+  const dispatchResetUpdateBookingEmailsResult = () => {
+    dispatch(resetUpdateBookingEmailsResult());
+  };
+
+  const dispatchResetUpdateBookingEmailsError = () => {
+    dispatch(resetUpdateBookingEmailsError());
+  };
+
+  const dispatchResetUpdateChildrensListEmailResult = () => {
+    dispatch(resetUpdateChildrensListEmailResult());
+  };
+
+  const dispatchResetUpdateChildrensListEmailError = () => {
+    dispatch(resetUpdateChildrensListEmailError());
+  };
+
   const dispatchResetDatabaseManagementState = () => {
     dispatch(resetDatabaseManagementState());
   };
@@ -254,6 +275,10 @@ const useDatabaseManagementActions = () => {
     dispatchSetUserOfAppChoice,
     dispatchResetUserOfAppChoice,
     dispatchResetDatabaseManagementState,
+    dispatchResetUpdateBookingEmailsResult,
+    dispatchResetUpdateBookingEmailsError,
+    dispatchResetUpdateChildrensListEmailResult,
+    dispatchResetUpdateChildrensListEmailError,
   };
 };
 

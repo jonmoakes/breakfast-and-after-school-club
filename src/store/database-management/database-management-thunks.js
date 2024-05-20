@@ -392,3 +392,91 @@ export const createChildDocumentAsync = createAsyncThunk(
     }
   }
 );
+
+export const updateUsersLatestBookingsWithNewEmailAsync = createAsyncThunk(
+  "updateUsersLatestBookingsWithNewEmail",
+  async (
+    { id, bookedSessionsCollectionId, databaseId, newEmail },
+    thunkAPI
+  ) => {
+    try {
+      const queryIndex = "parentsUserId";
+      const queryValue = id;
+
+      const collectionId = bookedSessionsCollectionId;
+
+      const getBookingDocuments = await listDocumentsByQueryOrSearch(
+        databaseId,
+        collectionId,
+        queryIndex,
+        queryValue
+      );
+
+      const { documents, total } = getBookingDocuments;
+
+      if (!total) return;
+
+      const setToMidnight = (date) => {
+        const midnightDate = new Date(date);
+        midnightDate.setHours(0, 0, 0, 0);
+        return midnightDate;
+      };
+
+      const currentDate = setToMidnight(new Date());
+
+      const documentsToUpdate = documents.filter((doc) => {
+        const bookingDate = setToMidnight(new Date(doc.date));
+        return bookingDate >= currentDate;
+      });
+
+      if (!documentsToUpdate.length) return;
+
+      for (const doc of documentsToUpdate) {
+        await manageDatabaseDocument(
+          "update",
+          databaseId,
+          collectionId,
+          doc.$id,
+          { parentEmail: newEmail }
+        );
+      }
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
+export const updateChildrensListParentEmailWithNewEmailAsync = createAsyncThunk(
+  "updateChildrensListParentEmailWithNewEmailAsync",
+  async ({ id, childrenCollectionId, databaseId, newEmail }, thunkAPI) => {
+    try {
+      const queryIndex = "parentsUserId";
+      const queryValue = id;
+
+      const collectionId = childrenCollectionId;
+
+      const getChildrenDocuments = await listDocumentsByQueryOrSearch(
+        databaseId,
+        collectionId,
+        queryIndex,
+        queryValue
+      );
+
+      const { documents, total } = getChildrenDocuments;
+
+      if (!total) return;
+
+      for (const doc of documents) {
+        await manageDatabaseDocument(
+          "update",
+          databaseId,
+          collectionId,
+          doc.$id,
+          { parentEmail: newEmail }
+        );
+      }
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);

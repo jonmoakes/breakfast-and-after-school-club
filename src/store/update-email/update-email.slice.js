@@ -20,11 +20,11 @@ export const updateEmailSlice = createSlice({
     setUpdateEmailDetails(state, action) {
       state.updateEmailDetails = action.payload;
     },
-    resetUpdateEmailError(state) {
-      state.updateEmailError = null;
-    },
     resetUpdateEmailResult(state) {
       state.updateEmailResult = "";
+    },
+    resetUpdateEmailError(state) {
+      state.updateEmailError = null;
     },
     resetUpdateEmailState: () => {
       return INITIAL_STATE;
@@ -36,6 +36,7 @@ export const updateEmailSlice = createSlice({
       (state) => state.updateEmailDetails,
       (state) => state.updateEmailResult,
       (state) => state.updateEmailError,
+
       (
         updateEmailIsLoading,
         updateEmailDetails,
@@ -58,13 +59,13 @@ export const updateEmailSlice = createSlice({
       })
       .addCase(updateEmailAsync.fulfilled, (state) => {
         state.updateEmailIsLoading = false;
-        state.updateEmailResult = "succeeded";
+        state.updateEmailResult = "fulfilled";
         state.updateEmailDetails = defaultUpdateEmailDetails;
         state.updateEmailError = null;
       })
       .addCase(updateEmailAsync.rejected, (state, action) => {
         state.updateEmailIsLoading = false;
-        state.updateEmailResult = "failure";
+        state.updateEmailResult = "rejected";
         state.updateEmailError = action.payload;
       });
   },
@@ -73,8 +74,8 @@ export const updateEmailSlice = createSlice({
 export const {
   setUpdateEmailDetails,
   resetUpdateEmailState,
-  resetUpdateEmailError,
   resetUpdateEmailResult,
+  resetUpdateEmailError,
 } = updateEmailSlice.actions;
 export const { selectUpdateEmailSelectors } = updateEmailSlice.selectors;
 

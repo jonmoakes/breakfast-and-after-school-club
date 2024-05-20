@@ -25,8 +25,6 @@ const ContactForm = () => {
 
   const [confirm, setConfirm] = useState(false);
 
-  console.log(email, appOwnerEmail);
-
   return (
     <ParentDiv>
       {!currentUser && !confirm ? (

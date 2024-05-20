@@ -8,6 +8,7 @@ import {
   sendEmailBalanceNotUpdatedErrorAsync,
   sendEmailWalletFundsNotAddedErrorAsync,
   sendEmailToAdminCloseAccountRequestAsync,
+  sendEmailUpdateLatestBookingsWithNewEmailAsync,
 } from "./send-email.thunks";
 
 const INITIAL_STATE = {
@@ -64,6 +65,7 @@ export const sendEmailSlice = createSlice({
     handleAsyncAction(builder, sendEmailBalanceNotUpdatedErrorAsync);
     handleAsyncAction(builder, sendEmailWalletFundsNotAddedErrorAsync);
     handleAsyncAction(builder, sendEmailToAdminCloseAccountRequestAsync);
+    handleAsyncAction(builder, sendEmailUpdateLatestBookingsWithNewEmailAsync);
   },
 });
 

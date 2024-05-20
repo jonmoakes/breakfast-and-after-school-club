@@ -6,13 +6,15 @@ import Loader from "../../components/loader/loader.component";
 
 import { ParentDiv } from "../../styles/div/div.styles";
 import { BlackTitle } from "../../styles/h1/h1.styles";
+import useGetSendEmailSelectors from "../../hooks/get-selectors/use-get-send-email-selectors";
 
 const TitleAndLoader = () => {
   const { updateEmailIsLoading } = useGetUpdateEmailSelectors();
+  const { sendEmailIsLoading } = useGetSendEmailSelectors();
 
   return (
     <>
-      {updateEmailIsLoading ? <Loader /> : null}
+      {updateEmailIsLoading || sendEmailIsLoading ? <Loader /> : null}
       <ParentDiv>
         <BlackTitle>
           <Balancer>update your email address</Balancer>

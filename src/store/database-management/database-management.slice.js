@@ -10,6 +10,8 @@ import {
   deleteDocumentAsync,
   createUserDocumentAsync,
   createChildDocumentAsync,
+  updateUsersLatestBookingsWithNewEmailAsync,
+  updateChildrensListParentEmailWithNewEmailAsync,
 } from "./database-management-thunks";
 
 export const databaseManagementSlice = createSlice({
@@ -145,6 +147,12 @@ export const databaseManagementSlice = createSlice({
     resetUserOfAppChoice(state) {
       state.userOfAppChoice = null;
     },
+    resetUpdateChildrensListEmailResult(state) {
+      state.updateChildrensListEmailResult = "";
+    },
+    resetUpdateChildrensListEmailError(state) {
+      state.updateChildrensListEmailError = null;
+    },
     resetDatabaseManagementState: () => {
       return INITIAL_STATE;
     },
@@ -189,6 +197,10 @@ export const databaseManagementSlice = createSlice({
       (state) => state.createChildDocumentError,
       (state) => state.bookingToCancelDetails,
       (state) => state.userOfAppChoice,
+      (state) => state.updateBookingEmailsResult,
+      (state) => state.updateBookingEmailsError,
+      (state) => state.updateChildrensListEmailResult,
+      (state) => state.updateChildrensListEmailError,
       (
         databaseManagementIsLoading,
 
@@ -227,7 +239,11 @@ export const databaseManagementSlice = createSlice({
         createChildDocumentResult,
         createChildDocumentError,
         bookingToCancelDetails,
-        userOfAppChoice
+        userOfAppChoice,
+        updateBookingEmailsResult,
+        updateBookingEmailsError,
+        updateChildrensListEmailResult,
+        updateChildrensListEmailError
       ) => {
         return {
           databaseManagementIsLoading,
@@ -390,7 +406,48 @@ export const databaseManagementSlice = createSlice({
         state.databaseManagementIsLoading = false;
         state.createChildDocumentResult = "rejected";
         state.createChildDocumentError = action.payload;
-      });
+      })
+      .addCase(updateUsersLatestBookingsWithNewEmailAsync.pending, (state) => {
+        state.updateEmailIsLoading = true;
+      })
+      .addCase(
+        updateUsersLatestBookingsWithNewEmailAsync.fulfilled,
+        (state) => {
+          state.updateEmailIsLoading = false;
+          state.updateBookingEmailsResult = "fulfilled";
+          state.updateBookingEmailsError = null;
+        }
+      )
+      .addCase(
+        updateUsersLatestBookingsWithNewEmailAsync.rejected,
+        (state, action) => {
+          state.updateEmailIsLoading = false;
+          state.updateBookingEmailsResult = "rejected";
+          state.updateBookingEmailsError = action.payload;
+        }
+      )
+      .addCase(
+        updateChildrensListParentEmailWithNewEmailAsync.pending,
+        (state) => {
+          state.updateEmailIsLoading = true;
+        }
+      )
+      .addCase(
+        updateChildrensListParentEmailWithNewEmailAsync.fulfilled,
+        (state) => {
+          state.updateEmailIsLoading = false;
+          state.updateChildrensListEmailResult = "fulfilled";
+          state.updateChildrensListEmailError = null;
+        }
+      )
+      .addCase(
+        updateChildrensListParentEmailWithNewEmailAsync.rejected,
+        (state, action) => {
+          state.updateEmailIsLoading = false;
+          state.updateChildrensListEmailResult = "rejected";
+          state.updateChildrensListEmailError = action.payload;
+        }
+      );
   },
 });
 
@@ -439,6 +496,10 @@ export const {
   setUserOfAppChoice,
   resetUserOfAppChoice,
   resetDatabaseManagementState,
+  resetUpdateBookingEmailsResult,
+  resetUpdateBookingEmailsError,
+  resetUpdateChildrensListEmailResult,
+  resetUpdateChildrensListEmailError,
 } = databaseManagementSlice.actions;
 export const { selectDatabaseManagementSelectors } =
   databaseManagementSlice.selectors;

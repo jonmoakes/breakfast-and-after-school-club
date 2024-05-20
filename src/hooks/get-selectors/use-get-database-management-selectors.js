@@ -42,6 +42,10 @@ const useGetDatabaseManagementSelectors = () => {
     createChildDocumentError,
     bookingToCancelDetails,
     userOfAppChoice,
+    updateBookingEmailsResult,
+    updateBookingEmailsError,
+    updateChildrensListEmailResult,
+    updateChildrensListEmailError,
   } = useSelector(selectDatabaseManagementSelectors);
 
   const {
@@ -133,6 +137,10 @@ const useGetDatabaseManagementSelectors = () => {
     medicalInfo,
     dietryRequirements,
     additionalInfo,
+    updateBookingEmailsResult,
+    updateBookingEmailsError,
+    updateChildrensListEmailResult,
+    updateChildrensListEmailError,
   };
 };
 
