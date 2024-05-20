@@ -13,7 +13,7 @@ import {
   SEND_EMAIL_BALANCE_NOT_UPDATED_ERROR_ENDPOINT,
   SEND_EMAIL_WALET_FUNDS_NOT_ADDED_ERROR_ENDPOINT,
   SEND_EMAIL_TO_ADMIN_CLOSE_ACCOUNT_REQUEST_ENDPOINT,
-  SEND_EMAIL_UPDATE_LATEST_BOOKINGS_WITH_NEW_EMAIL_ENDPOINT,
+  SEND_EMAIL_UPDATE_LATEST_BOOKINGS_AND_CHILDRENS_PARENT_EMAIL_ENDPOINT,
 } from "../../../netlify/api-endpoints/api-endpoints";
 
 export const sendEmailBookingConfirmationAsync = createAsyncThunk(
@@ -241,23 +241,24 @@ export const sendEmailToAdminCloseAccountRequestAsync = createAsyncThunk(
   }
 );
 
-export const sendEmailUpdateLatestBookingsWithNewEmailAsync = createAsyncThunk(
-  "sendEmailUpdateLatestBookingsWithNewEmail",
-  async ({ appOwnerEmail, id, newEmail }, thunkAPI) => {
-    try {
-      const response = await axios.post(
-        SEND_EMAIL_UPDATE_LATEST_BOOKINGS_WITH_NEW_EMAIL_ENDPOINT,
-        {
-          appOwnerEmail,
-          id,
-          newEmail,
-        }
-      );
+export const sendEmailUpdateLatestBookingsAndChildrensParentEmailAsync =
+  createAsyncThunk(
+    "sendEmailUpdateLatestBookingsAndChildrensParentEmail",
+    async ({ appOwnerEmail, id, newEmail }, thunkAPI) => {
+      try {
+        const response = await axios.post(
+          SEND_EMAIL_UPDATE_LATEST_BOOKINGS_AND_CHILDRENS_PARENT_EMAIL_ENDPOINT,
+          {
+            appOwnerEmail,
+            id,
+            newEmail,
+          }
+        );
 
-      const statusCode = response.status;
-      return statusCode;
-    } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
+        const statusCode = response.status;
+        return statusCode;
+      } catch (error) {
+        return thunkAPI.rejectWithValue(error.message);
+      }
     }
-  }
-);
+  );

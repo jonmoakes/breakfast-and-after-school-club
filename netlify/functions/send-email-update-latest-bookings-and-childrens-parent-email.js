@@ -8,7 +8,8 @@ export const handler = async (event) => {
     await client.sendEmailWithTemplate({
       From: process.env.VITE_APP_ADMIN_EMAIL,
       To: appOwnerEmail,
-      TemplateAlias: "send-email-update-latest-bookings-with-new-email",
+      TemplateAlias:
+        "send-email-update-latest-bookings-and-childrens-parent-email",
       TemplateModel: {
         product_url: "https://www.breakfast-and-after-school-club.co.uk",
         product_name: "Breakfast & After School Club",

@@ -74,7 +74,9 @@ const UserBookingsHelp = () => {
             {isBookedSessionsOwnerRoute ||
             isAllChildrenRoute ||
             isAllUsersRoute ? (
-              <EmailAndCallTableHelp />
+              <>
+                <EmailAndCallTableHelp />
+              </>
             ) : null}
 
             <BlackHr />

@@ -147,6 +147,12 @@ export const databaseManagementSlice = createSlice({
     resetUserOfAppChoice(state) {
       state.userOfAppChoice = null;
     },
+    resetUpdateBookingEmailsResult(state) {
+      state.updateBookingEmailsResult = "";
+    },
+    resetUpdateBookingEmailsError(state) {
+      state.updateBookingEmailsError = null;
+    },
     resetUpdateChildrensListEmailResult(state) {
       state.updateChildrensListEmailResult = "";
     },
@@ -284,6 +290,10 @@ export const databaseManagementSlice = createSlice({
           createChildDocumentError,
           bookingToCancelDetails,
           userOfAppChoice,
+          updateBookingEmailsResult,
+          updateBookingEmailsError,
+          updateChildrensListEmailResult,
+          updateChildrensListEmailError,
         };
       }
     ),
@@ -408,12 +418,12 @@ export const databaseManagementSlice = createSlice({
         state.createChildDocumentError = action.payload;
       })
       .addCase(updateUsersLatestBookingsWithNewEmailAsync.pending, (state) => {
-        state.updateEmailIsLoading = true;
+        state.databaseManagementIsLoading = true;
       })
       .addCase(
         updateUsersLatestBookingsWithNewEmailAsync.fulfilled,
         (state) => {
-          state.updateEmailIsLoading = false;
+          state.databaseManagementIsLoading = false;
           state.updateBookingEmailsResult = "fulfilled";
           state.updateBookingEmailsError = null;
         }
@@ -421,7 +431,7 @@ export const databaseManagementSlice = createSlice({
       .addCase(
         updateUsersLatestBookingsWithNewEmailAsync.rejected,
         (state, action) => {
-          state.updateEmailIsLoading = false;
+          state.databaseManagementIsLoading = false;
           state.updateBookingEmailsResult = "rejected";
           state.updateBookingEmailsError = action.payload;
         }
@@ -429,13 +439,13 @@ export const databaseManagementSlice = createSlice({
       .addCase(
         updateChildrensListParentEmailWithNewEmailAsync.pending,
         (state) => {
-          state.updateEmailIsLoading = true;
+          state.databaseManagementIsLoading = true;
         }
       )
       .addCase(
         updateChildrensListParentEmailWithNewEmailAsync.fulfilled,
         (state) => {
-          state.updateEmailIsLoading = false;
+          state.databaseManagementIsLoading = false;
           state.updateChildrensListEmailResult = "fulfilled";
           state.updateChildrensListEmailError = null;
         }
@@ -443,7 +453,7 @@ export const databaseManagementSlice = createSlice({
       .addCase(
         updateChildrensListParentEmailWithNewEmailAsync.rejected,
         (state, action) => {
-          state.updateEmailIsLoading = false;
+          state.databaseManagementIsLoading = false;
           state.updateChildrensListEmailResult = "rejected";
           state.updateChildrensListEmailError = action.payload;
         }

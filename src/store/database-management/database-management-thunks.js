@@ -396,12 +396,12 @@ export const createChildDocumentAsync = createAsyncThunk(
 export const updateUsersLatestBookingsWithNewEmailAsync = createAsyncThunk(
   "updateUsersLatestBookingsWithNewEmail",
   async (
-    { id, bookedSessionsCollectionId, databaseId, newEmail },
+    { parentsUserId, bookedSessionsCollectionId, databaseId, parentEmail },
     thunkAPI
   ) => {
     try {
       const queryIndex = "parentsUserId";
-      const queryValue = id;
+      const queryValue = parentsUserId;
 
       const collectionId = bookedSessionsCollectionId;
 
@@ -437,7 +437,7 @@ export const updateUsersLatestBookingsWithNewEmailAsync = createAsyncThunk(
           databaseId,
           collectionId,
           doc.$id,
-          { parentEmail: newEmail }
+          { parentEmail: parentEmail }
         );
       }
     } catch (error) {
@@ -448,10 +448,13 @@ export const updateUsersLatestBookingsWithNewEmailAsync = createAsyncThunk(
 
 export const updateChildrensListParentEmailWithNewEmailAsync = createAsyncThunk(
   "updateChildrensListParentEmailWithNewEmailAsync",
-  async ({ id, childrenCollectionId, databaseId, newEmail }, thunkAPI) => {
+  async (
+    { parentsUserId, childrenCollectionId, databaseId, parentEmail },
+    thunkAPI
+  ) => {
     try {
       const queryIndex = "parentsUserId";
-      const queryValue = id;
+      const queryValue = parentsUserId;
 
       const collectionId = childrenCollectionId;
 
@@ -472,7 +475,7 @@ export const updateChildrensListParentEmailWithNewEmailAsync = createAsyncThunk(
           databaseId,
           collectionId,
           doc.$id,
-          { parentEmail: newEmail }
+          { parentEmail: parentEmail }
         );
       }
     } catch (error) {

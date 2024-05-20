@@ -1,29 +1,48 @@
 import { useDispatch } from "react-redux";
 import useGetCurrentUserSelectors from "../../get-selectors/use-get-current-user-selectors";
 
-import { updateUsersLatestBookingsWithNewEmailAsync } from "../../../store/database-management/database-management-thunks";
+import {
+  updateChildrensListParentEmailWithNewEmailAsync,
+  updateUsersLatestBookingsWithNewEmailAsync,
+} from "../../../store/database-management/database-management-thunks";
 
-const useUpdateUsersLatestBookingsWithNewEmailThunk = () => {
-  const { id, bookedSessionsCollectionId, databaseId, newEmail } =
+const useUpdateLatestBookingsAndChildrensListWithNewEmailThunk = () => {
+  const { bookedSessionsCollectionId, databaseId, childrenCollectionId } =
     useGetCurrentUserSelectors();
 
   const dispatch = useDispatch();
 
-  const updateUsersLatestBookingsWithNewEmailThunk = () => {
+  const updateLatestBookingsAndChildrensListWithNewEmailThunk = (
+    parentsUserId,
+    parentEmail
+  ) => {
     dispatch(
       updateUsersLatestBookingsWithNewEmailAsync({
-        id,
+        parentsUserId,
         bookedSessionsCollectionId,
         databaseId,
-        newEmail,
+        parentEmail,
       })
-    );
+    ).then((resultAction) => {
+      if (
+        updateUsersLatestBookingsWithNewEmailAsync.fulfilled.match(resultAction)
+      ) {
+        dispatch(
+          updateChildrensListParentEmailWithNewEmailAsync({
+            parentsUserId,
+            childrenCollectionId,
+            databaseId,
+            parentEmail,
+          })
+        );
+      }
+    });
   };
 
-  return { updateUsersLatestBookingsWithNewEmailThunk };
+  return { updateLatestBookingsAndChildrensListWithNewEmailThunk };
 };
 
-export default useUpdateUsersLatestBookingsWithNewEmailThunk;
+export default useUpdateLatestBookingsAndChildrensListWithNewEmailThunk;
 // dispatch(
 //     updateUsersLatestBookingsWithNewEmailAsync({
 //       id,

@@ -52,6 +52,7 @@ import {
   pricingRoute,
   databaseManagementCreateChildRoute,
   databaseManagementDeleteChildRoute,
+  databaseManagementUpdateLatestBookingsAndChildrensParentEmailRoute,
 } from "./strings/routes/routes-strings";
 
 const Navigation = lazy(() =>
@@ -183,6 +184,12 @@ const DBManageDeleteChild = lazy(() =>
   )
 );
 
+const DBManageUpdateLatestBookingsAndChildrensParentEmail = lazy(() =>
+  import(
+    "./routes/database-management-update-latest-bookings-and-childrens-parent-email/db-manage-update-latest-bookings-and-childrens-parent-email.component"
+  )
+);
+
 const App = () => {
   const { currentUser, appOwnerId } = useGetCurrentUserSelectors();
   useGetUserOnLoadThunkUseEffect();
@@ -295,6 +302,14 @@ const App = () => {
               <Route
                 path={databaseManagementDeleteChildRoute}
                 element={<DBManageDeleteChild />}
+              />
+              <Route
+                path={
+                  databaseManagementUpdateLatestBookingsAndChildrensParentEmailRoute
+                }
+                element={
+                  <DBManageUpdateLatestBookingsAndChildrensParentEmail />
+                }
               />
               <Route path={childInfoRoute} element={<ChildInfo />} />
               <Route path={addChildInfoRoute} element={<AddChildInfo />} />

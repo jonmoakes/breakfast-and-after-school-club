@@ -13,6 +13,7 @@ import {
   databaseManagementCreateUserRoute,
   databaseManagementCreateChildRoute,
   databaseManagementDeleteChildRoute,
+  databaseManagementUpdateLatestBookingsAndChildrensParentEmailRoute,
 } from "../../../strings/routes/routes-strings";
 
 const useNavigateToDbManagementButtons = () => {
@@ -91,32 +92,41 @@ const useNavigateToDbManagementButtons = () => {
       onClick: () =>
         hamburgerHandlerNavigate(databaseManagementDeleteChildRoute),
     },
+    {
+      id: 10,
+      heading: "Update Data With Users New Email",
+      text: "Apply Update",
+      onClick: () =>
+        hamburgerHandlerNavigate(
+          databaseManagementUpdateLatestBookingsAndChildrensParentEmailRoute
+        ),
+    },
   ];
 
   const dbManagementForErrorReceivedButtons = [
     {
-      id: 10,
+      id: 11,
       heading: "update a users balance",
       text: "email error id '1'",
       onClick: () =>
         handleNavWithErrorId("1", databaseManagementUpdateUserBalanceRoute),
     },
     {
-      id: 11,
+      id: 12,
       heading: "add a booking after you received an error email",
       text: "email error id '2'",
       onClick: () =>
         handleNavWithErrorId("2", databaseManagementAddBookingRoute),
     },
     {
-      id: 12,
+      id: 13,
       heading: "update user balance & session spaces",
       text: "email error id '3'",
       onClick: () =>
         handleNavWithErrorId("3", databaseManagementUpdateUserBalanceRoute),
     },
     {
-      id: 13,
+      id: 14,
       heading: "update session spaces",
       text: "email error id '4'",
       onClick: () =>

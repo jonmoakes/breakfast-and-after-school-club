@@ -1,4 +1,4 @@
-// import useUpdateEmailResultResultSwal from "./update-email-hooks/use-update-email-result-swal";
+import useUpdateEmailResultResultSwal from "./update-email-hooks/use-update-email-result-swal";
 
 import TitleAndLoader from "./title-and-loader.component";
 import Info from "./info.component";
@@ -8,7 +8,7 @@ import { Container } from "../../styles/container/container.styles";
 import { ParentDiv } from "../../styles/div/div.styles";
 
 const UpdateEmail = () => {
-  // useUpdateEmailResultResultSwal();
+  useUpdateEmailResultResultSwal();
 
   return (
     <Container>

@@ -20,6 +20,20 @@ const EmailAndCallTableHelp = () => (
       please note however, that the calling option my not be available on a
       desktop PC / laptop depending on your hardware.
     </Text>
+    <BlueH2>viewing / hiding emails & phone numbers</BlueH2>
+    <Text>
+      by default, user email addresses and phone numbers are hidden for privacy
+      reasons.
+    </Text>
+    <Text>
+      if you want to view an email or phone number, you can tap on the eye icon
+      next to it.
+    </Text>
+    <Text>tapping again will toggle it back to hidden again.</Text>
+    <Text>note that this choice only applies whilst you're on the page.</Text>
+    <Text>
+      when you leave the page, the data will go back to being hidden again.
+    </Text>
   </>
 );
 

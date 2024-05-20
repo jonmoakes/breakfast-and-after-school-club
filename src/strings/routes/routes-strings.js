@@ -48,5 +48,7 @@ export const databaseManagementCreateChildRoute =
   "/database-manangement/create-child";
 export const databaseManagementDeleteChildRoute =
   "/database-manangement/delete-child";
+export const databaseManagementUpdateLatestBookingsAndChildrensParentEmailRoute =
+  "/database-manangement/update-data-with-new-email";
 export const pricingRoute = "/pricing";
 export const termsRoute = "/terms-and-conditions";
