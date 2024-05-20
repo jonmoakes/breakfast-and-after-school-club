@@ -48,7 +48,6 @@ const useNavigateToRoute = () => {
       text: " contact",
       onClick: () => hamburgerHandlerNavigate(contactRoute),
     },
-
     id === import.meta.env.VITE_TEST_SCHOOL_APP_OWNER_ID && {
       id: 6,
       text: " upload dates",
@@ -59,51 +58,56 @@ const useNavigateToRoute = () => {
       text: " database management",
       onClick: () => hamburgerHandlerNavigate(databaseManagementRoute),
     },
+    {
+      id: 8,
+      text: " install app info",
+      onClick: () => hamburgerHandlerNavigate(pwaInfoRoute),
+    },
   ].filter(Boolean); // Remove falsy values (null, undefined) from the array
 
   const notAppOwnerButtons = [
     {
-      id: 8,
+      id: 9,
       text: "view your bookings",
       onClick: () => hamburgerHandlerNavigate(bookedSessionsUserRoute),
     },
     {
-      id: 9,
+      id: 10,
       text: "book a session",
       onClick: () => hamburgerHandlerNavigate(bookSessionRoute),
     },
     {
-      id: 10,
+      id: 11,
       text: "add funds",
       onClick: () => hamburgerHandlerNavigate(addFundsRoute),
     },
     {
-      id: 11,
+      id: 12,
       text: "child info",
       onClick: () => hamburgerHandlerNavigate(childInfoRoute),
     },
     {
-      id: 12,
+      id: 13,
       text: " update email",
       onClick: () => hamburgerHandlerNavigate(updateEmailRoute),
     },
     {
-      id: 13,
+      id: 14,
       text: " update password",
       onClick: () => hamburgerHandlerNavigate(updatePasswordRoute),
     },
     {
-      id: 14,
+      id: 15,
       text: " close account",
       onClick: () => hamburgerHandlerNavigate(closeAccountRoute),
     },
     {
-      id: 15,
+      id: 16,
       text: " contact us",
       onClick: () => hamburgerHandlerNavigate(contactRoute),
     },
     {
-      id: 16,
+      id: 17,
       text: " install app info",
       onClick: () => hamburgerHandlerNavigate(pwaInfoRoute),
     },

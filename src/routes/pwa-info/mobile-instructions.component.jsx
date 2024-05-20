@@ -40,7 +40,7 @@ const MobileInstructions = () => (
 
     <BlueH2>Mozilla Firefox (Android):</BlueH2>
     <StyledUnorderedList>
-      <BlackListItem>Open Firefox and go to your PWA.</BlackListItem>
+      <BlackListItem>Open Firefox and go to our site.</BlackListItem>
       <BlackListItem>
         Tap the menu button (three vertical dots) at the top-right corner.
       </BlackListItem>
