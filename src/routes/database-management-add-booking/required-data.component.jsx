@@ -1,48 +1,49 @@
 import { ParentDiv } from "../../styles/div/div.styles";
 import { BlackHr } from "../../styles/hr/hr.styles";
 import { BlackSpan } from "../../styles/span/span.styles";
+import { StyledUnorderedList, BlueListItem } from "../../styles/ul/ul.styles";
 
 const RequiredData = () => (
   <ParentDiv>
-    <ul>
+    <StyledUnorderedList>
       <BlackHr />
-      <li>
+      <BlueListItem>
         <BlackSpan>the</BlackSpan>
         <br />
         Date
-      </li>
+      </BlueListItem>
       <BlackHr />
-      <li>
+      <BlueListItem>
         <BlackSpan>the</BlackSpan>
         <br />
         Children in the booking
-      </li>
+      </BlueListItem>
       <BlackHr />
-      <li>
+      <BlueListItem>
         <BlackSpan>the</BlackSpan>
         <br />
         parent name
-      </li>
+      </BlueListItem>
       <BlackHr />
-      <li>
+      <BlueListItem>
         <BlackSpan>the</BlackSpan>
         <br />
         parent phone number
-      </li>
+      </BlueListItem>
       <BlackHr />
-      <li>
+      <BlueListItem>
         <BlackSpan>the</BlackSpan>
         <br />
         parents user id
-      </li>
+      </BlueListItem>
       <BlackHr />
-      <li>
+      <BlueListItem>
         <BlackSpan>the</BlackSpan>
         <br />
         parent email
-      </li>
+      </BlueListItem>
       <BlackHr />
-    </ul>
+    </StyledUnorderedList>
   </ParentDiv>
 );
 

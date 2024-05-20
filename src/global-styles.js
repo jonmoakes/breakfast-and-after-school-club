@@ -42,23 +42,6 @@ export const GlobalStyle = createGlobalStyle`
             font-size: calc(1rem + 0.25vw);
         }
 
-        ul {
-            padding-left: unset;
-            display: table;
-            margin: 10px auto;
-            list-style-type: none;
-
-           
-        }
-
-        li {
-            font-size: calc(1rem + 0.25vw);
-            margin-bottom:10px;
-            color:${customBlue};
-
-           
-        }
-
         a {
             color:${customBlack};
             text-decoration:none;

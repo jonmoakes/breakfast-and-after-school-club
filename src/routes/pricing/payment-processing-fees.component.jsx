@@ -5,6 +5,7 @@ import { BlackHr } from "../../styles/hr/hr.styles";
 import { StyledLink } from "../../styles/link/link.styles";
 import { Text } from "../../styles/p/p.styles";
 import { BlueSpan } from "../../styles/span/span.styles";
+import { BlueListItem, StyledUnorderedList } from "../../styles/ul/ul.styles";
 
 const PaymentProcessingFees = () => (
   <ParentDiv>
@@ -32,15 +33,15 @@ const PaymentProcessingFees = () => (
     <Text>
       a small price to pay for industry leading security and payment processing
       features, trusted by thousands of companies including huge compaines like:
-      <ul>
-        <li>Amazon</li>
-        <li>Google</li>
-        <li>Microsoft</li>
-        <li>Spotify</li>
-        <li>Uber</li>
-        <li>Booking.com</li>
-        <li>Shopify</li>
-      </ul>
+      <StyledUnorderedList>
+        <BlueListItem>Amazon</BlueListItem>
+        <BlueListItem>Google</BlueListItem>
+        <BlueListItem>Microsoft</BlueListItem>
+        <BlueListItem>Spotify</BlueListItem>
+        <BlueListItem>Uber</BlueListItem>
+        <BlueListItem>Booking.com</BlueListItem>
+        <BlueListItem>Shopify</BlueListItem>
+      </StyledUnorderedList>
       and many more!
     </Text>
     <BlackHr />

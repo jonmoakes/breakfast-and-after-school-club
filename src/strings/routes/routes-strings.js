@@ -25,6 +25,7 @@ export const aboutRoute = "/about";
 export const allChildrenRoute = "/children-list";
 export const allUsersRoute = "/users-list";
 export const uploadDatesRoute = "/upload-dates";
+export const pwaInfoRoute = "/pwa-info";
 export const databaseManagementRoute = "/database-management/*";
 export const databaseManagementViewBookingClosingTimesRoute =
   "/database-management/booking-closing-times";

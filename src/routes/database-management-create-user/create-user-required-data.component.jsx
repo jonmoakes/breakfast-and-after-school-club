@@ -1,25 +1,26 @@
 import { BlackHr } from "../../styles/hr/hr.styles";
 import { BlackSpan } from "../../styles/span/span.styles";
+import { StyledUnorderedList, BlueListItem } from "../../styles/ul/ul.styles";
 
 const CreateUserRequiredData = () => (
-  <ul>
+  <StyledUnorderedList>
     <BlackHr />
 
-    <li>
+    <BlueListItem>
       <BlackSpan>the customers name</BlackSpan>
-    </li>
+    </BlueListItem>
     <BlackHr />
 
-    <li>
+    <BlueListItem>
       <BlackSpan>their email address</BlackSpan>
-    </li>
+    </BlueListItem>
     <BlackHr />
 
-    <li>
+    <BlueListItem>
       <BlackSpan>their phone number</BlackSpan>
-    </li>
+    </BlueListItem>
     <BlackHr />
-  </ul>
+  </StyledUnorderedList>
 );
 
 export default CreateUserRequiredData;

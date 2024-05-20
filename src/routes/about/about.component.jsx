@@ -5,7 +5,7 @@ import DatabaseAdminImac from "./images/database-admin-imac/database-admin-imac.
 import UserAddFundsPhone from "./images/user-add-funds-phone.component/user-add-funds-phone.component";
 import UserBooksSessionPhone from "./images/user-books-session-phone.component/user-books-session-phone.component";
 import UserCancelsSessionAndPdfPhone from "./images/user-cancels-session-and-pdf-phone.component/user-cancels-session-and-pdf-phone.component";
-import PwaInfo from "./pwa-info/pwa-info.component";
+import PwaInfo from "../../components/pwa-info/pwa-info.component";
 import AboutPageLinks from "./about-page-links.component";
 
 import { Container } from "../../styles/container/container.styles";

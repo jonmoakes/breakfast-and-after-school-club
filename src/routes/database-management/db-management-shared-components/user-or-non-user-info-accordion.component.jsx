@@ -14,6 +14,10 @@ import { Text } from "../../../styles/p/p.styles";
 import { databaseManagementAddBookingRoute } from "../../../strings/routes/routes-strings";
 import { RedSpan } from "../../../styles/span/span.styles";
 import { BlueH2 } from "../../../styles/h2/h2.styles";
+import {
+  StyledUnorderedList,
+  BlueListItem,
+} from "../../../styles/ul/ul.styles";
 
 const UserOrNonUserInfoAccordion = () => {
   const { shouldShowElement } = useGetShouldShowElementSelectors();
@@ -53,27 +57,27 @@ const UserOrNonUserInfoAccordion = () => {
               <Text>
                 if they're <RedSpan>not</RedSpan> a user of the app, we will:
               </Text>
-              <ul>
-                <li>
+              <StyledUnorderedList>
+                <BlueListItem>
                   {isAddingBookingRoute() ? "Deduct" : "Add"} session spaces.
-                </li>
-                <li>
+                </BlueListItem>
+                <BlueListItem>
                   {isAddingBookingRoute() ? "Add" : "Remove"} the booking data.
-                </li>
-              </ul>
+                </BlueListItem>
+              </StyledUnorderedList>
               <BlackHr />
               <Text>
                 if they <RedSpan>are</RedSpan> a user of the app, we will:
               </Text>
-              <ul>
-                <li>update the users balance.</li>
-                <li>
+              <StyledUnorderedList>
+                <BlueListItem>update the users balance.</BlueListItem>
+                <BlueListItem>
                   {isAddingBookingRoute() ? "Deduct" : "Add"} session spaces.
-                </li>
-                <li>
+                </BlueListItem>
+                <BlueListItem>
                   {isAddingBookingRoute() ? "Add" : "Remove"} booking data.
-                </li>
-              </ul>
+                </BlueListItem>
+              </StyledUnorderedList>
               <BlackHr />
               <YellowGreenButton onClick={dispatchHideShownElement}>
                 Ok, Close

@@ -19,6 +19,7 @@ import {
   RedSpan,
 } from "../../styles/span/span.styles";
 import { StyledLink } from "../../styles/link/link.styles";
+import { StyledUnorderedList, BlueListItem } from "../../styles/ul/ul.styles";
 
 import { allUsersRoute } from "../../strings/routes/routes-strings";
 
@@ -75,27 +76,27 @@ const AddBookingInstructionsAccordion = () => {
                     case' text, where the first letter is always lowercased,
                     then the first letter of the next word is capitalised' ):
                   </Text>
-                  <ul>
-                    <li>
+                  <StyledUnorderedList>
+                    <BlueListItem>
                       <RedSpan className="no-format">morning</RedSpan>
-                    </li>
-                    <li>
+                    </BlueListItem>
+                    <BlueListItem>
                       <RedSpan className="no-format">afternoonShort</RedSpan>
-                    </li>
-                    <li>
+                    </BlueListItem>
+                    <BlueListItem>
                       <RedSpan className="no-format">afternoonLong</RedSpan>
-                    </li>
-                    <li>
+                    </BlueListItem>
+                    <BlueListItem>
                       <RedSpan className="no-format">
                         morningAndAfternoonShort
                       </RedSpan>
-                    </li>
-                    <li>
+                    </BlueListItem>
+                    <BlueListItem>
                       <RedSpan className="no-format">
                         morningAndAfternoonLong
                       </RedSpan>
-                    </li>
-                  </ul>
+                    </BlueListItem>
+                  </StyledUnorderedList>
                   <BlackHr />
 
                   <Text>

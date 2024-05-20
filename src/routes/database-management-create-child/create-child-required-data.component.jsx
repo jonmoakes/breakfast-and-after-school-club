@@ -1,75 +1,76 @@
 import { BlackHr } from "../../styles/hr/hr.styles";
 import { BlackSpan, RedSpan } from "../../styles/span/span.styles";
+import { StyledUnorderedList, BlueListItem } from "../../styles/ul/ul.styles";
 
 const CreateChildRequiredData = () => (
-  <ul>
+  <StyledUnorderedList>
     <BlackHr />
 
-    <li>
+    <BlueListItem>
       <BlackSpan>
         <RedSpan>*</RedSpan>the childs name
       </BlackSpan>
-    </li>
+    </BlueListItem>
     <BlackHr />
 
-    <li>
+    <BlueListItem>
       <BlackSpan>
         <RedSpan>*</RedSpan>the childs age
       </BlackSpan>
-    </li>
+    </BlueListItem>
     <BlackHr />
 
-    <li>
+    <BlueListItem>
       <BlackSpan>
         <RedSpan>*</RedSpan>the image / video consent choice ( for school
         newsletters etc )
       </BlackSpan>
-    </li>
+    </BlueListItem>
     <BlackHr />
 
-    <li>
+    <BlueListItem>
       <BlackSpan>the childs medical info</BlackSpan>
-    </li>
+    </BlueListItem>
     <BlackHr />
 
-    <li>
+    <BlueListItem>
       <BlackSpan>the childs dietry requirements</BlackSpan>
-    </li>
+    </BlueListItem>
     <BlackHr />
 
-    <li>
+    <BlueListItem>
       <BlackSpan>any additional info</BlackSpan>
-    </li>
+    </BlueListItem>
     <BlackHr />
 
-    <li>
+    <BlueListItem>
       <BlackSpan>
         <RedSpan>*</RedSpan>the parents name
       </BlackSpan>
-    </li>
+    </BlueListItem>
     <BlackHr />
 
-    <li>
+    <BlueListItem>
       <BlackSpan>
         <RedSpan>*</RedSpan>the parents email
       </BlackSpan>
-    </li>
+    </BlueListItem>
     <BlackHr />
 
-    <li>
+    <BlueListItem>
       <BlackSpan>
         <RedSpan>*</RedSpan>the parents phone number
       </BlackSpan>
-    </li>
+    </BlueListItem>
     <BlackHr />
 
-    <li>
+    <BlueListItem>
       <BlackSpan>
         <RedSpan>*</RedSpan>the parents user id
       </BlackSpan>
-    </li>
+    </BlueListItem>
     <BlackHr />
-  </ul>
+  </StyledUnorderedList>
 );
 
 export default CreateChildRequiredData;

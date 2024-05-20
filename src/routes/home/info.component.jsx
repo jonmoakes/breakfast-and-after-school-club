@@ -22,7 +22,7 @@ const Info = () => (
       <BlueH2 className="no-underline">
         📅
         <br />
-        Easy Booking
+        Easy Booking:
       </BlueH2>
       <Text>Parents can book and cancel sessions in a few taps.</Text>
       <BlackHr />
@@ -31,7 +31,7 @@ const Info = () => (
     <FeatureDiv>
       <BlueH2 className="no-underline">
         💸 <br />
-        Virtual Wallet
+        Virtual Wallet:
       </BlueH2>
       <Text>
         Users pay an amount into their wallet which is then deducted or refunded
@@ -43,7 +43,7 @@ const Info = () => (
     <FeatureDiv>
       <BlueH2 className="no-underline">
         📧 <br />
-        Instant Communication
+        Instant Communication:
       </BlueH2>
       <Text>Effortlessly connect with parents at the touch of a button.</Text>
       <BlackHr />
@@ -52,7 +52,7 @@ const Info = () => (
     <FeatureDiv>
       <BlueH2 className="no-underline">
         📊 <br />
-        Comprehensive Overview
+        Comprehensive Overview:
       </BlueH2>
       <Text>View and analyse all bookings in one centralised table.</Text>
       <BlackHr />

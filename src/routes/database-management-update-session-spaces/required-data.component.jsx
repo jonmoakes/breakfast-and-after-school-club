@@ -1,28 +1,29 @@
 import { BlackHr } from "../../styles/hr/hr.styles";
 import { BlackSpan } from "../../styles/span/span.styles";
+import { StyledUnorderedList, BlueListItem } from "../../styles/ul/ul.styles";
 
 const RequiredData = () => (
-  <ul>
+  <StyledUnorderedList>
     <BlackHr />
-    <li>
+    <BlueListItem>
       <BlackSpan>the</BlackSpan>
       <br />
       Date
-    </li>
+    </BlueListItem>
     <BlackHr />
-    <li>
+    <BlueListItem>
       <BlackSpan>the</BlackSpan>
       <br />
       session type
-    </li>
+    </BlueListItem>
     <BlackHr />
-    <li>
+    <BlueListItem>
       <BlackSpan>the</BlackSpan>
       <br />
       number of children in the booking
-    </li>
+    </BlueListItem>
     <BlackHr />
-  </ul>
+  </StyledUnorderedList>
 );
 
 export default RequiredData;

@@ -15,6 +15,7 @@ import {
   uploadDatesRoute,
   databaseManagementRoute,
   contactRoute,
+  pwaInfoRoute,
 } from "../../../strings/routes/routes-strings";
 
 const useNavigateToRoute = () => {
@@ -42,63 +43,69 @@ const useNavigateToRoute = () => {
       text: " update password",
       onClick: () => hamburgerHandlerNavigate(updatePasswordRoute),
     },
-    id !== import.meta.env.VITE_TEST_SCHOOL_APP_OWNER_ID && {
+    {
       id: 5,
-      text: " database management",
-      onClick: () => hamburgerHandlerNavigate(databaseManagementRoute),
+      text: " contact",
+      onClick: () => hamburgerHandlerNavigate(contactRoute),
     },
+
     id === import.meta.env.VITE_TEST_SCHOOL_APP_OWNER_ID && {
       id: 6,
       text: " upload dates",
       onClick: () => hamburgerHandlerNavigate(uploadDatesRoute),
     },
-    {
+    id !== import.meta.env.VITE_TEST_SCHOOL_APP_OWNER_ID && {
       id: 7,
-      text: " contact",
-      onClick: () => hamburgerHandlerNavigate(contactRoute),
+      text: " database management",
+      onClick: () => hamburgerHandlerNavigate(databaseManagementRoute),
     },
   ].filter(Boolean); // Remove falsy values (null, undefined) from the array
 
   const notAppOwnerButtons = [
     {
-      id: 1,
+      id: 8,
       text: "view your bookings",
       onClick: () => hamburgerHandlerNavigate(bookedSessionsUserRoute),
     },
     {
-      id: 2,
+      id: 9,
       text: "book a session",
       onClick: () => hamburgerHandlerNavigate(bookSessionRoute),
     },
     {
-      id: 3,
+      id: 10,
       text: "add funds",
       onClick: () => hamburgerHandlerNavigate(addFundsRoute),
     },
     {
-      id: 4,
+      id: 11,
       text: "child info",
       onClick: () => hamburgerHandlerNavigate(childInfoRoute),
     },
     {
-      id: 5,
+      id: 12,
       text: " update email",
       onClick: () => hamburgerHandlerNavigate(updateEmailRoute),
     },
     {
-      id: 6,
+      id: 13,
       text: " update password",
       onClick: () => hamburgerHandlerNavigate(updatePasswordRoute),
     },
     {
-      id: 7,
+      id: 14,
       text: " close account",
       onClick: () => hamburgerHandlerNavigate(closeAccountRoute),
     },
     {
-      id: 8,
+      id: 15,
       text: " contact us",
       onClick: () => hamburgerHandlerNavigate(contactRoute),
+    },
+    {
+      id: 16,
+      text: " install app info",
+      onClick: () => hamburgerHandlerNavigate(pwaInfoRoute),
     },
   ];
 

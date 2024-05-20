@@ -1,24 +1,25 @@
 import { BlackHr } from "../../styles/hr/hr.styles";
 import { BlackSpan } from "../../styles/span/span.styles";
+import { BlueListItem, StyledUnorderedList } from "../../styles/ul/ul.styles";
 
 const RequiredData = () => (
-  <ul>
+  <StyledUnorderedList>
     <BlackHr />
 
-    <li>
+    <BlueListItem>
       <BlackSpan>the</BlackSpan>
       <br />
       document id
-    </li>
+    </BlueListItem>
     <BlackHr />
 
-    <li>
+    <BlueListItem>
       <BlackSpan>the</BlackSpan>
       <br />
       amount to add
-    </li>
+    </BlueListItem>
     <BlackHr />
-  </ul>
+  </StyledUnorderedList>
 );
 
 export default RequiredData;

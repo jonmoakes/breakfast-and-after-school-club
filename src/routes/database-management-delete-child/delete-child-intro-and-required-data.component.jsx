@@ -2,6 +2,7 @@ import { ParentDiv } from "../../styles/div/div.styles";
 import { Text } from "../../styles/p/p.styles";
 import { BlackHr } from "../../styles/hr/hr.styles";
 import { BlackSpan } from "../../styles/span/span.styles";
+import { BlueListItem, StyledUnorderedList } from "../../styles/ul/ul.styles";
 
 const DeleteChildIntroAndRequiredData = () => (
   <ParentDiv>
@@ -14,14 +15,14 @@ const DeleteChildIntroAndRequiredData = () => (
     <BlackHr />
     <Text>to do this, we need the following data:</Text>
 
-    <ul>
-      <li>
+    <StyledUnorderedList>
+      <BlueListItem>
         <BlackSpan>the childs unique</BlackSpan>
         <br />
         document id
-      </li>
+      </BlueListItem>
       <BlackHr />
-    </ul>
+    </StyledUnorderedList>
     <Text>tap on the button below to show detailed instructions.</Text>
   </ParentDiv>
 );

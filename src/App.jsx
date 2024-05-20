@@ -53,6 +53,7 @@ import {
   databaseManagementCreateChildRoute,
   databaseManagementDeleteChildRoute,
   databaseManagementUpdateLatestBookingsAndChildrensParentEmailRoute,
+  pwaInfoRoute,
 } from "./strings/routes/routes-strings";
 
 const Navigation = lazy(() =>
@@ -113,6 +114,9 @@ const UpdatePassword = lazy(() =>
 
 const CloseAccount = lazy(() =>
   import("./routes/close-account/close-account.component")
+);
+const PwaInformation = lazy(() =>
+  import("./routes/pwa-info/pwa-information.component")
 );
 const ForgotPasswordRequest = lazy(() =>
   import("./routes/forgot-password-request/forgot-password-request.component")
@@ -341,6 +345,7 @@ const App = () => {
               <Route path={updateEmailRoute} element={<UpdateEmail />} />
               <Route path={updatePasswordRoute} element={<UpdatePassword />} />
               <Route path={closeAccountRoute} element={<CloseAccount />} />
+              <Route path={pwaInfoRoute} element={<PwaInformation />} />
             </Route>
           </Routes>
         </Suspense>

@@ -2,6 +2,10 @@ import { BlueH2 } from "../../../styles/h2/h2.styles";
 import { BlackHr } from "../../../styles/hr/hr.styles";
 import { Text } from "../../../styles/p/p.styles";
 import { BlackSpan } from "../../../styles/span/span.styles";
+import {
+  StyledUnorderedList,
+  BlueListItem,
+} from "../../../styles/ul/ul.styles";
 
 const ColourCodingTableHelp = () => (
   <>
@@ -12,33 +16,33 @@ const ColourCodingTableHelp = () => (
       reference.
     </Text>
     <Text>the colours are:</Text>
-    <ul>
-      <li>
+    <StyledUnorderedList>
+      <BlueListItem>
         monday:
         <br />
         <BlackSpan>green</BlackSpan>
-      </li>
-      <li>
+      </BlueListItem>
+      <BlueListItem>
         tuesday:
         <br />
         <BlackSpan>white</BlackSpan>
-      </li>
-      <li>
+      </BlueListItem>
+      <BlueListItem>
         wednesday:
         <br />
         <BlackSpan>pink</BlackSpan>
-      </li>
-      <li>
+      </BlueListItem>
+      <BlueListItem>
         thursday:
         <br />
         <BlackSpan>cyan</BlackSpan>
-      </li>
-      <li>
+      </BlueListItem>
+      <BlueListItem>
         friday:
         <br />
         <BlackSpan>orange</BlackSpan>
-      </li>
-    </ul>
+      </BlueListItem>
+    </StyledUnorderedList>
   </>
 );
 
