@@ -53,3 +53,5 @@ export const databaseManagementUpdateLatestBookingsAndChildrensParentEmailRoute 
   "/database-manangement/update-data-with-new-email";
 export const pricingRoute = "/pricing";
 export const termsRoute = "/terms-and-conditions";
+export const privacyPolicyRoute = "/privacy-policy";
+export const securityPolicyRoute = "/security-policy";
