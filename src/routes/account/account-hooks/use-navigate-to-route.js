@@ -17,6 +17,9 @@ import {
   contactRoute,
   pwaInfoRoute,
   termsRoute,
+  privacyPolicyRoute,
+  cookiesRoute,
+  securityPolicyRoute,
 } from "../../../strings/routes/routes-strings";
 
 const useNavigateToRoute = () => {
@@ -44,89 +47,104 @@ const useNavigateToRoute = () => {
       text: " update password",
       onClick: () => hamburgerHandlerNavigate(updatePasswordRoute),
     },
-    {
-      id: 5,
-      text: " contact",
-      onClick: () => hamburgerHandlerNavigate(contactRoute),
-    },
+
     id === import.meta.env.VITE_TEST_SCHOOL_APP_OWNER_ID && {
-      id: 6,
+      id: 5,
       text: " upload dates",
       onClick: () => hamburgerHandlerNavigate(uploadDatesRoute),
     },
     id !== import.meta.env.VITE_TEST_SCHOOL_APP_OWNER_ID && {
-      id: 7,
+      id: 6,
       text: " database management",
       onClick: () => hamburgerHandlerNavigate(databaseManagementRoute),
     },
     {
-      id: 8,
+      id: 7,
       text: " install app info",
       onClick: () => hamburgerHandlerNavigate(pwaInfoRoute),
     },
     {
-      id: 9,
-      text: " terms & conditions",
-      onClick: () => hamburgerHandlerNavigate(termsRoute),
+      id: 8,
+      text: " contact",
+      onClick: () => hamburgerHandlerNavigate(contactRoute),
     },
   ].filter(Boolean); // Remove falsy values (null, undefined) from the array
 
   const notAppOwnerButtons = [
     {
-      id: 10,
+      id: 9,
       text: "view your bookings",
       onClick: () => hamburgerHandlerNavigate(bookedSessionsUserRoute),
     },
     {
-      id: 11,
+      id: 10,
       text: "book a session",
       onClick: () => hamburgerHandlerNavigate(bookSessionRoute),
     },
     {
-      id: 12,
+      id: 11,
       text: "add funds",
       onClick: () => hamburgerHandlerNavigate(addFundsRoute),
     },
     {
-      id: 13,
+      id: 12,
       text: "child info",
       onClick: () => hamburgerHandlerNavigate(childInfoRoute),
     },
     {
-      id: 14,
+      id: 13,
       text: " update email",
       onClick: () => hamburgerHandlerNavigate(updateEmailRoute),
     },
     {
-      id: 15,
+      id: 14,
       text: " update password",
       onClick: () => hamburgerHandlerNavigate(updatePasswordRoute),
     },
     {
-      id: 16,
+      id: 15,
       text: " close account",
       onClick: () => hamburgerHandlerNavigate(closeAccountRoute),
     },
     {
-      id: 17,
+      id: 16,
       text: " contact us",
       onClick: () => hamburgerHandlerNavigate(contactRoute),
     },
     {
-      id: 18,
+      id: 17,
       text: " install app info",
       onClick: () => hamburgerHandlerNavigate(pwaInfoRoute),
     },
+  ];
+
+  const legalButtons = [
     {
-      id: 19,
+      id: 18,
       text: " terms & conditions",
       onClick: () => hamburgerHandlerNavigate(termsRoute),
+    },
+    {
+      id: 19,
+      text: " privacy policy",
+      onClick: () => hamburgerHandlerNavigate(privacyPolicyRoute),
+    },
+    {
+      id: 20,
+      text: "cookie policy",
+      onClick: () => hamburgerHandlerNavigate(cookiesRoute),
+    },
+    {
+      id: 21,
+      text: "security policy",
+      onClick: () => hamburgerHandlerNavigate(securityPolicyRoute),
     },
   ];
 
   return {
     appOwnerButtons,
     notAppOwnerButtons,
+    legalButtons,
   };
 };
 
