@@ -6,11 +6,14 @@ import {
   BlackListItem,
 } from "../../../styles/ul/ul.styles";
 import { BlackHr } from "../../../styles/hr/hr.styles";
+import Balancer from "react-wrap-balancer";
 
 const LocalStorage = () => (
   <>
     <ParentDiv>
-      <BlueH2>what do we use local storage for?</BlueH2>
+      <BlueH2>
+        <Balancer>what do we use local storage for?</Balancer>
+      </BlueH2>
       <Text>
         we use local storage to set your schools unique code so that we can
         enable the app to access the correct database.
@@ -29,7 +32,7 @@ const LocalStorage = () => (
       </Text>
       <StyledUnorderedList>
         <BlackListItem>
-          Google Chrome
+          Google Chrome:
           <br />
           Open Chrome. Click on the three vertical dots (menu) in the top-right
           corner. Select "Settings." Scroll down and click on "Privacy and
@@ -38,6 +41,7 @@ const LocalStorage = () => (
           Click on the trash bin icon next to the relevant site to delete its
           local storage data.
         </BlackListItem>
+        <BlackHr />
 
         <BlackListItem>
           Mozilla Firefox:
@@ -48,6 +52,7 @@ const LocalStorage = () => (
           Click on "Manage Data." Use the search bar to find your app's domain.
           Select the site and click "Remove Selected."
         </BlackListItem>
+        <BlackHr />
 
         <BlackListItem>
           Microsoft Edge:
@@ -59,6 +64,7 @@ const LocalStorage = () => (
           your app's domain. Click on the trash bin icon next to the relevant
           site to delete its local storage data.
         </BlackListItem>
+        <BlackHr />
 
         <BlackListItem>
           Safari (macOS):
@@ -68,6 +74,7 @@ const LocalStorage = () => (
           Data." Use the search bar to find your app's domain. Select the site
           and click "Remove."
         </BlackListItem>
+        <BlackHr />
 
         <BlackListItem>
           Safari (iOS):

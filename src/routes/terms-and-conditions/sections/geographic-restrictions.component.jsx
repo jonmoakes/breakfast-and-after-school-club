@@ -4,7 +4,7 @@ import { Text } from "../../../styles/p/p.styles";
 
 const GeographicRestrictions = () => (
   <ParentDiv>
-    <BlueH2>GeographicRestrictions</BlueH2>
+    <BlueH2>Geographic Restrictions</BlueH2>
     <Text>
       The app is intended for use only by businesses based in the United
       Kingdom.

@@ -1,6 +1,7 @@
 import { Text } from "../../../styles/p/p.styles";
 import { ParentDiv } from "../../../styles/div/div.styles";
 import { BlueH2 } from "../../../styles/h2/h2.styles";
+import { BlackHr } from "../../../styles/hr/hr.styles";
 
 const TypesOfCookiesWeUse = () => (
   <ParentDiv>
@@ -15,6 +16,8 @@ const TypesOfCookiesWeUse = () => (
       for the app's operation.
     </Text>
 
+    <BlackHr />
+
     <Text>
       Functionality Cookies:
       <br />
@@ -23,6 +26,8 @@ const TypesOfCookiesWeUse = () => (
       and preferences so you don't have to re-enter them each time you use the
       app.
     </Text>
+    <BlackHr />
+
     <Text>
       third-party cookies:
       <br />

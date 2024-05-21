@@ -5,7 +5,7 @@ import { Text } from "../../../styles/p/p.styles";
 const Definitions = () => (
   <ParentDiv>
     <BlueH2>Definitions:</BlueH2>
-    <Text>"App" refers to breakfast and after school club.</Text>
+    <Text>"App" refers to the breakfast and after school club.</Text>
     <Text>
       "Administrator" refers to the owner of the breakfast and after school club
       who runs the app.

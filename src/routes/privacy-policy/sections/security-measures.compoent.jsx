@@ -60,47 +60,63 @@ const SecurityMeasures = () => (
       security protocols that Stripe employs to ensure your payment information
       is protected:
     </Text>
+
+    <BlackHr />
+
     <Text>
       PCI Compliance:
       <br />
       Stripe is a certified PCI Service Provider Level 1, adhering to the
       highest industry standards for payment security.
     </Text>
+
+    <BlackHr />
+
     <Text>
       Data Encryption:
       <br />
       All payment data is encrypted using AES-256 encryption at rest and TLS for
       data in transit.
     </Text>
+
+    <BlackHr />
     <Text>
-      Tokenization:
+      Tokenisation:
       <br />
       Stripe replaces sensitive card information with a unique token, meaning
       your payment details are never stored on our servers.
     </Text>
+
+    <BlackHr />
     <Text>
       Fraud Prevention:
       <br />
       Stripe Radar uses advanced machine learning to detect and prevent
       fraudulent transactions in real time.
     </Text>
+
+    <BlackHr />
     <Text>
       Secure Infrastructure:
       <br />
       Stripe's data centers comply with top industry standards for physical
       security and availability.
     </Text>
+
+    <BlackHr />
     <Text>
       Monitoring and Logging:
       <br />
       Continuous monitoring and detailed audit logs ensure that any potential
       security threats are detected and mitigated promptly.
     </Text>
+
+    <BlackHr />
     <Text>
       Strong Access Controls:
       <br />
       Stripe uses role-based access control and two-factor authentication to
-      protect against unauthorized access. By using Stripe, we ensure that your
+      protect against unauthorised access. By using Stripe, we ensure that your
       payment information is handled with the highest level of security and
       protection.
     </Text>

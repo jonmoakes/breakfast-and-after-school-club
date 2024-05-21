@@ -34,16 +34,15 @@ const Disclaimers = () => (
       or punitive damages, or any loss of profits or revenues, whether incurred
       directly or indirectly, or any loss of data, use, goodwill, or other
       intangible losses, resulting from (a) your use or inability to use the
-      app; (b) any unauthorized access to or use of our servers and/or any
+      app; (b) any unauthorised access to or use of our servers and/or any
       personal information stored therein; (c) any interruption or cessation of
       transmission to or from the app; (d) any bugs, viruses, trojan horses, or
       the like that may be transmitted to or through our app by any third party;
       (e) any errors or omissions in any content or for any loss or damage
       incurred as a result of your use of any content posted, emailed,
       transmitted, or otherwise made available through the app, whether based on
-      warranty, contract, tort (including negligence), or any other legal
-      theory, whether or not we have been informed of the possibility of such
-      damage.
+      warranty, contract, (including negligence), or any other legal theory,
+      whether or not we have been informed of the possibility of such damage.
     </Text>
     <Text>
       Our total liability to you for any claim arising out of or relating to
