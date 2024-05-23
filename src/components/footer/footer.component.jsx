@@ -8,6 +8,9 @@ import {
   termsRoute,
   privacyPolicyRoute,
   cookiesRoute,
+  securityPolicyRoute,
+  refundsPolicyRoute,
+  dataProtectionPolicyRoute,
 } from "../../strings/routes/routes-strings";
 
 const Footer = () => (
@@ -27,15 +30,15 @@ const Footer = () => (
         <BlueListItem>cookie policy</BlueListItem>
       </StyledLink>
       <BlackHr />
-      <StyledLink to={termsRoute}>
+      <StyledLink to={securityPolicyRoute}>
         <BlueListItem>security policy</BlueListItem>
       </StyledLink>
       <BlackHr />
-      <StyledLink to={termsRoute}>
+      <StyledLink to={refundsPolicyRoute}>
         <BlueListItem>refunds</BlueListItem>
       </StyledLink>
       <BlackHr />
-      <StyledLink to={termsRoute}>
+      <StyledLink to={dataProtectionPolicyRoute}>
         <BlueListItem>data protection</BlueListItem>
       </StyledLink>
       <BlackHr />

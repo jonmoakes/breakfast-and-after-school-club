@@ -55,3 +55,5 @@ export const pricingRoute = "/pricing";
 export const termsRoute = "/terms-and-conditions";
 export const privacyPolicyRoute = "/privacy-policy";
 export const securityPolicyRoute = "/security-policy";
+export const refundsPolicyRoute = "/refunds-policy";
+export const dataProtectionPolicyRoute = "/data-protection-policy";

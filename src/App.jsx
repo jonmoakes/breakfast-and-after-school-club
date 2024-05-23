@@ -57,6 +57,8 @@ import {
   termsRoute,
   privacyPolicyRoute,
   cookiesRoute,
+  securityPolicyRoute,
+  refundsPolicyRoute,
 } from "./strings/routes/routes-strings";
 
 const Navigation = lazy(() =>
@@ -73,6 +75,12 @@ const PrivacyPolicy = lazy(() =>
 );
 const CookiePolicy = lazy(() =>
   import("./routes/cookie-policy/cookie-policy.component")
+);
+const SecurityPolicy = lazy(() =>
+  import("./routes/security-policy/security-policy.component")
+);
+const RefundsPolicy = lazy(() =>
+  import("./routes/refunds-policy/refunds-policy.component")
 );
 const Contact = lazy(() => import("./routes/contact/contact.component"));
 const SignUp = lazy(() => import("./routes/sign-up/sign-up.component"));
@@ -225,6 +233,8 @@ const App = () => {
             <Route path={termsRoute} element={<TermsAndConditions />} />
             <Route path={privacyPolicyRoute} element={<PrivacyPolicy />} />
             <Route path={cookiesRoute} element={<CookiePolicy />} />
+            <Route path={securityPolicyRoute} element={<SecurityPolicy />} />
+            <Route path={refundsPolicyRoute} element={<RefundsPolicy />} />
             <Route path={signInRoute} element={<SignIn />} />
             <Route path={contactRoute} element={<Contact />} />
             <Route path={signUpRoute} element={<SignUp />} />
