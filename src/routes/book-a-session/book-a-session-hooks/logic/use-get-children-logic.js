@@ -24,7 +24,9 @@ const useGetChildrenLogic = () => {
   };
 
   const childName =
-    usersChildren.length === 1 ? usersChildren[0].childName : "";
+    usersChildren && usersChildren.length === 1
+      ? usersChildren[0].childName
+      : "";
 
   const numberOfChildrenInBooking = childrenSelectedLength
     ? childrenSelectedLength

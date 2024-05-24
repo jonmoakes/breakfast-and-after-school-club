@@ -8,7 +8,6 @@ import FloatingAddButton from "../../components/floating-add-button/floating-add
 import ChildInfoAccordion from "./child-info-accordion.component";
 import ChildTable from "./child-table.component";
 import ShowFetchErrors from "../../components/errors/show-fetch-errors.component";
-import Footer from "../../components/footer/footer.component";
 
 import { Container } from "../../styles/container/container.styles";
 import { ParentDiv } from "../../styles/div/div.styles";
@@ -39,7 +38,6 @@ const ChildInfo = () => {
           </Link>
           <ChildInfoAccordion />
           <ChildTable />
-          <Footer />
         </>
       )}
     </Container>
