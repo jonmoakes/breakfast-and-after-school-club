@@ -3,6 +3,7 @@ import useAddChildInfoLogic from "./add-child-info-hooks/use-add-child-info-logi
 
 import AddChildInfoForm from "./add-child-info-form.component";
 import Loader from "../../components/loader/loader.component";
+import Footer from "../../components/footer/footer.component";
 
 import { Container } from "../../styles/container/container.styles";
 import { ParentDiv } from "../../styles/div/div.styles";
@@ -21,6 +22,7 @@ const AddChildInfo = () => {
       </ParentDiv>
 
       <AddChildInfoForm />
+      <Footer />
     </Container>
   );
 };

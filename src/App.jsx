@@ -59,6 +59,7 @@ import {
   cookiesRoute,
   securityPolicyRoute,
   refundsPolicyRoute,
+  dataProtectionPolicyRoute,
 } from "./strings/routes/routes-strings";
 
 const Navigation = lazy(() =>
@@ -81,6 +82,9 @@ const SecurityPolicy = lazy(() =>
 );
 const RefundsPolicy = lazy(() =>
   import("./routes/refunds-policy/refunds-policy.component")
+);
+const DataProtection = lazy(() =>
+  import("./routes/data-protection/data-protection.component")
 );
 const Contact = lazy(() => import("./routes/contact/contact.component"));
 const SignUp = lazy(() => import("./routes/sign-up/sign-up.component"));
@@ -235,6 +239,10 @@ const App = () => {
             <Route path={cookiesRoute} element={<CookiePolicy />} />
             <Route path={securityPolicyRoute} element={<SecurityPolicy />} />
             <Route path={refundsPolicyRoute} element={<RefundsPolicy />} />
+            <Route
+              path={dataProtectionPolicyRoute}
+              element={<DataProtection />}
+            />
             <Route path={signInRoute} element={<SignIn />} />
             <Route path={contactRoute} element={<Contact />} />
             <Route path={signUpRoute} element={<SignUp />} />

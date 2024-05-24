@@ -8,6 +8,7 @@ import FiftyToOneNineNineChildren from "./fifty-to-one-nine-nine-children.compon
 import TwoHundredPlusChildren from "./two-hundred-plus-children.component";
 import PlansInclude from "./plans-include.component";
 import LinkToContact from "./link-to-contact.component";
+import Footer from "../../components/footer/footer.component";
 
 const Pricing = () => (
   <Container>
@@ -19,6 +20,7 @@ const Pricing = () => (
     <PlansInclude />
     <PaymentProcessingFees />
     <LinkToContact />
+    <Footer />
   </Container>
 );
 

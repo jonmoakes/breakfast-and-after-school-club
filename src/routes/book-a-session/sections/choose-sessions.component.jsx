@@ -10,6 +10,8 @@ import AfternoonSessionShortButton from "./buttons/afternoon-session-short-butto
 import AfternoonSessionLongButton from "./buttons/afternoon-session-long-button.component";
 import MorningAndAfternoonShortSessionButton from "./buttons/morning-and-afternoon-session-short-button.component";
 import MorningAndAfternoonLongSessionButton from "./buttons/morning-and-afternoon-session-long-button.component";
+import TermsOfCancellationAllSessions from "./terms-of-cancellation-all-sessions.component";
+import TermsOfCancellationAfternoonSessions from "./terms-of-cancellation-afternoon-sessions.component";
 
 import { ColumnDiv, ParentDiv } from "../../../styles/div/div.styles";
 import { BlackHr } from "../../../styles/hr/hr.styles";
@@ -23,6 +25,7 @@ const ChooseSessions = () => {
     afternoonSessionClosingTime,
     notTodaysOrIsTodayAndBeforeMorningCloseTime,
     isTodayAndIsBetweenOpenAndCloseTime,
+    morningSessionClosingTime,
   } = useTimesLogic();
   const { hasOneChild, hasMoreThanOneChild, atLeastOneChildHasBeenSelected } =
     useGetChildrenLogic();
@@ -53,6 +56,9 @@ const ChooseSessions = () => {
             <MorningAndAfternoonShortSessionButton />
             <MorningAndAfternoonLongSessionButton />
           </ColumnDiv>
+          <TermsOfCancellationAllSessions
+            {...{ morningSessionClosingTime, afternoonSessionClosingTime }}
+          />
         </ParentDiv>
       ) : (hasOneChild() && isTodayAndIsBetweenOpenAndCloseTime()) ||
         (hasMoreThanOneChild() &&
@@ -66,6 +72,9 @@ const ChooseSessions = () => {
               <HeadingTimesAndPricesWalletBalanceOptionsInfo />
               <AfternoonSessionShortButton />
               <AfternoonSessionLongButton />
+              <TermsOfCancellationAfternoonSessions
+                {...{ afternoonSessionClosingTime }}
+              />
             </>
           )}
         </ParentDiv>

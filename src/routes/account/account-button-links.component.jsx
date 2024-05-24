@@ -8,8 +8,7 @@ import { BlueH2 } from "../../styles/h2/h2.styles";
 
 const AccountButtonLinks = () => {
   const { id, appOwnerId } = useGetCurrentUserSelectors();
-  const { appOwnerButtons, notAppOwnerButtons, legalButtons } =
-    useNavigateToRoute();
+  const { appOwnerButtons, notAppOwnerButtons } = useNavigateToRoute();
 
   return (
     <>
@@ -23,11 +22,6 @@ const AccountButtonLinks = () => {
           <RenderButtonsList {...{ buttons: notAppOwnerButtons }} />
         </ParentDiv>
       )}
-
-      <ParentDiv>
-        <BlueH2>view our:</BlueH2>
-        <RenderButtonsList {...{ buttons: legalButtons }} />
-      </ParentDiv>
     </>
   );
 };

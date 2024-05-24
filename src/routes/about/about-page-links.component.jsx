@@ -17,7 +17,7 @@ const AboutPageLinks = () => {
       <ParentDiv>
         <Text>if you have any more questions, or would like a full demo,</Text>
         <Text>
-          please <StyledLink to={contactRoute}>contact me!</StyledLink>
+          please <StyledLink to={contactRoute}>contact us!</StyledLink>
         </Text>
       </ParentDiv>
 

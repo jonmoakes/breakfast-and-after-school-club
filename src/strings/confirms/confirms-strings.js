@@ -1,6 +1,7 @@
 import { format } from "date-fns";
 
 import { getSessionTypeString } from "../../functions/get-session-type-string";
+import { customWhite, customIosBlue } from "../../styles/colors";
 
 export const confirmCancelBookingMessage =
   "do you want to cancel this booking?";
@@ -22,9 +23,15 @@ export const confirmSureBookSession = (sessionType, date) => {
   )} session for ${format(new Date(date), "dd MMMM yyyy")}?`;
 };
 export const fundsDeductedFromBalance = (sessionPrice, balanceAfterBooking) => {
-  return `£${(sessionPrice / 100).toFixed(
+  return `<span style="color: ${customIosBlue}">£${(sessionPrice / 100).toFixed(
     2
-  )} will be deducted from your wallet balance. After the booking, your remaining balance will be £${balanceAfterBooking}`;
+  )}</span> will be deducted from your wallet balance.<br/><br/>After the booking, your remaining balance will be <span style="color: ${customIosBlue}">£${balanceAfterBooking}</span>.<br/><br/>By booking this session, you confirm that you agree to our<br/><a href="/terms-and-conditions" target="_blank" rel="noopener noreferrer"  style="color: ${customWhite}"; text-decoration: underline;">terms and conditions</a>.`;
+};
+
+export const sureSignUpMessage = "are you sure you wish to sign up?";
+export const yesSignUpMessage = "I agree, sign me up!";
+export const confirmSignUpMessage = () => {
+  return `By signing up, you confirm that you agree to our<br/><a href="/terms-and-conditions" target="_blank" rel="noopener noreferrer"  style="color: ${customIosBlue}"; text-decoration: underline;">terms and conditions</a>.`;
 };
 export const sureCloseAccountQuestion =
   "are you sure you wish to close your account with us?";

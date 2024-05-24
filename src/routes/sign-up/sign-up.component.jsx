@@ -11,6 +11,7 @@ import SignUpEmail from "./sections/sign-up-email.component";
 import SignUpPhoneNumber from "./sections/sign-up-phone-number.component";
 import SignUpPasswords from "./sections/sign-up-passwords.component";
 import SignUpButton from "./sections/sign-up-button.component";
+import Footer from "../../components/footer/footer.component";
 
 import { Container } from "../../styles/container/container.styles";
 import { ParentDiv } from "../../styles/div/div.styles";
@@ -18,14 +19,24 @@ import { Form } from "../../styles/form/form.styles";
 import { StyledLink } from "../../styles/link/link.styles";
 import { BlackTitle } from "../../styles/h1/h1.styles";
 import { Text } from "../../styles/p/p.styles";
-import { RedSpan } from "../../styles/span/span.styles";
+import { BlackSpan, RedSpan } from "../../styles/span/span.styles";
 
-import { signInRoute, accountRoute } from "../../strings/routes/routes-strings";
+import {
+  signInRoute,
+  accountRoute,
+  termsRoute,
+  privacyPolicyRoute,
+  cookiesRoute,
+} from "../../strings/routes/routes-strings";
+import { BlueListItem, StyledUnorderedList } from "../../styles/ul/ul.styles";
+import { BlackHr } from "../../styles/hr/hr.styles";
+import useHamburgerHandlerNavigate from "../../hooks/use-hamburger-handler-navigate";
 
 const SignUp = () => {
   useHandleSignUpFormError();
   const { currentUser, currentUserIsLoading } = useGetCurrentUserSelectors();
   const { dispatchHandleSignUpFormChange } = useSignUpFormActions();
+  const { hamburgerHandlerNavigate } = useHamburgerHandlerNavigate();
 
   return (
     <Container>
@@ -45,9 +56,38 @@ const SignUp = () => {
       </ParentDiv>
 
       <ParentDiv>
+        <Text>before signing up, please make sure that you have read our:</Text>
+        <StyledUnorderedList>
+          <BlackHr />
+          <BlueListItem
+            className="clickable"
+            onClick={() => hamburgerHandlerNavigate(termsRoute)}
+          >
+            terms & conditions
+          </BlueListItem>
+          <BlackHr />
+          <BlueListItem
+            className="clickable"
+            onClick={() => hamburgerHandlerNavigate(privacyPolicyRoute)}
+          >
+            privacy policy
+          </BlueListItem>
+          <BlackHr />
+
+          <BlackSpan>&</BlackSpan>
+          <BlueListItem
+            className="clickable"
+            onClick={() => hamburgerHandlerNavigate(cookiesRoute)}
+          >
+            cookies policy
+          </BlueListItem>
+          <BlackHr />
+        </StyledUnorderedList>
+
         <Text>
           <RedSpan>* </RedSpan> = required field:
         </Text>
+
         <Form>
           <SignUpName {...{ dispatchHandleSignUpFormChange }} />
           <SignUpEmail {...{ dispatchHandleSignUpFormChange }} />
@@ -57,6 +97,8 @@ const SignUp = () => {
           <SignUpButton />
         </Form>
       </ParentDiv>
+
+      <Footer />
     </Container>
   );
 };

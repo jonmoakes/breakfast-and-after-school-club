@@ -8,6 +8,7 @@ import SignInEmail from "./sections/sign-in-email.component";
 import SignInSchoolCode from "./sections/sign-in-school-code.component";
 import SignInPassword from "./sections/sign-in-password.component";
 import SignInButton from "./sections/sign-in-button.component";
+import Footer from "../../components/footer/footer.component";
 
 import { Container } from "../../styles/container/container.styles";
 import { ParentDiv } from "../../styles/div/div.styles";
@@ -31,6 +32,8 @@ const SignIn = () => {
           <SignInButton />
         </Form>
       </ParentDiv>
+
+      <Footer />
     </Container>
   );
 };

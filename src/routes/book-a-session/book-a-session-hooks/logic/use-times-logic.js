@@ -93,6 +93,7 @@ const useTimesLogic = () => {
 
   return {
     notTodaysOrIsTodayAndBeforeMorningCloseTime,
+    morningSessionClosingTime,
     afternoonSessionClosingTime,
     isCurrentTimeBeforeLatestTimeToBookMorningSession,
     isCurrentTimeAfterLatestTimeToBookMorningSession,

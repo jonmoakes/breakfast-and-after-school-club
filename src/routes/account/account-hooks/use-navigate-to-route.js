@@ -16,10 +16,6 @@ import {
   databaseManagementRoute,
   contactRoute,
   pwaInfoRoute,
-  termsRoute,
-  privacyPolicyRoute,
-  cookiesRoute,
-  securityPolicyRoute,
 } from "../../../strings/routes/routes-strings";
 
 const useNavigateToRoute = () => {
@@ -118,33 +114,9 @@ const useNavigateToRoute = () => {
     },
   ];
 
-  const legalButtons = [
-    {
-      id: 18,
-      text: " terms & conditions",
-      onClick: () => hamburgerHandlerNavigate(termsRoute),
-    },
-    {
-      id: 19,
-      text: " privacy policy",
-      onClick: () => hamburgerHandlerNavigate(privacyPolicyRoute),
-    },
-    {
-      id: 20,
-      text: "cookie policy",
-      onClick: () => hamburgerHandlerNavigate(cookiesRoute),
-    },
-    {
-      id: 21,
-      text: "security policy",
-      onClick: () => hamburgerHandlerNavigate(securityPolicyRoute),
-    },
-  ];
-
   return {
     appOwnerButtons,
     notAppOwnerButtons,
-    legalButtons,
   };
 };
 

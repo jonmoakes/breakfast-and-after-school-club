@@ -17,7 +17,7 @@ const useConfirmSwal = () => {
 
   const confirmSwal = (
     title,
-    text,
+    textHtml,
     buttonText,
     confirmResult,
     cancelResult
@@ -25,7 +25,7 @@ const useConfirmSwal = () => {
     swal
       .fire({
         title,
-        text,
+        html: textHtml,
         background: customBlack,
         backdrop: customNavy,
         icon: "question",

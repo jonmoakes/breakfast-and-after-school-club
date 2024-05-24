@@ -7,6 +7,7 @@ import UserBooksSessionPhone from "./images/user-books-session-phone.component/u
 import UserCancelsSessionAndPdfPhone from "./images/user-cancels-session-and-pdf-phone.component/user-cancels-session-and-pdf-phone.component";
 import PwaInfo from "../../components/pwa-info/pwa-info.component";
 import AboutPageLinks from "./about-page-links.component";
+import Footer from "../../components/footer/footer.component";
 
 import { Container } from "../../styles/container/container.styles";
 
@@ -21,6 +22,7 @@ const About = () => (
     <UserCancelsSessionAndPdfPhone />
     <PwaInfo />
     <AboutPageLinks />
+    <Footer />
   </Container>
 );
 

@@ -3,6 +3,7 @@ import useGetContactFormSelectors from "../../hooks/get-selectors/use-get-contac
 
 import Loader from "../../components/loader/loader.component";
 import ContactForm from "./sections/contact-form.component";
+import Footer from "../../components/footer/footer.component";
 
 import { Container } from "../../styles/container/container.styles";
 import { ParentDiv } from "../../styles/div/div.styles";
@@ -21,6 +22,7 @@ const Contact = () => {
       </ParentDiv>
 
       <ContactForm />
+      <Footer />
     </Container>
   );
 };

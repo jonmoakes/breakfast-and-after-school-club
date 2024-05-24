@@ -6,6 +6,7 @@ import AddFundsHelp from "./errors-help-redirect/add-funds-help.component";
 import ChooseWalletFundsToAdd from "./choose-wallet-funds-to-add.component";
 import CardInput from "./card-input.component";
 import ShowFetchErrors from "../../components/errors/show-fetch-errors.component";
+import Footer from "../../components/footer/footer.component";
 
 import { Container } from "../../styles/container/container.styles";
 import { ParentDiv } from "../../styles/div/div.styles";
@@ -32,6 +33,7 @@ const AddFunds = () => {
 
       <CardInput />
       <ShowFetchErrors />
+      <Footer />
     </Container>
   );
 };
