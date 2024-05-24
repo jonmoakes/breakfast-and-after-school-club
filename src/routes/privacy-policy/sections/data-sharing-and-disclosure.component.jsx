@@ -12,11 +12,7 @@ const DataSharingAndDisclosure = () => (
       <a className="red" href="https://stripe.com/gb">
         Stripe
       </a>{" "}
-      ) and data storage providers ({" "}
-      <a className="red" href="https://appwrite.io/">
-        appwrite
-      </a>{" "}
-      ).
+      ) and data storage providers.
     </Text>
     <Text>
       We may disclose your information to comply with legal obligations or in

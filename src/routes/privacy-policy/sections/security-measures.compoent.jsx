@@ -12,10 +12,15 @@ const SecurityMeasures = () => (
       information:
     </Text>
     <Text>
-      <a className="red" href="https://appwrite.io/">
-        appwrite
+      we using a leading{" "}
+      <a className="red" href="https://en.wikipedia.org//wiki/Open_source">
+        Open source
       </a>{" "}
-      is our chosen data service provider.
+      data service provider.
+    </Text>
+    <Text>
+      this means that all of their code can be vetted by anyone and any security
+      holes plugged quickly and efficiently.
     </Text>
     <Text>here is some information about their security protocols:</Text>
     <BlackHr />

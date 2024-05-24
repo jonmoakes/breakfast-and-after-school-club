@@ -25,7 +25,7 @@ const PaymentsAndVirtualWallet = () => (
       Session?' for full details of the process.
     </Text>
     <Text>
-      for the administrator, Transaction fees may apply for each fund transfer a
+      for the administrator, Transaction fees apply for each fund transfer a
       parent makes to the virtual wallet.
     </Text>
     <Text>

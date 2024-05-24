@@ -31,7 +31,7 @@ export const fundsDeductedFromBalance = (sessionPrice, balanceAfterBooking) => {
 export const sureSignUpMessage = "are you sure you wish to sign up?";
 export const yesSignUpMessage = "I agree, sign me up!";
 export const confirmSignUpMessage = () => {
-  return `By signing up, you confirm that you agree to our<br/><a href="/terms-and-conditions" target="_blank" rel="noopener noreferrer"  style="color: ${customIosBlue}"; text-decoration: underline;">terms and conditions</a>.`;
+  return `By signing up, you confirm that you agree to our<br/><a href="/terms-and-conditions" style="color: ${customIosBlue}"; text-decoration: underline;">terms and conditions</a>.`;
 };
 export const sureCloseAccountQuestion =
   "are you sure you wish to close your account with us?";

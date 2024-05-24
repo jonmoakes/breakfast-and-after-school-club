@@ -13,7 +13,7 @@ const RefundsPolicyTitleAndIntro = () => {
       <ParentDiv>
         <BlackTitle>refunds policy</BlackTitle>
 
-        {currentUser && email === appOwnerEmail ? (
+        {!currentUser || (currentUser && email === appOwnerEmail) ? (
           <Text>
             last updated:
             <br />
