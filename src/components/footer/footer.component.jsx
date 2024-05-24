@@ -14,6 +14,7 @@ import {
   securityPolicyRoute,
   refundsPolicyRoute,
   dataProtectionPolicyRoute,
+  imageCreditsRoute,
 } from "../../strings/routes/routes-strings";
 import {
   areYouSureMessage,
@@ -95,6 +96,15 @@ const Footer = () => {
           onClick={() => confirmChange(dataProtectionPolicyRoute)}
         >
           data protection
+        </BlueListItem>
+
+        <BlackHr />
+
+        <BlueListItem
+          className="clickable"
+          onClick={() => confirmChange(imageCreditsRoute)}
+        >
+          image credits
         </BlueListItem>
 
         <BlackHr />

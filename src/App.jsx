@@ -60,6 +60,7 @@ import {
   securityPolicyRoute,
   refundsPolicyRoute,
   dataProtectionPolicyRoute,
+  imageCreditsRoute,
 } from "./strings/routes/routes-strings";
 
 const Navigation = lazy(() =>
@@ -85,6 +86,9 @@ const RefundsPolicy = lazy(() =>
 );
 const DataProtection = lazy(() =>
   import("./routes/data-protection/data-protection.component")
+);
+const ImageCredits = lazy(() =>
+  import("./routes/image-credits/image-credits.component")
 );
 const Contact = lazy(() => import("./routes/contact/contact.component"));
 const SignUp = lazy(() => import("./routes/sign-up/sign-up.component"));
@@ -243,6 +247,7 @@ const App = () => {
               path={dataProtectionPolicyRoute}
               element={<DataProtection />}
             />
+            <Route path={imageCreditsRoute} element={<ImageCredits />} />
             <Route path={signInRoute} element={<SignIn />} />
             <Route path={contactRoute} element={<Contact />} />
             <Route path={signUpRoute} element={<SignUp />} />
@@ -250,12 +255,10 @@ const App = () => {
               path={forgotPasswordRequestRoute}
               element={<ForgotPasswordRequest />}
             />
-
             <Route
               path={chooseNewPasswordRoute}
               element={<ChooseNewPassword />}
             />
-
             {/*private routes - if no user, redirect to sign in route */}
             <Route element={<PrivateRoutes />}>
               <Route path={accountRoute} element={<Account />} />
