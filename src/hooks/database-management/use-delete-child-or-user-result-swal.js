@@ -47,6 +47,8 @@ const useDeleteChildOrUserResultSwal = () => {
           dispatchResetDataToUpdateDocument();
           dispatchResetDeleteDocumentResult();
         } else if (isConfirmed && path === databaseManagementDeleteChildRoute) {
+          dispatchResetDeleteDocumentResult();
+          dispatchResetDataToUpdateDocument();
           hamburgerHandlerNavigate(databaseManagementRoute);
         }
       });
