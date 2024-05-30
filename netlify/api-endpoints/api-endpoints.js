@@ -24,3 +24,5 @@ export const SEND_EMAIL_TO_ADMIN_CLOSE_ACCOUNT_REQUEST_ENDPOINT =
   "/.netlify/functions/send-email-to-admin-close-account-request";
 export const SEND_EMAIL_UPDATE_LATEST_BOOKINGS_AND_CHILDRENS_PARENT_EMAIL_ENDPOINT =
   "/.netlify/functions/send-email-update-latest-bookings-and-childrens-parent-email";
+export const DB_MANAGE_SEND_EMAIL_BOOKING_CONFIRMATION_ENDPOINT =
+  "/.netlify/functions/db-manage-send-email-booking-confirmation";

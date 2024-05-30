@@ -1,6 +1,7 @@
 import useAddBookingResultSwal from "./hooks/use-add-booking-result-swal";
 import useGetSessionPricesThunkUseEffect from "../../hooks/get-actions-and-thunks/session-types-and-prices-actions-and-thunks/use-get-session-prices-thunk-use-effect";
 import useDbManageAddBookingVariables from "./hooks/use-db-manage-add-booking-variables";
+import useGetSendEmailSelectors from "../../hooks/get-selectors/use-get-send-email-selectors";
 
 import Loader from "../../components/loader/loader.component";
 import AddBookingIntro from "./add-booking-intro.component";
@@ -19,6 +20,7 @@ const DbManageAddBooking = () => {
   useGetSessionPricesThunkUseEffect();
   const { databaseManagementIsLoading, errorId } =
     useDbManageAddBookingVariables();
+  const { sendEmailIsLoading } = useGetSendEmailSelectors();
 
   return (
     <Container>
@@ -26,7 +28,7 @@ const DbManageAddBooking = () => {
         <BlackTitle>add a booking</BlackTitle>
       </ParentDiv>
 
-      {databaseManagementIsLoading ? (
+      {databaseManagementIsLoading || sendEmailIsLoading ? (
         <Loader />
       ) : (
         <>

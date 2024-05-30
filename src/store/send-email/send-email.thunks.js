@@ -14,6 +14,7 @@ import {
   SEND_EMAIL_WALET_FUNDS_NOT_ADDED_ERROR_ENDPOINT,
   SEND_EMAIL_TO_ADMIN_CLOSE_ACCOUNT_REQUEST_ENDPOINT,
   SEND_EMAIL_UPDATE_LATEST_BOOKINGS_AND_CHILDRENS_PARENT_EMAIL_ENDPOINT,
+  DB_MANAGE_SEND_EMAIL_BOOKING_CONFIRMATION_ENDPOINT,
 } from "../../../netlify/api-endpoints/api-endpoints";
 
 export const sendEmailBookingConfirmationAsync = createAsyncThunk(
@@ -262,3 +263,38 @@ export const sendEmailUpdateLatestBookingsAndChildrensParentEmailAsync =
       }
     }
   );
+
+export const dbManageSendEmailBookingConfirmationAsync = createAsyncThunk(
+  "dbManageSendEmailBookingConfirmation",
+  async (
+    {
+      date,
+      sessionType,
+      parentEmail,
+      childrenInBooking,
+      formattedSessionPrice,
+    },
+    thunkAPI
+  ) => {
+    try {
+      const formattedDate = date ? format(new Date(date), "dd MMMM yyyy") : "";
+      const sessionBooked = getSessionTypeString(sessionType);
+
+      const response = await axios.post(
+        DB_MANAGE_SEND_EMAIL_BOOKING_CONFIRMATION_ENDPOINT,
+        {
+          parentEmail,
+          formattedDate,
+          sessionBooked,
+          childrenInBooking,
+          formattedSessionPrice,
+        }
+      );
+
+      const statusCode = response.status;
+      return statusCode;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);

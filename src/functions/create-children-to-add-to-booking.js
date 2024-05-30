@@ -2,12 +2,12 @@ export const createChildrenToAddToBooking = (
   childrenSelectedForBooking,
   usersChildren
 ) => {
+  const oneChildChosen = childrenSelectedForBooking.join(" ");
+  const namesToAddToBooking = childrenSelectedForBooking.join(", ");
   const childName =
     usersChildren && usersChildren[0] !== undefined
       ? usersChildren[0].childName
       : "";
-  const oneChildChosen = childrenSelectedForBooking.join(" ");
-  const namesToAddToBooking = childrenSelectedForBooking.join(", ");
 
   const childrenInBooking = !childrenSelectedForBooking.length
     ? childName

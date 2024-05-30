@@ -9,6 +9,7 @@ import {
   sendEmailWalletFundsNotAddedErrorAsync,
   sendEmailToAdminCloseAccountRequestAsync,
   sendEmailUpdateLatestBookingsAndChildrensParentEmailAsync,
+  dbManageSendEmailBookingConfirmationAsync,
 } from "./send-email.thunks";
 
 const INITIAL_STATE = {
@@ -69,6 +70,7 @@ export const sendEmailSlice = createSlice({
       builder,
       sendEmailUpdateLatestBookingsAndChildrensParentEmailAsync
     );
+    handleAsyncAction(builder, dbManageSendEmailBookingConfirmationAsync);
   },
 });
 

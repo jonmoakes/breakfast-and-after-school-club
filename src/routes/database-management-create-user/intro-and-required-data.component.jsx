@@ -52,7 +52,7 @@ const CreateUserIntroAndRequiredData = () => {
             <AccordionContent>
               <Text>
                 please note that this newly created user won't be able to sign
-                into the app or book sessions by themsleves.
+                into the app or book sessions by themselves.
               </Text>
               <Text>
                 it is simply to allow us to manage the database correctly so

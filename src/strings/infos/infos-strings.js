@@ -40,3 +40,4 @@ export const checkEmailMessage =
   "please check your email! Please note that it can take several minutes to arrive - And don't forget to check your spam folder.";
 export const getBookingInfoEmailInstructions =
   "if you require this email, please contact us using the contact form on our website. Rest assured however, your booking has been successfully made!";
+export const sendEmailManuallyMessage = "please send the email manually.";

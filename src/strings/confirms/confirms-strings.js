@@ -100,3 +100,4 @@ export const confirmUpdateSessionSpacesMessage =
   "are you sure you wish to update the session spaces?";
 export const confirmCreateUserMessage =
   "are you sure you want to create this user?";
+export const shouldSendEmailMessage = `<span style="font-size: 20px;">do you wish to send an email confirmation of the booking to the user?<br/><br/>tap 'cancel' if you do not wish to send an email.</span>`;
