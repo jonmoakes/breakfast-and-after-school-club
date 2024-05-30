@@ -42,3 +42,4 @@ export const getBookingInfoEmailInstructions =
   "if you require this email, please contact us using the contact form on our website. Rest assured however, your booking has been successfully made!";
 export const sendEmailManuallyMessage = "please send the email manually.";
 export const sendEmailButtonText = "send email";
+export const bookAnotherButtonText = "book another";

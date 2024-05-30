@@ -8,14 +8,29 @@ import { sendEmailBookingConfirmationAsync } from "../../../store/send-email/sen
 
 import { bookedSessionsUserRoute } from "../../../strings/routes/routes-strings";
 import { errorSendingBookingConfirmationEmail } from "../../../strings/errors/errors-strings";
-import { getBookingInfoEmailInstructions } from "../../../strings/infos/infos-strings";
+import {
+  bookAnotherButtonText,
+  getBookingInfoEmailInstructions,
+} from "../../../strings/infos/infos-strings";
 
 import { createChildrenToAddToBooking } from "../../../functions/create-children-to-add-to-booking";
+import useConfirmSwal from "../../use-confirm-swal";
+import { bookAnotherSessionQuestion } from "../../../strings/confirms/confirms-strings";
+import useBookSessionActions from "../book-session-actions-and-thunks/use-book-session-actions";
+import useRequestDateDataActions from "../request-date-data-actions-and-thunks/use-request-date-data-actions";
+import useSendEmailActions from "./use-send-email-actions";
+import useShouldShowElementActions from "../use-should-show-element-actions";
 
 const useSendEmailBookingConfirmationThunk = () => {
   const { name, email } = useGetCurrentUserSelectors();
   const { fireSwal } = useFireSwal();
+  const { confirmSwal } = useConfirmSwal();
   const { hamburgerHandlerNavigate } = useHamburgerHandlerNavigate();
+
+  const { dispatchResetBookSessionState } = useBookSessionActions();
+  const { dispatchResetRequestDateDataState } = useRequestDateDataActions();
+  const { dispatchResetSendEmailState } = useSendEmailActions();
+  const { dispatchResetShouldShowElementState } = useShouldShowElementActions();
 
   const dispatch = useDispatch();
 
@@ -40,7 +55,24 @@ const useSendEmailBookingConfirmationThunk = () => {
       })
     ).then((resultAction) => {
       if (sendEmailBookingConfirmationAsync.fulfilled.match(resultAction)) {
-        hamburgerHandlerNavigate(bookedSessionsUserRoute);
+        const confirmResult = () => {
+          dispatchResetRequestDateDataState();
+          dispatchResetShouldShowElementState();
+          dispatchResetBookSessionState();
+          dispatchResetSendEmailState();
+        };
+
+        const cancelResult = () => {
+          hamburgerHandlerNavigate(bookedSessionsUserRoute);
+        };
+
+        confirmSwal(
+          bookAnotherSessionQuestion,
+          "",
+          bookAnotherButtonText,
+          confirmResult,
+          cancelResult
+        );
       } else {
         fireSwal(
           "error",
