@@ -36,3 +36,4 @@ export const userCreatedMessage = `<span style="font-size:20px;">user created! p
 export const emailsUpdatedSuccessMessage =
   "the emails were successfully updated!";
 export const emailSentMessage = "email sent!";
+export const bookingCancelledMessage = "booking cancelled!";

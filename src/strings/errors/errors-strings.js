@@ -217,3 +217,5 @@ export const bookingsEmailUpdatedChildrensListFailedErrorMessage = (error) => {
   return `<span style="font-size: 20px;">there was an error trying to update the database. The bookings were updated with the new email but the childrens list was not. please contact jonathan and quote this error: 'update bookings email succeeded, update childrens list email failed'. Please also forward the email with the details that you received to him so he can fix the error.the  error received was: '${error}'</span>`;
 };
 export const latestBookingsUpdateEmailFailedErrorMessage = `<span style="font-size: 20px;">there was an error trying to update the database. please try again or contact jonathan if the error persists.</span>`;
+export const errorSendingCancellationEmailMessage =
+  "sorry, there was an error sending the email.";

@@ -25,8 +25,11 @@ const DbManageCancelBooking = () => {
   const { bookedSessionsOwnerError } = useGetBookedSessionsOwnerSelectors();
   const { sessionTypesAndPricesError } = useGetSessionTypesAndPricesSelectors();
 
-  const { databaseManagementIsLoading, bookedSessionsOwnerIsLoading } =
-    useDbManageCancelBookingVariables();
+  const {
+    databaseManagementIsLoading,
+    bookedSessionsOwnerIsLoading,
+    sendEmailIsLoading,
+  } = useDbManageCancelBookingVariables();
 
   return (
     <Container>
@@ -34,7 +37,9 @@ const DbManageCancelBooking = () => {
         <BlackTitle>cancel a booking</BlackTitle>
       </ParentDiv>
 
-      {databaseManagementIsLoading || bookedSessionsOwnerIsLoading ? (
+      {databaseManagementIsLoading ||
+      bookedSessionsOwnerIsLoading ||
+      sendEmailIsLoading ? (
         <Loader />
       ) : bookedSessionsOwnerError || sessionTypesAndPricesError ? (
         <ShowFetchErrors />

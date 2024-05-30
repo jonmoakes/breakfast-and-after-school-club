@@ -41,6 +41,7 @@ const useGetBookingDetails = () => {
           sessionChildren: bookingToCancelDetails.childrensName,
           typeOfSession: bookingToCancelDetails.sessionType,
           userIdOfParent: bookingToCancelDetails.parentsUserId,
+          emailOfParent: bookingToCancelDetails.parentEmail,
         };
         dispatchSetBookingToCancelDetails(detailsOfSession);
       } else {

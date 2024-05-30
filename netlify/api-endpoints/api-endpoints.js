@@ -26,3 +26,5 @@ export const SEND_EMAIL_UPDATE_LATEST_BOOKINGS_AND_CHILDRENS_PARENT_EMAIL_ENDPOI
   "/.netlify/functions/send-email-update-latest-bookings-and-childrens-parent-email";
 export const DB_MANAGE_SEND_EMAIL_BOOKING_CONFIRMATION_ENDPOINT =
   "/.netlify/functions/db-manage-send-email-booking-confirmation";
+export const DB_MANAGE_SEND_EMAIL_BOOKING_CANCELLATION_CONFIRMATION_ENDPOINT =
+  "/.netlify/functions/db-manage-send-email-booking-cancellation-confirmation";

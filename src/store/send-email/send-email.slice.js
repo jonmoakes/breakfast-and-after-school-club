@@ -10,6 +10,7 @@ import {
   sendEmailToAdminCloseAccountRequestAsync,
   sendEmailUpdateLatestBookingsAndChildrensParentEmailAsync,
   dbManageSendEmailBookingConfirmationAsync,
+  dbManageSendEmailBookingCancellationConfirmationAsync,
 } from "./send-email.thunks";
 
 const INITIAL_STATE = {
@@ -71,6 +72,10 @@ export const sendEmailSlice = createSlice({
       sendEmailUpdateLatestBookingsAndChildrensParentEmailAsync
     );
     handleAsyncAction(builder, dbManageSendEmailBookingConfirmationAsync);
+    handleAsyncAction(
+      builder,
+      dbManageSendEmailBookingCancellationConfirmationAsync
+    );
   },
 });
 

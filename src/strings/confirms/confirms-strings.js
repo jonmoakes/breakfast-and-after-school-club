@@ -101,3 +101,4 @@ export const confirmUpdateSessionSpacesMessage =
 export const confirmCreateUserMessage =
   "are you sure you want to create this user?";
 export const shouldSendEmailMessage = `<span style="font-size: 20px;">do you wish to send an email confirmation of the booking to the user?<br/><br/>tap 'cancel' if you do not wish to send an email.</span>`;
+export const shouldSendCancelledBookingEmailMessage = `<span style="font-size: 20px;">do you wish to send a confirmation email of the cancelled booking to the user?<br/><br/>tap 'cancel' if you do not wish to send an email.</span>`;

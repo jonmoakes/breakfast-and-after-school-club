@@ -4,6 +4,7 @@ import useBookedSessionsOwnerVariables from "../../booked-sessions-owner/booked-
 
 import { getNumberOfChildrenInBooking } from "../../../functions/get-number-of-children-in-booking";
 import { format, parseISO } from "date-fns";
+import useGetSendEmailSelectors from "../../../hooks/get-selectors/use-get-send-email-selectors";
 
 const useDbManageCancelBookingVariables = () => {
   const {
@@ -17,6 +18,8 @@ const useDbManageCancelBookingVariables = () => {
     userOfAppChoice,
   } = useGetDatabaseManagementSelectors();
   const { bookedSessionsOwnerIsLoading } = useBookedSessionsOwnerVariables();
+  const { sendEmailIsLoading } = useGetSendEmailSelectors();
+
   const numberOfChildrenInBooking =
     getNumberOfChildrenInBooking(sessionChildren);
   const { sessionPrice } = useGetSessionPrice(
@@ -45,6 +48,7 @@ const useDbManageCancelBookingVariables = () => {
     numberOfChildrenInBooking,
     userOfAppChoice,
     formattedDate,
+    sendEmailIsLoading,
   };
 };
 

@@ -72,8 +72,13 @@ const useGetDatabaseManagementSelectors = () => {
     additionalInfo,
   } = dataToUpdateDocument ?? {};
 
-  const { sessionDate, sessionChildren, typeOfSession, userIdOfParent } =
-    bookingToCancelDetails ?? {};
+  const {
+    sessionDate,
+    sessionChildren,
+    typeOfSession,
+    userIdOfParent,
+    emailOfParent,
+  } = bookingToCancelDetails ?? {};
 
   return {
     databaseManagementIsLoading,
@@ -130,6 +135,7 @@ const useGetDatabaseManagementSelectors = () => {
     sessionChildren,
     typeOfSession,
     userIdOfParent,
+    emailOfParent,
     userOfAppChoice,
     childName,
     childAge,

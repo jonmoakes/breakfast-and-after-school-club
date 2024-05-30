@@ -9,6 +9,7 @@ import { bookingSuccessfullyAddedMessage } from "../../../../strings/successes/s
 import { databaseManagementRoute } from "../../../../strings/routes/routes-strings";
 import { getNumberOfChildrenInBooking } from "../../../../functions/get-number-of-children-in-booking";
 import useGetSessionPrice from "../../../../hooks/use-get-session-price";
+import { sendEmailButtonText } from "../../../../strings/infos/infos-strings";
 
 const useAddBookingSuccessSwal = () => {
   const { confirmSwal } = useConfirmSwal();
@@ -43,7 +44,7 @@ const useAddBookingSuccessSwal = () => {
     confirmSwal(
       bookingSuccessfullyAddedMessage,
       shouldSendEmailMessage,
-      "send email",
+      sendEmailButtonText,
       confirmResult,
       cancelResult
     );
