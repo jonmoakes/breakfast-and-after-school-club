@@ -7,7 +7,6 @@ import {
   tooLateToCancelAfternoonMessage,
   tooLateToCancelMorningMessage,
   tooLateToCancelDualSession,
-  errorTryingToCancelBookingMessage,
   tryingToCancelErrorMessage,
 } from "../../../strings/errors/errors-strings";
 
@@ -19,8 +18,8 @@ const useFireErrorSwals = () => {
   const couldntFetchBookingClosingTimesSwal = () => {
     fireSwal(
       "error",
-      errorTryingToCancelBookingMessage,
       tryingToCancelErrorMessage(requestDateDataError),
+      "",
       0,
       true,
       false

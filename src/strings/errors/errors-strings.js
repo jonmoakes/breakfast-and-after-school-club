@@ -1,4 +1,5 @@
 import { getSessionTypeString } from "../../functions/get-session-type-string";
+import { customYellow } from "../../styles/colors";
 
 export const errorSigningInInstructions =
   "please check your email, password and school code and try again.";
@@ -12,8 +13,7 @@ export const missingFieldsMessage =
   "please make sure that all required fields have been entered before tapping sign in.";
 export const errorSigningInMessage = "error signing in..";
 export const errorSigningUpMessage = "error signing up..";
-export const passwordsDontMatchMessage =
-  "the password and confirm password fields don't match. Please try again. Tap the eye icon to view data entered in the fields.";
+export const passwordsDontMatchMessage = `<span style="font-size:20px";>the password and confirm password fields don't match.<br/><br/>Please try again.<br/><br/>You can Tap the eye icon to view data entered in the fields.</span>`;
 export const noNetworkMessage =
   "there is no internet connection. Please check your connection and try again.";
 export const pleaseEnterYourCardDetails = "please enter your card details";
@@ -30,7 +30,7 @@ export const errorRequestUpdatePasswordLinkMessage =
 export const errorSendingAccountClosureRequest =
   "sorry, there was an error sending your request.";
 export const errorResettingPassword =
-  "sorry, there was an error resetting your password";
+  "sorry, there was an error resetting your password.";
 export const errorUploadingDatesToDatabaseMessage =
   "sorry, there was an error uploading the dates to the database..";
 export const paymentSucceededButDatabaseUpdateErrorMessage =
@@ -113,10 +113,8 @@ export const alreadyHaveChildNameMessage =
   "you can't add a child with the same name.";
 export const contactFormDetailsPrePopulatedMessage =
   "please contact us urgently by tapping the ok button. We will populate the contact form with the details we need to fix our error, so you simply need to press the 'send message' button when on the contact form. We apologise for the inconvenience.";
-export const errorTryingToCancelBookingMessage =
-  "sorry, there was an error trying to cancel your booking";
 export const tryingToCancelErrorMessage = (error) => {
-  return `the error received was: ${error}. If the issue persists, please contact the school directly to cancel your booking. We apologise for the inconvenience.`;
+  return `<span style="font-size:20px";>sorry, there was an error trying to cancel your booking. the error received was:<br/><br/><span style="color: ${customYellow}";>${error}</span>.<br/><br/>If the issue persists, please contact the school directly to cancel your booking. We apologise for the inconvenience.</span>`;
 };
 export const errorCancellingBookingMessage =
   "sorry, there was an error cancelling the booking.";
@@ -138,8 +136,7 @@ export const errorFetchingBalanceMessage =
 export const invalidSchoolCode = "Invalid school code";
 export const invalidSchoolCodeHelpMessage =
   "please try again. if you have forgotten your code, please contact your school. please note that the school code is case sensitive";
-export const passwordLengthErrorMessage =
-  "password must be at least 8 characters in length. please try again";
+export const passwordLengthErrorMessage = `password must be at least 8 characters in length.<br/><br/>please try again.`;
 export const phoneNumberLengthErrorMessage =
   "your phone number must be 11 digits long";
 export const consentOptionErrorMessage =

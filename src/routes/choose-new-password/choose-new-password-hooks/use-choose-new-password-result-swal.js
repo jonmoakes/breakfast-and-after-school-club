@@ -1,11 +1,11 @@
 import { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
 
 import useGetCurrentUserSelectors from "../../../hooks/get-selectors/use-get-current-user-selectors";
 import useFireSwal from "../../../hooks/use-fire-swal";
 import useGetChooseNewPasswordSelectors from "../../../hooks/get-selectors/use-get-choose-new-password-selectors";
 import useChooseNewPasswordActions from "../../../hooks/get-actions-and-thunks/choose-new-password-actions-and-thunks/use-choose-new-password-actions";
 import useSignOutSubmitThunk from "../../../hooks/get-actions-and-thunks/current-user-actions-and-thunks/use-sign-out-submit-thunk";
+import useHamburgerHandlerNavigate from "../../../hooks/use-hamburger-handler-navigate";
 
 import {
   errorReceivedMessage,
@@ -25,8 +25,7 @@ const useChooseNewPasswordResultSwal = () => {
   const { fireSwal } = useFireSwal();
   const { signOutSoCanSignInWithNewPasswordThunk } = useSignOutSubmitThunk();
   const { dispatchResetPasswordResultError } = useChooseNewPasswordActions();
-
-  const navigate = useNavigate();
+  const { hamburgerHandlerNavigate } = useHamburgerHandlerNavigate();
 
   useEffect(() => {
     if (!newPasswordError && !newPasswordResult) return;
@@ -54,11 +53,16 @@ const useChooseNewPasswordResultSwal = () => {
         false
       ).then((isConfirmed) => {
         if (isConfirmed) {
-          navigate(signInRoute);
+          hamburgerHandlerNavigate(signInRoute);
         }
       });
     } else if (newPasswordError) {
-      const error = newPasswordError;
+      const error =
+        newPasswordError ===
+        "Invalid `password` param: Password must be between 8 and 265 characters long, and should not be one of the commonly used password."
+          ? "the password you chose is not secure"
+          : newPasswordError;
+
       fireSwal(
         "error",
         errorResettingPassword,
@@ -76,7 +80,7 @@ const useChooseNewPasswordResultSwal = () => {
     newPasswordError,
     newPasswordResult,
     fireSwal,
-    navigate,
+    hamburgerHandlerNavigate,
     currentUser,
     dispatchResetPasswordResultError,
     signOutSoCanSignInWithNewPasswordThunk,

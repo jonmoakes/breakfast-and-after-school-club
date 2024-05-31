@@ -22,9 +22,8 @@ const Intro = () => (
       </Text>
       <Text>
         <Balancer>
-          hen tap the "update password" button when it appears.
+          then tap the "update password" button when it appears.
         </Balancer>
-        t
       </Text>
     </ParentDiv>
   </>

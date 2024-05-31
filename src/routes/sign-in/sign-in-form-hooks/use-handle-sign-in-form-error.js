@@ -10,6 +10,7 @@ import {
   errorSigningInInstructions,
   appwriteCredentialsError,
   errorReceivedMessage,
+  passwordLengthErrorMessage,
 } from "../../../strings/errors/errors-strings";
 
 const useHandleSignInFormError = () => {
@@ -29,6 +30,10 @@ const useHandleSignInFormError = () => {
       (currentUserError && currentUserError === appwriteCredentialsError) ||
       (currentUserError && currentUserError === "action fulfilled but no user")
         ? errorSigningInInstructions
+        : currentUserError &&
+          currentUserError ===
+            "Invalid `password` param: Password must be between 8 and 256 characters long."
+        ? passwordLengthErrorMessage
         : errorReceivedMessage(error);
 
     fireSwal("error", errorSigningInMessage, errorDetails, 0, true, false).then(

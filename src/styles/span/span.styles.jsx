@@ -44,6 +44,10 @@ export const RedSpan = styled.span`
   &.lowercased {
     text-transform: lowercase;
   }
+
+  &.shadow {
+    text-shadow: 0.5px 0.5px 0.5px ${customBlack};
+  }
 `;
 
 export const LightGreenSpan = styled.span`
