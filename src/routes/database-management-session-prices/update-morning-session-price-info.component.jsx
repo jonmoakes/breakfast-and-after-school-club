@@ -12,12 +12,13 @@ const UpdateMorningSessionPriceInfo = () => {
   return (
     <>
       <BlueH2>morning session price</BlueH2>
-      <Balancer>
-        <Text>your current morning session price is:</Text>
-        <Text>
-          <RedSpan>£{morningSessionPriceToFixed}</RedSpan>
-        </Text>
-      </Balancer>
+
+      <Text>
+        <Balancer>your current morning session price is:</Balancer>
+      </Text>
+      <Text>
+        <RedSpan>£{morningSessionPriceToFixed}</RedSpan>
+      </Text>
     </>
   );
 };

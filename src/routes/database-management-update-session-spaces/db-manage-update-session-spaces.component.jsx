@@ -23,7 +23,9 @@ const DBManageUpdateSessionSpaces = () => {
   return (
     <Container>
       <ParentDiv>
-        <BlackTitle>update session spaces</BlackTitle>
+        <BlackTitle>
+          <Balancer>update session spaces</Balancer>
+        </BlackTitle>
       </ParentDiv>
 
       {databaseManagementIsLoading ? (
@@ -31,25 +33,29 @@ const DBManageUpdateSessionSpaces = () => {
       ) : (
         <>
           <ParentDiv>
-            <Balancer>
-              {errorId === "3" ? (
-                <>
-                  <Text>
+            {errorId === "3" ? (
+              <>
+                <Text>
+                  <Balancer>
                     now that you have successfully updated the users balance, we
                     can update the session spaces in the database so that they
                     are correct.
-                  </Text>
+                  </Balancer>
+                </Text>
 
-                  <Text>
+                <Text>
+                  <Balancer>
                     <RedSpan>
                       please don't leave this page before completing this step
                       as your database data will be out of sync otherwise.
                     </RedSpan>
-                  </Text>
-                </>
-              ) : errorId === "4" ? (
-                <>
-                  <Text>
+                  </Balancer>
+                </Text>
+              </>
+            ) : errorId === "4" ? (
+              <>
+                <Text>
+                  <Balancer>
                     If You're On This Page, It Means You Should Have Received An
                     Email Saying That:
                     <br />'
@@ -59,31 +65,39 @@ const DBManageUpdateSessionSpaces = () => {
                       Booking Attempt
                     </RedSpan>
                     '.
-                  </Text>
-                  <Text>
-                    it has the error id of '<RedSpan>4</RedSpan>'
-                  </Text>
-                </>
-              ) : null}
-              {errorId === "4" ? null : (
+                  </Balancer>
+                </Text>
                 <Text>
+                  <Balancer>
+                    it has the error id of '<RedSpan>4</RedSpan>'
+                  </Balancer>
+                </Text>
+              </>
+            ) : null}
+            {errorId === "4" ? null : (
+              <Text>
+                <Balancer>
                   now that we have updated the users, balance, we need to update
                   the session spaces. to fix this error, we need the following
                   data which you will also find in the same email.
-                </Text>
-              )}
+                </Balancer>
+              </Text>
+            )}
 
-              <RequiredData />
-              <InputRecommendation />
-              <Text>
+            <RequiredData />
+            <InputRecommendation />
+            <Text>
+              <Balancer>
                 if successful, the session spaces will be restored to their
                 correct values.
-              </Text>
-              <Text>
+              </Balancer>
+            </Text>
+            <Text>
+              <Balancer>
                 if you receive an error after trying to do this, please contact
                 jonathan.
-              </Text>
-            </Balancer>
+              </Balancer>
+            </Text>
           </ParentDiv>
 
           <ParentDiv>

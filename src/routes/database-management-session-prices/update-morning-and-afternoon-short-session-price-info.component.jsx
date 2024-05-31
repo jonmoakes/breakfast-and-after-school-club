@@ -12,13 +12,18 @@ const UpdateMorningAndAfternoonShortSessionPriceInfo = () => {
 
   return (
     <>
-      <BlueH2>morning and afternoon short session price</BlueH2>
-      <Balancer>
-        <Text>your current morning and afternoon short session price is:</Text>
-        <Text>
-          <RedSpan>£{morningAndAfternoonShortSessionPriceToFixed}</RedSpan>
-        </Text>
-      </Balancer>
+      <BlueH2>
+        <Balancer>morning and afternoon short session price</Balancer>
+      </BlueH2>
+
+      <Text>
+        <Balancer>
+          your current morning and afternoon short session price is:
+        </Balancer>
+      </Text>
+      <Text>
+        <RedSpan>£{morningAndAfternoonShortSessionPriceToFixed}</RedSpan>
+      </Text>
     </>
   );
 };

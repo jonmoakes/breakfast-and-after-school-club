@@ -7,9 +7,10 @@ import { BlackTitle } from "../../styles/h1/h1.styles";
 
 const UpdateBookingClosingTimesTitleAndAccordion = () => (
   <ParentDiv>
-    <Balancer>
-      <BlackTitle>your current booking closing times:</BlackTitle>
-    </Balancer>
+    <BlackTitle>
+      <Balancer>your current booking closing times:</Balancer>
+    </BlackTitle>
+
     <UpdateBookingClosingTimesInstructions />
   </ParentDiv>
 );

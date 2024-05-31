@@ -15,8 +15,17 @@ const Intro = () => (
     </ParentDiv>
 
     <ParentDiv>
-      <Text>enter in your new password, then retype it to confirm it.</Text>
-      <Text>then tap the "update password" button when it appears.</Text>
+      <Text>
+        <Balancer>
+          enter in your new password, then retype it to confirm it.
+        </Balancer>
+      </Text>
+      <Text>
+        <Balancer>
+          hen tap the "update password" button when it appears.
+        </Balancer>
+        t
+      </Text>
     </ParentDiv>
   </>
 );

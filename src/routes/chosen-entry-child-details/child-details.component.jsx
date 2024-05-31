@@ -50,9 +50,11 @@ const ChildDetails = () => {
               <BlueH2>age:</BlueH2>
               <Text>{age}</Text>
               <BlackHr />
-              <Balancer>
-                <BlueH2>name / image consent given:</BlueH2>
-              </Balancer>
+
+              <BlueH2>
+                <Balancer>name / image consent given:</Balancer>
+              </BlueH2>
+
               <Text>{consent}</Text>
               <BlackHr />
               {medicalInfo ? (

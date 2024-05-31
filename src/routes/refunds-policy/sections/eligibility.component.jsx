@@ -8,13 +8,13 @@ const Eligibility = () => (
   <>
     <BlueH2>eligibility:</BlueH2>
 
-    <Balancer>
-      <Text>
+    <Text>
+      <Balancer>
         Refund requests for app subscription fees will be considered on a case
         by case basis, typically in situations where the service was not
-        delivered as agreed.
-      </Text>
-    </Balancer>
+        delivered as agreed.{" "}
+      </Balancer>
+    </Text>
 
     <BlackHr />
   </>

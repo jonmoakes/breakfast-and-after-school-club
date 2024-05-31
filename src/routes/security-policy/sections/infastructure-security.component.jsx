@@ -14,40 +14,47 @@ const InfastructureSecurity = () => (
     </Text>
 
     <Text>
-      Our app is hosted on secure servers with a leading cloud service provider.
-      These providers adhere to stringent security standards and employ robust
-      physical and environmental controls to protect our infrastructure.
+      <Balancer>
+        Our app is hosted on secure servers with a leading cloud service
+        provider. These providers adhere to stringent security standards and
+        employ robust physical and environmental controls to protect our
+        infrastructure.
+      </Balancer>
     </Text>
     <BlackHr />
 
     <Text>
-      <RedSpan>DDoS Protection:</RedSpan>
-      <br />
-      <br />
-      Our infrastructure includes built-in DDoS protection to mitigate attacks
-      that could disrupt service availability.
+      <Balancer>
+        <RedSpan>DDoS Protection:</RedSpan>
+        <br />
+        <br />
+        Our infrastructure includes built-in DDoS protection to mitigate attacks
+        that could disrupt service availability.
+      </Balancer>
     </Text>
     <BlackHr />
 
     <Text>
-      <RedSpan>Content Delivery Network (CDN):</RedSpan>
-      <br />
-      <br />
-      We use a global CDN to distribute content closer to users, enhancing
-      performance and security by reducing the attack surface.
+      <Balancer>
+        <RedSpan>Content Delivery Network (CDN):</RedSpan>
+        <br />
+        <br />
+        We use a global CDN to distribute content closer to users, enhancing
+        performance and security by reducing the attack surface.
+      </Balancer>
     </Text>
     <BlackHr />
 
     <Text>
-      <RedSpan>
-        <Balancer>Continuous Deployment and Rollbacks:</Balancer>
-      </RedSpan>
-      <br />
-      <br />
-      We support continuous deployment practices, allowing for automated and
-      secure updates to the app. Our deployment process is atomic, ensuring
-      updates are applied completely or not at all, with instant rollbacks
-      available for quick recovery if needed.
+      <Balancer>
+        <RedSpan>Continuous Deployment and Rollbacks:</RedSpan>
+        <br />
+        <br />
+        We support continuous deployment practices, allowing for automated and
+        secure updates to the app. Our deployment process is atomic, ensuring
+        updates are applied completely or not at all, with instant rollbacks
+        available for quick recovery if needed.
+      </Balancer>
     </Text>
     <BlackHr />
   </ParentDiv>

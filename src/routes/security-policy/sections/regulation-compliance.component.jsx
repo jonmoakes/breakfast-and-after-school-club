@@ -17,10 +17,12 @@ const RegulationCompliance = () => (
     </Text>
 
     <Text>
-      We comply with all applicable data protection laws and regulations,
-      including the UK GDPR and the Data Protection Act 2018. We continuously
-      monitor changes in legislation and update our practices accordingly to
-      ensure ongoing compliance.
+      <Balancer>
+        We comply with all applicable data protection laws and regulations,
+        including the UK GDPR and the Data Protection Act 2018. We continuously
+        monitor changes in legislation and update our practices accordingly to
+        ensure ongoing compliance.
+      </Balancer>
     </Text>
     <BlackHr />
   </ParentDiv>

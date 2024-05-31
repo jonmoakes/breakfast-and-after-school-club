@@ -30,51 +30,74 @@ const DatabaseManagement = () => {
       </ParentDiv>
 
       <ParentDiv>
-        <Text>here, you can view and update data in your database.</Text>
         <Text>
-          <RedSpan>
-            please note, editing the database can break the app if not done
-            correctly!
-          </RedSpan>
+          <Balancer>
+            here, you can view and update data in your database.
+          </Balancer>
         </Text>
         <Text>
-          please also note that any button under the heading of '
-          <RedSpan>For If You Received An Error Email</RedSpan>', should only be
-          pressed if you have received an email telling you that there was an
-          error when a user tried to perform an action in the app.
+          <Balancer>
+            <RedSpan>
+              please note, editing the database can break the app if not done
+              correctly!
+            </RedSpan>
+          </Balancer>
         </Text>
         <Text>
-          if this is the case, you will have the error id in the email you
-          received.
+          <Balancer>
+            please also note that any button under the heading of '
+            <RedSpan>For If You Received An Error Email</RedSpan>', should only
+            be pressed if you have received an email telling you that there was
+            an error when a user tried to perform an action in the app.
+          </Balancer>
         </Text>
         <Text>
-          tap on the button with the corresponding error id and this will take
-          you to the appropriate page where you can manually fix the error.
+          <Balancer>
+            if this is the case, you will have the error id in the email you
+            received.
+          </Balancer>
         </Text>
         <Text>
-          please contact jonathan if you have any queries at all before
-          proceeding.
+          <Balancer>
+            tap on the button with the corresponding error id and this will take
+            you to the appropriate page where you can manually fix the error.
+          </Balancer>
+        </Text>
+        <Text>
+          <Balancer>
+            please contact jonathan if you have any queries at all before
+            proceeding.
+          </Balancer>
         </Text>
       </ParentDiv>
 
       {userHasConfirmed !== "true" ? (
         <ParentDiv>
-          <Balancer>
-            <Text>
+          <Text>
+            <Balancer>
               please tap the button below to confirm that you understand that
               making changes to the database can break the app if not done
               correctly.
-            </Text>
-            <Text>
+            </Balancer>
+          </Text>
+          <Text>
+            <Balancer>
               this choice will last until you sign out on this device.
-            </Text>
-            <Text>
+            </Balancer>
+          </Text>
+          <Text>
+            <Balancer>
               if you are signed in on any other device, the choice you made on
               that device will remain irrespective of whether you press 'i
               understand' on the device that you are currently using.
-            </Text>
-            <Text>when you sign back in, you will have to confirm again.</Text>
-          </Balancer>
+            </Balancer>
+          </Text>
+          <Text>
+            <Balancer>
+              when you sign back in, you will have to confirm again.
+            </Balancer>
+          </Text>
+
           <YellowGreenButton onClick={setUserHasConfirmed}>
             i understand
           </YellowGreenButton>
@@ -83,7 +106,9 @@ const DatabaseManagement = () => {
 
       {userHasConfirmed === "true" ? (
         <ParentDiv>
-          <BlackH2>standard database management options:</BlackH2>
+          <BlackH2>
+            <Balancer>standard database management options:</Balancer>
+          </BlackH2>
           <BlackHr />
           <RenderButtonsList {...{ buttons: dbManagementButtons }} />
         </ParentDiv>
@@ -91,7 +116,9 @@ const DatabaseManagement = () => {
 
       {userHasConfirmed === "true" ? (
         <ParentDiv>
-          <BlackH2>for if you received an error email</BlackH2>
+          <BlackH2>
+            <Balancer>for if you received an error email</Balancer>
+          </BlackH2>
           <BlackHr />
           <RenderButtonsList
             {...{ buttons: dbManagementForErrorReceivedButtons }}

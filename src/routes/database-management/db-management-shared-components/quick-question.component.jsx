@@ -27,21 +27,23 @@ const QuickQuestion = () => {
         a booking.
       </Text>
       <BlackHr />
-      <Balancer>
-        <BlueH2>quick question:</BlueH2>{" "}
-        <Text>
+      <BlueH2>quick question:</BlueH2>
+      <Text>
+        <Balancer>
           is the customer a non user of the app
           <br />( ie, you {isAddBookingRoute() ? "Create" : "Cancel"} the
           bookings for them )?
-        </Text>
-        <Text>
+        </Balancer>
+      </Text>
+      <Text>
+        <Balancer>
           or is the customer a user of the app
           <br />( ie they normally {isAddBookingRoute()
             ? "Make"
             : "Cancel"}{" "}
           their own bookings ),
-        </Text>
-      </Balancer>
+        </Balancer>
+      </Text>
       <BlackHr />
       <Text>
         if you're unsure, see if their <RedSpan>wallet balance</RedSpan> in your{" "}

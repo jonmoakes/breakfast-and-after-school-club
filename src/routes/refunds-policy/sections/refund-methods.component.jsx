@@ -8,12 +8,12 @@ const RefundMethods = () => (
   <>
     <BlueH2>refund methods:</BlueH2>
 
-    <Balancer>
-      <Text>
+    <Text>
+      <Balancer>
         Refunds for app subscription fees will be issued to the original payment
         method used at the time of purchase.
-      </Text>
-    </Balancer>
+      </Balancer>
+    </Text>
     <BlackHr />
   </>
 );

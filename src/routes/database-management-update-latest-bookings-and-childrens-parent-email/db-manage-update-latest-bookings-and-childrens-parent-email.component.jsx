@@ -22,11 +22,11 @@ const DBManageUpdateLatestBookingsAndChildrensParentEmail = () => {
   return (
     <Container>
       <ParentDiv>
-        <Balancer>
-          <BlackTitle>
+        <BlackTitle>
+          <Balancer>
             update your latest bookings and childrens list parent email
-          </BlackTitle>
-        </Balancer>
+          </Balancer>
+        </BlackTitle>
       </ParentDiv>
 
       {databaseManagementIsLoading ? (
@@ -35,16 +35,22 @@ const DBManageUpdateLatestBookingsAndChildrensParentEmail = () => {
         <>
           <ParentDiv>
             <Text>
-              you should only need to be on this page if you have received an
-              email, where the first line is:
+              <Balancer>
+                you should only need to be on this page if you have received an
+                email, where the first line is:
+              </Balancer>
             </Text>
             <RedText>
-              A User Recently Updated Their Email Address In The Database.
+              <Balancer>
+                A User Recently Updated Their Email Address In The Database.
+              </Balancer>
             </RedText>
 
             <Text>
-              please tap the button below for important information on why you
-              should be on this page and what you need to do .
+              <Balancer>
+                please tap the button below for important information on why you
+                should be on this page and what you need to do.
+              </Balancer>
             </Text>
 
             <UpdateBookingsAndChildrensParentEmailAccordion />

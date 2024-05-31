@@ -12,14 +12,17 @@ const UpdateMorningSessionClosingTimesInfo = () => {
   return (
     <>
       <BlueH2>morning session</BlueH2>
-      <Balancer>
-        <Text>
-          the latest time a user can book or cancel a morning session is:
-        </Text>
-        <Text>
+
+      <Text>
+        <Balancer>
+          the latest time a user can book or cancel a morning session is:{" "}
+        </Balancer>
+      </Text>
+      <Text>
+        <Balancer>
           <RedSpan>{morningSessionClosingTime} AM</RedSpan>
-        </Text>
-      </Balancer>
+        </Balancer>
+      </Text>
     </>
   );
 };

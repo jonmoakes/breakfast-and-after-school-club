@@ -29,9 +29,10 @@ const DataProtection = () => (
     </ParentDiv>
 
     <ParentDiv>
-      <Balancer>
-        <BlueH2>Key Points of Our Data Protection Policy:</BlueH2>
-      </Balancer>
+      <BlueH2>
+        <Balancer>Key Points of Our Data Protection Policy: </Balancer>
+      </BlueH2>
+
       <StyledUnorderedList>
         <BlackListItem>
           We collect and use your personal data to facilitate and manage

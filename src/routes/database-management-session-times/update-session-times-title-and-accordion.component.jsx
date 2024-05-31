@@ -7,9 +7,10 @@ import { BlackTitle } from "../../styles/h1/h1.styles";
 
 const UpdateSessionTimesTitleAndAccordion = () => (
   <ParentDiv>
-    <Balancer>
-      <BlackTitle>your current session times:</BlackTitle>
-    </Balancer>
+    <BlackTitle>
+      <Balancer>your current session times:</Balancer>
+    </BlackTitle>
+
     <UpdateSessionTimesInstructions />
   </ParentDiv>
 );

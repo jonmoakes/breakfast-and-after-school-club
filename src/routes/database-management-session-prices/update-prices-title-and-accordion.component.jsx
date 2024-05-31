@@ -7,9 +7,10 @@ import { BlackTitle } from "../../styles/h1/h1.styles";
 
 const UpdatePricesTitleAndAccordion = () => (
   <ParentDiv>
-    <Balancer>
-      <BlackTitle>your current session prices:</BlackTitle>
-    </Balancer>
+    <BlackTitle>
+      <Balancer>your current session prices:</Balancer>
+    </BlackTitle>
+
     <UpdateSessionPricesInstructions />
   </ParentDiv>
 );

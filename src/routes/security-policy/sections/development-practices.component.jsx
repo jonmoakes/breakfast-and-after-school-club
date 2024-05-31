@@ -17,28 +17,34 @@ const DevelopmentPractices = () => (
     </Text>
 
     <Text>
-      Our development team follows secure coding practices to minimise the risk
-      of common vulnerabilities, such as injection attacks, cross-site scripting
-      (XSS), and security misconfigurations.
+      <Balancer>
+        Our development team follows secure coding practices to minimise the
+        risk of common vulnerabilities, such as injection attacks, cross-site
+        scripting (XSS), and security misconfigurations.
+      </Balancer>
     </Text>
     <BlackHr />
 
     <Text>
-      <RedSpan>Code Reviews:</RedSpan>
-      <br />
-      <br />
-      All code changes undergo thorough peer review to identify and address
-      potential security flaws before they are deployed to production.
+      <Balancer>
+        <RedSpan>Code Reviews:</RedSpan>
+        <br />
+        <br />
+        All code changes undergo thorough peer review to identify and address
+        potential security flaws before they are deployed to production.
+      </Balancer>
     </Text>
     <BlackHr />
 
     <Text>
-      <RedSpan>Third-Party Libraries:</RedSpan>
-      <br />
-      <br />
-      We carefully vet and monitor third-party libraries and dependencies to
-      ensure they meet our security standards and do not introduce
-      vulnerabilities into our codebase.
+      <Balancer>
+        <RedSpan>Third-Party Libraries:</RedSpan>
+        <br />
+        <br />
+        We carefully vet and monitor third-party libraries and dependencies to
+        ensure they meet our security standards and do not introduce
+        vulnerabilities into our codebase.
+      </Balancer>
     </Text>
     <BlackHr />
   </ParentDiv>

@@ -18,11 +18,11 @@ const TitleAndLoader = () => {
       {chosenEntryChildDetailsIsLoading ? <Loader /> : null}
 
       <ParentDiv>
-        <Balancer>
-          <BlackTitle>
+        <BlackTitle>
+          <Balancer>
             details of {childOrChildrenString} in this booking
-          </BlackTitle>
-        </Balancer>
+          </Balancer>
+        </BlackTitle>
       </ParentDiv>
     </>
   );

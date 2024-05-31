@@ -8,12 +8,13 @@ const NonRefundable = () => (
   <>
     <BlueH2>partial refunds:</BlueH2>
 
-    <Balancer>
-      <Text>
+    <Text>
+      <Balancer>
         Partial refunds for app subscriptions may be issued based on the length
-        of service used and the circumstances of the refund request.
-      </Text>
-    </Balancer>
+        of service used and the circumstances of the refund request.{" "}
+      </Balancer>
+    </Text>
+
     <BlackHr />
   </>
 );

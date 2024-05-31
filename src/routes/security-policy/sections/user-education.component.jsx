@@ -17,18 +17,22 @@ const UserEducation = () => (
     </Text>
 
     <Text>
-      Our employees undergo regular security training and awareness programs to
-      ensure they understand best practices for protecting user data and
-      mitigating security risks.
+      <Balancer>
+        Our employees undergo regular security training and awareness programs
+        to ensure they understand best practices for protecting user data and
+        mitigating security risks.
+      </Balancer>
     </Text>
     <BlackHr />
 
     <Text>
-      <RedSpan>user guidance:</RedSpan>
-      <br />
-      <br />
-      We provide guidance and resources to help users understand how they can
-      protect their own data and minimise security risks when using our app.
+      <Balancer>
+        <RedSpan>user guidance:</RedSpan>
+        <br />
+        <br />
+        We provide guidance and resources to help users understand how they can
+        protect their own data and minimise security risks when using our app.
+      </Balancer>
     </Text>
     <BlackHr />
   </ParentDiv>

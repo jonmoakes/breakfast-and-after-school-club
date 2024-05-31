@@ -21,7 +21,7 @@ const AboutTitleAndIntro = () => (
 
       <Text>
         Tap on the images to view the full-size image
-        <br />( or pinch to zoom )
+        <br />( or pinch to zoom ).
       </Text>
     </ParentDiv>
   </>

@@ -42,49 +42,70 @@ const DeleteChildInstructions = () => {
 
           {shouldShowElement && (
             <AccordionContent>
-              <Balancer>
-                <BlueH2>where to find the child id:</BlueH2>
-                <Text>
+              <BlueH2>
+                <Balancer>where to find the child id:</Balancer>
+              </BlueH2>
+              <Text>
+                <Balancer>
                   you will find the id in your{" "}
                   <StyledLink to={allChildrenRoute}>children list</StyledLink>{" "}
                   table, in the last row under the heading of 'childs id'.
-                </Text>
+                </Balancer>
+              </Text>
 
-                <BlackHr />
+              <BlackHr />
 
-                <Text>
+              <Text>
+                <Balancer>
                   double check you are deleting the correct child ( easily done
                   if two children have the same name )!
-                </Text>
+                </Balancer>
+              </Text>
 
-                <Text>
+              <Text>
+                <Balancer>
                   you can double check the name of email address of the parent
                   to be sure ( also in the same table ).
-                </Text>
+                </Balancer>
+              </Text>
 
-                <Text>
+              <Text>
+                <Balancer>
                   please enter the child id into the input below,{" "}
                   <RedSpan>Exactly</RedSpan> as it is in the table and then tap
                   'delete child document'.
-                </Text>
+                </Balancer>
+              </Text>
 
-                <Text>
+              <Text>
+                <Balancer>
                   we recommend copy and pasting the value so that there are no
                   errors.
-                </Text>
+                </Balancer>
+              </Text>
 
-                <BlackHr />
+              <BlackHr />
 
-                <Text>then tap on the 'delete child' button and confirm.</Text>
-                <Text>this will delete the child from the database.</Text>
-                <BlackHr />
+              <Text>
+                <Balancer>
+                  then tap on the 'delete child' button and confirm.
+                </Balancer>
+              </Text>
+              <Text>
+                <Balancer>
+                  this will delete the child from the database.
+                </Balancer>
+              </Text>
+              <BlackHr />
 
-                <Text>
+              <Text>
+                <Balancer>
                   if you receive an error when trying to delete this child, or
                   have any questions at all, please{" "}
                   <StyledLink to={contactRoute}>contact jonathan</StyledLink>.
-                </Text>
-              </Balancer>
+                </Balancer>
+              </Text>
+
               <YellowGreenButton onClick={dispatchHideShownElement}>
                 Ok, Close
               </YellowGreenButton>

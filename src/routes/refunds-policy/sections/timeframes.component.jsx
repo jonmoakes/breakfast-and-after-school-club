@@ -8,21 +8,27 @@ const Timeframes = () => (
   <>
     <BlueH2>timeframes:</BlueH2>
 
-    <Balancer>
-      <Text>
+    <Text>
+      {" "}
+      <Balancer>
         Refund requests for app subscriptions must be made within 30 days of the
         billing date.
-      </Text>
-      <Text>
+      </Balancer>
+    </Text>
+    <Text>
+      <Balancer>
         refunds are submitted to the customer's bank immediately and can take
         five to ten working days to appear in their account.
-      </Text>
-      <Text>
+      </Balancer>
+    </Text>
+    <Text>
+      <Balancer>
         In some cases, refunds may be processed as reversals, where the original
         payment disappears from the account statement and the balance reflects
         as if the charge never occurred.
-      </Text>
-    </Balancer>
+      </Balancer>
+    </Text>
+
     <BlackHr />
   </>
 );

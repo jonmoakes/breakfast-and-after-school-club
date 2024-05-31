@@ -17,20 +17,24 @@ const IncidentResponse = () => (
     </Text>
 
     <Text>
-      We maintain a comprehensive incident response plan to guide our response
-      in the event of a security incident or data breach. This includes
-      procedures for notifying affected users, regulatory authorities, and other
-      relevant persons.
+      <Balancer>
+        We maintain a comprehensive incident response plan to guide our response
+        in the event of a security incident or data breach. This includes
+        procedures for notifying affected users, regulatory authorities, and
+        other relevant persons.
+      </Balancer>
     </Text>
     <BlackHr />
 
     <Text>
-      <RedSpan>Data Breach Notification:</RedSpan>
-      <br />
-      <br />
-      In the event of a data breach that compromises the security of users
-      personal information, we will notify affected users in accordance with
-      applicable data protection laws and regulations.
+      <Balancer>
+        <RedSpan>Data Breach Notification:</RedSpan>
+        <br />
+        <br />
+        In the event of a data breach that compromises the security of users
+        personal information, we will notify affected users in accordance with
+        applicable data protection laws and regulations.
+      </Balancer>
     </Text>
     <BlackHr />
   </ParentDiv>

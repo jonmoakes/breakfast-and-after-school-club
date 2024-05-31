@@ -30,8 +30,8 @@ const DBManageUpdateUserBalance = () => {
       ) : (
         <>
           <ParentDiv>
-            <Balancer>
-              <Text>
+            <Text>
+              <Balancer>
                 if you're on this page, it means you should have received an
                 email saying that
                 <br />
@@ -66,51 +66,69 @@ const DBManageUpdateUserBalance = () => {
                   ""
                 )}
                 .
-              </Text>
-              <Text>
+              </Balancer>
+            </Text>
+            <Text>
+              <Balancer>
                 in the email, it has the error id of
                 <br />'<RedSpan>{errorId}</RedSpan>'
-              </Text>
+              </Balancer>
+            </Text>
 
-              {errorId === "3" ? (
-                <>
-                  <Text>we are going to fix this error in 2 parts.</Text>
-                  <Text>
+            {errorId === "3" ? (
+              <>
+                <Text>
+                  <Balancer>
+                    we are going to fix this error in 2 parts.
+                  </Balancer>
+                </Text>
+                <Text>
+                  <Balancer>
                     here, we will update the users balance to the correct value.
-                  </Text>
-                  <Text>
+                  </Balancer>
+                </Text>
+                <Text>
+                  <Balancer>
                     once this is successful, we will update the session spaces
                     available to their correct number.
-                  </Text>
-                </>
-              ) : null}
+                  </Balancer>
+                </Text>
+              </>
+            ) : null}
 
-              <Text>
+            <Text>
+              <Balancer>
                 to fix the users balance error, we need the following data which
                 you will find in the email:
-              </Text>
-              <RequiredData />
-              <InputRecommendation />
-              <Text>
+              </Balancer>
+            </Text>
+            <RequiredData />
+            <InputRecommendation />
+            <Text>
+              <Balancer>
                 if successful, the user should instantly see their balance
                 updated to the correct amount.
-              </Text>
-              {errorId === "3" ? (
-                <>
-                  <Text>
+              </Balancer>
+            </Text>
+            {errorId === "3" ? (
+              <>
+                <Text>
+                  <Balancer>
                     one you receive confirmation of the successful updating of a
                     users balance, when you tap 'ok' in the alert box that shows
                     up, you will be taken to the next form where you can update
                     the session spaces.
-                  </Text>
-                </>
-              ) : null}
+                  </Balancer>
+                </Text>
+              </>
+            ) : null}
 
-              <Text>
+            <Text>
+              <Balancer>
                 if you receive an error when trying to update this value, please
                 contact jonathan.
-              </Text>
-            </Balancer>
+              </Balancer>
+            </Text>
           </ParentDiv>
 
           <ParentDiv>

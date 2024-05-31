@@ -6,15 +6,17 @@ import { BlueH2 } from "../../../styles/h2/h2.styles";
 
 const NonRefundable = () => (
   <>
-    <Balancer>
-      <BlueH2>Non-Refundable Items / Services:</BlueH2>
-    </Balancer>
-    <Balancer>
-      <Text>
+    <BlueH2>
+      <Balancer>Non-Refundable Items / Services: </Balancer>
+    </BlueH2>
+
+    <Text>
+      <Balancer>
         Administrative fees and late cancellation charges for app subscriptions
         are non-refundable.
-      </Text>
-    </Balancer>
+      </Balancer>
+    </Text>
+
     <BlackHr />
   </>
 );

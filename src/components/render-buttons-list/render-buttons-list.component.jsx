@@ -13,9 +13,9 @@ const RenderButtonsList = ({ buttons }) => (
       return (
         <ColumnDiv key={id}>
           {heading ? (
-            <Balancer>
-              <BlueH2>{heading}</BlueH2>
-            </Balancer>
+            <BlueH2>
+              <Balancer>{heading}</Balancer>
+            </BlueH2>
           ) : null}
           <YellowGreenButton onClick={onClick}>{text}</YellowGreenButton>
           <BlackHr />

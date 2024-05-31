@@ -13,8 +13,8 @@ const Process = () => (
   <>
     <BlueH2>process:</BlueH2>
 
-    <Balancer>
-      <Text>
+    <Text>
+      <Balancer>
         To request a refund for the app subscription fee, please contact our
         support team at
         <br />
@@ -25,18 +25,24 @@ const Process = () => (
         <br />
         <br />
         with the subscription details and reason for the refund request.
-      </Text>
-      <Text>
-        Required Information:
-        <br />
-        Please provide:
-      </Text>
-      <StyledUnorderedList>
-        <BlueListItem>the name of the school</BlueListItem>
-        <BlueListItem>your school code</BlueListItem>
-        <BlueListItem>the reason for the refund request</BlueListItem>
-      </StyledUnorderedList>
-    </Balancer>
+      </Balancer>
+    </Text>
+    <Text>
+      Required Information:
+      <br />
+      Please provide:
+    </Text>
+    <StyledUnorderedList>
+      <BlueListItem>
+        <Balancer>the name of the school</Balancer>
+      </BlueListItem>
+      <BlueListItem>
+        <Balancer>your school code</Balancer>
+      </BlueListItem>
+      <BlueListItem>
+        <Balancer>the reason for the refund request</Balancer>
+      </BlueListItem>
+    </StyledUnorderedList>
     <BlackHr />
   </>
 );
