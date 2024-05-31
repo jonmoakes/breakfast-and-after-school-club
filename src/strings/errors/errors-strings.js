@@ -125,8 +125,6 @@ export const tooLateToCancelMorningMessage =
   "it's too late to cancel your morning session.";
 export const tooLateToCancelAfternoonMessage =
   "it's too late to cancel your afternoon session.";
-export const tooLateToCancelDualSession =
-  "it's too late to cancel your dual session.";
 export const cancelBeforeTimeMessage = (time) => {
   return `please cancel before ${time} if you wish to cancel the session.`;
 };

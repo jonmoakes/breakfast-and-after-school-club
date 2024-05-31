@@ -16,7 +16,7 @@ const ConfirmAndCancelButtons = ({ updatedChildInfo }) => {
 
       <Text>or</Text>
       <YellowGreenButton type="button" onClick={cancelAndReturn}>
-        cancel and return
+        go back
       </YellowGreenButton>
     </>
   );

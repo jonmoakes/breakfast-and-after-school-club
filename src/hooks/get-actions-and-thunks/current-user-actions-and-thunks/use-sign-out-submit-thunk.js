@@ -1,10 +1,10 @@
 import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
 
 import useFireSwal from "../../use-fire-swal";
 import useResetAllStoreOnSignOut from "../../use-reset-all-store-on-sign-out";
 import useGetHamburgerMenuSelectors from "../../get-selectors/use-get-hamburger-menu-selectors";
 import useHamburgerMenuActions from "../use-hamburger-menu-actions";
+import useHamburgerHandlerNavigate from "../../use-hamburger-handler-navigate";
 
 import { signOutAsync } from "../../../store/user/user.thunks";
 
@@ -20,14 +20,14 @@ const useSignOutSubmitThunk = () => {
   const { showHamburgerMenu } = useGetHamburgerMenuSelectors();
   const { dispatchHideHamburgerMenu } = useHamburgerMenuActions();
   const { resetAllStoreOnSignOut } = useResetAllStoreOnSignOut();
+  const { hamburgerHandlerNavigate } = useHamburgerHandlerNavigate();
 
   const dispatch = useDispatch();
-  const navigate = useNavigate();
 
   const signOutSubmitThunk = () => {
     dispatch(signOutAsync()).then((resultAction) => {
       if (signOutAsync.fulfilled.match(resultAction)) {
-        navigate(signInRoute);
+        hamburgerHandlerNavigate(signInRoute);
         fireSwal("success", successMessage, "", 2000, false, true);
         resetAllStoreOnSignOut();
         if (showHamburgerMenu) {

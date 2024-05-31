@@ -6,7 +6,6 @@ import {
   cancelBeforeTimeMessage,
   tooLateToCancelAfternoonMessage,
   tooLateToCancelMorningMessage,
-  tooLateToCancelDualSession,
   tryingToCancelErrorMessage,
 } from "../../../strings/errors/errors-strings";
 
@@ -54,23 +53,10 @@ const useFireErrorSwals = () => {
     );
   };
 
-  const cantCancelDualSessionSwal = (morningSessionClosingTime) => {
-    const time = morningSessionClosingTime;
-    fireSwal(
-      "error",
-      tooLateToCancelDualSession,
-      cancelBeforeTimeMessage(time),
-      0,
-      true,
-      false
-    );
-  };
-
   return {
     cantCancelMorningSessionSwal,
     cantCancelAfternoonSessionSwal,
     couldntFetchBookingClosingTimesSwal,
-    cantCancelDualSessionSwal,
   };
 };
 

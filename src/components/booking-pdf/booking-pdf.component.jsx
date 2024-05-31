@@ -45,7 +45,7 @@ export const BookingPdf = ({ chosenEntry }) => {
         </View>
 
         <View style={pdfStyles.section}>
-          <Text style={pdfStyles.subHeading}>children in booking:</Text>
+          <Text style={pdfStyles.subHeading}>children in the booking:</Text>
           <Text style={pdfStyles.p}>{childrensName}</Text>
           <Text style={pdfStyles.hr}>_________________________</Text>
         </View>

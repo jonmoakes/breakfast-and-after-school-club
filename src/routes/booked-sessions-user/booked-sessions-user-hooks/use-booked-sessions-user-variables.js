@@ -30,6 +30,7 @@ const useBookedSessionsUserVariables = () => {
             setTimeToMidnight(rowDate);
             setTimeToMidnight(currentDate);
             const rowDateTime = rowDate.getTime();
+
             const currentDateTime = currentDate.getTime();
             const bookingsOnOrAfterTodaysDate = rowDateTime >= currentDateTime;
             return bookingsOnOrAfterTodaysDate;

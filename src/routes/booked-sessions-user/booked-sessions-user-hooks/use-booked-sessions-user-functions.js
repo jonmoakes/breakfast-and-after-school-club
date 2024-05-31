@@ -24,7 +24,6 @@ const useBookedSessionsUserFunctions = (chosenEntry) => {
     cantCancelMorningSessionSwal,
     cantCancelAfternoonSessionSwal,
     couldntFetchBookingClosingTimesSwal,
-    cantCancelDualSessionSwal,
   } = useFireErrorSwals();
 
   const navigate = useNavigate();
@@ -114,16 +113,6 @@ const useBookedSessionsUserFunctions = (chosenEntry) => {
       : false;
   };
 
-  const sessionIsTodayAndTooLateTooCancelMorningAndAfternoonSession = () => {
-    if (!sessionType) return false;
-    return (sessionType === "morningAndAfternoonShort" ||
-      sessionType === "morningAndAfternoonLong") &&
-      chosenDateIsToday() &&
-      isAfter(new Date(), morningSessionClosingTimeAsDateObject)
-      ? true
-      : false;
-  };
-
   const checkOkToCancelAndGoToCancelBookingRoute = () => {
     if (!bookingClosingTimes) {
       couldntFetchBookingClosingTimesSwal();
@@ -131,8 +120,6 @@ const useBookedSessionsUserFunctions = (chosenEntry) => {
       cantCancelMorningSessionSwal(morningSessionClosingTime);
     } else if (sessionIsTodayInTheAfternoonAndTooLateTooCancel()) {
       cantCancelAfternoonSessionSwal(afternoonSessionClosingTime);
-    } else if (sessionIsTodayAndTooLateTooCancelMorningAndAfternoonSession()) {
-      cantCancelDualSessionSwal(morningSessionClosingTime);
     } else {
       dispatchAddUserBookingToDelete(chosenEntry);
       navigate(cancelBookingRoute);

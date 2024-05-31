@@ -14,56 +14,64 @@ const WalletUpdateInfo = () => {
     formattedDate,
     sessionType,
     numberOfChildrenInBooking,
+    userBookingToDelete,
   } = useCancelBookingVariables();
   const { formattedSessionPrice, formattedBalanceAfterCancellation } =
     useGetSessionPrice(sessionType, numberOfChildrenInBooking);
 
   return (
-    <ParentDiv>
-      <BlackHr />
-      <Text>you are about to cancel your booking for:</Text>
-      <BlackHr />
-      <RedText>{formattedDate}</RedText>
+    <>
+      {userBookingToDelete !== undefined ? (
+        <>
+          <ParentDiv>
+            <BlackHr />
+            <Text>you are about to cancel your booking for:</Text>
+            <BlackHr />
+            <RedText>{formattedDate}</RedText>
 
-      <Text>
-        session Type:
-        <br />
-        <RedSpan>{formattedSessionType}</RedSpan>
-      </Text>
+            <Text>
+              session Type:
+              <br />
+              <RedSpan>{formattedSessionType}</RedSpan>
+            </Text>
 
-      <Text>
-        children in booking:
-        <br />
-        <RedSpan>{childrensName}</RedSpan>
-      </Text>
+            <Text>
+              children in booking:
+              <br />
+              <RedSpan>{childrensName}</RedSpan>
+            </Text>
 
-      <BlackHr />
+            <BlackHr />
 
-      <Text>
-        <RedSpan>£{formattedSessionPrice}</RedSpan> will be added to your wallet
-        on completion of the cancellation.
-      </Text>
+            <Text>
+              <RedSpan>£{formattedSessionPrice}</RedSpan> will be added to your
+              wallet on completion of the cancellation.
+            </Text>
 
-      <BlackHr />
+            <BlackHr />
 
-      <Text>balance before cancellation:</Text>
-      <Text>
-        <RedSpan>£{walletBalanceToFixed}</RedSpan>
-      </Text>
+            <Text>balance before cancellation:</Text>
+            <Text>
+              <RedSpan>£{walletBalanceToFixed}</RedSpan>
+            </Text>
 
-      <BlackHr />
+            <BlackHr />
 
-      <Text>balance after cancellation:</Text>
-      <Text>
-        <RedSpan>£{formattedBalanceAfterCancellation}</RedSpan>
-      </Text>
-      <BlackHr />
-      <Text>
-        if you wish to continue, tap the 'confirm cancellation' button below.
-      </Text>
+            <Text>balance after cancellation:</Text>
+            <Text>
+              <RedSpan>£{formattedBalanceAfterCancellation}</RedSpan>
+            </Text>
+            <BlackHr />
+            <Text>
+              if you wish to continue, tap the 'confirm cancellation' button
+              below.
+            </Text>
 
-      <BlackHr />
-    </ParentDiv>
+            <BlackHr />
+          </ParentDiv>
+        </>
+      ) : null}
+    </>
   );
 };
 

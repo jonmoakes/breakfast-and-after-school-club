@@ -4,6 +4,7 @@ import useGetDatabaseManagementSelectors from "../../hooks/get-selectors/use-get
 import useGetUserBookingToDeleteSelectors from "../../hooks/get-selectors/use-get-user-booking-to-delete-selectors";
 import useConfirmCancelBooking from "./hooks/use-confirm-cancel-booking";
 import useCancelAndReturn from "../../hooks/use-cancel-and-return";
+import useCancelBookingVariables from "./hooks/use-cancel-booking-variables";
 
 import Loader from "../../components/loader/loader.component";
 import WalletUpdateInfo from "./wallet-update-info.component";
@@ -21,6 +22,7 @@ const LoaderTitleButtons = () => {
   const { userBookingToDeleteIsLoading } = useGetUserBookingToDeleteSelectors();
   const { confirmCancelBooking } = useConfirmCancelBooking();
   const { cancelAndReturn } = useCancelAndReturn();
+  const { userBookingToDelete } = useCancelBookingVariables();
 
   return (
     <>
@@ -34,7 +36,27 @@ const LoaderTitleButtons = () => {
         <BlackTitle>cancel booking</BlackTitle>
       </ParentDiv>
 
-      {!sessionTypesAndPricesError ? (
+      {sessionTypesAndPricesError ? (
+        <ShowFetchErrors />
+      ) : !sessionTypesAndPricesError && userBookingToDelete === undefined ? (
+        <ParentDiv>
+          <Text>
+            sorry, we lost the booking details
+            <br />( most likely after a page reload ).
+          </Text>
+          <Text>
+            reloading the page causes the data that was passed to this page to
+            be lost.
+          </Text>
+          <Text>
+            please tap the button below to return to the table and then reselect
+            the booking you wish to cancel.
+          </Text>
+          <YellowGreenButton type="button" onClick={cancelAndReturn}>
+            return to table
+          </YellowGreenButton>
+        </ParentDiv>
+      ) : (
         <>
           <WalletUpdateInfo />
 
@@ -45,12 +67,10 @@ const LoaderTitleButtons = () => {
 
             <Text>or</Text>
             <YellowGreenButton type="button" onClick={cancelAndReturn}>
-              keep booking and return
+              keep the booking
             </YellowGreenButton>
           </ParentDiv>
         </>
-      ) : (
-        <ShowFetchErrors />
       )}
     </>
   );
