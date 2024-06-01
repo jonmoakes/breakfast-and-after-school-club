@@ -7,6 +7,7 @@ import {
   missingFieldsMessage,
   invalidSchoolCode,
   invalidSchoolCodeHelpMessage,
+  schoolCodeWhiteSpaceErrorMessage,
 } from "../../../strings/errors/errors-strings";
 
 import { isNotValidSchoolCode } from "../../../functions/is-not-valid-school-code";
@@ -23,6 +24,8 @@ const useHandleSignInFormSubmit = () => {
       fireSwal("error", missingFieldsMessage, "", 0, true, false);
     } else if (!validateEmail(email)) {
       showInvalidEmailMessageSwal();
+    } else if (schoolCode.startsWith(" ") || schoolCode.endsWith(" ")) {
+      fireSwal("error", schoolCodeWhiteSpaceErrorMessage, "", 0, true, false);
     } else if (isNotValidSchoolCode(schoolCode)) {
       fireSwal(
         "error",

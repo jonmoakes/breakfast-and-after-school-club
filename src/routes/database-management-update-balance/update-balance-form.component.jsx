@@ -25,6 +25,7 @@ const UpdateBalanceForm = () => {
       <Label>amount to add:</Label>
       <StyledInput
         type="number"
+        inputmode="numeric"
         name="sessionPrice"
         value={sessionPrice || ""}
         onChange={handleDataToUpdateDocumentChange}

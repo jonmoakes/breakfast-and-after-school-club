@@ -9,6 +9,7 @@ const SignUpPhoneNumber = ({ dispatchHandleSignUpFormChange }) => {
       </Label>
       <CapitalizedInput
         type="number"
+        inputmode="numeric"
         name="phoneNumber"
         onChange={dispatchHandleSignUpFormChange}
         required

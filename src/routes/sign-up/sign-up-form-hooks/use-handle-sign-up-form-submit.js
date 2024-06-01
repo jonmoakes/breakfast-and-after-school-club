@@ -11,8 +11,10 @@ import {
   invalidSchoolCode,
   invalidSchoolCodeHelpMessage,
   missingFieldsMessage,
+  passwordCantContainSpaceMessage,
   passwordsDontMatchMessage,
   phoneNumberLengthErrorMessage,
+  schoolCodeWhiteSpaceErrorMessage,
 } from "../../../strings/errors/errors-strings";
 import {
   confirmSignUpMessage,
@@ -50,6 +52,10 @@ const useHandleSignUpFormSubmit = () => {
       fireSwal("error", phoneNumberLengthErrorMessage, "", 0, true, false);
     } else if (password !== confirmPassword) {
       fireSwal("error", passwordsDontMatchMessage, "", 0, true, false);
+    } else if (password.includes(" ")) {
+      fireSwal("error", passwordCantContainSpaceMessage, "", 0, true, false);
+    } else if (schoolCode.startsWith(" ") || schoolCode.endsWith(" ")) {
+      fireSwal("error", schoolCodeWhiteSpaceErrorMessage, "", 0, true, false);
     } else if (isNotValidSchoolCode(schoolCode)) {
       fireSwal(
         "error",

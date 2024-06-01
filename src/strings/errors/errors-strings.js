@@ -177,10 +177,12 @@ export const documentLengthErrorMessage =
 export const refundPriceLengthErrorMessage =
   "the refund price should be no more than 5 characters in length";
 export const whiteSpaceErrorMessage = `<span style="font-size: 20px;">one or some of your entered values starts or ends with a space ( ' ' ). please make sure there is no white space at the beginning or end of the data you are trying to input.</span>`;
+export const schoolCodeWhiteSpaceErrorMessage = `<span style="font-size: 20px;">the school code you entered starts or ends with a space ( ' ' ). please make sure there is no white space at the beginning or end of the school code.</span>`;
 export const dbManageErrorAddingBookingToDatabaseMessage =
   "there was an error adding a users booking to the database";
 export const dbManageErrorUpdatingSessionSpacesAndBalanceAfterCancelledBookingMessage =
   "there was an error updating the session spaces and the users balance when they cancelled a booking";
+export const passwordCantContainSpaceMessage = `<span style="font-size: 20px;">the password can't contain a space ( ' ' ).<br/>please check there are no whitespaces in your password - particularly at the beginning or end.</span>`;
 
 export const invalidDateErrorMessage = `<span style="font-size: 20px;">the date you entered has an invalid format.</span>`;
 export const invalidSessionTypeErrorMessage = `<span style="font-size: 20px;">the session type you entered has an invalid format. please check for typos and whitespace at the beginning or end of the value you entered.</span>`;

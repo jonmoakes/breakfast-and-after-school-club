@@ -8,6 +8,7 @@ const ChildAge = ({ handleUpdatedChildInfoChange, age }) => (
     </Label>
     <StyledInput
       type="number"
+      inputmode="numeric"
       name="age"
       onChange={handleUpdatedChildInfoChange}
       defaultValue={age}
