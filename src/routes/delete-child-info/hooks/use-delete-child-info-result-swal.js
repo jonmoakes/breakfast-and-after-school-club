@@ -5,10 +5,7 @@ import useFireSwal from "../../../hooks/use-fire-swal";
 import useGetDeleteChildInfoSelectors from "../../../hooks/get-selectors/use-get-delete-child-info-selectors";
 import useDeleteChildInfoActions from "../../../hooks/get-actions-and-thunks/delete-child-info-actions-and-thunks/use-delete-child-info-actions";
 
-import {
-  errorDeletingChildMessage,
-  errorReceivedMessage,
-} from "../../../strings/errors/errors-strings";
+import { errorDeletingChildMessage } from "../../../strings/errors/errors-strings";
 import { childDeletedMessage } from "../../../strings/successes/successes-strings";
 import { childInfoRoute } from "../../../strings/routes/routes-strings";
 
@@ -39,8 +36,8 @@ const useDeleteChildInfoResultSwal = () => {
     } else if (deleteChildInfoResult === "rejected") {
       fireSwal(
         "error",
-        errorDeletingChildMessage,
-        errorReceivedMessage(deleteChildInfoError),
+        errorDeletingChildMessage(deleteChildInfoError),
+        "",
         0,
         true,
         false

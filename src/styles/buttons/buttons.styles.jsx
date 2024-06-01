@@ -7,6 +7,7 @@ import {
   customGrey,
   customLightGreen,
   customRed,
+  customTomato,
   customWhite,
   customYellow,
 } from "../colors";
@@ -173,11 +174,11 @@ export const EditEntryButton = styled(Button)`
 `;
 
 export const RemoveEntryButton = styled(EditEntryButton)`
-  background-color: ${customRed};
+  background-color: ${customTomato};
   animation: 1s ${zoomInLeftAnimation};
 
   &:hover {
-    background-color: ${customRed};
+    background-color: ${customTomato};
   }
 `;
 

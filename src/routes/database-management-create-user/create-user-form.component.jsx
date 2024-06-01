@@ -41,7 +41,7 @@ const CreateUserForm = () => {
         <Label>customer phone number:</Label>
         <StyledInput
           type="number"
-          inputmode="numeric"
+          inputMode="numeric"
           name="parentPhoneNumber"
           onChange={handleDataToUpdateDocumentChange}
           value={parentPhoneNumber || ""}

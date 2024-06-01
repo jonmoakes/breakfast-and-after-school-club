@@ -76,7 +76,13 @@ export const removeChildFromSelectionMessage =
 export const addSessionBookingInfoErrorMessage = `<span style="font-size: 16px;">sorry, there was an error completing your session booking. the funds were deducted from your wallet but our database didn't receive your booking info. When you tap ok below, we will automatically send an email to the app owner who will then manually add your booking details to the database. Rest assured, you can still send your child(ren) in for the session you have just booked! If the booking does not show up in your 'bookings' section within 24hrs, please contact us using our contact form. Please tap 'ok' below to continue!</span>`;
 export const lastMinuteNoSessionsMessage =
   "sorry, just before you pressed the confirm button,  the last available session was booked :(";
-export const errorAddingChild = "there was an error adding your child";
+export const errorAddingChild = "sorry, there was an error adding your child.";
+export const errorAddingChildGenericError = (error) => {
+  return `<span style="font-size:20px";>sorry, there was an error adding your child. the error received was:<br/><br/>'<span style="color: ${customYellow}";>${error}</span>'.<br/><br/>If the issue persists, please contact us. We apologise for the inconvenience.</span>`;
+};
+export const errorUpdatingChildGenericError = (error) => {
+  return `<span style="font-size:20px";>sorry, there was an error updating your child details. the error received was:<br/><br/>'<span style="color: ${customYellow}";>${error}</span>'.<br/><br/>If the issue persists, please contact us. We apologise for the inconvenience.</span>`;
+};
 export const enterChildsName = "please enter your childs full name";
 export const enterChildsAge = "please enter your childs age";
 export const errorFetchingChildren =
@@ -105,8 +111,11 @@ export const errorSendingBookingConfirmationEmail =
   "there was an error sending your booking confirmation email.";
 export const errorUpdatingChild =
   "sorry, there was an error updating your childs information. please try again.";
-export const errorDeletingChildMessage =
-  "sorry, there was an error deleting your child. please try again.";
+export const errorDeletingChildMessage = (error) => {
+  return `<span style="font-size:20px";>sorry, there was an error when trying to delete your child. the error received was:<br/><br/>'<span style="color: ${customYellow}";>${error}</span>'.<br/><br/>If the issue persists, please contact us. We apologise for the inconvenience.</span>`;
+};
+// export const errorDeletingChildMessage =
+//   "sorry, there was an error deleting your child. please try again.";
 export const appwriteAgeAttributeErrorMessage =
   'Attribute "age" has invalid format';
 export const cantIncludeCommaMessage = "names can't include a comma";

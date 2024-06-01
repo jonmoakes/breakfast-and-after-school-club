@@ -36,7 +36,7 @@ const UpdateSessionSpacesForm = () => {
       <Label>number of children in the booking:</Label>
       <StyledInput
         type="number"
-        inputmode="numeric"
+        inputMode="numeric"
         name="numberOfChildrenInBooking"
         value={numberOfChildrenInBooking || ""}
         onChange={handleDataToUpdateDocumentChange}

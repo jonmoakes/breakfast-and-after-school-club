@@ -26,7 +26,7 @@ const ChildInfo = () => {
       {getUsersChildrenIsLoading ? <Loader /> : null}
 
       <ParentDiv>
-        <BlackTitle>child info</BlackTitle>
+        <BlackTitle>child details</BlackTitle>
       </ParentDiv>
 
       {getUsersChildrenError ? (

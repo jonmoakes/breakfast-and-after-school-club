@@ -31,9 +31,10 @@ const ChildInfoAccordion = () => {
           {shouldShowElement && (
             <AccordionContent>
               <Text>
-                here, you can view or edit your child(
+                here, you can view your child(
                 <LowercasedSpan>rens</LowercasedSpan>) information.
               </Text>
+              <Text>you can also add a child or edit their information.</Text>
               <Text>
                 tap the plus button in the top right corner to add a child.
               </Text>

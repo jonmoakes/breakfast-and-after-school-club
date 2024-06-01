@@ -14,6 +14,7 @@ const useEditChildInfoThunk = () => {
     // appwrite expects age as a number
     const updatedChildInfoWithNumberAge = {
       ...updatedChildInfo,
+      childName: updatedChildInfo.childName.toLowerCase(),
       age: Number(updatedChildInfo.age),
     };
 

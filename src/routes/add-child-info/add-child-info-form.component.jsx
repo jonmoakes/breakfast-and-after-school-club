@@ -49,7 +49,7 @@ const AddChildInfoForm = () => {
         </Label>
         <StyledInput
           type="number"
-          inputmode="numeric"
+          inputMode="numeric"
           name="age"
           onChange={handleAddChildInfoChange}
           value={age || ""}

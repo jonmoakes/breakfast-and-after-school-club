@@ -9,8 +9,8 @@ import { childAddedMessage } from "../../../strings/successes/successes-strings"
 import { childInfoRoute } from "../../../strings/routes/routes-strings";
 import {
   errorAddingChild,
-  errorReceivedMessage,
   appwriteAgeAttributeErrorMessage,
+  errorAddingChildGenericError,
 } from "../../../strings/errors/errors-strings";
 
 const useAddChildInfoResultSwal = () => {
@@ -59,8 +59,8 @@ const useAddChildInfoResultSwal = () => {
       } else {
         fireSwal(
           "error",
-          errorAddingChild,
-          errorReceivedMessage(addChildInfoError),
+          errorAddingChildGenericError(addChildInfoError),
+          "",
           0,
           true,
           false

@@ -15,7 +15,7 @@ const LoaderTitleInfo = () => {
       {deleteChildInfoIsLoading ? <Loader /> : null}
 
       <ParentDiv>
-        <BlackTitle>delete child info</BlackTitle>
+        <BlackTitle>delete child</BlackTitle>
       </ParentDiv>
 
       <ParentDiv>

@@ -55,7 +55,7 @@ const CreateChildForm = () => {
         </Label>
         <StyledInput
           type="number"
-          inputmode="numeric"
+          inputMode="numeric"
           name="childAge"
           onChange={handleDataToUpdateDocumentChange}
           value={childAge || ""}

@@ -8,6 +8,7 @@ import {
   imSureMessage,
 } from "../../../strings/confirms/confirms-strings";
 import {
+  cantIncludeCommaMessage,
   enterChildsAge,
   enterChildsName,
 } from "../../../strings/errors/errors-strings";
@@ -24,6 +25,8 @@ const useEditChildInfoLogic = (updatedChildInfo) => {
     dietryRequirements,
     additionalInfo,
     childToEditInfo,
+    editChildInfoError,
+    editChildInfoResult,
   } = useGetEditChildInfoSelectors();
   const { editChildInfoThunk } = useEditChildInfoThunk();
 
@@ -60,6 +63,8 @@ const useEditChildInfoLogic = (updatedChildInfo) => {
       fireSwal("error", entriesAreTheSameMessage, "", 0, true, false);
     } else if (!updatedChildName) {
       fireSwal("error", enterChildsName, "", 0, true, false);
+    } else if (updatedChildName.includes(",")) {
+      fireSwal("error", cantIncludeCommaMessage, "", 0, true, false);
     } else if (!updatedAge) {
       fireSwal("error", enterChildsAge, "", 0, true, false);
     } else {
@@ -68,6 +73,15 @@ const useEditChildInfoLogic = (updatedChildInfo) => {
       );
     }
   };
+
+  // removes part of the error message for user readability.
+  const errorTextToRemove = editChildInfoError
+    ? editChildInfoError.indexOf("must be")
+    : null;
+
+  const ageErrorForUser = errorTextToRemove
+    ? `the childs age ${editChildInfoError.slice(errorTextToRemove)}`
+    : null;
 
   // properties are used in useHandleUpdatedChildInfoChange
   // childtoEditInfo is used in usePreventShowIfNoData
@@ -81,6 +95,9 @@ const useEditChildInfoLogic = (updatedChildInfo) => {
     dietryRequirements,
     additionalInfo,
     childToEditInfo,
+    ageErrorForUser,
+    editChildInfoError,
+    editChildInfoResult,
   };
 };
 
