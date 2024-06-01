@@ -76,7 +76,7 @@ const UpdateBookingForm = () => {
             <Label>parent phone number:</Label>
             <StyledInput
               type="number"
-              pattern="[0-9]*[.]?[0-9]+"
+              inputmode="numeric"
               name="parentPhoneNumber"
               value={parentPhoneNumber || ""}
               onChange={handleDataToUpdateDocumentChange}
