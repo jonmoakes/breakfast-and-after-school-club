@@ -19,8 +19,9 @@ export const noNetworkMessage =
 export const pleaseEnterYourCardDetails = "please enter your card details";
 export const formNotCompleteWarning =
   "the pay button will show when the form is complete";
-export const errorSubmittingPaymentMessage =
-  "Sorry, There Was An Error Submitting Payment. Your Card Has Not Been Charged. Please Try Again or contact us if the problem persists.";
+export const errorSubmittingPaymentMessage = (error) => {
+  return `<span style="font-size:20px";>Sorry, There Was An Error Submitting Payment. Your Card Has Not Been Charged. Please Try Again or contact us if the problem persists.<br/><br/>The error received was:<br/>'<span style="color:${customYellow}";>${error}</span>'</span>`;
+};
 export const appwritePasswordError =
   "Invalid credentials. Please check the email and password.";
 export const errorRequestResetPasswordLinkMessage =

@@ -3,24 +3,25 @@ import useFireSwal from "../../../hooks/use-fire-swal";
 import useHamburgerHandlerNavigate from "../../../hooks/use-hamburger-handler-navigate";
 
 import { errorSubmittingPaymentMessage } from "../../../strings/errors/errors-strings";
-import { accountRoute } from "../../../strings/routes/routes-strings";
+import { addFundsRoute } from "../../../strings/routes/routes-strings";
 
-const useHandlePaymentSucceeded = () => {
+const useHandlePaymentFailed = () => {
   const { paymentResultObject } = useGetHandlePaymentSelectors();
   const { fireSwal } = useFireSwal();
   const { hamburgerHandlerNavigate } = useHamburgerHandlerNavigate();
 
   const handlePaymentFailed = () => {
+    const error = paymentResultObject.error.message;
     fireSwal(
       "error",
-      errorSubmittingPaymentMessage,
-      `error received: ${paymentResultObject.error.message}`,
+      errorSubmittingPaymentMessage(error),
+      "",
       0,
       true,
       false
     ).then((isConfirmed) => {
       if (isConfirmed) {
-        hamburgerHandlerNavigate(accountRoute);
+        hamburgerHandlerNavigate(addFundsRoute);
       }
     });
   };
@@ -28,4 +29,4 @@ const useHandlePaymentSucceeded = () => {
   return { handlePaymentFailed };
 };
 
-export default useHandlePaymentSucceeded;
+export default useHandlePaymentFailed;
