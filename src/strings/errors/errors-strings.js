@@ -177,7 +177,7 @@ export const documentLengthErrorMessage =
 export const refundPriceLengthErrorMessage =
   "the refund price should be no more than 5 characters in length";
 export const whiteSpaceErrorMessage = `<span style="font-size: 20px;">one or some of your entered values starts or ends with a space ( ' ' ). please make sure there is no white space at the beginning or end of the data you are trying to input.</span>`;
-export const schoolCodeWhiteSpaceErrorMessage = `<span style="font-size: 20px;">the school code you entered starts or ends with a space ( ' ' ). please make sure there is no white space at the beginning or end of the school code.</span>`;
+export const schoolCodeWhiteSpaceErrorMessage = `<span style="font-size: 20px;">the school code you entered starts or ends with a space.<br/>( ' ' )<br/>please make sure there is no white space at the beginning or end of the school code.</span>`;
 export const dbManageErrorAddingBookingToDatabaseMessage =
   "there was an error adding a users booking to the database";
 export const dbManageErrorUpdatingSessionSpacesAndBalanceAfterCancelledBookingMessage =

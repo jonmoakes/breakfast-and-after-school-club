@@ -8,6 +8,7 @@ import {
   invalidSchoolCode,
   invalidSchoolCodeHelpMessage,
   schoolCodeWhiteSpaceErrorMessage,
+  passwordCantContainSpaceMessage,
 } from "../../../strings/errors/errors-strings";
 
 import { isNotValidSchoolCode } from "../../../functions/is-not-valid-school-code";
@@ -26,6 +27,8 @@ const useHandleSignInFormSubmit = () => {
       showInvalidEmailMessageSwal();
     } else if (schoolCode.startsWith(" ") || schoolCode.endsWith(" ")) {
       fireSwal("error", schoolCodeWhiteSpaceErrorMessage, "", 0, true, false);
+    } else if (password.includes(" ")) {
+      fireSwal("error", passwordCantContainSpaceMessage, "", 0, true, false);
     } else if (isNotValidSchoolCode(schoolCode)) {
       fireSwal(
         "error",
