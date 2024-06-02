@@ -8,10 +8,7 @@ import useFireSwal from "../../use-fire-swal";
 import { sendEmailResetSessionSpacesErrorAsync } from "../../../store/send-email/send-email.thunks";
 
 import { failedToSendEmailInstructions } from "../../../strings/errors/errors-strings";
-import {
-  bookSessionRoute,
-  contactRoute,
-} from "../../../strings/routes/routes-strings";
+import { contactRoute } from "../../../strings/routes/routes-strings";
 
 const useSendResetSessionSpacesErrorEmailThunk = () => {
   const { appOwnerEmail } = useGetCurrentUserSelectors();
@@ -34,7 +31,7 @@ const useSendResetSessionSpacesErrorEmailThunk = () => {
       })
     ).then((resultAction) => {
       if (sendEmailResetSessionSpacesErrorAsync.fulfilled.match(resultAction)) {
-        hamburgerHandlerNavigate(bookSessionRoute);
+        window.location.reload();
       } else {
         fireSwal(
           "error",

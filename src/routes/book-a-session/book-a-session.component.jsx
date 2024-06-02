@@ -16,9 +16,9 @@ import { ParentDiv } from "../../styles/div/div.styles";
 import { BlackTitle } from "../../styles/h1/h1.styles";
 
 const BookASession = () => {
+  useSessionSpacesListener();
   useGetUsersChildrenUserBookingsAndSessionPricesThunkUseEffect();
   useGetBookSessionResultSwal();
-  useSessionSpacesListener();
 
   const { isOnline } = useIsOnline();
   const { errorFetchingData } = useErrorFetchingData();

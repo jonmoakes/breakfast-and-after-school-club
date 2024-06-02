@@ -7,7 +7,7 @@ import useGetCurrentUserSelectors from "../../get-selectors/use-get-current-user
 import { sendEmailBookingNotAddedToDatabaseAsync } from "../../../store/send-email/send-email.thunks";
 
 import {
-  bookedSessionsUserRoute,
+  accountRoute,
   contactRoute,
 } from "../../../strings/routes/routes-strings";
 import { failedToSendEmailInstructions } from "../../../strings/errors/errors-strings";
@@ -46,7 +46,7 @@ const useSendAddBookingInfoErrorEmailThunk = () => {
       if (
         sendEmailBookingNotAddedToDatabaseAsync.fulfilled.match(resultAction)
       ) {
-        hamburgerHandlerNavigate(bookedSessionsUserRoute);
+        hamburgerHandlerNavigate(accountRoute);
       } else {
         fireSwal(
           "error",

@@ -1,21 +1,19 @@
 import { useDispatch } from "react-redux";
 
 import useGetCurrentUserSelectors from "../../get-selectors/use-get-current-user-selectors";
+import useFireSwal from "../../use-fire-swal";
 import { updateSessionSpacesDocAsync } from "../../../store/database-management/database-management-thunks";
+import useSendResetSessionSpacesErrorEmailThunk from "../send-email-actions-and-thunks/use-send-reset-session-spaces-error-email-thunk";
 
 import { bookSessionRoute } from "../../../strings/routes/routes-strings";
-import useHamburgerHandlerNavigate from "../../use-hamburger-handler-navigate";
-import useFireSwal from "../../use-fire-swal";
 import {
   errorInstructions,
   resetSessionErrorMessage,
 } from "../../../strings/errors/errors-strings";
-import useSendResetSessionSpacesErrorEmailThunk from "../send-email-actions-and-thunks/use-send-reset-session-spaces-error-email-thunk";
 
 const useResetSessionSpacesThunk = () => {
   const { databaseId, termDatesCollectionId } = useGetCurrentUserSelectors();
   const dispatch = useDispatch();
-  const { hamburgerHandlerNavigate } = useHamburgerHandlerNavigate();
   const { sendResetSessionSpacesErrorEmailThunk } =
     useSendResetSessionSpacesErrorEmailThunk();
   const { fireSwal } = useFireSwal();
@@ -39,7 +37,7 @@ const useResetSessionSpacesThunk = () => {
       })
     ).then((action) => {
       if (updateSessionSpacesDocAsync.fulfilled.match(action)) {
-        hamburgerHandlerNavigate(bookSessionRoute);
+        window.location.reload();
       } else {
         fireSwal(
           "error",

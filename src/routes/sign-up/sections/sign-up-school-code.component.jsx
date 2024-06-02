@@ -11,6 +11,7 @@ const SignUpSchoolCode = ({ dispatchHandleSignUpFormChange }) => {
         type="text"
         name="schoolCode"
         onChange={dispatchHandleSignUpFormChange}
+        placeholder="contact school for code"
         required
       />
     </>

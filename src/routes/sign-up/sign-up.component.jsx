@@ -35,19 +35,9 @@ const SignUp = () => {
     <Container>
       {currentUser !== null && <Navigate replace to={accountRoute} />}
       {currentUserIsLoading ? <Loader /> : null}
-
       <ParentDiv>
         <BlackTitle>sign up</BlackTitle>
       </ParentDiv>
-
-      <ParentDiv>
-        <Text>
-          already have an account?
-          <br />
-          <br /> <StyledLink to={signInRoute}>sign in</StyledLink>
-        </Text>
-      </ParentDiv>
-
       <ParentDiv>
         <ReadBeforeSigningUp />
 
@@ -64,6 +54,13 @@ const SignUp = () => {
         </Form>
       </ParentDiv>
 
+      <ParentDiv>
+        <Text>
+          already have an account?
+          <br />
+          <br /> <StyledLink to={signInRoute}>sign in</StyledLink>
+        </Text>
+      </ParentDiv>
       <Footer />
     </Container>
   );
