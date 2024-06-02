@@ -15,6 +15,7 @@ import {
 } from "../../../strings/infos/infos-strings";
 
 import { validateEmail } from "../../../functions/validate-email";
+import { emailsDontMatchMessage } from "../../../strings/errors/errors-strings";
 
 const useConfirmUpdateEmail = () => {
   const { email } = useGetCurrentUserSelectors();
@@ -41,7 +42,7 @@ const useConfirmUpdateEmail = () => {
         false
       );
     } else if (newEmail !== confirmNewEmail) {
-      fireSwal("error", "emails dont match", "", 0, true, false);
+      fireSwal("error", emailsDontMatchMessage, "", 0, true, false);
     } else {
       confirmSwal(
         confirmUpdateEmailMessage(newEmail),

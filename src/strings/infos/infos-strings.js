@@ -21,7 +21,7 @@ export const passwordUpdateMustBeSignedInMessage =
 export const receiveEmailWhenCompleteMessage =
   "you will receive an email when the process is complete.";
 export const walletHasPositiveBalanceMessage =
-  "please either spend or request a refund for this amount before proceeding";
+  "please either spend or request a refund for this amount before proceeding.";
 export const loseAllAccountDataMessage = "you will permanently lose all data";
 export const contactOwnerQuotingError =
   "your wallet balance will not be showing correctly. please contact the owner quoting the following error: ";
@@ -43,3 +43,4 @@ export const getBookingInfoEmailInstructions =
 export const sendEmailManuallyMessage = "please send the email manually.";
 export const sendEmailButtonText = "send email";
 export const bookAnotherButtonText = "book another";
+export const updatedEmailButFailedToInformAppOwnerMessage = `<span style="font-size:20px";>we successfully updated your email addess.<br/>however, the app owner was not informed of this change due to an error on our end.<br/>please contact the school and provide themwith your new email address so that they can make sure your contact details are up to date.<br/><br/>when you tap ok, we will sign you out so that you can use your new sign in email address.</span>`;

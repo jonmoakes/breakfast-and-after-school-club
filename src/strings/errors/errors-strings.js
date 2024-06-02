@@ -3,8 +3,10 @@ import { customYellow } from "../../styles/colors";
 
 export const errorSigningInInstructions =
   "please check your email, password and school code and try again.";
-export const errorSendingMessage =
-  "sorry, there was an error sending your message...";
+export const errorSendingMessage = (error) => {
+  return `<span style="font-size:20px";>sorry, there was an error sending your message.<br/>Please Try Again or contact us if the problem persists.<br/><br/>The error received was:<br/>'<span style="color:${customYellow}";>${error}</span>'</span>`;
+};
+
 export const missingEmailFieldsErrorMessage =
   "please make sure that all required fields have been entered.";
 export const invalidEmailErrorMessage =
@@ -114,8 +116,6 @@ export const errorUpdatingChild =
 export const errorDeletingChildMessage = (error) => {
   return `<span style="font-size:20px";>sorry, there was an error when trying to delete your child. the error received was:<br/><br/>'<span style="color: ${customYellow}";>${error}</span>'.<br/><br/>If the issue persists, please contact us. We apologise for the inconvenience.</span>`;
 };
-// export const errorDeletingChildMessage =
-//   "sorry, there was an error deleting your child. please try again.";
 export const appwriteAgeAttributeErrorMessage =
   'Attribute "age" has invalid format';
 export const cantIncludeCommaMessage = "names can't include a comma";
@@ -152,8 +152,10 @@ export const consentOptionErrorMessage =
 export const errorSigningOutMessage =
   "sorry, there was an error signing you out.";
 export const passwordErrorMessage = "password error";
-export const errorUpdatingEmailMessage =
-  "sorry, there was an error updating your email address.";
+export const errorUpdatingEmailMessage = (error) => {
+  return `<span style="font-size: 20px;">sorry, there was an error updating your email address.<br/><br/>please try again or contact us if the error persists.<br/><br/>the error received was:<br/><br/>'<span style="color: ${customYellow}";>${error}</span>'</span>`;
+};
+
 export const errorFetchingAllChildrenMessage =
   "there was an error fetching the list of children from the database.";
 export const appwriteCredentialsError =
@@ -226,3 +228,4 @@ export const bookingsEmailUpdatedChildrensListFailedErrorMessage = (error) => {
 export const latestBookingsUpdateEmailFailedErrorMessage = `<span style="font-size: 20px;">there was an error trying to update the database. please try again or contact jonathan if the error persists.</span>`;
 export const errorSendingCancellationEmailMessage =
   "sorry, there was an error sending the email.";
+export const emailsDontMatchMessage = `<span style="font-size: 20px;">the emails dont match.<br/>please try again.</span>`;

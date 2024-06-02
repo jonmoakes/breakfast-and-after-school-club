@@ -1,7 +1,5 @@
 import { useEffect } from "react";
 
-import { useNavigate } from "react-router-dom";
-
 import useGetSendEmailSelectors from "../../../hooks/get-selectors/use-get-send-email-selectors";
 import useGetUpdateEmailSelectors from "../../../hooks/get-selectors/use-get-update-email-selectors";
 import useUpdateEmailActions from "../../../hooks/get-actions-and-thunks/update-email-actions-and-thunks/use-update-email-actions";
@@ -9,7 +7,6 @@ import useFireSwal from "../../../hooks/use-fire-swal";
 
 import {
   appwritePasswordError,
-  errorReceivedMessage,
   errorUpdatingEmailMessage,
   passwordErrorMessage,
 } from "../../../strings/errors/errors-strings";
@@ -17,18 +14,19 @@ import {
   emailChangedMessage,
   passwordErrorInstructions,
   signInWithNewEmailMessage,
+  updatedEmailButFailedToInformAppOwnerMessage,
 } from "../../../strings/infos/infos-strings";
 
 import { signInRoute } from "../../../strings/routes/routes-strings";
+import useHamburgerHandlerNavigate from "../../../hooks/use-hamburger-handler-navigate";
 
 const useUpdateEmailResultResultSwal = () => {
   const { updateEmailResult, updateEmailError } = useGetUpdateEmailSelectors();
   const { sendEmailError, sendEmailStatusCode } = useGetSendEmailSelectors();
+  const { hamburgerHandlerNavigate } = useHamburgerHandlerNavigate();
   const { dispatchResetUpdateEmailError, dispatchResetUpdateEmailResult } =
     useUpdateEmailActions();
   const { fireSwal } = useFireSwal();
-
-  const navigate = useNavigate();
 
   useEffect(() => {
     if (!updateEmailResult && !updateEmailError && !sendEmailError) return;
@@ -43,21 +41,21 @@ const useUpdateEmailResultResultSwal = () => {
         false
       ).then((isConfirmed) => {
         if (isConfirmed) {
-          navigate(signInRoute);
+          hamburgerHandlerNavigate(signInRoute);
           window.location.reload();
         }
       });
     } else if (updateEmailResult === "fulfilled" && sendEmailError) {
       fireSwal(
         "error",
-        "successfully updated email but failed to inform app owner of change",
-        "please contact the school so that they can update your email address. when you tap ok, we will sign you out so that you can use your new sign in email address.",
+        updatedEmailButFailedToInformAppOwnerMessage,
+        "",
         0,
         true,
         false
       ).then((isConfirmed) => {
         if (isConfirmed) {
-          navigate(signInRoute);
+          hamburgerHandlerNavigate(signInRoute);
           window.location.reload();
         }
       });
@@ -85,8 +83,8 @@ const useUpdateEmailResultResultSwal = () => {
       const error = updateEmailError;
       fireSwal(
         "error",
-        errorUpdatingEmailMessage,
-        errorReceivedMessage(error),
+        errorUpdatingEmailMessage(error),
+        "",
         0,
         true,
         false
@@ -103,9 +101,9 @@ const useUpdateEmailResultResultSwal = () => {
     fireSwal,
     dispatchResetUpdateEmailError,
     dispatchResetUpdateEmailResult,
-    navigate,
     sendEmailError,
     sendEmailStatusCode,
+    hamburgerHandlerNavigate,
   ]);
 };
 

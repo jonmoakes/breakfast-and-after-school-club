@@ -46,8 +46,8 @@ const UpdateBookingsAndChildrensParentEmailAccordion = () => {
 
               <Text>
                 places where you can contact the user directly, are in your
-                bookings table and your childrens list table so these are the
-                pleaces that we are going to update the email address.
+                bookings table and your childrens list table, so these are the
+                places that we are going to update the email address.
               </Text>
 
               <Text>

@@ -5,10 +5,7 @@ import useGetContactFormSelectors from "../../../hooks/get-selectors/use-get-con
 import useContactFormActions from "../../../hooks/get-actions-and-thunks/contact-form-actions-and-thunks/use-contact-form-actions";
 
 import { emailResponseTimeMessage } from "../../../strings/infos/infos-strings";
-import {
-  errorReceivedMessage,
-  errorSendingMessage,
-} from "../../../strings/errors/errors-strings";
+import { errorSendingMessage } from "../../../strings/errors/errors-strings";
 import { successMessage } from "../../../strings/successes/successes-strings";
 
 const useSendContactFormMessageResultSwal = () => {
@@ -33,18 +30,13 @@ const useSendContactFormMessageResultSwal = () => {
       });
     } else if (contactFormError) {
       const error = contactFormError;
-      fireSwal(
-        "error",
-        errorSendingMessage,
-        errorReceivedMessage(error),
-        0,
-        true,
-        false
-      ).then((isConfirmed) => {
-        if (isConfirmed) {
-          dispatchResetContactFormState();
+      fireSwal("error", errorSendingMessage(error), "", 0, true, false).then(
+        (isConfirmed) => {
+          if (isConfirmed) {
+            dispatchResetContactFormState();
+          }
         }
-      });
+      );
     }
   }, [
     dispatchResetContactFormState,
