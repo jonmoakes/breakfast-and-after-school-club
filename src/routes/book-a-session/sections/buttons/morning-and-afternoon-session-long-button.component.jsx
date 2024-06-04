@@ -12,7 +12,11 @@ const MorningAndAfternoonLongSessionButton = () => {
     morningAndAfternoonLongSessionType: sessionType,
     morningAndAfternoonLongSessionPrice: sessionPrice,
   } = useGetSessionTypesAndPricesSelectors();
-  const { allSessionsAvailable } = useSessionLogic();
+  const {
+    allSessionsAvailable,
+    enoughSpacesAvailableInMorningForMultipleChildrenInBooking,
+    enoughSpacesAvailableInAfternoonForMultipleChildrenInBooking,
+  } = useSessionLogic();
   const { confirmSession } = useConfirmSession();
   const { walletBalance } = useGetCurrentUserSelectors();
   const { getPriceTimesOneHundred } = useGetPriceTimesOneHundred();
@@ -21,7 +25,10 @@ const MorningAndAfternoonLongSessionButton = () => {
 
   return (
     <>
-      {allSessionsAvailable() && walletBalance >= price ? (
+      {allSessionsAvailable() &&
+      walletBalance >= price &&
+      enoughSpacesAvailableInMorningForMultipleChildrenInBooking() &&
+      enoughSpacesAvailableInAfternoonForMultipleChildrenInBooking() ? (
         <>
           <YellowGreenButton onClick={() => confirmSession(sessionType, price)}>
             AM & PM - long

@@ -12,7 +12,19 @@ const useSessionLogic = () => {
   const { dispatchResetSessionTypeAndPrice } = useBookSessionActions();
   const { date, morningSessionSpaces, afternoonSessionSpaces } =
     useDatesLogic();
-  const { childrenSelectedForBooking, usersChildren } = useGetChildrenLogic();
+  const {
+    childrenSelectedForBooking,
+    usersChildren,
+    numberOfChildrenInBooking,
+  } = useGetChildrenLogic();
+
+  const enoughSpacesAvailableInMorningForMultipleChildrenInBooking = () => {
+    return date && morningSessionSpaces >= numberOfChildrenInBooking && true;
+  };
+
+  const enoughSpacesAvailableInAfternoonForMultipleChildrenInBooking = () => {
+    return date && afternoonSessionSpaces >= numberOfChildrenInBooking && true;
+  };
 
   const onlyMorningSessionsAvailable = () => {
     return date && morningSessionSpaces && !afternoonSessionSpaces
@@ -89,6 +101,8 @@ const useSessionLogic = () => {
   };
 
   return {
+    enoughSpacesAvailableInMorningForMultipleChildrenInBooking,
+    enoughSpacesAvailableInAfternoonForMultipleChildrenInBooking,
     onlyMorningSessionsAvailable,
     onlyAfternoonSessionsAvailable,
     allSessionsAvailable,

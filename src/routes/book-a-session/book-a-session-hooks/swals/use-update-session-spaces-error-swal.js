@@ -12,7 +12,10 @@ const useUpdateSessionSpacesErrorSwal = () => {
   const { fireSwal } = useFireSwal();
 
   const updateSessionSpacesErrorSwal = () => {
-    if (updateSessionSpacesError === lastMinuteNoSessionsMessage) {
+    if (
+      updateSessionSpacesError === lastMinuteNoSessionsMessage ||
+      updateSessionSpacesError.includes("Value must be a valid range between")
+    ) {
       fireSwal(
         "error",
         lastMinuteNoSessionsMessage,

@@ -3,6 +3,7 @@ import { createSelector, createSlice } from "@reduxjs/toolkit";
 const INITIAL_STATE = {
   shouldShowElement: false,
   shouldShowSecondElement: false,
+  shouldShowThirdElement: false,
 };
 
 export const shouldShowElementSlice = createSlice({
@@ -21,6 +22,12 @@ export const shouldShowElementSlice = createSlice({
     toggleShowSecondElement(state) {
       state.shouldShowSecondElement = !state.shouldShowSecondElement;
     },
+    hideThirdElement(state) {
+      state.shouldShowThirdElement = false;
+    },
+    toggleShowThirdElement(state) {
+      state.shouldShowThirdElement = !state.shouldShowThirdElement;
+    },
     resetShouldShowElementState: () => {
       return INITIAL_STATE;
     },
@@ -29,10 +36,12 @@ export const shouldShowElementSlice = createSlice({
     selectShouldShowElementSelectors: createSelector(
       (state) => state.shouldShowElement,
       (state) => state.shouldShowSecondElement,
-      (shouldShowElement, shouldShowSecondElement) => {
+      (state) => state.shouldShowThirdElement,
+      (shouldShowElement, shouldShowSecondElement, shouldShowThirdElement) => {
         return {
           shouldShowElement,
           shouldShowSecondElement,
+          shouldShowThirdElement,
         };
       }
     ),
@@ -44,6 +53,8 @@ export const {
   toggleShowElement,
   hideSecondElement,
   toggleShowSecondElement,
+  hideThirdElement,
+  toggleShowThirdElement,
   resetShouldShowElementState,
 } = shouldShowElementSlice.actions;
 export const { selectShouldShowElementSelectors } =

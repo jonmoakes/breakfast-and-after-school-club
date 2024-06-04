@@ -10,8 +10,8 @@ import AfternoonSessionShortButton from "./buttons/afternoon-session-short-butto
 import AfternoonSessionLongButton from "./buttons/afternoon-session-long-button.component";
 import MorningAndAfternoonShortSessionButton from "./buttons/morning-and-afternoon-session-short-button.component";
 import MorningAndAfternoonLongSessionButton from "./buttons/morning-and-afternoon-session-long-button.component";
-import TermsOfCancellationAllSessions from "./terms-of-cancellation-all-sessions.component";
-import TermsOfCancellationAfternoonSessions from "./terms-of-cancellation-afternoon-sessions.component";
+import TermsOfCancellationAllSessionsAccordion from "./terms-of-cancellation-all-sessions-accordion.component";
+import TermsOfCancellationAfternoonSessionsAccordion from "./terms-of-cancellation-afternoon-sessions-accordion.component";
 
 import { ColumnDiv, ParentDiv } from "../../../styles/div/div.styles";
 import { BlackHr } from "../../../styles/hr/hr.styles";
@@ -56,7 +56,7 @@ const ChooseSessions = () => {
             <MorningAndAfternoonShortSessionButton />
             <MorningAndAfternoonLongSessionButton />
           </ColumnDiv>
-          <TermsOfCancellationAllSessions
+          <TermsOfCancellationAllSessionsAccordion
             {...{ morningSessionClosingTime, afternoonSessionClosingTime }}
           />
         </ParentDiv>
@@ -72,7 +72,7 @@ const ChooseSessions = () => {
               <HeadingTimesAndPricesWalletBalanceOptionsInfo />
               <AfternoonSessionShortButton />
               <AfternoonSessionLongButton />
-              <TermsOfCancellationAfternoonSessions
+              <TermsOfCancellationAfternoonSessionsAccordion
                 {...{ afternoonSessionClosingTime }}
               />
             </>

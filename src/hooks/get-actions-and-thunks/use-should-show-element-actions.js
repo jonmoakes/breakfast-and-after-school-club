@@ -5,6 +5,8 @@ import {
   toggleShowElement,
   hideSecondElement,
   toggleShowSecondElement,
+  hideThirdElement,
+  toggleShowThirdElement,
   resetShouldShowElementState,
 } from "../../store/should-show-element/should-show-element.slice";
 
@@ -27,6 +29,14 @@ const useShouldShowElementActions = () => {
     dispatch(hideSecondElement());
   };
 
+  const dispatchShowOppositeShowThirdElement = () => {
+    dispatch(toggleShowThirdElement());
+  };
+
+  const dispatchHideShownThirdElement = () => {
+    dispatch(hideThirdElement());
+  };
+
   const dispatchResetShouldShowElementState = () => {
     dispatch(resetShouldShowElementState());
   };
@@ -36,6 +46,8 @@ const useShouldShowElementActions = () => {
     dispatchHideShownElement,
     dispatchShowOppositeShowSecondElement,
     dispatchHideShownSecondElement,
+    dispatchShowOppositeShowThirdElement,
+    dispatchHideShownThirdElement,
     dispatchResetShouldShowElementState,
   };
 };

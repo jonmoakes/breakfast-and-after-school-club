@@ -343,6 +343,40 @@ export const SecondAccordionTitle = styled(AccordionTitle).withConfig({
     shouldShowSecondElement ? "5px 5px 0px 0px" : "5px 5px 5px 5px"};
 `;
 
+// ThirdAccordion is for if there are 3 accordions on a page as they have separate states.
+export const ThirdAccordion = styled(Accordion).withConfig({
+  shouldForwardProp: (prop) => prop !== "shouldShowThirdElement",
+})`
+  &.book-session {
+    margin: 20px auto;
+  }
+
+  width: ${({ shouldShowThirdElement }) =>
+    shouldShowThirdElement ? "70%" : "30%"};
+
+  @media screen and (max-width: 1366px) {
+    width: ${({ shouldShowThirdElement }) =>
+      shouldShowThirdElement ? "90%" : "50%"};
+  }
+
+  @media screen and (max-width: 450px) {
+    width: ${({ shouldShowThirdElement }) =>
+      shouldShowThirdElement ? "90%" : "70%"};
+  }
+`;
+
+// ThirdAccordion is for if there are 3 accordions on a page as they have separate states.
+export const ThirdAccordionTitle = styled(AccordionTitle).withConfig({
+  shouldForwardProp: (prop) => prop !== "shouldShowThirdElement",
+})`
+  background-color: ${({ shouldShowThirdElement }) =>
+    shouldShowThirdElement ? customYellow : customGrey};
+  border-bottom: ${({ shouldShowThirdElement }) =>
+    shouldShowThirdElement ? `2px solid ${customBlack}` : "none"};
+  border-radius: ${({ shouldShowThirdElement }) =>
+    shouldShowThirdElement ? "5px 5px 0px 0px" : "5px 5px 5px 5px"};
+`;
+
 export const AccordionContent = styled.div`
   padding: 1rem;
   background-color: ${customGrey};

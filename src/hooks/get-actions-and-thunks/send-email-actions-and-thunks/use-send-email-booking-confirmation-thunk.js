@@ -3,8 +3,9 @@ import { useDispatch } from "react-redux";
 import useFireSwal from "../../use-fire-swal";
 import useHamburgerHandlerNavigate from "../../use-hamburger-handler-navigate";
 import useGetCurrentUserSelectors from "../../get-selectors/use-get-current-user-selectors";
-
+import useFetchBookedSessionsUserAfterBookingAndResetBookingState from "../book-session-actions-and-thunks/use-fetch-booked-sessions-user-after-booking-and-reset-booking-state";
 import { sendEmailBookingConfirmationAsync } from "../../../store/send-email/send-email.thunks";
+import useConfirmSwal from "../../use-confirm-swal";
 
 import { bookedSessionsUserRoute } from "../../../strings/routes/routes-strings";
 import { errorSendingBookingConfirmationEmail } from "../../../strings/errors/errors-strings";
@@ -14,23 +15,16 @@ import {
 } from "../../../strings/infos/infos-strings";
 
 import { createChildrenToAddToBooking } from "../../../functions/create-children-to-add-to-booking";
-import useConfirmSwal from "../../use-confirm-swal";
+
 import { bookAnotherSessionQuestion } from "../../../strings/confirms/confirms-strings";
-import useBookSessionActions from "../book-session-actions-and-thunks/use-book-session-actions";
-import useRequestDateDataActions from "../request-date-data-actions-and-thunks/use-request-date-data-actions";
-import useSendEmailActions from "./use-send-email-actions";
-import useShouldShowElementActions from "../use-should-show-element-actions";
 
 const useSendEmailBookingConfirmationThunk = () => {
   const { name, email } = useGetCurrentUserSelectors();
   const { fireSwal } = useFireSwal();
   const { confirmSwal } = useConfirmSwal();
   const { hamburgerHandlerNavigate } = useHamburgerHandlerNavigate();
-
-  const { dispatchResetBookSessionState } = useBookSessionActions();
-  const { dispatchResetRequestDateDataState } = useRequestDateDataActions();
-  const { dispatchResetSendEmailState } = useSendEmailActions();
-  const { dispatchResetShouldShowElementState } = useShouldShowElementActions();
+  const { fetchBookedSessionsUserAfterBookingAndResetBookingState } =
+    useFetchBookedSessionsUserAfterBookingAndResetBookingState();
 
   const dispatch = useDispatch();
 
@@ -56,10 +50,11 @@ const useSendEmailBookingConfirmationThunk = () => {
     ).then((resultAction) => {
       if (sendEmailBookingConfirmationAsync.fulfilled.match(resultAction)) {
         const confirmResult = () => {
-          dispatchResetRequestDateDataState();
-          dispatchResetShouldShowElementState();
-          dispatchResetBookSessionState();
-          dispatchResetSendEmailState();
+          fetchBookedSessionsUserAfterBookingAndResetBookingState();
+          // dispatchResetRequestDateDataState();
+          // dispatchResetShouldShowElementState();
+          // dispatchResetBookSessionState();
+          // dispatchResetSendEmailState();
         };
 
         const cancelResult = () => {

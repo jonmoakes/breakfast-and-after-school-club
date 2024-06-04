@@ -12,8 +12,11 @@ const AfternoonSessionShortButton = () => {
     afternoonShortSessionType: sessionType,
     afternoonShortSessionPrice: sessionPrice,
   } = useGetSessionTypesAndPricesSelectors();
-  const { onlyAfternoonSessionsAvailable, allSessionsAvailable } =
-    useSessionLogic();
+  const {
+    onlyAfternoonSessionsAvailable,
+    allSessionsAvailable,
+    enoughSpacesAvailableInAfternoonForMultipleChildrenInBooking,
+  } = useSessionLogic();
   const { confirmSession } = useConfirmSession();
   const { walletBalance } = useGetCurrentUserSelectors();
   const { getPriceTimesOneHundred } = useGetPriceTimesOneHundred();
@@ -23,7 +26,8 @@ const AfternoonSessionShortButton = () => {
   return (
     <>
       {(onlyAfternoonSessionsAvailable() || allSessionsAvailable()) &&
-      walletBalance >= price ? (
+      walletBalance >= price &&
+      enoughSpacesAvailableInAfternoonForMultipleChildrenInBooking() ? (
         <>
           <YellowGreenButton onClick={() => confirmSession(sessionType, price)}>
             afternoon - short

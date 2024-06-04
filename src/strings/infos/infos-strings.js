@@ -32,7 +32,7 @@ export const sameEmailMessage = "that's the email you currently use.";
 export const alreadyClickedOnUpdatePasswordLink =
   "you may have clicked on a sign in link in your email that has already been used. please sign in and request another link from the 'update password' page which you can find in your account page.";
 export const checkBackRegularlyMessage =
-  "if a session becomes available again, it will appear here in realtime so please check back often!";
+  "if a session becomes available again, it will appear here in realtime so please check back often! No changes have been made to your balance.";
 export const entriesAreTheSameMessage = "you haven't changed any data yet.";
 export const bookingCancelledMessage = "booking cancelled.";
 export const walletBeenUpdatedMessage = "your wallet balance has been updated.";

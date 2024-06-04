@@ -12,7 +12,11 @@ const MorningAndAfternoonShortSessionButton = () => {
     morningAndAfternoonShortSessionType: sessionType,
     morningAndAfternoonShortSessionPrice: sessionPrice,
   } = useGetSessionTypesAndPricesSelectors();
-  const { allSessionsAvailable } = useSessionLogic();
+  const {
+    allSessionsAvailable,
+    enoughSpacesAvailableInMorningForMultipleChildrenInBooking,
+    enoughSpacesAvailableInAfternoonForMultipleChildrenInBooking,
+  } = useSessionLogic();
   const { confirmSession } = useConfirmSession();
 
   const { walletBalance } = useGetCurrentUserSelectors();
@@ -22,7 +26,10 @@ const MorningAndAfternoonShortSessionButton = () => {
 
   return (
     <>
-      {allSessionsAvailable() && walletBalance >= price ? (
+      {allSessionsAvailable() &&
+      walletBalance >= price &&
+      enoughSpacesAvailableInMorningForMultipleChildrenInBooking() &&
+      enoughSpacesAvailableInAfternoonForMultipleChildrenInBooking() ? (
         <>
           <YellowGreenButton onClick={() => confirmSession(sessionType, price)}>
             AM & PM - short

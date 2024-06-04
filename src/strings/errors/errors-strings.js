@@ -1,4 +1,3 @@
-import { getSessionTypeString } from "../../functions/get-session-type-string";
 import { customYellow } from "../../styles/colors";
 
 export const errorSigningInInstructions =
@@ -65,8 +64,16 @@ export const sessionAlreadyBookedMessage = (
   childrenSelectedForBooking,
   sessionType
 ) => {
-  return childrenSelectedForBooking.length
-    ? `<span style="font-size: 20px;">you have children booked into this session already..</span>`
+  return childrenSelectedForBooking.length &&
+    (sessionType === "morningAndAfternoonShort" ||
+      sessionType === "morningAndAfternoonLong")
+    ? `<span style="font-size: 20px;">one of the children you have selected is already booked into one of the sessions already.</span>`
+    : childrenSelectedForBooking.length &&
+      (sessionType === "afternoonShort" || sessionType === "afternoonLong")
+    ? `<span style="font-size: 20px;">one of the children you have selected is already booked into an afternoon session for this day.</span>`
+    : childrenSelectedForBooking.length &&
+      (sessionType === "morning" || sessionType === "morning")
+    ? `<span style="font-size: 20px;">one of the children you have selected is already booked into the morning session for this day.</span>`
     : !childrenSelectedForBooking.length &&
       (sessionType === "morningAndAfternoonShort" ||
         sessionType === "morningAndAfternoonLong")
@@ -76,12 +83,8 @@ export const sessionAlreadyBookedMessage = (
     ? `<span style="font-size: 20px;">you have already booked an afternoon session for this day.</span>`
     : `<span style="font-size: 20px;">you have already booked a morning session for this day.</span>`;
 };
+export const errorFetchingUserBookingsWhenWantingToBookAnotherSessionMessage = `<span style="font-size: 20px;">sorry, we couldn't fetch your previous bookings which we need in order to be able to check for double bookings.<br/><br/>We will now return you to your bookings table.<br/>please try again or contact us if the error persists.</span>`;
 export const fundsAddedBalanceUpdateFailedMessage = `<span style="font-size: 20px;">your payment was successful! however, although your funds were successfully added to our database, we couldn't update the balance in the app due to an error on our end. please tap on the button that says 'not correct' in your account page to try updating your balance again. if the issue persists, please contact us!</span>`;
-
-export const mutipleChildBookingChildAlreadyBookedMessage = (sessionType) =>
-  ` has already been booked for the ${getSessionTypeString(
-    sessionType
-  )} session on this day.`;
 export const removeChildFromSelectionMessage =
   "if you want to book this session, please remove this child from your selection to prevent double booking.";
 export const addSessionBookingInfoErrorMessage = `<span style="font-size: 16px;">sorry, there was an error completing your session booking. the funds were deducted from your wallet but our database didn't receive your booking info. When you tap ok below, we will automatically send an email to the app owner who will then manually add your booking details to the database. Rest assured, you can still send your child(ren) in for the session you have just booked! If the booking does not show up in your 'bookings' section within 24hrs, please contact us using our contact form. Please tap 'ok' below to continue!</span>`;

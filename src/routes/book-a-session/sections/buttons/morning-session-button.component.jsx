@@ -11,8 +11,11 @@ const MorningSessionButton = () => {
   const { morningSessionType: sessionType, morningSessionPrice: sessionPrice } =
     useGetSessionTypesAndPricesSelectors();
 
-  const { onlyMorningSessionsAvailable, allSessionsAvailable } =
-    useSessionLogic();
+  const {
+    onlyMorningSessionsAvailable,
+    allSessionsAvailable,
+    enoughSpacesAvailableInMorningForMultipleChildrenInBooking,
+  } = useSessionLogic();
   const { confirmSession } = useConfirmSession();
   const { walletBalance } = useGetCurrentUserSelectors();
   const { getPriceTimesOneHundred } = useGetPriceTimesOneHundred();
@@ -22,7 +25,8 @@ const MorningSessionButton = () => {
   return (
     <>
       {(onlyMorningSessionsAvailable() || allSessionsAvailable()) &&
-      walletBalance >= price ? (
+      walletBalance >= price &&
+      enoughSpacesAvailableInMorningForMultipleChildrenInBooking() ? (
         <>
           <YellowGreenButton onClick={() => confirmSession(sessionType, price)}>
             morning
