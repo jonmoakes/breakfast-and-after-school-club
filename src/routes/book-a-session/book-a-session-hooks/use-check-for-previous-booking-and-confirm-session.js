@@ -40,7 +40,7 @@ const useCheckForPreviousBookingAndConfirmSession = () => {
         singleChildSessionAlreadyBooked(sessionType)) ||
       (childrenSelectedLength && multipleChildSessionAlreadyBooked(sessionType))
     ) {
-      sessionAlreadyBookedSwal();
+      sessionAlreadyBookedSwal(sessionType);
     } else {
       const balanceAfterBooking = ((walletBalance - price) / 100).toFixed(2);
       confirmSwal(

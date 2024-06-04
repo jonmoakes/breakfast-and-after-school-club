@@ -61,14 +61,23 @@ export const resetSessionErrorMessage = `<span style="font-size: 20px;">well thi
 export const failedToSendEmailInstructions = `<span style="font-size: 20px;">sorry, the email failed to send...please contact the school as soon as possible telling us what you were trying to do, so we can fix our error. We apologise for the inconvenience. please tap ok to continue!</span>`;
 export const failedToUpdateBalanceMessage = `<span style="font-size: 20px;">there was an error when adding your funds. the payment has successfully completed, but there was an error updating your balance in our database. please tap 'ok' below. This will email the app owner with all the necessary details so that they can update the database manually. Once they have done this, the correct balance should immediately show in your account. please allow 24 hours for this to occur. After 24hrs, If you still think that your balance is not correct, please tap on the button that says 'not correct' under your wallet balance in the 'account' page to refresh your balance. if you urgently need to book a session, please contact us using the contact form. We are sorry for the inconvenience!</span>`;
 export const failedToUpdateBalanceOnCancellationMessage = `<span style="font-size:20px;">sorry, your booking was cancelled, but your balance was not updated correctly. please tap on 'ok' below. When you do, we will send an email to the app owner with the details required to manually update your balance. if your balance has not updated within 24h hours, please contact us using the contact form. We apologise for the inconvenience!</span>`;
-export const sessionAlreadyBookedMessage = (childrenSelectedForBooking) => {
+export const sessionAlreadyBookedMessage = (
+  childrenSelectedForBooking,
+  sessionType
+) => {
   return childrenSelectedForBooking.length
-    ? "you have children booked into this session already."
-    : "you have already booked this session for this day.";
+    ? `<span style="font-size: 20px;">you have children booked into this session already..</span>`
+    : !childrenSelectedForBooking.length &&
+      (sessionType === "morningAndAfternoonShort" ||
+        sessionType === "morningAndAfternoonLong")
+    ? `<span style="font-size: 20px;">you have already booked one of the sessions for this day, so cannot book a double session.</span>`
+    : !childrenSelectedForBooking.length &&
+      (sessionType === "afternoonShort" || sessionType === "afternoonLong")
+    ? `<span style="font-size: 20px;">you have already booked an afternoon session for this day.</span>`
+    : `<span style="font-size: 20px;">you have already booked a morning session for this day.</span>`;
 };
 export const fundsAddedBalanceUpdateFailedMessage = `<span style="font-size: 20px;">your payment was successful! however, although your funds were successfully added to our database, we couldn't update the balance in the app due to an error on our end. please tap on the button that says 'not correct' in your account page to try updating your balance again. if the issue persists, please contact us!</span>`;
-export const sessionAlreadyBookedInstructions =
-  "please check your bookings for this day to prevent double bookings.";
+
 export const mutipleChildBookingChildAlreadyBookedMessage = (sessionType) =>
   ` has already been booked for the ${getSessionTypeString(
     sessionType
