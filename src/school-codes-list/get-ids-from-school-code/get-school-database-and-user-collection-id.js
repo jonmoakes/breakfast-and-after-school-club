@@ -1,6 +1,6 @@
 import { schoolCodesList } from "../school-codes-list";
 
-const { cleveleysPrimary } = schoolCodesList;
+const { cleveleysPrimary, schoolOne } = schoolCodesList;
 
 export const getSchoolDatabaseAndUserCollectionId = (schoolCode) => {
   switch (schoolCode) {
@@ -8,6 +8,11 @@ export const getSchoolDatabaseAndUserCollectionId = (schoolCode) => {
       return {
         databaseId: import.meta.env.VITE_CLEVELEYS_PRIMARY_DATABASE_ID,
         collectionId: import.meta.env.VITE_CLEVELEYS_PRIMARY_USER_COLLECTION_ID,
+      };
+    case schoolOne:
+      return {
+        databaseId: import.meta.env.VITE_SCHOOL_ONE_DATABASE_ID,
+        collectionId: import.meta.env.VITE_SCHOOL_ONE_USER_COLLECTION_ID,
       };
     default:
       return {

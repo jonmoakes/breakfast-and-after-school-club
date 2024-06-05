@@ -6,6 +6,7 @@ import useGetCurrentUserSelectors from "../../../../hooks/get-selectors/use-get-
 
 import { YellowGreenButton } from "../../../../styles/buttons/buttons.styles";
 import { BlackHr } from "../../../../styles/hr/hr.styles";
+import usePricesToFixedLogic from "../../../../hooks/use-prices-to-fixed-logic";
 
 const MorningAndAfternoonLongSessionButton = () => {
   const {
@@ -20,6 +21,8 @@ const MorningAndAfternoonLongSessionButton = () => {
   const { confirmSession } = useConfirmSession();
   const { walletBalance } = useGetCurrentUserSelectors();
   const { getPriceTimesOneHundred } = useGetPriceTimesOneHundred();
+  const { morningAndAfternoonLongSessionPriceToFixed } =
+    usePricesToFixedLogic();
 
   const price = getPriceTimesOneHundred(sessionPrice);
 
@@ -28,7 +31,8 @@ const MorningAndAfternoonLongSessionButton = () => {
       {allSessionsAvailable() &&
       walletBalance >= price &&
       enoughSpacesAvailableInMorningForMultipleChildrenInBooking() &&
-      enoughSpacesAvailableInAfternoonForMultipleChildrenInBooking() ? (
+      enoughSpacesAvailableInAfternoonForMultipleChildrenInBooking() &&
+      morningAndAfternoonLongSessionPriceToFixed ? (
         <>
           <YellowGreenButton onClick={() => confirmSession(sessionType, price)}>
             AM & PM - long

@@ -1,4 +1,4 @@
-import { CapitalizedInput, Label } from "../../../styles/form/form.styles";
+import { StyledInput, Label } from "../../../styles/form/form.styles";
 import { RedSpan } from "../../../styles/span/span.styles";
 
 const SignUpSchoolCode = ({ dispatchHandleSignUpFormChange }) => {
@@ -7,7 +7,7 @@ const SignUpSchoolCode = ({ dispatchHandleSignUpFormChange }) => {
       <Label>
         <RedSpan>* </RedSpan>school code:
       </Label>
-      <CapitalizedInput
+      <StyledInput
         type="text"
         name="schoolCode"
         onChange={dispatchHandleSignUpFormChange}

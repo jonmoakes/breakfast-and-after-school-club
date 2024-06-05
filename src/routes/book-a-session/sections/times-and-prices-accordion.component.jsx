@@ -58,45 +58,64 @@ const TimesAndPricesAccordion = () => {
               </BlueSpan>{" "}
               per child.
             </Text>
+
             <BlackHr />
+
+            {afternoonShortSessionPriceToFixed ? (
+              <>
+                <Text>
+                  afternoon session ( short ):
+                  <br />
+                  {afternoonShortSessionTime}
+                  <br /> cost:{" "}
+                  <BlueSpan>£{afternoonShortSessionPriceToFixed}</BlueSpan> per
+                  child.
+                </Text>{" "}
+                <BlackHr />
+              </>
+            ) : null}
+
             <Text>
-              afternoon session ( short ):
-              <br />
-              {afternoonShortSessionTime}
-              <br /> cost:{" "}
-              <BlueSpan>£{afternoonShortSessionPriceToFixed}</BlueSpan> per
-              child.
-            </Text>
-            <BlackHr />
-            <Text>
-              afternoon session ( long ):
+              {afternoonShortSessionPriceToFixed
+                ? "Afternoon Session ( Long ):"
+                : "Afternoon Session"}
               <br />
               {afternoonLongSessionTime}
               <br /> cost:{" "}
               <BlueSpan>£{afternoonLongSessionPriceToFixed}</BlueSpan> per
               child.
             </Text>
+
             <BlackHr />
-            <Text>
-              morning and afternoon sessions
-              <br />( short ):
-              <br /> cost:{" "}
-              <BlueSpan>
-                £{morningAndAfternoonShortSessionPriceToFixed}
-              </BlueSpan>{" "}
-              per child.
-            </Text>
-            <BlackHr />
-            <Text>
-              morning and afternoon sessions
-              <br />( long ):
-              <br /> cost:{" "}
-              <BlueSpan>
-                £{morningAndAfternoonLongSessionPriceToFixed}
-              </BlueSpan>{" "}
-              per child.
-            </Text>
-            <BlackHr />
+
+            {afternoonShortSessionPriceToFixed ? (
+              <>
+                <Text>
+                  morning and afternoon sessions
+                  <br />( short ):
+                  <br /> cost:{" "}
+                  <BlueSpan>
+                    £{morningAndAfternoonShortSessionPriceToFixed}
+                  </BlueSpan>{" "}
+                  per child.
+                </Text>
+
+                <BlackHr />
+
+                <Text>
+                  morning and afternoon sessions
+                  <br />( long ):
+                  <br /> cost:{" "}
+                  <BlueSpan>
+                    £{morningAndAfternoonLongSessionPriceToFixed}
+                  </BlueSpan>{" "}
+                  per child.
+                </Text>
+
+                <BlackHr />
+              </>
+            ) : null}
+
             <Text>
               note: the only options that will show are the options that are
               covered by the current funds in your wallet.
