@@ -6,6 +6,7 @@ import { ParentDiv } from "../../styles/div/div.styles";
 import { BlackH2 } from "../../styles/h2/h2.styles";
 import { BlueListItem, StyledUnorderedList } from "../../styles/ul/ul.styles";
 import { BlackHr } from "../../styles/hr/hr.styles";
+import { Text } from "../../styles/p/p.styles";
 
 import {
   termsRoute,
@@ -41,75 +42,86 @@ const Footer = () => {
   };
 
   return (
-    <ParentDiv>
-      <BlackH2>legal</BlackH2>
-      <StyledUnorderedList>
-        <BlackHr />
+    <>
+      <ParentDiv>
+        <BlackH2>legal</BlackH2>
+        <StyledUnorderedList>
+          <BlackHr />
 
-        <BlueListItem
-          className="clickable"
-          onClick={() => confirmChange(termsRoute)}
-        >
-          terms & conditions
-        </BlueListItem>
+          <BlueListItem
+            className="clickable"
+            onClick={() => confirmChange(termsRoute)}
+          >
+            terms & conditions
+          </BlueListItem>
 
-        <BlackHr />
+          <BlackHr />
 
-        <BlueListItem
-          className="clickable"
-          onClick={() => confirmChange(privacyPolicyRoute)}
-        >
-          privacy policy
-        </BlueListItem>
+          <BlueListItem
+            className="clickable"
+            onClick={() => confirmChange(privacyPolicyRoute)}
+          >
+            privacy policy
+          </BlueListItem>
 
-        <BlackHr />
+          <BlackHr />
 
-        <BlueListItem
-          className="clickable"
-          onClick={() => confirmChange(cookiesRoute)}
-        >
-          cookie policy
-        </BlueListItem>
+          <BlueListItem
+            className="clickable"
+            onClick={() => confirmChange(cookiesRoute)}
+          >
+            cookie policy
+          </BlueListItem>
 
-        <BlackHr />
+          <BlackHr />
 
-        <BlueListItem
-          className="clickable"
-          onClick={() => confirmChange(securityPolicyRoute)}
-        >
-          security policy
-        </BlueListItem>
+          <BlueListItem
+            className="clickable"
+            onClick={() => confirmChange(securityPolicyRoute)}
+          >
+            security policy
+          </BlueListItem>
 
-        <BlackHr />
+          <BlackHr />
 
-        <BlueListItem
-          className="clickable"
-          onClick={() => confirmChange(refundsPolicyRoute)}
-        >
-          refunds
-        </BlueListItem>
+          <BlueListItem
+            className="clickable"
+            onClick={() => confirmChange(refundsPolicyRoute)}
+          >
+            refunds
+          </BlueListItem>
 
-        <BlackHr />
+          <BlackHr />
 
-        <BlueListItem
-          className="clickable"
-          onClick={() => confirmChange(dataProtectionPolicyRoute)}
-        >
-          data protection
-        </BlueListItem>
+          <BlueListItem
+            className="clickable"
+            onClick={() => confirmChange(dataProtectionPolicyRoute)}
+          >
+            data protection
+          </BlueListItem>
 
-        <BlackHr />
+          <BlackHr />
 
-        <BlueListItem
-          className="clickable"
-          onClick={() => confirmChange(imageCreditsRoute)}
-        >
-          image credits
-        </BlueListItem>
+          <BlueListItem
+            className="clickable"
+            onClick={() => confirmChange(imageCreditsRoute)}
+          >
+            image credits
+          </BlueListItem>
 
-        <BlackHr />
-      </StyledUnorderedList>
-    </ParentDiv>
+          <BlackHr />
+        </StyledUnorderedList>
+      </ParentDiv>
+      <ParentDiv>
+        <Text>
+          Copyright ©{" "}
+          <a className="red" href="https://www.solaris-apps.co.uk">
+            Solaris Apps
+          </a>{" "}
+          2024
+        </Text>
+      </ParentDiv>
+    </>
   );
 };
 
