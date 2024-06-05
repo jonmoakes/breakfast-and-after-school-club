@@ -65,9 +65,7 @@ const UserBookingsHelp = () => {
               of the yellow table headers.
             </Text>
 
-            {isBookedSessionsOwnerRoute ||
-            isBookedSessionsUserRoute ||
-            isAllUsersRoute ? (
+            {isBookedSessionsOwnerRoute || isBookedSessionsUserRoute ? (
               <DateSearchingHelp />
             ) : null}
 

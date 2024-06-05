@@ -19,7 +19,7 @@ const DataSharingAndDisclosure = () => (
       response to lawful requests by public authorities.
     </Text>
     <Text>
-      We do not share your or your children's data with third parties for
+      We do not share either your or your children's data with third parties for
       marketing purposes.
     </Text>
   </ParentDiv>

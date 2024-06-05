@@ -4,7 +4,7 @@ import { Text } from "../../../styles/p/p.styles";
 
 const ChangesToPolicy = () => (
   <ParentDiv>
-    <BlueH2>Changes to This Policy :</BlueH2>
+    <BlueH2>Changes to This Policy:</BlueH2>
     <Text>
       We may update this privacy policy from time to time. We will notify you of
       any changes by posting the new privacy policy on this page and, if the
