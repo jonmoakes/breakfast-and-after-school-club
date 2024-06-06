@@ -7,16 +7,22 @@ import { Text } from "../../styles/p/p.styles";
 import { RedSpan } from "../../styles/span/span.styles";
 
 const UpdateAfternoonLongSessionPriceInfo = () => {
-  const { afternoonLongSessionPriceToFixed } = useSessionPricesVariables();
+  const { afternoonShortSessionPrice, afternoonLongSessionPriceToFixed } =
+    useSessionPricesVariables();
 
   return (
     <>
       <BlueH2>
-        <Balancer>afternoon Long session price</Balancer>
+        <Balancer>
+          afternoon {afternoonShortSessionPrice ? "Long" : null} session price
+        </Balancer>
       </BlueH2>
 
       <Text>
-        <Balancer>your current afternoon Long session price is:</Balancer>
+        <Balancer>
+          your current afternoon {afternoonShortSessionPrice ? "Long" : null}{" "}
+          session price is:
+        </Balancer>
       </Text>
       <Text>
         <RedSpan>£{afternoonLongSessionPriceToFixed}</RedSpan>

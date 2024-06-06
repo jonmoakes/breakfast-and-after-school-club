@@ -9,7 +9,8 @@ import { Form, Label, LowercasedInput } from "../../styles/form/form.styles";
 import { WhiteShadowText } from "../../styles/p/p.styles";
 
 const UpdateAfternoonLongSessionPriceInput = () => {
-  const { newAfternoonLongSessionPrice } = useSessionPricesVariables();
+  const { newAfternoonLongSessionPrice, afternoonShortSessionPrice } =
+    useSessionPricesVariables();
   const { handleUpdateAfternoonLongSessionPriceChange } =
     useHandleNewPriceChanges();
   const { confirmUpdateAfternoonLongSessionPrice } =
@@ -17,7 +18,10 @@ const UpdateAfternoonLongSessionPriceInput = () => {
 
   return (
     <Form>
-      <Label>new afternoon Long session price:</Label>
+      <Label>
+        new afternoon {afternoonShortSessionPrice ? "Long" : null} session
+        price:
+      </Label>
       <LowercasedInput
         type="number"
         pattern="[0-9]*[.]?[0-9]+"

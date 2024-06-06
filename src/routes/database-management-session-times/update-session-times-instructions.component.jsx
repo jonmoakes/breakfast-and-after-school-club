@@ -58,7 +58,7 @@ const UpdateSessionTimesInstructions = ({ sessionTime, example }) => {
               <br />
               <RedSpan>15:30 - 16:30</RedSpan>
               <br />
-              for an afternoon short session etc,
+              for an afternoon session etc..
             </Text>
             <YellowGreenButton onClick={dispatchHideShownElement}>
               Ok, Close

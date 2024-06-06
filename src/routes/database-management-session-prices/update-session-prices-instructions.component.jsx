@@ -41,6 +41,14 @@ const UpdateSessionPricesInstructions = () => {
               please enter in a 'double' format with a decimal point. This is
               because how the app reads prices in the database.
             </Text>
+            <Text>
+              the maximum length of the value including the decimal point is 5
+              characters long.
+            </Text>
+            <Text>
+              the technical maximum price of a session is £50 ( 50.00 === 5
+              characters ).
+            </Text>
 
             <Text>
               for example:

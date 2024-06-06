@@ -20,6 +20,7 @@ const useSessionPricesVariables = () => {
     morningAndAfternoonShortSessionPrice,
     morningAndAfternoonLongSessionPrice,
   } = useGetSessionTypesAndPricesSelectors();
+
   const {
     morningSessionPriceToFixed,
     afternoonShortSessionPriceToFixed,
@@ -27,7 +28,6 @@ const useSessionPricesVariables = () => {
     morningAndAfternoonShortSessionPriceToFixed,
     morningAndAfternoonLongSessionPriceToFixed,
   } = usePricesToFixedLogic();
-
   return {
     newMorningSessionPrice,
     newAfternoonShortSessionPrice,

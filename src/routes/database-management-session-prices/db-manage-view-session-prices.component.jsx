@@ -19,6 +19,7 @@ import { ParentDiv } from "../../styles/div/div.styles";
 import { Container } from "../../styles/container/container.styles";
 import useGetDatabaseManagementSelectors from "../../hooks/get-selectors/use-get-database-management-selectors";
 import useGetSessionTypesAndPricesSelectors from "../../hooks/get-selectors/use-get-session-types-and-prices-selectors";
+import useSessionPricesVariables from "./hooks/use-session-prices-variables";
 
 const DBManageViewSessionPrices = () => {
   useGetSessionPricesThunkUseEffect();
@@ -27,6 +28,8 @@ const DBManageViewSessionPrices = () => {
   const { databaseManagementIsLoading } = useGetDatabaseManagementSelectors();
   const { sessionTypesAndPricesIsLoading, sessionTypesAndPricesError } =
     useGetSessionTypesAndPricesSelectors();
+  const { afternoonShortSessionPrice } = useSessionPricesVariables();
+
   return (
     <Container>
       <UpdatePricesTitleAndAccordion />
@@ -42,25 +45,31 @@ const DBManageViewSessionPrices = () => {
                 <UpdateMorningSessionPriceInput />
               </ParentDiv>
 
-              <ParentDiv>
-                <UpdateAfternoonShortSessionPriceInfo />
-                <UpdateAfternoonShortSessionPriceInput />
-              </ParentDiv>
+              {afternoonShortSessionPrice ? (
+                <ParentDiv>
+                  <UpdateAfternoonShortSessionPriceInfo />
+                  <UpdateAfternoonShortSessionPriceInput />
+                </ParentDiv>
+              ) : null}
 
               <ParentDiv>
                 <UpdateAfternoonLongSessionPriceInfo />
                 <UpdateAfternoonLongSessionPriceInput />
               </ParentDiv>
 
-              <ParentDiv>
-                <UpdateMorningAndAfternoonShortSessionPriceInfo />
-                <UpdateMorningAndAfternoonShortSessionPriceInput />
-              </ParentDiv>
+              {afternoonShortSessionPrice ? (
+                <>
+                  <ParentDiv>
+                    <UpdateMorningAndAfternoonShortSessionPriceInfo />
+                    <UpdateMorningAndAfternoonShortSessionPriceInput />
+                  </ParentDiv>
 
-              <ParentDiv>
-                <UpdateMorningAndAfternoonLongSessionPriceInfo />
-                <UpdateMorningAndAfternoonLongSessionPriceInput />
-              </ParentDiv>
+                  <ParentDiv>
+                    <UpdateMorningAndAfternoonLongSessionPriceInfo />
+                    <UpdateMorningAndAfternoonLongSessionPriceInput />
+                  </ParentDiv>
+                </>
+              ) : null}
             </>
           ) : (
             <ShowFetchErrors />

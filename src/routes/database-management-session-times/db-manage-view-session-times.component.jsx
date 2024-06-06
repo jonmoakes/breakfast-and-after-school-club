@@ -15,6 +15,7 @@ import UpdateAfternoonLongSessionTimeInput from "./update-afternoon-long-session
 
 import { Container } from "../../styles/container/container.styles";
 import { ParentDiv } from "../../styles/div/div.styles";
+import useSessionTimesVariables from "./hooks/use-session-times-variables";
 
 const DBManageViewSessionTimes = () => {
   useRequestSessionTimesThunkUseEffect();
@@ -23,6 +24,7 @@ const DBManageViewSessionTimes = () => {
   const { requestDateDataIsLoading, requestDateDataError } =
     useGetRequestDateDataSelectors();
   const { databaseManagementIsLoading } = useGetDatabaseManagementSelectors();
+  const { afternoonShortSessionTime } = useSessionTimesVariables();
 
   return (
     <Container>
@@ -39,10 +41,12 @@ const DBManageViewSessionTimes = () => {
                 <UpdateMorningSessionTimeInput />
               </ParentDiv>
 
-              <ParentDiv>
-                <AfternoonShortSessionTimeInfo />
-                <UpdateAfternoonShortSessionTimeInput />
-              </ParentDiv>
+              {afternoonShortSessionTime ? (
+                <ParentDiv>
+                  <AfternoonShortSessionTimeInfo />
+                  <UpdateAfternoonShortSessionTimeInput />
+                </ParentDiv>
+              ) : null}
 
               <ParentDiv>
                 <AfternoonLongSessionTimeInfo />
