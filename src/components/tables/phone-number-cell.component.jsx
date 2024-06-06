@@ -16,7 +16,9 @@ const PhoneNumberCell = ({ value }) => {
         onClick={() => setShowPhone(!showPhone)}
       />
 
-      {showPhone ? <RightMarginSpan>{value}</RightMarginSpan> : null}
+      {showPhone ? (
+        <RightMarginSpan className="animate">{value}</RightMarginSpan>
+      ) : null}
       <PhoneNumberIcon {...{ value }} />
     </InLineDiv>
   );

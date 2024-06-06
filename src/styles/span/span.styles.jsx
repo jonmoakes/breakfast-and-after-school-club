@@ -1,4 +1,5 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
+import { zoomInLeft } from "react-animations";
 
 import {
   customBlack,
@@ -10,6 +11,8 @@ import {
 
 import eyeIcon from "../../assets/eye.png";
 import eyeIconHide from "../../assets/hide-eye.png";
+
+const zoomInLeftAnimation = keyframes`${zoomInLeft}`;
 
 export const HamburgerSpan = styled.span`
   height: 6px;
@@ -201,6 +204,10 @@ export const LowercasedSpan = styled.span`
     margin-right: 10px;
   }
 
+  &.animate {
+    animation: 1s ${zoomInLeftAnimation};
+  }
+
   &.red {
     color: ${customRed};
   }
@@ -212,6 +219,10 @@ export const BlueLowercasedSpan = styled(LowercasedSpan)`
 
 export const RightMarginSpan = styled.span`
   margin-right: 10px;
+
+  &.animate {
+    animation: 1s ${zoomInLeftAnimation};
+  }
 `;
 
 export const UntransformedSpan = styled.span`

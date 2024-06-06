@@ -17,7 +17,9 @@ const EmailCell = ({ value }) => {
       />
 
       {showEmail ? (
-        <LowercasedSpan className="right-margin">{value}</LowercasedSpan>
+        <LowercasedSpan className="right-margin animate">
+          {value}
+        </LowercasedSpan>
       ) : null}
       <EmailIcon {...{ value }} />
     </InLineDiv>
