@@ -1,6 +1,7 @@
 import useSendContactFormMessageResultSwal from "./contact-form-hooks/use-send-contact-form-message-result-swal";
 import useGetContactFormSelectors from "../../hooks/get-selectors/use-get-contact-form-selectors";
 
+import ContactHelmet from "./sections/contact-helmet.component";
 import Loader from "../../components/loader/loader.component";
 import ContactForm from "./sections/contact-form.component";
 import Footer from "../../components/footer/footer.component";
@@ -15,6 +16,7 @@ const Contact = () => {
 
   return (
     <Container>
+      <ContactHelmet />
       {contactFormIsLoading ? <Loader /> : null}
 
       <ParentDiv>

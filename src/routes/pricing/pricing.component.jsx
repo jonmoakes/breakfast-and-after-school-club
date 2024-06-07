@@ -1,5 +1,4 @@
-import { Container } from "../../styles/container/container.styles";
-
+import PricingHelmet from "./pricing-helmet.component";
 import PricingTitleAndIntro from "./pricing-title-and-intro.component";
 import PaymentProcessingFees from "./payment-processing-fees.component";
 import UnderTenChildren from "./under-ten-children.component";
@@ -10,8 +9,11 @@ import PlansInclude from "./plans-include.component";
 import LinkToContact from "./link-to-contact.component";
 import Footer from "../../components/footer/footer.component";
 
+import { Container } from "../../styles/container/container.styles";
+
 const Pricing = () => (
   <Container>
+    <PricingHelmet />
     <PricingTitleAndIntro />
     <UnderTenChildren />
     <TenToFourtyNineChildren />

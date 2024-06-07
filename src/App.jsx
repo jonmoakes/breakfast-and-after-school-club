@@ -1,5 +1,5 @@
 import { lazy, Suspense } from "react";
-
+import { Helmet } from "react-helmet";
 import { Routes, Route } from "react-router-dom";
 import { ErrorBoundary } from "react-error-boundary";
 import { GlobalStyle } from "./global-styles";
@@ -228,6 +228,23 @@ const App = () => {
 
   return (
     <>
+      <Helmet>
+        <title>Breakfast And After School Club</title>
+        <meta
+          name="description"
+          content="Manage your primary school breakfast and after school clubs efficiently with our app. Reduce paperwork and admin with easy booking management, child details, customer communication, and database management options. Safe and simple care for children with medical and food information at your fingertips."
+        />
+
+        <meta
+          name="keywords"
+          content="primary school clubs, breakfast club management, after school club management, booking management, child care, school admin, reduce paperwork, virtual wallet, club management app, school club software"
+        />
+
+        <link
+          rel="canonical"
+          href="https://www.breakfast-and-after-school-club.co.uk/"
+        />
+      </Helmet>
       <GlobalStyle />
       <ScrollToTop />
       <FloatingBackButton />

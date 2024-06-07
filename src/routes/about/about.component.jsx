@@ -1,3 +1,4 @@
+import AboutHelmet from "./about-helmet.component";
 import AboutTitleAndIntro from "./about-title-and-intro.component";
 import BookingsExampleImac from "./images/bookings-example-imac/bookings-example-imac.component";
 import AdminPhone from "./images/admin-phone/admin-phone.component";
@@ -13,6 +14,7 @@ import { Container } from "../../styles/container/container.styles";
 
 const About = () => (
   <Container>
+    <AboutHelmet />
     <AboutTitleAndIntro />
     <BookingsExampleImac />
     <AdminPhone />
