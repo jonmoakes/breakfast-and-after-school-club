@@ -61,6 +61,7 @@ import {
   refundsPolicyRoute,
   dataProtectionPolicyRoute,
   imageCreditsRoute,
+  customerPortalRoute,
 } from "./strings/routes/routes-strings";
 
 const Navigation = lazy(() =>
@@ -220,6 +221,10 @@ const DBManageUpdateLatestBookingsAndChildrensParentEmail = lazy(() =>
   import(
     "./routes/database-management-update-latest-bookings-and-childrens-parent-email/db-manage-update-latest-bookings-and-childrens-parent-email.component"
   )
+);
+
+const CustomerPortal = lazy(() =>
+  import("./routes/customer-portal/customer-portal.component")
 );
 
 const App = () => {
@@ -399,6 +404,7 @@ const App = () => {
               <Route path={updatePasswordRoute} element={<UpdatePassword />} />
               <Route path={closeAccountRoute} element={<CloseAccount />} />
               <Route path={pwaInfoRoute} element={<PwaInformation />} />
+              <Route path={customerPortalRoute} element={<CustomerPortal />} />
             </Route>
           </Routes>
         </Suspense>
