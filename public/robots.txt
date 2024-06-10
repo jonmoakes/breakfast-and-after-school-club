@@ -1,7 +1,4 @@
 User-agent: *
-Allow: /
-Allow: /about
-Allow: /pricing
-Allow: /contact
+Disallow:
 
 Sitemap: https://www.breakfast-and-after-school-club.co.uk/sitemap.xml
