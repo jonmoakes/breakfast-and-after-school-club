@@ -1,5 +1,5 @@
 import { lazy, Suspense } from "react";
-import { Helmet } from "react-helmet";
+import { Helmet, HelmetProvider } from "react-helmet-async";
 import { Routes, Route } from "react-router-dom";
 import { ErrorBoundary } from "react-error-boundary";
 import { GlobalStyle } from "./global-styles";
@@ -232,7 +232,7 @@ const App = () => {
   useGetUserOnLoadThunkUseEffect();
 
   return (
-    <>
+    <HelmetProvider>
       <Helmet>
         <title>Breakfast And After School Club</title>
         <meta
@@ -409,7 +409,7 @@ const App = () => {
           </Routes>
         </Suspense>
       </ErrorBoundary>
-    </>
+    </HelmetProvider>
   );
 };
 

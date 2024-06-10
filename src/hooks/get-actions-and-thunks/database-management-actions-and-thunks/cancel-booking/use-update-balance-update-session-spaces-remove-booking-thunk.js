@@ -68,47 +68,6 @@ const useUpdateBalanceUpdateSessionSpacesRemoveBookingThunk = () => {
         });
       }
     });
-
-    // dispatch(
-    //   deleteDocumentAsync({
-    //     databaseId,
-    //     collectionId,
-    //     documentId,
-    //   })
-    // )
-    // .then((resultAction) => {
-    //   if (deleteDocumentAsync.fulfilled.match(resultAction)) {
-    //     const usersDocumentId = userIdOfParent;
-    //     const operation = "add";
-    //     dispatch(
-    //       updateUsersBalanceAsync({
-    //         usersDocumentId,
-    //         databaseId,
-    //         userCollectionId,
-    //         sessionPrice,
-    //         operation,
-    //       })
-    //     ).then((resultAction) => {
-    //       if (updateUsersBalanceAsync.fulfilled.match(resultAction)) {
-    //         const date = sessionDate;
-    //         const sessionType = typeOfSession;
-    //         const route = databaseManagementCancelBookingRoute;
-    //         const operation = "add";
-    //         dispatch(
-    //           updateSessionSpacesDocAsync({
-    //             numberOfChildrenInBooking,
-    //             date,
-    //             databaseId,
-    //             termDatesCollectionId,
-    //             route,
-    //             sessionType,
-    //             operation,
-    //           })
-    //         );
-    //       }
-    //     });
-    //   }
-    // });
   };
 
   return { updateBalanceUpdateSessionSpacesRemoveBookingThunk };

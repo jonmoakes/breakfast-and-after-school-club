@@ -1,11 +1,8 @@
 import { useCallback } from "react";
 
-import useGetCurrentUserSelectors from "../../../../hooks/get-selectors/use-get-current-user-selectors";
 import useGetDatabaseManagementSelectors from "../../../../hooks/get-selectors/use-get-database-management-selectors";
 
 const useReturnLogic = () => {
-  const { currentUserWalletBalanceResult, currentUserWalletBalanceError } =
-    useGetCurrentUserSelectors();
   const {
     updateBalanceResult,
     updateBalanceError,
@@ -21,9 +18,7 @@ const useReturnLogic = () => {
       !updateSessionSpacesResult &&
       !updateSessionSpacesError &&
       !addBookingResult &&
-      !addBookingError &&
-      !currentUserWalletBalanceResult &&
-      !currentUserWalletBalanceError
+      !addBookingError
       ? true
       : false;
   }, [
@@ -33,8 +28,6 @@ const useReturnLogic = () => {
     updateSessionSpacesError,
     addBookingResult,
     addBookingError,
-    currentUserWalletBalanceResult,
-    currentUserWalletBalanceError,
   ]);
 
   return { noActionsFiredYet };

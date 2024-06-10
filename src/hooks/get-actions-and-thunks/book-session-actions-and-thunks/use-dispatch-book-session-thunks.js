@@ -7,7 +7,6 @@ import {
   updateSessionSpacesDocAsync,
   addBookingDataAsync,
 } from "../../../store/database-management/database-management-thunks";
-import { getUsersWalletBalanceAsync } from "../../../store/user/user.thunks";
 
 import { bookSessionRoute } from "../../../strings/routes/routes-strings";
 
@@ -66,14 +65,7 @@ const useDispatchBookSessionThunks = () => {
             bookingData.sessionType = sessionType;
             dispatch(
               addBookingDataAsync({ databaseId, collectionId, bookingData })
-            ).then((resultAction) => {
-              if (addBookingDataAsync.fulfilled.match(resultAction)) {
-                const collectionId = userCollectionId;
-                dispatch(
-                  getUsersWalletBalanceAsync({ id, databaseId, collectionId })
-                );
-              }
-            });
+            );
           }
         });
       }
