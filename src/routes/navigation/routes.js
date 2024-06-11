@@ -12,6 +12,7 @@ import {
   allChildrenRoute,
   allUsersRoute,
   pricingRoute,
+  allBookingsRoute,
 } from "../../strings/routes/routes-strings";
 
 export const signedInRoutes = [
@@ -29,6 +30,7 @@ export const ownerSignedInRoutes = [
   allUsersRoute,
   accountRoute,
   contactRoute,
+  allBookingsRoute,
 ];
 
 export const signedOutRoutes = [

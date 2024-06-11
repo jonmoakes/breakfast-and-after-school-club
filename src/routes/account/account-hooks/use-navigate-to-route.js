@@ -1,5 +1,6 @@
 import useGetCurrentUserSelectors from "../../../hooks/get-selectors/use-get-current-user-selectors";
 import useHamburgerHandlerNavigate from "../../../hooks/use-hamburger-handler-navigate";
+import useConfirmSwal from "../../../hooks/use-confirm-swal";
 
 import {
   addFundsRoute,
@@ -22,6 +23,7 @@ import {
 const useNavigateToRoute = () => {
   const { id } = useGetCurrentUserSelectors();
   const { hamburgerHandlerNavigate } = useHamburgerHandlerNavigate();
+  const { confirmViewAllBookings } = useConfirmSwal();
 
   const appOwnerButtons = [
     {
@@ -41,32 +43,37 @@ const useNavigateToRoute = () => {
     },
     {
       id: 4,
-      text: " update password",
+      text: "update password",
       onClick: () => hamburgerHandlerNavigate(updatePasswordRoute),
     },
 
     id === import.meta.env.VITE_TEST_SCHOOL_APP_OWNER_ID && {
       id: 5,
-      text: " upload dates",
+      text: "upload dates",
       onClick: () => hamburgerHandlerNavigate(uploadDatesRoute),
     },
     id !== import.meta.env.VITE_TEST_SCHOOL_APP_OWNER_ID && {
       id: 6,
-      text: " database management",
+      text: "database management",
       onClick: () => hamburgerHandlerNavigate(databaseManagementRoute),
     },
     {
       id: 7,
-      text: " install app info",
+      text: "install app info",
       onClick: () => hamburgerHandlerNavigate(pwaInfoRoute),
     },
     {
       id: 8,
-      text: " contact",
+      text: "contact",
       onClick: () => hamburgerHandlerNavigate(contactRoute),
     },
     {
       id: 9,
+      text: "view all bookings",
+      onClick: () => confirmViewAllBookings(),
+    },
+    {
+      id: 10,
       text: " customer portal",
       onClick: () => hamburgerHandlerNavigate(customerPortalRoute),
     },
@@ -74,47 +81,47 @@ const useNavigateToRoute = () => {
 
   const notAppOwnerButtons = [
     {
-      id: 10,
+      id: 11,
       text: "view your bookings",
       onClick: () => hamburgerHandlerNavigate(bookedSessionsUserRoute),
     },
     {
-      id: 11,
+      id: 12,
       text: "book a session",
       onClick: () => hamburgerHandlerNavigate(bookSessionRoute),
     },
     {
-      id: 12,
+      id: 13,
       text: "add funds",
       onClick: () => hamburgerHandlerNavigate(addFundsRoute),
     },
     {
-      id: 13,
+      id: 14,
       text: "child info",
       onClick: () => hamburgerHandlerNavigate(childInfoRoute),
     },
     {
-      id: 14,
+      id: 15,
       text: " update email",
       onClick: () => hamburgerHandlerNavigate(updateEmailRoute),
     },
     {
-      id: 15,
+      id: 16,
       text: " update password",
       onClick: () => hamburgerHandlerNavigate(updatePasswordRoute),
     },
     {
-      id: 16,
+      id: 17,
       text: " close account",
       onClick: () => hamburgerHandlerNavigate(closeAccountRoute),
     },
     {
-      id: 17,
+      id: 18,
       text: " contact us",
       onClick: () => hamburgerHandlerNavigate(contactRoute),
     },
     {
-      id: 18,
+      id: 19,
       text: " install app info",
       onClick: () => hamburgerHandlerNavigate(pwaInfoRoute),
     },

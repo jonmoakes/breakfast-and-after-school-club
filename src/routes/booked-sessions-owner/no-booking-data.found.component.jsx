@@ -34,9 +34,11 @@ const NoBookingDataFound = ({ data }) => {
         <ParentDiv>
           <BlueH2>no bookings found for today</BlueH2>
           <Text>
-            tap the button below to show bookings for all other dates.
+            tap the button below to show bookings from todays date onwards.
           </Text>
-          <GreyButton onClick={showAllBookings}>show all bookings</GreyButton>
+          <GreyButton onClick={showAllBookings}>
+            show upcoming bookings
+          </GreyButton>
         </ParentDiv>
       ) : null}
     </>

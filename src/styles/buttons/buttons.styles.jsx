@@ -337,7 +337,7 @@ export const PaginationPageButton = styled(Button)`
   }
 `;
 
-export const BalanceCheckButton = styled.button`
+export const MinimalButton = styled.button`
   margin: -5px auto 5px auto;
   text-transform: capitalize;
   outline: none;

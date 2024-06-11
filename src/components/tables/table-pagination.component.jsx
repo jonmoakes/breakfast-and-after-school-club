@@ -61,6 +61,18 @@ const TablePagination = ({
     }
   };
 
+  const pageSizeOptions = [
+    { value: 5, id: crypto.randomUUID() },
+    { value: 10, id: crypto.randomUUID() },
+    { value: 20, id: crypto.randomUUID() },
+    { value: defaultTableSize, id: crypto.randomUUID() },
+    { value: 50, id: crypto.randomUUID() },
+    { value: 75, id: crypto.randomUUID() },
+    { value: 100, id: crypto.randomUUID() },
+    { value: 150, id: crypto.randomUUID() },
+    { value: 200, id: crypto.randomUUID() },
+  ];
+
   return (
     <>
       {data.length > defaultTableSize && rows.length ? (
@@ -129,13 +141,11 @@ const TablePagination = ({
                   setPageSize(Number(selectedPageSize));
                 }}
               >
-                {[5, 10, 20, defaultTableSize, 50, 75, 100, 150, 200].map(
-                  (pageSize) => (
-                    <option key={pageSize} value={pageSize}>
-                      Show {pageSize} Rows
-                    </option>
-                  )
-                )}
+                {pageSizeOptions.map(({ value, id }) => (
+                  <option key={id} value={value}>
+                    Show {value} Rows
+                  </option>
+                ))}
               </PaginationSelect>
             </PaginationTextDiv>
           </div>

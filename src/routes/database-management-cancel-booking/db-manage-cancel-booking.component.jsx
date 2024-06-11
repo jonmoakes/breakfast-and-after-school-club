@@ -1,4 +1,4 @@
-import useFetchBookedSessionsOwnerThunkUseEffect from "../../hooks/get-actions-and-thunks/booked-sessions-owner-actions-and-thunks/use-fetch-booked-sessions-owner-thunk-use-effect";
+import useFetchBookedSessionsOwnerFromTodayOnwardsThunkUseEffect from "../../hooks/get-actions-and-thunks/booked-sessions-owner-actions-and-thunks/use-fetch-booked-sessions-owner-from-today-onwards-thunk-use-effect";
 import useDbManageCancelBookingVariables from "./hooks/use-db-manage-cancel-booking-variables";
 
 import useGetSessionPricesThunkUseEffect from "../../hooks/get-actions-and-thunks/session-types-and-prices-actions-and-thunks/use-get-session-prices-thunk-use-effect";
@@ -18,7 +18,7 @@ import { ParentDiv } from "../../styles/div/div.styles";
 import { BlackTitle } from "../../styles/h1/h1.styles";
 
 const DbManageCancelBooking = () => {
-  useFetchBookedSessionsOwnerThunkUseEffect();
+  useFetchBookedSessionsOwnerFromTodayOnwardsThunkUseEffect();
   useGetSessionPricesThunkUseEffect();
   useCancelBookingResultSwal();
 

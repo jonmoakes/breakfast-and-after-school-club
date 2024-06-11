@@ -229,3 +229,7 @@ export const UntransformedSpan = styled.span`
   text-transform: none;
   color: ${customRed};
 `;
+
+export const YellowSpan = styled.span`
+  color: ${customYellow};
+`;

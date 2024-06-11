@@ -1,11 +1,31 @@
 import { createSelector, createSlice } from "@reduxjs/toolkit";
-import { fetchBookedSessionsOwnerAsync } from "./booked-sessions-owner.thunks";
+import {
+  fetchBookedSessionsOwnerFromTodayOnwardsAsync,
+  fetchBookedSessionsOwnerAllBookingsAsync,
+} from "./booked-sessions-owner.thunks";
 
 const INITIAL_STATE = {
   bookedSessionsOwnerIsLoading: false,
   bookedSessionsOwner: [],
   bookedSessionsOwnerError: null,
   bookedSessionsOwnerShowAllDates: false,
+};
+
+const handleAsyncAction = (builder, asyncAction) => {
+  builder
+    .addCase(asyncAction.pending, (state) => {
+      state.bookedSessionsOwnerIsLoading = true;
+    })
+    .addCase(asyncAction.fulfilled, (state, action) => {
+      state.bookedSessionsOwnerIsLoading = false;
+      state.bookedSessionsOwner = action.payload;
+      state.bookedSessionsOwnerError = null;
+    })
+    .addCase(asyncAction.rejected, (state, action) => {
+      state.bookedSessionsOwnerIsLoading = false;
+      state.bookedSessionsOwner = [];
+      state.bookedSessionsOwnerError = action.payload;
+    });
 };
 
 export const bookedSessionsOwnerSlice = createSlice({
@@ -64,20 +84,8 @@ export const bookedSessionsOwnerSlice = createSlice({
     ),
   },
   extraReducers: (builder) => {
-    builder
-      .addCase(fetchBookedSessionsOwnerAsync.pending, (state) => {
-        state.bookedSessionsOwnerIsLoading = true;
-      })
-      .addCase(fetchBookedSessionsOwnerAsync.fulfilled, (state, action) => {
-        state.bookedSessionsOwnerIsLoading = false;
-        state.bookedSessionsOwner = action.payload;
-        state.bookedSessionsOwnerError = null;
-      })
-      .addCase(fetchBookedSessionsOwnerAsync.rejected, (state, action) => {
-        state.bookedSessionsOwnerIsLoading = false;
-        state.bookedSessionsOwner = [];
-        state.bookedSessionsOwnerError = action.payload;
-      });
+    handleAsyncAction(builder, fetchBookedSessionsOwnerFromTodayOnwardsAsync);
+    handleAsyncAction(builder, fetchBookedSessionsOwnerAllBookingsAsync);
   },
 });
 

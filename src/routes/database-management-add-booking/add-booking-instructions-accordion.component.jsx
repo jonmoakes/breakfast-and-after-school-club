@@ -24,7 +24,8 @@ import { StyledUnorderedList, BlueListItem } from "../../styles/ul/ul.styles";
 import { allUsersRoute } from "../../strings/routes/routes-strings";
 
 const AddBookingInstructionsAccordion = () => {
-  const { userOfAppChoice } = useDbManageAddBookingVariables();
+  const { userOfAppChoice, afternoonShortSessionPrice } =
+    useDbManageAddBookingVariables();
   const { shouldShowElement } = useGetShouldShowElementSelectors();
   const { dispatchShowOppositeShowElement, dispatchHideShownElement } =
     useShouldShowElementActions();
@@ -80,22 +81,30 @@ const AddBookingInstructionsAccordion = () => {
                     <BlueListItem>
                       <RedSpan className="no-format">morning</RedSpan>
                     </BlueListItem>
-                    <BlueListItem>
-                      <RedSpan className="no-format">afternoonShort</RedSpan>
-                    </BlueListItem>
+                    {afternoonShortSessionPrice ? (
+                      <BlueListItem>
+                        <RedSpan className="no-format">afternoonShort</RedSpan>
+                      </BlueListItem>
+                    ) : null}
+
                     <BlueListItem>
                       <RedSpan className="no-format">afternoonLong</RedSpan>
                     </BlueListItem>
-                    <BlueListItem>
-                      <RedSpan className="no-format">
-                        morningAndAfternoonShort
-                      </RedSpan>
-                    </BlueListItem>
-                    <BlueListItem>
-                      <RedSpan className="no-format">
-                        morningAndAfternoonLong
-                      </RedSpan>
-                    </BlueListItem>
+
+                    {afternoonShortSessionPrice ? (
+                      <>
+                        <BlueListItem>
+                          <RedSpan className="no-format">
+                            morningAndAfternoonShort
+                          </RedSpan>
+                        </BlueListItem>
+                        <BlueListItem>
+                          <RedSpan className="no-format">
+                            morningAndAfternoonLong
+                          </RedSpan>
+                        </BlueListItem>
+                      </>
+                    ) : null}
                   </StyledUnorderedList>
                   <BlackHr />
 

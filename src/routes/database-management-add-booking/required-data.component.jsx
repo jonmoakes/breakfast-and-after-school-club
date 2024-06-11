@@ -16,6 +16,12 @@ const RequiredData = () => (
       <BlueListItem>
         <BlackSpan>the</BlackSpan>
         <br />
+        session type
+      </BlueListItem>
+      <BlackHr />
+      <BlueListItem>
+        <BlackSpan>the</BlackSpan>
+        <br />
         Children in the booking
       </BlueListItem>
       <BlackHr />

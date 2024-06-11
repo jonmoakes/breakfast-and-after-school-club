@@ -24,7 +24,9 @@ const BookedSessionsOwnerToggleBookingsShownButton = ({
               show todays bookings
             </GreyButton>
           ) : (
-            <GreyButton onClick={showAllBookings}>show all bookings</GreyButton>
+            <GreyButton onClick={showAllBookings}>
+              show upcoming bookings
+            </GreyButton>
           )}
         </FilterEntriesButtonDiv>
       ) : null}

@@ -11,7 +11,7 @@ import Loader from "../loader/loader.component";
 import { Text } from "../../styles/p/p.styles";
 import { RedSpan } from "../../styles/span/span.styles";
 import {
-  BalanceCheckButton,
+  MinimalButton,
   YellowGreenButton,
 } from "../../styles/buttons/buttons.styles";
 
@@ -53,9 +53,9 @@ const WalletBalance = () => {
             <br />
             <RedSpan>£{(walletBalance / 100).toFixed(2)}</RedSpan>
           </Text>
-          <BalanceCheckButton onClick={confirmRequestLatestWalletBalance}>
+          <MinimalButton onClick={confirmRequestLatestWalletBalance}>
             not correct?
-          </BalanceCheckButton>
+          </MinimalButton>
         </>
       )}
     </>

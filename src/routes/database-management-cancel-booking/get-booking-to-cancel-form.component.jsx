@@ -9,6 +9,8 @@ import { Form, Label, StyledInput } from "../../styles/form/form.styles";
 import { Text, WhiteShadowText } from "../../styles/p/p.styles";
 import { ParentDiv } from "../../styles/div/div.styles";
 import { RedSpan } from "../../styles/span/span.styles";
+import { StyledLink } from "../../styles/link/link.styles";
+import { contactRoute } from "../../strings/routes/routes-strings";
 
 const GetBookingToCancelForm = () => {
   const { handleDataToUpdateDocumentChange } =
@@ -31,6 +33,15 @@ const GetBookingToCancelForm = () => {
             <Text>
               you will need the <RedSpan>booking id</RedSpan> which you can find
               in your bookings table.
+            </Text>
+            <Text>
+              please note that from here you can only cancel bookings from the
+              current date onwards.
+            </Text>
+            <Text>
+              should you need to cancel a booking in the past ( due to a dispute
+              for example ), please{" "}
+              <StyledLink to={contactRoute}>contact Jonathan</StyledLink>.
             </Text>
 
             <Text>

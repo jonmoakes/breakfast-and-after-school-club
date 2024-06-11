@@ -30,7 +30,7 @@ const useUpdateBalanceResultSwal = () => {
     if (updateBalanceResult === "fulfilled") {
       fireSwal("success", userBalanceUpdatedMessage, "", 0, true, false).then(
         (isConfirmed) => {
-          if (isConfirmed && errorId === "1") {
+          if ((isConfirmed && errorId === "1") || (isConfirmed && !errorId)) {
             hamburgerHandlerNavigate(databaseManagementRoute);
           } else if (isConfirmed && errorId === "3") {
             hamburgerHandlerNavigate(

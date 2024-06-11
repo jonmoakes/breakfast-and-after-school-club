@@ -10,6 +10,8 @@ import {
   customRed,
   customBlue,
 } from "../styles/colors";
+import { allBookingsRoute } from "../strings/routes/routes-strings";
+import { confirmViewAllBookingsMessage } from "../strings/confirms/confirms-strings";
 
 const useConfirmSwal = () => {
   const swal = withReactContent(Swal);
@@ -47,6 +49,13 @@ const useConfirmSwal = () => {
       });
   };
 
+  const confirmViewAllBookings = () => {
+    const confirmResult = () => {
+      hamburgerHandlerNavigate(allBookingsRoute);
+    };
+    confirmSwal(confirmViewAllBookingsMessage, "", "ok", confirmResult);
+  };
+
   const confirmForwardToNewRoute = (title, text, buttonText, route) => {
     swal
       .fire({
@@ -73,6 +82,6 @@ const useConfirmSwal = () => {
       });
   };
 
-  return { confirmSwal, confirmForwardToNewRoute };
+  return { confirmSwal, confirmForwardToNewRoute, confirmViewAllBookings };
 };
 export default useConfirmSwal;

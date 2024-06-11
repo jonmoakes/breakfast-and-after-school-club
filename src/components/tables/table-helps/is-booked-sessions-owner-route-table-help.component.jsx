@@ -1,25 +1,33 @@
 import { BlueH2 } from "../../../styles/h2/h2.styles";
 import { BlackHr } from "../../../styles/hr/hr.styles";
+import { StyledLink } from "../../../styles/link/link.styles";
 import { Text } from "../../../styles/p/p.styles";
 import { LowercasedSpan } from "../../../styles/span/span.styles";
+
+import { allBookingsRoute } from "../../../strings/routes/routes-strings";
 
 const IsBookedSessionsOwnerRouteTableHelp = () => (
   <>
     <BlackHr />
 
-    <BlueH2>toggling current day or all time bookings:</BlueH2>
+    <BlueH2>toggling between current day or upcoming bookings:</BlueH2>
     <Text>
-      tap the grey 'show all bookings' or 'show todays bookings' button to
-      toggle between showing every booking ever taken, or just the bookings for
-      the current date.
+      tap the grey 'show upcoming bookings' or 'show todays bookings' button to
+      toggle between showing every booking from todays date onwards, or just the
+      bookings for the current date.
     </Text>
     <Text>
       when showing bookings for the current date, the search box will not show
       bookings from past or future dates if you search for them.
     </Text>
     <Text>
-      please switch to viewing all bookings in order to search for past or
-      future bookings.
+      similarly, when showing bookings from the current date onwards, the search
+      box will not show bookings from the past if you search for them.
+    </Text>
+    <Text>
+      please switch to viewing{" "}
+      <StyledLink to={allBookingsRoute}>all bookings</StyledLink> in order to
+      search for past bookings.
     </Text>
 
     <Text>
