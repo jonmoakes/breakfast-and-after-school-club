@@ -28,50 +28,51 @@ const useNavigateToRoute = () => {
   const appOwnerButtons = [
     {
       id: 1,
-      text: "view bookings",
+      text: "customer bookings",
       onClick: () => hamburgerHandlerNavigate(bookedSessionsOwnerRoute),
     },
     {
       id: 2,
+      text: "view all bookings",
+      onClick: () => confirmViewAllBookings(),
+    },
+    {
+      id: 3,
       text: "view all children",
       onClick: () => hamburgerHandlerNavigate(allChildrenRoute),
     },
     {
-      id: 3,
+      id: 4,
       text: "view all Users",
       onClick: () => hamburgerHandlerNavigate(allUsersRoute),
     },
     {
-      id: 4,
+      id: 5,
       text: "update password",
       onClick: () => hamburgerHandlerNavigate(updatePasswordRoute),
     },
 
     id === import.meta.env.VITE_TEST_SCHOOL_APP_OWNER_ID && {
-      id: 5,
+      id: 6,
       text: "upload dates",
       onClick: () => hamburgerHandlerNavigate(uploadDatesRoute),
     },
     id !== import.meta.env.VITE_TEST_SCHOOL_APP_OWNER_ID && {
-      id: 6,
+      id: 7,
       text: "database management",
       onClick: () => hamburgerHandlerNavigate(databaseManagementRoute),
     },
     {
-      id: 7,
+      id: 8,
       text: "install app info",
       onClick: () => hamburgerHandlerNavigate(pwaInfoRoute),
     },
     {
-      id: 8,
+      id: 9,
       text: "contact",
       onClick: () => hamburgerHandlerNavigate(contactRoute),
     },
-    {
-      id: 9,
-      text: "view all bookings",
-      onClick: () => confirmViewAllBookings(),
-    },
+
     {
       id: 10,
       text: " customer portal",

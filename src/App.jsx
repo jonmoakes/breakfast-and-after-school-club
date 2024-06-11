@@ -35,6 +35,7 @@ import {
   bookedSessionsUserRoute,
   cancelBookingRoute,
   bookedSessionsOwnerRoute,
+  allBookingsRoute,
   allChildrenRoute,
   allUsersRoute,
   uploadDatesRoute,
@@ -96,6 +97,11 @@ const SignUp = lazy(() => import("./routes/sign-up/sign-up.component"));
 const SignIn = lazy(() => import("./routes/sign-in/sign-in.component"));
 const BookedSessionsOwner = lazy(() =>
   import("./routes/booked-sessions-owner/booked-sessions-owner.component")
+);
+const BookedSessionsOwnerAllBookings = lazy(() =>
+  import(
+    "./routes/booked-sessions-owner-all-bookings/booked-sessions-owner-all-bookings.component"
+  )
 );
 const BookedSessionsUser = lazy(() =>
   import("./routes/booked-sessions-user/booked-sessions-user.component")
@@ -385,6 +391,15 @@ const App = () => {
                 element={
                   currentUser && currentUser.id === appOwnerId ? (
                     <BookedSessionsOwner />
+                  ) : null
+                }
+              />
+
+              <Route
+                path={allBookingsRoute}
+                element={
+                  currentUser && currentUser.id === appOwnerId ? (
+                    <BookedSessionsOwnerAllBookings />
                   ) : null
                 }
               />

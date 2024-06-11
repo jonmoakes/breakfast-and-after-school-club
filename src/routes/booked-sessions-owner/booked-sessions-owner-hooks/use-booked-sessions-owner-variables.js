@@ -3,7 +3,7 @@ import { useMemo } from "react";
 import useGetBookedSessionsOwnerSelectors from "../../../hooks/get-selectors/use-get-booked-sessions-owner-selectors";
 import useGetCurrentUserSelectors from "../../../hooks/get-selectors/use-get-current-user-selectors";
 
-import { TABLE_COLUMNS } from "../table-columns";
+import { BOOKED_SESSIONS_OWNER_TABLE_COLUMNS } from "../../../components/tables/booked-sessions-owner-table-columns";
 
 import { defaultTableSize } from "../../../components/tables/default-table-size";
 
@@ -44,7 +44,7 @@ const useBookedSessionsOwnerVariables = () => {
     "bookedSessionsOwnerChosenTablePageSize"
   );
 
-  const columns = useMemo(() => TABLE_COLUMNS, []);
+  const columns = useMemo(() => BOOKED_SESSIONS_OWNER_TABLE_COLUMNS, []);
 
   const initialState = useMemo(
     () => ({

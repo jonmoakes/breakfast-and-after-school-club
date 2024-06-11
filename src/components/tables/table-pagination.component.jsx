@@ -10,6 +10,7 @@ import {
 
 import { defaultTableSize } from "../tables/default-table-size";
 import {
+  allBookingsRoute,
   allChildrenRoute,
   allUsersRoute,
   bookedSessionsOwnerRoute,
@@ -44,6 +45,12 @@ const TablePagination = ({
       case bookedSessionsOwnerRoute:
         localStorage.setItem(
           "bookedSessionsOwnerChosenTablePageSize",
+          selectedPageSize
+        );
+        break;
+      case allBookingsRoute:
+        localStorage.setItem(
+          "bookedSessionsOwnerAllBookingsChosenTablePageSize",
           selectedPageSize
         );
         break;

@@ -26,11 +26,11 @@ export const signedInRoutes = [
 
 export const ownerSignedInRoutes = [
   bookedSessionsOwnerRoute,
+  allBookingsRoute,
   allChildrenRoute,
   allUsersRoute,
   accountRoute,
   contactRoute,
-  allBookingsRoute,
 ];
 
 export const signedOutRoutes = [

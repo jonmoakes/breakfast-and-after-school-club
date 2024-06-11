@@ -1,6 +1,7 @@
 import useGetCurrentUserSelectors from "../../hooks/get-selectors/use-get-current-user-selectors";
 
 import WalletBalance from "../../components/wallet-balance/wallet-balance.component";
+import AppOwnerBookingsChoiceInfoAccordion from "./app-owner-bookings-choice-info-accordion.component";
 
 import { ParentDiv } from "../../styles/div/div.styles";
 import { Text } from "../../styles/p/p.styles";
@@ -14,7 +15,10 @@ const Intro = () => {
       <Text>welcome{name ? ` ${name}!` : "!"}</Text>
 
       {email === appOwnerEmail ? (
-        <BlueH2>what would you like to do?</BlueH2>
+        <>
+          <BlueH2>what would you like to do?</BlueH2>
+          <AppOwnerBookingsChoiceInfoAccordion />
+        </>
       ) : (
         <WalletBalance />
       )}

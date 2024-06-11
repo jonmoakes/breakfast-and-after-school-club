@@ -1,7 +1,7 @@
-import useBookedSessionsOwnerFunctions from "./booked-sessions-owner-hooks/use-booked-sessions-owner-functions";
+import useBookedSessionsOwnerFunctions from "../../routes/booked-sessions-owner/booked-sessions-owner-hooks/use-booked-sessions-owner-functions";
 
 import InfoIcon from "../../assets/info-icon.png";
-import UncheckEntriesInfo from "../../components/tables/uncheck-entries-info.component";
+import UncheckEntriesInfo from "./uncheck-entries-info.component";
 
 import { Icon } from "../../styles/image/image.styles";
 import { IconButton } from "../../styles/buttons/buttons.styles";

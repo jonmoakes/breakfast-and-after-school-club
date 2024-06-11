@@ -1,10 +1,10 @@
-import FormattedDateCell from "../../components/tables/formatted-date-cell.component";
-import EmailCell from "../../components/tables/email-cell.component";
-import PhoneNumberCell from "../../components/tables/phone-number-cell.component";
+import FormattedDateCell from "./formatted-date-cell.component";
+import EmailCell from "./email-cell.component";
+import PhoneNumberCell from "./phone-number-cell.component";
 
 import { getSessionTypeString } from "../../functions/get-session-type-string";
 
-export const TABLE_COLUMNS = [
+export const BOOKED_SESSIONS_OWNER_TABLE_COLUMNS = [
   {
     Header: "date",
     accessor: "dateAsDateObjectForSorting",

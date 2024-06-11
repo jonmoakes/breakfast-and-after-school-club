@@ -9,8 +9,7 @@ import {
 } from "react-table";
 
 import useIsOnline from "../../hooks/use-is-online";
-import useBookedSessionsOwnerListener from "./booked-sessions-owner-hooks/use-booked-sessions-owner-listener";
-import useBookedSessionsOwnerVariables from "./booked-sessions-owner-hooks/use-booked-sessions-owner-variables";
+import useBookedSessionsOwnerAllBookingsVariables from "./booked-sessions-owner-all-bookings-hooks/use-booked-sessions-owner-all-bookings-variables";
 
 import NetworkError from "../../components/errors/network-error.component";
 import ShowFetchErrors from "../../components/errors/show-fetch-errors.component";
@@ -19,13 +18,11 @@ import GetChildDetailsButton from "../../components/tables/get-child-details-but
 import NoBookingDataFound from "./no-booking-data.found.component";
 import BookingsTableRenderTable from "../../components/tables/bookings-table-render-table.component";
 import TableSearchBox from "../../components/tables/table-search-box.component";
-import BookedSessionsOwnerToggleBookingsShownButton from "./booked-sessions-owner-toggle-bookings-show-button.component";
 import TablePagination from "../../components/tables/table-pagination.component";
 
-const BookedSessionsOwnerTable = () => {
-  useBookedSessionsOwnerListener();
+const BookedSessionsOwnerAllBookingsTable = () => {
   const { bookedSessionsOwnerError, data, columns, initialState } =
-    useBookedSessionsOwnerVariables();
+    useBookedSessionsOwnerAllBookingsVariables();
   const { isOnline } = useIsOnline();
 
   const {
@@ -86,7 +83,7 @@ const BookedSessionsOwnerTable = () => {
         <ShowFetchErrors />
       ) : (
         <>
-          <NoBookingDataFound {...{ data }} />
+          <NoBookingDataFound />
 
           <TableSearchBox
             {...{
@@ -96,10 +93,6 @@ const BookedSessionsOwnerTable = () => {
               globalFilter,
               setGlobalFilter,
             }}
-          />
-
-          <BookedSessionsOwnerToggleBookingsShownButton
-            {...{ chosenEntry, data }}
           />
 
           <GetChildDetailsButton {...{ chosenEntry }} />
@@ -140,4 +133,4 @@ const BookedSessionsOwnerTable = () => {
   );
 };
 
-export default BookedSessionsOwnerTable;
+export default BookedSessionsOwnerAllBookingsTable;
