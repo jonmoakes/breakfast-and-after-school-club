@@ -24,6 +24,7 @@ import {
   allChildrenRoute,
   allUsersRoute,
   bookedSessionsOwnerRoute,
+  bookedSessionsUserAllBookingsRoute,
   bookedSessionsUserRoute,
 } from "../../strings/routes/routes-strings";
 import { BlackHr } from "../../styles/hr/hr.styles";
@@ -41,6 +42,8 @@ const UserBookingsHelp = () => {
   const isAllChildrenRoute = path === allChildrenRoute ? true : false;
   const isBookedSessionsUserRoute =
     path === bookedSessionsUserRoute ? true : false;
+  const isBookedSessionsUserAllBookingsRoute =
+    path === bookedSessionsUserAllBookingsRoute ? true : false;
   const isAllUsersRoute = path === allUsersRoute ? true : false;
 
   return (
@@ -65,7 +68,9 @@ const UserBookingsHelp = () => {
               of the yellow table headers.
             </Text>
 
-            {isBookedSessionsOwnerRoute || isBookedSessionsUserRoute ? (
+            {isBookedSessionsOwnerRoute ||
+            isBookedSessionsUserRoute ||
+            isBookedSessionsUserAllBookingsRoute ? (
               <DateSearchingHelp />
             ) : null}
 
@@ -90,7 +95,8 @@ const UserBookingsHelp = () => {
               <IsBookedSessionsOwnerRouteTableHelp />
             ) : null}
 
-            {isBookedSessionsUserRoute ? (
+            {isBookedSessionsUserRoute ||
+            isBookedSessionsUserAllBookingsRoute ? (
               <>
                 <BookedSessionsUserToggleBookings />
                 <CancelBookingTableHelp />
@@ -98,7 +104,9 @@ const UserBookingsHelp = () => {
               </>
             ) : null}
 
-            {isBookedSessionsOwnerRoute || isBookedSessionsUserRoute ? (
+            {isBookedSessionsOwnerRoute ||
+            isBookedSessionsUserRoute ||
+            isBookedSessionsUserAllBookingsRoute ? (
               <ColourCodingTableHelp />
             ) : null}
 

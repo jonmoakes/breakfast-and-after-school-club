@@ -1,20 +1,36 @@
 import { createSelector, createSlice } from "@reduxjs/toolkit";
-import { fetchBookedSessionsUserAsync } from "./booked-sessions-user.thunks";
+import {
+  fetchBookedSessionsUserAllBookingsAsync,
+  fetchBookedSessionsUserFromTodayOnwardsAsync,
+} from "./booked-sessions-user.thunks";
 
 const INITIAL_STATE = {
   bookedSessionsUserIsLoading: false,
   bookedSessionsUser: [],
   bookedSessionsUserError: null,
-  bookedSessionsUserShowAllDates: false,
+};
+
+const handleAsyncAction = (builder, asyncAction) => {
+  builder
+    .addCase(asyncAction.pending, (state) => {
+      state.bookedSessionsUserIsLoading = true;
+    })
+    .addCase(asyncAction.fulfilled, (state, action) => {
+      state.bookedSessionsUserIsLoading = false;
+      state.bookedSessionsUser = action.payload;
+      state.bookedSessionsUserError = null;
+    })
+    .addCase(asyncAction.rejected, (state, action) => {
+      state.bookedSessionsUserIsLoading = false;
+      state.bookedSessionsUser = [];
+      state.bookedSessionsUserError = action.payload;
+    });
 };
 
 export const bookedSessionsUserSlice = createSlice({
   name: "bookedSessionsUser",
   initialState: INITIAL_STATE,
   reducers: {
-    setBookedSessionsUserShowAllDates(state, action) {
-      state.bookedSessionsUserShowAllDates = action.payload;
-    },
     resetBookSessionUserError(state) {
       state.bookedSessionsUserError = null;
     },
@@ -27,12 +43,10 @@ export const bookedSessionsUserSlice = createSlice({
       (state) => state.bookedSessionsUserIsLoading,
       (state) => state.bookedSessionsUser || [],
       (state) => state.bookedSessionsUserError,
-      (state) => state.bookedSessionsUserShowAllDates,
       (
         bookedSessionsUserIsLoading,
         bookedSessionsUser,
-        bookedSessionsUserError,
-        bookedSessionsUserShowAllDates
+        bookedSessionsUserError
       ) => {
         const formattedUserBookings = bookedSessionsUser.map((booking) => ({
           ...booking,
@@ -53,34 +67,18 @@ export const bookedSessionsUserSlice = createSlice({
           bookedSessionsUser,
           sortedUserBookings,
           bookedSessionsUserError,
-          bookedSessionsUserShowAllDates,
         };
       }
     ),
   },
   extraReducers: (builder) => {
-    builder
-      .addCase(fetchBookedSessionsUserAsync.pending, (state) => {
-        state.bookedSessionsUserIsLoading = true;
-      })
-      .addCase(fetchBookedSessionsUserAsync.fulfilled, (state, action) => {
-        state.bookedSessionsUserIsLoading = false;
-        state.bookedSessionsUser = action.payload;
-        state.bookedSessionsUserError = null;
-      })
-      .addCase(fetchBookedSessionsUserAsync.rejected, (state, action) => {
-        state.bookedSessionsUserIsLoading = false;
-        state.bookedSessionsUser = [];
-        state.bookedSessionsUserError = action.payload;
-      });
+    handleAsyncAction(builder, fetchBookedSessionsUserFromTodayOnwardsAsync);
+    handleAsyncAction(builder, fetchBookedSessionsUserAllBookingsAsync);
   },
 });
 
-export const {
-  resetBookedSessionsUserState,
-  resetBookSessionUserError,
-  setBookedSessionsUserShowAllDates,
-} = bookedSessionsUserSlice.actions;
+export const { resetBookedSessionsUserState, resetBookSessionUserError } =
+  bookedSessionsUserSlice.actions;
 export const { selectBookedSessionsUserSelectors } =
   bookedSessionsUserSlice.selectors;
 

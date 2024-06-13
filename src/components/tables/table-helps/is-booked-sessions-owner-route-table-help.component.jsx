@@ -4,7 +4,7 @@ import { StyledLink } from "../../../styles/link/link.styles";
 import { Text } from "../../../styles/p/p.styles";
 import { LowercasedSpan } from "../../../styles/span/span.styles";
 
-import { allBookingsRoute } from "../../../strings/routes/routes-strings";
+import { bookedSessionsOwnerAllBookingsRoute } from "../../../strings/routes/routes-strings";
 
 const IsBookedSessionsOwnerRouteTableHelp = () => (
   <>
@@ -26,8 +26,10 @@ const IsBookedSessionsOwnerRouteTableHelp = () => (
     </Text>
     <Text>
       please switch to viewing{" "}
-      <StyledLink to={allBookingsRoute}>all bookings</StyledLink> in order to
-      search for past bookings.
+      <StyledLink to={bookedSessionsOwnerAllBookingsRoute}>
+        all bookings
+      </StyledLink>{" "}
+      in order to search for past bookings.
     </Text>
 
     <Text>

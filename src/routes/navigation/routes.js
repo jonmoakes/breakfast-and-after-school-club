@@ -12,7 +12,7 @@ import {
   allChildrenRoute,
   allUsersRoute,
   pricingRoute,
-  allBookingsRoute,
+  bookedSessionsOwnerAllBookingsRoute,
 } from "../../strings/routes/routes-strings";
 
 export const signedInRoutes = [
@@ -26,7 +26,7 @@ export const signedInRoutes = [
 
 export const ownerSignedInRoutes = [
   bookedSessionsOwnerRoute,
-  allBookingsRoute,
+  bookedSessionsOwnerAllBookingsRoute,
   allChildrenRoute,
   allUsersRoute,
   accountRoute,

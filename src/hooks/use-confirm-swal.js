@@ -10,8 +10,14 @@ import {
   customRed,
   customBlue,
 } from "../styles/colors";
-import { allBookingsRoute } from "../strings/routes/routes-strings";
-import { confirmViewAllBookingsMessage } from "../strings/confirms/confirms-strings";
+import {
+  bookedSessionsOwnerAllBookingsRoute,
+  bookedSessionsUserAllBookingsRoute,
+} from "../strings/routes/routes-strings";
+import {
+  confirmAppOwnerViewAllBookingsMessage,
+  confirmNotAppOwnerViewAllBookingsMessage,
+} from "../strings/confirms/confirms-strings";
 
 const useConfirmSwal = () => {
   const swal = withReactContent(Swal);
@@ -49,11 +55,23 @@ const useConfirmSwal = () => {
       });
   };
 
-  const confirmViewAllBookings = () => {
+  const confirmAppOwnerViewAllBookings = () => {
     const confirmResult = () => {
-      hamburgerHandlerNavigate(allBookingsRoute);
+      hamburgerHandlerNavigate(bookedSessionsOwnerAllBookingsRoute);
     };
-    confirmSwal(confirmViewAllBookingsMessage, "", "ok", confirmResult);
+    confirmSwal(confirmAppOwnerViewAllBookingsMessage, "", "ok", confirmResult);
+  };
+
+  const confirmNotAppOwnerViewAllBookings = () => {
+    const confirmResult = () => {
+      hamburgerHandlerNavigate(bookedSessionsUserAllBookingsRoute);
+    };
+    confirmSwal(
+      confirmNotAppOwnerViewAllBookingsMessage,
+      "",
+      "ok",
+      confirmResult
+    );
   };
 
   const confirmForwardToNewRoute = (title, text, buttonText, route) => {
@@ -82,6 +100,11 @@ const useConfirmSwal = () => {
       });
   };
 
-  return { confirmSwal, confirmForwardToNewRoute, confirmViewAllBookings };
+  return {
+    confirmSwal,
+    confirmForwardToNewRoute,
+    confirmAppOwnerViewAllBookings,
+    confirmNotAppOwnerViewAllBookings,
+  };
 };
 export default useConfirmSwal;

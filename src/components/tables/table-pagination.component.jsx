@@ -10,11 +10,12 @@ import {
 
 import { defaultTableSize } from "../tables/default-table-size";
 import {
-  allBookingsRoute,
+  bookedSessionsOwnerAllBookingsRoute,
   allChildrenRoute,
   allUsersRoute,
   bookedSessionsOwnerRoute,
   bookedSessionsUserRoute,
+  bookedSessionsUserAllBookingsRoute,
 } from "../../strings/routes/routes-strings";
 
 const TablePagination = ({
@@ -42,13 +43,19 @@ const TablePagination = ({
           selectedPageSize
         );
         break;
+      case bookedSessionsUserAllBookingsRoute:
+        localStorage.setItem(
+          "bookedSessionsUserAllBookingsChosenTablePageSize",
+          selectedPageSize
+        );
+        break;
       case bookedSessionsOwnerRoute:
         localStorage.setItem(
           "bookedSessionsOwnerChosenTablePageSize",
           selectedPageSize
         );
         break;
-      case allBookingsRoute:
+      case bookedSessionsOwnerAllBookingsRoute:
         localStorage.setItem(
           "bookedSessionsOwnerAllBookingsChosenTablePageSize",
           selectedPageSize

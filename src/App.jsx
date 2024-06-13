@@ -33,9 +33,10 @@ import {
   deleteChildInfoRoute,
   chosenEntryChildDetailsRoute,
   bookedSessionsUserRoute,
+  bookedSessionsUserAllBookingsRoute,
   cancelBookingRoute,
   bookedSessionsOwnerRoute,
-  allBookingsRoute,
+  bookedSessionsOwnerAllBookingsRoute,
   allChildrenRoute,
   allUsersRoute,
   uploadDatesRoute,
@@ -105,6 +106,11 @@ const BookedSessionsOwnerAllBookings = lazy(() =>
 );
 const BookedSessionsUser = lazy(() =>
   import("./routes/booked-sessions-user/booked-sessions-user.component")
+);
+const BookedSessionsUserAllBookings = lazy(() =>
+  import(
+    "./routes/booked-sessions-user-all-bookings/booked-sessions-user-all-bookings.component"
+  )
 );
 const CancelBooking = lazy(() =>
   import("./routes/cancel-booking/cancel-booking.component")
@@ -396,17 +402,32 @@ const App = () => {
               />
 
               <Route
-                path={allBookingsRoute}
+                path={bookedSessionsOwnerAllBookingsRoute}
                 element={
                   currentUser && currentUser.id === appOwnerId ? (
                     <BookedSessionsOwnerAllBookings />
                   ) : null
                 }
               />
+
               <Route
                 path={bookedSessionsUserRoute}
-                element={<BookedSessionsUser />}
+                element={
+                  currentUser && currentUser.id !== appOwnerId ? (
+                    <BookedSessionsUser />
+                  ) : null
+                }
               />
+
+              <Route
+                path={bookedSessionsUserAllBookingsRoute}
+                element={
+                  currentUser && currentUser.id !== appOwnerId ? (
+                    <BookedSessionsUserAllBookings />
+                  ) : null
+                }
+              />
+
               <Route path={cancelBookingRoute} element={<CancelBooking />} />
               <Route
                 path={chosenEntryChildDetailsRoute}

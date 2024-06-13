@@ -27,7 +27,7 @@ const BookedSessionsOwnerAllBookings = () => {
             <Text>this table shows all bookings ever made.</Text>
             <Text>
               if you want to see just bookings from the current day onwards, tap
-              the link below
+              the link below.
             </Text>
             <Text>
               <StyledLink to={bookedSessionsOwnerRoute}>

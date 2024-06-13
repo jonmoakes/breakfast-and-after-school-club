@@ -8,12 +8,12 @@ import { NavLink } from "../../styles/p/p.styles";
 import { BorderLink } from "../../styles/span/span.styles";
 
 import { ownerSignedInRoutes } from "./routes";
-import { allBookingsRoute } from "../../strings/routes/routes-strings";
+import { bookedSessionsOwnerAllBookingsRoute } from "../../strings/routes/routes-strings";
 
 const NavAppOwner = () => {
   const { currentUser, id, appOwnerId } = useGetCurrentUserSelectors();
   const { hamburgerHandlerNavigate } = useHamburgerHandlerNavigate();
-  const { confirmViewAllBookings } = useConfirmSwal();
+  const { confirmAppOwnerViewAllBookings } = useConfirmSwal();
 
   const location = useLocation();
 
@@ -26,8 +26,8 @@ const NavAppOwner = () => {
               <NavLink
                 key={route}
                 onClick={() =>
-                  route === allBookingsRoute
-                    ? confirmViewAllBookings()
+                  route === bookedSessionsOwnerAllBookingsRoute
+                    ? confirmAppOwnerViewAllBookings()
                     : hamburgerHandlerNavigate(route)
                 }
               >

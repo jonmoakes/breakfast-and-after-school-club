@@ -2,7 +2,7 @@ import FormattedDateCell from "../../components/tables/formatted-date-cell.compo
 
 import { getSessionTypeString } from "../../functions/get-session-type-string";
 
-export const TABLE_COLUMNS = [
+export const BOOKED_SESSIONS_USER_TABLE_COLUMNS = [
   {
     Header: "date",
     accessor: "dateAsDateObjectForSorting",

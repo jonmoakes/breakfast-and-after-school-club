@@ -5,7 +5,7 @@ import { useLocation } from "react-router-dom";
 import useGetCurrentUserSelectors from "../../get-selectors/use-get-current-user-selectors";
 
 import { getUsersChildrenAsync } from "../../../store/get-users-children/get-users-children.thunks";
-import { fetchBookedSessionsUserAsync } from "../../../store/booked-sessions-user/booked-sessions-user.thunks";
+import { fetchBookedSessionsUserFromTodayOnwardsAsync } from "../../../store/booked-sessions-user/booked-sessions-user.thunks";
 import { getSessionPricesAsync } from "../../../store/session-types-and-prices/session-types-and-prices.thunks";
 
 const useGetUsersChildrenUserBookingsAndSessionPricesThunkUseEffect = () => {
@@ -27,13 +27,17 @@ const useGetUsersChildrenUserBookingsAndSessionPricesThunkUseEffect = () => {
       (resultAction) => {
         if (getUsersChildrenAsync.fulfilled.match(resultAction)) {
           dispatch(
-            fetchBookedSessionsUserAsync({
+            fetchBookedSessionsUserFromTodayOnwardsAsync({
               id,
               databaseId,
               bookedSessionsCollectionId,
             })
           ).then((resultAction) => {
-            if (fetchBookedSessionsUserAsync.fulfilled.match(resultAction)) {
+            if (
+              fetchBookedSessionsUserFromTodayOnwardsAsync.fulfilled.match(
+                resultAction
+              )
+            ) {
               const collectionId = sessionPricesCollectionId;
               const documentId = sessionPricesDocumentId;
               dispatch(

@@ -1,4 +1,5 @@
 import useBookedSessionsUserFunctions from "./booked-sessions-user-hooks/use-booked-sessions-user-functions";
+import useConfirmSwal from "../../hooks/use-confirm-swal";
 
 import { FilterEntriesButtonDiv } from "../../styles/div/div.styles";
 import { GreyButton } from "../../styles/buttons/buttons.styles";
@@ -7,26 +8,20 @@ const BookedSessionsUserToggleBookingsShownButton = ({ chosenEntry }) => {
   const {
     noBookingsHaveBeenMadeYet,
     noEntryHasBeenSelected,
-    allBookingsAreBeingShown,
-    showCurrentAndFutureBookings,
-    showAllBookings,
+
     noUpcomingBookingsFound,
   } = useBookedSessionsUserFunctions(chosenEntry);
+  const { confirmNotAppOwnerViewAllBookings } = useConfirmSwal();
 
   return (
     <>
       {noEntryHasBeenSelected() ? (
         <FilterEntriesButtonDiv>
-          {noBookingsHaveBeenMadeYet() ||
-          noUpcomingBookingsFound() ? null : allBookingsAreBeingShown() ? (
+          {noBookingsHaveBeenMadeYet() || noUpcomingBookingsFound() ? null : (
             <GreyButton
               className="small-text"
-              onClick={showCurrentAndFutureBookings}
+              onClick={confirmNotAppOwnerViewAllBookings}
             >
-              show upcoming bookings
-            </GreyButton>
-          ) : (
-            <GreyButton className="small-text" onClick={showAllBookings}>
               show all bookings
             </GreyButton>
           )}

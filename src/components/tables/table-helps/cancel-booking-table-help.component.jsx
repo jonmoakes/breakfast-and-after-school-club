@@ -5,11 +5,17 @@ import { Text } from "../../../styles/p/p.styles";
 import { BlackHr } from "../../../styles/hr/hr.styles";
 import { RedSpan } from "../../../styles/span/span.styles";
 
+import { bookedSessionsUserAllBookingsRoute } from "../../../strings/routes/routes-strings";
+import { useLocation } from "react-router-dom";
+
 const CancelBookingTableHelp = () => {
   const { bookingClosingTimes } = useGetRequestDateDataSelectors();
 
   const { morningSessionClosingTime, afternoonSessionClosingTime } =
     bookingClosingTimes || {};
+
+  const location = useLocation();
+  const path = location.pathname;
 
   return (
     <>
@@ -69,10 +75,12 @@ const CancelBookingTableHelp = () => {
         </>
       )}
 
-      <Text>
-        the button to cancel a booking will not show if the date of the booking
-        is in the past.
-      </Text>
+      {path === bookedSessionsUserAllBookingsRoute ? (
+        <Text>
+          the button to cancel a booking will not show if the date of the
+          booking is in the past.
+        </Text>
+      ) : null}
     </>
   );
 };

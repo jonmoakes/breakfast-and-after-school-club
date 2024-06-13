@@ -1,4 +1,5 @@
 import { useMemo } from "react";
+
 import useGetBookedSessionsUserSelectors from "../../../hooks/get-selectors/use-get-booked-sessions-user-selectors";
 import useGetCurrentUserSelectors from "../../../hooks/get-selectors/use-get-current-user-selectors";
 
@@ -6,7 +7,7 @@ import { BOOKED_SESSIONS_USER_TABLE_COLUMNS } from "../../../components/tables/b
 
 import { defaultTableSize } from "../../../components/tables/default-table-size";
 
-const useBookedSessionsUserVariables = () => {
+const useBookedSessionsUserAllBookingsVariables = () => {
   const {
     sortedUserBookings,
     bookedSessionsUserIsLoading,
@@ -18,19 +19,19 @@ const useBookedSessionsUserVariables = () => {
 
   const data = useMemo(() => sortedUserBookings, [sortedUserBookings]);
 
-  const bookedSessionsUserPageSizeFromLocalStorage = localStorage.getItem(
-    "bookedSessionsUserChosenTablePageSize"
-  );
+  const bookedSessionsUserAllBookingsPageSizeFromLocalStorage =
+    localStorage.getItem("bookedSessionsUserAllBookingsChosenTablePageSize");
 
   const columns = useMemo(() => BOOKED_SESSIONS_USER_TABLE_COLUMNS, []);
+
   const initialState = useMemo(
     () => ({
       sortBy: [{ id: "dateAsDateObjectForSorting", desc: true }],
-      pageSize: bookedSessionsUserPageSizeFromLocalStorage
-        ? Number(bookedSessionsUserPageSizeFromLocalStorage)
+      pageSize: bookedSessionsUserAllBookingsPageSizeFromLocalStorage
+        ? Number(bookedSessionsUserAllBookingsPageSizeFromLocalStorage)
         : defaultTableSize,
     }),
-    [bookedSessionsUserPageSizeFromLocalStorage]
+    [bookedSessionsUserAllBookingsPageSizeFromLocalStorage]
   );
 
   return {
@@ -46,4 +47,4 @@ const useBookedSessionsUserVariables = () => {
   };
 };
 
-export default useBookedSessionsUserVariables;
+export default useBookedSessionsUserAllBookingsVariables;

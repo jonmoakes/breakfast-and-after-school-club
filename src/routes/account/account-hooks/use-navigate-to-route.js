@@ -23,7 +23,7 @@ import {
 const useNavigateToRoute = () => {
   const { id } = useGetCurrentUserSelectors();
   const { hamburgerHandlerNavigate } = useHamburgerHandlerNavigate();
-  const { confirmViewAllBookings } = useConfirmSwal();
+  const { confirmAppOwnerViewAllBookings } = useConfirmSwal();
 
   const appOwnerButtons = [
     {
@@ -34,7 +34,7 @@ const useNavigateToRoute = () => {
     {
       id: 2,
       text: "view all bookings",
-      onClick: () => confirmViewAllBookings(),
+      onClick: () => confirmAppOwnerViewAllBookings(),
     },
     {
       id: 3,

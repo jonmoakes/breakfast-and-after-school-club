@@ -59,4 +59,5 @@ export const refundsPolicyRoute = "/refunds-policy";
 export const dataProtectionPolicyRoute = "/data-protection-policy";
 export const imageCreditsRoute = "/image-credits";
 export const customerPortalRoute = "/customer-portal";
-export const allBookingsRoute = "/all-bookings";
+export const bookedSessionsOwnerAllBookingsRoute = "/all-bookings";
+export const bookedSessionsUserAllBookingsRoute = "/all-your-bookings";
