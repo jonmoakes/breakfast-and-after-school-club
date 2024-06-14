@@ -1,8 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import {
-  listDocumentsInACollection,
-  manageDatabaseDocument,
-} from "../../utils/appwrite/appwrite-functions";
+import { listDocumentsInACollection } from "../../utils/appwrite/appwrite-functions";
 
 // This fetches bookings from the current day onwards only
 export const fetchBookedSessionsOwnerFromTodayOnwardsAsync = createAsyncThunk(
@@ -47,35 +44,6 @@ export const fetchBookedSessionsOwnerAllBookingsAsync = createAsyncThunk(
       const { documents, total } = getBookingDocuments;
       if (!total) return;
       return documents;
-    } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
-    }
-  }
-);
-
-export const updateChildSessionRegistrationStatusAsync = createAsyncThunk(
-  "updateChildSessionRegistrationStatus",
-  async (
-    {
-      attributeToUpdate,
-      childrenSignedInStatus,
-      databaseId,
-      collectionId,
-      documentId,
-    },
-    thunkAPI
-  ) => {
-    try {
-      const dataToUpdate = {
-        [attributeToUpdate]: childrenSignedInStatus,
-      };
-      await manageDatabaseDocument(
-        "update",
-        databaseId,
-        collectionId,
-        documentId,
-        dataToUpdate
-      );
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }

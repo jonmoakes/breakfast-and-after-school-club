@@ -1,22 +1,19 @@
+import { useState } from "react";
 import { getNumberOfChildrenInBooking } from "../../../../functions/get-number-of-children-in-booking";
-import useUpdateChildRegistrationStatusThunk from "../../../../hooks/get-actions-and-thunks/booked-sessions-owner-actions-and-thunks/use-update-child-registration-status-thunk";
+
 import useConfirmSwal from "../../../../hooks/use-confirm-swal";
 
 import { confirmUpdateRegistrationStatusMessage } from "../../../../strings/confirms/confirms-strings";
 
 const useConfirmUpdateRegistrationStatusAndLogic = (row) => {
-  const { updateChildRegistrationStatusThunk, isLoading } =
-    useUpdateChildRegistrationStatusThunk();
+  const [signedIn, setSignedIn] = useState(false);
   const { confirmSwal } = useConfirmSwal();
 
-  const attributeToUpdate = "signedIn";
-  const signedIn = row.original.signedIn;
-  const childrenSignedInStatus = !signedIn ? true : false;
   const childrenInBooking = row.original.childrensName;
-  const documentId = row.original.$id;
+  const sessionType = row.original.sessionType;
+  const date = row.original.dateAsDateObjectForSorting;
   const currentDate = new Date();
   const hours = currentDate.getHours();
-  const sessionType = row.original.sessionType;
 
   const showMorningRegister =
     hours >= 7 && hours <= 10 && sessionType.includes("morning") ? true : false;
@@ -28,7 +25,6 @@ const useConfirmUpdateRegistrationStatusAndLogic = (row) => {
 
   currentDate.setHours(0, 0, 0, 0);
 
-  const date = row.original.dateAsDateObjectForSorting;
   const isSameDate = date.getTime() === currentDate.getTime();
 
   const numberOfChildrenInBooking =
@@ -56,11 +52,7 @@ const useConfirmUpdateRegistrationStatusAndLogic = (row) => {
   };
 
   const confirmResult = () => {
-    updateChildRegistrationStatusThunk(
-      attributeToUpdate,
-      childrenSignedInStatus,
-      documentId
-    );
+    setSignedIn(!signedIn);
   };
 
   const confirmUpdateRegistrationStatus = () => {
@@ -78,7 +70,6 @@ const useConfirmUpdateRegistrationStatusAndLogic = (row) => {
 
   return {
     confirmUpdateRegistrationStatus,
-    isLoading,
     showMorningRegister,
     showAfternoonRegister,
     isSameDate,

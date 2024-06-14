@@ -1,14 +1,13 @@
-import useGetErrorOnRegUpdateUseEffect from "./hooks/use-get-error-on-reg-update-use-effect";
 import useConfirmUpdateRegistrationStatusAndLogic from "./hooks/use-confirm-update-registration-status-and-logic";
 
-import ChildNotSignedInButton from "./buttons/child-not-signed-in-button.component";
-import ChildIsSignedInButton from "./buttons/child-is-signed-in-button.component";
+import {
+  IsSignedInButton,
+  NotSignedInButton,
+} from "../../../styles/buttons/buttons.styles";
 
 const SignInRegistrationButtonCell = ({ row }) => {
-  useGetErrorOnRegUpdateUseEffect();
   const {
     confirmUpdateRegistrationStatus,
-    isLoading,
     isSameDate,
     isSameDateShowingARegisterButtonAndChildrenNotSignedIn,
     isSameDateShowingARegisterButtonAndChildrenAreSignedIn,
@@ -20,13 +19,19 @@ const SignInRegistrationButtonCell = ({ row }) => {
       {!isSameDate && "N/A"}
 
       {isSameDateShowingARegisterButtonAndChildrenNotSignedIn() ? (
-        <ChildNotSignedInButton
-          {...{ isLoading, confirmUpdateRegistrationStatus }}
-        />
+        <NotSignedInButton
+          type="button"
+          onClick={confirmUpdateRegistrationStatus}
+        >
+          &#10006;
+        </NotSignedInButton>
       ) : isSameDateShowingARegisterButtonAndChildrenAreSignedIn() ? (
-        <ChildIsSignedInButton
-          {...{ isLoading, confirmUpdateRegistrationStatus }}
-        />
+        <IsSignedInButton
+          type="button"
+          onClick={confirmUpdateRegistrationStatus}
+        >
+          &#10004;
+        </IsSignedInButton>
       ) : isSameDayAndNotShowingARegisterButton() ? (
         "N/A"
       ) : null}

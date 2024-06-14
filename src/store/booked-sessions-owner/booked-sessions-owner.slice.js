@@ -2,7 +2,6 @@ import { createSelector, createSlice } from "@reduxjs/toolkit";
 import {
   fetchBookedSessionsOwnerFromTodayOnwardsAsync,
   fetchBookedSessionsOwnerAllBookingsAsync,
-  updateChildSessionRegistrationStatusAsync,
 } from "./booked-sessions-owner.thunks";
 
 const INITIAL_STATE = {
@@ -10,7 +9,6 @@ const INITIAL_STATE = {
   bookedSessionsOwner: [],
   bookedSessionsOwnerError: null,
   bookedSessionsOwnerShowAllDates: false,
-  registrationChangeError: null,
 };
 
 const handleAsyncAction = (builder, asyncAction) => {
@@ -43,9 +41,6 @@ export const bookedSessionsOwnerSlice = createSlice({
     resetBookedSessionsOwnerError(state) {
       state.bookedSessionsOwnerError = null;
     },
-    resetRegistrationChangeError(state) {
-      state.registrationChangeError = null;
-    },
     resetBookedSessionsOwnerState: () => {
       return INITIAL_STATE;
     },
@@ -56,14 +51,12 @@ export const bookedSessionsOwnerSlice = createSlice({
       (state) => state.bookedSessionsOwner || [],
       (state) => state.bookedSessionsOwnerShowAllDates,
       (state) => state.bookedSessionsOwnerError,
-      (state) => state.registrationChangeError,
 
       (
         bookedSessionsOwnerIsLoading,
         bookedSessionsOwner,
         bookedSessionsOwnerShowAllDates,
-        bookedSessionsOwnerError,
-        registrationChangeError
+        bookedSessionsOwnerError
       ) => {
         const formattedOwnerBookings = bookedSessionsOwner.map((booking) => {
           return {
@@ -86,7 +79,6 @@ export const bookedSessionsOwnerSlice = createSlice({
           bookedSessionsOwnerShowAllDates,
           bookedSessionsOwnerError,
           sortedOwnerBookings,
-          registrationChangeError,
         };
       }
     ),
@@ -94,12 +86,6 @@ export const bookedSessionsOwnerSlice = createSlice({
   extraReducers: (builder) => {
     handleAsyncAction(builder, fetchBookedSessionsOwnerFromTodayOnwardsAsync);
     handleAsyncAction(builder, fetchBookedSessionsOwnerAllBookingsAsync);
-    builder.addCase(
-      updateChildSessionRegistrationStatusAsync.rejected,
-      (state, action) => {
-        state.registrationchangeError = action.payload;
-      }
-    );
   },
 });
 
@@ -108,7 +94,6 @@ export const {
   resetBookedSessionsOwnerState,
   setBookedSessionsOwnerShowAllDates,
   resetBookedSessionsOwnerError,
-  resetRegistrationChangeError,
 } = bookedSessionsOwnerSlice.actions;
 
 export const { selectBookedSessionsOwnerSelectors } =

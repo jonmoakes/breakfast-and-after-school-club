@@ -108,20 +108,20 @@ export const confirmAppOwnerViewAllBookingsMessage = `<span style="font-size: 20
 export const confirmNotAppOwnerViewAllBookingsMessage = `<span style="font-size: 20px;">do you wish to go to the page that will show you every booking you have ever made?<br/><br/>this may take a while to load if you have many bookings, so please be patient :)</span>`;
 
 export const confirmUpdateRegistrationStatusMessage = (
-  childrenAreSignedIn,
+  signedIn,
   numberOfChildrenInBooking,
   childrenInBooking
 ) => {
   return `<span style="font-size: 20px;">${
-    childrenAreSignedIn && numberOfChildrenInBooking === 1
+    signedIn && numberOfChildrenInBooking === 1
       ? `this will revert <br/><span style="color: yellow;">${childrenInBooking}</span><br/>to being signed out of the session.<br/>please only do this if you made a mistake signing the child in.<br/>to sign a child out, please tap the appropriate button under the 'sign out' header.`
-      : childrenAreSignedIn && numberOfChildrenInBooking > 1
+      : signedIn && numberOfChildrenInBooking > 1
       ? `this will revert <br/><span style="color: yellow;">${formatChildNames(
           childrenInBooking
         )}</span><br/>to being signed out of the session.<br/>please only do this if you made a mistake signing the children in.<br/>to sign the children out, please tap the appropriate button under the 'sign out' header.`
-      : !childrenAreSignedIn && numberOfChildrenInBooking === 1
+      : !signedIn && numberOfChildrenInBooking === 1
       ? `do you wish to sign<br/><span style="color: yellow;">${childrenInBooking}</span><br/>into the session?`
-      : !childrenAreSignedIn &&
+      : !signedIn &&
         numberOfChildrenInBooking > 1 &&
         `do you wish to sign<br/><span style="color: yellow;">${formatChildNames(
           childrenInBooking
