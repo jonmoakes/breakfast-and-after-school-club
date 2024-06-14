@@ -346,6 +346,20 @@ export const MinimalButton = styled.button`
   color: ${customBlack};
 `;
 
+export const NotSignedInButton = styled.button`
+  border-radius: 50px;
+  outline: none;
+  color: ${customBlack};
+  background-color: ${customRed};
+`;
+
+export const IsSignedInButton = styled(NotSignedInButton)`
+  border-radius: 50px;
+  outline: none;
+  color: ${customBlack};
+  background-color: ${customLightGreen};
+`;
+
 export const ReloadInTableCellButton = styled.button`
   font-family: inherit;
   text-transform: capitalize;

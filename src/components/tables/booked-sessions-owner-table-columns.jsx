@@ -1,6 +1,7 @@
 import FormattedDateCell from "./formatted-date-cell.component";
 import EmailCell from "./email-cell.component";
 import PhoneNumberCell from "./phone-number-cell.component";
+import SignInRegistrationButtonCell from "./sign-in-registration/sign-in-registration-button-cell.component";
 
 import { getSessionTypeString } from "../../functions/get-session-type-string";
 
@@ -23,6 +24,17 @@ export const BOOKED_SESSIONS_OWNER_TABLE_COLUMNS = [
   {
     Header: "children in booking",
     accessor: "childrensName",
+  },
+  {
+    Header: "Signed In?",
+    accessor: "signIn",
+    Cell: ({ row, value }) => {
+      return <SignInRegistrationButtonCell {...{ row, value }} />;
+    },
+  },
+  {
+    Header: "Signed Out?",
+    accessor: "signedOut",
   },
   {
     Header: "parent name",

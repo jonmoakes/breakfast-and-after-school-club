@@ -1,6 +1,7 @@
 import { format } from "date-fns";
 
 import { getSessionTypeString } from "../../functions/get-session-type-string";
+import { formatChildNames } from "../../functions/format-child-names";
 import { customWhite, customIosBlue, customYellow } from "../../styles/colors";
 
 export const confirmCancelBookingMessage =
@@ -105,3 +106,25 @@ export const shouldSendCancelledBookingEmailMessage = `<span style="font-size: 2
 export const bookAnotherSessionQuestion = `<span style="font-size: 20px;">Thank you! your booking was successful!<br/><br/>would you like to book another session?<br/><br/>if not, tap '<span style="color: ${customYellow}">cancel</span>' to return to your bookings page.</span><br/>`;
 export const confirmAppOwnerViewAllBookingsMessage = `<span style="font-size: 20px;">do you wish to go to the page that will show every booking ever taken?<br/><br/>Depending on the amount of bookings you have, this may take a while to load so please be patient :)</span>`;
 export const confirmNotAppOwnerViewAllBookingsMessage = `<span style="font-size: 20px;">do you wish to go to the page that will show you every booking you have ever made?<br/><br/>this may take a while to load if you have many bookings, so please be patient :)</span>`;
+
+export const confirmUpdateRegistrationStatusMessage = (
+  childrenAreSignedIn,
+  numberOfChildrenInBooking,
+  childrenInBooking
+) => {
+  return `<span style="font-size: 20px;">${
+    childrenAreSignedIn && numberOfChildrenInBooking === 1
+      ? `this will revert <br/><span style="color: yellow;">${childrenInBooking}</span><br/>to being signed out of the session.<br/>please only do this if you made a mistake signing the child in.<br/>to sign a child out, please tap the appropriate button under the 'sign out' header.`
+      : childrenAreSignedIn && numberOfChildrenInBooking > 1
+      ? `this will revert <br/><span style="color: yellow;">${formatChildNames(
+          childrenInBooking
+        )}</span><br/>to being signed out of the session.<br/>please only do this if you made a mistake signing the children in.<br/>to sign the children out, please tap the appropriate button under the 'sign out' header.`
+      : !childrenAreSignedIn && numberOfChildrenInBooking === 1
+      ? `do you wish to sign<br/><span style="color: yellow;">${childrenInBooking}</span><br/>into the session?`
+      : !childrenAreSignedIn &&
+        numberOfChildrenInBooking > 1 &&
+        `do you wish to sign<br/><span style="color: yellow;">${formatChildNames(
+          childrenInBooking
+        )}</span><br/>into the session? `
+  }</span>`;
+};
