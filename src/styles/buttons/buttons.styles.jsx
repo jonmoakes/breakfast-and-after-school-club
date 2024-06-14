@@ -347,16 +347,14 @@ export const MinimalButton = styled.button`
 `;
 
 export const NotSignedInButton = styled.button`
-  border-radius: 50px;
+  border-radius: 2px;
   outline: none;
   color: ${customBlack};
   background-color: ${customRed};
+  border: 1px solid ${customBlack};
 `;
 
 export const IsSignedInButton = styled(NotSignedInButton)`
-  border-radius: 50px;
-  outline: none;
-  color: ${customBlack};
   background-color: ${customLightGreen};
 `;
 
