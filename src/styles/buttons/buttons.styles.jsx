@@ -346,8 +346,8 @@ export const MinimalButton = styled.button`
   color: ${customBlack};
 `;
 
-export const NotSignedInButton = styled.button`
-  width: 90%;
+export const RegistrationXButton = styled.button`
+  width: 50px;
   height: auto;
   border-radius: 2px;
   outline: none;
@@ -358,9 +358,13 @@ export const NotSignedInButton = styled.button`
   &:hover {
     cursor: pointer;
   }
+
+  @media screen and (max-width: 350px) {
+    width: 35px;
+  }
 `;
 
-export const IsSignedInButton = styled(NotSignedInButton)`
+export const RegistrationTickButton = styled(RegistrationXButton)`
   background-color: ${customLightGreen};
 `;
 

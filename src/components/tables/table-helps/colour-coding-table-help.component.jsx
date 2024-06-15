@@ -20,7 +20,7 @@ const ColourCodingTableHelp = () => (
       <BlueListItem>
         monday:
         <br />
-        <BlackSpan>green</BlackSpan>
+        <BlackSpan>light brown</BlackSpan>
       </BlueListItem>
       <BlueListItem>
         tuesday:

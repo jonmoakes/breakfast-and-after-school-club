@@ -66,13 +66,42 @@ const IsBookedSessionsOwnerRouteTableHelp = () => (
     <BlackHr />
     <BlueH2>registration check:</BlueH2>
     <Text>
-      if you have selected to show bookings from the current date, the
-      checkboxes on the left of the table can also double up as a sign in / sign
-      out system.
+      if you are viewing todays bookings, you will have a sign in and sign out
+      option for each session that by default will be a red box with a cross in
+      it.
     </Text>
     <Text>
-      simply check the row of each child as they come in / out of your session
-      so that you can see if you have any children missing who should be there.
+      To sign a child in, tap on the red box in the 'sign in' section.
+    </Text>
+    <Text>to sign them out, tap on the red box in the 'sign out' section.</Text>
+    <Text>
+      in each case, the box will turn green with a tick in it so that you know
+      who has been signed in and out.
+    </Text>
+    <Text>
+      you can tap on the box again to revert to the previous state if you make a
+      mistake.
+    </Text>
+    <Text>
+      please note that this data is not saved when you change to a different
+      page so be sure to have completed your signing in and signing out before
+      leaving the page.
+    </Text>
+    <Text>
+      alternatively, if you are not in the full screen app, you could simply
+      open a new tab to the page you want and keep this page open.
+    </Text>
+    <Text>
+      Note: For morning sessions, The sign in / out options will appear between
+      the hours of 7AM - 10AM inclusive.
+    </Text>
+    <Text>
+      for afternoon sessions, the sign in / out options will appear between the
+      hours of 2PM - 6PM inclusive.
+    </Text>
+    <Text>
+      you may need to reload the page if you have been on this page outside of
+      these times to make the options appear.
     </Text>
   </>
 );
