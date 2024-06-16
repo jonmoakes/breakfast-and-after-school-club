@@ -65,8 +65,8 @@ const IsBookedSessionsOwnerRouteTableHelp = () => (
       info button to appear.
     </Text>
     <Text>
-      if a child has has information about their medical, dietry or additional
-      info sections entered in by their parent, a<br />'<RedSpan>*</RedSpan>'
+      if a child has information in their medical, dietry or additional info
+      sections entered in by their parent, a<br />'<RedSpan>*</RedSpan>'
       <br /> will appear next to their name in the table.
     </Text>
     <Text>
