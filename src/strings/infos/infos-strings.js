@@ -5,6 +5,8 @@ export const sessionCancelledBalanceUpdateFailedMessage = `<span style="font-siz
 export const emailResponseTimeMessage = "Your Message Has Been Sent!";
 export const loseAllDataMessage =
   "you will lose any data that you have currently entered into this form.";
+export const loseRegistrationChanges =
+  "you will lose any changes to the registration status of your children.";
 export const signInWithNewPasswordMessage =
   "you can now sign in with your new password.";
 export const emailChangedMessage = "email changed!";

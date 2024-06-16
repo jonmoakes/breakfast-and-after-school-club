@@ -4,6 +4,8 @@ import PhoneNumberCell from "./phone-number-cell.component";
 import SignInRegistrationButtonCell from "./sign-in-out-registration/sign-in-registration/sign-in-registration-button-cell.component";
 import SignOutRegistrationButtonCell from "./sign-in-out-registration/sign-out-registration/sign-out-registration-button-cell.component";
 
+import { RedSpan } from "../../styles/span/span.styles";
+
 import { getSessionTypeString } from "../../functions/get-session-type-string";
 
 export const BOOKED_SESSIONS_OWNER_TABLE_COLUMNS = [
@@ -25,6 +27,17 @@ export const BOOKED_SESSIONS_OWNER_TABLE_COLUMNS = [
   {
     Header: "children in booking",
     accessor: "childrensName",
+    Cell: ({ value }) => {
+      const hasImportantDetails = value.includes("*");
+      const cleanedValue = value.replace(/\*/g, "");
+
+      return (
+        <span>
+          {hasImportantDetails && <RedSpan>* </RedSpan>}
+          {cleanedValue}
+        </span>
+      );
+    },
   },
   {
     Header: "Signed In?",

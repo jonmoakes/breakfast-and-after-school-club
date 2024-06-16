@@ -22,6 +22,7 @@ import { StyledLink } from "../../styles/link/link.styles";
 import { StyledUnorderedList, BlueListItem } from "../../styles/ul/ul.styles";
 
 import { allUsersRoute } from "../../strings/routes/routes-strings";
+import Balancer from "react-wrap-balancer";
 
 const AddBookingInstructionsAccordion = () => {
   const { userOfAppChoice, afternoonShortSessionPrice } =
@@ -150,6 +151,31 @@ const AddBookingInstructionsAccordion = () => {
                   <Text>
                     note again, that adding the comma is not necessary if there
                     is just one child in the booking.
+                  </Text>
+
+                  <Text>
+                    <BlueSpan>
+                      <Balancer>if a child has additional info:</Balancer>
+                    </BlueSpan>
+                  </Text>
+
+                  <Text>
+                    if the child has dietry requirements / medical info /
+                    additional info, please add a * directly before their name -
+                    eg *Joe Bloggs
+                  </Text>
+                  <Text>
+                    this will ensure that the table reflects that the session
+                    contains a child who has additional details supplied.
+                  </Text>
+
+                  <Text>
+                    if you are unsure, go to the 'children list' route and
+                    search for the child.
+                  </Text>
+                  <Text>
+                    you will see there if anything has been entered into the
+                    medical / dietry / additional info sections.
                   </Text>
 
                   <BlackHr />

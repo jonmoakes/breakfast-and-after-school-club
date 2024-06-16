@@ -2,7 +2,7 @@ import { BlueH2 } from "../../../styles/h2/h2.styles";
 import { BlackHr } from "../../../styles/hr/hr.styles";
 import { StyledLink } from "../../../styles/link/link.styles";
 import { Text } from "../../../styles/p/p.styles";
-import { LowercasedSpan } from "../../../styles/span/span.styles";
+import { LowercasedSpan, RedSpan } from "../../../styles/span/span.styles";
 
 import { bookedSessionsOwnerAllBookingsRoute } from "../../../strings/routes/routes-strings";
 
@@ -51,6 +51,7 @@ const IsBookedSessionsOwnerRouteTableHelp = () => (
       and additional info of the child / children in the booking, tap the small
       checkbox next to the date of the booking that you wish to view.
     </Text>
+
     <Text>
       a button with the letter '<LowercasedSpan>i</LowercasedSpan>' ( for info )
       will appear in the top right of the screen.
@@ -62,6 +63,15 @@ const IsBookedSessionsOwnerRouteTableHelp = () => (
     <Text>
       please note, only one entry at a time should be selected in order for the
       info button to appear.
+    </Text>
+    <Text>
+      if a child has has information about their medical, dietry or additional
+      info sections entered in by their parent, a<br />'<RedSpan>*</RedSpan>'
+      <br /> will appear next to their name in the table.
+    </Text>
+    <Text>
+      with this, it is easy to see which children in your session has details
+      that you need to be aware of.
     </Text>
     <BlackHr />
     <BlueH2>registration check:</BlueH2>
@@ -93,11 +103,15 @@ const IsBookedSessionsOwnerRouteTableHelp = () => (
     </Text>
     <Text>
       Note: For morning sessions, The sign in / out options will appear between
-      the hours of 7AM - 10AM inclusive.
+      the hours of
+      <br />
+      <RedSpan>7AM - 10AM inclusive</RedSpan>.
     </Text>
     <Text>
       for afternoon sessions, the sign in / out options will appear between the
-      hours of 2PM - 6PM inclusive.
+      hours of
+      <br />
+      <RedSpan>2PM - 6PM inclusive</RedSpan>.
     </Text>
     <Text>
       you may need to reload the page if you have been on this page outside of

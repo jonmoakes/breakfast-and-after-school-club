@@ -8,12 +8,26 @@ import {
   resetSessionTypeAndPrice,
 } from "../../../store/book-session/book-session.slice";
 
+import useGetUsersChildrenSelectors from "../../get-selectors/use-get-users-children-selectors";
+
 const useBookSessionActions = () => {
   const dispatch = useDispatch();
 
+  const { usersChildren } = useGetUsersChildrenSelectors();
+
   const handleSetChildrenSelectedForBookingChange = (event) => {
     const { name, checked } = event.target;
-    dispatch(setChildrenSelectedForBooking({ [name]: checked }));
+    const selectedChild = usersChildren.find(
+      (child) => child.childName === name
+    );
+
+    const namesOfChildren =
+      selectedChild.medicalInfo !== "" ||
+      selectedChild.dietryRequirements !== "" ||
+      selectedChild.additionalInfo !== ""
+        ? `${name}*`
+        : name;
+    dispatch(setChildrenSelectedForBooking({ [namesOfChildren]: checked }));
   };
 
   const dispatchSetSessionPrice = (price) => {

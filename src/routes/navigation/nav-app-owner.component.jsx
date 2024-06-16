@@ -8,14 +8,28 @@ import { NavLink } from "../../styles/p/p.styles";
 import { BorderLink } from "../../styles/span/span.styles";
 
 import { ownerSignedInRoutes } from "./routes";
-import { bookedSessionsOwnerAllBookingsRoute } from "../../strings/routes/routes-strings";
+import {
+  bookedSessionsOwnerAllBookingsRoute,
+  bookedSessionsOwnerRoute,
+} from "../../strings/routes/routes-strings";
+import {
+  isInAfteroonHours,
+  isInMorningHours,
+} from "../../components/tables/sign-in-out-registration/sign-in-out-shared-logic";
+import {
+  areYouSureMessage,
+  imSureMessage,
+} from "../../strings/confirms/confirms-strings";
+import { loseRegistrationChanges } from "../../strings/infos/infos-strings";
 
 const NavAppOwner = () => {
   const { currentUser, id, appOwnerId } = useGetCurrentUserSelectors();
   const { hamburgerHandlerNavigate } = useHamburgerHandlerNavigate();
-  const { confirmAppOwnerViewAllBookings } = useConfirmSwal();
+  const { confirmAppOwnerViewAllBookings, confirmForwardToNewRoute } =
+    useConfirmSwal();
 
   const location = useLocation();
+  const path = location.pathname;
 
   return (
     <>
@@ -28,6 +42,14 @@ const NavAppOwner = () => {
                 onClick={() =>
                   route === bookedSessionsOwnerAllBookingsRoute
                     ? confirmAppOwnerViewAllBookings()
+                    : path === bookedSessionsOwnerRoute &&
+                      (isInMorningHours || isInAfteroonHours)
+                    ? confirmForwardToNewRoute(
+                        areYouSureMessage,
+                        loseRegistrationChanges,
+                        imSureMessage,
+                        route
+                      )
                     : hamburgerHandlerNavigate(route)
                 }
               >

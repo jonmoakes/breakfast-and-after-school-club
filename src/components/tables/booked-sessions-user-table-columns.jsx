@@ -21,5 +21,12 @@ export const BOOKED_SESSIONS_USER_TABLE_COLUMNS = [
   {
     Header: "children in booking",
     accessor: "childrensName",
+    Cell: ({ value }) => {
+      const childDetails = value.includes("*")
+        ? value.replace(/\*/g, "")
+        : value;
+
+      return <span>{childDetails}</span>;
+    },
   },
 ];

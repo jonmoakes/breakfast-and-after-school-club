@@ -4,10 +4,18 @@ export const createChildrenToAddToBooking = (
 ) => {
   const oneChildChosen = childrenSelectedForBooking.join(" ");
   const namesToAddToBooking = childrenSelectedForBooking.join(", ");
-  const childName =
-    usersChildren && usersChildren[0] !== undefined
-      ? usersChildren[0].childName
-      : "";
+
+  let childName = "";
+
+  if (usersChildren && usersChildren[0] !== undefined) {
+    childName =
+      usersChildren.length === 1 &&
+      (usersChildren[0].medicalInfo !== "" ||
+        usersChildren[0].dietryRequirements !== "" ||
+        usersChildren[0].additionalInfo !== "")
+        ? usersChildren[0].childName + "*"
+        : usersChildren[0].childName;
+  }
 
   const childrenInBooking = !childrenSelectedForBooking.length
     ? childName
