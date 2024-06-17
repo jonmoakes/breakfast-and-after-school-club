@@ -31,7 +31,7 @@ const BookedSessionsOwnerAllBookings = () => {
             </Text>
             <Text>
               <StyledLink to={bookedSessionsOwnerRoute}>
-                view upcoming bookings
+                view future bookings
               </StyledLink>
             </Text>
           </ParentDiv>

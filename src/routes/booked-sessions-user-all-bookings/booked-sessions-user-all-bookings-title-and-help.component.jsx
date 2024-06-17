@@ -23,7 +23,7 @@ const BookedSessionsUserAllBookingsTitleAndHelp = () => {
       </Text>
       <Text>
         <StyledLink to={bookedSessionsUserRoute}>
-          view upcoming bookings
+          view future bookings
         </StyledLink>
         .
       </Text>

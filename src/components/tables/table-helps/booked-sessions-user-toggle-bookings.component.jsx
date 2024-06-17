@@ -57,7 +57,7 @@ const BookedSessionsUserToggleBookings = () => {
           </Text>
           <Text>
             to show bookings that are from the current date onwards, tap the
-            blue 'view upcoming bookings' link under the page title.
+            blue 'view future bookings' link under the page title.
           </Text>
         </>
       )}
