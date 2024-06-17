@@ -24,6 +24,7 @@ import useUpdateEmailActions from "./get-actions-and-thunks/update-email-actions
 import useUserBookingToDeleteActions from "./get-actions-and-thunks/user-booking-to-delete-actions-and-thunks/use-user-booking-to-delete-actions";
 import useCurrentUserActions from "./get-actions-and-thunks/current-user-actions-and-thunks/use-current-user-actions";
 import useDatabaseManagementActions from "./get-actions-and-thunks/database-management-actions-and-thunks/use-database-management-actions";
+import useEmergencyContactDetailsActions from "./get-actions-and-thunks/emergency-contact-details-actions-and-thunks/use-emergency-contact-details-actions";
 
 const useResetAllStoreOnSignOut = () => {
   const { dispatchResetAllAddChildInfoState } = useAddChildInfoActions();
@@ -59,6 +60,8 @@ const useResetAllStoreOnSignOut = () => {
   const { dispatchResetWalletFundsToAdd } = useCurrentUserActions();
   const { dispatchResetDatabaseManagementState } =
     useDatabaseManagementActions();
+  const { dispatchResetEmergencyContactDetailsState } =
+    useEmergencyContactDetailsActions();
 
   const resetAllStoreOnSignOut = () => {
     dispatchResetAllAddChildInfoState();
@@ -87,6 +90,7 @@ const useResetAllStoreOnSignOut = () => {
     dispatchResetUserBookingToDeleteState();
     dispatchResetWalletFundsToAdd();
     dispatchResetDatabaseManagementState();
+    dispatchResetEmergencyContactDetailsState();
     localStorage.clear();
   };
 

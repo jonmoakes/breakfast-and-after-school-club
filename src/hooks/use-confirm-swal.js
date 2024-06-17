@@ -7,8 +7,8 @@ import "../styles/confirm.css";
 import {
   customBlack,
   customNavy,
-  customRed,
   customBlue,
+  customTomato,
 } from "../styles/colors";
 import {
   bookedSessionsOwnerAllBookingsRoute,
@@ -39,7 +39,7 @@ const useConfirmSwal = () => {
         icon: "question",
         showCancelButton: true,
         confirmButtonColor: customBlue,
-        cancelButtonColor: customRed,
+        cancelButtonColor: customTomato,
         confirmButtonText: buttonText,
         customClass: "confirm",
         allowOutsideClick: false,
@@ -84,7 +84,7 @@ const useConfirmSwal = () => {
         icon: "question",
         showCancelButton: true,
         confirmButtonColor: customBlue,
-        cancelButtonColor: customRed,
+        cancelButtonColor: customTomato,
         confirmButtonText: buttonText,
         customClass: "confirm",
         allowOutsideClick: false,

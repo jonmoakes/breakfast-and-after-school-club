@@ -3,7 +3,7 @@ import { zoomInLeft } from "react-animations";
 
 import {
   customBlack,
-  customRed,
+  customTomato,
   customBlue,
   customLightGreen,
   customYellow,
@@ -34,7 +34,7 @@ export const BorderLink = styled.span`
 `;
 
 export const RedSpan = styled.span`
-  color: ${customRed};
+  color: ${customTomato};
 
   &.no-format {
     text-transform: none;
@@ -209,7 +209,7 @@ export const LowercasedSpan = styled.span`
   }
 
   &.red {
-    color: ${customRed};
+    color: ${customTomato};
   }
 `;
 
@@ -227,7 +227,7 @@ export const RightMarginSpan = styled.span`
 
 export const UntransformedSpan = styled.span`
   text-transform: none;
-  color: ${customRed};
+  color: ${customTomato};
 `;
 
 export const YellowSpan = styled.span`

@@ -6,7 +6,6 @@ import {
   customBlue,
   customGrey,
   customLightGreen,
-  customRed,
   customTomato,
   customWhite,
   customYellow,
@@ -263,7 +262,7 @@ export const ClearSearchButton = styled.button`
   border-top-right-radius: 5px;
   border-bottom-right-radius: 5px;
   border-left: 1px solid ${customBlack};
-  background-color: ${customRed};
+  background-color: ${customTomato};
   transform: translateX(2px);
   text-transform: capitalize;
   font-family: inherit;
@@ -353,7 +352,7 @@ export const RegistrationXButton = styled.button`
   border-radius: 2px;
   outline: none;
   color: ${customBlack};
-  background-color: ${customRed};
+  background-color: ${customTomato};
   border: 1px solid ${customBlack};
 
   &:hover {

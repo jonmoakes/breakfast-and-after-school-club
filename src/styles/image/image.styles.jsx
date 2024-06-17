@@ -1,7 +1,7 @@
 import styled, { keyframes } from "styled-components";
 import { pulse } from "react-animations";
 
-import { customBlack, customOrange, customRed } from "../colors";
+import { customBlack, customOrange, customTomato } from "../colors";
 
 const PulseAnimation = keyframes`${pulse}`;
 
@@ -62,7 +62,7 @@ export const Icon = styled.img`
     width: 50px;
     height: 50px;
     padding: 10px;
-    background-color: ${customRed};
+    background-color: ${customTomato};
     border: 1px solid ${customBlack};
     border-radius: 5px;
     animation: infinite 1s ${PulseAnimation};

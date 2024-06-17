@@ -18,6 +18,7 @@ import {
   contactRoute,
   pwaInfoRoute,
   customerPortalRoute,
+  manageEmergencyContactsRoute,
 } from "../../../strings/routes/routes-strings";
 
 const useNavigateToRoute = () => {
@@ -113,16 +114,21 @@ const useNavigateToRoute = () => {
     },
     {
       id: 17,
+      text: "emergency contacts",
+      onClick: () => hamburgerHandlerNavigate(manageEmergencyContactsRoute),
+    },
+    {
+      id: 18,
       text: " close account",
       onClick: () => hamburgerHandlerNavigate(closeAccountRoute),
     },
     {
-      id: 18,
+      id: 19,
       text: " contact us",
       onClick: () => hamburgerHandlerNavigate(contactRoute),
     },
     {
-      id: 19,
+      id: 20,
       text: " install app info",
       onClick: () => hamburgerHandlerNavigate(pwaInfoRoute),
     },

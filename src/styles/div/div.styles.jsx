@@ -10,10 +10,10 @@ import {
   customBlack,
   customGrey,
   customOrange,
-  customRed,
   customWhite,
   customYellow,
   customLightGrey,
+  customTomato,
 } from "../colors";
 
 const slideInLeftAnimation = keyframes`${slideInLeft}`;
@@ -218,7 +218,7 @@ export const WarningDiv = styled(ErrorDiv)`
 `;
 
 export const PaymentErrorDiv = styled(WarningDiv)`
-  background-color: ${customRed};
+  background-color: ${customTomato};
 `;
 
 export const CardInputDiv = styled.div`

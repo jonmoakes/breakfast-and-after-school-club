@@ -1,5 +1,5 @@
 import { createGlobalStyle } from "styled-components";
-import { customBlack, customBlue, customRed } from "./styles/colors";
+import { customBlack, customBlue, customTomato } from "./styles/colors";
 
 import BackgroundImage from "./assets/crayons.svg";
 
@@ -47,7 +47,7 @@ export const GlobalStyle = createGlobalStyle`
             text-decoration:none;
 
             &.red {
-                color:${customRed};
+                color:${customTomato};
                 text-transform: "capitalize";
             }
         }  

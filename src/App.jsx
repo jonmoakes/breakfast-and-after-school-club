@@ -64,6 +64,7 @@ import {
   dataProtectionPolicyRoute,
   imageCreditsRoute,
   customerPortalRoute,
+  manageEmergencyContactsRoute,
 } from "./strings/routes/routes-strings";
 
 const Navigation = lazy(() =>
@@ -237,6 +238,12 @@ const DBManageUpdateLatestBookingsAndChildrensParentEmail = lazy(() =>
 
 const CustomerPortal = lazy(() =>
   import("./routes/customer-portal/customer-portal.component")
+);
+
+const ManageEmergencyContacts = lazy(() =>
+  import(
+    "./routes/manage-emergency-contacts/manage-emergency-contacts.component"
+  )
 );
 
 const App = () => {
@@ -439,6 +446,14 @@ const App = () => {
               <Route path={updateEmailRoute} element={<UpdateEmail />} />
               <Route path={updatePasswordRoute} element={<UpdatePassword />} />
               <Route path={closeAccountRoute} element={<CloseAccount />} />
+              <Route
+                path={manageEmergencyContactsRoute}
+                element={
+                  currentUser && currentUser.id !== appOwnerId ? (
+                    <ManageEmergencyContacts />
+                  ) : null
+                }
+              />
               <Route path={pwaInfoRoute} element={<PwaInformation />} />
               <Route path={customerPortalRoute} element={<CustomerPortal />} />
             </Route>

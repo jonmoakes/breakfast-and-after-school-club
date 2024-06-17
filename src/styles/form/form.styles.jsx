@@ -4,11 +4,11 @@ import { bounceInDown } from "react-animations";
 import {
   customBlue,
   customBlack,
-  customRed,
   customWhite,
   customYellow,
   customLightGreen,
   customLightGrey,
+  customTomato,
 } from "../colors";
 
 const bounceInDownAnimation = keyframes`${bounceInDown}`;
@@ -33,11 +33,15 @@ export const Form = styled.form`
     margin: 20px auto 20px auto;
   }
 
+  &.emergency-contacts {
+    margin: 20px auto;
+  }
+
   input {
     accent-color: ${customLightGreen};
 
     &.red {
-      accent-color: ${customRed};
+      accent-color: ${customTomato};
     }
   }
 
@@ -75,7 +79,7 @@ export const StyledInput = styled.input`
   color: ${customBlack};
 
   &:focus {
-    border: 2px solid ${customRed};
+    border: 2px solid ${customTomato};
     box-shadow: 6px 6px 6px ${customBlack};
   }
 
@@ -184,7 +188,7 @@ export const StyledTextArea = styled.textarea`
   }
 
   &:focus {
-    border: 3px solid ${customRed};
+    border: 3px solid ${customTomato};
     box-shadow: 6px 6px 6px ${customBlack};
   }
 
@@ -248,7 +252,7 @@ export const StyledSelect = styled.select`
   text-transform: capitalize;
 
   &:focus {
-    border-color: ${customRed};
+    border-color: ${customTomato};
   }
 
   @media screen and (max-width: 1000px) {
@@ -332,7 +336,7 @@ export const SearchInput = styled.input`
 
   &:focus {
     box-shadow: 4px 4px 4px black;
-    border-color: ${customRed};
+    border-color: ${customTomato};
   }
 
   /* clears the ‘X’ from Internet Explorer */

@@ -241,3 +241,13 @@ export const latestBookingsUpdateEmailFailedErrorMessage = `<span style="font-si
 export const errorSendingCancellationEmailMessage =
   "sorry, there was an error sending the email.";
 export const emailsDontMatchMessage = `<span style="font-size: 20px;">the emails dont match.<br/>please try again.</span>`;
+
+export const errorUploadingEmergencyContactsMessage = (error) => {
+  return `<span style="font-size: 20px;">sorry, there was an error uploading the contact details. please try again.<br/><br/>the error received was:<br/>'<span style="color:yellow";>${error}</span>'.<br/><br/>if the error persists, please contact us.</span>`;
+};
+
+export const couldntFetchContactDetailsMessage = (error) => {
+  return `<span style="font-size: 20px;">sorry, there was an error trying to fetch your emergency contact details.<br/><br/>Even if you haven't uploaded any yet, we still need to check this in order to make changes.<br/><br/>the error received was:<br/>'<span style="color:yellow";>${error}</span>'.<br/><br/>if the error persists, please contact us.</span>`;
+};
+
+export const emergencyContactsDetailsAreTheSameMessage = `<span style="font-size: 20px;">the details haven't changed.<br/>please make a change and then try again.</span>`;

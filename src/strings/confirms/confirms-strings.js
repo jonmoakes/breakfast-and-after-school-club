@@ -160,3 +160,7 @@ export const confirmUpdateRegistrationSignOutMessage = (
         )}</span><br/>out of the session? `
   }</span>`;
 };
+export const confirmUpdateEmergencyContactsMessage =
+  "Are you sure you want to upload these contact details?";
+export const confirmDeleteEmergencyContactsMessage =
+  "Are you sure you want to delete these contact details?";

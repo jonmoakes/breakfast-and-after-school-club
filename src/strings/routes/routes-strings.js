@@ -61,3 +61,4 @@ export const imageCreditsRoute = "/image-credits";
 export const customerPortalRoute = "/customer-portal";
 export const bookedSessionsOwnerAllBookingsRoute = "/all-bookings";
 export const bookedSessionsUserAllBookingsRoute = "/all-your-bookings";
+export const manageEmergencyContactsRoute = "/mangage-emergency-contacts";

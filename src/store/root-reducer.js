@@ -28,6 +28,7 @@ import { chooseNewPasswordReducer } from "./choose-new-password/choose-new-passw
 import { getAllChildrenReducer } from "./get-all-children/get-all-children.slice";
 import { getAllUsersReducer } from "./get-all-users/get-all-users.slice";
 import { databaseManagementReducer } from "./database-management/database-management.slice";
+import { emergencyContactDetailsReducer } from "./emergency-contact-details/emergency-contact-details.slice";
 
 export const rootReducer = combineReducers({
   hamburgerMenu: hamburgerMenuReducer,
@@ -58,4 +59,5 @@ export const rootReducer = combineReducers({
   getAllChildren: getAllChildrenReducer,
   getAllUsers: getAllUsersReducer,
   databaseManagement: databaseManagementReducer,
+  emergencyContactDetails: emergencyContactDetailsReducer,
 });

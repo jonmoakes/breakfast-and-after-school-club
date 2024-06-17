@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { customBlack, customRed, customWhite } from "../colors";
+import { customBlack, customTomato, customWhite } from "../colors";
 
 export const Text = styled.p`
   color: ${customBlack};
@@ -19,7 +19,7 @@ export const WhiteShadowText = styled(Text)`
 `;
 
 export const RedText = styled(Text)`
-  color: ${customRed};
+  color: ${customTomato};
 
   &.underline {
     text-decoration: underline;

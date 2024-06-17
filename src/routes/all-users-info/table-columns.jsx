@@ -20,6 +20,13 @@ export const TABLE_COLUMNS = [
     Cell: ({ value }) => <PhoneNumberCell {...{ value }} />,
   },
   {
+    Header: "emergency contact details",
+    accessor: "emergencyContactDetails",
+    Cell: ({ value }) => {
+      return <>{value ? value : "None provided"}</>;
+    },
+  },
+  {
     Header: "current wallet balance",
     accessor: "walletBalance",
     Cell: ({ value }) => {
@@ -27,6 +34,7 @@ export const TABLE_COLUMNS = [
       return <>{value === null ? "N / A" : `£${amountToFixed}`}</>;
     },
   },
+
   {
     Header: "User Id",
     accessor: "id",

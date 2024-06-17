@@ -27,6 +27,7 @@ import useUpdateEmailActions from "./get-actions-and-thunks/update-email-actions
 import useUserBookingToDeleteActions from "./get-actions-and-thunks/user-booking-to-delete-actions-and-thunks/use-user-booking-to-delete-actions";
 import useCurrentUserActions from "./get-actions-and-thunks/current-user-actions-and-thunks/use-current-user-actions";
 import useDatabaseManagementActions from "./get-actions-and-thunks/database-management-actions-and-thunks/use-database-management-actions";
+import useEmergencyContactDetailsActions from "./get-actions-and-thunks/emergency-contact-details-actions-and-thunks/use-emergency-contact-details-actions";
 
 import {
   addFundsRoute,
@@ -58,6 +59,7 @@ import {
   databaseManagementCancelBookingRoute,
   databaseManagementCreateChildRoute,
   databaseManagementUpdateLatestBookingsAndChildrensParentEmailRoute,
+  manageEmergencyContactsRoute,
 } from "../strings/routes/routes-strings";
 
 const useResetStore = () => {
@@ -106,6 +108,8 @@ const useResetStore = () => {
   const { dispatchResetWalletFundsToAdd } = useCurrentUserActions();
   const { dispatchResetDatabaseManagementState } =
     useDatabaseManagementActions();
+  const { dispatchResetEmergencyContactDetailsState } =
+    useEmergencyContactDetailsActions();
 
   const location = useLocation();
   const path = location.pathname;
@@ -162,7 +166,6 @@ const useResetStore = () => {
         break;
       case childInfoRoute:
         dispatchResetUsersChildrenState();
-
         break;
       case addChildInfoRoute:
         dispatchResetAllAddChildInfoState();
@@ -179,31 +182,25 @@ const useResetStore = () => {
         break;
       case bookedSessionsOwnerRoute:
         dispatchResetBookedSessionsOwnerState();
-
         break;
       case bookedSessionsUserRoute:
         dispatchResetBookedSessionsUserState();
         dispatchResetRequestDateDataState();
-
         break;
       case allChildrenRoute:
         dispatchResetGetAllChildrenState();
-
         break;
       case allUsersRoute:
         dispatchResetGetAllUsersState();
-
         break;
       case databaseManagementViewBookingClosingTimesRoute:
       case databaseManagementViewSessionTimesRoute:
         dispatchResetDatabaseManagementState();
         dispatchResetRequestDateDataState();
-
         break;
       case databaseManagementViewSessionPricesRoute:
         dispatchResetDatabaseManagementState();
         dispatchResetSessionTypesAndPricesState();
-
         break;
       case databaseManagementUpdateUserBalanceRoute:
       case databaseManagementUpdateSessionSpacesRoute:
@@ -218,6 +215,9 @@ const useResetStore = () => {
         dispatchResetDatabaseManagementState();
         dispatchResetBookedSessionsOwnerState();
         dispatchResetSessionTypesAndPricesState();
+        break;
+      case manageEmergencyContactsRoute:
+        dispatchResetEmergencyContactDetailsState();
         break;
       default:
         return;
