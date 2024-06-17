@@ -50,14 +50,20 @@ export const TABLE_COLUMNS = [
       const { phoneNumber, updatedString } = removePhoneNumber(value);
 
       return (
-        <EmergencyDetailsDiv>
-          {phoneNumber ? (
-            <PhoneNumberCell value={phoneNumber} />
+        <>
+          {!value ? (
+            "None Provided"
+          ) : value && phoneNumber ? (
+            <EmergencyDetailsDiv>
+              <>
+                <PhoneNumberCell value={phoneNumber} />
+                <EmergencyDetailsSpan>{updatedString}</EmergencyDetailsSpan>
+              </>
+            </EmergencyDetailsDiv>
           ) : (
-            "None provided"
+            <span>{value}</span>
           )}
-          <EmergencyDetailsSpan>{updatedString}</EmergencyDetailsSpan>
-        </EmergencyDetailsDiv>
+        </>
       );
     },
   },
