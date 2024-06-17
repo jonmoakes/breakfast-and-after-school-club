@@ -1,6 +1,7 @@
 import { format } from "date-fns";
 
 import { getSessionTypeString } from "../../functions/get-session-type-string";
+import { removeStarFromChildrensNamesIfExists } from "../../functions/remove-star-from-childrens-name-if-exists";
 import { formatChildNames } from "../../functions/format-child-names";
 import { customWhite, customIosBlue, customYellow } from "../../styles/colors";
 
@@ -107,22 +108,23 @@ export const bookAnotherSessionQuestion = `<span style="font-size: 20px;">Thank 
 export const confirmAppOwnerViewAllBookingsMessage = `<span style="font-size: 20px;">do you wish to go to the page that will show every booking ever taken?<br/><br/>Depending on the amount of bookings you have, this may take a while to load so please be patient :)</span>`;
 export const confirmNotAppOwnerViewAllBookingsMessage = `<span style="font-size: 20px;">do you wish to go to the page that will show you every booking you have ever made?<br/><br/>this may take a while to load if you have many bookings, so please be patient :)</span>`;
 
-const processChildrenNames = (childrenInBooking) => {
-  const nameIncludesStar = childrenInBooking.includes("*");
-  const nameWithoutStar = childrenInBooking.replace(/\*/g, "");
-  return nameIncludesStar ? nameWithoutStar : childrenInBooking;
-};
+// export const processChildrenNames = (childrenInBooking) => {
+//   const nameIncludesStar = childrenInBooking.includes("*");
+//   const nameWithoutStar = childrenInBooking.replace(/\*/g, "");
+//   return nameIncludesStar ? nameWithoutStar : childrenInBooking;
+// };
 
 export const confirmUpdateRegistrationSignInMessage = (
   hasSignedIn,
   numberOfChildrenInBooking,
   childrenInBooking
 ) => {
-  const namesInSession = processChildrenNames(childrenInBooking);
+  const namesInSession =
+    removeStarFromChildrensNamesIfExists(childrenInBooking);
 
   return `<span style="font-size: 20px;">${
     hasSignedIn && numberOfChildrenInBooking === 1
-      ? `this will revert <br/><span style="color: yellow;">${namesInSession}</span><br/>to not being signed into the session.<br/>please only do this if you made a mistake signing the child in.<br/>to sign a child out, please tap the appropriate button under the 'sign out' header.`
+      ? `this will revert <br/><span style="color: yellow;">${namesInSession}</span><br/>to not being signed into the session.<br/>please only do this if you made a mistake signing the child in.<br/>to sign a child out, please tap the appropriate button under the 'signed out' header.`
       : hasSignedIn && numberOfChildrenInBooking > 1
       ? `this will revert <br/><span style="color: yellow;">${formatChildNames(
           namesInSession
@@ -142,7 +144,8 @@ export const confirmUpdateRegistrationSignOutMessage = (
   numberOfChildrenInBooking,
   childrenInBooking
 ) => {
-  const namesInSession = processChildrenNames(childrenInBooking);
+  const namesInSession =
+    removeStarFromChildrensNamesIfExists(childrenInBooking);
 
   return `<span style="font-size: 20px;">${
     hasSignedOut && numberOfChildrenInBooking === 1

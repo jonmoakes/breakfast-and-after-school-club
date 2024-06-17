@@ -2,6 +2,8 @@ import useDatesLogic from "./use-dates-logic";
 import useGetBookingDataAndSessionTypeToLowercase from "./use-get-booking-data-and-session-type-to-lowercase";
 import useGetChildrenLogic from "./use-get-children-logic";
 
+import { removeStarFromChildrensNamesIfExists } from "../../../../functions/remove-star-from-childrens-name-if-exists";
+
 const useChildSessionAlreadyBooked = () => {
   const { date } = useDatesLogic();
   const {
@@ -19,7 +21,8 @@ const useChildSessionAlreadyBooked = () => {
     return !!userBookingsDatesAndNamesAndSessionType.find(
       (userBooking) =>
         userBooking.date === date &&
-        userBooking.childrensName === childName &&
+        removeStarFromChildrensNamesIfExists(userBooking.childrensName) ===
+          childName &&
         (isMorningSession(userBooking, sessionType) ||
           isAfternoonShortSession(userBooking, sessionType) ||
           isAfternoonLongSession(userBooking, sessionType) ||
@@ -33,7 +36,9 @@ const useChildSessionAlreadyBooked = () => {
     return !!userBookingsDatesAndNamesAndSessionType.find((userBooking) => {
       const sortedNames = [...childrenSelectedForBooking].sort();
 
-      const selectedChildrensNames = sortedNames.join(" ");
+      const selectedChildrensNames = removeStarFromChildrensNamesIfExists(
+        sortedNames.join(" ")
+      );
 
       const userBookingsChildrensNamesAsArray = userBooking.childrensName
         .split(",")
