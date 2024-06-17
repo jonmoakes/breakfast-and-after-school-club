@@ -10,9 +10,9 @@ const IsBookedSessionsOwnerRouteTableHelp = () => (
   <>
     <BlackHr />
 
-    <BlueH2>toggling between current day or upcoming bookings:</BlueH2>
+    <BlueH2>toggling between current day or future bookings:</BlueH2>
     <Text>
-      tap the grey 'show upcoming bookings' or 'show todays bookings' button to
+      tap the grey 'show future bookings' or 'show todays bookings' button to
       toggle between showing every booking from todays date onwards, or just the
       bookings for the current date.
     </Text>

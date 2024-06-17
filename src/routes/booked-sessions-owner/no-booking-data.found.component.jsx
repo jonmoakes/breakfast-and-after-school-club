@@ -22,7 +22,7 @@ const NoBookingDataFound = ({ data }) => {
             tap the button below to show bookings from todays date onwards.
           </Text>
           <GreyButton onClick={showAllBookings}>
-            show upcoming bookings
+            show future bookings
           </GreyButton>
         </ParentDiv>
       ) : null}

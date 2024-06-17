@@ -10,7 +10,7 @@ const BookedSessionsUserTitleAndHelp = () => {
 
   return (
     <ParentDiv>
-      <BlackTitle>upcoming booked sessions</BlackTitle>
+      <BlackTitle>future booked sessions</BlackTitle>
       {data.length ? <TableHelp /> : null}
     </ParentDiv>
   );

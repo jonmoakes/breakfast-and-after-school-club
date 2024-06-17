@@ -12,7 +12,7 @@ const BookedSessionsOwnerTitleAndHelp = () => {
   return (
     <ParentDiv>
       <BlackTitle>
-        {!bookedSessionsOwnerShowAllDates ? "todays " : "upcoming "}booked
+        {!bookedSessionsOwnerShowAllDates ? "todays " : "future "}booked
         sessions
       </BlackTitle>
 
