@@ -5,6 +5,7 @@ import {
   resetBookedSessionsOwnerState,
   setBookedSessionsOwner,
   setBookedSessionsOwnerShowAllDates,
+  resetUpdateRegistrationError,
 } from "../../../store/booked-sessions-owner/booked-sessions-owner.slice";
 
 const useBookedSessionsOwnerActions = () => {
@@ -26,11 +27,16 @@ const useBookedSessionsOwnerActions = () => {
     dispatch(resetBookedSessionsOwnerState());
   };
 
+  const dispatchResetUpdateRegistrationError = () => {
+    dispatch(resetUpdateRegistrationError());
+  };
+
   return {
     dispatchSetBookedSessionsOwner,
     dispatchBookedSessionsOwnerSetShowAllDates,
     dispatchResetBookedSessionsOwnerError,
     dispatchResetBookedSessionsOwnerState,
+    dispatchResetUpdateRegistrationError,
   };
 };
 

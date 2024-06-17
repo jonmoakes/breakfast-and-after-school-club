@@ -80,7 +80,7 @@ export const Menu = styled.div.withConfig({
     width: 100%;
     max-height: ${(props) => (props.showHamburgerMenu ? "700px" : "0px")};
     transition: ${(props) =>
-      props.showHamburgerMenu ? "max-height 1s linear" : "none"};
+      props.showHamburgerMenu ? "max-height 0.5s linear" : "none"};
     overflow: scroll;
     background-color: ${customYellow};
   }
@@ -381,7 +381,7 @@ export const AccordionContent = styled.div`
   padding: 1rem;
   background-color: ${customGrey};
   border-radius: 0px 0px 15px 15px;
-  animation: 1s ${rollInAnimation};
+  animation: 0.5s ${rollInAnimation};
 `;
 
 export const ColumnDiv = styled.div`
@@ -487,7 +487,7 @@ export const TableSearchDiv = styled.div`
   width: 50%;
   position: relative;
   margin: 0px auto -30px auto;
-  animation: 1s ${slideInLeftAnimation};
+  animation: 0.5s ${slideInLeftAnimation};
 
   &.all-users-all-children {
     margin: 0px auto 0px auto;
@@ -527,7 +527,7 @@ export const NoSearchResultDiv = styled.div`
   background-color: ${customWhite};
   padding: 20px;
   border-radius: 15px;
-  animation: 1s ${bounceInDownAnimation};
+  animation: 0.5s ${bounceInDownAnimation};
   border: 2px solid ${customBlack};
 
   &.no-search {
@@ -563,7 +563,7 @@ export const TableCellErrorDiv = styled.div`
   width: 100%;
   height: auto;
   margin: 0 auto;
-  animation: 1s ${rotateInDownRightAnimation};
+  animation: 0.5s ${rotateInDownRightAnimation};
 `;
 
 export const InLineDiv = styled.div`

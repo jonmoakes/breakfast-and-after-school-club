@@ -219,6 +219,7 @@ export const BackButton = styled.button`
 
 export const GreyButton = styled(Button)`
   background-color: ${customGrey};
+  animation: 0.5s ${bounceInDownAnimation};
 
   &.small-text {
     font-size: 16px;

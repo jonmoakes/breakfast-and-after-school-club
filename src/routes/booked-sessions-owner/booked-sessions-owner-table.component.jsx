@@ -21,11 +21,17 @@ import BookingsTableRenderTable from "../../components/tables/bookings-table-ren
 import TableSearchBox from "../../components/tables/table-search-box.component";
 import BookedSessionsOwnerToggleBookingsShownButton from "./booked-sessions-owner-toggle-bookings-show-button.component";
 import TablePagination from "../../components/tables/table-pagination.component";
+import ErrorUpdatingRegistration from "./error-updating-registration.component";
 
 const BookedSessionsOwnerTable = () => {
   useBookedSessionsOwnerListener();
-  const { bookedSessionsOwnerError, data, columns, initialState } =
-    useBookedSessionsOwnerVariables();
+  const {
+    bookedSessionsOwnerError,
+    updateRegistrationError,
+    data,
+    columns,
+    initialState,
+  } = useBookedSessionsOwnerVariables();
   const { isOnline } = useIsOnline();
 
   const {
@@ -82,6 +88,8 @@ const BookedSessionsOwnerTable = () => {
     <>
       {!isOnline ? (
         <NetworkError />
+      ) : updateRegistrationError ? (
+        <ErrorUpdatingRegistration />
       ) : bookedSessionsOwnerError ? (
         <ShowFetchErrors />
       ) : (

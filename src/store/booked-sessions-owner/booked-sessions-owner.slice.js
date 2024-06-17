@@ -2,6 +2,7 @@ import { createSelector, createSlice } from "@reduxjs/toolkit";
 import {
   fetchBookedSessionsOwnerFromTodayOnwardsAsync,
   fetchBookedSessionsOwnerAllBookingsAsync,
+  updateRegistrationStatusAsync,
 } from "./booked-sessions-owner.thunks";
 
 const INITIAL_STATE = {
@@ -9,6 +10,7 @@ const INITIAL_STATE = {
   bookedSessionsOwner: [],
   bookedSessionsOwnerError: null,
   bookedSessionsOwnerShowAllDates: false,
+  updateRegistrationError: null,
 };
 
 const handleAsyncAction = (builder, asyncAction) => {
@@ -41,6 +43,9 @@ export const bookedSessionsOwnerSlice = createSlice({
     resetBookedSessionsOwnerError(state) {
       state.bookedSessionsOwnerError = null;
     },
+    resetUpdateRegistrationError(state) {
+      state.updateRegistrationError = null;
+    },
     resetBookedSessionsOwnerState: () => {
       return INITIAL_STATE;
     },
@@ -51,12 +56,14 @@ export const bookedSessionsOwnerSlice = createSlice({
       (state) => state.bookedSessionsOwner || [],
       (state) => state.bookedSessionsOwnerShowAllDates,
       (state) => state.bookedSessionsOwnerError,
+      (state) => state.updateRegistrationError,
 
       (
         bookedSessionsOwnerIsLoading,
         bookedSessionsOwner,
         bookedSessionsOwnerShowAllDates,
-        bookedSessionsOwnerError
+        bookedSessionsOwnerError,
+        updateRegistrationError
       ) => {
         const formattedOwnerBookings = bookedSessionsOwner.map((booking) => {
           return {
@@ -79,6 +86,7 @@ export const bookedSessionsOwnerSlice = createSlice({
           bookedSessionsOwnerShowAllDates,
           bookedSessionsOwnerError,
           sortedOwnerBookings,
+          updateRegistrationError,
         };
       }
     ),
@@ -86,6 +94,18 @@ export const bookedSessionsOwnerSlice = createSlice({
   extraReducers: (builder) => {
     handleAsyncAction(builder, fetchBookedSessionsOwnerFromTodayOnwardsAsync);
     handleAsyncAction(builder, fetchBookedSessionsOwnerAllBookingsAsync);
+    builder
+      .addCase(updateRegistrationStatusAsync.pending, (state) => {
+        state.bookedSessionsOwnerIsLoading = true;
+      })
+      .addCase(updateRegistrationStatusAsync.fulfilled, (state) => {
+        state.bookedSessionsOwnerIsLoading = false;
+        state.updateRegistrationError = null;
+      })
+      .addCase(updateRegistrationStatusAsync.rejected, (state, action) => {
+        state.bookedSessionsOwnerIsLoading = false;
+        state.updateRegistrationError = action.payload;
+      });
   },
 });
 
@@ -94,6 +114,7 @@ export const {
   resetBookedSessionsOwnerState,
   setBookedSessionsOwnerShowAllDates,
   resetBookedSessionsOwnerError,
+  resetUpdateRegistrationError,
 } = bookedSessionsOwnerSlice.actions;
 
 export const { selectBookedSessionsOwnerSelectors } =

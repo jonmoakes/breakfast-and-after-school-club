@@ -447,7 +447,7 @@ export const OptionsForm = styled.form`
   flex-direction: column;
   align-items: center;
   padding: 20px 0px 20px 0px;
-  animation: 1s ${bounceInDownAnimation};
+  animation: 0.5s ${bounceInDownAnimation};
   border: 2px solid ${customBlack};
 
   @media screen and (max-width: 1366px) {

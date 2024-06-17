@@ -114,22 +114,22 @@ const processChildrenNames = (childrenInBooking) => {
 };
 
 export const confirmUpdateRegistrationSignInMessage = (
-  signedIn,
+  hasSignedIn,
   numberOfChildrenInBooking,
   childrenInBooking
 ) => {
   const namesInSession = processChildrenNames(childrenInBooking);
 
   return `<span style="font-size: 20px;">${
-    signedIn && numberOfChildrenInBooking === 1
+    hasSignedIn && numberOfChildrenInBooking === 1
       ? `this will revert <br/><span style="color: yellow;">${namesInSession}</span><br/>to not being signed into the session.<br/>please only do this if you made a mistake signing the child in.<br/>to sign a child out, please tap the appropriate button under the 'sign out' header.`
-      : signedIn && numberOfChildrenInBooking > 1
+      : hasSignedIn && numberOfChildrenInBooking > 1
       ? `this will revert <br/><span style="color: yellow;">${formatChildNames(
           namesInSession
         )}</span><br/>to not being signed into the session.<br/>please only do this if you made a mistake signing the children in.<br/>to sign the children out, please tap the appropriate button under the 'sign out' header.`
-      : !signedIn && numberOfChildrenInBooking === 1
+      : !hasSignedIn && numberOfChildrenInBooking === 1
       ? `do you wish to sign<br/><span style="color: yellow;">${namesInSession}</span><br/>into the session?`
-      : !signedIn &&
+      : !hasSignedIn &&
         numberOfChildrenInBooking > 1 &&
         `do you wish to sign<br/><span style="color: yellow;">${formatChildNames(
           namesInSession
@@ -138,22 +138,22 @@ export const confirmUpdateRegistrationSignInMessage = (
 };
 
 export const confirmUpdateRegistrationSignOutMessage = (
-  signedOut,
+  hasSignedOut,
   numberOfChildrenInBooking,
   childrenInBooking
 ) => {
   const namesInSession = processChildrenNames(childrenInBooking);
 
   return `<span style="font-size: 20px;">${
-    signedOut && numberOfChildrenInBooking === 1
+    hasSignedOut && numberOfChildrenInBooking === 1
       ? `this will revert <br/><span style="color: yellow;">${namesInSession}</span><br/>to not being signed out of the session.<br/>please only do this if you made a mistake signing the child out.`
-      : signedOut && numberOfChildrenInBooking > 1
+      : hasSignedOut && numberOfChildrenInBooking > 1
       ? `this will revert <br/><span style="color: yellow;">${formatChildNames(
           namesInSession
         )}</span><br/>to not being signed out of the session.<br/>please only do this if you made a mistake signing the children out.`
-      : !signedOut && numberOfChildrenInBooking === 1
+      : !hasSignedOut && numberOfChildrenInBooking === 1
       ? `do you wish to sign<br/><span style="color: yellow;">${namesInSession}</span><br/>out of the session?`
-      : !signedOut &&
+      : !hasSignedOut &&
         numberOfChildrenInBooking > 1 &&
         `do you wish to sign<br/><span style="color: yellow;">${formatChildNames(
           namesInSession

@@ -14,6 +14,7 @@ const useBookedSessionsOwnerVariables = () => {
     bookedSessionsOwnerIsLoading,
     bookedSessionsOwner,
     bookedSessionsOwnerError,
+    updateRegistrationError,
   } = useGetBookedSessionsOwnerSelectors();
   const { currentUser, databaseId, bookedSessionsCollectionId } =
     useGetCurrentUserSelectors();
@@ -67,6 +68,7 @@ const useBookedSessionsOwnerVariables = () => {
     bookedSessionsOwner,
     bookedSessionsOwnerError,
     bookedSessionsOwnerShowAllDates,
+    updateRegistrationError,
   };
 };
 

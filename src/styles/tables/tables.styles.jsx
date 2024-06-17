@@ -31,15 +31,15 @@ export const TableWithStyle = styled.table`
     width: auto;
     color: ${customBlack};
     background-color: ${customYellow};
-    animation: 1s ${fadeInLeftAnimation};
+    animation: 0.5s ${fadeInLeftAnimation};
   }
 
   tr {
     background-color: ${customGrey};
-    animation: 1s ${fadeInRightAnimation};
+    animation: 0.5s ${fadeInRightAnimation};
     &:nth-child(even) {
       background-color: ${customLightGreen};
-      animation: 1s ${fadeInLeftAnimation};
+      animation: 0.5s ${fadeInLeftAnimation};
     }
   }
 

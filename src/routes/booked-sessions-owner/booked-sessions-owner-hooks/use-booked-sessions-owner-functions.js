@@ -1,23 +1,9 @@
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 import useGetBookedSessionsOwnerSelectors from "../../../hooks/get-selectors/use-get-booked-sessions-owner-selectors";
 import useBookedSessionsOwnerActions from "../../../hooks/get-actions-and-thunks/booked-sessions-owner-actions-and-thunks/use-booked-session-owner-actions";
-import useConfirmSwal from "../../../hooks/use-confirm-swal";
 
-import {
-  isInAfteroonHours,
-  isInMorningHours,
-} from "../../../components/tables/sign-in-out-registration/sign-in-out-shared-logic";
-
-import {
-  areYouSureMessage,
-  imSureMessage,
-} from "../../../strings/confirms/confirms-strings";
-import { loseRegistrationChanges } from "../../../strings/infos/infos-strings";
-import {
-  bookedSessionsOwnerRoute,
-  chosenEntryChildDetailsRoute,
-} from "../../../strings/routes/routes-strings";
+import { chosenEntryChildDetailsRoute } from "../../../strings/routes/routes-strings";
 
 const useBookedSessionsOwnerFunctions = (chosenEntry) => {
   const { bookedSessionsOwner, bookedSessionsOwnerShowAllDates } =
@@ -26,11 +12,8 @@ const useBookedSessionsOwnerFunctions = (chosenEntry) => {
     dispatchBookedSessionsOwnerSetShowAllDates,
     dispatchSetBookedSessionsOwner,
   } = useBookedSessionsOwnerActions();
-  const { confirmSwal } = useConfirmSwal();
 
   const navigate = useNavigate();
-  const location = useLocation();
-  const path = location.pathname;
 
   // no bookings at all in database
   const noSessionsBookedYet = () => {
@@ -46,26 +29,9 @@ const useBookedSessionsOwnerFunctions = (chosenEntry) => {
   };
 
   const passChosenEntryAndGoToChosenEntryChildDetailsRoute = () => {
-    const confirmResult = () => {
-      navigate(chosenEntryChildDetailsRoute, {
-        state: { ...{ chosenEntry } },
-      });
-    };
-
-    if (
-      path === bookedSessionsOwnerRoute &&
-      !bookedSessionsOwnerShowAllDates &&
-      (isInMorningHours || isInAfteroonHours)
-    ) {
-      confirmSwal(
-        areYouSureMessage,
-        loseRegistrationChanges,
-        imSureMessage,
-        () => confirmResult()
-      );
-    } else {
-      confirmResult();
-    }
+    navigate(chosenEntryChildDetailsRoute, {
+      state: { ...{ chosenEntry } },
+    });
   };
 
   const noEntryHasBeenSelected = () => {

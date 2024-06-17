@@ -1,6 +1,5 @@
-import { useState } from "react";
-
 import useConfirmSwal from "../../../../../hooks/use-confirm-swal";
+import useUpdateRegistrationStatusThunk from "../../../../../hooks/get-actions-and-thunks/booked-sessions-owner-actions-and-thunks/use-update-registration-status-thunk";
 
 import { confirmUpdateRegistrationSignOutMessage } from "../../../../../strings/confirms/confirms-strings";
 
@@ -12,9 +11,11 @@ import {
 } from "../../sign-in-out-shared-logic";
 
 const useConfirmUpdateRegistrationSignOutStatusAndLogic = (row) => {
-  const [signedOut, setSignedOut] = useState(false);
+  const { updateRegistrationStatusThunk } = useUpdateRegistrationStatusThunk();
   const { confirmSwal } = useConfirmSwal();
 
+  const hasSignedOut = row.original.signedOut;
+  const documentId = row.original.$id;
   const sessionType = row.original.sessionType;
   const childrenInBooking = row.original.childrensName;
   const date = row.original.dateAsDateObjectForSorting;
@@ -26,7 +27,7 @@ const useConfirmUpdateRegistrationSignOutStatusAndLogic = (row) => {
     return isSameDate(date) &&
       sessionType.includes("morning") &&
       isInMorningHours &&
-      !signedOut
+      !hasSignedOut
       ? true
       : false;
   };
@@ -35,7 +36,7 @@ const useConfirmUpdateRegistrationSignOutStatusAndLogic = (row) => {
     return isSameDate(date) &&
       sessionType.includes("morning") &&
       isInMorningHours &&
-      signedOut
+      hasSignedOut
       ? true
       : false;
   };
@@ -44,7 +45,7 @@ const useConfirmUpdateRegistrationSignOutStatusAndLogic = (row) => {
     return isSameDate(date) &&
       sessionType.includes("afternoon") &&
       isInAfteroonHours &&
-      !signedOut
+      !hasSignedOut
       ? true
       : false;
   };
@@ -53,19 +54,21 @@ const useConfirmUpdateRegistrationSignOutStatusAndLogic = (row) => {
     return isSameDate(date) &&
       sessionType.includes("afternoon") &&
       isInAfteroonHours &&
-      signedOut
+      hasSignedOut
       ? true
       : false;
   };
 
   const confirmResult = () => {
-    setSignedOut(!signedOut);
+    const attributeToUpdate = "signedOut";
+    const signInStatus = hasSignedOut ? false : true;
+    updateRegistrationStatusThunk(attributeToUpdate, signInStatus, documentId);
   };
 
   const confirmUpdateRegistrationSignOutStatus = () => {
     confirmSwal(
       confirmUpdateRegistrationSignOutMessage(
-        signedOut,
+        hasSignedOut,
         numberOfChildrenInBooking,
         childrenInBooking
       ),

@@ -205,7 +205,7 @@ export const LowercasedSpan = styled.span`
   }
 
   &.animate {
-    animation: 1s ${zoomInLeftAnimation};
+    animation: 0.5s ${zoomInLeftAnimation};
   }
 
   &.red {
@@ -221,7 +221,7 @@ export const RightMarginSpan = styled.span`
   margin-right: 10px;
 
   &.animate {
-    animation: 1s ${zoomInLeftAnimation};
+    animation: 0.5s ${zoomInLeftAnimation};
   }
 `;
 
