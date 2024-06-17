@@ -571,3 +571,8 @@ export const InLineDiv = styled.div`
   align-items: center;
   justify-content: center;
 `;
+
+export const EmergencyDetailsDiv = styled.div`
+  display: flex;
+  align-items: center;
+`;

@@ -233,3 +233,7 @@ export const UntransformedSpan = styled.span`
 export const YellowSpan = styled.span`
   color: ${customYellow};
 `;
+
+export const EmergencyDetailsSpan = styled.span`
+  margin-left: 10px;
+`;
