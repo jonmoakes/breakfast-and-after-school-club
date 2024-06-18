@@ -9,6 +9,7 @@ import { emailSentMessage } from "../../../../strings/successes/successes-string
 import { databaseManagementRoute } from "../../../../strings/routes/routes-strings";
 import { sendEmailManuallyMessage } from "../../../../strings/infos/infos-strings";
 import { errorSendingCancellationEmailMessage } from "../../../../strings/errors/errors-strings";
+import { removeStarFromChildrensNamesIfExists } from "../../../../functions/remove-star-from-childrens-name-if-exists";
 
 const useSendCancellationConfirmationEmailThunk = () => {
   const { sessionDate, sessionChildren, typeOfSession, emailOfParent } =
@@ -24,7 +25,7 @@ const useSendCancellationConfirmationEmailThunk = () => {
         sessionDate,
         typeOfSession,
         emailOfParent,
-        sessionChildren,
+        sessionChildren: removeStarFromChildrensNamesIfExists(sessionChildren),
       })
     ).then((resultAction) => {
       if (

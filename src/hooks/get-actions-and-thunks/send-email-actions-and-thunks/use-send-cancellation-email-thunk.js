@@ -9,6 +9,7 @@ import { sendEmailBookingCancellationConfirmationAsync } from "../../../store/se
 
 import { bookedSessionsUserRoute } from "../../../strings/routes/routes-strings";
 import { errorSendCancellationConfirmationEmailMessage } from "../../../strings/errors/errors-strings";
+import { removeStarFromChildrensNamesIfExists } from "../../../functions/remove-star-from-childrens-name-if-exists";
 
 const useSendCancellationEmailThunk = () => {
   const { name, email } = useGetCurrentUserSelectors();
@@ -26,7 +27,7 @@ const useSendCancellationEmailThunk = () => {
         name,
         date,
         sessionType,
-        childrensName,
+        childrensName: removeStarFromChildrensNamesIfExists(childrensName),
         sessionPrice,
       })
     ).then((resultAction) => {

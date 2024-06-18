@@ -5,7 +5,7 @@ import { ParentDiv } from "../../styles/div/div.styles";
 import { RedText, Text } from "../../styles/p/p.styles";
 import { RedSpan } from "../../styles/span/span.styles";
 import { BlackHr } from "../../styles/hr/hr.styles";
-
+import { removeStarFromChildrensNamesIfExists } from "../../functions/remove-star-from-childrens-name-if-exists";
 const WalletUpdateInfo = () => {
   const {
     childrensName,
@@ -38,7 +38,9 @@ const WalletUpdateInfo = () => {
             <Text>
               children in booking:
               <br />
-              <RedSpan>{childrensName}</RedSpan>
+              <RedSpan>
+                {removeStarFromChildrensNamesIfExists(childrensName)}
+              </RedSpan>
             </Text>
 
             <BlackHr />
