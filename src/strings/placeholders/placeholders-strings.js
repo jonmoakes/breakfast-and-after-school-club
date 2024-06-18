@@ -6,3 +6,5 @@ export const addFundsPlaceholder = "ie 10.50 for £10.50";
 export const enterYourPasswordPlaceholder = "enter your password";
 export const leaveBlankIfNothingToAdd = "leave blank if nothing to add";
 export const anyOtherInfo = "anything else you need to tell us? Enter it here!";
+export const emergencyContactPlaceholder =
+  "please enter a contact name, a relationship to the child and a phone number.";

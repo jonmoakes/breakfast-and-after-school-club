@@ -12,13 +12,12 @@ const useManageEmergencyContactDetailsThunk = () => {
 
   const dispatch = useDispatch();
 
-  const manageEmergencyContactDetailsThunk = (emergencyContactDetails) => {
-    const attributeToUpdate = "emergencyContactDetails";
+  const manageEmergencyContactDetailsThunk = (attributeToUpdate, details) => {
     const documentId = id;
     dispatch(
       manageEmergencyContactDetailsAsync({
         attributeToUpdate,
-        emergencyContactDetails,
+        details,
         databaseId,
         collectionId,
         documentId,

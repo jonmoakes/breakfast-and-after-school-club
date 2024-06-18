@@ -2,10 +2,9 @@ import { useDispatch } from "react-redux";
 
 import {
   setEmergencyContactDetails,
+  setEmergencyContactDetailsTwo,
   resetEmergencyContactDetailsResult,
   resetEmergencyContactDetailsError,
-  resetRetrievedEmergencyContactDetailsResult,
-  resetRetrievedEmergencyContactDetailsError,
   resetEmergencyContactDetailsState,
 } from "../../../store/emergency-contact-details/emergency-contact-details.slice";
 
@@ -17,16 +16,13 @@ const useEmergencyContactDetailsActions = () => {
     dispatch(setEmergencyContactDetails(value));
   };
 
+  const handleManageEmergencyContactDetailsTwoChange = (event) => {
+    const { value } = event.target;
+    dispatch(setEmergencyContactDetailsTwo(value));
+  };
+
   const dispatchResetEmergencyContactDetailsResult = () => {
     dispatch(resetEmergencyContactDetailsResult());
-  };
-
-  const dispatchResetRetreivedEmergencyContactDetailsError = () => {
-    dispatch(resetRetrievedEmergencyContactDetailsError());
-  };
-
-  const dispatchResetRetreivedEmergencyContactDetailsResult = () => {
-    dispatch(resetRetrievedEmergencyContactDetailsResult());
   };
 
   const dispatchResetEmergencyContactDetailsError = () => {
@@ -39,10 +35,9 @@ const useEmergencyContactDetailsActions = () => {
 
   return {
     handleManageEmergencyContactDetailsChange,
+    handleManageEmergencyContactDetailsTwoChange,
     dispatchResetEmergencyContactDetailsResult,
     dispatchResetEmergencyContactDetailsError,
-    dispatchResetRetreivedEmergencyContactDetailsResult,
-    dispatchResetRetreivedEmergencyContactDetailsError,
     dispatchResetEmergencyContactDetailsState,
   };
 };

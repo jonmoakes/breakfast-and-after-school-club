@@ -20,16 +20,18 @@ const EmergencyContactsTitleLoaderAndIntro = ({
     </ParentDiv>
 
     <ParentDiv>
-      <Text>
-        {retrievedEmergencyContactDetails === ""
-          ? "here, you can add details of someone who we can reach in an emergency, should we not be able to get hold of yourselves."
-          : "you can edit the details of your emergency contacts here."}
-      </Text>
+      {retrievedEmergencyContactDetails === "" ? (
+        <Text>
+          here, you can add details of up to two people who we can reach in an
+          emergency, should we not be able to get hold of yourselves."
+        </Text>
+      ) : (
+        <Text>you can edit the details of your emergency contacts here.</Text>
+      )}
 
       {retrievedEmergencyContactDetails === "" ? (
         <Text>
-          please enter a name, a relationship to the child and their contact
-          details.
+          please enter a name, a relationship to the child and a phone number.
         </Text>
       ) : null}
 
@@ -42,9 +44,14 @@ const EmergencyContactsTitleLoaderAndIntro = ({
       {retrievedEmergencyContactDetails !== "" ? (
         <Text>
           if you want to delete the emergency contact details, scroll to the
-          bottom of the page and tap the 'delete details' button.
+          bottom of the form of the contact you want to delete and tap the
+          appropriate button.
         </Text>
       ) : null}
+
+      <Text>
+        please note, that you can only edit or delete one entry at a time.
+      </Text>
     </ParentDiv>
   </>
 );

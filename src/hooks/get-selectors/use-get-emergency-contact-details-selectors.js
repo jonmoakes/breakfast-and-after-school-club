@@ -6,9 +6,11 @@ const useGetEmergencyContactDetailsSelectors = () => {
   const {
     emergencyContactDetailsIsLoading,
     emergencyContactDetails,
-    emergencyContactDetailsResult,
-    emergencyContactDetailsError,
+    emergencyContactDetailsTwo,
+    manageEmergencyContactDetailsResult,
+    manageEmergencyContactDetailsError,
     retrievedEmergencyContactDetails,
+    retrievedEmergencyContactDetailsTwo,
     retrievedEmergencyContactDetailsResult,
     retrievedEmergencyContactDetailsError,
   } = useSelector(selectEmergencyContactDetailsSelectors);
@@ -16,9 +18,11 @@ const useGetEmergencyContactDetailsSelectors = () => {
   return {
     emergencyContactDetailsIsLoading,
     emergencyContactDetails,
-    emergencyContactDetailsResult,
-    emergencyContactDetailsError,
+    emergencyContactDetailsTwo,
+    manageEmergencyContactDetailsResult,
+    manageEmergencyContactDetailsError,
     retrievedEmergencyContactDetails,
+    retrievedEmergencyContactDetailsTwo,
     retrievedEmergencyContactDetailsResult,
     retrievedEmergencyContactDetailsError,
   };

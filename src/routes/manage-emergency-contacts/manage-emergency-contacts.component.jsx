@@ -5,15 +5,23 @@ import useGetEmergencyContactsDetailsThunkUseEffect from "../../hooks/get-action
 import EmergencyContactsTitleLoaderAndIntro from "./emergency-contacts-title-loader-and-intro.component";
 import EmergencyContactsForm from "./emergency-contacts-form.component";
 import DeleteEmergencyContactsButton from "./delete-emergency-contacts-button.component";
+import EmergencyContactsFormTwo from "./emergency-contacts-form-two.component";
+import DeleteEmergencyContactsTwoButton from "./delete-emergency-contacts-two-button.component";
 
 import { Container } from "../../styles/container/container.styles";
+
+import { ParentDiv } from "../../styles/div/div.styles";
 
 const ManageEmergencyContacts = () => {
   useGetEmergencyContactsDetailsThunkUseEffect();
   useManageEmergencyContactDetailsResult();
-  const { retrievedEmergencyContactDetails, emergencyContactDetailsIsLoading } =
+  const {
+    retrievedEmergencyContactDetails,
+    retrievedEmergencyContactDetailsTwo,
+    emergencyContactDetailsIsLoading,
+  } = useGetEmergencyContactDetailsSelectors();
+  let { emergencyContactDetails, emergencyContactDetailsTwo } =
     useGetEmergencyContactDetailsSelectors();
-  let { emergencyContactDetails } = useGetEmergencyContactDetailsSelectors();
 
   return (
     <Container>
@@ -27,10 +35,23 @@ const ManageEmergencyContacts = () => {
       <EmergencyContactsForm
         {...{ retrievedEmergencyContactDetails, emergencyContactDetails }}
       />
-
       <DeleteEmergencyContactsButton
         {...{ retrievedEmergencyContactDetails }}
       />
+
+      <ParentDiv className="black"></ParentDiv>
+
+      <>
+        <EmergencyContactsFormTwo
+          {...{
+            retrievedEmergencyContactDetailsTwo,
+            emergencyContactDetailsTwo,
+          }}
+        />
+        <DeleteEmergencyContactsTwoButton
+          {...{ retrievedEmergencyContactDetailsTwo }}
+        />
+      </>
     </Container>
   );
 };

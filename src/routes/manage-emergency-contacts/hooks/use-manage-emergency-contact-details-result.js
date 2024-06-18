@@ -11,11 +11,9 @@ import { successMessage } from "../../../strings/successes/successes-strings";
 
 const useManageEmergencyContactDetailsResult = () => {
   const {
-    emergencyContactDetailsResult,
-    emergencyContactDetailsError,
+    manageEmergencyContactDetailsResult,
+    manageEmergencyContactDetailsError,
     retrievedEmergencyContactDetails,
-    retrievedEmergencyContactDetailsResult,
-    retrievedEmergencyContactDetailsError,
   } = useGetEmergencyContactDetailsSelectors();
   const {
     dispatchResetEmergencyContactDetailsResult,
@@ -25,9 +23,13 @@ const useManageEmergencyContactDetailsResult = () => {
   const { hamburgerHandlerNavigate } = useHamburgerHandlerNavigate();
 
   useEffect(() => {
-    if (!emergencyContactDetailsResult && !emergencyContactDetailsError) return;
+    if (
+      !manageEmergencyContactDetailsResult &&
+      !manageEmergencyContactDetailsError
+    )
+      return;
 
-    if (emergencyContactDetailsResult === "fulfilled") {
+    if (manageEmergencyContactDetailsResult === "fulfilled") {
       fireSwal("success", successMessage, "", 0, true, false).then(
         (isConfirmed) => {
           if (isConfirmed) {
@@ -35,10 +37,12 @@ const useManageEmergencyContactDetailsResult = () => {
           }
         }
       );
-    } else if (emergencyContactDetailsResult === "rejected") {
+    } else if (manageEmergencyContactDetailsResult === "rejected") {
       fireSwal(
         "error",
-        errorUploadingEmergencyContactsMessage(emergencyContactDetailsError),
+        errorUploadingEmergencyContactsMessage(
+          manageEmergencyContactDetailsError
+        ),
         "",
         0,
         true,
@@ -51,15 +55,13 @@ const useManageEmergencyContactDetailsResult = () => {
       });
     }
   }, [
-    emergencyContactDetailsError,
-    emergencyContactDetailsResult,
+    manageEmergencyContactDetailsError,
+    manageEmergencyContactDetailsResult,
     fireSwal,
     hamburgerHandlerNavigate,
     dispatchResetEmergencyContactDetailsResult,
     dispatchResetEmergencyContactDetailsError,
     retrievedEmergencyContactDetails,
-    retrievedEmergencyContactDetailsError,
-    retrievedEmergencyContactDetailsResult,
   ]);
 };
 

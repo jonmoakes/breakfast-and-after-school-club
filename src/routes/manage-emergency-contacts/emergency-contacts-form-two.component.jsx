@@ -8,43 +8,43 @@ import { BlueH2 } from "../../styles/h2/h2.styles";
 
 import { emergencyContactPlaceholder } from "../../strings/placeholders/placeholders-strings";
 
-const EmergencyContactsForm = ({
-  retrievedEmergencyContactDetails,
-  emergencyContactDetails,
+const EmergencyContactsFormTwo = ({
+  retrievedEmergencyContactDetailsTwo,
+  emergencyContactDetailsTwo,
 }) => {
-  const { confirmUploadEmergencyContactDetails } =
+  const { confirmUploadEmergencyContactDetailsTwo } =
     useConfirmUploadEmergencyContacts();
-  const { handleManageEmergencyContactDetailsChange } =
+  const { handleManageEmergencyContactDetailsTwoChange } =
     useEmergencyContactDetailsActions();
 
   return (
     <ParentDiv>
-      <BlueH2>emergency contact 1</BlueH2>
+      <BlueH2>emergency contact 2</BlueH2>
       <Form className="emergency-contacts">
-        <Label>emergency contact details:</Label>
+        <Label>second emergency contact details:</Label>
         <StyledTextArea
           type="text"
-          name="emergencyContactDetails"
-          onChange={handleManageEmergencyContactDetailsChange}
+          name="emergencyContactDetailsTwo"
+          onChange={handleManageEmergencyContactDetailsTwoChange}
           defaultValue={
-            retrievedEmergencyContactDetails
-              ? retrievedEmergencyContactDetails
-              : emergencyContactDetails
+            retrievedEmergencyContactDetailsTwo
+              ? retrievedEmergencyContactDetailsTwo
+              : emergencyContactDetailsTwo
           }
           placeholder={emergencyContactPlaceholder}
         />
 
-        {emergencyContactDetails ? (
+        {emergencyContactDetailsTwo ? (
           <YellowGreenButton
             type="button"
             onClick={() =>
-              confirmUploadEmergencyContactDetails(
-                emergencyContactDetails,
-                retrievedEmergencyContactDetails
+              confirmUploadEmergencyContactDetailsTwo(
+                emergencyContactDetailsTwo,
+                retrievedEmergencyContactDetailsTwo
               )
             }
           >
-            {retrievedEmergencyContactDetails === "" ? "upload " : "update "}{" "}
+            {retrievedEmergencyContactDetailsTwo === "" ? "upload " : "update "}{" "}
             details
           </YellowGreenButton>
         ) : null}
@@ -53,4 +53,4 @@ const EmergencyContactsForm = ({
   );
 };
 
-export default EmergencyContactsForm;
+export default EmergencyContactsFormTwo;

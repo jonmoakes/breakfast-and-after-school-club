@@ -4,24 +4,24 @@ import { YellowGreenButton } from "../../styles/buttons/buttons.styles";
 import { ParentDiv } from "../../styles/div/div.styles";
 import { Text } from "../../styles/p/p.styles";
 
-const DeleteEmergencyContactsButton = ({
-  retrievedEmergencyContactDetails,
+const DeleteEmergencyContactsTwoButton = ({
+  retrievedEmergencyContactDetailsTwo,
 }) => {
-  const { confirmDeleteEmergencyContacts } =
+  const { confirmDeleteEmergencyContactsTwo } =
     useConfirmDeleteEmergencyContacts();
 
   return (
     <>
-      {retrievedEmergencyContactDetails !== "" ? (
+      {retrievedEmergencyContactDetailsTwo ? (
         <ParentDiv>
           <Text>
-            want to delete your first emergency contact? tap the button below.
+            want to delete your second emergency contact? tap the button below.
           </Text>
           <YellowGreenButton
             type="button"
-            onClick={confirmDeleteEmergencyContacts}
+            onClick={confirmDeleteEmergencyContactsTwo}
           >
-            delete contact 1
+            delete contact 2
           </YellowGreenButton>
         </ParentDiv>
       ) : null}
@@ -29,4 +29,4 @@ const DeleteEmergencyContactsButton = ({
   );
 };
 
-export default DeleteEmergencyContactsButton;
+export default DeleteEmergencyContactsTwoButton;

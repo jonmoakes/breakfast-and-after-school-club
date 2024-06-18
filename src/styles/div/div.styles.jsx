@@ -112,6 +112,11 @@ export const ParentDiv = styled.div`
   box-shadow: 6px 6px 15px ${customBlack};
   padding: 10px;
 
+  &.black {
+    background: black;
+    box-shadow: none;
+  }
+
   @media screen and (max-width: 1366px) {
     box-shadow: none;
   }
@@ -575,4 +580,5 @@ export const InLineDiv = styled.div`
 export const EmergencyDetailsDiv = styled.div`
   display: flex;
   align-items: center;
+  justify-content: center;
 `;

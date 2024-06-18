@@ -1,7 +1,9 @@
 import useManageEmergencyContactDetailsThunk from "../../../hooks/get-actions-and-thunks/emergency-contact-details-actions-and-thunks/use-manage-emergency-contact-details-thunk";
 import useConfirmSwal from "../../../hooks/use-confirm-swal";
+
 import {
-  confirmDeleteEmergencyContactsMessage,
+  confirmDeleteFirstEmergencyContactsMessage,
+  confirmDeleteSecondEmergencyContactsMessage,
   imSureMessage,
 } from "../../../strings/confirms/confirms-strings";
 
@@ -12,16 +14,35 @@ const useConfirmDeleteEmergencyContacts = () => {
 
   const confirmDeleteEmergencyContacts = () => {
     const confirmResult = () => {
-      const emergencyContactDetails = "";
-      manageEmergencyContactDetailsThunk(emergencyContactDetails);
+      const attributeToUpdate = "emergencyContactDetails";
+      const details = "";
+      manageEmergencyContactDetailsThunk(attributeToUpdate, details);
     };
 
-    confirmSwal(confirmDeleteEmergencyContactsMessage, "", imSureMessage, () =>
-      confirmResult()
+    confirmSwal(
+      confirmDeleteFirstEmergencyContactsMessage,
+      "",
+      imSureMessage,
+      () => confirmResult()
     );
   };
 
-  return { confirmDeleteEmergencyContacts };
+  const confirmDeleteEmergencyContactsTwo = () => {
+    const confirmResult = () => {
+      const attributeToUpdate = "emergencyContactDetailsTwo";
+      const details = "";
+      manageEmergencyContactDetailsThunk(attributeToUpdate, details);
+    };
+
+    confirmSwal(
+      confirmDeleteSecondEmergencyContactsMessage,
+      "",
+      imSureMessage,
+      () => confirmResult()
+    );
+  };
+
+  return { confirmDeleteEmergencyContacts, confirmDeleteEmergencyContactsTwo };
 };
 
 export default useConfirmDeleteEmergencyContacts;

@@ -4,35 +4,6 @@ import {
   manageDatabaseDocument,
 } from "../../utils/appwrite/appwrite-functions";
 
-export const manageEmergencyContactDetailsAsync = createAsyncThunk(
-  "manageEmergencyContactDetails",
-  async (
-    {
-      attributeToUpdate,
-      emergencyContactDetails,
-      databaseId,
-      collectionId,
-      documentId,
-    },
-    thunkAPI
-  ) => {
-    try {
-      const dataToUpdate = {
-        [attributeToUpdate]: emergencyContactDetails,
-      };
-      await manageDatabaseDocument(
-        "update",
-        databaseId,
-        collectionId,
-        documentId,
-        dataToUpdate
-      );
-    } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
-    }
-  }
-);
-
 export const getEmergencyContactDetailsAsync = createAsyncThunk(
   "getEmergencyContactDetails",
   async ({ id, databaseId, collectionId }, thunkAPI) => {
@@ -50,8 +21,33 @@ export const getEmergencyContactDetailsAsync = createAsyncThunk(
       const { documents, total } = getEmergencyContactDetails;
       if (!total) return;
 
-      const { emergencyContactDetails } = documents[0];
-      return emergencyContactDetails;
+      const { emergencyContactDetails, emergencyContactDetailsTwo } =
+        documents[0];
+
+      return { emergencyContactDetails, emergencyContactDetailsTwo };
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
+export const manageEmergencyContactDetailsAsync = createAsyncThunk(
+  "manageEmergencyContactDetails",
+  async (
+    { attributeToUpdate, details, databaseId, collectionId, documentId },
+    thunkAPI
+  ) => {
+    try {
+      const dataToUpdate = {
+        [attributeToUpdate]: details,
+      };
+      await manageDatabaseDocument(
+        "update",
+        databaseId,
+        collectionId,
+        documentId,
+        dataToUpdate
+      );
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }
