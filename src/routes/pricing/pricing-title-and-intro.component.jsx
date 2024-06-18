@@ -1,3 +1,4 @@
+import Balancer from "react-wrap-balancer";
 import { ParentDiv } from "../../styles/div/div.styles";
 import { BlackTitle } from "../../styles/h1/h1.styles";
 import { BlueH2 } from "../../styles/h2/h2.styles";
@@ -31,18 +32,22 @@ const PricingTitleAndIntro = () => (
         <RedSpan>no obligation one month free trial</RedSpan>!
       </Text>
       <Text>
-        please note, the free trial is still subject to payment processing fees
-        that occur for each transaction your user makes - please see info at the
-        bottom of the page for more details.
+        <Balancer>
+          please note, the free trial is still subject to payment processing
+          fees that occur for each transaction your user makes - please see info
+          at the bottom of the page for more details.
+        </Balancer>
       </Text>
     </ParentDiv>
 
     <ParentDiv>
       <BlueH2>pricing plans:</BlueH2>
       <Text>
-        after your one month free trial period, if you'd like to continue using
-        the app, our pricing plans are based on the number of children in your
-        setting, as follows:
+        <Balancer>
+          after your one month free trial period, if you'd like to continue
+          using the app, our pricing plans are based on the number of children
+          in your setting, as follows:
+        </Balancer>
       </Text>
     </ParentDiv>
   </>

@@ -4,19 +4,19 @@ import { BlueH2 } from "../../styles/h2/h2.styles";
 import { BlackHr } from "../../styles/hr/hr.styles";
 import { RedText, Text } from "../../styles/p/p.styles";
 
-const TwoHundredPlusChildren = () => (
+const TwoHundredAndFiftyPlusChildren = () => (
   <ParentDiv>
     <BlackHr />
-    <BlueH2>200 + children:</BlueH2>
+    <BlueH2>250 + children:</BlueH2>
 
     <Text>monthly:</Text>
-    <RedText>£300 per month</RedText>
+    <RedText>£250 per month</RedText>
     <Text>
-      <Balancer>yearly ( 10% discount - saving £360 per year! )</Balancer>
+      <Balancer>yearly ( 10% discount - saving £300 per year! )</Balancer>
     </Text>
-    <RedText>£3240 per year</RedText>
+    <RedText>£2700 per year</RedText>
     <BlackHr />
   </ParentDiv>
 );
 
-export default TwoHundredPlusChildren;
+export default TwoHundredAndFiftyPlusChildren;

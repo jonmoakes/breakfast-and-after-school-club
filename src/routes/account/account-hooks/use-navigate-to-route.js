@@ -73,10 +73,9 @@ const useNavigateToRoute = () => {
       text: "contact",
       onClick: () => hamburgerHandlerNavigate(contactRoute),
     },
-
     {
       id: 10,
-      text: " customer portal",
+      text: "customer portal",
       onClick: () => hamburgerHandlerNavigate(customerPortalRoute),
     },
   ].filter(Boolean); // Remove falsy values (null, undefined) from the array

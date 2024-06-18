@@ -1,3 +1,4 @@
+import Balancer from "react-wrap-balancer";
 import { termsRoute } from "../../strings/routes/routes-strings";
 import { ParentDiv } from "../../styles/div/div.styles";
 import { BlueH2 } from "../../styles/h2/h2.styles";
@@ -26,26 +27,30 @@ const PaymentProcessingFees = () => (
 
     <BlackHr />
     <Text>
-      we hope that you agree, it is a small price to pay for industry leading
-      security and payment processing features, trusted by thousands of
-      companies including huge compaines like:
-      <StyledUnorderedList>
-        <BlueListItem>Amazon</BlueListItem>
-        <BlueListItem>Google</BlueListItem>
-        <BlueListItem>Microsoft</BlueListItem>
-        <BlueListItem>Spotify</BlueListItem>
-        <BlueListItem>Uber</BlueListItem>
-        <BlueListItem>Booking.com</BlueListItem>
-        <BlueListItem>Shopify</BlueListItem>
-      </StyledUnorderedList>
-      and many more!
+      <Balancer>
+        we hope that you agree, it is a small price to pay for industry leading
+        security and payment processing features, trusted by thousands of
+        companies including huge compaines like:
+      </Balancer>
     </Text>
+    <StyledUnorderedList>
+      <BlueListItem>Amazon</BlueListItem>
+      <BlueListItem>Google</BlueListItem>
+      <BlueListItem>Microsoft</BlueListItem>
+      <BlueListItem>Spotify</BlueListItem>
+      <BlueListItem>Uber</BlueListItem>
+      <BlueListItem>Booking.com</BlueListItem>
+      <BlueListItem>Shopify</BlueListItem>
+    </StyledUnorderedList>
+    <Text>and many more!</Text>
     <BlackHr />
     <Text>
-      this payment processing fee is separate to the pricing plan you pay to
-      breakfast and after school club, as during the sign up process we create
-      you your own stripe account, so that you are fully in control of what
-      money is coming into your business!
+      <Balancer>
+        this payment processing fee is separate to the pricing plan you pay to
+        breakfast and after school club, as during the sign up process we create
+        you your own stripe account, so that you are fully in control of what
+        money is coming into your business!
+      </Balancer>
     </Text>
     <Text>
       please note that breakfast and after school club is not responsible for

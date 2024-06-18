@@ -12,7 +12,7 @@ import { Text } from "../../styles/p/p.styles";
 import { contactRoute } from "../../strings/routes/routes-strings";
 
 const CustomerPortal = () => {
-  const portalLink = import.meta.env.VITE_CUSTOMER_PORTAL_LINK_TEST;
+  const portalLink = import.meta.env.VITE_CUSTOMER_PORTAL_LINK;
 
   return (
     <Container>

@@ -1,3 +1,4 @@
+import Balancer from "react-wrap-balancer";
 import { ParentDiv } from "../../styles/div/div.styles";
 import { BlueH2 } from "../../styles/h2/h2.styles";
 import { Text } from "../../styles/p/p.styles";
@@ -14,8 +15,10 @@ const FreeTrial = () => (
       walk away obligation free. Not a single penny required!
     </Text>
     <Text>
-      please note, the free trial still includes payment processing fees for any
-      transaction that your users make.
+      <Balancer>
+        please note, the free trial still includes payment processing fees for
+        any transaction that your users make.
+      </Balancer>
     </Text>
     <Text>
       please see the <RedSpan>payment processing fees</RedSpan> section further
