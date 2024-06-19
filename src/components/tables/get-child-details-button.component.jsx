@@ -26,7 +26,9 @@ const GetChildDetailsButton = ({ chosenEntry }) => {
       ) : moreThanOneEntrySelectedAndShowingAllBookings() ? (
         <UncheckEntriesInfo />
       ) : (
-        moreThanOneEntrySelectedAndShowingTodaysBookings() && null
+        moreThanOneEntrySelectedAndShowingTodaysBookings() && (
+          <UncheckEntriesInfo />
+        )
       )}
     </>
   );
