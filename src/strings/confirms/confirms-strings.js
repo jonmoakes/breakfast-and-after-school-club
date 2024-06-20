@@ -104,15 +104,16 @@ export const confirmCreateUserMessage =
   "are you sure you want to create this user?";
 export const shouldSendEmailMessage = `<span style="font-size: 20px;">do you wish to send an email confirmation of the booking to the user?<br/><br/>tap 'cancel' if you do not wish to send an email.</span>`;
 export const shouldSendCancelledBookingEmailMessage = `<span style="font-size: 20px;">do you wish to send a confirmation email of the cancelled booking to the user?<br/><br/>tap 'cancel' if you do not wish to send an email.</span>`;
-export const bookAnotherSessionQuestion = `<span style="font-size: 20px;">Thank you! your booking was successful!<br/><br/>would you like to book another session?<br/><br/>if not, tap '<span style="color: ${customYellow}">cancel</span>' to return to your bookings page.</span><br/>`;
+
+export const bookingSuccessfulConfirmSendEmailMessage = `<span style="font-size: 20px;">booking successful! do you want to send a confirmation email?<br/><br/>tap '<span style="color: ${customYellow}">cancel</span>' if you do <span style="color: ${customYellow}">NOT</span> wish to be sent an email.</span><br/>`;
+
+export const sendEmailButtonText = "yes, send an email";
+export const bookAnotherSessionQuestion = `<span style="font-size: 20px;">would you like to book another session?<br/><br/>if not, tap '<span style="color: ${customYellow}">cancel</span>' to return to your bookings page.</span><br/>`;
+
+export const emailSentBookAnotherSessionQuestion = `<span style="font-size: 20px;">email sent! do you want to book another session?<br/><br/>tap '<span style="color: ${customYellow}">cancel</span>' to return to your bookings table.</span><br/>`;
+
 export const confirmAppOwnerViewAllBookingsMessage = `<span style="font-size: 20px;">do you wish to go to the page that will show every booking ever taken?<br/><br/>Depending on the amount of bookings you have, this may take a while to load so please be patient :)</span>`;
 export const confirmNotAppOwnerViewAllBookingsMessage = `<span style="font-size: 20px;">do you wish to go to the page that will show you every booking you have ever made?<br/><br/>this may take a while to load if you have many bookings, so please be patient :)</span>`;
-
-// export const processChildrenNames = (childrenInBooking) => {
-//   const nameIncludesStar = childrenInBooking.includes("*");
-//   const nameWithoutStar = childrenInBooking.replace(/\*/g, "");
-//   return nameIncludesStar ? nameWithoutStar : childrenInBooking;
-// };
 
 export const confirmUpdateRegistrationSignInMessage = (
   hasSignedIn,

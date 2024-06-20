@@ -5,7 +5,7 @@ import useReturnLogic from "../logic/use-return-logic";
 import useUpdateBalanceErrorResetSessionDocSwal from "./use-update-balance-error-reset-session-doc-swal";
 import useAddSessionBookingInfoErrorSwal from "./use-add-session-booking-info-error-swal";
 import useUpdateSessionSpacesErrorSwal from "./use-update-session-spaces-error-swal";
-import useSendEmailConfirmation from "../use-send-email-confirmation";
+import useConfirmSessionBookedBookAnotherSession from "./use-confirm-session-booked-book-another-session";
 
 const useGetBookSessionResultSwal = () => {
   const { noActionsFiredYet } = useReturnLogic();
@@ -16,7 +16,8 @@ const useGetBookSessionResultSwal = () => {
     useAddSessionBookingInfoErrorSwal();
   const { updateBalanceResult, updateSessionSpacesResult, addBookingResult } =
     useGetDatabaseManagmentSelectors();
-  const { sendEmailConfirmation } = useSendEmailConfirmation();
+  const { confirmSessionBookedBookAnotherSession } =
+    useConfirmSessionBookedBookAnotherSession();
 
   useEffect(() => {
     if (noActionsFiredYet() || swalConfirmed) return;
@@ -25,7 +26,7 @@ const useGetBookSessionResultSwal = () => {
       updateBalanceResult === "fulfilled" &&
       addBookingResult === "fulfilled"
     ) {
-      sendEmailConfirmation();
+      confirmSessionBookedBookAnotherSession();
     } else if (updateSessionSpacesResult === "rejected") {
       updateSessionSpacesErrorSwal();
     } else if (
@@ -49,7 +50,7 @@ const useGetBookSessionResultSwal = () => {
     updateSessionSpacesErrorSwal,
     updateBalanceErrorResetSessionDocSwal,
     addSessionBookingInfoErrorSwal,
-    sendEmailConfirmation,
+    confirmSessionBookedBookAnotherSession,
   ]);
 };
 
