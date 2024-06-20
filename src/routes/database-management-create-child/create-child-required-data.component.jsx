@@ -34,7 +34,7 @@ const CreateChildRequiredData = () => (
     <BlackHr />
 
     <BlueListItem>
-      <BlackSpan>the childs dietry requirements</BlackSpan>
+      <BlackSpan>the childs dietary requirements</BlackSpan>
     </BlueListItem>
     <BlackHr />
 

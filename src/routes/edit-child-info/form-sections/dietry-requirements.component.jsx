@@ -5,7 +5,7 @@ const DietryRequirements = ({
   dietryRequirements,
 }) => (
   <>
-    <Label>edit dietry requirements:</Label>
+    <Label>edit dietaryrequirements:</Label>
     <StyledTextArea
       className="small-bottom-margin"
       type="text"

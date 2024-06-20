@@ -160,7 +160,7 @@ const AddBookingInstructionsAccordion = () => {
                   </Text>
 
                   <Text>
-                    if the child has dietry requirements / medical info /
+                    if the child has dietary requirements / medical info /
                     additional info, please add a * directly before their name -
                     eg *Joe Bloggs
                   </Text>
@@ -175,7 +175,7 @@ const AddBookingInstructionsAccordion = () => {
                   </Text>
                   <Text>
                     you will see there if anything has been entered into the
-                    medical / dietry / additional info sections.
+                    medical / dietary / additional info sections.
                   </Text>
 
                   <BlackHr />

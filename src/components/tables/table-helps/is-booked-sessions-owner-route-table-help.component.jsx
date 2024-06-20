@@ -47,7 +47,7 @@ const IsBookedSessionsOwnerRouteTableHelp = () => (
 
     <BlueH2>viewing a childs info:</BlueH2>
     <Text>
-      to view the name, age, consents choice, medical info, dietry requirements
+      to view the name, age, consents choice, medical info, dietary requirements
       and additional info of the child / children in the booking, tap the small
       checkbox next to the date of the booking that you wish to view.
     </Text>
@@ -65,7 +65,7 @@ const IsBookedSessionsOwnerRouteTableHelp = () => (
       info button to appear.
     </Text>
     <Text>
-      if a child has information in their medical, dietry or additional info
+      if a child has information in their medical, dietary or additional info
       sections entered in by their parent, a<br />'<RedSpan>*</RedSpan>'
       <br /> will appear next to their name in the table.
     </Text>

@@ -16,7 +16,7 @@ export const TABLE_COLUMNS = [
     accessor: "medicalInfo",
   },
   {
-    Header: "dietry requirements",
+    Header: "dietary requirements",
     accessor: "dietryRequirements",
   },
   {

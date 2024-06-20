@@ -17,7 +17,7 @@ const InformationCollection = () => (
       in the form that adds a child to the database, we collect their childs
       name, age, parental consent choice ( for things like images in school
       newsletters etc - please note that no images are allowed to be uploaded to
-      our app ), dietry information ( nut allergies etc ) and medical info (
+      our app ), dietary information ( nut allergies etc ) and medical info (
       uses an inhaler etc ).
     </Text>
     <Text>

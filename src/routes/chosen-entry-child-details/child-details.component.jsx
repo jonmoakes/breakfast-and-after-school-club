@@ -67,7 +67,7 @@ const ChildDetails = () => {
 
               {dietryRequirements ? (
                 <>
-                  <BlueH2>dietry requirements:</BlueH2>
+                  <BlueH2>dietary requirements:</BlueH2>
                   <Text>{dietryRequirements}</Text>
                   <BlackHr />
                 </>

@@ -101,7 +101,7 @@ const AddChildInfoForm = () => {
           placeholder={leaveBlankIfNothingToAdd}
         />
 
-        <Label>dietry requirements:</Label>
+        <Label>dietary requirements:</Label>
         <StyledTextArea
           className="small-bottom-margin"
           type="text"
