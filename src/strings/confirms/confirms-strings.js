@@ -110,7 +110,7 @@ export const bookingSuccessfulConfirmSendEmailMessage = `<span style="font-size:
 export const sendEmailButtonText = "yes, send an email";
 export const bookAnotherSessionQuestion = `<span style="font-size: 20px;">would you like to book another session?<br/><br/>if not, tap '<span style="color: ${customYellow}">cancel</span>' to return to your bookings page.</span><br/>`;
 
-export const emailSentBookAnotherSessionQuestion = `<span style="font-size: 20px;">email sent! do you want to book another session?<br/><br/>tap '<span style="color: ${customYellow}">cancel</span>' to return to your bookings table.</span><br/>`;
+export const emailSentBookAnotherSessionQuestion = `<span style="font-size: 20px;"><span style="color: ${customYellow}">email sent!</span><br/>do you want to book another session?<br/><br/>tap '<span style="color: ${customYellow}">cancel</span>' to return to your bookings table.</span><br/>`;
 
 export const confirmAppOwnerViewAllBookingsMessage = `<span style="font-size: 20px;">do you wish to go to the page that will show every booking ever taken?<br/><br/>Depending on the amount of bookings you have, this may take a while to load so please be patient :)</span>`;
 export const confirmNotAppOwnerViewAllBookingsMessage = `<span style="font-size: 20px;">do you wish to go to the page that will show you every booking you have ever made?<br/><br/>this may take a while to load if you have many bookings, so please be patient :)</span>`;
