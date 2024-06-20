@@ -8,6 +8,7 @@ const SignUpPhoneNumber = ({ dispatchHandleSignUpFormChange }) => {
         <RedSpan>* </RedSpan>phone:
       </Label>
       <CapitalizedInput
+        onWheel={(e) => e.target.blur()}
         type="number"
         inputMode="numeric"
         name="phoneNumber"

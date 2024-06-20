@@ -35,6 +35,7 @@ const UpdateSessionSpacesForm = () => {
 
       <Label>number of children in the booking:</Label>
       <StyledInput
+        onWheel={(e) => e.target.blur()}
         type="number"
         inputMode="numeric"
         name="numberOfChildrenInBooking"

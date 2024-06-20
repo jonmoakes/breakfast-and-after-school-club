@@ -40,6 +40,7 @@ const CreateUserForm = () => {
 
         <Label>customer phone number:</Label>
         <StyledInput
+          onWheel={(e) => e.target.blur()}
           type="number"
           inputMode="numeric"
           name="parentPhoneNumber"

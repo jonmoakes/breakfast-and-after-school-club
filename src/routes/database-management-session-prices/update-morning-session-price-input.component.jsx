@@ -17,6 +17,7 @@ const UpdateMorningSessionPriceInput = () => {
     <Form>
       <Label>new morning session price:</Label>
       <LowercasedInput
+        onWheel={(e) => e.target.blur()}
         type="number"
         pattern="[0-9]*[.]?[0-9]+"
         inputMode="decimal" // Set input mode to decimal for number pad

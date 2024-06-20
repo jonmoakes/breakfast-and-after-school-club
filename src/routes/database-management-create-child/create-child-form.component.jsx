@@ -54,6 +54,7 @@ const CreateChildForm = () => {
           <RedSpan>* </RedSpan>Child Age:
         </Label>
         <StyledInput
+          onWheel={(e) => e.target.blur()}
           type="number"
           inputMode="numeric"
           name="childAge"

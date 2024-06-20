@@ -75,6 +75,7 @@ const UpdateBookingForm = () => {
 
             <Label>parent phone number:</Label>
             <StyledInput
+              onWheel={(e) => e.target.blur()}
               type="number"
               inputMode="numeric"
               name="parentPhoneNumber"

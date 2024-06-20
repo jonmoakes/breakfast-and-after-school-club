@@ -26,6 +26,7 @@ const UpdateBalanceForm = ({ errorId }) => {
 
       <Label>amount to add:</Label>
       <StyledInput
+        onWheel={(e) => e.target.blur()}
         type="number"
         inputMode="numeric"
         name="sessionPrice"
