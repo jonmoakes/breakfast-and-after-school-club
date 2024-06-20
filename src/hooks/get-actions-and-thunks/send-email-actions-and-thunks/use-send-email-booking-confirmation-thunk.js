@@ -15,7 +15,7 @@ import {
 
 import { createChildrenToAddToBooking } from "../../../functions/create-children-to-add-to-booking";
 
-import { bookAnotherSessionQuestion } from "../../../strings/confirms/confirms-strings";
+import { emailSentBookAnotherSessionQuestion } from "../../../strings/confirms/confirms-strings";
 
 const useSendEmailBookingConfirmationThunk = () => {
   const { name, email } = useGetCurrentUserSelectors();
@@ -55,7 +55,7 @@ const useSendEmailBookingConfirmationThunk = () => {
         };
 
         confirmSwal(
-          bookAnotherSessionQuestion,
+          emailSentBookAnotherSessionQuestion,
           "",
           bookAnotherButtonText,
           confirmResult,
