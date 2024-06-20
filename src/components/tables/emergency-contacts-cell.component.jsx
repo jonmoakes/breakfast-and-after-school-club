@@ -4,6 +4,9 @@ import PhoneNumberCell from "./phone-number-cell.component";
 
 const EmergencyContactsCell = ({ value }) => {
   const removePhoneNumber = (emergencyContactDetails) => {
+    if (!emergencyContactDetails) {
+      return { phoneNumber: null, updatedString: "" };
+    }
     // Define the regex pattern for UK phone numbers
     const phonePattern = /\b0\d{10}\b/;
 
