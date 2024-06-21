@@ -5,8 +5,6 @@ import Intro from "./intro.component";
 import AccountButtonLinks from "./account-button-links.component";
 import Footer from "../../components/footer/footer.component";
 
-import Logo from "../../assets/logo-80x80.webp";
-
 import { Container } from "../../styles/container/container.styles";
 import { ParentDiv } from "../../styles/div/div.styles";
 import { BlackTitle } from "../../styles/h1/h1.styles";
@@ -21,10 +19,9 @@ const Account = () => {
     <Container>
       <ParentDiv>
         <BlackTitle>your account</BlackTitle>
-        <LogoImage
-          src={schoolLogoUrl && schoolLogoUrl !== "none" ? schoolLogoUrl : Logo}
-          alt="logo"
-        />
+        {schoolLogoUrl && schoolLogoUrl !== "none" ? (
+          <LogoImage src={schoolLogoUrl} alt="logo" />
+        ) : null}
       </ParentDiv>
       <Intro />
       <AccountButtonLinks />
