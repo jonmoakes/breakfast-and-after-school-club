@@ -112,8 +112,8 @@ export const bookAnotherSessionQuestion = `<span style="font-size: 20px;">would 
 
 export const emailSentBookAnotherSessionQuestion = `<span style="font-size: 20px;"><span style="color: ${customYellow}">email sent!</span><br/>do you want to book another session?<br/><br/>tap '<span style="color: ${customYellow}">cancel</span>' to return to your bookings table.</span><br/>`;
 
-export const confirmAppOwnerViewAllBookingsMessage = `<span style="font-size: 20px;">do you wish to go to the page that will show every booking ever taken?<br/><br/>Depending on the amount of bookings you have, this may take a while to load so please be patient :)</span>`;
-export const confirmNotAppOwnerViewAllBookingsMessage = `<span style="font-size: 20px;">do you wish to go to the page that will show you every booking you have ever made?<br/><br/>this may take a while to load if you have many bookings, so please be patient :)</span>`;
+export const confirmAppOwnerViewAllBookingsMessage = `<span style="font-size: 20px;">do you wish to go to the page that will show every booking ever taken?<br/>you should only need this page if you want to see past bookings, otherwise choose<br/>'<span style="color:${customYellow};">customer bookings</span>'.<br/><br/>Depending on the amount of bookings you have, this may take a while to load so please be patient :)</span>`;
+export const confirmNotAppOwnerViewAllBookingsMessage = `<span style="font-size: 20px;">do you wish to go to the page that will show you every booking you have ever made?<br/>you should only need this page if you want to see your past bookings.<br/><br/>Depending on the amount of bookings you have, this may take a while to load so please be patient :)</span>`;
 
 export const confirmUpdateRegistrationSignInMessage = (
   hasSignedIn,

@@ -12,7 +12,7 @@ import { Text } from "../../styles/p/p.styles";
 import { contactRoute } from "../../strings/routes/routes-strings";
 
 const CustomerPortal = () => {
-  const portalLink = import.meta.env.VITE_CUSTOMER_PORTAL_LINK;
+  const customerPortalLink = import.meta.env.VITE_CUSTOMER_PORTAL_LINK;
 
   return (
     <Container>
@@ -58,7 +58,7 @@ const CustomerPortal = () => {
       </ParentDiv>
 
       <ParentDiv>
-        <a href={portalLink}>
+        <a href={customerPortalLink}>
           <YellowGreenButton>request portal link</YellowGreenButton>
         </a>
       </ParentDiv>
