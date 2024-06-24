@@ -14,12 +14,14 @@ import ShowFetchErrors from "../../components/errors/show-fetch-errors.component
 import { Container } from "../../styles/container/container.styles";
 import { ParentDiv } from "../../styles/div/div.styles";
 import { BlackTitle } from "../../styles/h1/h1.styles";
+import { StyledLink } from "../../styles/link/link.styles";
+
+import { bookRecurringSessionsRoute } from "../../strings/routes/routes-strings";
 
 const BookASession = () => {
   useSessionSpacesListener();
   useGetUsersChildrenUserBookingsAndSessionPricesThunkUseEffect();
   useGetBookSessionResultSwal();
-
   const { isOnline } = useIsOnline();
   const { errorFetchingData } = useErrorFetchingData();
 
@@ -29,6 +31,10 @@ const BookASession = () => {
 
       <ParentDiv>
         <BlackTitle>book a session</BlackTitle>
+        <p>
+          want to book a specific session for each day of the current month?
+        </p>
+        <StyledLink to={bookRecurringSessionsRoute}>tap here</StyledLink>
       </ParentDiv>
 
       {isOnline ? (

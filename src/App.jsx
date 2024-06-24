@@ -65,6 +65,7 @@ import {
   imageCreditsRoute,
   customerPortalRoute,
   manageEmergencyContactsRoute,
+  bookRecurringSessionsRoute,
 } from "./strings/routes/routes-strings";
 
 const Navigation = lazy(() =>
@@ -142,6 +143,9 @@ const DeleteChildInfo = lazy(() =>
 );
 const BookASession = lazy(() =>
   import("./routes/book-a-session/book-a-session.component")
+);
+const BookRecurringSessions = lazy(() =>
+  import("./routes/book-recurring-sessions/book-recurring-sessions.component")
 );
 const AddFunds = lazy(() => import("./routes/add-funds/add-funds.component"));
 const PaymentResult = lazy(() =>
@@ -422,6 +426,15 @@ const App = () => {
                 element={
                   currentUser && currentUser.id !== appOwnerId ? (
                     <BookedSessionsUser />
+                  ) : null
+                }
+              />
+
+              <Route
+                path={bookRecurringSessionsRoute}
+                element={
+                  currentUser && currentUser.id !== appOwnerId ? (
+                    <BookRecurringSessions />
                   ) : null
                 }
               />

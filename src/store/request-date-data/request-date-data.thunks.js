@@ -114,3 +114,36 @@ export const requestSessionTimesAsync = createAsyncThunk(
     }
   }
 );
+
+export const requestAllDatesForCurrentMonthAsync = createAsyncThunk(
+  "requestAllDatesForCurrentMonth",
+  async (
+    { databaseId, collectionId, monthNumericString, yearNumericString },
+    thunkAPI
+  ) => {
+    try {
+      // for testing
+      monthNumericString = "07";
+
+      const getDatesDocuments = await listDocumentsInACollection(
+        databaseId,
+        collectionId
+      );
+
+      const { documents, total } = getDatesDocuments;
+      if (!total) return;
+
+      const currentMonthDocs = documents.filter((doc) => {
+        const date = new Date(doc.date);
+        const docMonth = (date.getMonth() + 1).toString().padStart(2, "0");
+
+        const docYear = date.getFullYear().toString();
+        return docMonth === monthNumericString && docYear === yearNumericString;
+      });
+
+      return currentMonthDocs;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);

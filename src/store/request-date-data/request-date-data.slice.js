@@ -4,6 +4,7 @@ import {
   requestDateDataAsync,
   requestEarlyFinishDatesAsync,
   requestSessionTimesAsync,
+  requestAllDatesForCurrentMonthAsync,
 } from "./request-date-data.thunks";
 
 const defaultRequestDateData = {
@@ -131,7 +132,26 @@ const requestDateDataSlice = createSlice({
         state.requestDateData.requestDateDataIsLoading = false;
         state.sessionTimes = null;
         state.requestDateData.requestDateDataError = action.payload;
-      });
+      })
+      .addCase(requestAllDatesForCurrentMonthAsync.pending, (state) => {
+        state.requestDateData.requestDateDataIsLoading = true;
+      })
+      .addCase(
+        requestAllDatesForCurrentMonthAsync.fulfilled,
+        (state, action) => {
+          state.requestDateData.requestDateDataIsLoading = false;
+          state.requestDateData.dateData = action.payload;
+          state.requestDateData.requestDateDataError = null;
+        }
+      )
+      .addCase(
+        requestAllDatesForCurrentMonthAsync.rejected,
+        (state, action) => {
+          state.requestDateData.requestDateDataIsLoading = false;
+          state.requestDateData.dateData = null;
+          state.requestDateData.requestDateDataError = action.payload;
+        }
+      );
   },
 });
 
