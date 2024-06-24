@@ -22,6 +22,7 @@ import {
   databaseManagementViewSessionPricesRoute,
   databaseManagementViewSessionTimesRoute,
   databaseManagementCancelBookingRoute,
+  bookRecurringSessionsRoute,
 } from "../../../strings/routes/routes-strings";
 
 const useHandleShowError = () => {
@@ -68,6 +69,7 @@ const useHandleShowError = () => {
   const showTailInfoToUser = () => {
     switch (path) {
       case bookSessionRoute:
+      case bookRecurringSessionsRoute:
         return "book a session";
       case addFundsRoute:
         return "complete a payment";
@@ -90,6 +92,7 @@ const useHandleShowError = () => {
         return "display the session prices from the database";
       case databaseManagementCancelBookingRoute:
         return "cancel a booking";
+
       default:
         return "display the requested data";
     }

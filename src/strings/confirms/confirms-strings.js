@@ -170,3 +170,5 @@ export const confirmDeleteFirstEmergencyContactsMessage =
   "Are you sure you want to delete your first emergency contact details?";
 export const confirmDeleteSecondEmergencyContactsMessage =
   "Are you sure you want to delete your second emergency contact details?";
+export const confirmGoToRecurringBookingsRoute =
+  "Are you sure you move to the book recurring sessions page?";

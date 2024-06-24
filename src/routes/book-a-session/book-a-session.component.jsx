@@ -3,6 +3,7 @@ import useIsOnline from "../../hooks/use-is-online";
 import useSessionSpacesListener from "./book-a-session-hooks/use-session-spaces-listener";
 import useGetUsersChildrenUserBookingsAndSessionPricesThunkUseEffect from "../../hooks/get-actions-and-thunks/book-session-actions-and-thunks/use-get-users-children-user-bookings-and-session-prices-thunk-use-effect";
 import useErrorFetchingData from "./book-a-session-hooks/use-error-fetching-data";
+import useConfirmMoveToRecurringSessionsRoute from "./book-a-session-hooks/swals/use-confirm-move-to-recurring-sessions-route";
 
 import BookSessionLoaders from "./sections/book-session-loaders.component";
 import NetworkError from "../../components/errors/network-error.component";
@@ -14,9 +15,10 @@ import ShowFetchErrors from "../../components/errors/show-fetch-errors.component
 import { Container } from "../../styles/container/container.styles";
 import { ParentDiv } from "../../styles/div/div.styles";
 import { BlackTitle } from "../../styles/h1/h1.styles";
-import { StyledLink } from "../../styles/link/link.styles";
 
 import { bookRecurringSessionsRoute } from "../../strings/routes/routes-strings";
+import { Text } from "../../styles/p/p.styles";
+import { MinimalButton } from "../../styles/buttons/buttons.styles";
 
 const BookASession = () => {
   useSessionSpacesListener();
@@ -24,6 +26,8 @@ const BookASession = () => {
   useGetBookSessionResultSwal();
   const { isOnline } = useIsOnline();
   const { errorFetchingData } = useErrorFetchingData();
+  const { confirmMoveToRecurringSessionsRoute } =
+    useConfirmMoveToRecurringSessionsRoute();
 
   return (
     <Container>
@@ -31,10 +35,16 @@ const BookASession = () => {
 
       <ParentDiv>
         <BlackTitle>book a session</BlackTitle>
-        <p>
-          want to book a specific session for each day of the current month?
-        </p>
-        <StyledLink to={bookRecurringSessionsRoute}>tap here</StyledLink>
+        <Text>
+          if need to book recurring sessions, please tap the button below.
+        </Text>
+
+        <MinimalButton
+          onClick={confirmMoveToRecurringSessionsRoute}
+          to={bookRecurringSessionsRoute}
+        >
+          book recurring sessions
+        </MinimalButton>
       </ParentDiv>
 
       {isOnline ? (

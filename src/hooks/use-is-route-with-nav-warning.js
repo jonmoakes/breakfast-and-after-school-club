@@ -3,6 +3,7 @@ import { useLocation } from "react-router-dom";
 import {
   addChildInfoRoute,
   addFundsRoute,
+  bookRecurringSessionsRoute,
   bookSessionRoute,
   cancelBookingRoute,
 } from "../strings/routes/routes-strings";
@@ -13,6 +14,7 @@ const useIsRouteWithNavWarning = () => {
 
   const isRouteWithNavWarning = () => {
     return path === bookSessionRoute ||
+      path === bookRecurringSessionsRoute ||
       path === addFundsRoute ||
       path === addChildInfoRoute ||
       path === cancelBookingRoute

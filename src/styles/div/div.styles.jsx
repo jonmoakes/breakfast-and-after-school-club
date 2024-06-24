@@ -117,6 +117,10 @@ export const ParentDiv = styled.div`
     box-shadow: none;
   }
 
+  &.bounce {
+    animation: 1.5s ${bounceInDownAnimation};
+  }
+
   @media screen and (max-width: 1366px) {
     box-shadow: none;
   }

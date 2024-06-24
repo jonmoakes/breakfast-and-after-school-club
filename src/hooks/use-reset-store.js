@@ -60,6 +60,7 @@ import {
   databaseManagementCreateChildRoute,
   databaseManagementUpdateLatestBookingsAndChildrensParentEmailRoute,
   manageEmergencyContactsRoute,
+  bookRecurringSessionsRoute,
 } from "../strings/routes/routes-strings";
 
 const useResetStore = () => {
@@ -218,6 +219,9 @@ const useResetStore = () => {
         break;
       case manageEmergencyContactsRoute:
         dispatchResetEmergencyContactDetailsState();
+        break;
+      case bookRecurringSessionsRoute:
+        dispatchResetRequestDateDataState();
         break;
       default:
         return;
