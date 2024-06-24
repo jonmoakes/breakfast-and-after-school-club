@@ -8,7 +8,7 @@ const BookableDatesInfo = ({
 }) => (
   <Text>
     these are the available dates that we have for{" "}
-    <RedSpan>{dayChoice}'s</RedSpan> with the{" "}
+    <RedSpan>{dayChoice}s</RedSpan> with the{" "}
     <RedSpan>{formattedSessionChoiceString()}</RedSpan> session for{" "}
     <RedSpan>{monthAsString}</RedSpan>:
   </Text>

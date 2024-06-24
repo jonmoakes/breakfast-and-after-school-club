@@ -1,6 +1,8 @@
 import useGetShouldShowElementSelectors from "../../hooks/get-selectors/use-get-should-show-element-selectors";
 import useShouldShowElementActions from "../../hooks/get-actions-and-thunks/use-should-show-element-actions";
 
+import WalletBalance from "../../components/wallet-balance/wallet-balance.component";
+
 import {
   Accordion,
   AccordionContent,
@@ -24,6 +26,7 @@ const BookRecurringSessionsTitleAndIntro = ({ monthAsString }) => {
       </ParentDiv>
 
       <ParentDiv>
+        <WalletBalance />
         <Accordion {...{ shouldShowElement }}>
           <>
             <AccordionTitle

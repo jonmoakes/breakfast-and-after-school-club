@@ -22,7 +22,7 @@ const TotalCostOfSessions = ({ calculateCostOfSessionsUserWantsToBook }) => {
           </Text>
           <Text>
             if any spaces have become available, this section will change to
-            show you the available dates that on on your selected day and
+            show you the available dates that are on your selected day and
             session.
           </Text>
           <YellowGreenButton onClick={getCurrentMonthDateDataThunk}>

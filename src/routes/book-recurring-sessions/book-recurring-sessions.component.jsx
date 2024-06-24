@@ -1,33 +1,30 @@
-import useGetCurrentMonthDateDataAndBookingClosingTimesUseEffect from "../../hooks/get-actions-and-thunks/request-date-data-actions-and-thunks/use-get-current-month-date-data-and-booking-closing-times-use-effect";
-
 import useGetSessionTypesAndPricesSelectors from "../../hooks/get-selectors/use-get-session-types-and-prices-selectors";
+import useBookSessionActions from "../../hooks/get-actions-and-thunks/book-session-actions-and-thunks/use-book-session-actions";
+import useGetCurrentMonthDateDataAndConditionallyUsersChildrenUseEffect from "../../hooks/get-actions-and-thunks/request-date-data-actions-and-thunks/use-get-current-month-date-data-and-conditionally-users-children-use-effect";
 import useDayAndSessionChoiceButtons from "./hooks/use-day-and-session-choice-buttons";
 import useRecurringSessionsFunctions from "./hooks/use-recurring-sessions-functions";
 
-import { Container } from "../../styles/container/container.styles";
-import { ParentDiv } from "../../styles/div/div.styles";
-
-import { BlueH2 } from "../../styles/h2/h2.styles";
-
 import Loader from "../../components/loader/loader.component";
 import ShowFetchErrors from "../../components/errors/show-fetch-errors.component";
-import RenderButtonsList from "../../components/render-buttons-list/render-buttons-list.component";
-import DayChoiceInfo from "./day-choice-info.component";
 import BookRecurringSessionsTitleAndIntro from "./book-recurring-sessions-title-and-intro.component";
+import ChildrenCheckbox from "./children-checkbox.component";
+
 import ChooseDay from "./choose-day.component";
 import WalletBalanceTooLow from "./wallet-balance-too-low.component";
 import MorningSessionsToBook from "./morning-sessions-book.component";
 import AfternoonSessionsToBook from "./afternoon-sessions-book.component";
 import AmAndPmSessionsToBook from "./am-and-pm-sessions-to-book.component";
 import TotalCostOfSessions from "./total-cost-of-sessions.component";
-import useGetRequestDateDataSelectors from "../../hooks/get-selectors/use-get-request-date-data-selectors";
-import Balancer from "react-wrap-balancer";
+
+import ChosenDayInfoAndChooseSessionType from "./chosen-day-info-and-choose-session-type.component";
+
+import { Container } from "../../styles/container/container.styles";
+import { Text } from "../../styles/p/p.styles";
 
 const BookRecurringSessions = () => {
-  useGetCurrentMonthDateDataAndBookingClosingTimesUseEffect();
+  useGetCurrentMonthDateDataAndConditionallyUsersChildrenUseEffect();
+  const { handleSetChildrenSelectedForBookingChange } = useBookSessionActions();
 
-  const { requestDateDataIsLoading, requestDateDataError } =
-    useGetRequestDateDataSelectors();
   const {
     sessionTypesAndPrices,
     morningSessionPrice,
@@ -54,6 +51,14 @@ const BookRecurringSessions = () => {
     monthlyMorningDatesAfterCurrentDateWithSessionsAvailable,
     monthlyAfternoonDatesAfterCurrentDateWithSessionsAvailable,
     monthlyMorningAndAfternoonDatesAfterCurrentDateWithSessionsAvailable,
+    showLoaders,
+    requestDateDataError,
+    getUsersChildrenError,
+    noChildrenAddedYet,
+    hasOneChild,
+    hasMoreThanOneChild,
+    usersChildren,
+    atLeastOneChildHasBeenSelected,
   } = useRecurringSessionsFunctions(
     dayChoice,
     sessionChoice,
@@ -64,79 +69,94 @@ const BookRecurringSessions = () => {
     morningAndAfternoonLongSessionPrice
   );
 
+  console.log(monthlyMorningDatesAfterCurrentDateWithSessionsAvailable());
+
   // const date = new Date();
   const monthAsString = "july";
   //  format(date, "MMMM");
 
   return (
     <Container>
-      {requestDateDataIsLoading ? <Loader /> : null}
+      {showLoaders() ? <Loader /> : null}
 
-      {requestDateDataError ? (
+      {requestDateDataError || getUsersChildrenError ? (
         <ShowFetchErrors />
       ) : (
         <>
-          {" "}
           <BookRecurringSessionsTitleAndIntro {...{ monthAsString }} />
-          <ChooseDay {...{ dayChoice, dayChoiceButtons, resetChoices }} />
-          {dayChoice ? (
-            <ParentDiv>
-              <DayChoiceInfo {...{ dayChoice, resetChoices }} />
-              <BlueH2>
-                <Balancer>i want sessions in the:</Balancer>
-              </BlueH2>
-              <RenderButtonsList {...{ buttons: sessionChoiceButtons }} />
-            </ParentDiv>
+
+          {noChildrenAddedYet() ? (
+            <Text>please add your children first</Text>
           ) : null}
-          {calculateCostOfSessionsUserWantsToBook() === null ? null : (
+
+          <ChildrenCheckbox
+            {...{
+              hasOneChild,
+              hasMoreThanOneChild,
+              usersChildren,
+              handleSetChildrenSelectedForBookingChange,
+            }}
+          />
+
+          {hasOneChild() ||
+          (hasMoreThanOneChild() && atLeastOneChildHasBeenSelected()) ? (
             <>
-              <WalletBalanceTooLow
-                {...{
-                  calculateCostOfSessionsUserWantsToBook,
-                  formattedSessionChoiceString,
-                  monthAsString,
-                }}
-              />
-              <MorningSessionsToBook
-                {...{
-                  calculateCostOfSessionsUserWantsToBook,
-                  sessionChoice,
-                  formattedSessionChoiceString,
-                  monthAsString,
-                  monthlyMorningDatesAfterCurrentDateWithSessionsAvailable,
-                  dayChoice,
-                }}
-              />
+              <ChooseDay {...{ dayChoice, dayChoiceButtons, resetChoices }} />
 
-              <AfternoonSessionsToBook
-                {...{
-                  calculateCostOfSessionsUserWantsToBook,
-                  sessionChoice,
-                  formattedSessionChoiceString,
-                  monthAsString,
-                  monthlyAfternoonDatesAfterCurrentDateWithSessionsAvailable,
-                  dayChoice,
-                }}
+              <ChosenDayInfoAndChooseSessionType
+                {...{ dayChoice, resetChoices, sessionChoiceButtons }}
               />
+              {calculateCostOfSessionsUserWantsToBook() === null ? null : (
+                <>
+                  <WalletBalanceTooLow
+                    {...{
+                      calculateCostOfSessionsUserWantsToBook,
+                      formattedSessionChoiceString,
+                      monthAsString,
+                    }}
+                  />
+                  <MorningSessionsToBook
+                    {...{
+                      calculateCostOfSessionsUserWantsToBook,
+                      sessionChoice,
+                      formattedSessionChoiceString,
+                      monthAsString,
+                      monthlyMorningDatesAfterCurrentDateWithSessionsAvailable,
+                      dayChoice,
+                    }}
+                  />
 
-              <AmAndPmSessionsToBook
-                {...{
-                  calculateCostOfSessionsUserWantsToBook,
-                  sessionChoice,
-                  formattedSessionChoiceString,
-                  monthAsString,
-                  monthlyMorningAndAfternoonDatesAfterCurrentDateWithSessionsAvailable,
-                  dayChoice,
-                }}
-              />
+                  <AfternoonSessionsToBook
+                    {...{
+                      calculateCostOfSessionsUserWantsToBook,
+                      sessionChoice,
+                      formattedSessionChoiceString,
+                      monthAsString,
+                      monthlyAfternoonDatesAfterCurrentDateWithSessionsAvailable,
+                      dayChoice,
+                    }}
+                  />
 
-              <TotalCostOfSessions
-                {...{
-                  calculateCostOfSessionsUserWantsToBook,
-                }}
-              />
+                  <AmAndPmSessionsToBook
+                    {...{
+                      calculateCostOfSessionsUserWantsToBook,
+                      sessionChoice,
+                      formattedSessionChoiceString,
+                      monthAsString,
+                      monthlyMorningAndAfternoonDatesAfterCurrentDateWithSessionsAvailable,
+                      dayChoice,
+                    }}
+                  />
+
+                  <TotalCostOfSessions
+                    {...{
+                      calculateCostOfSessionsUserWantsToBook,
+                    }}
+                  />
+                </>
+              )}
             </>
-          )}
+          ) : null}
         </>
       )}
     </Container>

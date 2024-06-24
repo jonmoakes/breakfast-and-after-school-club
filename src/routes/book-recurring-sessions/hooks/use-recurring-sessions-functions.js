@@ -8,6 +8,10 @@ import {
 } from "date-fns";
 
 import useGetRequestDateDataSelectors from "../../../hooks/get-selectors/use-get-request-date-data-selectors";
+import useGetUsersChildrenSelectors from "../../../hooks/get-selectors/use-get-users-children-selectors";
+import useGetChildrenLogic from "../../book-a-session/book-a-session-hooks/logic/use-get-children-logic";
+import useGetDatabaseManagementSelectors from "../../../hooks/get-selectors/use-get-database-management-selectors";
+import useGetSessionTypesAndPricesSelectors from "../../../hooks/get-selectors/use-get-session-types-and-prices-selectors";
 
 const useRecurringSessionsFunctions = (
   dayChoice,
@@ -18,7 +22,22 @@ const useRecurringSessionsFunctions = (
   morningAndAfternoonShortSessionPrice,
   morningAndAfternoonLongSessionPrice
 ) => {
-  const { dateData } = useGetRequestDateDataSelectors();
+  const { dateData, requestDateDataIsLoading, requestDateDataError } =
+    useGetRequestDateDataSelectors();
+  const { getUsersChildrenIsLoading, getUsersChildrenError } =
+    useGetUsersChildrenSelectors();
+  const { sessionTypesAndPricesIsLoading } =
+    useGetSessionTypesAndPricesSelectors();
+  const { databaseManagementIsLoading } = useGetDatabaseManagementSelectors();
+  //can share with normal book session
+  const {
+    noChildrenAddedYet,
+    hasOneChild,
+    hasMoreThanOneChild,
+    atLeastOneChildHasBeenSelected,
+    usersChildren,
+    childrenSelectedLength,
+  } = useGetChildrenLogic();
 
   const chosenDayDateDocuments = Array.isArray(dateData)
     ? dateData.filter((doc) => {
@@ -89,37 +108,70 @@ const useRecurringSessionsFunctions = (
   const calculateCostOfSessionsUserWantsToBook = () => {
     switch (sessionChoice) {
       case "morning":
-        return (
-          morningSessionPrice *
-          monthlyMorningDatesAfterCurrentDateWithSessionsAvailable().length *
-          100
-        );
+        return hasOneChild()
+          ? morningSessionPrice *
+              monthlyMorningDatesAfterCurrentDateWithSessionsAvailable()
+                .length *
+              100
+          : hasMoreThanOneChild() &&
+              childrenSelectedLength &&
+              morningSessionPrice *
+                monthlyMorningDatesAfterCurrentDateWithSessionsAvailable()
+                  .length *
+                100 *
+                childrenSelectedLength;
       case "afternoonShort":
-        return (
-          afternoonShortSessionPrice *
-          monthlyAfternoonDatesAfterCurrentDateWithSessionsAvailable().length *
-          100
-        );
+        return hasOneChild()
+          ? afternoonShortSessionPrice *
+              monthlyAfternoonDatesAfterCurrentDateWithSessionsAvailable()
+                .length *
+              100
+          : hasMoreThanOneChild() &&
+              childrenSelectedLength &&
+              afternoonShortSessionPrice *
+                monthlyAfternoonDatesAfterCurrentDateWithSessionsAvailable()
+                  .length *
+                100 *
+                childrenSelectedLength;
       case "afternoonLong":
-        return (
-          afternoonLongSessionPrice *
-          monthlyAfternoonDatesAfterCurrentDateWithSessionsAvailable().length *
-          100
-        );
+        return hasOneChild()
+          ? afternoonLongSessionPrice *
+              monthlyAfternoonDatesAfterCurrentDateWithSessionsAvailable()
+                .length *
+              100
+          : hasMoreThanOneChild() &&
+              childrenSelectedLength &&
+              afternoonLongSessionPrice *
+                monthlyAfternoonDatesAfterCurrentDateWithSessionsAvailable()
+                  .length *
+                100 *
+                childrenSelectedLength;
       case "morningAndAfternoonShort":
-        return (
-          morningAndAfternoonShortSessionPrice *
-          monthlyMorningAndAfternoonDatesAfterCurrentDateWithSessionsAvailable()
-            .length *
-          100
-        );
+        return hasOneChild()
+          ? morningAndAfternoonShortSessionPrice *
+              monthlyMorningAndAfternoonDatesAfterCurrentDateWithSessionsAvailable()
+                .length *
+              100
+          : hasMoreThanOneChild() &&
+              childrenSelectedLength &&
+              morningAndAfternoonShortSessionPrice *
+                monthlyMorningAndAfternoonDatesAfterCurrentDateWithSessionsAvailable()
+                  .length *
+                100 *
+                childrenSelectedLength;
       case "morningAndAfternoonLong":
-        return (
-          morningAndAfternoonLongSessionPrice *
-          monthlyMorningAndAfternoonDatesAfterCurrentDateWithSessionsAvailable()
-            .length *
-          100
-        );
+        return hasOneChild()
+          ? morningAndAfternoonLongSessionPrice *
+              monthlyMorningAndAfternoonDatesAfterCurrentDateWithSessionsAvailable()
+                .length *
+              100
+          : hasMoreThanOneChild() &&
+              childrenSelectedLength &&
+              morningAndAfternoonLongSessionPrice *
+                monthlyMorningAndAfternoonDatesAfterCurrentDateWithSessionsAvailable()
+                  .length *
+                100 *
+                childrenSelectedLength;
       default:
         return null;
     }
@@ -146,12 +198,29 @@ const useRecurringSessionsFunctions = (
       : sessionChoice;
   };
 
+  const showLoaders = () => {
+    return requestDateDataIsLoading ||
+      getUsersChildrenIsLoading ||
+      sessionTypesAndPricesIsLoading ||
+      databaseManagementIsLoading
+      ? true
+      : false;
+  };
+
   return {
     calculateCostOfSessionsUserWantsToBook,
     formattedSessionChoiceString,
     monthlyMorningDatesAfterCurrentDateWithSessionsAvailable,
     monthlyAfternoonDatesAfterCurrentDateWithSessionsAvailable,
     monthlyMorningAndAfternoonDatesAfterCurrentDateWithSessionsAvailable,
+    showLoaders,
+    requestDateDataError,
+    getUsersChildrenError,
+    noChildrenAddedYet,
+    hasOneChild,
+    hasMoreThanOneChild,
+    usersChildren,
+    atLeastOneChildHasBeenSelected,
   };
 };
 
