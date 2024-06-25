@@ -7,43 +7,64 @@ import {
   isWednesday,
 } from "date-fns";
 
-import useGetRequestDateDataSelectors from "../../../hooks/get-selectors/use-get-request-date-data-selectors";
-import useGetUsersChildrenSelectors from "../../../hooks/get-selectors/use-get-users-children-selectors";
+import useBookRecurringSessionsActions from "../../../hooks/get-actions-and-thunks/book-recurring-sessions-actions-thunks/use-book-recurring-sessions-actions";
+import useRequestSessionPricesThunk from "../../../hooks/get-actions-and-thunks/session-types-and-prices-actions-and-thunks/use-request-session-prices-thunk";
+import useBookRecurringSessionsVariables from "./use-book-recurring-sessions-variables";
 import useGetChildrenLogic from "../../book-a-session/book-a-session-hooks/logic/use-get-children-logic";
-import useGetDatabaseManagementSelectors from "../../../hooks/get-selectors/use-get-database-management-selectors";
-import useGetSessionTypesAndPricesSelectors from "../../../hooks/get-selectors/use-get-session-types-and-prices-selectors";
-import useGetBookRecurringSessionsSelectors from "../../../hooks/get-selectors/use-get-book-recurring-sessions-selectors";
 
-const useRecurringSessionsFunctions = (
-  dayChoice,
-  sessionChoice,
-  morningSessionPrice,
-  afternoonShortSessionPrice,
-  afternoonLongSessionPrice,
-  morningAndAfternoonShortSessionPrice,
-  morningAndAfternoonLongSessionPrice
-) => {
-  const { dateData, requestDateDataIsLoading, requestDateDataError } =
-    useGetRequestDateDataSelectors();
-  const { getUsersChildrenIsLoading, getUsersChildrenError } =
-    useGetUsersChildrenSelectors();
-  const { sessionTypesAndPricesIsLoading } =
-    useGetSessionTypesAndPricesSelectors();
-  const { databaseManagementIsLoading } = useGetDatabaseManagementSelectors();
-  const { bookRecurringSessionsIsLoading } =
-    useGetBookRecurringSessionsSelectors();
-  //can share with normal book session
+const useRecurringSessionsFunctions = () => {
+  const {
+    sessionTypesAndPrices,
+    dateData,
+    dayChoice,
+    sessionChoice,
+    morningSessionPrice,
+    afternoonShortSessionPrice,
+    afternoonLongSessionPrice,
+    morningAndAfternoonShortSessionPrice,
+    morningAndAfternoonLongSessionPrice,
+    childrenSelectedLength,
+    requestDateDataIsLoading,
+    getUsersChildrenIsLoading,
+    sessionTypesAndPricesIsLoading,
+    databaseManagementIsLoading,
+    bookRecurringSessionsIsLoading,
+  } = useBookRecurringSessionsVariables();
   const {
     noChildrenAddedYet,
     hasOneChild,
     hasMoreThanOneChild,
     atLeastOneChildHasBeenSelected,
-    usersChildren,
-    childrenSelectedLength,
-    numberOfChildrenInBooking,
   } = useGetChildrenLogic();
+  const { requestSessionPricesThunk } = useRequestSessionPricesThunk();
+  const { dispatchSetDayChoice, dispatchSetSessionChoice } =
+    useBookRecurringSessionsActions();
 
-  const chosenDayDateDocuments = Array.isArray(dateData)
+  const showLoaders = () => {
+    return requestDateDataIsLoading ||
+      getUsersChildrenIsLoading ||
+      sessionTypesAndPricesIsLoading ||
+      databaseManagementIsLoading ||
+      bookRecurringSessionsIsLoading
+      ? true
+      : false;
+  };
+
+  const resetDayAndSessionChoices = () => {
+    dispatchSetDayChoice("");
+    dispatchSetSessionChoice("");
+  };
+
+  const setChoiceAndGetSessionTypesAndPrices = (choice) => {
+    if (!Object.keys(sessionTypesAndPrices).length) {
+      dispatchSetDayChoice(choice);
+      requestSessionPricesThunk();
+    } else {
+      dispatchSetDayChoice(choice);
+    }
+  };
+
+  const documentsMatchingDayChoice = Array.isArray(dateData)
     ? dateData.filter((doc) => {
         const date = new Date(doc.date);
         switch (dayChoice) {
@@ -58,14 +79,14 @@ const useRecurringSessionsFunctions = (
           case "friday":
             return isFriday(date);
           default:
-            return false;
+            return "";
         }
       })
     : [];
 
-  const monthlyMorningDatesAfterCurrentDateWithSessionsAvailable = () => {
-    const filteredMorningSessionDocuments = chosenDayDateDocuments
-      ? chosenDayDateDocuments.filter((doc) => {
+  const morningDatesList = () => {
+    const filteredMorningSessionDocuments = documentsMatchingDayChoice
+      ? documentsMatchingDayChoice.filter((doc) => {
           const currentDate = new Date("2024-07-01");
           const docDateObject = new Date(doc.date);
           docDateObject.setHours(0, 0, 0, 0);
@@ -77,9 +98,9 @@ const useRecurringSessionsFunctions = (
     return filteredMorningSessionDocuments;
   };
 
-  const monthlyAfternoonDatesAfterCurrentDateWithSessionsAvailable = () => {
-    const filteredAfternoonSessionDocuments = chosenDayDateDocuments
-      ? chosenDayDateDocuments.filter((doc) => {
+  const afternoonDatesList = () => {
+    const filteredAfternoonSessionDocuments = documentsMatchingDayChoice
+      ? documentsMatchingDayChoice.filter((doc) => {
           const currentDate = new Date("2024-07-01");
           const docDateObject = new Date(doc.date);
           docDateObject.setHours(0, 0, 0, 0);
@@ -92,10 +113,10 @@ const useRecurringSessionsFunctions = (
     return filteredAfternoonSessionDocuments;
   };
 
-  const monthlyMorningAndAfternoonDatesAfterCurrentDateWithSessionsAvailable =
-    () => {
-      const filteredMorningAndAfternoonSessionDocuments = chosenDayDateDocuments
-        ? chosenDayDateDocuments.filter((doc) => {
+  const morningAndAfternoonDatesList = () => {
+    const filteredMorningAndAfternoonSessionDocuments =
+      documentsMatchingDayChoice
+        ? documentsMatchingDayChoice.filter((doc) => {
             const currentDate = new Date("2024-07-01");
             const docDateObject = new Date(doc.date);
             docDateObject.setHours(0, 0, 0, 0);
@@ -106,74 +127,58 @@ const useRecurringSessionsFunctions = (
             );
           })
         : [];
-      return filteredMorningAndAfternoonSessionDocuments;
-    };
+    return filteredMorningAndAfternoonSessionDocuments;
+  };
 
-  const calculateCostOfSessionsUserWantsToBook = () => {
+  const totalCost = () => {
     switch (sessionChoice) {
       case "morning":
         return hasOneChild()
-          ? morningSessionPrice *
-              monthlyMorningDatesAfterCurrentDateWithSessionsAvailable()
-                .length *
-              100
+          ? morningSessionPrice * morningDatesList().length * 100
           : hasMoreThanOneChild() &&
               childrenSelectedLength &&
               morningSessionPrice *
-                monthlyMorningDatesAfterCurrentDateWithSessionsAvailable()
-                  .length *
+                morningDatesList().length *
                 100 *
                 childrenSelectedLength;
       case "afternoonShort":
         return hasOneChild()
-          ? afternoonShortSessionPrice *
-              monthlyAfternoonDatesAfterCurrentDateWithSessionsAvailable()
-                .length *
-              100
+          ? afternoonShortSessionPrice * afternoonDatesList().length * 100
           : hasMoreThanOneChild() &&
               childrenSelectedLength &&
               afternoonShortSessionPrice *
-                monthlyAfternoonDatesAfterCurrentDateWithSessionsAvailable()
-                  .length *
+                afternoonDatesList().length *
                 100 *
                 childrenSelectedLength;
       case "afternoonLong":
         return hasOneChild()
-          ? afternoonLongSessionPrice *
-              monthlyAfternoonDatesAfterCurrentDateWithSessionsAvailable()
-                .length *
-              100
+          ? afternoonLongSessionPrice * afternoonDatesList().length * 100
           : hasMoreThanOneChild() &&
               childrenSelectedLength &&
               afternoonLongSessionPrice *
-                monthlyAfternoonDatesAfterCurrentDateWithSessionsAvailable()
-                  .length *
+                afternoonDatesList().length *
                 100 *
                 childrenSelectedLength;
       case "morningAndAfternoonShort":
         return hasOneChild()
           ? morningAndAfternoonShortSessionPrice *
-              monthlyMorningAndAfternoonDatesAfterCurrentDateWithSessionsAvailable()
-                .length *
+              morningAndAfternoonDatesList().length *
               100
           : hasMoreThanOneChild() &&
               childrenSelectedLength &&
               morningAndAfternoonShortSessionPrice *
-                monthlyMorningAndAfternoonDatesAfterCurrentDateWithSessionsAvailable()
-                  .length *
+                morningAndAfternoonDatesList().length *
                 100 *
                 childrenSelectedLength;
       case "morningAndAfternoonLong":
         return hasOneChild()
           ? morningAndAfternoonLongSessionPrice *
-              monthlyMorningAndAfternoonDatesAfterCurrentDateWithSessionsAvailable()
-                .length *
+              morningAndAfternoonDatesList().length *
               100
           : hasMoreThanOneChild() &&
               childrenSelectedLength &&
               morningAndAfternoonLongSessionPrice *
-                monthlyMorningAndAfternoonDatesAfterCurrentDateWithSessionsAvailable()
-                  .length *
+                morningAndAfternoonDatesList().length *
                 100 *
                 childrenSelectedLength;
       default:
@@ -202,42 +207,37 @@ const useRecurringSessionsFunctions = (
       : sessionChoice;
   };
 
-  const showLoaders = () => {
-    return requestDateDataIsLoading ||
-      getUsersChildrenIsLoading ||
-      sessionTypesAndPricesIsLoading ||
-      databaseManagementIsLoading ||
-      bookRecurringSessionsIsLoading
-      ? true
-      : false;
-  };
-
   const bookingData =
     sessionChoice === "morning"
-      ? monthlyMorningDatesAfterCurrentDateWithSessionsAvailable()
+      ? morningDatesList()
       : sessionChoice === "afternoonShort" || sessionChoice === "afternoonLong"
-      ? monthlyAfternoonDatesAfterCurrentDateWithSessionsAvailable()
+      ? afternoonDatesList()
       : sessionChoice === "morningAndAfternoonShort" ||
         sessionChoice === "morningAndAfternoonLong"
-      ? monthlyMorningAndAfternoonDatesAfterCurrentDateWithSessionsAvailable()
+      ? morningAndAfternoonDatesList()
       : null;
 
+  const hasOneChildOrHasMoreThanOneChildAndAtLeastOneHasBeenSelected = () => {
+    return (
+      hasOneChild() ||
+      (hasMoreThanOneChild() && atLeastOneChildHasBeenSelected() && true)
+    );
+  };
+
   return {
-    calculateCostOfSessionsUserWantsToBook,
-    formattedSessionChoiceString,
-    monthlyMorningDatesAfterCurrentDateWithSessionsAvailable,
-    monthlyAfternoonDatesAfterCurrentDateWithSessionsAvailable,
-    monthlyMorningAndAfternoonDatesAfterCurrentDateWithSessionsAvailable,
     showLoaders,
-    requestDateDataError,
-    getUsersChildrenError,
+    resetDayAndSessionChoices,
+    setChoiceAndGetSessionTypesAndPrices,
+    totalCost,
+    formattedSessionChoiceString,
+    bookingData,
     noChildrenAddedYet,
+    hasOneChildOrHasMoreThanOneChildAndAtLeastOneHasBeenSelected,
+    morningDatesList,
+    afternoonDatesList,
+    morningAndAfternoonDatesList,
     hasOneChild,
     hasMoreThanOneChild,
-    usersChildren,
-    atLeastOneChildHasBeenSelected,
-    numberOfChildrenInBooking,
-    bookingData,
   };
 };
 

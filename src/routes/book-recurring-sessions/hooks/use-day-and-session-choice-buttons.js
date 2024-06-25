@@ -1,29 +1,12 @@
-import { useState } from "react";
+import useBookRecurringSessionsActions from "../../../hooks/get-actions-and-thunks/book-recurring-sessions-actions-thunks/use-book-recurring-sessions-actions";
+import useBookRecurringSessionsVariables from "./use-book-recurring-sessions-variables";
+import useRecurringSessionsFunctions from "./use-recurring-sessions-functions";
 
-import useRequestSessionPricesThunk from "../../../hooks/get-actions-and-thunks/session-types-and-prices-actions-and-thunks/use-request-session-prices-thunk";
-
-const useDayAndSessionChoiceButtons = (
-  sessionTypesAndPrices,
-  afternoonShortSessionPrice
-) => {
-  const { requestSessionPricesThunk } = useRequestSessionPricesThunk();
-
-  const [dayChoice, setDayChoice] = useState("");
-  const [sessionChoice, setSessionChoice] = useState("");
-
-  const resetChoices = () => {
-    setDayChoice("");
-    setSessionChoice("");
-  };
-
-  const setChoiceAndGetSessionTypesAndPrices = (choice) => {
-    if (!Object.keys(sessionTypesAndPrices).length) {
-      setDayChoice(choice);
-      requestSessionPricesThunk();
-    } else {
-      setDayChoice(choice);
-    }
-  };
+const useDayAndSessionChoiceButtons = () => {
+  const { afternoonShortSessionPrice } = useBookRecurringSessionsVariables();
+  const { setChoiceAndGetSessionTypesAndPrices } =
+    useRecurringSessionsFunctions();
+  const { dispatchSetSessionChoice } = useBookRecurringSessionsActions();
 
   const dayChoiceButtons = [
     {
@@ -63,14 +46,14 @@ const useDayAndSessionChoiceButtons = (
       id: 6,
       heading: "",
       text: "morning",
-      onClick: () => setSessionChoice("morning"),
+      onClick: () => dispatchSetSessionChoice("morning"),
     },
     {
       id: 7,
       heading: "",
       text: afternoonShortSessionPrice ? "afternoon Short" : "afternoon",
       onClick: () =>
-        setSessionChoice(
+        dispatchSetSessionChoice(
           afternoonShortSessionPrice ? "afternoonShort" : "afternoonLong"
         ),
     },
@@ -81,19 +64,19 @@ const useDayAndSessionChoiceButtons = (
             id: 8,
             heading: "",
             text: "afternoon Long",
-            onClick: () => setSessionChoice("afternoonLong"),
+            onClick: () => dispatchSetSessionChoice("afternoonLong"),
           },
           {
             id: 9,
             heading: "",
             text: "AM & PM short",
-            onClick: () => setSessionChoice("morningAndAfternoonShort"),
+            onClick: () => dispatchSetSessionChoice("morningAndAfternoonShort"),
           },
           {
             id: 10,
             heading: "",
             text: "AM & PM Long",
-            onClick: () => setSessionChoice("morningAndAfternoonLong"),
+            onClick: () => dispatchSetSessionChoice("morningAndAfternoonLong"),
           },
         ]
       : [
@@ -101,17 +84,14 @@ const useDayAndSessionChoiceButtons = (
             id: 11,
             heading: "",
             text: "AM & PM",
-            onClick: () => setSessionChoice("morningAndAfternoonLong"),
+            onClick: () => dispatchSetSessionChoice("morningAndAfternoonLong"),
           },
         ]),
   ].filter((button) => button); // Filter out any null buttons
 
   return {
-    dayChoice,
-    sessionChoice,
     dayChoiceButtons,
     sessionChoiceButtons,
-    resetChoices,
   };
 };
 

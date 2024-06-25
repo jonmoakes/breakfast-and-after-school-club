@@ -6,6 +6,8 @@ import {
 
 const INITIAL_STATE = {
   bookRecurringSessionsIsLoading: false,
+  dayChoice: "",
+  sessionChoice: "",
   updateSessionSpacesResult: "",
   updateSessionSpacesError: null,
   addRecurringBookingsResult: "",
@@ -16,6 +18,12 @@ export const bookRecurringSessionsSlice = createSlice({
   name: "bookRecurringSessions",
   initialState: INITIAL_STATE,
   reducers: {
+    setDayChoice(state, action) {
+      state.dayChoice = action.payload;
+    },
+    setSessionChoice(state, action) {
+      state.sessionChoice = action.payload;
+    },
     resetUpdateSessionSpacesResult(state) {
       state.updateSessionSpacesResult = "";
     },
@@ -35,12 +43,16 @@ export const bookRecurringSessionsSlice = createSlice({
   selectors: {
     selectBookRecurringSessionsSelectors: createSelector(
       (state) => state.bookRecurringSessionsIsLoading,
+      (state) => state.dayChoice,
+      (state) => state.sessionChoice,
       (state) => state.updateSessionSpacesResult,
       (state) => state.updateSessionSpacesError,
       (state) => state.addRecurringBookingsResult,
       (state) => state.addRecurringBookingsError,
       (
         bookRecurringSessionsIsLoading,
+        dayChoice,
+        sessionChoice,
         updateSessionSpacesResult,
         updateSessionSpacesError,
         addRecurringBookingsResult,
@@ -48,6 +60,8 @@ export const bookRecurringSessionsSlice = createSlice({
       ) => {
         return {
           bookRecurringSessionsIsLoading,
+          dayChoice,
+          sessionChoice,
           updateSessionSpacesResult,
           updateSessionSpacesError,
           addRecurringBookingsResult,
@@ -94,6 +108,8 @@ export const bookRecurringSessionsSlice = createSlice({
 });
 
 export const {
+  setDayChoice,
+  setSessionChoice,
   resetUpdateSessionSpacesResult,
   resetUpdateSessionSpacesError,
   resetAddRecurringBookingsResult,

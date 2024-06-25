@@ -1,20 +1,22 @@
-import useGetShouldShowElementSelectors from "../../hooks/get-selectors/use-get-should-show-element-selectors";
-import useShouldShowElementActions from "../../hooks/get-actions-and-thunks/use-should-show-element-actions";
+import useGetShouldShowElementSelectors from "../../../hooks/get-selectors/use-get-should-show-element-selectors";
+import useShouldShowElementActions from "../../../hooks/get-actions-and-thunks/use-should-show-element-actions";
+import useBookRecurringSessionsVariables from "../hooks/use-book-recurring-sessions-variables";
 
-import WalletBalance from "../../components/wallet-balance/wallet-balance.component";
+import WalletBalance from "../../../components/wallet-balance/wallet-balance.component";
 
 import {
   Accordion,
   AccordionContent,
   AccordionTitle,
-} from "../../styles/div/div.styles";
-import { Text } from "../../styles/p/p.styles";
-import { RedSpan } from "../../styles/span/span.styles";
-import { YellowGreenButton } from "../../styles/buttons/buttons.styles";
-import { ParentDiv } from "../../styles/div/div.styles";
-import { BlackTitle } from "../../styles/h1/h1.styles";
+} from "../../../styles/div/div.styles";
+import { Text } from "../../../styles/p/p.styles";
+import { RedSpan } from "../../../styles/span/span.styles";
+import { YellowGreenButton } from "../../../styles/buttons/buttons.styles";
+import { ParentDiv } from "../../../styles/div/div.styles";
+import { BlackTitle } from "../../../styles/h1/h1.styles";
 
-const BookRecurringSessionsTitleAndIntro = ({ monthAsString }) => {
+const BookRecurringSessionsTitleAndIntro = () => {
+  const { monthAsString } = useBookRecurringSessionsVariables();
   const { shouldShowElement } = useGetShouldShowElementSelectors();
   const { dispatchShowOppositeShowElement, dispatchHideShownElement } =
     useShouldShowElementActions();
@@ -48,7 +50,7 @@ const BookRecurringSessionsTitleAndIntro = ({ monthAsString }) => {
                 <Text>
                   for example, if you want every monday and thursday in the
                   morning session, choose the 'monday' button and then tap the
-                  'morning' button{" "}
+                  'morning' button.
                 </Text>
                 <Text>
                   once you have seen what dates we have spaces available on and

@@ -16,26 +16,25 @@ import { bookSessionSlice } from "../../../store/book-session/book-session.slice
 import useGetDatabaseManagementSelectors from "../../../hooks/get-selectors/use-get-database-management-selectors";
 import { errorReceivedMessage } from "../../../strings/errors/errors-strings";
 import useResetRecurringSessionSpacesThunk from "../../../hooks/get-actions-and-thunks/book-recurring-sessions-actions-thunks/use-reset-recurring-sessions-spaces";
+import useBookRecurringSessionsVariables from "./use-book-recurring-sessions-variables";
+import useRecurringSessionsFunctions from "./use-recurring-sessions-functions";
+import useReturnLogic from "./use-return-logic";
 
-const useBookRecurringSessionsResultSwal = (
-  numberOfChildrenInBooking,
-  bookingData,
-  sessionChoice
-) => {
+const useBookRecurringSessionsResultSwal = () => {
   const {
     updateSessionSpacesResult,
     updateSessionSpacesError,
     addRecurringBookingsResult,
-    addRecurringBookingsError,
   } = useGetBookRecurringSessionsSelectors();
-  const { updateBalanceResult, updateBalanceError } =
-    useGetDatabaseManagementSelectors();
+  const { updateBalanceResult } = useGetDatabaseManagementSelectors();
+  const { numberOfChildrenInBooking, sessionChoice } =
+    useBookRecurringSessionsVariables();
+  const { bookingData } = useRecurringSessionsFunctions();
   const {
     dispatchResetUpdateSessionSpacesResult,
     dispatchResetUpdateSessionSpacesError,
-    // dispatchAddRecurringBookingsResult,
-    // dispatchAddRecurringBookingsError,
   } = useBookRecurringSessionsActions();
+  const { noActionsFiredYet } = useReturnLogic();
 
   const { fireSwal } = useFireSwal();
   const { confirmSwal } = useConfirmSwal();
@@ -46,16 +45,7 @@ const useBookRecurringSessionsResultSwal = (
   const [swalConfirmed, setSwalConfirmed] = useState(false);
 
   useEffect(() => {
-    if (
-      (!updateSessionSpacesResult &&
-        !updateSessionSpacesError &&
-        !updateBalanceResult &&
-        !updateBalanceError &&
-        !addRecurringBookingsResult &&
-        !addRecurringBookingsError) ||
-      swalConfirmed
-    )
-      return;
+    if (noActionsFiredYet() || swalConfirmed) return;
 
     if (
       updateSessionSpacesResult === "fulfilled" &&
@@ -125,9 +115,6 @@ const useBookRecurringSessionsResultSwal = (
             bookingData,
             sessionChoice
           );
-
-          // dispatchResetUpdateSessionSpacesResult();
-          // dispatchResetUpdateSessionSpacesError();
         }
       });
     } else if (
@@ -157,24 +144,21 @@ const useBookRecurringSessionsResultSwal = (
       });
     }
   }, [
-    fireSwal,
-    updateSessionSpacesError,
-    updateSessionSpacesResult,
-    dispatchResetUpdateSessionSpacesResult,
-    dispatchResetUpdateSessionSpacesError,
-    confirmSwal,
-    hamburgerHandlerNavigate,
-    updateBalanceResult,
+    addRecurringBookingsResult,
     bookingData,
+    confirmSwal,
+    dispatchResetUpdateSessionSpacesError,
+    dispatchResetUpdateSessionSpacesResult,
+    fireSwal,
+    hamburgerHandlerNavigate,
+    noActionsFiredYet,
     numberOfChildrenInBooking,
     resetRecurringSessionSpacesThunk,
     sessionChoice,
-    updateBalanceError,
     swalConfirmed,
-    addRecurringBookingsResult,
-    addRecurringBookingsError,
-    // dispatchAddRecurringBookingsResult,
-    // dispatchAddRecurringBookingsError,
+    updateBalanceResult,
+    updateSessionSpacesError,
+    updateSessionSpacesResult,
   ]);
 };
 

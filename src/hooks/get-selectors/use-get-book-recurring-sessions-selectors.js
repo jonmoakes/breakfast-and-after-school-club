@@ -5,6 +5,8 @@ import { selectBookRecurringSessionsSelectors } from "../../store/book-recurring
 const useGetBookRecurringSessionsSelectors = () => {
   const {
     bookRecurringSessionsIsLoading,
+    dayChoice,
+    sessionChoice,
     updateSessionSpacesResult,
     updateSessionSpacesError,
     addRecurringBookingsResult,
@@ -13,6 +15,8 @@ const useGetBookRecurringSessionsSelectors = () => {
 
   return {
     bookRecurringSessionsIsLoading,
+    dayChoice,
+    sessionChoice,
     updateSessionSpacesResult,
     updateSessionSpacesError,
     addRecurringBookingsResult,
