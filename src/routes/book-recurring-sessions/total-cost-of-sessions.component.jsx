@@ -1,15 +1,39 @@
+import useDispatchBookRecurringSessionsThunks from "../../hooks/get-actions-and-thunks/book-recurring-sessions-actions-thunks/use-dispatch-book-recurring-sessions-thunks";
 import useGetCurrentMonthDateDataThunk from "../../hooks/get-actions-and-thunks/request-date-data-actions-and-thunks/use-get-current-month-date-data-thunk";
+import useConfirmSwal from "../../hooks/use-confirm-swal";
 import { YellowGreenButton } from "../../styles/buttons/buttons.styles";
 import { ParentDiv } from "../../styles/div/div.styles";
 import { Text } from "../../styles/p/p.styles";
 import { RedSpan } from "../../styles/span/span.styles";
 
-const TotalCostOfSessions = ({ calculateCostOfSessionsUserWantsToBook }) => {
+const TotalCostOfSessions = ({
+  calculateCostOfSessionsUserWantsToBook,
+  sessionChoice,
+  numberOfChildrenInBooking,
+  bookingData,
+}) => {
   const { getCurrentMonthDateDataThunk } = useGetCurrentMonthDateDataThunk();
+  const { dispatchBookRecurringSessionsThunks } =
+    useDispatchBookRecurringSessionsThunks();
+  const { confirmSwal } = useConfirmSwal();
+
+  const sessionPrice = calculateCostOfSessionsUserWantsToBook();
+
+  const confirmBookings = () => {
+    const confirmResult = () => {
+      dispatchBookRecurringSessionsThunks(
+        bookingData,
+        numberOfChildrenInBooking,
+        sessionChoice,
+        sessionPrice
+      );
+    };
+    confirmSwal("book these sessions?", "", "yes", confirmResult);
+  };
 
   return (
     <>
-      {calculateCostOfSessionsUserWantsToBook() === 0 ? (
+      {sessionPrice === 0 ? (
         <ParentDiv>
           <Text>
             the day and session type choice you have selected does not contain
@@ -32,18 +56,18 @@ const TotalCostOfSessions = ({ calculateCostOfSessionsUserWantsToBook }) => {
       ) : (
         <ParentDiv className="bounce">
           <Text>
-            the total cost is
+            the total cost for these bookings is:
             <br />
-            <RedSpan>
-              £{(calculateCostOfSessionsUserWantsToBook() / 100).toFixed(2)}
-            </RedSpan>
+            <RedSpan>£{(sessionPrice / 100).toFixed(2)}</RedSpan>
           </Text>
-          <Text>if these are correct, please tap the button below.</Text>
+          <Text>if these dates are correct, please tap the button below.</Text>
           <Text>
             on completion of your booking, the above amount will be deducted
             from your wallet.
           </Text>
-          <YellowGreenButton>book sessions</YellowGreenButton>
+          <YellowGreenButton onClick={confirmBookings}>
+            book sessions
+          </YellowGreenButton>
         </ParentDiv>
       )}
     </>

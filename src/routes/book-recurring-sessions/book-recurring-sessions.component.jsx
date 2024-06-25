@@ -20,10 +20,10 @@ import ChosenDayInfoAndChooseSessionType from "./chosen-day-info-and-choose-sess
 
 import { Container } from "../../styles/container/container.styles";
 import { Text } from "../../styles/p/p.styles";
+import useBookRecurringSessionsResultSwal from "./hooks/use-book-recurring-sessions-result-swal";
 
 const BookRecurringSessions = () => {
   useGetCurrentMonthDateDataAndConditionallyUsersChildrenUseEffect();
-  const { handleSetChildrenSelectedForBookingChange } = useBookSessionActions();
 
   const {
     sessionTypesAndPrices,
@@ -59,6 +59,8 @@ const BookRecurringSessions = () => {
     hasMoreThanOneChild,
     usersChildren,
     atLeastOneChildHasBeenSelected,
+    numberOfChildrenInBooking,
+    bookingData,
   } = useRecurringSessionsFunctions(
     dayChoice,
     sessionChoice,
@@ -69,7 +71,12 @@ const BookRecurringSessions = () => {
     morningAndAfternoonLongSessionPrice
   );
 
-  console.log(monthlyMorningDatesAfterCurrentDateWithSessionsAvailable());
+  useBookRecurringSessionsResultSwal(
+    numberOfChildrenInBooking,
+    bookingData,
+    sessionChoice
+  );
+  const { handleSetChildrenSelectedForBookingChange } = useBookSessionActions();
 
   // const date = new Date();
   const monthAsString = "july";
@@ -151,6 +158,9 @@ const BookRecurringSessions = () => {
                   <TotalCostOfSessions
                     {...{
                       calculateCostOfSessionsUserWantsToBook,
+                      sessionChoice,
+                      numberOfChildrenInBooking,
+                      bookingData,
                     }}
                   />
                 </>

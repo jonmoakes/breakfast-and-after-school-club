@@ -29,6 +29,7 @@ import { getAllChildrenReducer } from "./get-all-children/get-all-children.slice
 import { getAllUsersReducer } from "./get-all-users/get-all-users.slice";
 import { databaseManagementReducer } from "./database-management/database-management.slice";
 import { emergencyContactDetailsReducer } from "./emergency-contact-details/emergency-contact-details.slice";
+import { bookRecurringSessionsReducer } from "./book-recurring-sessions/book-recurring-sessions.slice";
 
 export const rootReducer = combineReducers({
   hamburgerMenu: hamburgerMenuReducer,
@@ -60,4 +61,5 @@ export const rootReducer = combineReducers({
   getAllUsers: getAllUsersReducer,
   databaseManagement: databaseManagementReducer,
   emergencyContactDetails: emergencyContactDetailsReducer,
+  bookRecurringSessions: bookRecurringSessionsReducer,
 });

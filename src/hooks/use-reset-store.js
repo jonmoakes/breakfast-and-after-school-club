@@ -2,7 +2,7 @@ import { useLocation } from "react-router-dom";
 
 import useAddChildInfoActions from "./get-actions-and-thunks/add-child-info-actions-and-thunks/use-add-child-info-actions";
 import useBookSessionActions from "./get-actions-and-thunks/book-session-actions-and-thunks/use-book-session-actions";
-import useGetBookedSessionsUserSelectors from "./get-selectors/use-get-booked-sessions-user-selectors";
+
 import useBookedSessionsOwnerActions from "./get-actions-and-thunks/booked-sessions-owner-actions-and-thunks/use-booked-session-owner-actions";
 import useBookedSessionsUserActions from "./get-actions-and-thunks/booked-sessions-user-actions-and-thunks/use-booked-session-user-actions";
 import useRequestDateDataActions from "./get-actions-and-thunks/request-date-data-actions-and-thunks/use-request-date-data-actions";
@@ -14,11 +14,9 @@ import useEditChildInfoActions from "./get-actions-and-thunks/edit-child-info-ac
 import useGenerateNewPasswordRequestActions from "./get-actions-and-thunks/generate-new-password-request-actions-and-thunks/use-generate-new-password-request-actions";
 import useGetAllChildrenActions from "./get-actions-and-thunks/get-all-children-actions-and-thunks/use-get-all-children-actions";
 import useGetAllUsersActions from "./get-actions-and-thunks/get-all-users-actions-and-thunks/use-get-all-users-actions";
-import useGetUsersChildrenSelectors from "./get-selectors/use-get-users-children-selectors";
 import useGetUsersChildrenActions from "./get-actions-and-thunks/get-users-children-actions-and-thunks/use-get-users-children-actions";
 import useHandlePaymentActions from "./get-actions-and-thunks/handle-payment-actions-and-thunks/use-handle-payment-actions";
 import useSendEmailActions from "./get-actions-and-thunks/send-email-actions-and-thunks/use-send-email-actions";
-import useGetSessionTypesAndPricesSelectors from "./get-selectors/use-get-session-types-and-prices-selectors";
 import useSessionTypesAndPricesActions from "./get-actions-and-thunks/session-types-and-prices-actions-and-thunks/use-session-types-and-prices-actions";
 import useShouldShowElementActions from "./get-actions-and-thunks/use-should-show-element-actions";
 import useSignInFormActions from "./get-actions-and-thunks/use-sign-in-form-actions";
@@ -28,6 +26,7 @@ import useUserBookingToDeleteActions from "./get-actions-and-thunks/user-booking
 import useCurrentUserActions from "./get-actions-and-thunks/current-user-actions-and-thunks/use-current-user-actions";
 import useDatabaseManagementActions from "./get-actions-and-thunks/database-management-actions-and-thunks/use-database-management-actions";
 import useEmergencyContactDetailsActions from "./get-actions-and-thunks/emergency-contact-details-actions-and-thunks/use-emergency-contact-details-actions";
+import useBookRecurringSessionsActions from "./get-actions-and-thunks/book-recurring-sessions-actions-thunks/use-book-recurring-sessions-actions";
 
 import {
   addFundsRoute,
@@ -66,15 +65,10 @@ import {
 const useResetStore = () => {
   const { dispatchResetAllAddChildInfoState } = useAddChildInfoActions();
   const { dispatchResetBookSessionState } = useBookSessionActions();
-
-  const { bookedSessionsUserError } = useGetBookedSessionsUserSelectors();
   const { dispatchResetBookedSessionsOwnerState } =
     useBookedSessionsOwnerActions();
-  const {
-    dispatchResetBookedSessionsUserError,
-    dispatchResetBookedSessionsUserState,
-  } = useBookedSessionsUserActions();
-
+  const { dispatchResetBookedSessionsUserState } =
+    useBookedSessionsUserActions();
   const { dispatchResetRequestDateDataState } = useRequestDateDataActions();
   const { dispatchResetCardInputResultState } = useCardInputResultActions();
   const { dispatchResetChooseNewPasswordState } = useChooseNewPasswordActions();
@@ -83,23 +77,16 @@ const useResetStore = () => {
   const { dispatchResetEditChildInfoState } = useEditChildInfoActions();
   const { dispatchResetGenerateNewPasswordRequestState } =
     useGenerateNewPasswordRequestActions();
-
   const { dispatchResetGetAllChildrenState } = useGetAllChildrenActions();
-
   const { dispatchResetGetAllUsersState } = useGetAllUsersActions();
-  const { getUsersChildrenError } = useGetUsersChildrenSelectors();
-  const { dispatchResetUsersChildrenError, dispatchResetUsersChildrenState } =
-    useGetUsersChildrenActions();
+  const { dispatchResetUsersChildrenState } = useGetUsersChildrenActions();
   const {
     dispatchResetPreResultHandlePaymentState,
     dispatchResetAllHandlePaymentState,
   } = useHandlePaymentActions();
   const { dispatchResetSendEmailState } = useSendEmailActions();
-  const { sessionTypesAndPricesError } = useGetSessionTypesAndPricesSelectors();
-  const {
-    dispatchResetSessionPricesError,
-    dispatchResetSessionTypesAndPricesState,
-  } = useSessionTypesAndPricesActions();
+  const { dispatchResetSessionTypesAndPricesState } =
+    useSessionTypesAndPricesActions();
   const { dispatchResetShouldShowElementState } = useShouldShowElementActions();
   const { dispatchResetSignInFormState } = useSignInFormActions();
   const { dispatchResetSignUpFormState } = useSignUpFormActions();
@@ -111,6 +98,8 @@ const useResetStore = () => {
     useDatabaseManagementActions();
   const { dispatchResetEmergencyContactDetailsState } =
     useEmergencyContactDetailsActions();
+  const { dispatchResetBookRecurringSessionsState } =
+    useBookRecurringSessionsActions();
 
   const location = useLocation();
   const path = location.pathname;
@@ -153,13 +142,8 @@ const useResetStore = () => {
         dispatchResetSendEmailState();
         dispatchResetSessionTypesAndPricesState();
         dispatchResetDatabaseManagementState();
-        if (sessionTypesAndPricesError) {
-          dispatchResetSessionPricesError();
-        } else if (getUsersChildrenError) {
-          dispatchResetUsersChildrenError();
-        } else if (bookedSessionsUserError) {
-          dispatchResetBookedSessionsUserError();
-        }
+        dispatchResetUsersChildrenState();
+        dispatchResetBookedSessionsUserState();
         break;
       case updateEmailRoute:
         dispatchResetShouldShowElementState();
@@ -222,6 +206,8 @@ const useResetStore = () => {
         break;
       case bookRecurringSessionsRoute:
         dispatchResetRequestDateDataState();
+        dispatchResetUsersChildrenState();
+        dispatchResetBookRecurringSessionsState();
         break;
       default:
         return;

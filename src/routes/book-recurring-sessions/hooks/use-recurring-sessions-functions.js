@@ -12,6 +12,7 @@ import useGetUsersChildrenSelectors from "../../../hooks/get-selectors/use-get-u
 import useGetChildrenLogic from "../../book-a-session/book-a-session-hooks/logic/use-get-children-logic";
 import useGetDatabaseManagementSelectors from "../../../hooks/get-selectors/use-get-database-management-selectors";
 import useGetSessionTypesAndPricesSelectors from "../../../hooks/get-selectors/use-get-session-types-and-prices-selectors";
+import useGetBookRecurringSessionsSelectors from "../../../hooks/get-selectors/use-get-book-recurring-sessions-selectors";
 
 const useRecurringSessionsFunctions = (
   dayChoice,
@@ -29,6 +30,8 @@ const useRecurringSessionsFunctions = (
   const { sessionTypesAndPricesIsLoading } =
     useGetSessionTypesAndPricesSelectors();
   const { databaseManagementIsLoading } = useGetDatabaseManagementSelectors();
+  const { bookRecurringSessionsIsLoading } =
+    useGetBookRecurringSessionsSelectors();
   //can share with normal book session
   const {
     noChildrenAddedYet,
@@ -37,6 +40,7 @@ const useRecurringSessionsFunctions = (
     atLeastOneChildHasBeenSelected,
     usersChildren,
     childrenSelectedLength,
+    numberOfChildrenInBooking,
   } = useGetChildrenLogic();
 
   const chosenDayDateDocuments = Array.isArray(dateData)
@@ -202,10 +206,21 @@ const useRecurringSessionsFunctions = (
     return requestDateDataIsLoading ||
       getUsersChildrenIsLoading ||
       sessionTypesAndPricesIsLoading ||
-      databaseManagementIsLoading
+      databaseManagementIsLoading ||
+      bookRecurringSessionsIsLoading
       ? true
       : false;
   };
+
+  const bookingData =
+    sessionChoice === "morning"
+      ? monthlyMorningDatesAfterCurrentDateWithSessionsAvailable()
+      : sessionChoice === "afternoonShort" || sessionChoice === "afternoonLong"
+      ? monthlyAfternoonDatesAfterCurrentDateWithSessionsAvailable()
+      : sessionChoice === "morningAndAfternoonShort" ||
+        sessionChoice === "morningAndAfternoonLong"
+      ? monthlyMorningAndAfternoonDatesAfterCurrentDateWithSessionsAvailable()
+      : null;
 
   return {
     calculateCostOfSessionsUserWantsToBook,
@@ -221,6 +236,8 @@ const useRecurringSessionsFunctions = (
     hasMoreThanOneChild,
     usersChildren,
     atLeastOneChildHasBeenSelected,
+    numberOfChildrenInBooking,
+    bookingData,
   };
 };
 
