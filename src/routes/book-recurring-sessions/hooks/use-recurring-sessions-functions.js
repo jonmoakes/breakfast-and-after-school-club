@@ -130,55 +130,70 @@ const useRecurringSessionsFunctions = () => {
     return filteredMorningAndAfternoonSessionDocuments;
   };
 
-  const totalCost = () => {
+  const totalCost = (bookingsToAdd) => {
     switch (sessionChoice) {
       case "morning":
+        const morningLength = bookingsToAdd
+          ? bookingsToAdd.length
+          : morningDatesList().length;
         return hasOneChild()
-          ? morningSessionPrice * morningDatesList().length * 100
+          ? morningSessionPrice * morningLength * 100
           : hasMoreThanOneChild() &&
               childrenSelectedLength &&
               morningSessionPrice *
-                morningDatesList().length *
+                morningLength *
                 100 *
                 childrenSelectedLength;
       case "afternoonShort":
+        const afternoonShortLength = bookingsToAdd
+          ? bookingsToAdd.length
+          : afternoonDatesList().length;
         return hasOneChild()
-          ? afternoonShortSessionPrice * afternoonDatesList().length * 100
+          ? afternoonShortSessionPrice * afternoonShortLength * 100
           : hasMoreThanOneChild() &&
               childrenSelectedLength &&
               afternoonShortSessionPrice *
-                afternoonDatesList().length *
+                afternoonShortLength *
                 100 *
                 childrenSelectedLength;
       case "afternoonLong":
+        const afternoonLongLength = bookingsToAdd
+          ? bookingsToAdd.length
+          : afternoonDatesList().length;
         return hasOneChild()
-          ? afternoonLongSessionPrice * afternoonDatesList().length * 100
+          ? afternoonLongSessionPrice * afternoonLongLength * 100
           : hasMoreThanOneChild() &&
               childrenSelectedLength &&
               afternoonLongSessionPrice *
-                afternoonDatesList().length *
+                afternoonLongLength *
                 100 *
                 childrenSelectedLength;
       case "morningAndAfternoonShort":
+        const morningAfternoonShortLength = bookingsToAdd
+          ? bookingsToAdd.length
+          : morningAndAfternoonDatesList().length;
         return hasOneChild()
           ? morningAndAfternoonShortSessionPrice *
-              morningAndAfternoonDatesList().length *
+              morningAfternoonShortLength *
               100
           : hasMoreThanOneChild() &&
               childrenSelectedLength &&
               morningAndAfternoonShortSessionPrice *
-                morningAndAfternoonDatesList().length *
+                morningAfternoonShortLength *
                 100 *
                 childrenSelectedLength;
       case "morningAndAfternoonLong":
+        const morningAfternoonLongLength = bookingsToAdd
+          ? bookingsToAdd.length
+          : morningAndAfternoonDatesList().length;
         return hasOneChild()
           ? morningAndAfternoonLongSessionPrice *
-              morningAndAfternoonDatesList().length *
+              morningAfternoonLongLength *
               100
           : hasMoreThanOneChild() &&
               childrenSelectedLength &&
               morningAndAfternoonLongSessionPrice *
-                morningAndAfternoonDatesList().length *
+                morningAfternoonLongLength *
                 100 *
                 childrenSelectedLength;
       default:

@@ -1,4 +1,4 @@
-import useGetCurrentMonthDateDataAndConditionallyUsersChildrenUseEffect from "../../hooks/get-actions-and-thunks/request-date-data-actions-and-thunks/use-get-current-month-date-data-and-conditionally-users-children-use-effect";
+import useGetCurrentMonthDateDataUsersChildrenAndBookedSessionsUserUseEffect from "../../hooks/get-actions-and-thunks/request-date-data-actions-and-thunks/use-get-current-month-date-data-users-children-and-booked-sessions-user-use-effect";
 
 import useRecurringSessionsFunctions from "./hooks/use-recurring-sessions-functions";
 import useBookRecurringSessionsResultSwal from "./hooks/use-book-recurring-sessions-result-swal";
@@ -21,23 +21,27 @@ import ConfirmAndBookSessions from "./user-action-components/confirm-and-book-se
 import { Container } from "../../styles/container/container.styles";
 
 const BookRecurringSessions = () => {
-  useGetCurrentMonthDateDataAndConditionallyUsersChildrenUseEffect();
+  useGetCurrentMonthDateDataUsersChildrenAndBookedSessionsUserUseEffect();
+  useBookRecurringSessionsResultSwal();
 
-  const { requestDateDataError, getUsersChildrenError } =
-    useBookRecurringSessionsVariables();
+  const {
+    requestDateDataError,
+    getUsersChildrenError,
+    bookedSessionsUserError,
+  } = useBookRecurringSessionsVariables();
   const {
     showLoaders,
     hasOneChildOrHasMoreThanOneChildAndAtLeastOneHasBeenSelected,
     totalCost,
   } = useRecurringSessionsFunctions();
 
-  useBookRecurringSessionsResultSwal();
-
   return (
     <Container>
       {showLoaders() ? <Loader /> : null}
 
-      {requestDateDataError || getUsersChildrenError ? (
+      {requestDateDataError ||
+      getUsersChildrenError ||
+      bookedSessionsUserError ? (
         <ShowFetchErrors />
       ) : (
         <>

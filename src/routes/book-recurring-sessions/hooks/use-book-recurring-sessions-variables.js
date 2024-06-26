@@ -1,4 +1,5 @@
 import useGetBookRecurringSessionsSelectors from "../../../hooks/get-selectors/use-get-book-recurring-sessions-selectors";
+import useGetBookedSessionsUserSelectors from "../../../hooks/get-selectors/use-get-booked-sessions-user-selectors";
 import useGetDatabaseManagementSelectors from "../../../hooks/get-selectors/use-get-database-management-selectors";
 import useGetRequestDateDataSelectors from "../../../hooks/get-selectors/use-get-request-date-data-selectors";
 import useGetSessionTypesAndPricesSelectors from "../../../hooks/get-selectors/use-get-session-types-and-prices-selectors";
@@ -22,6 +23,8 @@ const useBookRecurringSessionsVariables = () => {
   const { databaseManagementIsLoading } = useGetDatabaseManagementSelectors();
   const { bookRecurringSessionsIsLoading, dayChoice, sessionChoice } =
     useGetBookRecurringSessionsSelectors();
+  const { bookedSessionsUserError, bookedSessionsUser } =
+    useGetBookedSessionsUserSelectors();
   const { childrenSelectedLength, numberOfChildrenInBooking } =
     useGetChildrenLogic();
 
@@ -50,6 +53,8 @@ const useBookRecurringSessionsVariables = () => {
     childrenSelectedLength,
     numberOfChildrenInBooking,
     monthAsString,
+    bookedSessionsUserError,
+    bookedSessionsUser,
   };
 };
 

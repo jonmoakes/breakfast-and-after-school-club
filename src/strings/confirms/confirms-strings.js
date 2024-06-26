@@ -27,7 +27,7 @@ export const confirmSureBookSession = (sessionType, date) => {
 export const fundsDeductedFromBalance = (sessionPrice, balanceAfterBooking) => {
   return `<span style="color: ${customIosBlue}">£${(sessionPrice / 100).toFixed(
     2
-  )}</span> will be deducted from your wallet balance.<br/>After the booking, your remaining balance will be <span style="color: ${customIosBlue}">£${balanceAfterBooking}</span>.<br/><br/>By booking this session, you confirm that you agree to our<br/><a href="/terms-and-conditions"  style="color: ${customWhite}"; text-decoration: underline;">terms and conditions</a>.`;
+  )}</span> will be deducted from your wallet balance.<br/>After the booking, your remaining balance will be <span style="color: ${customIosBlue}">£${balanceAfterBooking}</span>.<br/><br/>By booking, you confirm that you agree to our<br/><a href="/terms-and-conditions"  style="color: ${customWhite}"; text-decoration: underline;">terms and conditions</a>.`;
 };
 
 export const sureSignUpMessage = "are you sure you wish to sign up?";
