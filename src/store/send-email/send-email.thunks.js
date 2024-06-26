@@ -18,14 +18,20 @@ import {
   DB_MANAGE_SEND_EMAIL_BOOKING_CANCELLATION_CONFIRMATION_ENDPOINT,
 } from "../../../netlify/api-endpoints/api-endpoints";
 
+import { bookSessionRoute } from "../../strings/routes/routes-strings";
+
 export const sendEmailBookingConfirmationAsync = createAsyncThunk(
   "sendEmailBookingConfirmation",
   async (
-    { email, name, date, sessionType, childrenInBooking, sessionPrice },
+    { route, date, sessionType, childrenInBooking, sessionPrice, email, name },
     thunkAPI
   ) => {
     try {
-      const formattedDate = date ? format(new Date(date), "dd MMMM yyyy") : "";
+      const formattedDate =
+        route === bookSessionRoute && date
+          ? format(new Date(date), "dd MMMM yyyy")
+          : date;
+
       const sessionBooked = getSessionTypeString(sessionType);
       const kidsInBooking = childrenInBooking;
       const fundsToDeduct = (sessionPrice / 100).toFixed(2);

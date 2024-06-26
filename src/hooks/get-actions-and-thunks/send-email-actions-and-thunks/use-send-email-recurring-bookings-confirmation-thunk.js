@@ -7,20 +7,18 @@ import { sendEmailBookingConfirmationAsync } from "../../../store/send-email/sen
 import useConfirmSwal from "../../use-confirm-swal";
 
 import {
-  bookSessionRoute,
+  bookRecurringSessionsRoute,
   bookedSessionsUserRoute,
 } from "../../../strings/routes/routes-strings";
 import { errorSendingBookingConfirmationEmail } from "../../../strings/errors/errors-strings";
 import {
-  bookAnotherButtonText,
+  bookMoreButtonText,
   getBookingInfoEmailInstructions,
 } from "../../../strings/infos/infos-strings";
 
-import { createChildrenToAddToBooking } from "../../../functions/create-children-to-add-to-booking";
-
 import { emailSentBookAnotherSessionQuestion } from "../../../strings/confirms/confirms-strings";
 
-const useSendEmailBookingConfirmationThunk = () => {
+const useSendEmailRecurringBookingsConfirmationThunk = () => {
   const { name, email } = useGetCurrentUserSelectors();
   const { fireSwal } = useFireSwal();
   const { confirmSwal } = useConfirmSwal();
@@ -28,36 +26,25 @@ const useSendEmailBookingConfirmationThunk = () => {
 
   const dispatch = useDispatch();
 
-  const sendEmailBookingConfirmationThunk = (
-    date,
-    sessionType,
-    childrenSelectedForBooking,
-    usersChildren,
+  const sendEmailRecurringBookingsConfirmationThunk = (
+    formattedBookingDates,
+    sessionChoice,
+    childrenInBooking,
     sessionPrice
   ) => {
-    const route = bookSessionRoute;
+    const route = bookRecurringSessionsRoute;
+    const date = formattedBookingDates;
+    const sessionType = sessionChoice;
+
     dispatch(
       sendEmailBookingConfirmationAsync({
         route,
         date,
         sessionType,
-        childrenInBooking: createChildrenToAddToBooking(
-          childrenSelectedForBooking,
-          usersChildren
-        ),
+        childrenInBooking,
         sessionPrice,
         email,
         name,
-
-        // email,
-        // name,
-        // date,
-        // sessionType,
-        // childrenInBooking: createChildrenToAddToBooking(
-        //   childrenSelectedForBooking,
-        //   usersChildren
-        // ),
-        // sessionPrice,
       })
     ).then((resultAction) => {
       if (sendEmailBookingConfirmationAsync.fulfilled.match(resultAction)) {
@@ -72,7 +59,7 @@ const useSendEmailBookingConfirmationThunk = () => {
         confirmSwal(
           emailSentBookAnotherSessionQuestion,
           "",
-          bookAnotherButtonText,
+          bookMoreButtonText,
           confirmResult,
           cancelResult
         );
@@ -94,7 +81,7 @@ const useSendEmailBookingConfirmationThunk = () => {
     });
   };
 
-  return { sendEmailBookingConfirmationThunk };
+  return { sendEmailRecurringBookingsConfirmationThunk };
 };
 
-export default useSendEmailBookingConfirmationThunk;
+export default useSendEmailRecurringBookingsConfirmationThunk;

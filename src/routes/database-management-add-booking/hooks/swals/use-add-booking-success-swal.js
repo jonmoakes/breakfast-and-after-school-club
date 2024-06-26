@@ -3,13 +3,14 @@ import useHamburgerHandlerNavigate from "../../../../hooks/use-hamburger-handler
 
 import useSendEmailConfirmationThunk from "../../../../hooks/get-actions-and-thunks/database-management-actions-and-thunks/add-booking/use-send-email-confirmation-thunk";
 import useGetDatabaseManagementSelectors from "../../../../hooks/get-selectors/use-get-database-management-selectors";
+import useGetSessionPrice from "../../../../hooks/use-get-session-price";
 
 import { shouldSendEmailMessage } from "../../../../strings/confirms/confirms-strings";
 import { bookingSuccessfullyAddedMessage } from "../../../../strings/successes/successes-strings";
 import { databaseManagementRoute } from "../../../../strings/routes/routes-strings";
-import { getNumberOfChildrenInBooking } from "../../../../functions/get-number-of-children-in-booking";
-import useGetSessionPrice from "../../../../hooks/use-get-session-price";
 import { sendEmailButtonText } from "../../../../strings/infos/infos-strings";
+
+import { getNumberOfChildrenInBooking } from "../../../../functions/get-number-of-children-in-booking";
 
 const useAddBookingSuccessSwal = () => {
   const { confirmSwal } = useConfirmSwal();

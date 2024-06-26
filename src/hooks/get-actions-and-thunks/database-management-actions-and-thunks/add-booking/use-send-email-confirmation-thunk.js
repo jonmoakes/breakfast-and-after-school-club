@@ -8,7 +8,6 @@ import { databaseManagementRoute } from "../../../../strings/routes/routes-strin
 import { errorSendingBookingConfirmationEmail } from "../../../../strings/errors/errors-strings";
 import { emailSentMessage } from "../../../../strings/successes/successes-strings";
 import { sendEmailManuallyMessage } from "../../../../strings/infos/infos-strings";
-import { removeStarFromChildrensNamesIfExists } from "../../../../functions/remove-star-from-childrens-name-if-exists";
 
 const useSendEmailConfirmationThunk = () => {
   const { fireSwal } = useFireSwal();
@@ -28,8 +27,7 @@ const useSendEmailConfirmationThunk = () => {
         date,
         sessionType,
         parentEmail,
-        childrenInBooking:
-          removeStarFromChildrensNamesIfExists(childrenInBooking),
+        childrenInBooking,
         formattedSessionPrice,
       })
     ).then((resultAction) => {

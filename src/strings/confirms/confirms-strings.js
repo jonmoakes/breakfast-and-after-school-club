@@ -106,9 +106,11 @@ export const shouldSendEmailMessage = `<span style="font-size: 20px;">do you wis
 export const shouldSendCancelledBookingEmailMessage = `<span style="font-size: 20px;">do you wish to send a confirmation email of the cancelled booking to the user?<br/><br/>tap 'cancel' if you do not wish to send an email.</span>`;
 
 export const bookingSuccessfulConfirmSendEmailMessage = `<span style="font-size: 20px;"><span style="color: ${customYellow}">booking successful!</span><br/>do you want to send a confirmation email?<br/><br/>tap '<span style="color: ${customYellow}">cancel</span>' if you do <span style="color: ${customYellow}">NOT</span> wish to be sent an email.</span><br/>`;
+export const recurringBookingsSuccessfulConfirmSendEmailMessage = `<span style="font-size: 20px;"><span style="color: ${customYellow}">bookings successfully made!</span><br/>do you want to send a confirmation email?<br/><br/>tap '<span style="color: ${customYellow}">cancel</span>' if you do <span style="color: ${customYellow}">NOT</span> wish to be sent an email.</span><br/>`;
 
 export const sendEmailButtonText = "yes, send an email";
 export const bookAnotherSessionQuestion = `<span style="font-size: 20px;">would you like to book another session?<br/><br/>if not, tap '<span style="color: ${customYellow}">cancel</span>' to return to your bookings page.</span><br/>`;
+export const recurringBookingsBookMoreSessionsQuestion = `<span style="font-size: 20px;">would you like to book more sessions?<br/><br/>if not, tap '<span style="color: ${customYellow}">cancel</span>' to return to your bookings page.</span><br/>`;
 
 export const emailSentBookAnotherSessionQuestion = `<span style="font-size: 20px;"><span style="color: ${customYellow}">email sent!</span><br/>do you want to book another session?<br/><br/>tap '<span style="color: ${customYellow}">cancel</span>' to return to your bookings table.</span><br/>`;
 

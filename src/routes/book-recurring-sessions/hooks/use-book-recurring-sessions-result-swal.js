@@ -1,24 +1,16 @@
 import { useEffect, useState } from "react";
-import useGetBookRecurringSessionsSelectors from "../../../hooks/get-selectors/use-get-book-recurring-sessions-selectors";
 
-import useFireSwal from "../../../hooks/use-fire-swal";
-import useConfirmSwal from "../../../hooks/use-confirm-swal";
-import useBookRecurringSessionsActions from "../../../hooks/get-actions-and-thunks/book-recurring-sessions-actions-thunks/use-book-recurring-sessions-actions";
-import {
-  bookAnotherSessionQuestion,
-  bookingSuccessfulConfirmSendEmailMessage,
-  sendEmailButtonText,
-} from "../../../strings/confirms/confirms-strings";
-import { bookAnotherButtonText } from "../../../strings/infos/infos-strings";
-import { bookedSessionsUserRoute } from "../../../strings/routes/routes-strings";
-import useHamburgerHandlerNavigate from "../../../hooks/use-hamburger-handler-navigate";
-import { bookSessionSlice } from "../../../store/book-session/book-session.slice";
+import useGetBookRecurringSessionsSelectors from "../../../hooks/get-selectors/use-get-book-recurring-sessions-selectors";
 import useGetDatabaseManagementSelectors from "../../../hooks/get-selectors/use-get-database-management-selectors";
-import { errorReceivedMessage } from "../../../strings/errors/errors-strings";
+import useFireSwal from "../../../hooks/use-fire-swal";
+import useBookRecurringSessionsActions from "../../../hooks/get-actions-and-thunks/book-recurring-sessions-actions-thunks/use-book-recurring-sessions-actions";
 import useResetRecurringSessionSpacesThunk from "../../../hooks/get-actions-and-thunks/book-recurring-sessions-actions-thunks/use-reset-recurring-sessions-spaces";
 import useBookRecurringSessionsVariables from "./use-book-recurring-sessions-variables";
 import useRecurringSessionsFunctions from "./use-recurring-sessions-functions";
 import useReturnLogic from "./use-return-logic";
+import useSessionsBookedBookMoreQuestion from "./swals/use-sessions-booked-book-more-question";
+
+import { errorReceivedMessage } from "../../../strings/errors/errors-strings";
 
 const useBookRecurringSessionsResultSwal = () => {
   const {
@@ -37,10 +29,10 @@ const useBookRecurringSessionsResultSwal = () => {
   const { noActionsFiredYet } = useReturnLogic();
 
   const { fireSwal } = useFireSwal();
-  const { confirmSwal } = useConfirmSwal();
-  const { hamburgerHandlerNavigate } = useHamburgerHandlerNavigate();
   const { resetRecurringSessionSpacesThunk } =
     useResetRecurringSessionSpacesThunk();
+  const { sessionsBookedBookMoreQuestion } =
+    useSessionsBookedBookMoreQuestion();
 
   const [swalConfirmed, setSwalConfirmed] = useState(false);
 
@@ -52,36 +44,7 @@ const useBookRecurringSessionsResultSwal = () => {
       updateBalanceResult === "fulfilled" &&
       addRecurringBookingsResult === "fulfilled"
     ) {
-      fireSwal(
-        "success",
-        "sessions successfully booked!",
-        "",
-        0,
-        true,
-        false
-      ).then((isConfirmed) => {
-        if (isConfirmed) {
-          const sendEmail = () => {
-            console.log("send email here");
-            hamburgerHandlerNavigate(bookSessionSlice);
-          };
-
-          confirmSwal(
-            bookingSuccessfulConfirmSendEmailMessage,
-            "",
-            sendEmailButtonText,
-            () => sendEmail(),
-            () =>
-              confirmSwal(
-                bookAnotherSessionQuestion,
-                "",
-                bookAnotherButtonText,
-                () => window.location.reload(),
-                () => hamburgerHandlerNavigate(bookedSessionsUserRoute)
-              )
-          );
-        }
-      });
+      sessionsBookedBookMoreQuestion();
     } else if (updateSessionSpacesResult === "rejected") {
       fireSwal(
         "error",
@@ -146,15 +109,14 @@ const useBookRecurringSessionsResultSwal = () => {
   }, [
     addRecurringBookingsResult,
     bookingData,
-    confirmSwal,
     dispatchResetUpdateSessionSpacesError,
     dispatchResetUpdateSessionSpacesResult,
     fireSwal,
-    hamburgerHandlerNavigate,
     noActionsFiredYet,
     numberOfChildrenInBooking,
     resetRecurringSessionSpacesThunk,
     sessionChoice,
+    sessionsBookedBookMoreQuestion,
     swalConfirmed,
     updateBalanceResult,
     updateSessionSpacesError,
