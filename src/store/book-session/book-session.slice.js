@@ -63,7 +63,6 @@ export const {
   resetUserDocBalanceError,
   resetBookSessionState,
   setChildrenSelectedForBooking,
-  resetChildrenSelectedForBooking,
 } = bookSessionSlice.actions;
 
 export const { selectBookSessionSelectors } = bookSessionSlice.selectors;

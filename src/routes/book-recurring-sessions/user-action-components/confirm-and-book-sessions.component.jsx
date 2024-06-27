@@ -2,8 +2,8 @@ import useGetCurrentUserSelectors from "../../../hooks/get-selectors/use-get-cur
 import useBookRecurringSessionsVariables from "../hooks/use-book-recurring-sessions-variables";
 import useRecurringSessionsFunctions from "../hooks/use-recurring-sessions-functions";
 
-import BookingsWithDuplicatesRemovedInfo from "./confirm-and-book-sessions-sections/bookings-with-duplicates-removed-info.component";
-import CheckForDuplicatesAndBookIfNoneFound from "./confirm-and-book-sessions-sections/check-for-duplicates-and-book-if-none-found.component";
+import BookingsWithDuplicatesRemovedInfo from "./confirm-and-book-sessions-sections/check-for-duplicates-sections/bookings-with-duplicates-removed-info.component";
+import CheckForDuplicatesAndBookIfNoneFound from "./confirm-and-book-sessions-sections/check-for-duplicates-sections/check-for-duplicates.component";
 
 const ConfirmAndBookSessions = () => {
   const { walletBalance } = useGetCurrentUserSelectors();

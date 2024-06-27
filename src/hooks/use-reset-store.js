@@ -208,6 +208,10 @@ const useResetStore = () => {
         dispatchResetRequestDateDataState();
         dispatchResetUsersChildrenState();
         dispatchResetBookRecurringSessionsState();
+        dispatchResetSendEmailState();
+        dispatchResetSessionTypesAndPricesState();
+        dispatchResetBookedSessionsUserState();
+        dispatchResetBookSessionState();
         break;
       default:
         return;

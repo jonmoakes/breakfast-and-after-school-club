@@ -1,15 +1,8 @@
-import useBookRecurringSessionsVariables from "../../hooks/use-book-recurring-sessions-variables";
-import useRecurringSessionsFunctions from "../../hooks/use-recurring-sessions-functions";
+import useBookRecurringSessionsVariables from "../../../../hooks/use-book-recurring-sessions-variables";
+import useRecurringSessionsFunctions from "../../../../hooks/use-recurring-sessions-functions";
 
-import { YellowGreenButton } from "../../../../styles/buttons/buttons.styles";
-import { ParentDiv } from "../../../../styles/div/div.styles";
-import { Text } from "../../../../styles/p/p.styles";
-import { RedSpan } from "../../../../styles/span/span.styles";
-
-const CheckForDuplicatesAndBookIfNoneFound = () => {
+const useDuplicateBookingLogic = () => {
   const {
-    totalCost,
-    bookSessions,
     bookingData,
     dispatchSetBookingsToAdd,
     dispatchSetShowHelp,
@@ -17,7 +10,7 @@ const CheckForDuplicatesAndBookIfNoneFound = () => {
   } = useRecurringSessionsFunctions();
   const {
     sessionChoice,
-    showConfirmButton,
+
     bookedSessionsUser,
     childrensNamesInBooking,
   } = useBookRecurringSessionsVariables();
@@ -72,41 +65,8 @@ const CheckForDuplicatesAndBookIfNoneFound = () => {
       dispatchSetShowConfirmButton(true);
     }
   };
-  return (
-    <ParentDiv className="bounce">
-      {!showConfirmButton ? (
-        <>
-          <Text>
-            if these dates are correct, please tap the button below to check for
-            duplicate bookings.
-          </Text>
-          <Text>
-            if none are found, you will then see the book sessions button.
-          </Text>
-          <YellowGreenButton onClick={checkForDuplicateBookings}>
-            check bookings
-          </YellowGreenButton>
-        </>
-      ) : (
-        <>
-          <Text>great - no duplicate bookings were found!</Text>
-          <Text>
-            on completion of your booking, the amount below will be deducted
-            from your wallet.
-          </Text>
 
-          <Text>
-            the total cost for these bookings is:
-            <br />
-            <RedSpan>£{(totalCost() / 100).toFixed(2)}</RedSpan>
-          </Text>
-          <YellowGreenButton className="green" onClick={bookSessions}>
-            book sessions
-          </YellowGreenButton>
-        </>
-      )}
-    </ParentDiv>
-  );
+  return { checkForDuplicateBookings };
 };
 
-export default CheckForDuplicatesAndBookIfNoneFound;
+export default useDuplicateBookingLogic;

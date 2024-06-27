@@ -12,7 +12,11 @@ import useRequestSessionPricesThunk from "../../../hooks/get-actions-and-thunks/
 import useBookRecurringSessionsVariables from "./use-book-recurring-sessions-variables";
 import useGetChildrenLogic from "../../book-a-session/book-a-session-hooks/logic/use-get-children-logic";
 import useDispatchBookRecurringSessionsThunks from "../../../hooks/get-actions-and-thunks/book-recurring-sessions-actions-thunks/use-dispatch-book-recurring-sessions-thunks";
-import { fundsDeductedFromBalance } from "../../../strings/confirms/confirms-strings";
+import {
+  confirmChangeChildrenQuestion,
+  fundsDeductedFromBalance,
+  imSureMessage,
+} from "../../../strings/confirms/confirms-strings";
 import useConfirmSwal from "../../../hooks/use-confirm-swal";
 import useGetCurrentUserSelectors from "../../../hooks/get-selectors/use-get-current-user-selectors";
 
@@ -248,6 +252,12 @@ const useRecurringSessionsFunctions = () => {
     );
   };
 
+  const confirmReload = () => {
+    confirmSwal(confirmChangeChildrenQuestion, "", imSureMessage, () =>
+      window.location.reload()
+    );
+  };
+
   return {
     showLoaders,
     resetDayAndSessionChoices,
@@ -267,6 +277,7 @@ const useRecurringSessionsFunctions = () => {
     dispatchSetShowHelp,
     bookSessions,
     dispatchSetSessionChoice,
+    confirmReload,
   };
 };
 

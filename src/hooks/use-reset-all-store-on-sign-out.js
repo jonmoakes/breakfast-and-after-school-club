@@ -25,7 +25,7 @@ import useUserBookingToDeleteActions from "./get-actions-and-thunks/user-booking
 import useCurrentUserActions from "./get-actions-and-thunks/current-user-actions-and-thunks/use-current-user-actions";
 import useDatabaseManagementActions from "./get-actions-and-thunks/database-management-actions-and-thunks/use-database-management-actions";
 import useEmergencyContactDetailsActions from "./get-actions-and-thunks/emergency-contact-details-actions-and-thunks/use-emergency-contact-details-actions";
-
+import useBookRecurringSessionsActions from "./get-actions-and-thunks/book-recurring-sessions-actions-thunks/use-book-recurring-sessions-actions";
 const useResetAllStoreOnSignOut = () => {
   const { dispatchResetAllAddChildInfoState } = useAddChildInfoActions();
   const { dispatchResetBookSessionState } = useBookSessionActions();
@@ -62,6 +62,8 @@ const useResetAllStoreOnSignOut = () => {
     useDatabaseManagementActions();
   const { dispatchResetEmergencyContactDetailsState } =
     useEmergencyContactDetailsActions();
+  const { dispatchResetBookRecurringSessionsState } =
+    useBookRecurringSessionsActions();
 
   const resetAllStoreOnSignOut = () => {
     dispatchResetAllAddChildInfoState();
@@ -91,6 +93,7 @@ const useResetAllStoreOnSignOut = () => {
     dispatchResetWalletFundsToAdd();
     dispatchResetDatabaseManagementState();
     dispatchResetEmergencyContactDetailsState();
+    dispatchResetBookRecurringSessionsState();
     localStorage.clear();
   };
 

@@ -11,13 +11,13 @@ import {
 import { Text } from "../../../styles/p/p.styles";
 
 const ChildrenCheckbox = () => {
-  const { usersChildren } = useBookRecurringSessionsVariables();
+  const { usersChildren, dayChoice } = useBookRecurringSessionsVariables();
   const { hasOneChild, hasMoreThanOneChild } = useRecurringSessionsFunctions();
   const { handleSetChildrenSelectedForBookingChange } = useBookSessionActions();
 
   return (
     <>
-      {hasOneChild() ? null : hasMoreThanOneChild() ? (
+      {hasOneChild() || dayChoice ? null : hasMoreThanOneChild() ? (
         <ParentDiv className="bounce">
           <Text>which children would you like to book the session for?</Text>
 

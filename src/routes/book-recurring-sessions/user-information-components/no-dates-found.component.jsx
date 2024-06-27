@@ -55,8 +55,12 @@ const NoDatesFound = () => {
         latest data.
       </Text>
       <Text>
-        if this section doesn't change when the loading spinner disappears, it
-        means that there are still no sessions available.
+        when completed, you will have the option to check for these bookings
+        again.
+      </Text>
+      <Text>
+        if they have become available, you will see the option to book the
+        sessions.
       </Text>
       <Text>
         alternatively, you can change your choice of date or session by tapping

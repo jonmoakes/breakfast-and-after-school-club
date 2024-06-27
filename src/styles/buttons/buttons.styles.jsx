@@ -356,6 +356,10 @@ export const MinimalButton = styled.button`
   border: 1px solid ${customBlack};
   border-radius: 2px;
   color: ${customBlack};
+
+  &.margin {
+    margin: 10px auto 5px auto;
+  }
 `;
 
 export const RegistrationXButton = styled.button`

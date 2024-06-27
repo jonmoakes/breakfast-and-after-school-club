@@ -47,7 +47,7 @@ const useGetCurrentMonthDateDataAndUserBookingsThunk = () => {
               resultAction
             )
           ) {
-            dispatchSetBookingsToAdd();
+            dispatchSetBookingsToAdd(null);
             dispatchSetShowConfirmButton();
             dispatchSetShowHelp();
           }
