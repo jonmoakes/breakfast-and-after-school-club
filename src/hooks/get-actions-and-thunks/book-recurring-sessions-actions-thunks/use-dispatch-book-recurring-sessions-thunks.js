@@ -29,7 +29,7 @@ const useDispatchBookRecurringSessionsThunks = () => {
   const dispatch = useDispatch();
 
   const dispatchBookRecurringSessionsThunks = (
-    bookingData,
+    bookingsToAdd,
     numberOfChildrenInBooking,
     sessionChoice,
     sessionPrice
@@ -39,7 +39,7 @@ const useDispatchBookRecurringSessionsThunks = () => {
 
     dispatch(
       updateRecurringSessionSpacesDocAsync({
-        bookingData,
+        bookingsToAdd,
         databaseId,
         termDatesCollectionId,
         route,
@@ -65,7 +65,7 @@ const useDispatchBookRecurringSessionsThunks = () => {
 
             dispatch(
               addRecurringSessionsBookingDataAsync({
-                bookingData,
+                bookingsToAdd,
                 sessionType: sessionChoice,
                 childrenSelectedForBooking,
                 usersChildren,

@@ -11,9 +11,8 @@ import {
 import useGetUsersChildrenSelectors from "../../get-selectors/use-get-users-children-selectors";
 
 const useBookSessionActions = () => {
-  const dispatch = useDispatch();
-
   const { usersChildren } = useGetUsersChildrenSelectors();
+  const dispatch = useDispatch();
 
   const handleSetChildrenSelectedForBookingChange = (event) => {
     const { name, checked } = event.target;

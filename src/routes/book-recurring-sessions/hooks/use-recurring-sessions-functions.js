@@ -11,8 +11,13 @@ import useBookRecurringSessionsActions from "../../../hooks/get-actions-and-thun
 import useRequestSessionPricesThunk from "../../../hooks/get-actions-and-thunks/session-types-and-prices-actions-and-thunks/use-request-session-prices-thunk";
 import useBookRecurringSessionsVariables from "./use-book-recurring-sessions-variables";
 import useGetChildrenLogic from "../../book-a-session/book-a-session-hooks/logic/use-get-children-logic";
+import useDispatchBookRecurringSessionsThunks from "../../../hooks/get-actions-and-thunks/book-recurring-sessions-actions-thunks/use-dispatch-book-recurring-sessions-thunks";
+import { fundsDeductedFromBalance } from "../../../strings/confirms/confirms-strings";
+import useConfirmSwal from "../../../hooks/use-confirm-swal";
+import useGetCurrentUserSelectors from "../../../hooks/get-selectors/use-get-current-user-selectors";
 
 const useRecurringSessionsFunctions = () => {
+  const { walletBalance } = useGetCurrentUserSelectors();
   const {
     sessionTypesAndPrices,
     dateData,
@@ -21,14 +26,15 @@ const useRecurringSessionsFunctions = () => {
     morningSessionPrice,
     afternoonShortSessionPrice,
     afternoonLongSessionPrice,
-    morningAndAfternoonShortSessionPrice,
-    morningAndAfternoonLongSessionPrice,
     childrenSelectedLength,
     requestDateDataIsLoading,
     getUsersChildrenIsLoading,
     sessionTypesAndPricesIsLoading,
     databaseManagementIsLoading,
     bookRecurringSessionsIsLoading,
+    bookingsToAdd,
+    numberOfChildrenInBooking,
+    sendEmailIsLoading,
   } = useBookRecurringSessionsVariables();
   const {
     noChildrenAddedYet,
@@ -37,22 +43,26 @@ const useRecurringSessionsFunctions = () => {
     atLeastOneChildHasBeenSelected,
   } = useGetChildrenLogic();
   const { requestSessionPricesThunk } = useRequestSessionPricesThunk();
-  const { dispatchSetDayChoice, dispatchSetSessionChoice } =
-    useBookRecurringSessionsActions();
+  const { dispatchBookRecurringSessionsThunks } =
+    useDispatchBookRecurringSessionsThunks();
+  const {
+    dispatchSetDayChoice,
+    dispatchSetSessionChoice,
+    dispatchSetBookingsToAdd,
+    dispatchSetShowConfirmButton,
+    dispatchSetShowHelp,
+  } = useBookRecurringSessionsActions();
+  const { confirmSwal } = useConfirmSwal();
 
   const showLoaders = () => {
     return requestDateDataIsLoading ||
       getUsersChildrenIsLoading ||
       sessionTypesAndPricesIsLoading ||
       databaseManagementIsLoading ||
-      bookRecurringSessionsIsLoading
+      bookRecurringSessionsIsLoading ||
+      sendEmailIsLoading
       ? true
       : false;
-  };
-
-  const resetDayAndSessionChoices = () => {
-    dispatchSetDayChoice("");
-    dispatchSetSessionChoice("");
   };
 
   const setChoiceAndGetSessionTypesAndPrices = (choice) => {
@@ -130,70 +140,37 @@ const useRecurringSessionsFunctions = () => {
     return filteredMorningAndAfternoonSessionDocuments;
   };
 
-  const totalCost = (bookingsToAdd) => {
+  const totalCost = () => {
+    const numberOfSessionsInBooking = bookingsToAdd
+      ? bookingsToAdd.length
+      : null;
+
     switch (sessionChoice) {
       case "morning":
-        const morningLength = bookingsToAdd
-          ? bookingsToAdd.length
-          : morningDatesList().length;
         return hasOneChild()
-          ? morningSessionPrice * morningLength * 100
+          ? morningSessionPrice * numberOfSessionsInBooking * 100
           : hasMoreThanOneChild() &&
               childrenSelectedLength &&
               morningSessionPrice *
-                morningLength *
+                numberOfSessionsInBooking *
                 100 *
                 childrenSelectedLength;
       case "afternoonShort":
-        const afternoonShortLength = bookingsToAdd
-          ? bookingsToAdd.length
-          : afternoonDatesList().length;
         return hasOneChild()
-          ? afternoonShortSessionPrice * afternoonShortLength * 100
+          ? afternoonShortSessionPrice * numberOfSessionsInBooking * 100
           : hasMoreThanOneChild() &&
               childrenSelectedLength &&
               afternoonShortSessionPrice *
-                afternoonShortLength *
+                numberOfSessionsInBooking *
                 100 *
                 childrenSelectedLength;
       case "afternoonLong":
-        const afternoonLongLength = bookingsToAdd
-          ? bookingsToAdd.length
-          : afternoonDatesList().length;
         return hasOneChild()
-          ? afternoonLongSessionPrice * afternoonLongLength * 100
+          ? afternoonLongSessionPrice * numberOfSessionsInBooking * 100
           : hasMoreThanOneChild() &&
               childrenSelectedLength &&
               afternoonLongSessionPrice *
-                afternoonLongLength *
-                100 *
-                childrenSelectedLength;
-      case "morningAndAfternoonShort":
-        const morningAfternoonShortLength = bookingsToAdd
-          ? bookingsToAdd.length
-          : morningAndAfternoonDatesList().length;
-        return hasOneChild()
-          ? morningAndAfternoonShortSessionPrice *
-              morningAfternoonShortLength *
-              100
-          : hasMoreThanOneChild() &&
-              childrenSelectedLength &&
-              morningAndAfternoonShortSessionPrice *
-                morningAfternoonShortLength *
-                100 *
-                childrenSelectedLength;
-      case "morningAndAfternoonLong":
-        const morningAfternoonLongLength = bookingsToAdd
-          ? bookingsToAdd.length
-          : morningAndAfternoonDatesList().length;
-        return hasOneChild()
-          ? morningAndAfternoonLongSessionPrice *
-              morningAfternoonLongLength *
-              100
-          : hasMoreThanOneChild() &&
-              childrenSelectedLength &&
-              morningAndAfternoonLongSessionPrice *
-                morningAfternoonLongLength *
+                numberOfSessionsInBooking *
                 100 *
                 childrenSelectedLength;
       default:
@@ -222,7 +199,7 @@ const useRecurringSessionsFunctions = () => {
       : sessionChoice;
   };
 
-  const bookingData =
+  let bookingData =
     sessionChoice === "morning"
       ? morningDatesList()
       : sessionChoice === "afternoonShort" || sessionChoice === "afternoonLong"
@@ -232,10 +209,42 @@ const useRecurringSessionsFunctions = () => {
       ? morningAndAfternoonDatesList()
       : null;
 
+  const resetDayAndSessionChoices = () => {
+    dispatchSetDayChoice("");
+    dispatchSetSessionChoice("");
+    dispatchSetShowConfirmButton(false);
+    dispatchSetShowHelp(false);
+    dispatchSetBookingsToAdd(null);
+  };
+
   const hasOneChildOrHasMoreThanOneChildAndAtLeastOneHasBeenSelected = () => {
     return (
       hasOneChild() ||
       (hasMoreThanOneChild() && atLeastOneChildHasBeenSelected() && true)
+    );
+  };
+
+  const bookSessions = () => {
+    const confirmResult = () => {
+      const sessionPrice = totalCost();
+
+      dispatchBookRecurringSessionsThunks(
+        bookingsToAdd,
+        numberOfChildrenInBooking,
+        sessionChoice,
+        sessionPrice
+      );
+    };
+
+    const balanceAfterBooking = ((walletBalance - totalCost()) / 100).toFixed(
+      2
+    );
+
+    confirmSwal(
+      "book these sessions?",
+      fundsDeductedFromBalance(totalCost(), balanceAfterBooking),
+      "yes",
+      confirmResult
     );
   };
 
@@ -253,6 +262,11 @@ const useRecurringSessionsFunctions = () => {
     morningAndAfternoonDatesList,
     hasOneChild,
     hasMoreThanOneChild,
+    dispatchSetBookingsToAdd,
+    dispatchSetShowConfirmButton,
+    dispatchSetShowHelp,
+    bookSessions,
+    dispatchSetSessionChoice,
   };
 };
 

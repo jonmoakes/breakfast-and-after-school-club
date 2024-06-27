@@ -14,6 +14,7 @@ import {
   customYellow,
   customLightGrey,
   customTomato,
+  customLightPink,
 } from "../colors";
 
 const slideInLeftAnimation = keyframes`${slideInLeft}`;
@@ -585,4 +586,11 @@ export const EmergencyDetailsDiv = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+`;
+
+export const PinkDiv = styled.div`
+  background-color: ${customLightPink};
+  padding: 0px 10px;
+  border: 1px solid ${customBlack};
+  border-radius: 5px;
 `;

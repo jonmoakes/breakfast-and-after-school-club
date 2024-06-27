@@ -8,6 +8,9 @@ const INITIAL_STATE = {
   bookRecurringSessionsIsLoading: false,
   dayChoice: "",
   sessionChoice: "",
+  bookingsToAdd: null,
+  showConfirmButton: false,
+  showHelp: false,
   updateSessionSpacesResult: "",
   updateSessionSpacesError: null,
   addRecurringBookingsResult: "",
@@ -23,6 +26,15 @@ export const bookRecurringSessionsSlice = createSlice({
     },
     setSessionChoice(state, action) {
       state.sessionChoice = action.payload;
+    },
+    setBookingsToAdd(state, action) {
+      state.bookingsToAdd = action.payload;
+    },
+    setShowConfirmButton(state, action) {
+      state.showConfirmButton = action.payload;
+    },
+    setShowHelp(state, action) {
+      state.showHelp = action.payload;
     },
     resetUpdateSessionSpacesResult(state) {
       state.updateSessionSpacesResult = "";
@@ -45,6 +57,9 @@ export const bookRecurringSessionsSlice = createSlice({
       (state) => state.bookRecurringSessionsIsLoading,
       (state) => state.dayChoice,
       (state) => state.sessionChoice,
+      (state) => state.bookingsToAdd,
+      (state) => state.showConfirmButton,
+      (state) => state.showHelp,
       (state) => state.updateSessionSpacesResult,
       (state) => state.updateSessionSpacesError,
       (state) => state.addRecurringBookingsResult,
@@ -53,6 +68,9 @@ export const bookRecurringSessionsSlice = createSlice({
         bookRecurringSessionsIsLoading,
         dayChoice,
         sessionChoice,
+        bookingsToAdd,
+        showConfirmButton,
+        showHelp,
         updateSessionSpacesResult,
         updateSessionSpacesError,
         addRecurringBookingsResult,
@@ -62,6 +80,9 @@ export const bookRecurringSessionsSlice = createSlice({
           bookRecurringSessionsIsLoading,
           dayChoice,
           sessionChoice,
+          bookingsToAdd,
+          showConfirmButton,
+          showHelp,
           updateSessionSpacesResult,
           updateSessionSpacesError,
           addRecurringBookingsResult,
@@ -110,6 +131,9 @@ export const bookRecurringSessionsSlice = createSlice({
 export const {
   setDayChoice,
   setSessionChoice,
+  setBookingsToAdd,
+  setShowConfirmButton,
+  setShowHelp,
   resetUpdateSessionSpacesResult,
   resetUpdateSessionSpacesError,
   resetAddRecurringBookingsResult,

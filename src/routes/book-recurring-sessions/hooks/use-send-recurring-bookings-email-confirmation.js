@@ -9,13 +9,14 @@ import { createChildrenToAddToBooking } from "../../../functions/create-children
 
 const useSendRecurringBookingsEmailConfirmation = () => {
   const { childrenSelectedForBooking } = useGetBookSessionSelectors();
-  const { bookingData, totalCost } = useRecurringSessionsFunctions();
-  const { sessionChoice, usersChildren } = useBookRecurringSessionsVariables();
+  const { totalCost } = useRecurringSessionsFunctions();
+  const { sessionChoice, usersChildren, bookingsToAdd } =
+    useBookRecurringSessionsVariables();
   const { sendEmailRecurringBookingsConfirmationThunk } =
     useSendEmailRecurringBookingsConfirmationThunk();
 
   const sendRecurringBookingsEmailConfirmation = () => {
-    const formattedBookingDates = bookingData
+    const formattedBookingDates = bookingsToAdd
       .map((data) => (data ? format(new Date(data.date), "dd MMMM yyyy") : ""))
       .join(", ");
 

@@ -13,7 +13,7 @@ export const updateRecurringSessionSpacesDocAsync = createAsyncThunk(
   "updateRecurringSessionSpacesDoc",
   async (
     {
-      bookingData,
+      bookingsToAdd,
       databaseId,
       termDatesCollectionId,
       route,
@@ -24,11 +24,11 @@ export const updateRecurringSessionSpacesDocAsync = createAsyncThunk(
     thunkAPI
   ) => {
     try {
-      if (!Array.isArray(bookingData) || !bookingData.length) {
+      if (!Array.isArray(bookingsToAdd) || !bookingsToAdd.length) {
         throw new Error("No bookings provided");
       }
       // Fetch all date documents upfront
-      const bookingDates = bookingData.map((booking) => booking.date);
+      const bookingDates = bookingsToAdd.map((booking) => booking.date);
       const getDateDocumentsToUpdate = await Promise.all(
         bookingDates.map((date) =>
           listDocumentsByQueryOrSearch(
@@ -45,7 +45,7 @@ export const updateRecurringSessionSpacesDocAsync = createAsyncThunk(
       );
 
       // Check if any of the documents have zero session spaces for the given session type
-      for (const booking of bookingData) {
+      for (const booking of bookingsToAdd) {
         const dateDocument = dateDocuments.find(
           (doc) => doc.date === booking.date
         );
@@ -72,7 +72,7 @@ export const updateRecurringSessionSpacesDocAsync = createAsyncThunk(
       }
 
       //  Loop through each booking and update the session spaces
-      for (const booking of bookingData) {
+      for (const booking of bookingsToAdd) {
         const { date } = booking;
 
         const numberOfChildrenAsNumber =
@@ -153,7 +153,7 @@ export const addRecurringSessionsBookingDataAsync = createAsyncThunk(
   "addRecurringSessionsBookingData",
   async (
     {
-      bookingData,
+      bookingsToAdd,
       sessionType,
       childrenSelectedForBooking,
       usersChildren,
@@ -171,10 +171,10 @@ export const addRecurringSessionsBookingDataAsync = createAsyncThunk(
       const bookingsArray = [];
 
       // Loop through each item in bookingData
-      for (let i = 0; i < bookingData.length; i++) {
+      for (let i = 0; i < bookingsToAdd.length; i++) {
         // Create a new object with the date from bookingData and placeholder properties
         const newObject = {
-          date: bookingData[i].date,
+          date: bookingsToAdd[i].date,
           sessionType: sessionType,
           childrenInBooking: createChildrenToAddToBooking(
             childrenSelectedForBooking,

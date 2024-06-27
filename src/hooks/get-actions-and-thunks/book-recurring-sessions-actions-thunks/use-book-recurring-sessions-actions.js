@@ -3,6 +3,9 @@ import { useDispatch } from "react-redux";
 import {
   setDayChoice,
   setSessionChoice,
+  setBookingsToAdd,
+  setShowConfirmButton,
+  setShowHelp,
   resetUpdateSessionSpacesResult,
   resetUpdateSessionSpacesError,
   resetAddRecurringBookingsResult,
@@ -19,6 +22,18 @@ const useBookRecurringSessionsActions = () => {
 
   const dispatchSetSessionChoice = (payload) => {
     dispatch(setSessionChoice(payload));
+  };
+
+  const dispatchSetBookingsToAdd = (payload) => {
+    dispatch(setBookingsToAdd(payload));
+  };
+
+  const dispatchSetShowConfirmButton = (payload) => {
+    dispatch(setShowConfirmButton(payload));
+  };
+
+  const dispatchSetShowHelp = (payload) => {
+    dispatch(setShowHelp(payload));
   };
 
   const dispatchResetUpdateSessionSpacesResult = () => {
@@ -44,6 +59,9 @@ const useBookRecurringSessionsActions = () => {
   return {
     dispatchSetDayChoice,
     dispatchSetSessionChoice,
+    dispatchSetBookingsToAdd,
+    dispatchSetShowConfirmButton,
+    dispatchSetShowHelp,
     dispatchResetUpdateSessionSpacesResult,
     dispatchResetUpdateSessionSpacesError,
     dispatchAddRecurringBookingsResult,

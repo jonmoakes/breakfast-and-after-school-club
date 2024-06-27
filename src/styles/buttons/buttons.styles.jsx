@@ -5,6 +5,7 @@ import {
   customBlack,
   customBlue,
   customGrey,
+  customIosBlue,
   customLightGreen,
   customTomato,
   customWhite,
@@ -79,6 +80,10 @@ export const YellowGreenButton = styled(Button)`
     cursor: not-allowed;
     opacity: 0.5;
     pointer-events: none;
+  }
+
+  &.green {
+    background-color: ${customLightGreen};
   }
 
   &:hover {
@@ -340,6 +345,13 @@ export const PaginationPageButton = styled(Button)`
 export const MinimalButton = styled.button`
   margin: -5px auto 5px auto;
   text-transform: capitalize;
+  height: auto;
+  width: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: ${customIosBlue};
+  font-family: inherit;
   outline: none;
   border: 1px solid ${customBlack};
   border-radius: 2px;

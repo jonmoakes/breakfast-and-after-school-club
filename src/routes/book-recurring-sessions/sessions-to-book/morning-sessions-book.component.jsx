@@ -7,12 +7,12 @@ import DatesListUl from "../user-information-components/dates-list-ul.component"
 import { ParentDiv } from "../../../styles/div/div.styles";
 
 const MorningSessionsToBook = () => {
-  const { totalCost, morningDatesList } = useRecurringSessionsFunctions();
+  const { morningDatesList } = useRecurringSessionsFunctions();
   const { sessionChoice, dayChoice } = useBookRecurringSessionsVariables();
 
   return (
     <>
-      {totalCost() === 0 ? null : sessionChoice === "morning" ? (
+      {sessionChoice === "morning" ? (
         <ParentDiv className="bounce">
           <BookableDatesInfo />
 
