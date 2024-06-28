@@ -101,6 +101,7 @@ const useRecurringSessionsFunctions = () => {
   const morningDatesList = () => {
     const filteredMorningSessionDocuments = documentsMatchingDayChoice
       ? documentsMatchingDayChoice.filter((doc) => {
+          // const currentDate = new Date();
           const currentDate = new Date("2024-07-01");
           const docDateObject = new Date(doc.date);
           docDateObject.setHours(0, 0, 0, 0);
@@ -115,6 +116,7 @@ const useRecurringSessionsFunctions = () => {
   const afternoonDatesList = () => {
     const filteredAfternoonSessionDocuments = documentsMatchingDayChoice
       ? documentsMatchingDayChoice.filter((doc) => {
+          // const currentDate = new Date();
           const currentDate = new Date("2024-07-01");
           const docDateObject = new Date(doc.date);
           docDateObject.setHours(0, 0, 0, 0);
@@ -127,21 +129,17 @@ const useRecurringSessionsFunctions = () => {
     return filteredAfternoonSessionDocuments;
   };
 
-  const morningAndAfternoonDatesList = () => {
-    const filteredMorningAndAfternoonSessionDocuments =
-      documentsMatchingDayChoice
-        ? documentsMatchingDayChoice.filter((doc) => {
-            const currentDate = new Date("2024-07-01");
-            const docDateObject = new Date(doc.date);
-            docDateObject.setHours(0, 0, 0, 0);
-            return (
-              isAfter(docDateObject, currentDate) &&
-              doc.morningSessionSpaces > 0 &&
-              doc.afternoonSessionSpaces > 0
-            );
-          })
-        : [];
-    return filteredMorningAndAfternoonSessionDocuments;
+  const noMorningSessions = () => {
+    return sessionChoice === "morning" && !morningDatesList().length && true;
+  };
+
+  const noAfternoonSessions = () => {
+    return (
+      (sessionChoice === "afternoonShort" ||
+        sessionChoice === "afternoonLong") &&
+      !afternoonDatesList().length &&
+      true
+    );
   };
 
   const totalCost = () => {
@@ -187,19 +185,10 @@ const useRecurringSessionsFunctions = () => {
       ? "morning "
       : !afternoonShortSessionPrice && sessionChoice === "afternoonLong"
       ? "afternoon"
-      : !afternoonShortSessionPrice &&
-        sessionChoice === "morningAndAfternoonLong"
-      ? "morning and afternoon"
       : afternoonShortSessionPrice && sessionChoice === "afternoonShort"
       ? "afternoon short "
       : afternoonShortSessionPrice && sessionChoice === "afternoonLong"
       ? "afternoon long "
-      : afternoonShortSessionPrice &&
-        sessionChoice === "morningAndAfternoonShort"
-      ? "morning and afternoon short "
-      : afternoonShortSessionPrice &&
-        sessionChoice === "morningAndAfternoonLong"
-      ? "morning and afternoon long "
       : sessionChoice;
   };
 
@@ -208,9 +197,6 @@ const useRecurringSessionsFunctions = () => {
       ? morningDatesList()
       : sessionChoice === "afternoonShort" || sessionChoice === "afternoonLong"
       ? afternoonDatesList()
-      : sessionChoice === "morningAndAfternoonShort" ||
-        sessionChoice === "morningAndAfternoonLong"
-      ? morningAndAfternoonDatesList()
       : null;
 
   const resetDayAndSessionChoices = () => {
@@ -269,7 +255,6 @@ const useRecurringSessionsFunctions = () => {
     hasOneChildOrHasMoreThanOneChildAndAtLeastOneHasBeenSelected,
     morningDatesList,
     afternoonDatesList,
-    morningAndAfternoonDatesList,
     hasOneChild,
     hasMoreThanOneChild,
     dispatchSetBookingsToAdd,
@@ -278,6 +263,8 @@ const useRecurringSessionsFunctions = () => {
     bookSessions,
     dispatchSetSessionChoice,
     confirmReload,
+    noMorningSessions,
+    noAfternoonSessions,
   };
 };
 

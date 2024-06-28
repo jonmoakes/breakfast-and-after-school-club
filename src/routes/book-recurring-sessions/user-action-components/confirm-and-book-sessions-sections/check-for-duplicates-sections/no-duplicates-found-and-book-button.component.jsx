@@ -1,3 +1,5 @@
+import Balancer from "react-wrap-balancer";
+
 import useBookRecurringSessionsVariables from "../../../hooks/use-book-recurring-sessions-variables";
 import useRecurringSessionsFunctions from "../../../hooks/use-recurring-sessions-functions";
 
@@ -8,6 +10,7 @@ import { Text } from "../../../../../styles/p/p.styles";
 import { BlackSpan, RedSpan } from "../../../../../styles/span/span.styles";
 
 import { removeStarFromChildrensNamesIfExists } from "../../../../../functions/remove-star-from-childrens-name-if-exists";
+import { ParentDiv } from "../../../../../styles/div/div.styles";
 
 const NoDuplicatesFoundSummaryAndBookButton = () => {
   const { totalCost, bookSessions, hasMoreThanOneChild } =
@@ -15,8 +18,10 @@ const NoDuplicatesFoundSummaryAndBookButton = () => {
   const { childrensNamesInBooking } = useBookRecurringSessionsVariables();
 
   return (
-    <>
-      <Text>great - no duplicate bookings were found!</Text>
+    <ParentDiv className="bounce">
+      <Text>
+        <Balancer>great - no duplicate bookings were found!</Balancer>
+      </Text>
 
       <BlueH2>summary:</BlueH2>
       <Text>
@@ -24,6 +29,7 @@ const NoDuplicatesFoundSummaryAndBookButton = () => {
         {hasMoreThanOneChild() ? (
           <BlackSpan>
             for:
+            <br />
             <br />
             <RedSpan>
               {removeStarFromChildrensNamesIfExists(childrensNamesInBooking)}
@@ -56,7 +62,7 @@ const NoDuplicatesFoundSummaryAndBookButton = () => {
       <YellowGreenButton className="green" onClick={bookSessions}>
         book sessions
       </YellowGreenButton>
-    </>
+    </ParentDiv>
   );
 };
 

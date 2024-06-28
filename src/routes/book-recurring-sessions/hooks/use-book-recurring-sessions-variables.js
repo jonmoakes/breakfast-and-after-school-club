@@ -1,4 +1,5 @@
-import { createChildrenToAddToBooking } from "../../../functions/create-children-to-add-to-booking";
+import { format } from "date-fns";
+
 import useGetBookRecurringSessionsSelectors from "../../../hooks/get-selectors/use-get-book-recurring-sessions-selectors";
 import useGetBookedSessionsUserSelectors from "../../../hooks/get-selectors/use-get-booked-sessions-user-selectors";
 import useGetDatabaseManagementSelectors from "../../../hooks/get-selectors/use-get-database-management-selectors";
@@ -7,6 +8,8 @@ import useGetSendEmailSelectors from "../../../hooks/get-selectors/use-get-send-
 import useGetSessionTypesAndPricesSelectors from "../../../hooks/get-selectors/use-get-session-types-and-prices-selectors";
 import useGetUsersChildrenSelectors from "../../../hooks/get-selectors/use-get-users-children-selectors";
 import useGetChildrenLogic from "../../book-a-session/book-a-session-hooks/logic/use-get-children-logic";
+
+import { createChildrenToAddToBooking } from "../../../functions/create-children-to-add-to-booking";
 
 const useBookRecurringSessionsVariables = () => {
   const {
@@ -41,9 +44,10 @@ const useBookRecurringSessionsVariables = () => {
   } = useGetChildrenLogic();
 
   // const date = new Date();
+  // const monthAsString = format(date, "MMMM");
+  // const date = new Date();
   const monthAsString = "july";
   //  format(date, "MMMM");
-
   const childrensNamesInBooking = createChildrenToAddToBooking(
     childrenSelectedForBooking,
     usersChildren

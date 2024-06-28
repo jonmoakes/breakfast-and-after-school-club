@@ -3,7 +3,7 @@ import useBookRecurringSessionsVariables from "../hooks/use-book-recurring-sessi
 import useRecurringSessionsFunctions from "../hooks/use-recurring-sessions-functions";
 
 import BookingsWithDuplicatesRemovedInfo from "./confirm-and-book-sessions-sections/check-for-duplicates-sections/bookings-with-duplicates-removed-info.component";
-import CheckForDuplicatesAndBookIfNoneFound from "./confirm-and-book-sessions-sections/check-for-duplicates-sections/check-for-duplicates.component";
+import CheckForDuplicates from "./confirm-and-book-sessions-sections/check-for-duplicates-sections/check-for-duplicates.component";
 
 const ConfirmAndBookSessions = () => {
   const { walletBalance } = useGetCurrentUserSelectors();
@@ -15,7 +15,7 @@ const ConfirmAndBookSessions = () => {
       {showHelp && walletBalance > totalCost() ? (
         <BookingsWithDuplicatesRemovedInfo />
       ) : walletBalance >= totalCost() ? (
-        <CheckForDuplicatesAndBookIfNoneFound />
+        <CheckForDuplicates />
       ) : null}
     </>
   );
