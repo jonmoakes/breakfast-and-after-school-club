@@ -7,6 +7,8 @@ import {
   isWednesday,
 } from "date-fns";
 
+import useGetCurrentUserSelectors from "../../../hooks/get-selectors/use-get-current-user-selectors";
+import useConfirmSwal from "../../../hooks/use-confirm-swal";
 import useBookRecurringSessionsActions from "../../../hooks/get-actions-and-thunks/book-recurring-sessions-actions-thunks/use-book-recurring-sessions-actions";
 import useRequestSessionPricesThunk from "../../../hooks/get-actions-and-thunks/session-types-and-prices-actions-and-thunks/use-request-session-prices-thunk";
 import useBookRecurringSessionsVariables from "./use-book-recurring-sessions-variables";
@@ -14,11 +16,10 @@ import useGetChildrenLogic from "../../book-a-session/book-a-session-hooks/logic
 import useDispatchBookRecurringSessionsThunks from "../../../hooks/get-actions-and-thunks/book-recurring-sessions-actions-thunks/use-dispatch-book-recurring-sessions-thunks";
 import {
   confirmChangeChildrenQuestion,
+  confirmChangeDayQuestion,
   fundsDeductedFromBalance,
   imSureMessage,
 } from "../../../strings/confirms/confirms-strings";
-import useConfirmSwal from "../../../hooks/use-confirm-swal";
-import useGetCurrentUserSelectors from "../../../hooks/get-selectors/use-get-current-user-selectors";
 
 const useRecurringSessionsFunctions = () => {
   const { walletBalance } = useGetCurrentUserSelectors();
@@ -197,14 +198,6 @@ const useRecurringSessionsFunctions = () => {
       ? afternoonDatesList()
       : null;
 
-  const resetDayAndSessionChoices = () => {
-    dispatchSetDayChoice("");
-    dispatchSetSessionChoice("");
-    dispatchSetShowConfirmButton(false);
-    dispatchSetShowHelp(false);
-    dispatchSetBookingsToAdd(null);
-  };
-
   const hasOneChildOrHasMoreThanOneChildAndAtLeastOneHasBeenSelected = () => {
     return (
       hasOneChild() ||
@@ -236,15 +229,20 @@ const useRecurringSessionsFunctions = () => {
     );
   };
 
-  const confirmReload = () => {
+  const confirmChangeChildren = () => {
     confirmSwal(confirmChangeChildrenQuestion, "", imSureMessage, () =>
+      window.location.reload()
+    );
+  };
+
+  const confirmChangeDay = () => {
+    confirmSwal(confirmChangeDayQuestion, "", imSureMessage, () =>
       window.location.reload()
     );
   };
 
   return {
     showLoaders,
-    resetDayAndSessionChoices,
     setChoiceAndGetSessionTypesAndPrices,
     totalCost,
     formattedSessionChoiceString,
@@ -260,7 +258,8 @@ const useRecurringSessionsFunctions = () => {
     dispatchSetShowHelp,
     bookSessions,
     dispatchSetSessionChoice,
-    confirmReload,
+    confirmChangeChildren,
+    confirmChangeDay,
     noMorningSessions,
     noAfternoonSessions,
   };

@@ -345,7 +345,7 @@ export const PaginationPageButton = styled(Button)`
 export const MinimalButton = styled.button`
   margin: -5px auto 5px auto;
   text-transform: capitalize;
-  height: auto;
+  height: 30px;
   width: auto;
   display: flex;
   align-items: center;

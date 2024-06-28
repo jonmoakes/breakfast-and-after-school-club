@@ -119,7 +119,7 @@ export const ParentDiv = styled.div`
   }
 
   &.bounce {
-    animation: 1.5s ${bounceInDownAnimation};
+    animation: 2s ${bounceInDownAnimation};
   }
 
   @media screen and (max-width: 1366px) {

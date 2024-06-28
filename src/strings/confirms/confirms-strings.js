@@ -174,4 +174,5 @@ export const confirmDeleteSecondEmergencyContactsMessage =
   "Are you sure you want to delete your second emergency contact details?";
 export const confirmGoToRecurringBookingsRoute =
   "Are you sure you want to move to the page where you can book recurring sessions for the month?";
-export const confirmChangeChildrenQuestion = `<span style="font-size: 20px;">are you sure you want to change the children you wish to make the bookings for?<br/><br/>this will reload the page.</span>`;
+export const confirmChangeChildrenQuestion = `<span style="font-size: 20px;">are you sure you want to change the children that you wish to make the bookings for?<br/><br/>this will reload the page.</span>`;
+export const confirmChangeDayQuestion = `<span style="font-size: 20px;">are you sure you want to change the day that you wish to make the bookings for?<br/><br/>this will reload the page.</span>`;

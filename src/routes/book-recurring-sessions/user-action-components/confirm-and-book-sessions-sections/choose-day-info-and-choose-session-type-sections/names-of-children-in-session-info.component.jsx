@@ -9,7 +9,7 @@ import { RedSpan } from "../../../../../styles/span/span.styles";
 import { removeStarFromChildrensNamesIfExists } from "../../../../../functions/remove-star-from-childrens-name-if-exists";
 
 const NamesOfChildrenInSessionInfo = () => {
-  const { hasMoreThanOneChild, confirmReload } =
+  const { hasMoreThanOneChild, confirmChangeChildren } =
     useRecurringSessionsFunctions();
   const { childrensNamesInBooking } = useBookRecurringSessionsVariables();
 
@@ -25,7 +25,9 @@ const NamesOfChildrenInSessionInfo = () => {
               {removeStarFromChildrensNamesIfExists(childrensNamesInBooking)}
             </RedSpan>
           </Text>
-          <MinimalButton onClick={confirmReload}>change children</MinimalButton>
+          <MinimalButton onClick={confirmChangeChildren}>
+            change children
+          </MinimalButton>
         </>
       ) : null}
     </>

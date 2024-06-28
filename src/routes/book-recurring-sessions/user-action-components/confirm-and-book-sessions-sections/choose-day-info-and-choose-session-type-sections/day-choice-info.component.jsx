@@ -7,7 +7,7 @@ import { RedSpan } from "../../../../../styles/span/span.styles";
 
 const DayChoiceInfo = () => {
   const { dayChoice } = useBookRecurringSessionsVariables();
-  const { resetDayAndSessionChoices } = useRecurringSessionsFunctions();
+  const { confirmChangeDay } = useRecurringSessionsFunctions();
 
   return (
     <>
@@ -16,9 +16,7 @@ const DayChoiceInfo = () => {
         <br />
         <RedSpan>{dayChoice}</RedSpan>
       </Text>
-      <MinimalButton onClick={resetDayAndSessionChoices}>
-        change day
-      </MinimalButton>
+      <MinimalButton onClick={confirmChangeDay}>change day</MinimalButton>
     </>
   );
 };
