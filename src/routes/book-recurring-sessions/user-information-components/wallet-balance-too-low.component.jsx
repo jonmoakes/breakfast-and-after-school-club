@@ -32,7 +32,7 @@ const WalletBalanceTooLow = () => {
             </RedSpan>
             <br />
             <br />
-            To your wallet in order to book all of the{" "}
+            To your wallet in order to book these{" "}
             <RedSpan>{formattedSessionChoiceString()}</RedSpan> sessions for{" "}
             <RedSpan>{monthAsString}</RedSpan>.
           </Text>

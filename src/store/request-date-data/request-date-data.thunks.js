@@ -122,7 +122,6 @@ export const requestAllDatesForCurrentMonthAsync = createAsyncThunk(
     thunkAPI
   ) => {
     try {
-      monthNumericString = "07";
       const getDatesDocuments = await listDocumentsInACollection(
         databaseId,
         collectionId

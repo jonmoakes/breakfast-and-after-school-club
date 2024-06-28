@@ -7,12 +7,14 @@ import CheckForDuplicates from "./confirm-and-book-sessions-sections/check-for-d
 
 const ConfirmAndBookSessions = () => {
   const { walletBalance } = useGetCurrentUserSelectors();
-  const { totalCost } = useRecurringSessionsFunctions();
+  const { totalCost, noMorningSessions, noAfternoonSessions } =
+    useRecurringSessionsFunctions();
   const { showHelp } = useBookRecurringSessionsVariables();
 
   return (
     <>
-      {showHelp && walletBalance > totalCost() ? (
+      {noMorningSessions() || noAfternoonSessions() ? null : showHelp &&
+        walletBalance >= totalCost() ? (
         <BookingsWithDuplicatesRemovedInfo />
       ) : walletBalance >= totalCost() ? (
         <CheckForDuplicates />

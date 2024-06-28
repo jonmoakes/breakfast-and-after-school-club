@@ -101,8 +101,7 @@ const useRecurringSessionsFunctions = () => {
   const morningDatesList = () => {
     const filteredMorningSessionDocuments = documentsMatchingDayChoice
       ? documentsMatchingDayChoice.filter((doc) => {
-          // const currentDate = new Date();
-          const currentDate = new Date("2024-07-01");
+          const currentDate = new Date();
           const docDateObject = new Date(doc.date);
           docDateObject.setHours(0, 0, 0, 0);
           return (
@@ -116,8 +115,7 @@ const useRecurringSessionsFunctions = () => {
   const afternoonDatesList = () => {
     const filteredAfternoonSessionDocuments = documentsMatchingDayChoice
       ? documentsMatchingDayChoice.filter((doc) => {
-          // const currentDate = new Date();
-          const currentDate = new Date("2024-07-01");
+          const currentDate = new Date();
           const docDateObject = new Date(doc.date);
           docDateObject.setHours(0, 0, 0, 0);
           return (

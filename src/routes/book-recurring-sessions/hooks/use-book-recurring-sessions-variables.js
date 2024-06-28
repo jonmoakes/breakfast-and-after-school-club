@@ -43,11 +43,9 @@ const useBookRecurringSessionsVariables = () => {
     childrenSelectedForBooking,
   } = useGetChildrenLogic();
 
-  // const date = new Date();
-  // const monthAsString = format(date, "MMMM");
-  // const date = new Date();
-  const monthAsString = "july";
-  //  format(date, "MMMM");
+  const date = new Date();
+  const monthAsString = format(date, "MMMM");
+
   const childrensNamesInBooking = createChildrenToAddToBooking(
     childrenSelectedForBooking,
     usersChildren
