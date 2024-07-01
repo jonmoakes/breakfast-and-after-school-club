@@ -173,6 +173,10 @@ export const StyledInput = styled.input`
   }
 `;
 
+export const PasswordInput = styled(StyledInput)`
+  padding-right: 36px;
+`;
+
 export const CapitalizedInput = styled(StyledInput)`
   text-transform: capitalize;
 `;
