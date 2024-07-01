@@ -1,5 +1,5 @@
 import styled, { keyframes } from "styled-components";
-import { bounceInDown } from "react-animations";
+import { bounceInDown, slideInRight } from "react-animations";
 
 import {
   customBlue,
@@ -12,6 +12,7 @@ import {
 } from "../colors";
 
 const bounceInDownAnimation = keyframes`${bounceInDown}`;
+const slideInRightAnimation = keyframes`${slideInRight}`;
 
 export const Form = styled.form`
   width: 75%;
@@ -77,6 +78,26 @@ export const StyledInput = styled.input`
   background: radial-gradient(circle, ${customWhite}, ${customLightGrey});
   appearance: none;
   color: ${customBlack};
+
+  &.week-filter {
+    width: auto;
+    padding: 0px 10px;
+    height: 30px;
+    margin: -30px auto 30px auto;
+    animation: 0.5s ${slideInRightAnimation};
+
+    @media screen and (max-width: 1366px) {
+      margin: -20px auto 10px auto;
+    }
+
+    @media screen and (max-width: 850px) {
+      margin: 30px auto 10px auto;
+    }
+
+    @media screen and (max-width: 450px) {
+      margin: -20px auto 10px auto;
+    }
+  }
 
   &:focus {
     border: 2px solid ${customTomato};
@@ -150,10 +171,6 @@ export const StyledInput = styled.input`
       font-size: 14px;
     }
   }
-`;
-
-export const PasswordInput = styled(StyledInput)`
-  padding-right: 36px;
 `;
 
 export const CapitalizedInput = styled(StyledInput)`

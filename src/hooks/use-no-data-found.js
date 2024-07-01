@@ -11,7 +11,7 @@ import useGetIncomeDataSelectors from "./get-selectors/use-get-income-data-selec
 const useNoDataFound = () => {
   const { allUsers } = useGetAllUsersSelectors();
   const { allChildren } = useGetAllChildrenSelectors();
-  const { sortedIncomeData } = useGetIncomeDataSelectors();
+  const { incomeData } = useGetIncomeDataSelectors();
 
   const location = useLocation();
   const path = location.pathname;
@@ -27,11 +27,8 @@ const useNoDataFound = () => {
           ? true
           : false;
       case incomeRoute:
-        return sortedIncomeData !== undefined &&
-          !sortedIncomeData.length &&
-          !data.length
-          ? true
-          : false;
+        // if empty, the stripe api will return [] not undefined so don't need to check for it
+        return incomeData && !incomeData.length && !data.length ? true : false;
       default:
         return false;
     }
@@ -40,14 +37,11 @@ const useNoDataFound = () => {
   // need to check for undefined because if api call is fulfilled but there is no data, the data will be undefined as opposed to being null if there is an error when firing the thunk.
   const allUsersIsUndefined = allUsers === undefined ? true : false;
   const allChildrenIsUndefined = allChildren === undefined ? true : false;
-  const sortedIncomeDataIsUndefined =
-    sortedIncomeData === undefined ? true : false;
 
   return {
     noDataFound,
     allUsersIsUndefined,
     allChildrenIsUndefined,
-    sortedIncomeDataIsUndefined,
   };
 };
 

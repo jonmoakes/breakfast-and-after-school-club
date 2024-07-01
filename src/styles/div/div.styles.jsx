@@ -126,7 +126,20 @@ export const ParentDiv = styled.div`
     margin: -20px auto 30px auto;
     padding: 0px 10px;
     display: inline-block;
-    max-width: 90%;
+    width: 50%;
+    animation: 1s ${rollInAnimation};
+
+    @media screen and (max-width: 1366px) {
+      width: 75%;
+    }
+
+    @media screen and (max-width: 600px) {
+      width: 90%;
+    }
+  }
+
+  &.clear-week {
+    margin: 0px auto 30px auto;
   }
 
   @media screen and (max-width: 1366px) {
@@ -142,6 +155,11 @@ export const AmountButtonDiv = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-top: 20px;
+
+  @media screen and (max-width: 1366px) {
+    margin-top: 50px;
+  }
 `;
 
 export const InnerDiv = styled.div`

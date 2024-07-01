@@ -26,10 +26,12 @@ import {
   bookedSessionsOwnerRoute,
   bookedSessionsUserAllBookingsRoute,
   bookedSessionsUserRoute,
+  incomeRoute,
 } from "../../strings/routes/routes-strings";
 import { BlackHr } from "../../styles/hr/hr.styles";
+import IncomeTableHelp from "./table-helps/income-table-help.component";
 
-const UserBookingsHelp = () => {
+const TableHelp = () => {
   const { shouldShowElement } = useGetShouldShowelementSelectors();
   const { dispatchShowOppositeShowElement, dispatchHideShownElement } =
     useShouldShowElementActions();
@@ -45,6 +47,7 @@ const UserBookingsHelp = () => {
   const isBookedSessionsUserAllBookingsRoute =
     path === bookedSessionsUserAllBookingsRoute ? true : false;
   const isAllUsersRoute = path === allUsersRoute ? true : false;
+  const isIncomeRoute = path === incomeRoute ? true : false;
 
   return (
     <Accordion className="table">
@@ -60,8 +63,8 @@ const UserBookingsHelp = () => {
           <AccordionContent>
             <BlueH2>searching:</BlueH2>
             <Text>
-              enter a search term in the search box to show only bookings that
-              match that search.
+              enter a search term in the search box to show only data that
+              matches that search.
             </Text>
             <Text>
               you can search for anything that will have been entered into any
@@ -70,7 +73,8 @@ const UserBookingsHelp = () => {
 
             {isBookedSessionsOwnerRoute ||
             isBookedSessionsUserRoute ||
-            isBookedSessionsUserAllBookingsRoute ? (
+            isBookedSessionsUserAllBookingsRoute ||
+            isIncomeRoute ? (
               <DateSearchingHelp />
             ) : null}
 
@@ -110,6 +114,8 @@ const UserBookingsHelp = () => {
               <ColourCodingTableHelp />
             ) : null}
 
+            {isIncomeRoute ? <IncomeTableHelp /> : null}
+
             <BlackHr />
             <YellowGreenButton onClick={dispatchHideShownElement}>
               ok, close
@@ -121,4 +127,4 @@ const UserBookingsHelp = () => {
   );
 };
 
-export default UserBookingsHelp;
+export default TableHelp;

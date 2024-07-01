@@ -16,7 +16,8 @@ const NoDatesFound = () => {
   const { getCurrentMonthDateDataAndUserBookingsThunk } =
     useGetCurrentMonthDateDataAndUserBookingsThunk();
   const { monthAsString, dayChoice } = useBookRecurringSessionsVariables();
-  const { formattedSessionChoiceString } = useRecurringSessionsFunctions();
+  const { formattedSessionChoiceString, hasMoreThanOneChild } =
+    useRecurringSessionsFunctions();
 
   return (
     <ParentDiv>
@@ -39,6 +40,15 @@ const NoDatesFound = () => {
               {monthAsString}.
             </Balancer>
           </BlackListItem>
+          {hasMoreThanOneChild() ? (
+            <BlackListItem>
+              <Balancer>
+                3: You are trying to book sessions for more than one child and
+                one of your children is already booked into the sessions you are
+                trying to book.
+              </Balancer>
+            </BlackListItem>
+          ) : null}
         </StyledUnorderedList>
       </PinkDiv>
       <Text>

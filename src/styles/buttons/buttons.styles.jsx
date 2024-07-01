@@ -360,6 +360,14 @@ export const MinimalButton = styled.button`
   &.margin {
     margin: 10px auto 5px auto;
   }
+
+  &.clear-week {
+    margin: 0px auto 10px auto;
+  }
+
+  &:hover {
+    cursor: pointer;
+  }
 `;
 
 export const RegistrationXButton = styled.button`
