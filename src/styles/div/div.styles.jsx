@@ -158,6 +158,10 @@ export const AmountButtonDiv = styled.div`
   margin-top: 20px;
 
   @media screen and (max-width: 1366px) {
+    margin-top: 20px;
+  }
+
+  @media screen and (max-width: 850px) {
     margin-top: 50px;
   }
 `;

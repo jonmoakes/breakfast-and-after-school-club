@@ -9,8 +9,8 @@ const useFilterByWeekUseEffect = (weekNumber) => {
   useEffect(() => {
     const filterByWeek = () => {
       const filtered = data.filter(
-        (item) =>
-          getISOWeek(item.createdAsDateObjectForSorting) ===
+        (entry) =>
+          getISOWeek(entry.createdAsDateObjectForSorting) ===
           parseInt(weekNumber, 10)
       );
       setFilteredData(filtered);

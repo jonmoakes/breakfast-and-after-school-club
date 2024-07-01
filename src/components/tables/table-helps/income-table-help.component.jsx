@@ -33,23 +33,21 @@ const IncomeTableHelp = () => (
       however these extra {150 - defaultTableSize} entries that are not visible{" "}
       <RedSpan>would</RedSpan> be included in the total.
     </Text>
-    <BlackHr />
-    <Text>
-      for example, if you have 10 entries in week 26 that total £100 and you
-      search for a monday which returns 2 entries in that week, the total will
-      be the total cost of those 2 entries.
-    </Text>
     <Text>remove the search term to get data of all entries again.</Text>
     <BlackHr />
     <BlueH2>getting entries from a specific week of the year:</BlueH2>
     <Text>you can also get data from just a certain week in the year.</Text>
     <Text>
-      enter in a week number in the box that says 'filter by week number' ( ie
-      52 for the last week of the year ).
+      enter in a week number in the box that says 'filter by week no' ( ie 52
+      for the last week of the year ).
     </Text>
     <Text>
       you will then get all of the entries from that week and the total will be
       automatically calculated and shown just above the table.
+    </Text>
+    <Text>
+      the same principle applies as mentioned previously with regards entries
+      that are off screen due to pagination.
     </Text>
     <Text>clear the input box to show all of the entries again.</Text>
     <BlueH2>
@@ -62,18 +60,13 @@ const IncomeTableHelp = () => (
     </Text>
 
     <Text>
-      the same principle applies as mentioned previously with regards entries
-      that are off screen due to pagination.
-    </Text>
-    <Text>
       if you enter in a search for a week number and then search for something
       within that weeks data ( a date for example ), the total will be total
       amount from data in the the search, not the whole week itself.
     </Text>
     <Text>
-      if you change the week number whilst a search term is still in the box,
-      you will need to clear the search term and then re-enter it in order to
-      get the appropriate data for your search.
+      when you clear the date week bar, you will need to add a search term again
+      to trigger a search.
     </Text>
     <BlackHr />
     <BlueH2>emailing a user:</BlueH2>

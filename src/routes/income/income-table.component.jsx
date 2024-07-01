@@ -75,6 +75,8 @@ const IncomeTable = () => {
       ) : (
         <>
           <NoIncomeDataFound {...{ data }} />
+          <WeekFilterInput {...{ weekNumber, handleWeekFilterChange }} />
+
           <SearchBoxWhenNoChosenEntry
             {...{
               rows,
@@ -85,8 +87,6 @@ const IncomeTable = () => {
               setValue,
             }}
           />
-
-          <WeekFilterInput {...{ weekNumber, handleWeekFilterChange }} />
 
           <ShowTotalOfReturnedEntries
             {...{

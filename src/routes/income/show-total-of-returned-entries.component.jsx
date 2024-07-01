@@ -15,13 +15,13 @@ const ShowTotalOfReturnedEntries = ({
   const {
     calculateTotalAmount,
     filteredRows,
-    weekNumberEnteredAndtotalIsZero,
+    weekNumberEnteredAndTotalIsZero,
     searchHasValueAndHasReturnedRows,
   } = useIncomeFunctions();
 
   return (
     <>
-      {weekNumberEnteredAndtotalIsZero(weekNumber, rows) ? (
+      {weekNumberEnteredAndTotalIsZero(weekNumber, rows) ? (
         <ParentDiv className="clear-week">
           <Text>no entries found for this week number.</Text>
           <Text>
@@ -30,7 +30,7 @@ const ShowTotalOfReturnedEntries = ({
           <MinimalButton
             type="button"
             className="clear-week"
-            onClick={() => handleWeekFilterChange("")}
+            onClick={() => handleWeekFilterChange(null)}
           >
             clear week number
           </MinimalButton>

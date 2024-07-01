@@ -87,15 +87,15 @@ export const StyledInput = styled.input`
     animation: 0.5s ${slideInRightAnimation};
 
     @media screen and (max-width: 1366px) {
-      margin: -20px auto 10px auto;
+      margin: -20px auto 30px auto;
     }
 
     @media screen and (max-width: 850px) {
-      margin: 30px auto 10px auto;
+      margin: -20px auto 30px auto;
     }
 
     @media screen and (max-width: 450px) {
-      margin: -20px auto 10px auto;
+      margin: 0px auto 30px auto;
     }
   }
 

@@ -19,7 +19,7 @@ const useIncomeFunctions = () => {
     setWeekNumber(payload);
   };
 
-  const weekNumberEnteredAndtotalIsZero = (weekNumber, rows) => {
+  const weekNumberEnteredAndTotalIsZero = (weekNumber, rows) => {
     return weekNumber && calculateTotalAmount(rows) === 0 && true;
   };
 
@@ -32,7 +32,7 @@ const useIncomeFunctions = () => {
     filteredRows,
     weekNumber,
     handleWeekFilterChange,
-    weekNumberEnteredAndtotalIsZero,
+    weekNumberEnteredAndTotalIsZero,
     searchHasValueAndHasReturnedRows,
   };
 };
