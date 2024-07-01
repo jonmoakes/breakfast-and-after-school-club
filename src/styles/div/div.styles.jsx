@@ -122,6 +122,13 @@ export const ParentDiv = styled.div`
     animation: 2s ${bounceInDownAnimation};
   }
 
+  &.amount {
+    margin: -20px auto 30px auto;
+    padding: 0px 10px;
+    display: inline-block;
+    max-width: 90%;
+  }
+
   @media screen and (max-width: 1366px) {
     box-shadow: none;
   }
@@ -129,6 +136,12 @@ export const ParentDiv = styled.div`
   @media screen and (max-width: 600px) {
     width: 90%;
   }
+`;
+
+export const AmountButtonDiv = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `;
 
 export const InnerDiv = styled.div`
@@ -499,7 +512,7 @@ export const TableSearchDiv = styled.div`
   margin: 0px auto -30px auto;
   animation: 0.5s ${slideInLeftAnimation};
 
-  &.all-users-all-children {
+  &.no-checkbox {
     margin: 0px auto 0px auto;
 
     @media screen and (max-width: 450px) {

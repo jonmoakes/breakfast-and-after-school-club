@@ -4,11 +4,14 @@ import useGetAllUsersSelectors from "./get-selectors/use-get-all-users-selectors
 import {
   allChildrenRoute,
   allUsersRoute,
+  incomeRoute,
 } from "../strings/routes/routes-strings";
+import useGetIncomeDataSelectors from "./get-selectors/use-get-income-data-selectors";
 
 const useNoDataFound = () => {
   const { allUsers } = useGetAllUsersSelectors();
   const { allChildren } = useGetAllChildrenSelectors();
+  const { sortedIncomeData } = useGetIncomeDataSelectors();
 
   const location = useLocation();
   const path = location.pathname;
@@ -23,16 +26,29 @@ const useNoDataFound = () => {
         return allChildren !== undefined && !allChildren.length && !data.length
           ? true
           : false;
+      case incomeRoute:
+        return sortedIncomeData !== undefined &&
+          !sortedIncomeData.length &&
+          !data.length
+          ? true
+          : false;
       default:
         return false;
     }
   };
 
-  // need to check for undefined because if api call is fulfilled but there is no data, the data will be undefined as opposed to being null of there is an error when firing the thunk.
+  // need to check for undefined because if api call is fulfilled but there is no data, the data will be undefined as opposed to being null if there is an error when firing the thunk.
   const allUsersIsUndefined = allUsers === undefined ? true : false;
   const allChildrenIsUndefined = allChildren === undefined ? true : false;
+  const sortedIncomeDataIsUndefined =
+    sortedIncomeData === undefined ? true : false;
 
-  return { noDataFound, allUsersIsUndefined, allChildrenIsUndefined };
+  return {
+    noDataFound,
+    allUsersIsUndefined,
+    allChildrenIsUndefined,
+    sortedIncomeDataIsUndefined,
+  };
 };
 
 export default useNoDataFound;

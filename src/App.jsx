@@ -66,6 +66,7 @@ import {
   customerPortalRoute,
   manageEmergencyContactsRoute,
   bookRecurringSessionsRoute,
+  incomeRoute,
 } from "./strings/routes/routes-strings";
 
 const Navigation = lazy(() =>
@@ -249,6 +250,8 @@ const ManageEmergencyContacts = lazy(() =>
     "./routes/manage-emergency-contacts/manage-emergency-contacts.component"
   )
 );
+
+const Income = lazy(() => import("./routes/income/income.component"));
 
 const App = () => {
   const { currentUser, appOwnerId } = useGetCurrentUserSelectors();
@@ -467,6 +470,7 @@ const App = () => {
                   ) : null
                 }
               />
+              <Route path={incomeRoute} element={<Income />} />
               <Route path={pwaInfoRoute} element={<PwaInformation />} />
               <Route path={customerPortalRoute} element={<CustomerPortal />} />
             </Route>

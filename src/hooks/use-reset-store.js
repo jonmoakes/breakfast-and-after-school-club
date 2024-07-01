@@ -27,6 +27,7 @@ import useCurrentUserActions from "./get-actions-and-thunks/current-user-actions
 import useDatabaseManagementActions from "./get-actions-and-thunks/database-management-actions-and-thunks/use-database-management-actions";
 import useEmergencyContactDetailsActions from "./get-actions-and-thunks/emergency-contact-details-actions-and-thunks/use-emergency-contact-details-actions";
 import useBookRecurringSessionsActions from "./get-actions-and-thunks/book-recurring-sessions-actions-thunks/use-book-recurring-sessions-actions";
+import useIncomeDataActions from "./get-actions-and-thunks/income-data-actions-and-thunks/use-income-data-actions";
 
 import {
   addFundsRoute,
@@ -60,6 +61,7 @@ import {
   databaseManagementUpdateLatestBookingsAndChildrensParentEmailRoute,
   manageEmergencyContactsRoute,
   bookRecurringSessionsRoute,
+  incomeRoute,
 } from "../strings/routes/routes-strings";
 
 const useResetStore = () => {
@@ -100,6 +102,7 @@ const useResetStore = () => {
     useEmergencyContactDetailsActions();
   const { dispatchResetBookRecurringSessionsState } =
     useBookRecurringSessionsActions();
+  const { dispatchResetIncomeDataState } = useIncomeDataActions();
 
   const location = useLocation();
   const path = location.pathname;
@@ -212,6 +215,9 @@ const useResetStore = () => {
         dispatchResetSessionTypesAndPricesState();
         dispatchResetBookedSessionsUserState();
         dispatchResetBookSessionState();
+        break;
+      case incomeRoute:
+        dispatchResetIncomeDataState();
         break;
       default:
         return;

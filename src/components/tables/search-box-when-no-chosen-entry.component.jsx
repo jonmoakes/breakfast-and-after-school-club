@@ -2,21 +2,28 @@ import { useState } from "react";
 import { useAsyncDebounce } from "react-table";
 import { useLocation } from "react-router-dom";
 
-import Loader from "../../components/loader/loader.component";
-import NoSearchResult from "../../components/tables/no-search-result.component";
+import Loader from "../loader/loader.component";
+import NoSearchResult from "./no-search-result.component";
 
 import { ClearSearchButton } from "../../styles/buttons/buttons.styles";
 import { TableSearchDiv } from "../../styles/div/div.styles";
 import { SearchInput } from "../../styles/form/form.styles";
-import { allUsersRoute } from "../../strings/routes/routes-strings";
 
-const AllUsersAllChildrenSearchBox = ({
+import {
+  allChildrenRoute,
+  allUsersRoute,
+} from "../../strings/routes/routes-strings";
+// This search box takes the value and setValue state from the tables that use it
+// incomeDataTable needs it this way to display the total amount when searchbox has length.
+// Rather than creating a separate searchbox with just one change, the method of setting the value
+// Is given to the tables that use this searchbox instead.
+const SearchBoxWhenNoChosenEntry = ({
   rows,
   data,
-  globalFilter,
   setGlobalFilter,
+  value,
+  setValue,
 }) => {
-  const [value, setValue] = useState(globalFilter);
   const [isSearching, setIsSearching] = useState(false);
 
   const location = useLocation();
@@ -36,11 +43,15 @@ const AllUsersAllChildrenSearchBox = ({
     <>
       {isSearching && <Loader />}
       {data.length ? (
-        <TableSearchDiv className="all-users-all-children">
+        <TableSearchDiv className="no-checkbox">
           <SearchInput
             type="search"
             placeholder={
-              path === allUsersRoute ? "Search Users" : "Search Children"
+              path === allUsersRoute
+                ? "Search Users"
+                : path === allChildrenRoute
+                ? "Search Children"
+                : "Search Income"
             }
             onChange={(e) => {
               setIsSearching(true);
@@ -61,4 +72,4 @@ const AllUsersAllChildrenSearchBox = ({
   );
 };
 
-export default AllUsersAllChildrenSearchBox;
+export default SearchBoxWhenNoChosenEntry;

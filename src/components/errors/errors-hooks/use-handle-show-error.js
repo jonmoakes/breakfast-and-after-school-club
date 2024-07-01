@@ -8,6 +8,7 @@ import useGetAllUsersSelectors from "../../../hooks/get-selectors/use-get-all-us
 import useGetUsersChildrenSelectors from "../../../hooks/get-selectors/use-get-users-children-selectors";
 import useGetSessionTypesAndPricesSelectors from "../../../hooks/get-selectors/use-get-session-types-and-prices-selectors";
 import useGetRequestDateDataSelectors from "../../../hooks/get-selectors/use-get-request-date-data-selectors";
+import useGetIncomeDataSelectors from "../../../hooks/get-selectors/use-get-income-data-selectors";
 
 import {
   addFundsRoute,
@@ -23,6 +24,7 @@ import {
   databaseManagementViewSessionTimesRoute,
   databaseManagementCancelBookingRoute,
   bookRecurringSessionsRoute,
+  incomeRoute,
 } from "../../../strings/routes/routes-strings";
 
 const useHandleShowError = () => {
@@ -34,6 +36,7 @@ const useHandleShowError = () => {
   const { handlePaymentError } = useGetHandlePaymentSelectors();
   const { sessionTypesAndPricesError } = useGetSessionTypesAndPricesSelectors();
   const { requestDateDataError } = useGetRequestDateDataSelectors();
+  const { incomeDataError } = useGetIncomeDataSelectors();
 
   const location = useLocation();
   const path = location.pathname;
@@ -46,8 +49,9 @@ const useHandleShowError = () => {
     if (bookedSessionsOwnerError)
       return "failed to fetch your customer bookings.";
     if (handlePaymentError) return "failed to contact payment processor.";
-    if (getAllChildrenError) return "failed to fetch all children";
-    if (getAllUsersError) return "failed to fetch users";
+    if (getAllChildrenError) return "failed to fetch all children.";
+    if (getAllUsersError) return "failed to fetch users.";
+    if (incomeDataError) return "failed to fetch income data.";
   };
 
   const errorToDisplay = () => {
@@ -61,6 +65,7 @@ const useHandleShowError = () => {
       bookedSessionsUserError,
       getAllChildrenError,
       getAllUsersError,
+      incomeDataError,
     ];
 
     return errors.find((error) => error !== null);
@@ -92,7 +97,8 @@ const useHandleShowError = () => {
         return "display the session prices from the database";
       case databaseManagementCancelBookingRoute:
         return "cancel a booking";
-
+      case incomeRoute:
+        return "display the list of your income";
       default:
         return "display the requested data";
     }

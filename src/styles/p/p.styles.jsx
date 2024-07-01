@@ -7,6 +7,11 @@ export const Text = styled.p`
   &.lowercased {
     text-transform: lowercase;
   }
+
+  &.amount {
+    font-size: 16px;
+    margin: 10px auto;
+  }
 `;
 
 export const WhiteText = styled(Text)`

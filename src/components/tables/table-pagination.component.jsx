@@ -16,6 +16,7 @@ import {
   bookedSessionsOwnerRoute,
   bookedSessionsUserRoute,
   bookedSessionsUserAllBookingsRoute,
+  incomeRoute,
 } from "../../strings/routes/routes-strings";
 
 const TablePagination = ({
@@ -69,6 +70,9 @@ const TablePagination = ({
         break;
       case allUsersRoute:
         localStorage.setItem("allUsersChosenTablePageSize", selectedPageSize);
+        break;
+      case incomeRoute:
+        localStorage.setItem("incomeDataTablePageSize", selectedPageSize);
         break;
       default:
         return;

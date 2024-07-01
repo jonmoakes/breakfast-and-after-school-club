@@ -13,6 +13,7 @@ import {
   allUsersRoute,
   pricingRoute,
   bookedSessionsOwnerAllBookingsRoute,
+  incomeRoute,
 } from "../../strings/routes/routes-strings";
 
 export const signedInRoutes = [
@@ -29,6 +30,7 @@ export const ownerSignedInRoutes = [
   bookedSessionsOwnerAllBookingsRoute,
   allChildrenRoute,
   allUsersRoute,
+  incomeRoute,
   accountRoute,
   contactRoute,
 ];

@@ -35,7 +35,7 @@ const TableSearchBox = ({
         <TableSearchDiv>
           <SearchInput
             type="search"
-            placeholder="Search Bookings..."
+            placeholder="Search..."
             onChange={(e) => {
               setIsSearching(true);
               setValue(e.target.value);

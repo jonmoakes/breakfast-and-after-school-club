@@ -1,4 +1,4 @@
-import { useMemo } from "react";
+import { useMemo, useState } from "react";
 import {
   useTable,
   useSortBy,
@@ -19,7 +19,7 @@ import NoChildrenFound from "./no-children-found.component";
 import DefaultTable from "../../components/tables/default-table.component";
 import NetworkError from "../../components/errors/network-error.component";
 import TablePagination from "../../components/tables/table-pagination.component";
-import AllUsersAllChildrenSearchBox from "../../components/tables/all-users-all-children-search-box.component";
+import SearchBoxWhenNoChosenEntry from "../../components/tables/search-box-when-no-chosen-entry.component";
 
 import { defaultTableSize } from "../../components/tables/default-table-size";
 
@@ -85,6 +85,7 @@ const AllChildrenTable = () => {
     }
   );
   const { globalFilter, pageIndex, pageSize } = state;
+  const [value, setValue] = useState(globalFilter);
 
   return (
     <>
@@ -96,12 +97,14 @@ const AllChildrenTable = () => {
         <>
           <NoChildrenFound {...{ data }} />
 
-          <AllUsersAllChildrenSearchBox
+          <SearchBoxWhenNoChosenEntry
             {...{
               rows,
               data,
               globalFilter,
               setGlobalFilter,
+              value,
+              setValue,
             }}
           />
 
