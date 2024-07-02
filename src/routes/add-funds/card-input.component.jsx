@@ -12,6 +12,7 @@ import StripeLogo from "./stripe-logo.component";
 
 import { CardInputDiv, ParentDiv } from "../../styles/div/div.styles";
 import { Text } from "../../styles/p/p.styles";
+import { RedSpan } from "../../styles/span/span.styles";
 import { options } from "./card-input-styles/card-input-styles";
 
 const CardInput = () => {
@@ -28,7 +29,12 @@ const CardInput = () => {
         <>
           <CardInputErrors />
           <ParentDiv>
-            <Text>please enter your card details</Text>
+            <Text>
+              you will be adding{" "}
+              <RedSpan>£{walletFundsToAdd.toFixed(2)}</RedSpan>
+            </Text>
+
+            <Text>if this is correct, please enter your card details</Text>
             <CardInputDiv>
               <CardElement {...{ options }} onChange={handleCardInputChange} />
             </CardInputDiv>

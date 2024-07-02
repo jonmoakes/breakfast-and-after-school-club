@@ -35,7 +35,8 @@ const ShowTotalOfReturnedEntries = ({
             clear week number
           </MinimalButton>
         </ParentDiv>
-      ) : searchHasValueAndHasReturnedRows(value, rows) ? (
+      ) : !weekNumberEnteredAndTotalIsZero(weekNumber, rows) ||
+        searchHasValueAndHasReturnedRows(value, rows) ? (
         <AmountButtonDiv>
           <ParentDiv className="amount bounce">
             <Text className="amount">
