@@ -122,6 +122,10 @@ export const ParentDiv = styled.div`
     animation: 2s ${bounceInDownAnimation};
   }
 
+  &.left {
+    animation: 2s ${slideInLeftAnimation};
+  }
+
   &.amount {
     margin: -20px auto 30px auto;
     padding: 0px 10px;

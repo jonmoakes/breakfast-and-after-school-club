@@ -15,7 +15,7 @@ const ChooseDay = () => {
   return (
     <>
       {!dayChoice ? (
-        <ParentDiv className="bounce">
+        <ParentDiv className="left">
           <BlueH2>
             <Balancer>I want sessions on a:</Balancer>
           </BlueH2>
