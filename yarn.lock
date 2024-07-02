@@ -6871,10 +6871,10 @@ http2-wrapper@^2.1.10:
     quick-lru "^5.1.1"
     resolve-alpn "^1.2.0"
 
-https-proxy-agent@7.0.4:
-  version "7.0.4"
-  resolved "https://registry.yarnpkg.com/https-proxy-agent/-/https-proxy-agent-7.0.4.tgz#8e97b841a029ad8ddc8731f26595bad868cb4168"
-  integrity sha512-wlwpilI7YdjSkWaQ/7omYBMTliDcmCN8OLihO6I9B86g06lMyAoqgoDpV0XqoaPOKj+0DIdAvnsWfyAAhmimcg==
+https-proxy-agent@7.0.5:
+  version "7.0.5"
+  resolved "https://registry.yarnpkg.com/https-proxy-agent/-/https-proxy-agent-7.0.5.tgz#9e8b5013873299e11fab6fd548405da2d6c602b2"
+  integrity sha512-1e4Wqeblerz+tMKPIq2EMGiiWW1dIjZOksyHWSUm1rmuvw/how9hBHZ38lAGj5ID4Ik6EdkOw7NmWPy6LAwalw==
   dependencies:
     agent-base "^7.0.2"
     debug "4"
@@ -8318,10 +8318,10 @@ nested-error-stacks@^2.0.0, nested-error-stacks@^2.1.0, nested-error-stacks@^2.1
   resolved "https://registry.yarnpkg.com/nested-error-stacks/-/nested-error-stacks-2.1.1.tgz#26c8a3cee6cc05fbcf1e333cd2fc3e003326c0b5"
   integrity sha512-9iN1ka/9zmX1ZvLV9ewJYEk9h7RyRRtqdK0woXcqohu8EWIerfPUjYJPg0ULy0UqP7cslmdGc8xKDJcojlKiaw==
 
-netlify-cli@^17.30.0:
-  version "17.30.0"
-  resolved "https://registry.yarnpkg.com/netlify-cli/-/netlify-cli-17.30.0.tgz#860b04dc0d333a8bacf6460e613755c59188fe64"
-  integrity sha512-B6BcWxeEPaYaV7bWnMQczhavNc7nbXcxqjC2tmhXjZ4z7/ESgfUZqnGiaupAiAWnh7EjszX4Dmdy5lThA+8Hvg==
+netlify-cli@^17.32.0:
+  version "17.32.0"
+  resolved "https://registry.yarnpkg.com/netlify-cli/-/netlify-cli-17.32.0.tgz#169fe2c4ee1a9fb3c820144c115655a95a3d293a"
+  integrity sha512-8Empvkpc+HH4GF+By5T1zHPtMkWhFct0Fn+YxUy/vIuotK0RdidFQmF0YU5njnqu1Z5e+9EQzCH3zkyeH+4CLg==
   dependencies:
     "@bugsnag/js" "7.23.0"
     "@fastify/static" "7.0.4"
@@ -8379,7 +8379,7 @@ netlify-cli@^17.30.0:
     hasha "5.2.2"
     http-proxy "1.18.1"
     http-proxy-middleware "2.0.6"
-    https-proxy-agent "7.0.4"
+    https-proxy-agent "7.0.5"
     inquirer "6.5.2"
     inquirer-autocomplete-prompt "1.4.0"
     ipx "2.1.0"
@@ -8426,7 +8426,6 @@ netlify-cli@^17.30.0:
     terminal-link "3.0.0"
     through2-filter "4.0.0"
     through2-map "4.0.0"
-    to-readable-stream "3.0.0"
     toml "3.0.0"
     tomlify-j0.4 "3.0.0"
     ulid "2.3.0"
@@ -10770,11 +10769,6 @@ to-fast-properties@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/to-fast-properties/-/to-fast-properties-2.0.0.tgz#dc5e698cbd079265bc73e0377681a4e4e83f616e"
   integrity sha512-/OaKK0xYrs3DmxRYqL/yDc+FxFUVYhDlXMhRmv3z915w2HF1tnN1omB354j8VUGO/hbRzyD6Y3sA7v7GS/ceog==
-
-to-readable-stream@3.0.0:
-  version "3.0.0"
-  resolved "https://registry.yarnpkg.com/to-readable-stream/-/to-readable-stream-3.0.0.tgz#7c4aa6e3e2413c86c6276a57780dadfba226762f"
-  integrity sha512-vD2LytT6DxPynBa1xbMtswY9gGqj27wNbh2uvI5OhBe+mrGLurRWRQZyQn3812sqlQRtUJwaKVshG+PoGwbPDQ==
 
 to-regex-range@^5.0.1:
   version "5.0.1"

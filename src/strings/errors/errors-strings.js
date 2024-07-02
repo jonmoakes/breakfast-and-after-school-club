@@ -54,7 +54,7 @@ export const mustBeSignedInMessage =
 export const sessionDocFailureMessage = "session doc failure";
 export const balanceDocFailureMessage = "balance doc failure";
 export const resetSessionDocFailureMessage = "reset session doc failure";
-export const updateSessionDocErrorMessage = `<span style="font-size: 20px;">there was an error booking your session. your wallet balance has not changed. if the issue persists, please contact us using the contact form and quote the following error:</span>`;
+export const updateSessionDocErrorMessage = `<span style="font-size: 20px;">sorry, there was an error making your booking. your wallet balance has not changed. if the issue persists, please contact us using the contact form and quote the following error:</span>`;
 export const errorUpdatingBalanceMessage = `<span style="font-size: 20px;">sorry, there was an error making your booking. please tap the "ok" button to continue. if the issue continues, please contact us using the contact form and quote the following error:</span>`;
 export const resetSessionErrorMessage = `<span style="font-size: 20px;">well this is embarassing.. We've had another error on our end.</span>`;
 export const failedToSendEmailInstructions = `<span style="font-size: 20px;">sorry, the email failed to send...please contact the school as soon as possible telling us what you were trying to do, so we can fix our error. We apologise for the inconvenience. please tap ok to continue!</span>`;

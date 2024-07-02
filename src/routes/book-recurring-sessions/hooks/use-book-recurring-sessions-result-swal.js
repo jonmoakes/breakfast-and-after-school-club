@@ -1,40 +1,28 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 
 import useGetBookRecurringSessionsSelectors from "../../../hooks/get-selectors/use-get-book-recurring-sessions-selectors";
 import useGetDatabaseManagementSelectors from "../../../hooks/get-selectors/use-get-database-management-selectors";
 import useFireSwal from "../../../hooks/use-fire-swal";
-import useBookRecurringSessionsActions from "../../../hooks/get-actions-and-thunks/book-recurring-sessions-actions-thunks/use-book-recurring-sessions-actions";
-import useResetRecurringSessionSpacesThunk from "../../../hooks/get-actions-and-thunks/book-recurring-sessions-actions-thunks/use-reset-recurring-sessions-spaces";
-import useBookRecurringSessionsVariables from "./use-book-recurring-sessions-variables";
-import useRecurringSessionsFunctions from "./use-recurring-sessions-functions";
+
 import useReturnLogic from "./use-return-logic";
 import useSessionsBookedBookMoreQuestion from "./swals/use-sessions-booked-book-more-question";
-
-import { errorReceivedMessage } from "../../../strings/errors/errors-strings";
+import useRecurringSessonsSessionSpacesErrorSwal from "./swals/use-recurring-sessions-session-spaces-error-swal";
+import useRecurringSessionsUpdateBalanceErrorResetSessionSpacesSwal from "./swals/use-recurring-sessions-update-balance-error-reset-session-spaces-swal";
 
 const useBookRecurringSessionsResultSwal = () => {
-  const {
-    updateSessionSpacesResult,
-    updateSessionSpacesError,
-    addRecurringBookingsResult,
-  } = useGetBookRecurringSessionsSelectors();
+  const { updateSessionSpacesResult, addRecurringBookingsResult } =
+    useGetBookRecurringSessionsSelectors();
   const { updateBalanceResult } = useGetDatabaseManagementSelectors();
-  const { numberOfChildrenInBooking, sessionChoice } =
-    useBookRecurringSessionsVariables();
-  const { bookingData } = useRecurringSessionsFunctions();
-  const {
-    dispatchResetUpdateSessionSpacesResult,
-    dispatchResetUpdateSessionSpacesError,
-  } = useBookRecurringSessionsActions();
   const { noActionsFiredYet } = useReturnLogic();
-
-  const { fireSwal } = useFireSwal();
-  const { resetRecurringSessionSpacesThunk } =
-    useResetRecurringSessionSpacesThunk();
   const { sessionsBookedBookMoreQuestion } =
     useSessionsBookedBookMoreQuestion();
-
-  const [swalConfirmed, setSwalConfirmed] = useState(false);
+  const { recurringSessonsSessionSpacesErrorSwal } =
+    useRecurringSessonsSessionSpacesErrorSwal();
+  const {
+    recurringSessionsUpdateBalanceErrorResetSessionSpacesSwal,
+    swalConfirmed,
+  } = useRecurringSessionsUpdateBalanceErrorResetSessionSpacesSwal();
+  const { fireSwal } = useFireSwal();
 
   useEffect(() => {
     if (noActionsFiredYet() || swalConfirmed) return;
@@ -46,40 +34,12 @@ const useBookRecurringSessionsResultSwal = () => {
     ) {
       sessionsBookedBookMoreQuestion();
     } else if (updateSessionSpacesResult === "rejected") {
-      fireSwal(
-        "error",
-        "error making bookings, please try again.",
-        errorReceivedMessage(updateSessionSpacesError),
-        0,
-        true,
-        false
-      ).then((isConfirmed) => {
-        if (isConfirmed) {
-          dispatchResetUpdateSessionSpacesResult();
-          dispatchResetUpdateSessionSpacesError();
-        }
-      });
+      recurringSessonsSessionSpacesErrorSwal();
     } else if (
       updateSessionSpacesResult === "fulfilled" &&
       updateBalanceResult === "rejected"
     ) {
-      fireSwal(
-        "error",
-        "error making booking. please tap ok to continue.",
-        updateSessionSpacesError,
-        0,
-        true,
-        false
-      ).then((isConfirmed) => {
-        if (isConfirmed) {
-          setSwalConfirmed(true);
-          resetRecurringSessionSpacesThunk(
-            numberOfChildrenInBooking,
-            bookingData,
-            sessionChoice
-          );
-        }
-      });
+      recurringSessionsUpdateBalanceErrorResetSessionSpacesSwal();
     } else if (
       updateSessionSpacesResult === "fulfilled" &&
       updateBalanceResult === "fulfilled" &&
@@ -108,18 +68,13 @@ const useBookRecurringSessionsResultSwal = () => {
     }
   }, [
     addRecurringBookingsResult,
-    bookingData,
-    dispatchResetUpdateSessionSpacesError,
-    dispatchResetUpdateSessionSpacesResult,
     fireSwal,
     noActionsFiredYet,
-    numberOfChildrenInBooking,
-    resetRecurringSessionSpacesThunk,
-    sessionChoice,
+    recurringSessionsUpdateBalanceErrorResetSessionSpacesSwal,
+    recurringSessonsSessionSpacesErrorSwal,
     sessionsBookedBookMoreQuestion,
     swalConfirmed,
     updateBalanceResult,
-    updateSessionSpacesError,
     updateSessionSpacesResult,
   ]);
 };

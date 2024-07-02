@@ -211,8 +211,8 @@ const useRecurringSessionsFunctions = () => {
 
       dispatchBookRecurringSessionsThunks(
         bookingsToAdd,
-        numberOfChildrenInBooking,
         sessionChoice,
+        numberOfChildrenInBooking,
         sessionPrice
       );
     };

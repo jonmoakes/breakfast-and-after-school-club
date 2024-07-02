@@ -30,8 +30,8 @@ const useDispatchBookRecurringSessionsThunks = () => {
 
   const dispatchBookRecurringSessionsThunks = (
     bookingsToAdd,
-    numberOfChildrenInBooking,
     sessionChoice,
+    numberOfChildrenInBooking,
     sessionPrice
   ) => {
     const route = bookRecurringSessionsRoute;
