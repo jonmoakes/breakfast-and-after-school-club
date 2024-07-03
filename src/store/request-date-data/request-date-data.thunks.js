@@ -7,7 +7,7 @@ import {
 
 export const requestDateDataAsync = createAsyncThunk(
   "requestDateData",
-  async ({ databaseId, collectionId, chosenDate }, thunkAPI) => {
+  async ({ chosenDate, databaseId, collectionId }, thunkAPI) => {
     try {
       const queryIndex = "date";
       const queryValue = chosenDate;
@@ -16,7 +16,9 @@ export const requestDateDataAsync = createAsyncThunk(
         databaseId,
         collectionId,
         queryIndex,
-        queryValue
+        queryValue,
+        false,
+        null
       );
 
       const { documents } = getChosenDateDocument;
@@ -46,7 +48,8 @@ export const requestEarlyFinishDatesAsync = createAsyncThunk(
     try {
       const getEarlyFinishDates = await listDocumentsInACollection(
         databaseId,
-        collectionId
+        collectionId,
+        25
       );
 
       const { documents, total } = getEarlyFinishDates;
@@ -122,9 +125,12 @@ export const requestAllDatesForCurrentMonthAsync = createAsyncThunk(
     thunkAPI
   ) => {
     try {
+      // should't ever be more than 190ish as only so many dates in a school year.
+      // 250 gives cover
       const getDatesDocuments = await listDocumentsInACollection(
         databaseId,
-        collectionId
+        collectionId,
+        250
       );
 
       const { documents, total } = getDatesDocuments;

@@ -18,7 +18,9 @@ export const updateWalletBalance = async (
     databaseId,
     userCollectionId,
     queryIndexUser,
-    queryValueUser
+    queryValueUser,
+    false,
+    null
   );
 
   const { documents, total } = getUsersDocument;

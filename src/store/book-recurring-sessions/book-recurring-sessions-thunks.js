@@ -35,10 +35,13 @@ export const updateRecurringSessionSpacesDocAsync = createAsyncThunk(
             databaseId,
             termDatesCollectionId,
             "date",
-            date
+            date,
+            false,
+            25
           )
         )
       );
+
       //convert to a single array of objects.
       const dateDocuments = getDateDocumentsToUpdate.flatMap(
         (result) => result.documents
@@ -87,7 +90,9 @@ export const updateRecurringSessionSpacesDocAsync = createAsyncThunk(
           databaseId,
           termDatesCollectionId,
           queryIndexDate,
-          queryValueDate
+          queryValueDate,
+          false,
+          25
         );
 
         const dateDocument = getDateDocumentToUpdate.documents;

@@ -1,7 +1,9 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { listDocumentsByQueryOrSearch } from "../../utils/appwrite/appwrite-functions";
+import { databases } from "../../utils/appwrite/appwrite-config";
+import { Query } from "appwrite";
 
-// This fetches bookings from the current day onwards only
+// This fetches up to 500 bookings from the current day onwards only.
+// see bookedSessionOwnerThunks for explanation of what we're doing here.
 export const fetchBookedSessionsUserFromTodayOnwardsAsync = createAsyncThunk(
   "fetchBookedSessionsUserFromTodayOnwards",
   async ({ id, databaseId, bookedSessionsCollectionId }, thunkAPI) => {
@@ -9,36 +11,35 @@ export const fetchBookedSessionsUserFromTodayOnwardsAsync = createAsyncThunk(
       const queryIndex = "parentsUserId";
       const queryValue = id;
 
-      const collectionId = bookedSessionsCollectionId;
+      const fromDate = new Date();
+      fromDate.setHours(0, 0, 0, 0);
 
-      const getBookingDocuments = await listDocumentsByQueryOrSearch(
+      const year = fromDate.getFullYear();
+      const month = String(fromDate.getMonth() + 1).padStart(2, "0");
+      const day = String(fromDate.getDate()).padStart(2, "0");
+      const fromDateString = `${year}-${month}-${day}`;
+
+      const getBookingDocuments = await databases.listDocuments(
         databaseId,
-        collectionId,
-        queryIndex,
-        queryValue
+        bookedSessionsCollectionId,
+        [
+          Query.equal(queryIndex, queryValue),
+          Query.greaterThanEqual("date", fromDateString),
+          Query.orderAsc("date"),
+          Query.limit(500),
+        ]
       );
 
-      const { documents, total } = getBookingDocuments;
+      const { documents } = getBookingDocuments;
 
-      if (!total) return;
-
-      const documentsFromTodayOnwards = documents.filter((doc) => {
-        const docDate = new Date(doc.date);
-        docDate.setHours(0, 0, 0, 0);
-        const currentDate = new Date();
-        currentDate.setHours(0, 0, 0, 0);
-
-        return docDate >= currentDate;
-      });
-
-      return documentsFromTodayOnwards;
+      return documents;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }
   }
 );
 
-// Fetches ALL users bookings
+// Fetches up to 1000 users bookings
 export const fetchBookedSessionsUserAllBookingsAsync = createAsyncThunk(
   "fetchBookedSessionsUserAllBookings",
   async ({ id, databaseId, bookedSessionsCollectionId }, thunkAPI) => {
@@ -46,17 +47,18 @@ export const fetchBookedSessionsUserAllBookingsAsync = createAsyncThunk(
       const queryIndex = "parentsUserId";
       const queryValue = id;
 
-      const collectionId = bookedSessionsCollectionId;
-
-      const getBookingDocuments = await listDocumentsByQueryOrSearch(
+      // see bookedSessionOwnerThunks for explanation of what we're doing here.
+      const getBookingDocuments = await databases.listDocuments(
         databaseId,
-        collectionId,
-        queryIndex,
-        queryValue
+        bookedSessionsCollectionId,
+        [
+          Query.equal(queryIndex, queryValue),
+          Query.orderAsc("date"),
+          Query.limit(1000),
+        ]
       );
 
-      const { documents, total } = getBookingDocuments;
-      if (!total) return;
+      const { documents } = getBookingDocuments;
 
       return documents;
     } catch (error) {

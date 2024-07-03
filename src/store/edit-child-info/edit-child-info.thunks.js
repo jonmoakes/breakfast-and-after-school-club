@@ -17,7 +17,9 @@ export const editChildInfoAsync = createAsyncThunk(
         databaseId,
         collectionId,
         queryIndex,
-        queryValue
+        queryValue,
+        false,
+        null
       );
 
       const { total } = getChildrenDocuments;

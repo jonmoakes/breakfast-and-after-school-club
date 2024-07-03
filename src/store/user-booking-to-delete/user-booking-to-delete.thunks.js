@@ -17,7 +17,9 @@ export const deleteUserBookingAsync = createAsyncThunk(
         databaseId,
         collectionId,
         queryIndex,
-        queryValue
+        queryValue,
+        false,
+        null
       );
 
       const { total } = getBookingDocuments;

@@ -32,7 +32,7 @@ const useGetDateDataEarlyFinishDatesBookingClosingTimesAndSessionTimesUseEffect 
       const collectionId = termDatesCollectionId;
 
       dispatch(
-        requestDateDataAsync({ databaseId, collectionId, chosenDate })
+        requestDateDataAsync({ chosenDate, databaseId, collectionId })
       ).then((resultAction) => {
         if (
           requestDateDataAsync.fulfilled.match(resultAction) &&

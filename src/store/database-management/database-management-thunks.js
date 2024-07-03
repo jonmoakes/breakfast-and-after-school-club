@@ -110,7 +110,9 @@ export const updateSessionSpacesDocAsync = createAsyncThunk(
         databaseId,
         termDatesCollectionId,
         queryIndexDate,
-        queryValueDate
+        queryValueDate,
+        false,
+        null
       );
 
       const dateDocument = getDateDocumentToUpdate.documents;
@@ -409,7 +411,9 @@ export const updateUsersLatestBookingsWithNewEmailAsync = createAsyncThunk(
         databaseId,
         collectionId,
         queryIndex,
-        queryValue
+        queryValue,
+        false,
+        500
       );
 
       const { documents, total } = getBookingDocuments;
@@ -462,7 +466,9 @@ export const updateChildrensListParentEmailWithNewEmailAsync = createAsyncThunk(
         databaseId,
         collectionId,
         queryIndex,
-        queryValue
+        queryValue,
+        false,
+        null
       );
 
       const { documents, total } = getChildrenDocuments;

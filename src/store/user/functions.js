@@ -19,7 +19,9 @@ export const getRetrievedUserFromDocument = async (schoolCode) => {
     databaseId,
     collectionId,
     queryIndex,
-    queryValue
+    queryValue,
+    false,
+    null
   );
 
   // number of documents found in database and the document.
@@ -65,7 +67,9 @@ export const createDocumentAndSetUser = async (schoolCode, phoneNumber) => {
     databaseId,
     collectionId,
     queryIndex,
-    queryValue
+    queryValue,
+    false,
+    null
   );
 
   const { total, documents } = userDocument;

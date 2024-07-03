@@ -12,7 +12,9 @@ export const getUsersChildrenAsync = createAsyncThunk(
         databaseId,
         collectionId,
         queryIndex,
-        queryValue
+        queryValue,
+        false,
+        null
       );
 
       const { documents, total } = getChildrenDocuments;

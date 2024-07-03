@@ -41,6 +41,7 @@ const useGetCurrentMonthDateDataUsersChildrenAndBookedSessionsUserUseEffect =
         return;
 
       const collectionId = termDatesCollectionId;
+
       dispatch(
         requestAllDatesForCurrentMonthAsync({
           databaseId,

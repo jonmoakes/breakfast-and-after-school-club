@@ -23,7 +23,7 @@ const useChooseNewPasswordResultSwal = () => {
   const { newPasswordResult, newPasswordError } =
     useGetChooseNewPasswordSelectors();
   const { fireSwal } = useFireSwal();
-  const { signOutSoCanSignInWithNewPasswordThunk } = useSignOutSubmitThunk();
+  const { signOutSubmitThunk } = useSignOutSubmitThunk();
   const { dispatchResetPasswordResultError } = useChooseNewPasswordActions();
   const { hamburgerHandlerNavigate } = useHamburgerHandlerNavigate();
 
@@ -40,7 +40,7 @@ const useChooseNewPasswordResultSwal = () => {
         false
       ).then((isConfirmed) => {
         if (isConfirmed) {
-          signOutSoCanSignInWithNewPasswordThunk();
+          signOutSubmitThunk();
         }
       });
     } else if (newPasswordResult && !currentUser) {
@@ -83,7 +83,7 @@ const useChooseNewPasswordResultSwal = () => {
     hamburgerHandlerNavigate,
     currentUser,
     dispatchResetPasswordResultError,
-    signOutSoCanSignInWithNewPasswordThunk,
+    signOutSubmitThunk,
   ]);
 };
 

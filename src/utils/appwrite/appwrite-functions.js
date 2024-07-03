@@ -6,16 +6,28 @@ export const listDocumentsByQueryOrSearch = async (
   collectionId,
   index,
   value,
-  isSearch = false
+  isSearch,
+  limit
 ) => {
   const query = isSearch
     ? [Query.search(index, value)]
     : [Query.equal(index, value)];
+
+  if (limit) {
+    query.push(Query.limit(limit));
+  }
+
   return await databases.listDocuments(databaseId, collectionId, query);
 };
 
-export const listDocumentsInACollection = async (databaseId, collectionId) => {
-  return await databases.listDocuments(databaseId, collectionId);
+export const listDocumentsInACollection = async (
+  databaseId,
+  collectionId,
+  limit
+) => {
+  return await databases.listDocuments(databaseId, collectionId, [
+    Query.limit(limit),
+  ]);
 };
 
 export const manageDatabaseDocument = async (

@@ -7,7 +7,8 @@ export const getAllChildrenAsync = createAsyncThunk(
     try {
       const getChildrenDocuments = await listDocumentsInACollection(
         databaseId,
-        collectionId
+        collectionId,
+        500
       );
 
       const { documents, total } = getChildrenDocuments;

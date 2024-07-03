@@ -15,7 +15,9 @@ export const getEmergencyContactDetailsAsync = createAsyncThunk(
         databaseId,
         collectionId,
         queryIndex,
-        queryValue
+        queryValue,
+        false,
+        null
       );
 
       const { documents, total } = getEmergencyContactDetails;

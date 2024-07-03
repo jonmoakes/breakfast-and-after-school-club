@@ -1,5 +1,4 @@
 import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
 
 import useFireSwal from "../../use-fire-swal";
 import useResetAllStoreOnSignOut from "../../use-reset-all-store-on-sign-out";
@@ -24,7 +23,6 @@ const useSignOutSubmitThunk = () => {
   const { hamburgerHandlerNavigate } = useHamburgerHandlerNavigate();
 
   const dispatch = useDispatch();
-  const navigate = useNavigate();
 
   const signOutSubmitThunk = () => {
     dispatch(signOutAsync()).then((resultAction) => {
@@ -55,13 +53,7 @@ const useSignOutSubmitThunk = () => {
     });
   };
 
-  const signOutSoCanSignInWithNewPasswordThunk = () => {
-    dispatch(signOutAsync());
-    navigate(signInRoute);
-    resetAllStoreOnSignOut();
-  };
-
-  return { signOutSubmitThunk, signOutSoCanSignInWithNewPasswordThunk };
+  return { signOutSubmitThunk };
 };
 
 export default useSignOutSubmitThunk;

@@ -7,7 +7,8 @@ export const getAllUsersAsync = createAsyncThunk(
     try {
       const getUsersDocuments = await listDocumentsInACollection(
         databaseId,
-        collectionId
+        collectionId,
+        250
       );
 
       const { documents, total } = getUsersDocuments;

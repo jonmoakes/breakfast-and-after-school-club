@@ -80,7 +80,9 @@ export const getUsersWalletBalanceAsync = createAsyncThunk(
         databaseId,
         collectionId,
         queryIndex,
-        queryValue
+        queryValue,
+        false,
+        null
       );
 
       const { documents, total } = getUsersDocument;

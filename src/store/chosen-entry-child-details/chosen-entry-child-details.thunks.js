@@ -17,7 +17,8 @@ export const getChosenEntryChildDetailsAsync = createAsyncThunk(
           collectionId,
           searchIndex,
           searchValue,
-          true
+          true,
+          null
         );
 
       const { documents, total } = getChosenEntryChildDetailsDocuments;

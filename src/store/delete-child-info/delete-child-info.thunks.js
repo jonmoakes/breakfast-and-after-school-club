@@ -18,7 +18,9 @@ export const deleteChildInfoAsync = createAsyncThunk(
         databaseId,
         collectionId,
         queryIndex,
-        queryValue
+        queryValue,
+        false,
+        null
       );
 
       const { total } = getChildrenDocuments;
