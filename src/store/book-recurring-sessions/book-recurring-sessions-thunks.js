@@ -9,6 +9,8 @@ import { bookRecurringSessionsRoute } from "../../strings/routes/routes-strings"
 import { recurringBookingslastMinuteNoSessionsMessage } from "../../strings/errors/errors-strings";
 import { createChildrenToAddToBooking } from "../../functions/create-children-to-add-to-booking";
 
+import { defaultRateLimit } from "../../constants/constants";
+
 export const updateRecurringSessionSpacesDocAsync = createAsyncThunk(
   "updateRecurringSessionSpacesDoc",
   async (
@@ -37,7 +39,7 @@ export const updateRecurringSessionSpacesDocAsync = createAsyncThunk(
             "date",
             date,
             false,
-            25
+            defaultRateLimit
           )
         )
       );
@@ -92,7 +94,7 @@ export const updateRecurringSessionSpacesDocAsync = createAsyncThunk(
           queryIndexDate,
           queryValueDate,
           false,
-          25
+          defaultRateLimit
         );
 
         const dateDocument = getDateDocumentToUpdate.documents;

@@ -2,7 +2,8 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import { databases } from "../../utils/appwrite/appwrite-config";
 import { Query } from "appwrite";
 
-// This fetches up to 500 bookings from the current day onwards only.
+import { standardRateLimit, highRateLimit } from "../../constants/constants";
+// This fetches up to the limit of bookings from the constants file above from the current day onwards only.
 // see bookedSessionOwnerThunks for explanation of what we're doing here.
 export const fetchBookedSessionsUserFromTodayOnwardsAsync = createAsyncThunk(
   "fetchBookedSessionsUserFromTodayOnwards",
@@ -26,7 +27,7 @@ export const fetchBookedSessionsUserFromTodayOnwardsAsync = createAsyncThunk(
           Query.equal(queryIndex, queryValue),
           Query.greaterThanEqual("date", fromDateString),
           Query.orderAsc("date"),
-          Query.limit(500),
+          Query.limit(standardRateLimit),
         ]
       );
 
@@ -39,7 +40,6 @@ export const fetchBookedSessionsUserFromTodayOnwardsAsync = createAsyncThunk(
   }
 );
 
-// Fetches up to 1000 users bookings
 export const fetchBookedSessionsUserAllBookingsAsync = createAsyncThunk(
   "fetchBookedSessionsUserAllBookings",
   async ({ id, databaseId, bookedSessionsCollectionId }, thunkAPI) => {
@@ -54,7 +54,7 @@ export const fetchBookedSessionsUserAllBookingsAsync = createAsyncThunk(
         [
           Query.equal(queryIndex, queryValue),
           Query.orderAsc("date"),
-          Query.limit(1000),
+          Query.limit(highRateLimit),
         ]
       );
 

@@ -4,6 +4,7 @@ import {
   listDocumentsInACollection,
   manageDatabaseDocument,
 } from "../../utils/appwrite/appwrite-functions";
+import { smallRateLimit, defaultRateLimit } from "../../constants/constants";
 
 export const requestDateDataAsync = createAsyncThunk(
   "requestDateData",
@@ -49,7 +50,7 @@ export const requestEarlyFinishDatesAsync = createAsyncThunk(
       const getEarlyFinishDates = await listDocumentsInACollection(
         databaseId,
         collectionId,
-        25
+        defaultRateLimit
       );
 
       const { documents, total } = getEarlyFinishDates;
@@ -126,11 +127,10 @@ export const requestAllDatesForCurrentMonthAsync = createAsyncThunk(
   ) => {
     try {
       // should't ever be more than 190ish as only so many dates in a school year.
-      // 250 gives cover
       const getDatesDocuments = await listDocumentsInACollection(
         databaseId,
         collectionId,
-        250
+        smallRateLimit
       );
 
       const { documents, total } = getDatesDocuments;

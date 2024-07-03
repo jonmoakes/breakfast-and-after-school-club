@@ -1,5 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { listDocumentsInACollection } from "../../utils/appwrite/appwrite-functions";
+import { standardRateLimit } from "../../constants/constants";
 
 export const getAllChildrenAsync = createAsyncThunk(
   "getAllChildrenInChildrenCollection",
@@ -8,7 +9,7 @@ export const getAllChildrenAsync = createAsyncThunk(
       const getChildrenDocuments = await listDocumentsInACollection(
         databaseId,
         collectionId,
-        500
+        standardRateLimit
       );
 
       const { documents, total } = getChildrenDocuments;

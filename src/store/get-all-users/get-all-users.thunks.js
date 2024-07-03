@@ -1,6 +1,8 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { listDocumentsInACollection } from "../../utils/appwrite/appwrite-functions";
 
+import { smallRateLimit } from "../../constants/constants";
+
 export const getAllUsersAsync = createAsyncThunk(
   "getAllUsersInUsersCollection",
   async ({ databaseId, collectionId, id }, thunkAPI) => {
@@ -8,7 +10,7 @@ export const getAllUsersAsync = createAsyncThunk(
       const getUsersDocuments = await listDocumentsInACollection(
         databaseId,
         collectionId,
-        250
+        smallRateLimit
       );
 
       const { documents, total } = getUsersDocuments;

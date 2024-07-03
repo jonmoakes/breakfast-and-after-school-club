@@ -12,6 +12,8 @@ import { bookSessionRoute } from "../../strings/routes/routes-strings";
 
 import { generateUniqueId } from "../../functions/generate-unique-id";
 
+import { standardRateLimit } from "../../constants/constants";
+
 export const updateBookingClosingTimesAsync = createAsyncThunk(
   "updateBookingClosingTimes",
   async (
@@ -413,7 +415,7 @@ export const updateUsersLatestBookingsWithNewEmailAsync = createAsyncThunk(
         queryIndex,
         queryValue,
         false,
-        500
+        standardRateLimit
       );
 
       const { documents, total } = getBookingDocuments;

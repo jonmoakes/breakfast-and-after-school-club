@@ -10,10 +10,11 @@ import { BlackTitle } from "../../styles/h1/h1.styles";
 import { Text } from "../../styles/p/p.styles";
 import { StyledLink } from "../../styles/link/link.styles";
 import { bookedSessionsOwnerRoute } from "../../strings/routes/routes-strings";
+import TableHelp from "../../components/tables/table-help.component";
 
 const BookedSessionsOwnerAllBookings = () => {
   useFetchBookedSessionsOwnerAllBookingsThunkUseEffect();
-  const { bookedSessionsOwnerIsLoading } =
+  const { bookedSessionsOwnerIsLoading, data } =
     useBookedSessionsOwnerAllBookingsVariables();
 
   return (
@@ -24,6 +25,8 @@ const BookedSessionsOwnerAllBookings = () => {
         <>
           <ParentDiv>
             <BlackTitle>all booked sessions</BlackTitle>
+            {data.length ? <TableHelp /> : null}
+
             <Text>this table shows all bookings ever made.</Text>
             <Text>
               if you want to see just bookings from the current day onwards, tap

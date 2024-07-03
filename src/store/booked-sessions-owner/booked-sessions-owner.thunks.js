@@ -6,6 +6,8 @@ import {
 import { databases } from "../../utils/appwrite/appwrite-config";
 import { Query } from "appwrite";
 
+import { standardRateLimit, highRateLimit } from "../../constants/constants";
+
 export const fetchBookedSessionsOwnerFromTodayOnwardsAsync = createAsyncThunk(
   "fetchBookedSessionsOwnerFromTodayOnwards",
   async ({ databaseId, collectionId }, thunkAPI) => {
@@ -30,7 +32,7 @@ export const fetchBookedSessionsOwnerFromTodayOnwardsAsync = createAsyncThunk(
         [
           Query.greaterThanEqual("date", fromDateString),
           Query.orderAsc("date"),
-          Query.limit(500),
+          Query.limit(standardRateLimit),
         ]
       );
 
@@ -51,7 +53,7 @@ export const fetchBookedSessionsOwnerAllBookingsAsync = createAsyncThunk(
       const getBookingDocuments = await listDocumentsInACollection(
         databaseId,
         collectionId,
-        1000
+        highRateLimit
       );
 
       const { documents, total } = getBookingDocuments;
