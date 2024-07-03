@@ -32,6 +32,10 @@ export const LogoImage = styled.img`
   margin-left: 20px;
   border-radius: 5px;
   border: 1px solid ${customBlack};
+
+  &.account {
+    margin: 0px auto 10px auto;
+  }
 `;
 
 export const Icon = styled.img`
