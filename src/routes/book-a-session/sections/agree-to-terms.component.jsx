@@ -3,7 +3,7 @@ import useHamburgerHandlerNavigate from "../../../hooks/use-hamburger-handler-na
 import { YellowGreenButton } from "../../../styles/buttons/buttons.styles";
 import { ParentDiv } from "../../../styles/div/div.styles";
 import { Text } from "../../../styles/p/p.styles";
-import { BlueSpan } from "../../../styles/span/span.styles";
+import { BlueSpan, RedSpan } from "../../../styles/span/span.styles";
 
 import {
   accountRoute,
@@ -46,8 +46,8 @@ const AgreeToTerms = () => {
             your <StyledLink to={accountRoute}>account</StyledLink> page.
           </Text>
           <Text>
-            when there, scroll down the page until you see the 'booking terms'
-            button.
+            when there, scroll down the page until you see the '
+            <RedSpan>booking T&Cs</RedSpan>' button.
           </Text>
           <YellowGreenButton onClick={confirmAgree}>i agree</YellowGreenButton>
         </ParentDiv>

@@ -125,7 +125,7 @@ const useNavigateToRoute = () => {
     },
     {
       id: 19,
-      text: "booking terms",
+      text: "booking T&Cs",
       onClick: () => hamburgerHandlerNavigate(bookingTermsRoute),
     },
     {
