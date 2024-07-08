@@ -24,6 +24,7 @@ import { Text } from "../../styles/p/p.styles";
 import { MinimalButton } from "../../styles/buttons/buttons.styles";
 import useSessionLogic from "./book-a-session-hooks/logic/use-session-logic";
 import { StyledLink } from "../../styles/link/link.styles";
+import AgreeToTerms from "./sections/agree-to-terms.component";
 
 const BookASession = () => {
   useSessionSpacesListener();
@@ -35,6 +36,8 @@ const BookASession = () => {
   const { errorFetchingData } = useErrorFetchingData();
   const { confirmMoveToRecurringSessionsRoute } =
     useConfirmMoveToRecurringSessionsRoute();
+
+  const agreeChecked = localStorage.getItem("agreeChecked");
 
   return (
     <Container>
@@ -52,15 +55,20 @@ const BookASession = () => {
           </Text>
         ) : (
           <>
-            <Text>
-              if need to book recurring sessions, please tap the button below.
-            </Text>
-            <MinimalButton
-              onClick={confirmMoveToRecurringSessionsRoute}
-              to={bookRecurringSessionsRoute}
-            >
-              book recurring sessions
-            </MinimalButton>
+            {agreeChecked ? (
+              <>
+                <Text>
+                  if need to book recurring sessions, please tap the button
+                  below.
+                </Text>
+                <MinimalButton
+                  onClick={confirmMoveToRecurringSessionsRoute}
+                  to={bookRecurringSessionsRoute}
+                >
+                  book recurring sessions
+                </MinimalButton>
+              </>
+            ) : null}
           </>
         )}
       </ParentDiv>
@@ -73,9 +81,14 @@ const BookASession = () => {
                 <ShowFetchErrors />
               ) : (
                 <>
-                  <BalanceCheckAndBookSessionHelp />
-                  <ChooseDate />
-                  <ChooseSessions />
+                  <AgreeToTerms />
+                  {agreeChecked ? (
+                    <>
+                      <BalanceCheckAndBookSessionHelp />
+                      <ChooseDate />
+                      <ChooseSessions />
+                    </>
+                  ) : null}
                 </>
               )}
             </>

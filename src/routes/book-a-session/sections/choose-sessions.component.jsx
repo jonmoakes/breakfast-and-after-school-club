@@ -47,18 +47,23 @@ const ChooseSessions = () => {
           atLeastOneChildHasBeenSelected() &&
           notTodaysOrIsTodayAndBeforeMorningCloseTime()) ? (
         <ParentDiv>
-          <HeadingTimesAndPricesWalletBalanceOptionsInfo />
-          <ColumnDiv>
-            <BlackHr />
-            <MorningSessionButton />
-            <AfternoonSessionShortButton />
-            <AfternoonSessionLongButton />
-            <MorningAndAfternoonShortSessionButton />
-            <MorningAndAfternoonLongSessionButton />
-          </ColumnDiv>
-          <TermsOfCancellationAllSessionsAccordion
-            {...{ morningSessionClosingTime, afternoonSessionClosingTime }}
-          />
+          <>
+            <HeadingTimesAndPricesWalletBalanceOptionsInfo />
+            <ColumnDiv>
+              <BlackHr />
+              <MorningSessionButton />
+              <AfternoonSessionShortButton />
+              <AfternoonSessionLongButton />
+              <MorningAndAfternoonShortSessionButton />
+              <MorningAndAfternoonLongSessionButton />
+            </ColumnDiv>
+            <TermsOfCancellationAllSessionsAccordion
+              {...{
+                morningSessionClosingTime,
+                afternoonSessionClosingTime,
+              }}
+            />
+          </>
         </ParentDiv>
       ) : (hasOneChild() && isTodayAndIsBetweenOpenAndCloseTime()) ||
         (hasMoreThanOneChild() &&

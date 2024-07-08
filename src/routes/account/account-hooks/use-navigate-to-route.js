@@ -20,6 +20,7 @@ import {
   customerPortalRoute,
   manageEmergencyContactsRoute,
   incomeRoute,
+  bookingTermsRoute,
 } from "../../../strings/routes/routes-strings";
 
 const useNavigateToRoute = () => {
@@ -124,16 +125,21 @@ const useNavigateToRoute = () => {
     },
     {
       id: 19,
+      text: "booking terms",
+      onClick: () => hamburgerHandlerNavigate(bookingTermsRoute),
+    },
+    {
+      id: 20,
       text: " close account",
       onClick: () => hamburgerHandlerNavigate(closeAccountRoute),
     },
     {
-      id: 20,
+      id: 21,
       text: " contact us",
       onClick: () => hamburgerHandlerNavigate(contactRoute),
     },
     {
-      id: 21,
+      id: 22,
       text: " install app info",
       onClick: () => hamburgerHandlerNavigate(pwaInfoRoute),
     },

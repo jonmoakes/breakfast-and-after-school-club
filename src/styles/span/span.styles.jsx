@@ -75,6 +75,12 @@ export const BlackSpanHover = styled(BlackSpan)`
 
 export const BlueSpan = styled.span`
   color: ${customBlue};
+
+  &.clickable {
+    &:hover {
+      cursor: pointer;
+    }
+  }
 `;
 
 export const SmallSpan = styled.span`

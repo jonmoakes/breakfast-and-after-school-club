@@ -22,7 +22,10 @@ const useGetUsersChildrenUserBookingsAndSessionPricesThunkUseEffect = () => {
   const dispatch = useDispatch();
   const path = location.pathname;
 
+  const agreeChecked = localStorage.getItem("agreeChecked");
+
   useEffect(() => {
+    if (!agreeChecked) return;
     dispatch(getUsersChildrenAsync({ id, databaseId, collectionId })).then(
       (resultAction) => {
         if (getUsersChildrenAsync.fulfilled.match(resultAction)) {
@@ -53,6 +56,7 @@ const useGetUsersChildrenUserBookingsAndSessionPricesThunkUseEffect = () => {
       }
     );
   }, [
+    agreeChecked,
     dispatch,
     id,
     path,
