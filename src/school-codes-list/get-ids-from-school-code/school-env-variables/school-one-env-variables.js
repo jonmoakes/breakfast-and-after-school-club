@@ -41,4 +41,6 @@ export const schoolOneEnvVariables = {
     .VITE_SCHOOL_ONE_BOOKED_SESSIONS_COLLECTION_ID,
 
   schoolLogoUrl: import.meta.env.VITE_SCHOOL_ONE_LOGO_URL,
+
+  bookingTermsLink: import.meta.env.VITE_SCHOOL_ONE_BOOKING_TERMS_LINK,
 };

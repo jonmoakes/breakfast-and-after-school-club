@@ -13,8 +13,16 @@ const useGetCurrentUserSelectors = () => {
     walletFundsToAdd,
   } = useSelector(selectCurrentUserSelectors);
 
-  const { walletBalance, email, id, name, phoneNumber, schoolCode } =
-    currentUser ?? {};
+  const {
+    walletBalance,
+    email,
+    id,
+    name,
+    phoneNumber,
+    schoolCode,
+    emergencyContactDetails,
+    emergencyContactDetailsTwo,
+  } = currentUser ?? {};
 
   const currentUserEmailForContactForm = email ? email : "";
   const currentUserNameForContactForm = name ? name : "";
@@ -37,6 +45,7 @@ const useGetCurrentUserSelectors = () => {
     termDatesCollectionId,
     userCollectionId,
     schoolLogoUrl,
+    bookingTermsLink,
   } = currentUserEnvironmentVariables ?? {};
 
   return {
@@ -73,6 +82,9 @@ const useGetCurrentUserSelectors = () => {
     userCollectionId,
     schoolLogoUrl,
     schoolCode,
+    emergencyContactDetails,
+    emergencyContactDetailsTwo,
+    bookingTermsLink,
   };
 };
 

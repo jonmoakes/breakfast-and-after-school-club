@@ -34,6 +34,9 @@ const useManageEmergencyContactDetailsResult = () => {
         (isConfirmed) => {
           if (isConfirmed) {
             hamburgerHandlerNavigate(accountRoute);
+            setTimeout(() => {
+              window.location.reload();
+            }, 100);
           }
         }
       );

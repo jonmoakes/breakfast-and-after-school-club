@@ -64,3 +64,4 @@ export const bookedSessionsUserAllBookingsRoute = "/all-your-bookings";
 export const manageEmergencyContactsRoute = "/mangage-emergency-contacts";
 export const bookRecurringSessionsRoute = "/book-recurring-sessions";
 export const incomeRoute = "/income";
+export const bookingTermsRoute = "/booking-terms";

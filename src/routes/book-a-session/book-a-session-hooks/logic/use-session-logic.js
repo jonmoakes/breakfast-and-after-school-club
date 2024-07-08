@@ -6,8 +6,15 @@ import useDatesLogic from "../logic/use-dates-logic";
 import useGetChildrenLogic from "./use-get-children-logic";
 
 const useSessionLogic = () => {
-  const { id, name, email, phoneNumber, walletBalance } =
-    useGetCurrentUserSelectors();
+  const {
+    id,
+    name,
+    email,
+    phoneNumber,
+    walletBalance,
+    emergencyContactDetails,
+    emergencyContactDetailsTwo,
+  } = useGetCurrentUserSelectors();
   const { sessionType, sessionPrice } = useGetBookSessionSelectors();
   const { dispatchResetSessionTypeAndPrice } = useBookSessionActions();
   const { date, morningSessionSpaces, afternoonSessionSpaces } =
@@ -115,6 +122,8 @@ const useSessionLogic = () => {
     cancelResult,
     bookingData,
     walletBalance,
+    emergencyContactDetails,
+    emergencyContactDetailsTwo,
   };
 };
 

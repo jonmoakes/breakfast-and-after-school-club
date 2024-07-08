@@ -27,7 +27,7 @@ export const confirmSureBookSession = (sessionType, date) => {
 export const fundsDeductedFromBalance = (sessionPrice, balanceAfterBooking) => {
   return `<span style="color: ${customIosBlue}">£${(sessionPrice / 100).toFixed(
     2
-  )}</span> will be deducted from your wallet balance.<br/>After the booking, your remaining balance will be <span style="color: ${customIosBlue}">£${balanceAfterBooking}</span>.<br/><br/>By booking, you confirm that you agree to our<br/><a href="/terms-and-conditions"  style="color: ${customWhite}"; text-decoration: underline;">terms and conditions</a>.`;
+  )}</span> will be deducted from your wallet balance.<br/>After the booking, your remaining balance will be <span style="color: ${customIosBlue}">£${balanceAfterBooking}</span>.<br/><br/>By booking, you confirm that you agree to our<br/><a href="/booking-terms" target="_blank" rel="noopener noreferrer"  style="color: ${customWhite}"; text-decoration: underline;">terms and conditions</a>.`;
 };
 
 export const sureSignUpMessage = "are you sure you wish to sign up?";
@@ -131,7 +131,7 @@ export const confirmUpdateRegistrationSignInMessage = (
       : hasSignedIn && numberOfChildrenInBooking > 1
       ? `this will revert <br/><span style="color: yellow;">${formatChildNames(
           namesInSession
-        )}</span><br/>to not being signed into the session.<br/>please only do this if you made a mistake signing the children in.<br/>to sign the children out, please tap the appropriate button under the 'sign out' header.`
+        )}</span><br/>to not being signed into the session.<br/>please only do this if you made a mistake signing the children in.<br/>to sign the children out, please tap the appropriate button under the 'signed out' header.`
       : !hasSignedIn && numberOfChildrenInBooking === 1
       ? `do you wish to sign<br/><span style="color: yellow;">${namesInSession}</span><br/>into the session?`
       : !hasSignedIn &&

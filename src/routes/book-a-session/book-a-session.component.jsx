@@ -16,14 +16,21 @@ import { Container } from "../../styles/container/container.styles";
 import { ParentDiv } from "../../styles/div/div.styles";
 import { BlackTitle } from "../../styles/h1/h1.styles";
 
-import { bookRecurringSessionsRoute } from "../../strings/routes/routes-strings";
+import {
+  bookRecurringSessionsRoute,
+  manageEmergencyContactsRoute,
+} from "../../strings/routes/routes-strings";
 import { Text } from "../../styles/p/p.styles";
 import { MinimalButton } from "../../styles/buttons/buttons.styles";
+import useSessionLogic from "./book-a-session-hooks/logic/use-session-logic";
+import { StyledLink } from "../../styles/link/link.styles";
 
 const BookASession = () => {
   useSessionSpacesListener();
   useGetUsersChildrenUserBookingsAndSessionPricesThunkUseEffect();
   useGetBookSessionResultSwal();
+  const { emergencyContactDetails, emergencyContactDetailsTwo } =
+    useSessionLogic();
   const { isOnline } = useIsOnline();
   const { errorFetchingData } = useErrorFetchingData();
   const { confirmMoveToRecurringSessionsRoute } =
@@ -35,32 +42,47 @@ const BookASession = () => {
 
       <ParentDiv>
         <BlackTitle>book a session</BlackTitle>
-        <Text>
-          if need to book recurring sessions, please tap the button below.
-        </Text>
-
-        <MinimalButton
-          onClick={confirmMoveToRecurringSessionsRoute}
-          to={bookRecurringSessionsRoute}
-        >
-          book recurring sessions
-        </MinimalButton>
+        {!emergencyContactDetails && !emergencyContactDetailsTwo ? (
+          <Text>
+            please{" "}
+            <StyledLink to={manageEmergencyContactsRoute}>
+              add at least one emergency contact
+            </StyledLink>{" "}
+            before booking a session.
+          </Text>
+        ) : (
+          <>
+            <Text>
+              if need to book recurring sessions, please tap the button below.
+            </Text>
+            <MinimalButton
+              onClick={confirmMoveToRecurringSessionsRoute}
+              to={bookRecurringSessionsRoute}
+            >
+              book recurring sessions
+            </MinimalButton>
+          </>
+        )}
       </ParentDiv>
 
-      {isOnline ? (
+      {!emergencyContactDetails && !emergencyContactDetailsTwo ? null : (
         <>
-          {errorFetchingData() ? (
-            <ShowFetchErrors />
-          ) : (
+          {isOnline ? (
             <>
-              <BalanceCheckAndBookSessionHelp />
-              <ChooseDate />
-              <ChooseSessions />
+              {errorFetchingData() ? (
+                <ShowFetchErrors />
+              ) : (
+                <>
+                  <BalanceCheckAndBookSessionHelp />
+                  <ChooseDate />
+                  <ChooseSessions />
+                </>
+              )}
             </>
+          ) : (
+            <NetworkError />
           )}
         </>
-      ) : (
-        <NetworkError />
       )}
     </Container>
   );

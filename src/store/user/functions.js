@@ -37,6 +37,8 @@ export const getRetrievedUserFromDocument = async (schoolCode) => {
       createdAt,
       walletBalance,
       schoolCode,
+      emergencyContactDetails,
+      emergencyContactDetailsTwo,
     } = documents[0];
 
     return {
@@ -47,6 +49,8 @@ export const getRetrievedUserFromDocument = async (schoolCode) => {
       phoneNumber,
       walletBalance,
       schoolCode,
+      emergencyContactDetails,
+      emergencyContactDetailsTwo,
     };
   } else {
     return;

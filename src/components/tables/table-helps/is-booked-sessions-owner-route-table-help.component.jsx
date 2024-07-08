@@ -93,15 +93,6 @@ const IsBookedSessionsOwnerRouteTableHelp = () => (
       mistake.
     </Text>
     <Text>
-      please note that this data is not saved when you change to a different
-      page so be sure to have completed your signing in and signing out before
-      leaving the page.
-    </Text>
-    <Text>
-      alternatively, if you are not in the full screen app, you could simply
-      open a new tab to the page you want and keep this page open.
-    </Text>
-    <Text>
       Note: For morning sessions, The sign in / out options will appear between
       the hours of
       <br />
