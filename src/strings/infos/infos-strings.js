@@ -35,7 +35,6 @@ export const checkBackRegularlyMessage =
   "if a session becomes available again, it will appear here in realtime so please check back often! No changes have been made to your balance.";
 export const entriesAreTheSameMessage = "you haven't changed any data yet.";
 export const bookingCancelledMessage = "booking cancelled.";
-export const walletBeenUpdatedMessage = "your wallet balance has been updated.";
 export const checkEmailMessage =
   "please check your email! Please note that it can take several minutes to arrive - And don't forget to check your spam folder.";
 export const getBookingInfoEmailInstructions =

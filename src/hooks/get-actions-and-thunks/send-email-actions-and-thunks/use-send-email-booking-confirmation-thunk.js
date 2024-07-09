@@ -48,16 +48,6 @@ const useSendEmailBookingConfirmationThunk = () => {
         sessionPrice,
         email,
         name,
-
-        // email,
-        // name,
-        // date,
-        // sessionType,
-        // childrenInBooking: createChildrenToAddToBooking(
-        //   childrenSelectedForBooking,
-        //   usersChildren
-        // ),
-        // sessionPrice,
       })
     ).then((resultAction) => {
       if (sendEmailBookingConfirmationAsync.fulfilled.match(resultAction)) {

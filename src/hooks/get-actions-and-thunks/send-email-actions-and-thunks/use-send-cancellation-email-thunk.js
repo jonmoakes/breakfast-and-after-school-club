@@ -10,6 +10,7 @@ import { sendEmailBookingCancellationConfirmationAsync } from "../../../store/se
 import { bookedSessionsUserRoute } from "../../../strings/routes/routes-strings";
 import { errorSendCancellationConfirmationEmailMessage } from "../../../strings/errors/errors-strings";
 import { removeStarFromChildrensNamesIfExists } from "../../../functions/remove-star-from-childrens-name-if-exists";
+import { emailSentMessage } from "../../../strings/successes/successes-strings";
 
 const useSendCancellationEmailThunk = () => {
   const { name, email } = useGetCurrentUserSelectors();
@@ -36,7 +37,13 @@ const useSendCancellationEmailThunk = () => {
           resultAction
         )
       ) {
-        hamburgerHandlerNavigate(bookedSessionsUserRoute);
+        fireSwal("success", emailSentMessage, "", 0, true, false).then(
+          (isConfirmed) => {
+            if (isConfirmed) {
+              hamburgerHandlerNavigate(bookedSessionsUserRoute);
+            }
+          }
+        );
       } else {
         fireSwal(
           "error",
