@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { YellowGreenButton } from "../../styles/buttons/buttons.styles";
-import { ParentDiv } from "../../styles/div/div.styles";
 
 const InstallPWA = () => {
   const [supportsPWA, setSupportsPWA] = useState(false);
@@ -40,11 +39,7 @@ const InstallPWA = () => {
     return null;
   }
 
-  return (
-    <ParentDiv>
-      <YellowGreenButton onClick={onClick}>Install</YellowGreenButton>
-    </ParentDiv>
-  );
+  return <YellowGreenButton onClick={onClick}>Install</YellowGreenButton>;
 };
 
 export default InstallPWA;

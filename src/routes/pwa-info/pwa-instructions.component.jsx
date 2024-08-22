@@ -20,6 +20,7 @@ const PwaInstructions = () => (
         means your browser may not support installing the app via this method.
       </Text>
       <Text>instead, please follow the instructions below:</Text>
+
       <InstallPWA />
 
       <Text>
