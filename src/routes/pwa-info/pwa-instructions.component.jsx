@@ -4,11 +4,23 @@ import { Text } from "../../styles/p/p.styles";
 
 import MobileInstructions from "./mobile-instructions.component";
 import DesktopInstructions from "./desktop-instructions.component";
+import InstallPWA from "./install-pwa.component";
 
 const PwaInstructions = () => (
   <>
     <ParentDiv>
       <BlueH2>how do i do it?</BlueH2>
+
+      <Text>
+        the simplist way is if you see a button directly below that says
+        'install app', simply tap it!
+      </Text>
+      <Text>
+        please note, if you don't see a button directly below this line, it
+        means your browser may not support installing the app via this method.
+      </Text>
+      <Text>instead, please follow the instructions below:</Text>
+      <InstallPWA />
 
       <Text>
         installing the app to your home screen is easy and recommended!
