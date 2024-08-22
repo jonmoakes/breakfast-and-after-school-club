@@ -140,7 +140,7 @@ const useNavigateToRoute = () => {
     },
     {
       id: 22,
-      text: " install app info",
+      text: " install our app!",
       onClick: () => hamburgerHandlerNavigate(pwaInfoRoute),
     },
   ];
