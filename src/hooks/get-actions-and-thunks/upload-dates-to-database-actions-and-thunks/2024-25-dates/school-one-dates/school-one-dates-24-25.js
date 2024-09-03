@@ -1,5 +1,5 @@
 // when uploading, split at xmas to avoid rates error
-export const testSchoolDates2425 = [
+export const schoolOneDates2425 = [
   {
     date: "2024-09-02",
     morningSessionSpaces: 60,

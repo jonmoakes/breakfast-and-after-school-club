@@ -33,6 +33,7 @@ const useSuccessSwal = () => {
     };
 
     const cancelResult = () => {
+      dispatchResetCurrentUserWalletBalanceResult();
       hamburgerHandlerNavigate(bookedSessionsUserRoute);
     };
 

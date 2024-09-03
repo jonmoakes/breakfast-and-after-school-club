@@ -21,28 +21,51 @@ const useHandleSignInFormError = () => {
   useEffect(() => {
     if (
       !currentUserError ||
-      (currentUserError && currentUserError === appwriteNoUserError)
+      (currentUserError && currentUserError === appwriteNoUserError) ||
+      (currentUserError && currentUserError === "no user found")
     )
       return;
 
-    const error = currentUserError;
-    const errorDetails =
-      (currentUserError && currentUserError === appwriteCredentialsError) ||
-      (currentUserError && currentUserError === "action fulfilled but no user")
-        ? errorSigningInInstructions
-        : currentUserError &&
-          currentUserError ===
-            "Invalid `password` param: Password must be between 8 and 256 characters long."
-        ? passwordLengthErrorMessage
-        : errorReceivedMessage(error);
+    if (
+      currentUserError &&
+      currentUserError === "action fulfilled but no user"
+    ) {
+      fireSwal(
+        "error",
+        errorSigningInMessage,
+        errorSigningInInstructions,
+        0,
+        true,
+        false
+      ).then((isConfirmed) => {
+        if (isConfirmed) {
+          window.location.reload();
+        }
+      });
+    } else {
+      const error = currentUserError;
+      const errorDetails =
+        currentUserError && currentUserError === appwriteCredentialsError
+          ? errorSigningInInstructions
+          : currentUserError &&
+            currentUserError ===
+              "Invalid `password` param: Password must be between 8 and 256 characters long."
+          ? passwordLengthErrorMessage
+          : errorReceivedMessage(error);
 
-    fireSwal("error", errorSigningInMessage, errorDetails, 0, true, false).then(
-      (isConfirmed) => {
+      fireSwal(
+        "error",
+        errorSigningInMessage,
+        errorDetails,
+        0,
+        true,
+        false
+      ).then((isConfirmed) => {
         if (isConfirmed) {
           dispatchResetCurrentUserErrorMessage();
         }
-      }
-    );
+      });
+    }
   }, [fireSwal, currentUserError, dispatchResetCurrentUserErrorMessage]);
 };
 

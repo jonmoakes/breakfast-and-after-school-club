@@ -1,3 +1,6 @@
+import useGetShouldShowElementSelectors from "../../hooks/get-selectors/use-get-should-show-element-selectors";
+import useShouldShowElementActions from "../../hooks/get-actions-and-thunks/use-should-show-element-actions";
+
 import CreateChildRequiredData from "./create-child-required-data.component";
 
 import {
@@ -8,10 +11,7 @@ import {
 } from "../../styles/div/div.styles";
 import { Text } from "../../styles/p/p.styles";
 import { BlackHr } from "../../styles/hr/hr.styles";
-
 import { RedSpan } from "../../styles/span/span.styles";
-import useGetShouldShowElementSelectors from "../../hooks/get-selectors/use-get-should-show-element-selectors";
-import useShouldShowElementActions from "../../hooks/get-actions-and-thunks/use-should-show-element-actions";
 import { YellowGreenButton } from "../../styles/buttons/buttons.styles";
 
 const CreateChildIntroAndRequiredData = () => {

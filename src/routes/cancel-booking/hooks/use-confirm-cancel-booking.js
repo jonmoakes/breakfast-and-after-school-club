@@ -6,7 +6,6 @@ import useDeleteUserBookingUpdateSessionSpacesDocRefundUserGetWalletBalanceThunk
 import {
   confirmCancelBookingMessage,
   fundsReaddedToAccountMessage,
-  imSureMessage,
 } from "../../../strings/confirms/confirms-strings";
 
 const useConfirmCancelBooking = () => {
@@ -36,7 +35,7 @@ const useConfirmCancelBooking = () => {
     confirmSwal(
       confirmCancelBookingMessage,
       fundsReaddedToAccountMessage(formattedSessionPrice),
-      imSureMessage,
+      "yes, cancel booking!",
       confirmResult
     );
   };

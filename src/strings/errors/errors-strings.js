@@ -157,7 +157,7 @@ export const errorFetchingBalanceMessage =
 export const invalidSchoolCode = "Invalid school code";
 export const invalidSchoolCodeHelpMessage =
   "please try again. if you have forgotten your code, please contact your school. please note that the school code is case sensitive";
-export const passwordLengthErrorMessage = `password must be at least 8 characters in length.<br/><br/>please try again.`;
+export const passwordLengthErrorMessage = `password must be at least 8 characters in length. please try again.`;
 export const phoneNumberLengthErrorMessage =
   "your phone number must be 11 digits long";
 export const consentOptionErrorMessage =
