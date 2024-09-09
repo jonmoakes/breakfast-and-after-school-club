@@ -31,6 +31,8 @@ const useChildSessionAlreadyBooked = () => {
     );
   };
 
+  console.log(singleChildSessionAlreadyBooked());
+
   // if user has multiple children in database
   const multipleChildSessionAlreadyBooked = (sessionType) => {
     return !!userBookingsDatesAndNamesAndSessionType.find((userBooking) => {

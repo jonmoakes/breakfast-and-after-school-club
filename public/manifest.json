@@ -46,8 +46,7 @@
   ],
   "start_url": "/",
   "id": "/",
-  "display": "fullscreen",
-  "display_override": ["fullscreen", "standalone", "minimal-ui", "browser"],
+  "display": "standalone",
   "theme_color": "#000",
   "background_color": "#006fff",
   "scope": "/"
