@@ -1,13 +1,13 @@
 import { schoolCodesList } from "../school-codes-list";
 
-const { schoolOne } = schoolCodesList;
+const { manorBeach } = schoolCodesList;
 
 export const getSchoolDatabaseAndUserCollectionId = (schoolCode) => {
   switch (schoolCode) {
-    case schoolOne:
+    case manorBeach:
       return {
-        databaseId: import.meta.env.VITE_SCHOOL_ONE_DATABASE_ID,
-        collectionId: import.meta.env.VITE_SCHOOL_ONE_USER_COLLECTION_ID,
+        databaseId: import.meta.env.VITE_MANOR_BEACH_DATABASE_ID,
+        collectionId: import.meta.env.VITE_MANOR_BEACH_USER_COLLECTION_ID,
       };
     default:
       return {

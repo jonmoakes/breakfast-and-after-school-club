@@ -8,7 +8,7 @@ export const uploadDatesToDatabaseAsync = createAsyncThunk(
   async ({ datesList }, thunkAPI) => {
     try {
       const uploadDates = [];
-      //set  databaseId and collectionId manually here
+      //set  databaseId and term dates collectionId manually here
 
       // const databaseId =
       // const collectionId =

@@ -10,7 +10,7 @@ export const GlobalStyle = createGlobalStyle`
         background-color: ${customBlue};
     }
     body {
-        margin: 0px auto;
+        margin: 0px auto; line-height: 1.5;
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
         font-weight:bold;
