@@ -65,7 +65,7 @@ const useNavigateToRoute = () => {
       text: "upload dates",
       onClick: () => hamburgerHandlerNavigate(uploadDatesRoute),
     },
-    id !== import.meta.env.VITE_TEST_SCHOOL_APP_OWNER_ID && {
+    {
       id: 8,
       text: "database management",
       onClick: () => hamburgerHandlerNavigate(databaseManagementRoute),
