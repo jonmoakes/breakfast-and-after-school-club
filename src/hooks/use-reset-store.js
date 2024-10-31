@@ -190,6 +190,7 @@ const useResetStore = () => {
         dispatchResetDatabaseManagementState();
         dispatchResetSessionTypesAndPricesState();
         break;
+
       case databaseManagementUpdateUserBalanceRoute:
       case databaseManagementUpdateSessionSpacesRoute:
       case databaseManagementAddBookingRoute:

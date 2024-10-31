@@ -41,4 +41,5 @@ export const INITIAL_STATE = {
   updateBookingEmailsError: null,
   updateChildrensListEmailResult: "",
   updateChildrensListEmailError: null,
+  passwordForDbAccessResult: "",
 };

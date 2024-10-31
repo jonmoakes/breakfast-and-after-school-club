@@ -46,6 +46,7 @@ const useGetDatabaseManagementSelectors = () => {
     updateBookingEmailsError,
     updateChildrensListEmailResult,
     updateChildrensListEmailError,
+    passwordForDbAccessResult,
   } = useSelector(selectDatabaseManagementSelectors);
 
   const {
@@ -147,6 +148,7 @@ const useGetDatabaseManagementSelectors = () => {
     updateBookingEmailsError,
     updateChildrensListEmailResult,
     updateChildrensListEmailError,
+    passwordForDbAccessResult,
   };
 };
 

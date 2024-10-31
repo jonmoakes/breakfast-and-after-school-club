@@ -165,6 +165,8 @@ export const consentOptionErrorMessage =
 export const errorSigningOutMessage =
   "sorry, there was an error signing you out.";
 export const passwordErrorMessage = "password error";
+export const dbAccessPasswordError =
+  "your password is incorrect. please try again.";
 export const errorUpdatingEmailMessage = (error) => {
   return `<span style="font-size: 20px;">sorry, there was an error updating your email address.<br/><br/>please try again or contact us if the error persists.<br/><br/>the error received was:<br/><br/>'<span style="color: ${customYellow}";>${error}</span>'</span>`;
 };

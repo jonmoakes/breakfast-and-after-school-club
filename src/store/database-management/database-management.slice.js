@@ -12,6 +12,7 @@ import {
   createChildDocumentAsync,
   updateUsersLatestBookingsWithNewEmailAsync,
   updateChildrensListParentEmailWithNewEmailAsync,
+  confirmPasswordForDbManagementAccessAsync,
 } from "./database-management-thunks";
 
 export const databaseManagementSlice = createSlice({
@@ -57,7 +58,6 @@ export const databaseManagementSlice = createSlice({
     resetSessionTimeError(state) {
       state.sessionTimeError = null;
     },
-
     setNewMorningSessionPrice(state, action) {
       state.newMorningSessionPrice = action.payload;
     },
@@ -159,6 +159,9 @@ export const databaseManagementSlice = createSlice({
     resetUpdateChildrensListEmailError(state) {
       state.updateChildrensListEmailError = null;
     },
+    resetPasswordForDbAccessResult(state) {
+      state.passwordForDbAccessResult = "";
+    },
     resetDatabaseManagementState: () => {
       return INITIAL_STATE;
     },
@@ -207,6 +210,7 @@ export const databaseManagementSlice = createSlice({
       (state) => state.updateBookingEmailsError,
       (state) => state.updateChildrensListEmailResult,
       (state) => state.updateChildrensListEmailError,
+      (state) => state.passwordForDbAccessResult,
       (
         databaseManagementIsLoading,
 
@@ -249,7 +253,8 @@ export const databaseManagementSlice = createSlice({
         updateBookingEmailsResult,
         updateBookingEmailsError,
         updateChildrensListEmailResult,
-        updateChildrensListEmailError
+        updateChildrensListEmailError,
+        passwordForDbAccessResult
       ) => {
         return {
           databaseManagementIsLoading,
@@ -294,6 +299,7 @@ export const databaseManagementSlice = createSlice({
           updateBookingEmailsError,
           updateChildrensListEmailResult,
           updateChildrensListEmailError,
+          passwordForDbAccessResult,
         };
       }
     ),
@@ -457,6 +463,16 @@ export const databaseManagementSlice = createSlice({
           state.updateChildrensListEmailResult = "rejected";
           state.updateChildrensListEmailError = action.payload;
         }
+      )
+      .addCase(confirmPasswordForDbManagementAccessAsync.pending, (state) => {
+        state.databaseManagementIsLoading = true;
+      })
+      .addCase(
+        confirmPasswordForDbManagementAccessAsync.rejected,
+        (state, action) => {
+          state.databaseManagementIsLoading = false;
+          state.passwordForDbAccessResult = action.payload;
+        }
       );
   },
 });
@@ -510,6 +526,7 @@ export const {
   resetUpdateBookingEmailsError,
   resetUpdateChildrensListEmailResult,
   resetUpdateChildrensListEmailError,
+  resetPasswordForDbAccessResult,
 } = databaseManagementSlice.actions;
 export const { selectDatabaseManagementSelectors } =
   databaseManagementSlice.selectors;

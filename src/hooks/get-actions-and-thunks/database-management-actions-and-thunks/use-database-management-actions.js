@@ -46,6 +46,7 @@ import {
   resetUpdateBookingEmailsError,
   resetUpdateChildrensListEmailResult,
   resetUpdateChildrensListEmailError,
+  resetPasswordForDbAccessResult,
 } from "../../../store/database-management/database-management.slice";
 
 const useDatabaseManagementActions = () => {
@@ -230,6 +231,10 @@ const useDatabaseManagementActions = () => {
     dispatch(resetDatabaseManagementState());
   };
 
+  const dispatchResetPasswordForDbAccessResult = () => {
+    dispatch(resetPasswordForDbAccessResult());
+  };
+
   return {
     dispatchSetNewMorningBookingClosingTime,
     dispatchResetNewMorningBookingClosingTime,
@@ -279,6 +284,7 @@ const useDatabaseManagementActions = () => {
     dispatchResetUpdateBookingEmailsError,
     dispatchResetUpdateChildrensListEmailResult,
     dispatchResetUpdateChildrensListEmailError,
+    dispatchResetPasswordForDbAccessResult,
   };
 };
 
