@@ -11,6 +11,7 @@ import {
   appwriteCredentialsError,
   errorReceivedMessage,
   passwordLengthErrorMessage,
+  appwritePasswordLengthError,
 } from "../../../strings/errors/errors-strings";
 
 const useHandleSignInFormError = () => {
@@ -21,8 +22,10 @@ const useHandleSignInFormError = () => {
   useEffect(() => {
     if (
       !currentUserError ||
-      (currentUserError && currentUserError === appwriteNoUserError) ||
-      (currentUserError && currentUserError === "no user found")
+      (currentUserError &&
+        (currentUserError === appwriteNoUserError ||
+          currentUserError === "no user found" ||
+          currentUserError === "Failed to fetch"))
     )
       return;
 
@@ -43,20 +46,27 @@ const useHandleSignInFormError = () => {
         }
       });
     } else {
-      const error = currentUserError;
-      const errorDetails =
-        currentUserError && currentUserError === appwriteCredentialsError
-          ? errorSigningInInstructions
-          : currentUserError &&
-            currentUserError ===
-              "Invalid `password` param: Password must be between 8 and 256 characters long."
+      // const error = currentUserError;
+      // const errorDetails =
+      //   currentUserError && currentUserError === appwriteCredentialsError
+      //     ? errorSigningInInstructions
+      //     : currentUserError &&
+      //       currentUserError ===
+      //         "Invalid `password` param: Password must be between 8 and 256 characters long."
+      //     ? passwordLengthErrorMessage
+      //     : errorReceivedMessage(error);
+
+      const error =
+        currentUserError === appwriteCredentialsError
+          ? appwriteCredentialsError
+          : currentUserError === appwritePasswordLengthError
           ? passwordLengthErrorMessage
-          : errorReceivedMessage(error);
+          : currentUserError;
 
       fireSwal(
         "error",
         errorSigningInMessage,
-        errorDetails,
+        errorReceivedMessage(error),
         0,
         true,
         false

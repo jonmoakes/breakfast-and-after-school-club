@@ -28,11 +28,6 @@ const useGetWalletBalance = () => {
     if (!currentUserWalletBalanceResult && !currentUserWalletBalanceError)
       return;
 
-    console.log(
-      "im firubg ",
-      currentUserWalletBalanceError,
-      currentUserWalletBalanceResult
-    );
     const error = currentUserWalletBalanceError;
     fireSwal(
       "error",

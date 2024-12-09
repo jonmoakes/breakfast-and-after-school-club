@@ -255,3 +255,5 @@ export const couldntFetchContactDetailsMessage = (error) => {
 
 export const emergencyContactsDetailsAreTheSameMessage = `<span style="font-size: 20px;">the details haven't changed.<br/>please make a change and then try again.</span>`;
 export const recurringBookingslastMinuteNoSessionsMessage = `<span style="font-size: 20px;">sorry, just before you booked, one of the sessions had its last booking taken, so we cannot process all of the sessions.<br/><br/>No Bookings have been made.</span>`;
+export const appwritePasswordLengthError =
+  "Invalid `password` param: Password must be between 8 and 256 characters long.";
