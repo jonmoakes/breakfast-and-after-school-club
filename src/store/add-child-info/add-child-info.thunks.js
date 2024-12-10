@@ -14,7 +14,7 @@ export const addChildInfoAsync = createAsyncThunk(
         age,
         consent,
         medicalInfo,
-        dietryRequirements,
+        dietaryRequirements,
         additionalInfo,
       } = childInfo;
 
@@ -27,7 +27,7 @@ export const addChildInfoAsync = createAsyncThunk(
         age: ageAsNumber,
         consent,
         medicalInfo,
-        dietryRequirements,
+        dietaryRequirements,
         additionalInfo,
         parentName: name,
         parentEmail: email,

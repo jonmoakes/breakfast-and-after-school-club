@@ -22,7 +22,7 @@ const useBookSessionActions = () => {
 
     const namesOfChildren =
       selectedChild.medicalInfo !== "" ||
-      selectedChild.dietryRequirements !== "" ||
+      selectedChild.dietaryRequirements !== "" ||
       selectedChild.additionalInfo !== ""
         ? `${name}*`
         : name;

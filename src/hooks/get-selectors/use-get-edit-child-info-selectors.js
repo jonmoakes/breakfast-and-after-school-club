@@ -15,7 +15,7 @@ const useGetEditChildInfoSelectors = () => {
     age = "",
     consent = "",
     medicalInfo = "",
-    dietryRequirements = "",
+    dietaryRequirements = "",
     additionalInfo = "",
   } = childToEditInfo || {}; // Use an empty object as a fallback if originalChildInfo is undefined
 
@@ -29,7 +29,7 @@ const useGetEditChildInfoSelectors = () => {
     age,
     consent,
     medicalInfo,
-    dietryRequirements,
+    dietaryRequirements,
     additionalInfo,
   };
 };

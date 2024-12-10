@@ -10,7 +10,7 @@ const useHandleUpdatedChildInfoChange = () => {
     age,
     consent,
     medicalInfo,
-    dietryRequirements,
+    dietaryRequirements,
     additionalInfo,
   } = useEditChildInfoLogic();
 
@@ -20,7 +20,7 @@ const useHandleUpdatedChildInfoChange = () => {
     consent,
     age,
     medicalInfo,
-    dietryRequirements,
+    dietaryRequirements,
     additionalInfo,
   });
 

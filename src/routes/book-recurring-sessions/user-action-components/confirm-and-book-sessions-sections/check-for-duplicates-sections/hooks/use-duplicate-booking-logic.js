@@ -28,9 +28,11 @@ const useDuplicateBookingLogic = () => {
       (booking) => ({
         date: booking.date,
         sessionType: sessionChoice,
-        childrensNames: childrensNamesInBooking.split(", "), // Split the wanted children names into an array
+        childrensNames: childrensNamesInBooking.split(", "),
       })
     );
+
+    const nameWithoutAsterix = (name) => name.replace(/\*/g, "");
 
     const userHasAlreadyBookedOneOfTheSessions =
       bookingsUserWantsToBookDatesAndSessionTypes.filter((wantedBooking) =>
@@ -39,7 +41,10 @@ const useDuplicateBookingLogic = () => {
             bookedBooking.date === wantedBooking.date &&
             bookedBooking.sessionType === wantedBooking.sessionType &&
             wantedBooking.childrensNames.some((name) =>
-              bookedBooking.childrensName.includes(name)
+              bookedBooking.childrensName.some(
+                (bookedName) =>
+                  nameWithoutAsterix(bookedName) === nameWithoutAsterix(name)
+              )
             )
         )
       );

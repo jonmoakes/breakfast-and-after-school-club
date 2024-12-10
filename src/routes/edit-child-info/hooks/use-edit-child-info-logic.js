@@ -22,7 +22,7 @@ const useEditChildInfoLogic = (updatedChildInfo) => {
     age,
     consent,
     medicalInfo,
-    dietryRequirements,
+    dietaryRequirements,
     additionalInfo,
     childToEditInfo,
     editChildInfoError,
@@ -39,7 +39,7 @@ const useEditChildInfoLogic = (updatedChildInfo) => {
     age: updatedAge = "",
     consent: updatedConsent = "",
     medicalInfo: updatedMedicalInfo = "",
-    dietryRequirements: updatedDietryRequirements = "",
+    dietaryRequirements: updatedDietaryRequirements = "",
     additionalInfo: updatedAdditionalInfo = "",
   } = updatedChildInfo || {};
 
@@ -52,7 +52,7 @@ const useEditChildInfoLogic = (updatedChildInfo) => {
       age === updatedAge &&
       consent === updatedConsent &&
       medicalInfo === updatedMedicalInfo &&
-      dietryRequirements === updatedDietryRequirements &&
+      dietaryRequirements === updatedDietaryRequirements &&
       additionalInfo === updatedAdditionalInfo
       ? true
       : false;
@@ -92,7 +92,7 @@ const useEditChildInfoLogic = (updatedChildInfo) => {
     age,
     consent,
     medicalInfo,
-    dietryRequirements,
+    dietaryRequirements,
     additionalInfo,
     childToEditInfo,
     ageErrorForUser,

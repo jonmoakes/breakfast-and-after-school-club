@@ -6,7 +6,7 @@ const defaultChildInfo = {
   age: "",
   consent: "",
   medicalInfo: "",
-  dietryRequirements: "",
+  dietaryRequirements: "",
   additionalInfo: "",
 };
 

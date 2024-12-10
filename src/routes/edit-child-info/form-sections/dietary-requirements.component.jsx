@@ -1,19 +1,19 @@
 import { Label, StyledTextArea } from "../../../styles/form/form.styles";
 
-const DietryRequirements = ({
+const DietaryRequirements = ({
   handleUpdatedChildInfoChange,
-  dietryRequirements,
+  dietaryRequirements,
 }) => (
   <>
-    <Label>edit dietaryrequirements:</Label>
+    <Label>edit dietary requirements:</Label>
     <StyledTextArea
       className="small-bottom-margin"
       type="text"
-      name="dietryRequirements"
+      name="dietaryRequirements"
       onChange={handleUpdatedChildInfoChange}
-      defaultValue={dietryRequirements}
+      defaultValue={dietaryRequirements}
     />
   </>
 );
 
-export default DietryRequirements;
+export default DietaryRequirements;

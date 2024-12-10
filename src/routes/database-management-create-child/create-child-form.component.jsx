@@ -25,7 +25,7 @@ const CreateChildForm = () => {
     childAge,
     consent,
     medicalInfo,
-    dietryRequirements,
+    dietaryRequirements,
     additionalInfo,
     parentName,
     parentEmail,
@@ -113,9 +113,9 @@ const CreateChildForm = () => {
         <StyledTextArea
           className="small-bottom-margin"
           type="text"
-          name="dietryRequirements"
+          name="dietaryRequirements"
           onChange={handleDataToUpdateDocumentChange}
-          value={dietryRequirements || ""}
+          value={dietaryRequirements || ""}
           placeholder={leaveBlankIfNothingToAdd}
         />
 
@@ -189,7 +189,7 @@ const CreateChildForm = () => {
                 childName,
                 consent,
                 medicalInfo,
-                dietryRequirements,
+                dietaryRequirements,
                 additionalInfo,
                 parentName,
                 parentEmail,

@@ -69,7 +69,7 @@ const useGetDatabaseManagementSelectors = () => {
     childAge,
     consent,
     medicalInfo,
-    dietryRequirements,
+    dietaryRequirements,
     additionalInfo,
   } = dataToUpdateDocument ?? {};
 
@@ -142,7 +142,7 @@ const useGetDatabaseManagementSelectors = () => {
     childAge,
     consent,
     medicalInfo,
-    dietryRequirements,
+    dietaryRequirements,
     additionalInfo,
     updateBookingEmailsResult,
     updateBookingEmailsError,

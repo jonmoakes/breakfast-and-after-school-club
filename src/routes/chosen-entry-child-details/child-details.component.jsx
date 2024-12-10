@@ -35,7 +35,7 @@ const ChildDetails = () => {
             age,
             consent,
             medicalInfo,
-            dietryRequirements,
+            dietaryRequirements,
             additionalInfo,
           } = childDetails;
 
@@ -65,10 +65,10 @@ const ChildDetails = () => {
                 </>
               ) : null}
 
-              {dietryRequirements ? (
+              {dietaryRequirements ? (
                 <>
                   <BlueH2>dietary requirements:</BlueH2>
-                  <Text>{dietryRequirements}</Text>
+                  <Text>{dietaryRequirements}</Text>
                   <BlackHr />
                 </>
               ) : null}

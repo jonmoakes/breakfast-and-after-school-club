@@ -11,7 +11,7 @@ const useAddChildInfoLogic = () => {
     age,
     consent,
     medicalInfo,
-    dietryRequirements,
+    dietaryRequirements,
     additionalInfo,
   } = useGetAddChildInfoSelectors();
   const { usersChildren } = useGetUsersChildrenSelectors();
@@ -45,7 +45,7 @@ const useAddChildInfoLogic = () => {
     age,
     consent,
     medicalInfo,
-    dietryRequirements,
+    dietaryRequirements,
     additionalInfo,
     ageErrorForUser,
     childNameAlreadyExists,

@@ -14,7 +14,7 @@ const useGetAddChildInfoSelectors = () => {
     childName,
     age,
     medicalInfo,
-    dietryRequirements,
+    dietaryRequirements,
     additionalInfo,
     consent,
   } = childInfo ?? {};
@@ -27,7 +27,7 @@ const useGetAddChildInfoSelectors = () => {
     childName,
     age,
     medicalInfo,
-    dietryRequirements,
+    dietaryRequirements,
     additionalInfo,
     consent,
   };

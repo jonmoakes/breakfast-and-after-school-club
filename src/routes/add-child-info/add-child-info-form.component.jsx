@@ -23,7 +23,7 @@ import {
 
 const AddChildInfoForm = () => {
   const { handleAddChildInfoChange } = useAddChildInfoActions();
-  const { childName, age, medicalInfo, dietryRequirements, additionalInfo } =
+  const { childName, age, medicalInfo, dietaryRequirements, additionalInfo } =
     useAddChildInfoLogic();
 
   return (
@@ -106,9 +106,9 @@ const AddChildInfoForm = () => {
         <StyledTextArea
           className="small-bottom-margin"
           type="text"
-          name="dietryRequirements"
+          name="dietaryRequirements"
           onChange={handleAddChildInfoChange}
-          value={dietryRequirements || ""}
+          value={dietaryRequirements || ""}
           placeholder={leaveBlankIfNothingToAdd}
         />
 

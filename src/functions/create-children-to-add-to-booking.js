@@ -11,7 +11,7 @@ export const createChildrenToAddToBooking = (
     childName =
       usersChildren.length === 1 &&
       (usersChildren[0].medicalInfo !== "" ||
-        usersChildren[0].dietryRequirements !== "" ||
+        usersChildren[0].dietaryRequirements !== "" ||
         usersChildren[0].additionalInfo !== "")
         ? usersChildren[0].childName + "*"
         : usersChildren[0].childName;
