@@ -17,7 +17,7 @@ const RefundsPolicyTitleAndIntro = () => {
           <Text>
             last updated:
             <br />
-            <RedSpan>24th May 2024</RedSpan>
+            <RedSpan>1st January 2025</RedSpan>
           </Text>
         ) : null}
       </ParentDiv>

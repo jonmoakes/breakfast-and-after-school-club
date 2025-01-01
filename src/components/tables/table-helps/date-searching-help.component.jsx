@@ -32,8 +32,8 @@ const DateSearchingHelp = () => (
 
     <BlueH2>searching for a full date:</BlueH2>
     <Text>
-      a full date would be for example <RedSpan>tue oct 01 2024</RedSpan> or{" "}
-      <RedSpan>mon dec 16 2024</RedSpan>.
+      a full date would be for example <RedSpan>mon jan 06 2025</RedSpan> or{" "}
+      <RedSpan>tue jan 14 2025</RedSpan>.
     </Text>
   </>
 );

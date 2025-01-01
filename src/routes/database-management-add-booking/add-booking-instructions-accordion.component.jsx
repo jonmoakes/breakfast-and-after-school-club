@@ -67,7 +67,7 @@ const AddBookingInstructionsAccordion = () => {
                   <Text>
                     ( must be in the format of <RedSpan>YYYY-MM-DD</RedSpan> )
                   </Text>
-                  <Text>ie '2024-05-13' for the 13th May 2024</Text>
+                  <Text>ie '2025-01-13' for the 13th Jan 2025</Text>
                   <BlackHr />
 
                   <Text>

@@ -73,7 +73,7 @@ export const BookingPdf = ({ chosenEntry }) => {
 
         <View style={pdfStyles.section}>
           <Text style={pdfStyles.minor}>
-            Copyright 2024, breakfast and after school club. All rights
+            Copyright 2025, breakfast and after school club. All rights
             reserved.
           </Text>
         </View>

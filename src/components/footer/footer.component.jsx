@@ -118,7 +118,7 @@ const Footer = () => {
           <a className="red" href="https://www.solaris-apps.co.uk">
             Solaris Apps
           </a>{" "}
-          2024
+          2025
         </Text>
       </ParentDiv>
     </>
