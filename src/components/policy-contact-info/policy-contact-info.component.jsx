@@ -12,9 +12,7 @@ const PolicyContactInfo = () => (
         For support or questions about these terms, contact us at:
         <br />
         <br />
-        <LowercasedSpan>
-          admin@breakfast-and-after-school-club.co.uk
-        </LowercasedSpan>
+        <LowercasedSpan>jonathan@solaris-apps.co.uk</LowercasedSpan>
       </Balancer>
     </Text>
   </ParentDiv>

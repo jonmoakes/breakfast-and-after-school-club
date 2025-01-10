@@ -8,9 +8,9 @@ export const handler = async (event) => {
     await client.sendEmailWithTemplate({
       From: process.env.VITE_APP_ADMIN_EMAIL,
       To: sendTo,
-      TemplateAlias: "send-contact-form-message",
+      TemplateAlias: "send-contact-form-message-breakfast",
       TemplateModel: {
-        product_url: "https://www.breakfast-and-after-school-club.co.uk",
+        product_url: "https://breakfast-and-after-school-club.netlify.app",
         product_name: "Breakfast & After School Club",
         name,
         email,

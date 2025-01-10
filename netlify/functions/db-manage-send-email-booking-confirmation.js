@@ -16,7 +16,7 @@ export const handler = async (event) => {
       To: parentEmail,
       TemplateAlias: "db-manage-send-email-booking-confirmation",
       TemplateModel: {
-        product_url: "https://www.breakfast-and-after-school-club.co.uk",
+        product_url: "https://breakfast-and-after-school-club.netlify.app",
         product_name: "Breakfast & After School Club",
         formattedDate,
         sessionBooked,

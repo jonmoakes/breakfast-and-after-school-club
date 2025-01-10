@@ -133,9 +133,7 @@ const SecurityMeasures = () => (
       please contact us at:
       <br />
       <br />
-      <LowercasedSpan>
-        admin@breakfast-and-after-school-club.co.uk
-      </LowercasedSpan>
+      <LowercasedSpan>jonathan@solaris-apps.co.uk</LowercasedSpan>
     </Text>
   </ParentDiv>
 );

@@ -6,6 +6,8 @@ import {
 import { getSchoolDatabaseAndUserCollectionId } from "../../school-codes-list/get-ids-from-school-code/get-school-database-and-user-collection-id";
 import { setEnvironmentVariables } from "../../school-codes-list/get-ids-from-school-code/set-environment-variables";
 
+const appAdminId = import.meta.env.VITE_APP_ADMIN_ID;
+
 export const getRetrievedUserFromDocument = async (schoolCode) => {
   const user = await account.get();
 
@@ -43,6 +45,7 @@ export const getRetrievedUserFromDocument = async (schoolCode) => {
 
     return {
       id,
+      appAdminId,
       createdAt,
       name,
       email,

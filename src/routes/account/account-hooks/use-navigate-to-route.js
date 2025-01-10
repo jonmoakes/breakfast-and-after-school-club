@@ -1,4 +1,3 @@
-import useGetCurrentUserSelectors from "../../../hooks/get-selectors/use-get-current-user-selectors";
 import useHamburgerHandlerNavigate from "../../../hooks/use-hamburger-handler-navigate";
 import useConfirmSwal from "../../../hooks/use-confirm-swal";
 
@@ -24,7 +23,6 @@ import {
 } from "../../../strings/routes/routes-strings";
 
 const useNavigateToRoute = () => {
-  const { id } = useGetCurrentUserSelectors();
   const { hamburgerHandlerNavigate } = useHamburgerHandlerNavigate();
   const { confirmAppOwnerViewAllBookings } = useConfirmSwal();
 
@@ -59,29 +57,23 @@ const useNavigateToRoute = () => {
       text: "update password",
       onClick: () => hamburgerHandlerNavigate(updatePasswordRoute),
     },
-
-    id === import.meta.env.VITE_TEST_SCHOOL_APP_OWNER_ID && {
-      id: 7,
-      text: "upload dates",
-      onClick: () => hamburgerHandlerNavigate(uploadDatesRoute),
-    },
     {
-      id: 8,
+      id: 7,
       text: "database management",
       onClick: () => hamburgerHandlerNavigate(databaseManagementRoute),
     },
     {
-      id: 9,
+      id: 8,
       text: "install app info",
       onClick: () => hamburgerHandlerNavigate(pwaInfoRoute),
     },
     {
-      id: 10,
+      id: 9,
       text: "contact",
       onClick: () => hamburgerHandlerNavigate(contactRoute),
     },
     {
-      id: 11,
+      id: 10,
       text: "customer portal",
       onClick: () => hamburgerHandlerNavigate(customerPortalRoute),
     },
@@ -89,65 +81,74 @@ const useNavigateToRoute = () => {
 
   const notAppOwnerButtons = [
     {
-      id: 12,
+      id: 11,
       text: "view your bookings",
       onClick: () => hamburgerHandlerNavigate(bookedSessionsUserRoute),
     },
     {
-      id: 13,
+      id: 12,
       text: "book a session",
       onClick: () => hamburgerHandlerNavigate(bookSessionRoute),
     },
     {
-      id: 14,
+      id: 13,
       text: "add funds",
       onClick: () => hamburgerHandlerNavigate(addFundsRoute),
     },
     {
-      id: 15,
+      id: 14,
       text: "child info",
       onClick: () => hamburgerHandlerNavigate(childInfoRoute),
     },
     {
-      id: 16,
+      id: 15,
       text: " update email",
       onClick: () => hamburgerHandlerNavigate(updateEmailRoute),
     },
     {
-      id: 17,
+      id: 16,
       text: " update password",
       onClick: () => hamburgerHandlerNavigate(updatePasswordRoute),
     },
     {
-      id: 18,
+      id: 17,
       text: "emergency contacts",
       onClick: () => hamburgerHandlerNavigate(manageEmergencyContactsRoute),
     },
     {
-      id: 19,
+      id: 18,
       text: "booking T&Cs",
       onClick: () => hamburgerHandlerNavigate(bookingTermsRoute),
     },
     {
-      id: 20,
+      id: 19,
       text: " close account",
       onClick: () => hamburgerHandlerNavigate(closeAccountRoute),
     },
     {
-      id: 21,
+      id: 20,
       text: " contact us",
       onClick: () => hamburgerHandlerNavigate(contactRoute),
     },
     {
-      id: 22,
+      id: 21,
       text: " install our app!",
       onClick: () => hamburgerHandlerNavigate(pwaInfoRoute),
+    },
+  ];
+
+  const appAdminButtons = [
+    {
+      id: 22,
+      text: "upload dates",
+      onClick: () => hamburgerHandlerNavigate(uploadDatesRoute),
     },
   ];
 
   return {
     appOwnerButtons,
     notAppOwnerButtons,
+    appAdminButtons,
   };
 };
 

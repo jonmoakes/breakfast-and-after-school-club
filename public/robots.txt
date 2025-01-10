@@ -1,4 +1,4 @@
 User-agent: *
 Disallow:
 
-Sitemap: https://www.breakfast-and-after-school-club.co.uk/sitemap.xml
+Sitemap: https://breakfast-and-after-school-club.netlify.app/sitemap.xml

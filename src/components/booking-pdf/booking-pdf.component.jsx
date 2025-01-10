@@ -67,7 +67,7 @@ export const BookingPdf = ({ chosenEntry }) => {
         <View style={pdfStyles.section}>
           <Text style={pdfStyles.minor}>contact us:</Text>
           <Text style={pdfStyles.lowercase}>
-            https://www.breakfast-and-after-school-club.co.uk/contact
+            https://breakfast-and-after-school-club.netlify.app/contact
           </Text>
         </View>
 

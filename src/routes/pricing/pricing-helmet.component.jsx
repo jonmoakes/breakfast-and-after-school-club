@@ -16,7 +16,7 @@ const PricingHelmet = () => (
     />
     <link
       rel="canonical"
-      href="https://www.breakfast-and-after-school-club.co.uk/pricing"
+      href="https://breakfast-and-after-school-club.netlify.app/pricing"
     />
   </Helmet>
 );

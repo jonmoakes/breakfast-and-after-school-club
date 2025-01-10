@@ -11,7 +11,7 @@ export const handler = async (event) => {
       TemplateAlias:
         "send-email-update-latest-bookings-and-childrens-parent-email",
       TemplateModel: {
-        product_url: "https://www.breakfast-and-after-school-club.co.uk",
+        product_url: "https://breakfast-and-after-school-club.netlify.app",
         product_name: "Breakfast & After School Club",
         id,
         newEmail,

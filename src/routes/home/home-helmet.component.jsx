@@ -16,7 +16,7 @@ const HomeHelmet = () => (
     />
     <link
       rel="canonical"
-      href="https://www.breakfast-and-after-school-club.co.uk/"
+      href="https://breakfast-and-after-school-club.netlify.app/"
     />
   </Helmet>
 );

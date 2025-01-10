@@ -15,7 +15,7 @@ export const generateNewPasswordRequestAsync = createAsyncThunk(
       } else if (import.meta.env.MODE === "production") {
         await account.createRecovery(
           generateNewPasswordRequestEmail,
-          `https://www.breakfast-and-after-school-club.co.uk${chooseNewPasswordRoute}`
+          `https://breakfast-and-after-school-club.netlify.app${chooseNewPasswordRoute}`
         );
       }
     } catch (error) {

@@ -10,9 +10,9 @@ export const handler = async (event) => {
     await client.sendEmailWithTemplate({
       From: process.env.VITE_APP_ADMIN_EMAIL,
       To: appOwnerEmail,
-      TemplateAlias: "send-email-to-admin-close-account-request",
+      TemplateAlias: "send-email-to-admin-close-account-request-breakfast",
       TemplateModel: {
-        product_url: "https://www.breakfast-and-after-school-club.co.uk",
+        product_url: "https://breakfast-and-after-school-club.netlify.app",
         product_name: "Breakfast & After School Club",
         appOwnerEmail,
         childrenIdsToDelete,

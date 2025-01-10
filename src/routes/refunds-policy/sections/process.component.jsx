@@ -19,9 +19,7 @@ const Process = () => (
         support team at
         <br />
         <br />
-        <LowercasedSpan>
-          admin@breakfast-and-after-school-club.co.uk
-        </LowercasedSpan>
+        <LowercasedSpan>jonathan@solaris-apps.co.uk</LowercasedSpan>
         <br />
         <br />
         with the subscription details and reason for the refund request.

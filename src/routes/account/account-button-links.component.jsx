@@ -7,12 +7,17 @@ import { ParentDiv } from "../../styles/div/div.styles";
 import { BlueH2 } from "../../styles/h2/h2.styles";
 
 const AccountButtonLinks = () => {
-  const { id, appOwnerId } = useGetCurrentUserSelectors();
-  const { appOwnerButtons, notAppOwnerButtons } = useNavigateToRoute();
+  const { id, appOwnerId, appAdminId } = useGetCurrentUserSelectors();
+  const { appAdminButtons, appOwnerButtons, notAppOwnerButtons } =
+    useNavigateToRoute();
 
   return (
     <>
-      {id === appOwnerId ? (
+      {id === appAdminId ? (
+        <ParentDiv>
+          <RenderButtonsList {...{ buttons: appAdminButtons }} />
+        </ParentDiv>
+      ) : id === appOwnerId ? (
         <ParentDiv>
           <RenderButtonsList {...{ buttons: appOwnerButtons }} />
         </ParentDiv>

@@ -19,7 +19,7 @@ export const handler = async (event) => {
       To: appOwnerEmail,
       TemplateAlias: "send-email-booking-not-added-to-database",
       TemplateModel: {
-        product_url: "https://www.breakfast-and-after-school-club.co.uk",
+        product_url: "https://breakfast-and-after-school-club.netlify.app",
         product_name: "Breakfast & After School Club",
         date,
         sessionType,
