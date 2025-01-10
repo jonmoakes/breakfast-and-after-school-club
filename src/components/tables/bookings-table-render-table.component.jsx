@@ -27,81 +27,92 @@ const BookingsTableRenderTable = ({
     location.pathname === bookedSessionsOwnerRoute ? "" : "user-bookings";
 
   return (
-    <>
-      <TableDiv className={tableClassName}>
-        <TableWithStyle {...getTableProps()}>
-          <thead>
-            {headerGroups.map((headerGroup) => (
-              <tr {...headerGroup.getHeaderGroupProps()}>
-                {headerGroup.headers.map((column) => (
-                  <th {...column.getHeaderProps(column.getSortByToggleProps())}>
-                    {column.render("Header")}
-                    <BlackSpan>
-                      {column.isSorted
-                        ? column.isSortedDesc
-                          ? " ⬇️"
-                          : " ⬆️"
-                        : ""}
-                    </BlackSpan>
-                  </th>
-                ))}
+    <TableDiv className={tableClassName}>
+      <TableWithStyle {...getTableProps()}>
+        <thead>
+          {headerGroups.map((headerGroup) => {
+            const { key, ...restHeaderGroupProps } =
+              headerGroup.getHeaderGroupProps();
+            return (
+              <tr key={key} {...restHeaderGroupProps}>
+                {headerGroup.headers.map((column) => {
+                  const { key, ...restColumn } = column.getHeaderProps();
+                  return (
+                    <th key={key} {...restColumn}>
+                      {column.render("Header")}
+                      <BlackSpan>
+                        {column.isSorted
+                          ? column.isSortedDesc
+                            ? " ⬇️"
+                            : " ⬆️"
+                          : ""}
+                      </BlackSpan>
+                    </th>
+                  );
+                })}
               </tr>
-            ))}
-          </thead>
+            );
+          })}
+        </thead>
+        <tbody {...getTableBodyProps()}>
+          {page.map((row) => {
+            prepareRow(row);
+            const { key: rowKey, ...restRowProps } = row.getRowProps();
 
-          <tbody {...getTableBodyProps()}>
-            {page.map((row) => {
-              prepareRow(row);
-              return (
-                <tr {...row.getRowProps()}>
-                  {row.cells.map((cell) => {
-                    const getDay = format(
-                      new Date(cell.row.original.date),
-                      "EEEE"
+            return (
+              <tr key={rowKey} {...restRowProps}>
+                {row.cells.map((cell) => {
+                  const { key: cellKey, ...restCellProps } =
+                    cell.getCellProps();
+                  const getDay = format(
+                    new Date(cell.row.original.date),
+                    "EEEE"
+                  );
+
+                  if (getDay.includes("Monday")) {
+                    return (
+                      <MondayCell key={cellKey} {...restCellProps}>
+                        {cell.render("Cell")}
+                      </MondayCell>
                     );
-                    if (getDay.includes("Monday")) {
-                      return (
-                        <MondayCell {...cell.getCellProps()}>
-                          {cell.render("Cell")}
-                        </MondayCell>
-                      );
-                    } else if (getDay.includes("Tuesday")) {
-                      return (
-                        <TuesdayCell {...cell.getCellProps()}>
-                          {cell.render("Cell")}
-                        </TuesdayCell>
-                      );
-                    } else if (getDay.includes("Wednesday")) {
-                      return (
-                        <WednesdayCell {...cell.getCellProps()}>
-                          {cell.render("Cell")}
-                        </WednesdayCell>
-                      );
-                    } else if (getDay.includes("Thursday")) {
-                      return (
-                        <ThursdayCell {...cell.getCellProps()}>
-                          {cell.render("Cell")}
-                        </ThursdayCell>
-                      );
-                    } else if (getDay.includes("Friday")) {
-                      return (
-                        <FridayCell {...cell.getCellProps()}>
-                          {cell.render("Cell")}
-                        </FridayCell>
-                      );
-                    } else {
-                      return (
-                        <td {...cell.getCellProps()}>{cell.render("Cell")}</td>
-                      );
-                    }
-                  })}
-                </tr>
-              );
-            })}
-          </tbody>
-        </TableWithStyle>
-      </TableDiv>
-    </>
+                  } else if (getDay.includes("Tuesday")) {
+                    return (
+                      <TuesdayCell key={cellKey} {...restCellProps}>
+                        {cell.render("Cell")}
+                      </TuesdayCell>
+                    );
+                  } else if (getDay.includes("Wednesday")) {
+                    return (
+                      <WednesdayCell key={cellKey} {...restCellProps}>
+                        {cell.render("Cell")}
+                      </WednesdayCell>
+                    );
+                  } else if (getDay.includes("Thursday")) {
+                    return (
+                      <ThursdayCell key={cellKey} {...restCellProps}>
+                        {cell.render("Cell")}
+                      </ThursdayCell>
+                    );
+                  } else if (getDay.includes("Friday")) {
+                    return (
+                      <FridayCell key={cellKey} {...restCellProps}>
+                        {cell.render("Cell")}
+                      </FridayCell>
+                    );
+                  } else {
+                    return (
+                      <td key={cellKey} {...restCellProps}>
+                        {cell.render("Cell")}
+                      </td>
+                    );
+                  }
+                })}
+              </tr>
+            );
+          })}
+        </tbody>
+      </TableWithStyle>
+    </TableDiv>
   );
 };
 export default BookingsTableRenderTable;

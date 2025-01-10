@@ -9,6 +9,7 @@ const useGetAllUsersThunkUseEffect = () => {
     databaseId,
     userCollectionId: collectionId,
     id,
+    appAdminId,
   } = useGetCurrentUserSelectors();
 
   const dispatch = useDispatch();
@@ -19,9 +20,10 @@ const useGetAllUsersThunkUseEffect = () => {
         databaseId,
         collectionId,
         id,
+        appAdminId,
       })
     );
-  }, [databaseId, collectionId, id, dispatch]);
+  }, [databaseId, collectionId, id, appAdminId, dispatch]);
 };
 
 export default useGetAllUsersThunkUseEffect;

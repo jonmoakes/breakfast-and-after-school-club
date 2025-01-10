@@ -38,11 +38,11 @@ const useBookedSessionsUserFunctions = (chosenEntry) => {
   };
 
   const oneEntrySelected = () => {
-    return chosenEntry.length === 1 ? true : false;
+    return chosenEntry && chosenEntry.length === 1 ? true : false;
   };
 
   const moreThanOneEntrySelected = () => {
-    return chosenEntry.length > 1 ? true : false;
+    return chosenEntry && chosenEntry.length > 1 ? true : false;
   };
 
   const { sessionType, date } = (chosenEntry ?? [])[0] ?? {};

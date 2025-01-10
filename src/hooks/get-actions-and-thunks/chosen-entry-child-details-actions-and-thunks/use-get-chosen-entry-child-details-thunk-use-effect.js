@@ -5,7 +5,7 @@ import useGetCurrentUserSelectors from "../../get-selectors/use-get-current-user
 import { getChosenEntryChildDetailsAsync } from "../../../store/chosen-entry-child-details/chosen-entry-child-details.thunks";
 
 const useGetChosenEntryChildDetailsThunkUseEffect = (
-  childrensNamesInChosenEntry
+  childrensNamesInBooking
 ) => {
   const {
     currentUser,
@@ -20,13 +20,13 @@ const useGetChosenEntryChildDetailsThunkUseEffect = (
     if (!currentUser || (currentUser && currentUser.id !== appOwnerId)) return;
     dispatch(
       getChosenEntryChildDetailsAsync({
-        childrensNamesInChosenEntry,
+        childrensNamesInBooking,
         databaseId,
         collectionId,
       })
     );
   }, [
-    childrensNamesInChosenEntry,
+    childrensNamesInBooking,
     currentUser,
     dispatch,
     appOwnerId,

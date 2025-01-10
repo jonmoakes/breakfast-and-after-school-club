@@ -7,4 +7,4 @@ export const enterYourPasswordPlaceholder = "enter your password";
 export const leaveBlankIfNothingToAdd = "leave blank if nothing to add";
 export const anyOtherInfo = "anything else you need to tell us? Enter it here!";
 export const emergencyContactPlaceholder =
-  "please enter a contact name, a relationship to the child and a phone number.";
+  "ie 'Joe Bloggs, Grandad, 07356273846'";

@@ -5,7 +5,7 @@ import { smallRateLimit } from "../../constants/constants";
 
 export const getAllUsersAsync = createAsyncThunk(
   "getAllUsersInUsersCollection",
-  async ({ databaseId, collectionId, id }, thunkAPI) => {
+  async ({ databaseId, collectionId, id, appAdminId }, thunkAPI) => {
     try {
       const getUsersDocuments = await listDocumentsInACollection(
         databaseId,
@@ -16,7 +16,9 @@ export const getAllUsersAsync = createAsyncThunk(
       const { documents, total } = getUsersDocuments;
       if (!total) return;
 
-      const documentsWithoutAppOwner = documents.filter((doc) => doc.id !== id);
+      const documentsWithoutAppOwner = documents.filter(
+        (doc) => doc.id !== id && doc.id !== appAdminId
+      );
 
       return documentsWithoutAppOwner;
     } catch (error) {

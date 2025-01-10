@@ -23,13 +23,10 @@ const GetChildDetailsButton = ({ chosenEntry }) => {
         >
           <Icon className="top-floating-button" src={InfoIcon} />
         </IconButton>
-      ) : moreThanOneEntrySelectedAndShowingAllBookings() ? (
+      ) : moreThanOneEntrySelectedAndShowingAllBookings() ||
+        moreThanOneEntrySelectedAndShowingTodaysBookings() ? (
         <UncheckEntriesInfo />
-      ) : (
-        moreThanOneEntrySelectedAndShowingTodaysBookings() && (
-          <UncheckEntriesInfo />
-        )
-      )}
+      ) : null}
     </>
   );
 };

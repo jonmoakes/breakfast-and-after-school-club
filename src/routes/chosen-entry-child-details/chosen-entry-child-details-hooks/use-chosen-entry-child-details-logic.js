@@ -6,22 +6,22 @@ const useChosenEntryChildDetailsLogic = () => {
 
   const location = useLocation();
 
-  const childrensNamesInChosenEntry =
-    location.state &&
-    location.state.chosenEntry &&
-    location.state.chosenEntry.length
-      ? location.state.chosenEntry[0].childrensName
-      : null;
+  const bookingDataPassedFromTable = location.state.chosenEntry
+    ? location.state.chosenEntry[0]
+    : null;
 
-  const childOrChildrenString =
-    chosenEntryChildDetails.length === 1 ? "child" : "children";
+  const childrensNamesInBooking =
+    bookingDataPassedFromTable.childrensName.replace(/\*/g, "");
+  const commaCount = childrensNamesInBooking.split(",").length - 1;
+
+  const childOrChildrenString = commaCount === 0 ? "child" : "children";
 
   const noChosenEntryFound = !chosenEntryChildDetails.length ? true : false;
 
   return {
     childOrChildrenString,
     noChosenEntryFound,
-    childrensNamesInChosenEntry,
+    childrensNamesInBooking,
     chosenEntryChildDetails,
   };
 };

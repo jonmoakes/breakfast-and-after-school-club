@@ -5,15 +5,23 @@ import ChosenEntryChildDetailsAccordion from "./chosen-entry-child-details-accor
 import ChildDetails from "./child-details.component";
 
 import { NoHeaderFooterContainer } from "../../styles/container/container.styles";
+import useGetChosenEntryChildDetailsThunkUseEffect from "../../hooks/get-actions-and-thunks/chosen-entry-child-details-actions-and-thunks/use-get-chosen-entry-child-details-thunk-use-effect";
+import useChosenEntryChildDetailsLogic from "./chosen-entry-child-details-hooks/use-chosen-entry-child-details-logic";
 
 const ChosenEntryChildDetails = () => {
+  const {
+    noChosenEntryFound,
+    childrensNamesInBooking,
+    chosenEntryChildDetails,
+  } = useChosenEntryChildDetailsLogic();
+  useGetChosenEntryChildDetailsThunkUseEffect(childrensNamesInBooking);
   useGetChildrenEntryChildDetailsErrorSwal();
 
   return (
     <NoHeaderFooterContainer>
       <TitleAndLoader />
       <ChosenEntryChildDetailsAccordion />
-      <ChildDetails />
+      <ChildDetails {...{ noChosenEntryFound, chosenEntryChildDetails }} />
     </NoHeaderFooterContainer>
   );
 };

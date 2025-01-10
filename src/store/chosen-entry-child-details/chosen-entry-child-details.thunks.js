@@ -3,28 +3,27 @@ import { listDocumentsByQueryOrSearch } from "../../utils/appwrite/appwrite-func
 
 export const getChosenEntryChildDetailsAsync = createAsyncThunk(
   "getChosenEntryChildDetails",
-  async (
-    { childrensNamesInChosenEntry, databaseId, collectionId },
-    thunkAPI
-  ) => {
+  async ({ childrensNamesInBooking, databaseId, collectionId }, thunkAPI) => {
     try {
-      const searchIndex = "childName";
-      const searchValue = childrensNamesInChosenEntry;
+      const queryIndex = "childName";
+
+      const queryValue = childrensNamesInBooking
+        .split(",")
+        .map((name) => name.trim());
 
       const getChosenEntryChildDetailsDocuments =
         await listDocumentsByQueryOrSearch(
           databaseId,
           collectionId,
-          searchIndex,
-          searchValue,
-          true,
+          queryIndex,
+          queryValue,
+          false,
           null
         );
 
       const { documents, total } = getChosenEntryChildDetailsDocuments;
 
-      if (!total) return;
-
+      if (!total) return [];
       return documents;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);

@@ -13,25 +13,54 @@ const DefaultTable = ({
     <TableDiv>
       <TableWithStyle {...getTableProps()}>
         <thead>
-          {headerGroups.map((headerGroup) => (
-            <tr {...headerGroup.getHeaderGroupProps()}>
-              {headerGroup.headers.map((column) => (
-                <th {...column.getHeaderProps(column.getSortByToggleProps())}>
-                  {column.render("Header")}
-                  <BlackSpan>
-                    {column.isSorted
-                      ? column.isSortedDesc
-                        ? " ⬇️"
-                        : " ⬆️"
-                      : ""}
-                  </BlackSpan>
-                </th>
-              ))}
-            </tr>
-          ))}
+          {headerGroups.map((headerGroup) => {
+            const { key, ...restHeaderGroupProps } =
+              headerGroup.getHeaderGroupProps();
+            return (
+              <tr key={key} {...restHeaderGroupProps}>
+                {headerGroup.headers.map((column) => {
+                  const { key, ...restColumn } = column.getHeaderProps();
+                  return (
+                    <th key={key} {...restColumn}>
+                      {column.render("Header")}
+                      <BlackSpan>
+                        {column.isSorted
+                          ? column.isSortedDesc
+                            ? " ⬇️"
+                            : " ⬆️"
+                          : ""}
+                      </BlackSpan>
+                    </th>
+                  );
+                })}
+              </tr>
+            );
+          })}
         </thead>
 
         <tbody {...getTableBodyProps()}>
+          {page.map((row) => {
+            prepareRow(row);
+            const { key: rowKey, ...restRowProps } = row.getRowProps();
+
+            return (
+              <tr key={rowKey} {...restRowProps}>
+                {row.cells.map((cell) => {
+                  const { key: cellKey, ...restCellProps } =
+                    cell.getCellProps();
+
+                  return (
+                    <td key={cellKey} {...restCellProps}>
+                      {cell.render("Cell")}
+                    </td>
+                  );
+                })}
+              </tr>
+            );
+          })}
+        </tbody>
+
+        {/* <tbody {...getTableBodyProps()}>
           {page.map((row) => {
             prepareRow(row);
             return (
@@ -44,7 +73,7 @@ const DefaultTable = ({
               </tr>
             );
           })}
-        </tbody>
+        </tbody> */}
       </TableWithStyle>
     </TableDiv>
   );

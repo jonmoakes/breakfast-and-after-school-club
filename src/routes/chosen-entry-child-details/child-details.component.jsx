@@ -1,8 +1,6 @@
 import Balancer from "react-wrap-balancer";
 
 import useCancelAndReturn from "../../hooks/use-cancel-and-return";
-import useChosenEntryChildDetailsLogic from "./chosen-entry-child-details-hooks/use-chosen-entry-child-details-logic";
-import useGetChosenEntryChildDetailsThunkUseEffect from "../../hooks/get-actions-and-thunks/chosen-entry-child-details-actions-and-thunks/use-get-chosen-entry-child-details-thunk-use-effect";
 
 import { ParentDiv } from "../../styles/div/div.styles";
 import { Text } from "../../styles/p/p.styles";
@@ -10,14 +8,8 @@ import { YellowGreenButton } from "../../styles/buttons/buttons.styles";
 import { BlueH2 } from "../../styles/h2/h2.styles";
 import { BlackHr } from "../../styles/hr/hr.styles";
 
-const ChildDetails = () => {
+const ChildDetails = ({ noChosenEntryFound, chosenEntryChildDetails }) => {
   const { cancelAndReturn } = useCancelAndReturn();
-  const {
-    noChosenEntryFound,
-    childrensNamesInChosenEntry,
-    chosenEntryChildDetails,
-  } = useChosenEntryChildDetailsLogic();
-  useGetChosenEntryChildDetailsThunkUseEffect(childrensNamesInChosenEntry);
 
   return (
     <>
