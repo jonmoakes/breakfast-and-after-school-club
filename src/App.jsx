@@ -6,7 +6,7 @@ import { GlobalStyle } from "./global-styles";
 import "./App.css";
 
 import useGetCurrentUserSelectors from "./hooks/get-selectors/use-get-current-user-selectors";
-import useGetUserOnLoadThunkUseEffect from "./hooks/get-actions-and-thunks/current-user-actions-and-thunks/use-get-user-on-load-thunk-use-effect";
+// import useGetUserOnLoadThunkUseEffect from "./hooks/get-actions-and-thunks/current-user-actions-and-thunks/use-get-user-on-load-thunk-use-effect";
 
 import ScrollToTop from "./components/scroll-to-top/use-scroll-to-top";
 import PrivateRoutes from "./components/private-routes/private-routes.component";
@@ -15,7 +15,7 @@ import Loader from "./components/loader/loader.component";
 import FloatingBackButton from "./components/floating-back-button/floating-back-button.component";
 
 import {
-  contactRoute,
+  // contactRoute,
   signUpRoute,
   signInRoute,
   accountRoute,
@@ -97,7 +97,7 @@ const DataProtection = lazy(() =>
 const ImageCredits = lazy(() =>
   import("./routes/image-credits/image-credits.component")
 );
-const Contact = lazy(() => import("./routes/contact/contact.component"));
+// const Contact = lazy(() => import("./routes/contact/contact.component"));
 const SignUp = lazy(() => import("./routes/sign-up/sign-up.component"));
 const SignIn = lazy(() => import("./routes/sign-in/sign-in.component"));
 const BookedSessionsOwner = lazy(() =>
@@ -259,7 +259,7 @@ const BookingTerms = lazy(() =>
 
 const App = () => {
   const { currentUser, appOwnerId } = useGetCurrentUserSelectors();
-  useGetUserOnLoadThunkUseEffect();
+  // useGetUserOnLoadThunkUseEffect();
 
   return (
     <HelmetProvider>
@@ -301,7 +301,7 @@ const App = () => {
             />
             <Route path={imageCreditsRoute} element={<ImageCredits />} />
             <Route path={signInRoute} element={<SignIn />} />
-            <Route path={contactRoute} element={<Contact />} />
+
             <Route path={signUpRoute} element={<SignUp />} />
             <Route
               path={forgotPasswordRequestRoute}

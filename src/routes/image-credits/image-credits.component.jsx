@@ -10,9 +10,9 @@ import { Container } from "../../styles/container/container.styles";
 import { ParentDiv } from "../../styles/div/div.styles";
 import { BlackTitle } from "../../styles/h1/h1.styles";
 import { Text } from "../../styles/p/p.styles";
-import { StyledLink } from "../../styles/link/link.styles";
+// import { StyledLink } from "../../styles/link/link.styles";
 
-import { contactRoute } from "../../strings/routes/routes-strings";
+// import { contactRoute } from "../../strings/routes/routes-strings";
 import EyeIcon from "./eye-icon.component";
 
 const ImageCredits = () => (
@@ -40,13 +40,13 @@ const ImageCredits = () => (
     <BackgroundImage />
     <EyeIcon />
 
-    <ParentDiv>
+    {/* <ParentDiv>
       <Text>are we missing an image attribution?</Text>
       <Text>
         please <StyledLink to={contactRoute}>contact us</StyledLink> with your
         details!
       </Text>
-    </ParentDiv>
+    </ParentDiv> */}
   </Container>
 );
 

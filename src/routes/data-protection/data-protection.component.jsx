@@ -1,4 +1,4 @@
-import PolicyContactInfo from "../../components/policy-contact-info/policy-contact-info.component";
+// import PolicyContactInfo from "../../components/policy-contact-info/policy-contact-info.component";
 
 import { Container } from "../../styles/container/container.styles";
 import { ParentDiv } from "../../styles/div/div.styles";
@@ -9,7 +9,7 @@ import { BlueH2 } from "../../styles/h2/h2.styles";
 import { StyledUnorderedList, BlackListItem } from "../../styles/ul/ul.styles";
 
 import { privacyPolicyRoute } from "../../strings/routes/routes-strings";
-import ContactLink from "./contact-link.component";
+// import ContactLink from "./contact-link.component";
 import Balancer from "react-wrap-balancer";
 
 const DataProtection = () => (
@@ -63,8 +63,8 @@ const DataProtection = () => (
       </Text>
     </ParentDiv>
 
-    <PolicyContactInfo />
-    <ContactLink />
+    {/* <PolicyContactInfo /> */}
+    {/* <ContactLink /> */}
   </Container>
 );
 

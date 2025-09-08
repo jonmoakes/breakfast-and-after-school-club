@@ -9,7 +9,7 @@ import Timeframes from "./sections/timeframes.component";
 import PartialRefunds from "./sections/partial-refunds.component";
 import RefundMethods from "./sections/refund-methods.component";
 import ChangesToPolicy from "./sections/changes-to-policy.component";
-import PolicyContactInfo from "../../components/policy-contact-info/policy-contact-info.component";
+// import PolicyContactInfo from "../../components/policy-contact-info/policy-contact-info.component";
 
 import { Container } from "../../styles/container/container.styles";
 import { ParentDiv } from "../../styles/div/div.styles";
@@ -57,7 +57,7 @@ const RefundsPolicy = () => {
             <ChangesToPolicy />
           </ParentDiv>
 
-          <PolicyContactInfo />
+          {/* <PolicyContactInfo /> */}
         </>
       ) : null}
 

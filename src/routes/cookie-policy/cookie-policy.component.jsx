@@ -2,7 +2,7 @@ import CookiesTitleAndIntro from "./sections/cookies-title-and-intro.component";
 import WhatAreCookiesAndLocalStorage from "./sections/what-are-cookies-and-local-storage.component";
 import TypesOfCookiesWeUse from "./sections/types-of-cookies-we-use.component";
 import LocalStorage from "./sections/local-storage.component";
-import PolicyContactInfo from "../../components/policy-contact-info/policy-contact-info.component";
+// import PolicyContactInfo from "../../components/policy-contact-info/policy-contact-info.component";
 import ManagingCookies from "./sections/managing-cookies.component";
 import SecurityPolicyLink from "./sections/security-policy-link.component";
 
@@ -15,7 +15,7 @@ const CookiePolicy = () => (
     <TypesOfCookiesWeUse />
     <ManagingCookies />
     <LocalStorage />
-    <PolicyContactInfo />
+    {/* <PolicyContactInfo /> */}
     <SecurityPolicyLink />
   </Container>
 );

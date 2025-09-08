@@ -10,7 +10,7 @@ import IntellectualProperty from "./sections/intellectual-property.component";
 import Disclaimers from "./sections/disclaimers.component";
 import Termination from "./sections/termination.component";
 import GoverningLaw from "./sections/governing-law.component";
-import PolicyContactInfo from "../../components/policy-contact-info/policy-contact-info.component";
+// import PolicyContactInfo from "../../components/policy-contact-info/policy-contact-info.component";
 
 import { Container } from "../../styles/container/container.styles";
 import { ParentDiv } from "../../styles/div/div.styles";
@@ -35,7 +35,7 @@ const TermsAndConditions = () => (
     <Disclaimers />
     <Termination />
     <GoverningLaw />
-    <PolicyContactInfo />
+    {/* <PolicyContactInfo /> */}
     <PrivacyPolicyLink />
   </Container>
 );

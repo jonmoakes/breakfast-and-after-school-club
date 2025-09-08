@@ -1,7 +1,7 @@
 import Balancer from "react-wrap-balancer";
 
 import { Text } from "../../../styles/p/p.styles";
-import { LowercasedSpan } from "../../../styles/span/span.styles";
+// import { LowercasedSpan } from "../../../styles/span/span.styles";
 import { BlackHr } from "../../../styles/hr/hr.styles";
 import {
   StyledUnorderedList,
@@ -13,7 +13,7 @@ const Process = () => (
   <>
     <BlueH2>process:</BlueH2>
 
-    <Text>
+    {/* <Text>
       <Balancer>
         To request a refund for the app subscription fee, please contact our
         support team at
@@ -24,7 +24,7 @@ const Process = () => (
         <br />
         with the subscription details and reason for the refund request.
       </Balancer>
-    </Text>
+    </Text> */}
     <Text>
       Required Information:
       <br />

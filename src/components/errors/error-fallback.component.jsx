@@ -3,9 +3,9 @@ import ProgressiveImg from "../progressive-image/progressive-image.component";
 import { ParentDiv, ErrorFallbackImageDiv } from "../../styles/div/div.styles";
 import { ErrorFallbackButton } from "../../styles/buttons/buttons.styles";
 import { ErrorImageText } from "../../styles/p/p.styles";
-import { StyledLink } from "../../styles/link/link.styles";
+// import { StyledLink } from "../../styles/link/link.styles";
 
-import { contactRoute } from "../../strings/routes/routes-strings";
+// import { contactRoute } from "../../strings/routes/routes-strings";
 
 import Image from "../../assets/sad-face-emoji.jpg";
 import PlaceholderImage from "../../assets/placeholder.jpg";
@@ -37,12 +37,12 @@ const ErrorFallback = () => (
       </ErrorFallbackButton>
     </ParentDiv>
 
-    <ParentDiv>
+    {/* <ParentDiv>
       <ErrorImageText>
         and if that doesn't work, please{" "}
         <StyledLink to={contactRoute}>contact us!</StyledLink>
       </ErrorImageText>
-    </ParentDiv>
+    </ParentDiv> */}
   </>
 );
 

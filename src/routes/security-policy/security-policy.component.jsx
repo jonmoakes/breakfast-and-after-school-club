@@ -5,7 +5,7 @@ import DevelopmentPractices from "./sections/development-practices.component";
 import IncidentResponse from "./sections/incident-response.component";
 import UserEducation from "./sections/user-education.component";
 import RegulationCompliance from "./sections/regulation-compliance.component";
-import PolicyContactInfo from "../../components/policy-contact-info/policy-contact-info.component";
+// import PolicyContactInfo from "../../components/policy-contact-info/policy-contact-info.component";
 import RefundPolicyLink from "./sections/refund-policy-link.component";
 
 import { Container } from "../../styles/container/container.styles";
@@ -19,7 +19,7 @@ const SecurityPolicy = () => (
     <IncidentResponse />
     <UserEducation />
     <RegulationCompliance />
-    <PolicyContactInfo />
+    {/* <PolicyContactInfo /> */}
     <RefundPolicyLink />
   </Container>
 );

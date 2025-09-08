@@ -5,7 +5,7 @@ import { Button } from "../../styles/buttons/buttons.styles";
 import { Text } from "../../styles/p/p.styles";
 
 import {
-  contactRoute,
+  // contactRoute,
   signInRoute,
   signUpRoute,
 } from "../../strings/routes/routes-strings";
@@ -24,12 +24,12 @@ const Links = () => (
       </Link>
     </ParentDiv>
 
-    <ParentDiv>
+    {/* <ParentDiv>
       <Text>need help?</Text>
       <Link to={contactRoute}>
         <Button>contact us</Button>
       </Link>
-    </ParentDiv>
+    </ParentDiv> */}
   </>
 );
 

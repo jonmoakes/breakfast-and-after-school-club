@@ -1,7 +1,7 @@
 import { ParentDiv } from "../../../styles/div/div.styles";
 import { BlueH2 } from "../../../styles/h2/h2.styles";
 import { Text } from "../../../styles/p/p.styles";
-import { LowercasedSpan } from "../../../styles/span/span.styles";
+// import { LowercasedSpan } from "../../../styles/span/span.styles";
 
 const UserRights = () => (
   <ParentDiv>
@@ -25,12 +25,12 @@ const UserRights = () => (
       You have the right to request a copy of your data in a structured,
       commonly used, and machine-readable format.
     </Text>
-    <Text>
+    {/* <Text>
       To exercise any of these rights, please contact us at:
       <br />
       <br />
       <LowercasedSpan>jonathan@solaris-apps.co.uk</LowercasedSpan>
-    </Text>
+    </Text> */}
   </ParentDiv>
 );
 

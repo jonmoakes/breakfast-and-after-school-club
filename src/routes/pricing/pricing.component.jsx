@@ -5,7 +5,7 @@ import TenToFourtyNineChildren from "./ten-to-fourty-nine-children.component";
 import FiftyToOneNineNineChildren from "./fifty-to-one-nine-nine-children.component";
 
 import PlansInclude from "./plans-include.component";
-import LinkToContact from "./link-to-contact.component";
+// import LinkToContact from "./link-to-contact.component";
 import Footer from "../../components/footer/footer.component";
 
 import { Container } from "../../styles/container/container.styles";
@@ -22,7 +22,7 @@ const Pricing = () => (
     <TwoHundredAndFiftyPlusChildren />
     <PlansInclude />
     <PaymentProcessingFees />
-    <LinkToContact />
+    {/* <LinkToContact /> */}
     <Footer />
   </Container>
 );

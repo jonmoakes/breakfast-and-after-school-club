@@ -40,5 +40,4 @@ export const signedOutRoutes = [
   signUpRoute,
   aboutRoute,
   pricingRoute,
-  contactRoute,
 ];

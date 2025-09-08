@@ -1,7 +1,7 @@
 import { ParentDiv } from "../../../styles/div/div.styles";
 import { BlueH2 } from "../../../styles/h2/h2.styles";
 import { Text } from "../../../styles/p/p.styles";
-import { LowercasedSpan } from "../../../styles/span/span.styles";
+// import { LowercasedSpan } from "../../../styles/span/span.styles";
 import { BlackHr } from "../../../styles/hr/hr.styles";
 
 const SecurityMeasures = () => (
@@ -129,11 +129,11 @@ const SecurityMeasures = () => (
     <Text>
       By leveraging these security features, we ensure that your personal
       information is protected against unauthorised access, use, and disclosure.
-      If you have any questions or concerns about our data security practices,
-      please contact us at:
+      {/* If you have any questions or concerns about our data security practices,
+      please contact us at: */}
+      {/* <br />
       <br />
-      <br />
-      <LowercasedSpan>jonathan@solaris-apps.co.uk</LowercasedSpan>
+      <LowercasedSpan>jonathan@solaris-apps.co.uk</LowercasedSpan> */}
     </Text>
   </ParentDiv>
 );

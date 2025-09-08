@@ -5,10 +5,10 @@ import { Text } from "../../styles/p/p.styles";
 import { RedSpan, BlackSpan } from "../../styles/span/span.styles";
 import { ErrorDiv, ParentDiv } from "../../styles/div/div.styles";
 import { Button } from "../../styles/buttons/buttons.styles";
-import { StyledLink } from "../../styles/link/link.styles";
+// import { StyledLink } from "../../styles/link/link.styles";
 
 import {
-  contactRoute,
+  // contactRoute,
   databaseManagementRoute,
 } from "../../strings/routes/routes-strings";
 
@@ -42,9 +42,7 @@ const ShowFetchErrors = () => {
             if you continue to see this error, please{" "}
             {path === databaseManagementRoute ? (
               <BlackSpan>contact jonathan</BlackSpan>
-            ) : (
-              <StyledLink to={contactRoute}>contact us</StyledLink>
-            )}{" "}
+            ) : null}{" "}
             and quote the error in the grey box above.
           </Text>
           <Text>we apologise for the inconvenience!</Text>
